@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace SolidConsole
 {
@@ -10,8 +11,6 @@ namespace SolidConsole
         {
             try
             {
-                SFMReader a = new SFMReader("hi there");
-                a.Read();
             }
             catch (Exception e)
             {

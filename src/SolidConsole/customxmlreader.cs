@@ -1,0 +1,421 @@
+/*
+* 
+* An XmlReader implementation for loading SFM delimited files
+*
+* Copyright (c) 2001-2005 Microsoft Corporation. All rights reserved.
+*
+* Chris Lovett
+* 
+*/
+
+using System;
+using System.Xml;
+using System.IO;
+using System.Collections;
+using System.Text;
+using System.Net;
+
+namespace SolidConsole {
+
+    /// <summary>
+    /// Summary description for XmlCustomReader.
+    /// </summary>
+    public class CustomXmlReader : XmlReader {
+//        SfmReader _csvReader;
+        protected string _proxy;
+        protected Uri _baseUri;
+        protected Uri _href;
+        //        string _root = "root";
+//        string _rowname = "row";
+        protected XmlNameTable _nt;
+//        string[] _names;
+//        State _state = State.Initial;
+//        int _attr = 0;
+  //      bool _asAttrs = false;
+//        bool _firstRowHasColumnNames = false;
+//        char _delimiter;
+//        Encoding _encoding;
+
+        protected virtual void Init() {
+        }
+
+        /// <summary>
+        /// Construct XmlCustomReader.  You must specify an HRef
+        /// location or a TextReader before calling Read().
+        /// </summary>
+        public CustomXmlReader() {
+            _nt = new NameTable();
+        }
+
+        /// <summary>
+        /// Construct an XmlCustomReader.
+        /// </summary>
+        /// <param name="location">The location of the .csv file</param>
+        /// <param name="nametable">The nametable to use for atomizing element names</param>
+        public CustomXmlReader(Uri location, XmlNameTable nametable) {
+            _baseUri = location;
+            _href = location;
+            _nt = nametable;
+            if (nametable == null)
+            {
+                _nt = new NameTable();
+            }
+        }
+
+        /// <summary>
+        /// Specifies the base URI to use for resolving the Href property.
+        /// This is optional.
+        /// </summary>
+        public string BaseUri {
+            get { return _baseUri == null ? "" : _baseUri.AbsoluteUri; }
+            set { _baseUri = new Uri(value); }
+        }
+
+        /// <summary>
+        /// Specifies the URI location of the .csv file to parse.
+        /// This can also be a local file name.
+        /// This can be a relative URI if a BaseUri has been provided.
+        /// You must specify either this property or a TextReader as input
+        /// before calling Read.
+        /// </summary>
+        public string Href {
+            get { return _href == null ? "" : _href.AbsoluteUri; }
+            set { 
+                if (_baseUri != null) {
+                    _href = new Uri(_baseUri, value); 
+                } else {
+                    try {
+                        _href = new Uri(value); 
+                    } 
+                    catch (Exception) {
+                        string file = Path.GetFullPath(value);
+                        _href = new Uri(file);
+                    } 
+                    _baseUri = _href;
+                }
+                Init();
+            }
+        }
+
+        /// <summary>
+        /// Specifies the proxy server.  This is only needed for internet HTTP requests
+        /// where the caller is behind a proxy server internet gateway. 
+        /// </summary>
+        public string Proxy {
+            get { return _proxy; }
+            set { _proxy = value; }
+        }
+
+        public override XmlNodeType NodeType // CJP Property override
+        { 
+            get 
+            {
+                return XmlNodeType.EndElement;
+            }       
+        }
+
+        public override string Name // CJP Property override
+        {
+            get 
+            {
+                return this.LocalName;
+            }
+        }
+
+        public override string LocalName // CJP Property override
+        { 
+            get 
+            {
+                return string.Empty;
+            }
+        }
+
+        public override string NamespaceURI // CJP Property override
+        { 
+            get 
+            {
+                return String.Empty;
+            }
+        }
+
+        public override string Prefix // CJP Property override
+        { 
+            get 
+            {
+                return String.Empty;
+            }
+        }
+
+        public override bool HasValue // CJP Property override
+        { 
+            get 
+            {
+                return false;
+            }
+        }
+
+        public override string Value // CJP Property override
+        { 
+            get 
+            {
+                return null;
+            }
+        }
+
+        public override int Depth // CJP Property override
+        { 
+            get 
+            {
+                return 0;
+            }       
+        }
+
+        public override string BaseURI // CJP Property override
+        { 
+            get 
+            {
+                return _baseUri.AbsolutePath;
+            }
+        }
+
+        public override bool IsEmptyElement // CJP Property override
+        { 
+            get 
+            {
+                return false;
+            }
+        }
+        public override bool IsDefault // CJP Property override
+        { 
+            get 
+            {
+                return false;
+            }
+        }
+        public override char QuoteChar // CJP Property override
+        { 
+            get 
+            {
+                return '"';
+            }
+        }
+
+        public override string XmlLang // CJP Property override
+        { 
+            get 
+            {
+                return String.Empty;
+            }
+        }
+
+        public override XmlSpace XmlSpace // CJP Property override
+        {
+            get
+            {
+                return XmlSpace.Default;
+            }
+        }
+
+
+        public override int AttributeCount // CJP Property override
+        { 
+            get 
+            {
+                return 0;
+            }
+        }
+
+        public override string GetAttribute(string name) {
+            return null;
+        }
+
+/*!!!
+        int GetOrdinal(string name) {
+            if (_names != null) {
+                string n = _nt.Add(name);
+                for (int i = 0; i < _names.Length; i++) {
+                    if ((object)_names[i] == (object)n)
+                        return i;
+                }
+                throw new Exception("Attribute '"+name+"' not found.");
+            }
+            // names are assigned a0, a1, a2, ...
+            return Int32.Parse(name.Substring(1));
+        }
+*/
+        public override string GetAttribute(string name, string namespaceURI) 
+        {
+            //!!! CJP This seems broken to me. Shouldn't this be checking for equivalence of the namespaceURI
+            if (namespaceURI != string.Empty && namespaceURI != null)
+            {
+                return null;
+            }
+            return GetAttribute(name);
+        }
+
+        public override string GetAttribute(int i) 
+        {
+            return null;
+        }
+
+        public override string this [ int i ] 
+        { 
+            get 
+            {
+                return GetAttribute(i);
+            }
+        }
+
+        public override string this [ string name ] 
+        { 
+            get 
+            {
+                return GetAttribute(name);
+            }
+        }
+
+        public override string this [ string name,string namespaceURI ] 
+        { 
+            get 
+            {
+                return GetAttribute(name, namespaceURI);
+            }
+        }
+
+        public override bool MoveToAttribute(string name) 
+        {
+            return false;
+        }
+
+        public override bool MoveToAttribute(string name, string ns) 
+        {
+            //!!! CJP This seems broken to me. Shouldn't this be checking for equivalence of the namespaceURI
+            if (ns != string.Empty && ns != null)
+            {
+                return false;
+            }
+            return MoveToAttribute(name);
+        }
+
+        public override void MoveToAttribute(int i) 
+        {
+            //!!! NYI.  Would like to have attribs for each node implemented as std in XMLCustomReader
+        }
+
+        public override bool MoveToFirstAttribute()  // CJP Method override
+        {
+            /*
+            if (! _asAttrs) return false;
+            if (AttributeCount > 0) {
+                _attr = 0;
+                _state = State.Attr;
+                return true;
+            }
+            */
+            return false;
+        }
+
+        public override bool MoveToNextAttribute()  // CJP Method override
+        {
+            /*
+            if (! _asAttrs) return false;
+            if (_attr < AttributeCount-1) {
+                _attr = (_state == State.Attr || _state == State.AttrValue) ? _attr+1 : 0;
+                _state = State.Attr;
+                return true;
+            }
+            */
+            return false;
+        }
+
+        public override bool MoveToElement()  // CJP Method override
+        {
+            return false;
+        }
+
+        public override bool Read()  // CJP Method override
+        {
+            return false;
+        }
+
+        public override bool EOF // CJP Property override
+        { 
+            get {
+                return true;
+            }
+        }
+
+        public override void Close() // CJP Method override
+        {
+        }
+
+        public override ReadState ReadState // CJP Property override
+        { 
+            get 
+            {
+                return ReadState.EndOfFile;
+            }
+        }
+
+        public override string ReadString()  // CJP Method override
+        {
+            return String.Empty;
+        }
+
+        public override string ReadInnerXml()  // CJP Method override - stay in custom
+        {
+            StringWriter sw = new StringWriter();
+            XmlTextWriter xw = new XmlTextWriter(sw);
+            xw.Formatting = Formatting.Indented;
+            while (!this.EOF && this.NodeType != XmlNodeType.EndElement) {
+                xw.WriteNode(this, true);
+            }
+            xw.Close();
+            return sw.ToString();
+        }
+
+        public override string ReadOuterXml()  // CJP Method override - stay in custom
+        {
+            StringWriter sw = new StringWriter();
+            XmlTextWriter xw = new XmlTextWriter(sw);
+            xw.Formatting = Formatting.Indented;
+            xw.WriteNode(this, true);
+            xw.Close();
+            return sw.ToString();
+        }
+
+        public override XmlNameTable NameTable // CJP Property override
+        { 
+            get {
+                return _nt;
+            }
+        }
+
+        public override string LookupNamespace(string prefix)  // CJP Method override
+        {     
+            return null;
+        }
+
+        public override void ResolveEntity()  // CJP Method override
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool ReadAttributeValue()  // CJP Method override
+        {
+            return false;
+/*
+            if (_state == State.Attr) {
+                _state = State.AttrValue;
+                return true;
+            }
+            else if (_state == State.AttrValue) {
+                return false;
+            }
+            throw new Exception("Not on an attribute.");
+*/
+        } 
+
+    }
+ 
+}
