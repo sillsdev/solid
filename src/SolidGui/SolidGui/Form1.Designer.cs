@@ -28,12 +28,32 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this._recordNavigatorView1 = new SolidGui.RecordNavigatorView();
+            this.SuspendLayout();
+            // 
+            // _recordNavigatorView1
+            // 
+            this._recordNavigatorView1.Location = new System.Drawing.Point(12, 3);
+            this._recordNavigatorView1.Name = "_recordNavigatorView1";
+            this._recordNavigatorView1.Size = new System.Drawing.Size(268, 89);
+            this._recordNavigatorView1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.Controls.Add(this._recordNavigatorView1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private RecordNavigatorView _recordNavigatorView1;
     }
 }
 
