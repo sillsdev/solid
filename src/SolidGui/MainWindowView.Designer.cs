@@ -28,14 +28,17 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._filterChooser = new SolidGui.FilterChooserView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._filterChooser = new SolidGui.FilterChooserView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this._openButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -58,7 +61,16 @@ namespace SolidGui
             this.splitContainer1.SplitterDistance = 146;
             this.splitContainer1.TabIndex = 2;
             // 
-            // _recordNavigatorView1
+            // _filterChooser
+            // 
+            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterChooser.Location = new System.Drawing.Point(0, 0);
+            this._filterChooser.Model = null;
+            this._filterChooser.Name = "_filterChooser";
+            this._filterChooser.Size = new System.Drawing.Size(146, 320);
+            this._filterChooser.TabIndex = 0;
+            // 
+            // _recordNavigatorView
             // 
             this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -73,40 +85,47 @@ namespace SolidGui
             this._sfmEditorView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._sfmEditorView.AutoScroll = true;
             this._sfmEditorView.Location = new System.Drawing.Point(3, 59);
             this._sfmEditorView.Name = "_sfmEditorView";
             this._sfmEditorView.Size = new System.Drawing.Size(411, 258);
             this._sfmEditorView.TabIndex = 2;
             // 
-            // _filterList
-            // 
-            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterChooser.Location = new System.Drawing.Point(0, 0);
-            this._filterChooser.Name = "_filterChooser";
-            this._filterChooser.Size = new System.Drawing.Size(146, 320);
-            this._filterChooser.TabIndex = 0;
-            // 
             // toolStrip1
             // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(569, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // Form1
+            // _openButton
+            // 
+            this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
+            this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._openButton.Name = "_openButton";
+            this._openButton.Size = new System.Drawing.Size(23, 22);
+            this._openButton.Text = "toolStripButton1";
+            this._openButton.Click += new System.EventHandler(this._openButton_Click);
+            // 
+            // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 349);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Form1";
+            this.Name = "MainWindowView";
             this.Text = "SOLID";
-            this.Load += new System.EventHandler(this.OnLoad);
+            this.Load += new System.EventHandler(this.MainWindowView_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,6 +138,7 @@ namespace SolidGui
         private SfmEditorView _sfmEditorView;
         private FilterChooserView _filterChooser;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton _openButton;
 
     }
 }

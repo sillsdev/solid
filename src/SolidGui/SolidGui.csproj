@@ -103,6 +103,12 @@
       <DependentUpon>SfmEditorView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SolidConsole\SolidConsole.csproj">
+      <Project>{2AE6670D-904B-42E3-AEBC-453649B1A6A3}</Project>
+      <Name>SolidConsole</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

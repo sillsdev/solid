@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace SolidGui
 {
@@ -10,18 +13,17 @@ namespace SolidGui
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
         private List<string> _masterRecordList = new List<string>();
         private RecordNavigatorPM _navigatorModel;
-        private FilterChooserPM _filterListModel;
+        private FilterChooserPM _filterChooserModel;
+
+        public event EventHandler DictionaryLoaded;
 
         public MainWindowPM()
         {
-            _filterListModel = new FilterChooserPM();
+            _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
 
-            MasterRecordList.Add("something0");
-            MasterRecordList.Add("something1");
-            MasterRecordList.Add("something2");
-            MasterRecordList.Add("something3");
-
+            _recordFilters.Add(new AllRecordFilter());
+            _recordFilters.Add(new NullRecordFilter());
             _recordFilters.Add(new RecordFilter("First Filter","These are some problems"));
             _recordFilters.Add(new RecordFilter("Second Filter","This is another problem"));
             _recordFilters.Add(new RecordFilter("Third Filter","So is this one"));
@@ -30,6 +32,8 @@ namespace SolidGui
 
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = _recordFilters[0];
+
+            this.DictionaryLoaded += _filterChooserModel.OnDictionaryLoaded;
         }
 
         /// <summary>
@@ -64,7 +68,31 @@ namespace SolidGui
         {
             get
             {
-                return _filterListModel;
+                return _filterChooserModel;
+            }
+        }
+
+        public void OpenDictionary(string path)
+        {
+            _masterRecordList.Clear();
+           TextReader dictReader= File.OpenText(path);
+            SolidConsole.SfmCollection reader = new SolidConsole.SfmCollection(dictReader, 10000);
+            while (reader.Read())
+            {
+                if (reader.FieldCount == 0)
+                    continue;
+
+                StringBuilder recordContents = new StringBuilder();
+                for(int i=0; i<reader.FieldCount;i++)
+                {
+                    recordContents.AppendLine("\\"+reader.Key(i)+" " + reader.Value(i));
+                }
+                _masterRecordList.Add(recordContents.ToString());
+            }
+
+            if (DictionaryLoaded != null)
+            {
+                DictionaryLoaded.Invoke(this, null);
             }
         }
     }

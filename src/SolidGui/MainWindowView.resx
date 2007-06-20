@@ -120,4 +120,22 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="_openButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAnRJREFUOE+9k0lI
+        FGAYhufQoUsWmZEESZaIBYOBIdUhxIpypVxByYXKjTJDMcelGbdRZ3GdUtFmRm3U0cpSDCuEQpEILRdK
+        TM2ColJMDZXcnsYRhqbs4KUf3svP9z7f+/2LQPA/VlZJtaukUMf1XC1SlZ5kmSZlQ31D41X4RCmCV02X
+        kyqt0g2whEy1X0h8CYLGmvwAg/hTrXVSxb+6RIlKPX1jFHhHFRgBDPVpmJ9qMOrnpI7FcTV6rYKmmoz0
+        9SA+0Uq8IwvxiChG0FClZG6y1sy8/KWUxYE4am/nUl2WjboknfKCNG7JRRTnJGIGrdPImPumMXVeMZgZ
+        EsFAxLr6C3CnIocfn8uNsVfNbY0yox7p82jW5XC/Ohu9OgNduQSt6gaVhSmUKUWoZElraarLs5n5UMRq
+        7NEOMU21SpZHJTCWaa73hr2RZBiMhzcx9Nb7ExvmVSVQqzKYHs6Fj3Ie1CnoeixfK/p9hNch0O3LUqc7
+        809ceFclJPr8yemrFzwPCioKxXx/K2GsM5UmnZyVETH0R64BesMNxkCWuryYbz/FTOsxJhoPIYmyI9DV
+        ssB4mKXKVCb6krhbI6PnuSHJYJwBcBF6gll5cZaFZ2eYbTvOZJMTX+sc6M7aRpC7LU72W+yNAFWeiP72
+        NO7V5MFwGrwyxH3px0KHB7NPXZhqdmZcL+STZj8DckvEEftwPGDdYrrKImkiDdpcBh5G050vMKlLvon2
+        nM20pG+lPsUKdeJubl6zIcht74qzo42bCZCfmUC++BLSpFCSrwQQG+5FmP8Jzp0+gutRIYeFdjjY7maP
+        9Q52brdgl6WF+UPa0K9ap/gX59blCSkbXMYAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

@@ -10,7 +10,7 @@ namespace SolidGui
     /// </summary>
     public class FilterChooserPM
     {
-        private IEnumerable<RecordFilter> _recordFilters;
+        private IList<RecordFilter> _recordFilters;
         private RecordFilter _activeRecordFilter;
 
         public class RecordFilterChangedEventArgs : System.EventArgs
@@ -30,7 +30,7 @@ namespace SolidGui
 
         }
 
-        public IEnumerable<RecordFilter> RecordFilters
+        public IList<RecordFilter> RecordFilters
         {
             get
             {
@@ -39,6 +39,14 @@ namespace SolidGui
             set
             {
                 _recordFilters = value;
+            }
+        }
+
+        public void OnDictionaryLoaded(object sender, EventArgs e)
+        {
+            if (_recordFilters != null && _recordFilters.Count > 0)
+            {
+                ActiveRecordFilter = _recordFilters[0];
             }
         }
 

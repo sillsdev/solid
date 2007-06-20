@@ -14,7 +14,10 @@ namespace SolidGui
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindowView(new MainWindowPM()));
+            MainWindowPM model = new MainWindowPM();
+            MainWindowView form = new MainWindowView(model);
+            model.DictionaryLoaded += form.OnDictionaryLoaded;
+            Application.Run(form);
         }
     }
 }

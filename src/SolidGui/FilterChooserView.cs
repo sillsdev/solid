@@ -28,8 +28,12 @@ namespace SolidGui
             }
         }
 
-        private void FilterListView_Load(object sender, EventArgs e)
+        private void FilterChooserView_Load(object sender, EventArgs e)
         {
+            if (DesignMode)
+            {
+                return;
+            }
             _listControl.Clear();
 
             foreach (RecordFilter filter in Model.RecordFilters)

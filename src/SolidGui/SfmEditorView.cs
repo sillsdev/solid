@@ -11,7 +11,14 @@ namespace SolidGui
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
-            _contentsBox.Text = e.Record;
+            if (e.Record == null)
+            {
+                _contentsBox.Text = "";
+            }
+            else
+            {
+                _contentsBox.Text = e.Record;
+            }
         }
     }
 }

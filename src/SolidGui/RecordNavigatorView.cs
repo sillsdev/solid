@@ -44,7 +44,7 @@ namespace SolidGui
             _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
             _PreviousButton.Enabled = _model.CanGoPrev();
-            _recordNumber.Text = string.Format("{0}/{1}", _model.CurrentIndex+1, _model.Count);
+            _recordNumber.Text = string.Format("{0}/{1}", _model.CurrentIndexIntoFilteredRecords+1, _model.Count);
         }
 
         private void _nextButton_Click(object sender, EventArgs e)

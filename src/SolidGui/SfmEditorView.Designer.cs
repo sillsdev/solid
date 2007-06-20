@@ -45,6 +45,7 @@ namespace SolidGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this._contentsBox);
             this.Name = "SfmEditorView";
             this.ResumeLayout(false);

@@ -35,9 +35,9 @@ namespace SolidGui.Tests
         [Test]
         public void NextIncreasesIndex()
         {
-            int startingIndex = _navigator.CurrentIndex;
+            int startingIndex = _navigator.CurrentIndexIntoFilteredRecords;
             _navigator.Next();
-            int finishIndex = _navigator.CurrentIndex;
+            int finishIndex = _navigator.CurrentIndexIntoFilteredRecords;
 
             Assert.AreEqual(finishIndex - 1, startingIndex);
         }
@@ -77,7 +77,34 @@ namespace SolidGui.Tests
         [Test]
         public void CurrentIndex_SameIndex()
         {
-            Assert.AreEqual(_navigator.CurrentIndex, _navigator.CurrentIndex);
+            Assert.AreEqual(_navigator.CurrentIndexIntoFilteredRecords, _navigator.CurrentIndexIntoFilteredRecords);
+        }
+
+        [Test]
+        public void InitialCurrentRecordIsCorrectOne()
+        {
+            string correct=this._navigator.MasterRecordList[2];
+            Assert.AreEqual(correct, _navigator.CurrentRecord);
+        }
+
+
+        [Test]
+        public void WhenFilterChangesShowFirst()
+        {
+            _navigator.ActiveFilter = new NullRecordFilter();
+            _navigator.ActiveFilter = new AllRecordFilter();
+            Assert.AreEqual(4, _navigator.Count);
+            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.IsNotNull(_navigator.CurrentRecord);
+        }
+
+        [Test]
+        public void WhenEmptyFilterChangesShowFirst()
+        {
+            _navigator.ActiveFilter = new NullRecordFilter();
+            Assert.AreEqual(0, _navigator.Count);
+            Assert.AreEqual(-1, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.IsNull (_navigator.CurrentRecord);
         }
         
         [Test]

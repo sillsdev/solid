@@ -10,7 +10,7 @@ namespace SolidGui
     /// </summary>
     public class RecordNavigatorPM
     {
-        private int _currentIndex;
+        private int _CurrentIndexIntoFilteredRecords;
         private IList<string> _masterRecordList;
         private RecordFilter _recordFilter;
         private IList<int> _indexesOfFilteredRecords;
@@ -33,7 +33,7 @@ namespace SolidGui
 
         public RecordNavigatorPM()
         {
-            _currentIndex = 0;
+            _CurrentIndexIntoFilteredRecords = -1;
         }
 
         public RecordFilter ActiveFilter
@@ -45,8 +45,16 @@ namespace SolidGui
             set
             {
                 _recordFilter = value;
-                _indexesOfFilteredRecords = new List<int>(_recordFilter.GetIndicesOfMatchingRecords());
+                _indexesOfFilteredRecords = new List<int>(_recordFilter.GetIndicesOfMatchingRecords(_masterRecordList));
 
+                if (_indexesOfFilteredRecords.Count == 0)
+                {
+                    CurrentIndexIntoFilteredRecords = -1;
+                }
+                else
+                {
+                    CurrentIndexIntoFilteredRecords = 0;
+                }
                 if (FilterChanged != null)
                 {
                     FilterChanged.Invoke(this,
@@ -79,7 +87,7 @@ namespace SolidGui
         {
             if (CanGoPrev())
             {
-                CurrentIndex--;
+                CurrentIndexIntoFilteredRecords--;
             }
         }
 
@@ -87,18 +95,18 @@ namespace SolidGui
         {
             if (CanGoNext())
             {
-                CurrentIndex++;
+                CurrentIndexIntoFilteredRecords++;
             }
         }
 
         public bool CanGoPrev()
         {
-            return CurrentIndex > 0;
+            return CurrentIndexIntoFilteredRecords > 0;
         }
 
         public bool CanGoNext()
         {
-            return CurrentIndex < Count - 1;
+            return CurrentIndexIntoFilteredRecords < Count - 1;
         }
 
         public int Count
@@ -109,15 +117,15 @@ namespace SolidGui
             }
         }
         
-        public int CurrentIndex
+        public int CurrentIndexIntoFilteredRecords
         {
             get
             {
-                return _currentIndex;
+                return _CurrentIndexIntoFilteredRecords;
             }
             set
             {
-                _currentIndex = value;
+                _CurrentIndexIntoFilteredRecords = value;
                 if (RecordChanged != null)
                 {
                     RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
@@ -129,7 +137,11 @@ namespace SolidGui
         {
             get
             {
-                return _masterRecordList[_currentIndex];
+                if (_CurrentIndexIntoFilteredRecords <0)
+                {
+                    return null;
+                }
+                return _masterRecordList[_indexesOfFilteredRecords[_CurrentIndexIntoFilteredRecords]];
             }
         }
 
@@ -138,7 +150,7 @@ namespace SolidGui
         {
             if (_indexesOfFilteredRecords.Count > 0)
             {
-                CurrentIndex = 0;
+                CurrentIndexIntoFilteredRecords = 0;
             }
         }
 

@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidConsole", "SolidConsol
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidConsoleTest", "SolidConsoleTest\SolidConsoleTest.csproj", "{89CEA606-4FAA-4E31-A20B-2C453E458236}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +43,10 @@ Global
 		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

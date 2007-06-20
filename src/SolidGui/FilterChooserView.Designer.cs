@@ -57,7 +57,7 @@ namespace SolidGui
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._listControl);
             this.Name = "FilterListView";
-            this.Load += new System.EventHandler(this.FilterListView_Load);
+            this.Load += new System.EventHandler(this.FilterChooserView_Load);
             this.ResumeLayout(false);
 
         }

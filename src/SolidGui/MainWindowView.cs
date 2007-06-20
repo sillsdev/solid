@@ -22,20 +22,30 @@ namespace SolidGui
             _filterChooser.Model = _mainWindowPM.FilterChooserModel;            
         }
 
-        private void OnLoad(object sender, EventArgs e)
+        public void OnDictionaryLoaded(object sender, EventArgs e)
+        {
+ 
+            //wire up the change of record event to our record display widget
+            _mainWindowPM.NavigatorModel.Startup();
+         }
+
+        private void _openButton_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.OpenDictionary(@"C:\Documents and Settings\John\My Documents\Language Data\Lahu Si\LahuDict2.txt");
+        }
+
+        private void MainWindowView_Load(object sender, EventArgs e)
         {
             if (DesignMode)
             {
                 return;
             }
- 
-            //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _filterChooser.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
 
-            _mainWindowPM.NavigatorModel.Startup();
-         }
+
+        }
 
     }
 }
