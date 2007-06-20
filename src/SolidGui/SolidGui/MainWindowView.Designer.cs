@@ -29,9 +29,9 @@ namespace SolidGui
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._recordNavigatorView1 = new SolidGui.RecordNavigatorView();
+            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._filterList = new SolidGui.FilterListView();
+            this._filterChooser = new SolidGui.FilterChooserView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -48,11 +48,11 @@ namespace SolidGui
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this._filterList);
+            this.splitContainer1.Panel1.Controls.Add(this._filterChooser);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView1);
+            this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
             this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
             this.splitContainer1.Size = new System.Drawing.Size(567, 320);
             this.splitContainer1.SplitterDistance = 146;
@@ -60,13 +60,13 @@ namespace SolidGui
             // 
             // _recordNavigatorView1
             // 
-            this._recordNavigatorView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._recordNavigatorView1.Location = new System.Drawing.Point(3, 0);
-            this._recordNavigatorView1.Model = null;
-            this._recordNavigatorView1.Name = "_recordNavigatorView1";
-            this._recordNavigatorView1.Size = new System.Drawing.Size(411, 53);
-            this._recordNavigatorView1.TabIndex = 3;
+            this._recordNavigatorView.Location = new System.Drawing.Point(3, 0);
+            this._recordNavigatorView.Model = null;
+            this._recordNavigatorView.Name = "_recordNavigatorView";
+            this._recordNavigatorView.Size = new System.Drawing.Size(411, 53);
+            this._recordNavigatorView.TabIndex = 3;
             // 
             // _sfmEditorView
             // 
@@ -80,11 +80,11 @@ namespace SolidGui
             // 
             // _filterList
             // 
-            this._filterList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterList.Location = new System.Drawing.Point(0, 0);
-            this._filterList.Name = "_filterList";
-            this._filterList.Size = new System.Drawing.Size(146, 320);
-            this._filterList.TabIndex = 0;
+            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterChooser.Location = new System.Drawing.Point(0, 0);
+            this._filterChooser.Name = "_filterChooser";
+            this._filterChooser.Size = new System.Drawing.Size(146, 320);
+            this._filterChooser.TabIndex = 0;
             // 
             // toolStrip1
             // 
@@ -115,9 +115,9 @@ namespace SolidGui
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private RecordNavigatorView _recordNavigatorView1;
+        private RecordNavigatorView _recordNavigatorView;
         private SfmEditorView _sfmEditorView;
-        private FilterListView _filterList;
+        private FilterChooserView _filterChooser;
         private System.Windows.Forms.ToolStrip toolStrip1;
 
     }

@@ -1,53 +1,52 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SolidGui
 {
-    public partial class FilterListView : UserControl
+    /// <summary>
+    /// The filter chooser is the list of filters the user can click on.
+    /// This class is the View (ui-specific) half of this control
+    /// </summary>
+    public partial class FilterChooserView : UserControl
     {
-        private FilterListPresentationModel _filterListPM;
+        private FilterChooserPM _model;
 
-        public FilterListView()
+        public FilterChooserView()
         {
             InitializeComponent();
         }
 
-        public FilterListPresentationModel Model
+        public FilterChooserPM Model
         {
             get
             {
-                return _filterListPM;
+                return _model;
             }
             set
             {
-                _filterListPM = value;
+                _model = value;
             }
         }
 
         private void FilterListView_Load(object sender, EventArgs e)
         {
-            _filterList.Clear();
+            _listControl.Clear();
 
             foreach (RecordFilter filter in Model.RecordFilters)
             {
                 ListViewItem item = new ListViewItem();
                 item.Tag = filter;
                 item.Text = filter.Name;
-                _filterList.Items.Add(item);
+                _listControl.Items.Add(item);
             }
             
         }
 
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_filterList.SelectedItems != null && _filterList.SelectedItems.Count > 0)
+            if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0)
             {
-                _filterListPM.ActiveRecordFilter = (RecordFilter)_filterList.SelectedItems[0].Tag;
+                _model.ActiveRecordFilter = (RecordFilter)_listControl.SelectedItems[0].Tag;
             }
         }
     }

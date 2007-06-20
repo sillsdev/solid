@@ -1,22 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SolidGui
 {
+    /// <summary>
+    /// The record navigator the control that shows the user the description of the current
+    /// filter and lets them say "next" and "previous".
+    /// This class is the Presentation Model(ui-specific) half of this control
+    /// </summary>
     public partial class RecordNavigatorView : UserControl
     {
-        private RecordNavigatorPresentationModel _model;
+        private RecordNavigatorPM _model;
         public RecordNavigatorView()
         {
             InitializeComponent();
         }
 
-        public RecordNavigatorPresentationModel Model
+        public RecordNavigatorPM Model
         {
             get
             {
@@ -53,7 +53,7 @@ namespace SolidGui
             UpdateDisplay();
         }
 
-        public void OnFilterChanged(object sender, FilterListPresentationModel.RecordFilterChangedEventArgs e)
+        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             UpdateDisplay();
         }

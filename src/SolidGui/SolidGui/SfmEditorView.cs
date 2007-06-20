@@ -9,7 +9,7 @@ namespace SolidGui
             InitializeComponent();
         }
 
-        public void OnRecordChanged(object sender, RecordNavigatorPresentationModel.RecordChangedEventArgs e)
+        public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
             _contentsBox.Text = e.Record;
         }

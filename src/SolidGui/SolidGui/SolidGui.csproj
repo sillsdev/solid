@@ -36,12 +36,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FilterListPresentationModel.cs" />
-    <Compile Include="FilterListView.cs">
+    <Compile Include="FilterChooserPM.cs" />
+    <Compile Include="FilterChooserView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FilterListView.Designer.cs">
-      <DependentUpon>FilterListView.cs</DependentUpon>
+    <Compile Include="FilterChooserView.Designer.cs">
+      <DependentUpon>FilterChooserView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowView.cs">
       <SubType>Form</SubType>
@@ -52,9 +52,9 @@
     <Compile Include="MainWindowPM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FilterListView.resx">
+    <EmbeddedResource Include="FilterChooserView.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>FilterListView.cs</DependentUpon>
+      <DependentUpon>FilterChooserView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindowView.resx">
       <SubType>Designer</SubType>
@@ -88,14 +88,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="RecordFilter.cs" />
-    <Compile Include="RecordNavigatorPresentationModel.cs" />
+    <Compile Include="RecordNavigatorPM.cs" />
     <Compile Include="RecordNavigatorView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SfmEditorPresentationModel.cs" />
+    <Compile Include="SfmEditorPM.cs" />
     <Compile Include="SfmEditorView.cs">
       <SubType>UserControl</SubType>
     </Compile>

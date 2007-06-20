@@ -1,23 +1,21 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SolidGui
 {
     /// <summary>
-    /// Presentation Model component of MainWindow
+    /// Presentation Model (ui-agnostic) half of MainWindow
     /// </summary>
     public class MainWindowPM
     {
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
         private List<string> _masterRecordList = new List<string>();
-        private RecordNavigatorPresentationModel _navigator;
-        private FilterListPresentationModel _filterListPM;
+        private RecordNavigatorPM _navigatorModel;
+        private FilterChooserPM _filterListModel;
 
         public MainWindowPM()
         {
-            _filterListPM = new FilterListPresentationModel();
-            _navigator = new RecordNavigatorPresentationModel();
+            _filterListModel = new FilterChooserPM();
+            _navigatorModel = new RecordNavigatorPM();
 
             MasterRecordList.Add("something0");
             MasterRecordList.Add("something1");
@@ -28,10 +26,21 @@ namespace SolidGui
             _recordFilters.Add(new RecordFilter("Second Filter","This is another problem"));
             _recordFilters.Add(new RecordFilter("Third Filter","So is this one"));
 
-            FilterListPM.RecordFilters = _recordFilters;
+            FilterChooserModel.RecordFilters = _recordFilters;
 
-            _navigator.MasterRecordList = MasterRecordList;
-            _navigator.ActiveFilter = _recordFilters[0];
+            _navigatorModel.MasterRecordList = MasterRecordList;
+            _navigatorModel.ActiveFilter = _recordFilters[0];
+        }
+
+        /// <summary>
+        /// A list containing every lexical record in the dictionary
+        /// </summary>
+        public List<string> MasterRecordList
+        {
+            get
+            {
+                return _masterRecordList;
+            }
         }
 
         public List<RecordFilter> RecordFilters
@@ -42,27 +51,20 @@ namespace SolidGui
             }
         }
 
-        public RecordNavigatorPresentationModel Navigator
+        public RecordNavigatorPM NavigatorModel
         {
             get
             {
-                return _navigator;
+                return _navigatorModel;
             }
         }
 
-        public List<string> MasterRecordList
-        {
-            get
-            {
-                return _masterRecordList;
-            }
-        }
 
-        public FilterListPresentationModel FilterListPM
+        public FilterChooserPM FilterChooserModel
         {
             get
             {
-                return _filterListPM;
+                return _filterListModel;
             }
         }
     }

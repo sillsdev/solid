@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SolidGui
 {
-    public class FilterListPresentationModel
+
+    /// <summary>
+    /// The filter chooser is the list of filters the user can click on.
+    /// This class is the Presentation Model(ui-agnostic) half of this control
+    /// </summary>
+    public class FilterChooserPM
     {
         private IEnumerable<RecordFilter> _recordFilters;
         private RecordFilter _activeRecordFilter;
@@ -21,7 +25,7 @@ namespace SolidGui
 
         public event EventHandler<RecordFilterChangedEventArgs> RecordFilterChanged;
 
-        public FilterListPresentationModel()
+        public FilterChooserPM()
         {
 
         }

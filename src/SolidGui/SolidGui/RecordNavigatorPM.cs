@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 namespace SolidGui
 {
-    public class RecordNavigatorPresentationModel
+    /// <summary>
+    /// The record navigator the control that shows the user the description of the current
+    /// filter and lets them say "next" and "previous".
+    /// This class is the Presentation Model(ui-agnostic) half of this control
+    /// </summary>
+    public class RecordNavigatorPM
     {
         private int _currentIndex;
         private IList<string> _masterRecordList;
@@ -23,10 +28,10 @@ namespace SolidGui
 
 
         public event EventHandler<RecordChangedEventArgs> RecordChanged;
-        public event EventHandler<FilterListPresentationModel.RecordFilterChangedEventArgs> FilterChanged;
+        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> FilterChanged;
         
 
-        public RecordNavigatorPresentationModel()
+        public RecordNavigatorPM()
         {
             _currentIndex = 0;
         }
@@ -45,7 +50,7 @@ namespace SolidGui
                 if (FilterChanged != null)
                 {
                     FilterChanged.Invoke(this,
-                                         new FilterListPresentationModel.RecordFilterChangedEventArgs(_recordFilter));
+                                         new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter));
                 }
             }
         }
@@ -137,7 +142,7 @@ namespace SolidGui
             }
         }
 
-        public void OnFilterChanged(object sender, FilterListPresentationModel.RecordFilterChangedEventArgs e)
+        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             ActiveFilter = e._recordFilter;
         }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SolidGui
 {
-    class SfmEditorPresentationModel
+    class SfmEditorPM
     {
     }
 }
