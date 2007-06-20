@@ -7,13 +7,14 @@ namespace SolidGui.Tests
     [TestFixture]
     public class RecordNavigatorPresentationModelTests
     {
-        private RecordNavigatorPresentationModel _navigator;
+        private RecordNavigatorPM _navigator;
+        private String _recordWeGotFromRecordChagnedChangedEvent;
 
 
         [SetUp]
         public void Setup()
         {
-            _navigator = new RecordNavigatorPresentationModel();
+            _navigator = new RecordNavigatorPM();
             List<string> masterRecordList = new List<string>();
             masterRecordList.Add("something0");
             masterRecordList.Add("something1");
@@ -77,6 +78,20 @@ namespace SolidGui.Tests
         public void CurrentIndex_SameIndex()
         {
             Assert.AreEqual(_navigator.CurrentIndex, _navigator.CurrentIndex);
+        }
+        
+        [Test]
+        public void NavigationTriggersCurrentChanged()
+        {
+            _navigator.RecordChanged += OnNavigator_RecordChanged;
+            _navigator.Next();
+            Assert.IsNotNull(_recordWeGotFromRecordChagnedChangedEvent);
+            Assert.AreEqual(_navigator.CurrentRecord, _recordWeGotFromRecordChagnedChangedEvent);
+        }
+
+        void OnNavigator_RecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
+        {
+            _recordWeGotFromRecordChagnedChangedEvent = e.Record;
         }
     }
 
