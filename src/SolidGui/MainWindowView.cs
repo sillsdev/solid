@@ -13,13 +13,21 @@ namespace SolidGui
         public MainWindowView(MainWindowPM mainWindowPM)
         {
             InitializeComponent();
+            if (DesignMode)
+            {
+                return;
+            }
             _mainWindowPM = mainWindowPM;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooser.Model = _mainWindowPM.FilterChooserModel;            
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void OnLoad(object sender, EventArgs e)
         {
+            if (DesignMode)
+            {
+                return;
+            }
  
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
