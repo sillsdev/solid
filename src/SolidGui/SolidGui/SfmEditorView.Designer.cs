@@ -28,10 +28,32 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this._contentsBox = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // _contentsBox
+            // 
+            this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._contentsBox.Font = new System.Drawing.Font("Doulos SIL", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._contentsBox.Location = new System.Drawing.Point(0, 0);
+            this._contentsBox.Multiline = true;
+            this._contentsBox.Name = "_contentsBox";
+            this._contentsBox.Size = new System.Drawing.Size(150, 150);
+            this._contentsBox.TabIndex = 0;
+            // 
+            // SfmEditorView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this._contentsBox);
+            this.Name = "SfmEditorView";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox _contentsBox;
     }
 }

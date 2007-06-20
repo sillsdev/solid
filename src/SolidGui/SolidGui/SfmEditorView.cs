@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SolidGui
@@ -13,6 +7,11 @@ namespace SolidGui
         public SfmEditorView()
         {
             InitializeComponent();
+        }
+
+        public void OnRecordChanged(object sender, RecordNavigatorPresentationModel.RecordChangedEventArgs e)
+        {
+            _contentsBox.Text = e.Record;
         }
     }
 }

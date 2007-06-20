@@ -25,8 +25,9 @@ namespace SolidGui
             set
             {
                 _model = value;
+                if (_model == null)//happens at design time
+                    return;
                 UpdateDisplay();
-                label1.Text = _model.Description;
             }
         }
 
@@ -38,14 +39,22 @@ namespace SolidGui
 
         private void UpdateDisplay()
         {
+            if (_model == null)
+                return;
+            _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
             _PreviousButton.Enabled = _model.CanGoPrev();
-            RecordNumber.Text = string.Format("{0}/{1}", _model.CurrentIndex+1, _model.Count);
+            _recordNumber.Text = string.Format("{0}/{1}", _model.CurrentIndex+1, _model.Count);
         }
 
         private void _nextButton_Click(object sender, EventArgs e)
         {
             _model.Next();
+            UpdateDisplay();
+        }
+
+        public void OnFilterChanged(object sender, FilterListPresentationModel.RecordFilterChangedEventArgs e)
+        {
             UpdateDisplay();
         }
     }

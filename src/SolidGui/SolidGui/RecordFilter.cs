@@ -6,18 +6,30 @@ namespace SolidGui
 {
     public class RecordFilter
     {
+        private string _name;
+        private string _description;
+
+        public RecordFilter()
+        {}
+
+        public RecordFilter(string name, string description)
+        {
+            _name = name;
+            _description = description;
+        }
+
         public string Name
         {
             get
             {
-                return "hello";
+                return _name;
             }
         }
         public string Description
         {
             get
             {
-                return "world";
+                return _description;
             }
         }
         public IEnumerable<int> GetIndicesOfMatchingRecords()

@@ -10,6 +10,22 @@ namespace SolidGui
         private RecordFilter _recordFilter;
         private IList<int> _indexesOfFilteredRecords;
 
+        public class RecordChangedEventArgs:System.EventArgs 
+        {
+            public String Record;
+
+            public RecordChangedEventArgs(string record)
+            {
+                Record = record;
+            }
+        }
+
+
+
+        public event EventHandler<RecordChangedEventArgs> RecordChanged;
+        public event EventHandler<FilterListPresentationModel.RecordFilterChangedEventArgs> FilterChanged;
+        
+
         public RecordNavigatorPresentationModel()
         {
             _currentIndex = 0;
@@ -25,6 +41,12 @@ namespace SolidGui
             {
                 _recordFilter = value;
                 _indexesOfFilteredRecords = new List<int>(_recordFilter.GetIndicesOfMatchingRecords());
+
+                if (FilterChanged != null)
+                {
+                    FilterChanged.Invoke(this,
+                                         new FilterListPresentationModel.RecordFilterChangedEventArgs(_recordFilter));
+                }
             }
         }
 
@@ -52,7 +74,7 @@ namespace SolidGui
         {
             if (CanGoPrev())
             {
-                _currentIndex--;
+                CurrentIndex--;
             }
         }
 
@@ -60,18 +82,18 @@ namespace SolidGui
         {
             if (CanGoNext())
             {
-                _currentIndex++;
+                CurrentIndex++;
             }
         }
 
         public bool CanGoPrev()
         {
-            return _currentIndex > 0;
+            return CurrentIndex > 0;
         }
 
         public bool CanGoNext()
         {
-            return _currentIndex < Count-1;
+            return CurrentIndex < Count - 1;
         }
 
         public int Count
@@ -88,6 +110,14 @@ namespace SolidGui
             {
                 return _currentIndex;
             }
+            set
+            {
+                _currentIndex = value;
+                if (RecordChanged != null)
+                {
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                }
+            }
         }
 
         public string CurrentRecord
@@ -99,7 +129,17 @@ namespace SolidGui
         }
 
 
+        public void Startup()
+        {
+            if (_indexesOfFilteredRecords.Count > 0)
+            {
+                CurrentIndex = 0;
+            }
+        }
 
-
+        public void OnFilterChanged(object sender, FilterListPresentationModel.RecordFilterChangedEventArgs e)
+        {
+            ActiveFilter = e._recordFilter;
+        }
     }    
 }
