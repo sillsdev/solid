@@ -38,6 +38,7 @@ namespace SolidGui
             this._contentsBox.Location = new System.Drawing.Point(0, 0);
             this._contentsBox.Multiline = true;
             this._contentsBox.Name = "_contentsBox";
+            this._contentsBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._contentsBox.Size = new System.Drawing.Size(150, 150);
             this._contentsBox.TabIndex = 0;
             this._contentsBox.TextChanged += new System.EventHandler(this.OnTextChanged);
