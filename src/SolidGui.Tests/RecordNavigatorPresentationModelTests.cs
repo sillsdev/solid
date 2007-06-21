@@ -8,18 +8,19 @@ namespace SolidGui.Tests
     public class RecordNavigatorPresentationModelTests
     {
         private RecordNavigatorPM _navigator;
-        private String _recordWeGotFromRecordChagnedChangedEvent;
+        private Record _recordWeGotFromRecordChagnedChangedEvent;
 
 
         [SetUp]
         public void Setup()
         {
             _navigator = new RecordNavigatorPM();
-            List<string> masterRecordList = new List<string>();
-            masterRecordList.Add("something0");
-            masterRecordList.Add("something1");
-            masterRecordList.Add("something2 X");
-            masterRecordList.Add("something3 X");
+
+            List<Record> masterRecordList = new List<Record>();
+            masterRecordList.Add(new Record("something0"));
+            masterRecordList.Add(new Record("something1"));
+            masterRecordList.Add(new Record("something2 X"));
+            masterRecordList.Add(new Record("something3 X"));
 
             _navigator.MasterRecordList = masterRecordList;
 
@@ -83,7 +84,7 @@ namespace SolidGui.Tests
         [Test]
         public void InitialCurrentRecordIsCorrectOne()
         {
-            string correct=this._navigator.MasterRecordList[2];
+            Record correct=_navigator.MasterRecordList[2];
             Assert.AreEqual(correct, _navigator.CurrentRecord);
         }
 
@@ -118,7 +119,7 @@ namespace SolidGui.Tests
 
         void OnNavigator_RecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
-            _recordWeGotFromRecordChagnedChangedEvent = e.Record;
+            _recordWeGotFromRecordChagnedChangedEvent = e._record;
         }
     }
 

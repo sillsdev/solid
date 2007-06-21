@@ -34,6 +34,14 @@ namespace SolidGui.Tests
                 return Path.Combine(_projectFolder, "dictionary.db");
             }
         }
+
+        private string SavePath
+        {
+            get
+            {
+                return Path.Combine(_projectFolder, "save.db");
+            }
+        }
         [TearDown]
         public void TearDown()
         {
@@ -51,6 +59,16 @@ namespace SolidGui.Tests
         {
             _mainWindowPM.OpenDictionary(DictionaryPath);
             Assert.AreEqual(2,_mainWindowPM.MasterRecordList.Count);
+        }
+
+        [Test]
+        public void SaveDictionarySavesCurrentDictionary()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath);
+            _mainWindowPM.SaveDictionary(SavePath);
+            _mainWindowPM.OpenDictionary(SavePath);
+
+            Assert.AreEqual(2, _mainWindowPM.MasterRecordList.Count);
         }
     }
 
