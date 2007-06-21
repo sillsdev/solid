@@ -24,9 +24,9 @@ namespace SolidGui
 
             _recordFilters.Add(new AllRecordFilter());
             _recordFilters.Add(new NullRecordFilter());
-            _recordFilters.Add(new RecordFilter("First Filter","These are some problems"));
-            _recordFilters.Add(new RecordFilter("Second Filter","This is another problem"));
-            _recordFilters.Add(new RecordFilter("Third Filter","So is this one"));
+            _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w"));
+            _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true));
+            _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true));
 
             FilterChooserModel.RecordFilters = _recordFilters;
 
@@ -76,7 +76,7 @@ namespace SolidGui
         {
             _masterRecordList.Clear();
            TextReader dictReader= File.OpenText(path);
-            SolidConsole.SfmCollection reader = new SolidConsole.SfmCollection(dictReader, 10000);
+           SolidConsole.SfmRecordReader reader = new SolidConsole.SfmRecordReader(dictReader, 10000);
             while (reader.Read())
             {
                 if (reader.FieldCount == 0)

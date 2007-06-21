@@ -18,12 +18,12 @@ namespace SolidGui.Tests
             List<string> masterRecordList = new List<string>();
             masterRecordList.Add("something0");
             masterRecordList.Add("something1");
-            masterRecordList.Add("something2");
-            masterRecordList.Add("something3");
+            masterRecordList.Add("something2 X");
+            masterRecordList.Add("something3 X");
 
             _navigator.MasterRecordList = masterRecordList;
 
-            _navigator.ActiveFilter = new RecordFilter();
+            _navigator.ActiveFilter = new RegExRecordFilter("Has X", "X");
         }
 
         [TearDown]

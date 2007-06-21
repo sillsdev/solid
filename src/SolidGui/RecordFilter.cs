@@ -4,6 +4,48 @@ using System.Text;
 
 namespace SolidGui
 {
+
+    public class RegExRecordFilter : RecordFilter
+    {
+        private readonly bool _matchWhenNotFound;
+        private string _pattern;
+        public RegExRecordFilter(string name, string pattern, bool matchWhenNotFound)
+        {
+            _matchWhenNotFound = matchWhenNotFound;
+            _name = name;
+            _pattern = pattern;
+        }
+        public RegExRecordFilter(string name, string pattern):this(name,pattern,false)
+        {
+            _name = name;
+            _pattern = pattern;
+        }
+
+        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records)
+        {
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(_pattern, 
+                System.Text.RegularExpressions.RegexOptions.Compiled & System.Text.RegularExpressions.RegexOptions.Singleline);
+           
+            for (int i = 0; i < records.Count; i++)
+            {
+                bool match = regex.IsMatch(records[i]);
+                if(match == !_matchWhenNotFound)
+                {
+                    yield return i;
+                }
+            }
+        }
+
+        public override string Description
+        {
+            get
+            {
+                return String.Format("Records that match '{0}'",_pattern);
+            }
+        }
+    }
+
+
     public class AllRecordFilter : RecordFilter
     {
         public AllRecordFilter()
@@ -38,8 +80,8 @@ namespace SolidGui
 
     public class RecordFilter
     {
-        private string _name;
-        private string _description;
+        protected string _name;
+        protected string _description;
 
         public RecordFilter()
         {
@@ -58,7 +100,7 @@ namespace SolidGui
                 return _name;
             }
         }
-        public string Description
+        public virtual string Description
         {
             get
             {

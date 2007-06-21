@@ -38,7 +38,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sfmreader_header_test.cs" />
     <Compile Include="sfmreader_read_test.cs" />
-    <Compile Include="sfmxmlreader_file_test.cs" />
     <Compile Include="sfmxmlreader_read_test.cs" />
     <Compile Include="sfmxmlreader_xmldoc_test.cs" />
   </ItemGroup>
