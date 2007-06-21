@@ -20,5 +20,10 @@ namespace SolidGui
                 _contentsBox.Text = e.Record;
             }
         }
+
+        private void OnTextChanged(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace SolidGui
         private RecordNavigatorPM _navigatorModel;
         private FilterChooserPM _filterChooserModel;
 
-        public event EventHandler DictionaryLoaded;
+        public event EventHandler DictionaryProcessed;
 
         public MainWindowPM()
         {
@@ -33,7 +33,7 @@ namespace SolidGui
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = _recordFilters[0];
 
-            this.DictionaryLoaded += _filterChooserModel.OnDictionaryLoaded;
+            this.DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
 
         /// <summary>
@@ -72,6 +72,14 @@ namespace SolidGui
             }
         }
 
+        public bool CanProcessLexicon
+        {
+            get
+            {
+                return _masterRecordList.Count > 0;
+            }
+        }
+
         public void OpenDictionary(string path)
         {
             _masterRecordList.Clear();
@@ -90,9 +98,16 @@ namespace SolidGui
                 _masterRecordList.Add(recordContents.ToString());
             }
 
-            if (DictionaryLoaded != null)
+            ProcessLexicon();
+        }
+
+        public void ProcessLexicon()
+        {
+            //later, we'll do the actual work at this point
+
+            if (DictionaryProcessed != null)
             {
-                DictionaryLoaded.Invoke(this, null);
+                DictionaryProcessed.Invoke(this, null);
             }
         }
     }

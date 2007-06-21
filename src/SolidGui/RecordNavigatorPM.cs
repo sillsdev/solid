@@ -146,7 +146,7 @@ namespace SolidGui
         }
 
 
-        public void Startup()
+        public void StartupOrReset()
         {
             if (_indexesOfFilteredRecords.Count > 0)
             {

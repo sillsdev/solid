@@ -22,11 +22,11 @@ namespace SolidGui
             _filterChooser.Model = _mainWindowPM.FilterChooserModel;            
         }
 
-        public void OnDictionaryLoaded(object sender, EventArgs e)
+        public void OnDictionaryProcessed(object sender, EventArgs e)
         {
  
             //wire up the change of record event to our record display widget
-            _mainWindowPM.NavigatorModel.Startup();
+            _mainWindowPM.NavigatorModel.StartupOrReset();
          }
 
         private void _openButton_Click(object sender, EventArgs e)
@@ -43,9 +43,17 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _filterChooser.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
-
-
+            UpdateDisplay();
         }
 
+        private void _processButton_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.ProcessLexicon();
+        }
+
+        private void UpdateDisplay()
+        {
+            _processButton.Enabled = _mainWindowPM.CanProcessLexicon;
+        }
     }
 }

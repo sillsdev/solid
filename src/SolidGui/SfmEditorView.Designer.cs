@@ -40,6 +40,7 @@ namespace SolidGui
             this._contentsBox.Name = "_contentsBox";
             this._contentsBox.Size = new System.Drawing.Size(150, 150);
             this._contentsBox.TabIndex = 0;
+            this._contentsBox.TextChanged += new System.EventHandler(this.OnTextChanged);
             // 
             // SfmEditorView
             // 

@@ -35,6 +35,7 @@ namespace SolidGui
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._openButton = new System.Windows.Forms.ToolStripButton();
+            this._processButton = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -51,6 +52,7 @@ namespace SolidGui
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this._processButton);
             this.splitContainer1.Panel1.Controls.Add(this._filterChooser);
             // 
             // splitContainer1.Panel2
@@ -63,11 +65,11 @@ namespace SolidGui
             // 
             // _filterChooser
             // 
-            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterChooser.Location = new System.Drawing.Point(0, 0);
+            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._filterChooser.Location = new System.Drawing.Point(0, 30);
             this._filterChooser.Model = null;
             this._filterChooser.Name = "_filterChooser";
-            this._filterChooser.Size = new System.Drawing.Size(146, 320);
+            this._filterChooser.Size = new System.Drawing.Size(146, 290);
             this._filterChooser.TabIndex = 0;
             // 
             // _recordNavigatorView
@@ -111,6 +113,16 @@ namespace SolidGui
             this._openButton.Text = "toolStripButton1";
             this._openButton.Click += new System.EventHandler(this._openButton_Click);
             // 
+            // _processButton
+            // 
+            this._processButton.Location = new System.Drawing.Point(10, 1);
+            this._processButton.Name = "_processButton";
+            this._processButton.Size = new System.Drawing.Size(121, 23);
+            this._processButton.TabIndex = 1;
+            this._processButton.Text = "Process Lexicon";
+            this._processButton.UseVisualStyleBackColor = true;
+            this._processButton.Click += new System.EventHandler(this._processButton_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +151,7 @@ namespace SolidGui
         private FilterChooserView _filterChooser;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton _openButton;
+        private System.Windows.Forms.Button _processButton;
 
     }
 }

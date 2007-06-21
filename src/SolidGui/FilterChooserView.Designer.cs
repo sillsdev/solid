@@ -34,7 +34,7 @@ namespace SolidGui
             this._listControl = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // _filterList
+            // _listControl
             // 
             this._listControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._listControl.HideSelection = false;
@@ -51,12 +51,13 @@ namespace SolidGui
             this._listControl.View = System.Windows.Forms.View.List;
             this._listControl.SelectedIndexChanged += new System.EventHandler(this._filterList_SelectedIndexChanged);
             // 
-            // FilterListView
+            // FilterChooserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._listControl);
-            this.Name = "FilterListView";
+            this.Enabled = false;
+            this.Name = "FilterChooserView";
             this.Load += new System.EventHandler(this.FilterChooserView_Load);
             this.ResumeLayout(false);
 

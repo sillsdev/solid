@@ -16,7 +16,7 @@ namespace SolidGui
             Application.SetCompatibleTextRenderingDefault(false);
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
-            model.DictionaryLoaded += form.OnDictionaryLoaded;
+            model.DictionaryProcessed += form.OnDictionaryProcessed;
             Application.Run(form);
         }
     }
