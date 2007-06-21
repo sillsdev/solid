@@ -11,9 +11,10 @@ namespace SolidGui
     public class MainWindowPM
     {
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
-        private List<string> _masterRecordList = new List<string>();
+        private List<Record> _masterRecordList = new List<Record>();
         private RecordNavigatorPM _navigatorModel;
         private FilterChooserPM _filterChooserModel;
+        private SfmEditorPM _sfmEditorModel;
 
         public event EventHandler DictionaryProcessed;
 
@@ -21,6 +22,7 @@ namespace SolidGui
         {
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
+            _sfmEditorModel = new SfmEditorPM();
 
             _recordFilters.Add(new AllRecordFilter());
             _recordFilters.Add(new NullRecordFilter());
@@ -39,11 +41,15 @@ namespace SolidGui
         /// <summary>
         /// A list containing every lexical record in the dictionary
         /// </summary>
-        public List<string> MasterRecordList
+        public List<Record> MasterRecordList
         {
             get
             {
                 return _masterRecordList;
+            }
+            set
+            {
+                _masterRecordList = value;
             }
         }
 
@@ -63,6 +69,14 @@ namespace SolidGui
             }
         }
 
+        public SfmEditorPM SfmEditorModel
+        {
+            get
+            {
+                return _sfmEditorModel;
+            }
+   
+        }
 
         public FilterChooserPM FilterChooserModel
         {
@@ -95,7 +109,7 @@ namespace SolidGui
                 {
                     recordContents.AppendLine("\\"+reader.Key(i)+" " + reader.Value(i));
                 }
-                _masterRecordList.Add(recordContents.ToString());
+                _masterRecordList.Add(new Record(recordContents.ToString()));
             }
 
             ProcessLexicon();
@@ -108,6 +122,19 @@ namespace SolidGui
             if (DictionaryProcessed != null)
             {
                 DictionaryProcessed.Invoke(this, null);
+            }
+        }
+
+        public void SaveDictionary(string path)
+        {
+            if(_masterRecordList != null)
+            {
+                System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                for(int i = 0 ; i < _masterRecordList.Count; i++)
+                {
+                    builder.AppendLine(_masterRecordList[i].Value);
+                }
+                File.WriteAllText(path, builder.ToString());
             }
         }
     }

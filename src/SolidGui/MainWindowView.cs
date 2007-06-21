@@ -31,7 +31,7 @@ namespace SolidGui
 
         private void _openButton_Click(object sender, EventArgs e)
         {
-            _mainWindowPM.OpenDictionary(@"C:\Documents and Settings\John\My Documents\Language Data\Lahu Si\LahuDict2.txt");
+            _mainWindowPM.OpenDictionary(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\dict1.txt");
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -40,9 +40,11 @@ namespace SolidGui
             {
                 return;
             }
+
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _filterChooser.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
+
             UpdateDisplay();
         }
 
@@ -54,6 +56,11 @@ namespace SolidGui
         private void UpdateDisplay()
         {
             _processButton.Enabled = _mainWindowPM.CanProcessLexicon;
+        }
+
+        private void _saveButton_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.SaveDictionary(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\save1.txt");
         }
     }
 }

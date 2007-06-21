@@ -29,17 +29,19 @@ namespace SolidGui
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
+            System.Windows.Forms.ToolStrip toolStrip1;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this._processButton = new System.Windows.Forms.Button();
             this._filterChooser = new SolidGui.FilterChooserView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this._openButton = new System.Windows.Forms.ToolStripButton();
-            this._processButton = new System.Windows.Forms.Button();
+            this._saveButton = new System.Windows.Forms.ToolStripButton();
+            toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -63,9 +65,20 @@ namespace SolidGui
             this.splitContainer1.SplitterDistance = 146;
             this.splitContainer1.TabIndex = 2;
             // 
+            // _processButton
+            // 
+            this._processButton.Location = new System.Drawing.Point(10, 1);
+            this._processButton.Name = "_processButton";
+            this._processButton.Size = new System.Drawing.Size(121, 23);
+            this._processButton.TabIndex = 1;
+            this._processButton.Text = "Process Lexicon";
+            this._processButton.UseVisualStyleBackColor = true;
+            this._processButton.Click += new System.EventHandler(this._processButton_Click);
+            // 
             // _filterChooser
             // 
             this._filterChooser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._filterChooser.Enabled = false;
             this._filterChooser.Location = new System.Drawing.Point(0, 30);
             this._filterChooser.Model = null;
             this._filterChooser.Name = "_filterChooser";
@@ -93,16 +106,6 @@ namespace SolidGui
             this._sfmEditorView.Size = new System.Drawing.Size(411, 258);
             this._sfmEditorView.TabIndex = 2;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._openButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(569, 25);
-            this.toolStrip1.TabIndex = 3;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
             // _openButton
             // 
             this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -113,22 +116,33 @@ namespace SolidGui
             this._openButton.Text = "toolStripButton1";
             this._openButton.Click += new System.EventHandler(this._openButton_Click);
             // 
-            // _processButton
+            // _saveButton
             // 
-            this._processButton.Location = new System.Drawing.Point(10, 1);
-            this._processButton.Name = "_processButton";
-            this._processButton.Size = new System.Drawing.Size(121, 23);
-            this._processButton.TabIndex = 1;
-            this._processButton.Text = "Process Lexicon";
-            this._processButton.UseVisualStyleBackColor = true;
-            this._processButton.Click += new System.EventHandler(this._processButton_Click);
+            this._saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._saveButton.Image = ((System.Drawing.Image)(resources.GetObject("_saveButton.Image")));
+            this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._saveButton.Name = "_saveButton";
+            this._saveButton.Size = new System.Drawing.Size(23, 22);
+            this._saveButton.Text = "toolStripButton1";
+            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openButton,
+            this._saveButton});
+            toolStrip1.Location = new System.Drawing.Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new System.Drawing.Size(569, 25);
+            toolStrip1.TabIndex = 3;
+            toolStrip1.Text = "toolStrip1";
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(569, 349);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainWindowView";
             this.Text = "SOLID";
@@ -136,8 +150,8 @@ namespace SolidGui
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,10 +163,9 @@ namespace SolidGui
         private RecordNavigatorView _recordNavigatorView;
         private SfmEditorView _sfmEditorView;
         private FilterChooserView _filterChooser;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.Button _processButton;
-
+        private System.Windows.Forms.ToolStripButton _openButton;
+        private System.Windows.Forms.ToolStripButton _saveButton;
     }
 }
 

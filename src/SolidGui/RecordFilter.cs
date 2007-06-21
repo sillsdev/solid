@@ -21,14 +21,14 @@ namespace SolidGui
             _pattern = pattern;
         }
 
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records)
+        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
         {
             System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(_pattern, 
                 System.Text.RegularExpressions.RegexOptions.Compiled & System.Text.RegularExpressions.RegexOptions.Singleline);
            
             for (int i = 0; i < records.Count; i++)
             {
-                bool match = regex.IsMatch(records[i]);
+                bool match = regex.IsMatch(records[i].Value);
                 if(match == !_matchWhenNotFound)
                 {
                     yield return i;
@@ -53,7 +53,7 @@ namespace SolidGui
         {
         }
 
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records)
+        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
         {
             for (int i = 0; i < records.Count; i++)
             {
@@ -69,7 +69,7 @@ namespace SolidGui
         {
         }
 
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records)
+        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
         {
             for (int i = 0; false;)
             {
@@ -107,8 +107,13 @@ namespace SolidGui
                 return _description;
             }
         }
+        public virtual IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
+        {
+            yield return 2;
+            yield return 3;
+        }
 
-        public abstract IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records);
+        //public abstract IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records);
 
    
     }
