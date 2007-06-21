@@ -32,7 +32,7 @@ namespace SolidGui
             System.Windows.Forms.ToolStrip toolStrip1;
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._processButton = new System.Windows.Forms.Button();
-            this._filterChooser = new SolidGui.FilterChooserView();
+            this._filterChooserView = new SolidGui.FilterChooserView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._openButton = new System.Windows.Forms.ToolStripButton();
@@ -55,7 +55,7 @@ namespace SolidGui
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this._processButton);
-            this.splitContainer1.Panel1.Controls.Add(this._filterChooser);
+            this.splitContainer1.Panel1.Controls.Add(this._filterChooserView);
             // 
             // splitContainer1.Panel2
             // 
@@ -77,13 +77,13 @@ namespace SolidGui
             // 
             // _filterChooser
             // 
-            this._filterChooser.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._filterChooser.Enabled = false;
-            this._filterChooser.Location = new System.Drawing.Point(0, 30);
-            this._filterChooser.Model = null;
-            this._filterChooser.Name = "_filterChooser";
-            this._filterChooser.Size = new System.Drawing.Size(146, 290);
-            this._filterChooser.TabIndex = 0;
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
+            this._filterChooserView.Model = null;
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(146, 290);
+            this._filterChooserView.TabIndex = 0;
             // 
             // _recordNavigatorView
             // 
@@ -162,7 +162,7 @@ namespace SolidGui
         private System.Windows.Forms.SplitContainer splitContainer1;
         private RecordNavigatorView _recordNavigatorView;
         private SfmEditorView _sfmEditorView;
-        private FilterChooserView _filterChooser;
+        private FilterChooserView _filterChooserView;
         private System.Windows.Forms.Button _processButton;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;

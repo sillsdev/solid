@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
+using SolidGui.Properties;
 
 namespace SolidGui
 {
@@ -19,7 +21,7 @@ namespace SolidGui
             }
             _mainWindowPM = mainWindowPM;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
-            _filterChooser.Model = _mainWindowPM.FilterChooserModel;            
+            _filterChooserView.Model = _mainWindowPM.FilterChooserModel;            
         }
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
@@ -27,11 +29,51 @@ namespace SolidGui
  
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
+            UpdateDisplay();
          }
 
         private void _openButton_Click(object sender, EventArgs e)
         {
-            _mainWindowPM.OpenDictionary(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\dict1.txt");
+            ChooseProject();
+        }
+
+        private void ChooseProject()
+        {
+            string initialDirectory = null;
+            if (!String.IsNullOrEmpty(Settings.Default.PreviousPathToDictionary))
+            {
+                try
+                {
+                    if (File.Exists(Settings.Default.PreviousPathToDictionary))
+                    {
+                        initialDirectory = Path.GetDirectoryName(Settings.Default.PreviousPathToDictionary);
+                    }
+                }
+                catch
+                {
+                    //swallow
+                }
+            }
+
+            if (initialDirectory == null || initialDirectory == "")
+            {
+                initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Open Dictionary File...";
+            dlg.DefaultExt = ".db";
+            dlg.FileName = Settings.Default.PreviousPathToDictionary;
+            dlg.Filter = "Dictionary(*.*)|*.*";
+            dlg.Multiselect = false;
+            dlg.InitialDirectory = initialDirectory;
+            if (DialogResult.OK != dlg.ShowDialog(this))
+            {
+                return;
+            }
+
+            Settings.Default.PreviousPathToDictionary = dlg.FileName;
+            _mainWindowPM.OpenDictionary(dlg.FileName);
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -42,7 +84,8 @@ namespace SolidGui
             }
 
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
-            _filterChooser.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _filterChooserView.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _filterChooserView.Model.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
 
             UpdateDisplay();
@@ -56,11 +99,12 @@ namespace SolidGui
         private void UpdateDisplay()
         {
             _processButton.Enabled = _mainWindowPM.CanProcessLexicon;
+            _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
         }
 
         private void _saveButton_Click(object sender, EventArgs e)
         {
-            _mainWindowPM.SaveDictionary(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\save1.txt");
+            _mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary);
         }
     }
 }

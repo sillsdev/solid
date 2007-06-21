@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using SolidGui.Properties;
 
 namespace SolidGui
 {
@@ -18,6 +19,7 @@ namespace SolidGui
             MainWindowView form = new MainWindowView(model);
             model.DictionaryProcessed += form.OnDictionaryProcessed;
             Application.Run(form);
+            Settings.Default.Save();
         }
     }
 }

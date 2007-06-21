@@ -46,12 +46,30 @@ namespace SolidGui
             
         }
 
+        //when someone changes the filter in our PM
+        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        {
+            foreach (ListViewItem item in _listControl.Items)
+            {
+                if (item.Tag == e._recordFilter)
+                {
+                    item.Selected = true;
+                    break;
+                }
+            }
+        }
+
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0)
             {
                 _model.ActiveRecordFilter = (RecordFilter)_listControl.SelectedItems[0].Tag;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
