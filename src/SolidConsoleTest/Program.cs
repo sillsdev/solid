@@ -8,7 +8,7 @@ namespace SolidConsoleTest
     {
         static void Main(string[] args)
         {
-            SFMXMLReader_XMLDoc_Test t = new SFMXMLReader_XMLDoc_Test();
+            SfmXmlReader_XmlDoc_Test t = new SfmXmlReader_XmlDoc_Test();
             t.Init();
         }
     }

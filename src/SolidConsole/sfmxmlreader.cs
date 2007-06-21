@@ -31,25 +31,30 @@ namespace SolidConsole
             Start,
             Root,
             Record,
+            RecordAttribute,
+            RecordAttributeValue,
             Field,
             FieldValue,
             EndField,
             EndRecord,
-            Attr, //!!! Not sure about the attr states. These are node 'state' specific.
-            AttrValue,
+//            Attribute, //!!! Not sure about the attr states. These are node 'state' specific.
+//            AttributeValue,
             EndRoot,
             Eof
         }
 
-        SfmCollection _sfmReader;
-        //!!!Uri _href;
+        SfmRecordReader _sfmReader;
         string _root = "root";
         string _recordName = "entry";
-        string[] _names;
         State _state = State.Start;
         int _fieldIndex = 0;
-        //!!!string _proxy;
+        int _attributeIndex = 0;
         Encoding _encoding;
+
+        string[] _recordAttributes = new string[] {
+            "startline",
+            "endline"
+        };
 
         /// <summary>
         /// Construct XmlSfmReader.  You must specify an HRef
@@ -83,7 +88,7 @@ namespace SolidConsole
             base(baseUri, nametable)
         {
             _encoding = encoding;
-            _sfmReader = new SfmCollection(input, _encoding, 4096);
+            _sfmReader = new SfmRecordReader(input, _encoding, 4096);
         }
 
         /// <summary>
@@ -96,7 +101,7 @@ namespace SolidConsole
             base(baseUri, nametable)
         {
             _encoding = Encoding.Default;
-            _sfmReader = new SfmCollection(input, 4096);
+            _sfmReader = new SfmRecordReader(input, 4096);
         }
         /*
                 /// <summary>
@@ -115,6 +120,7 @@ namespace SolidConsole
             base.Init();
             _state = State.Start;
             _fieldIndex = 0;
+            _attributeIndex = 0;
         }
 
         /*!!!
@@ -175,7 +181,7 @@ namespace SolidConsole
             }
             set
             {
-                _sfmReader = new SfmCollection(value, 4096);
+                _sfmReader = new SfmRecordReader(value, 4096);
                 Init();
             }
         }
@@ -227,10 +233,10 @@ namespace SolidConsole
                     case State.Field:
                         retval = XmlNodeType.Element;
                         break;
-                    case State.Attr:
+                    case State.RecordAttribute:
                         retval = XmlNodeType.Attribute;
                         break;
-                    case State.AttrValue:
+                    case State.RecordAttributeValue:
                     case State.FieldValue:
                         retval = XmlNodeType.Text;
                         break;
@@ -254,7 +260,6 @@ namespace SolidConsole
                 string retval = string.Empty;
                 switch (_state)
                 {
-                    //!!!case State.Attr:
                     case State.Field:
                     case State.EndField:
                         retval = XmlConvert.EncodeLocalName(_sfmReader.Key(_fieldIndex));
@@ -267,6 +272,18 @@ namespace SolidConsole
                     case State.EndRecord:
                         retval = _recordName;
                         break;
+                    case State.RecordAttribute:
+                        switch (_attributeIndex)
+                        {
+                            case 0:
+                                retval = "startline";
+                                break;
+                            case 1:
+                                retval = "endline";
+                                break;
+                        }
+                        break;
+
                 }
                 return retval;
             }
@@ -296,24 +313,6 @@ namespace SolidConsole
             }
         }
 
-        //!!! Should be implemented in base
-        public override string NamespaceURI
-        {
-            get
-            {
-                return String.Empty;
-            }
-        }
-
-        //??? What does prefix do? This seems to be the namespace prefix
-        public override string Prefix
-        {
-            get
-            {
-                return String.Empty;
-            }
-        }
-
         public override int Depth
         {
             get
@@ -325,12 +324,12 @@ namespace SolidConsole
                     case State.EndRecord:
                         retval = 1;
                         break;
-                    case State.Attr:
+                    case State.RecordAttribute:
                     case State.Field:
                     case State.EndField:
                         retval = 2;
                         break;
-                    case State.AttrValue:
+                    case State.RecordAttributeValue:
                     case State.FieldValue:
                         retval = 3;
                         break;
@@ -448,14 +447,6 @@ namespace SolidConsole
             return false;
         }
 
-        //??? to base
-        public override bool MoveToAttribute(string name, string ns)
-        {
-            //!!! Probably the same implementation as the base???
-            if (ns != string.Empty && ns != null) return false;
-            return MoveToAttribute(name);
-        }
-
         public override void MoveToAttribute(int i)
         {
             Debug.Assert(false, "NYI");
@@ -488,7 +479,7 @@ namespace SolidConsole
                             throw new Exception("You must provide an input location via the Href property, or provide an input stream via the TextReader property.");
                         }
                         //!!! Change this sort of thing to fn InitDefaultReader or similar
-                        _sfmReader = new SfmCollection(_href, Encoding.Default/*!!!_encoding*/, _proxy, 4096);
+                        _sfmReader = new SfmRecordReader(_href, Encoding.Default/*!!!_encoding*/, _proxy, 4096);
                     }
                     _state = State.Root;
                     return true;
@@ -507,6 +498,20 @@ namespace SolidConsole
                     _state = State.Eof;
                     return false;
                 case State.Record:
+//!!!                    _state = State.Field;
+                    _state = State.RecordAttribute;
+                    _attributeIndex = 0; //??? Do we need to do this, or do consumers set via MoveToFirstAttribute?
+                    return true;
+                case State.RecordAttribute:
+                    _state = State.RecordAttributeValue;
+                    return true;
+                case State.RecordAttributeValue:
+                    if (_attributeIndex < _recordAttributes.Length - 1)
+                    {
+                        _attributeIndex++;
+                        _state = State.RecordAttribute;
+                        return true;
+                    }
                     _state = State.Field;
                     _fieldIndex = 0;
                     return true;
@@ -532,11 +537,6 @@ namespace SolidConsole
                     }
                     _state = State.EndRecord;
                     return true;
-                case State.Attr:
-                case State.AttrValue:
-                    _state = State.Root;
-                    _fieldIndex = 0;
-                    goto case State.Root;
             }
             return false;
         }
@@ -566,82 +566,36 @@ namespace SolidConsole
 
         public override string ReadString()
         {
-            if (_state == State.AttrValue || _state == State.Attr)
-            {
-                return _sfmReader[_fieldIndex];
-            }
+            //if (_state == State.AttributeValue || _state == State.Attribute)
+            //{
+            //    return _sfmReader[_fieldIndex];
+            //}
             return String.Empty;
-        }
-
-        //??? Move to base
-        public override string ReadInnerXml()
-        {
-            StringWriter sw = new StringWriter();
-            XmlTextWriter xw = new XmlTextWriter(sw);
-            xw.Formatting = Formatting.Indented;
-            while (!this.EOF && this.NodeType != XmlNodeType.EndElement)
-            {
-                xw.WriteNode(this, true);
-            }
-            xw.Close();
-            return sw.ToString();
-        }
-
-        //??? Move to base
-        public override string ReadOuterXml()
-        {
-            StringWriter sw = new StringWriter();
-            XmlTextWriter xw = new XmlTextWriter(sw);
-            xw.Formatting = Formatting.Indented;
-            xw.WriteNode(this, true);
-            xw.Close();
-            return sw.ToString();
-        }
-
-        //!!! to base
-        public override XmlNameTable NameTable
-        {
-            get
-            {
-                return _nt;
-            }
-        }
-
-        //!!! to base
-        public override string LookupNamespace(string prefix)
-        {
-            return null;
-        }
-
-        //!!! to base
-        public override void ResolveEntity()
-        {
-            throw new NotImplementedException();
         }
 
         public override bool ReadAttributeValue()
         {
-            if (_state == State.Attr)
+            switch (_state)
             {
-                _state = State.AttrValue;
-                return true;
-            }
-            else if (_state == State.AttrValue)
-            {
-                return false;
+                case State.RecordAttribute:
+                    _state = State.RecordAttributeValue;
+                    return true;
+                case State.RecordAttributeValue:
+                    return false;
             }
             throw new Exception("Not on an attribute.");
         }
 
     }
     //TODO Make SFMLexer (which does onKey, onValue) Make SFMParser which does onHeader onRecord
-    public class SfmCollection
+    public class SfmRecordReader
     {
         public class SfmField
         {
             public string key;
             public string value;
             public int sourceLine;
+            public int endLine;
         }
 
         public class SfmRecord : List<SfmField>
@@ -669,13 +623,15 @@ namespace SolidConsole
         }
 
         SfmRecord _record;
-        //ArrayList _fields;
 
         string _startKey = "lx";
 
         TextReader _r;
         StateLex _stateLex = StateLex.StartFile;
-        StateParse _stateParse = StateParse.Header;
+        //!!! StateParse _stateParse = StateParse.Header;
+
+        public int _recordStartLine;
+        public int _recordEndLine;
 
         // Internal buffer state
         char[] _buffer;
@@ -686,7 +642,7 @@ namespace SolidConsole
         public int _line = 1; //!!! These should be private
         public int _col = 1;
 
-        public SfmCollection(Uri location, Encoding encoding, string proxy, int bufsize)
+        public SfmRecordReader(Uri location, Encoding encoding, string proxy, int bufsize)
         {  // the location of the file
             if (location.IsFile)
             {
@@ -708,14 +664,14 @@ namespace SolidConsole
             _record = new SfmRecord();
         }
 
-        public SfmCollection(Stream stm, Encoding encoding, int bufsize)
+        public SfmRecordReader(Stream stm, Encoding encoding, int bufsize)
         {  // the location of the file
             _r = new StreamReader(stm, encoding, true);
             _buffer = new char[bufsize];
             _record = new SfmRecord();
         }
 
-        public SfmCollection(TextReader stm, int bufsize)
+        public SfmRecordReader(TextReader stm, int bufsize)
         {  // the location of the file
             _r = stm;
             _buffer = new char[bufsize];
@@ -752,6 +708,7 @@ namespace SolidConsole
             StringBuilder sb = new StringBuilder(1024);
             char c1 = '\0';
             char c0 = '\0';
+            _recordStartLine = _line;
             while (_stateLex != StateLex.StartOfRecord && _stateLex != StateLex.EOF)
             {
                 c1 = c0;
@@ -793,6 +750,7 @@ namespace SolidConsole
                                 if (currentField.key == _startKey) 
                                 {
                                     _stateLex = StateLex.StartOfRecord;
+                                    _recordEndLine = _line - 1; //??? -2?
                                     retval = true;
                                 }
                             }
@@ -812,6 +770,7 @@ namespace SolidConsole
                             currentField.value = sb.ToString();
                             onField(currentField);
                             currentField = new SfmField();
+                            _recordEndLine = _line - 1; //??? -2?
                             retval = true;
                             break;
                     }
@@ -820,9 +779,15 @@ namespace SolidConsole
                         _col++;
                     }
                 }
+                // If there are two consequtive EOL then 'reset' c0 so that subsequent EOL are counted correctly.
+                if (isEOL(c0) && isEOL(c1))
+                {
+                    c0 = '\0';
+                }
+
             }
 
-             return retval;
+            return retval;
         }
 
         bool isEOL(char c)

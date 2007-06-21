@@ -8,7 +8,7 @@ using SolidConsole;
 namespace SolidConsoleTest
 {
     [TestFixture]
-    public class SFMXMLReader_XMLDoc_Test
+    public class SfmXmlReader_XmlDoc_Test
     {
         SfmXmlReader _reader;
         XmlDocument _xdoc;
@@ -20,14 +20,36 @@ namespace SolidConsoleTest
             _xdoc = new XmlDocument();
             _reader = new SfmXmlReader(uri, Encoding.Default, null);
             _xdoc.Load(_reader);
-            string x = _xdoc.OuterXml;
         }
 
         [Test]
-        public void Result_True()
+        public void FirstChildName_Correct()
         {
-           // Assert.AreEqual(true, _result);
+            XmlNode node = _xdoc.FirstChild;
+            Assert.AreEqual("root", node.Name);
         }
+
+        [Test]
+        public void FirstEntry_IsSFMHeader()
+        {
+            XmlNode root = _xdoc.FirstChild;
+            XmlNode entry = root.FirstChild;
+            XmlNode header = entry.FirstChild;
+            Assert.AreEqual("_sh", header.Name);
+            Assert.AreEqual(null, header.Value);
+        }
+
+        [Test]
+        public void XPathWorks()
+        {
+            XmlNodeList nodes = _xdoc.SelectNodes("/root/entry[1]");
+            string x = _xdoc.OuterXml;
+//            Assert.AreEqual("a", x);
+            Assert.AreEqual(1, nodes.Count);
+            Assert.AreEqual("entry", nodes.Item(0).Name);
+        }
+
+
 
                 /*
                         [Test]

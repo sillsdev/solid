@@ -7,7 +7,7 @@ using SolidConsole;
 namespace SolidConsoleTest
 {
     [TestFixture]
-    public class SFMXMLReader_Test
+    public class SfmXmlReader_Test
     {
         SfmXmlReader _reader;
 
@@ -17,13 +17,13 @@ namespace SolidConsoleTest
             Uri uri = new Uri("file://c:/src/sil/solid/trunk/data/dict2.txt");
             _reader = new SfmXmlReader(uri, Encoding.Default, null);
         }
-/*
-        [Test]
-        public void Result_True()
-        {
-            Assert.AreEqual(true, _result);
-        }
 
+        [Test]
+        public void NotYetTested()
+        {
+            Assert.AreEqual(true, false);
+        }
+/*
         [Test]
         public void FieldCount_2()
         {
