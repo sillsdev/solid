@@ -78,7 +78,7 @@ namespace SolidGui
         }
     }
 
-    public class RecordFilter
+    public abstract class RecordFilter
     {
         protected string _name;
         protected string _description;
@@ -107,11 +107,8 @@ namespace SolidGui
                 return _description;
             }
         }
-        public virtual IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records)
-        {
-            yield return 2;
-            yield return 3;
-        }
+
+        public abstract IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records);
 
    
     }
