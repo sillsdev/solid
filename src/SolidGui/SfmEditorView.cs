@@ -5,7 +5,7 @@ namespace SolidGui
     public partial class SfmEditorView : UserControl
     {
         private Record _currentRecord;
-
+        
         public SfmEditorView()
         {
             _currentRecord = null;
@@ -30,6 +30,7 @@ namespace SolidGui
         {
             if (_currentRecord!=null && _currentRecord.Value!=_contentsBox.Text)
             {
+                MainWindowView.EnableSave();
                 _currentRecord.Value = _contentsBox.Text;
             }
 

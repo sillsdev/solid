@@ -10,6 +10,8 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private ReportReader _reportReader;
+        private String _TempDictionaryPath;
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
         private List<Record> _masterRecordList = new List<Record>();
         private RecordNavigatorPM _navigatorModel;
@@ -20,27 +22,16 @@ namespace SolidGui
 
         public MainWindowPM()
         {
+            _reportReader = new ReportReader();
+            _TempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.txt");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM();
 
-            string path = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml";
-            ReportReader report = new ReportReader(path);
-            _recordFilters.Add(new AllRecordFilter());
-            _recordFilters.Add(new NullRecordFilter());
-            _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w"));
-            _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true));
-            _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true));
-            
-            while (report.NextRecordFilter())
-            {
-                _recordFilters.Add(new RecordFilter(report.Name,report.Description,report.Indexes));
-            }
-
-            FilterChooserModel.RecordFilters = _recordFilters;
+            FilterChooserModel.RecordFilters = new List<RecordFilter>();
 
             _navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = _recordFilters[0];
+            _navigatorModel.ActiveFilter = new RecordFilter();
 
             this.DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -124,12 +115,41 @@ namespace SolidGui
 
         public void ProcessLexicon()
         {
-            //later, we'll do the actual work at this point
+
+            SaveDictionary(_TempDictionaryPath);
+            
+            //proccess temporary dictionary
+            //_TempDictionaryPath
+
+            UpdateRecordFilters(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml");
+
+            FilterChooserModel.RecordFilters = _recordFilters;
 
             if (DictionaryProcessed != null)
             {
                 DictionaryProcessed.Invoke(this, null);
             }
+        }
+
+        private void UpdateRecordFilters(string reportPath)
+        {
+            _recordFilters.Clear();
+
+            _recordFilters.Add(new AllRecordFilter(_masterRecordList));
+            _recordFilters.Add(new NullRecordFilter());
+            _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w",_masterRecordList));
+            _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
+            _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
+
+            _reportReader.Load(reportPath);
+            while (_reportReader.NextRecordFilter())
+            {
+                _recordFilters.Add(new RecordFilter(_reportReader.Name,
+                                                    _reportReader.Description,
+                                                    _reportReader.Indexes));
+            }
+
+            FilterChooserModel.RecordFilters = _recordFilters;
         }
 
         public void SaveDictionary(string path)
@@ -139,7 +159,7 @@ namespace SolidGui
                 System.Text.StringBuilder builder = new System.Text.StringBuilder();
                 for(int i = 0 ; i < _masterRecordList.Count; i++)
                 {
-                    builder.AppendLine(_masterRecordList[i].Value);
+                    builder.Append(_masterRecordList[i].Value);
                 }
                 File.WriteAllText(path, builder.ToString());
             }

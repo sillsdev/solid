@@ -31,20 +31,7 @@ namespace SolidGui
 
         private void FilterChooserView_Load(object sender, EventArgs e)
         {
-            if (DesignMode)
-            {
-                return;
-            }
-            _listControl.Clear();
-
-            foreach (RecordFilter filter in Model.RecordFilters)
-            {
-                ListViewItem item = new ListViewItem();
-                item.Tag = filter;
-                item.Text = filter.Name;
-                _listControl.Items.Add(item);
-            }
-            
+            UpdateDisplay();            
         }
 
         //when someone changes the filter in our PM
@@ -67,6 +54,23 @@ namespace SolidGui
             if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0 && !_changingFilter)
             {
                 _model.ActiveRecordFilter = (RecordFilter)_listControl.SelectedItems[0].Tag;
+            }
+        }
+
+        public void UpdateDisplay()
+        {
+            if (DesignMode)
+            {
+                return;
+            }
+            _listControl.Clear();
+
+            foreach (RecordFilter filter in Model.RecordFilters)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Tag = filter;
+                item.Text = filter.Name+"("+filter.RecordCount+")";
+                _listControl.Items.Add(item);
             }
         }
 

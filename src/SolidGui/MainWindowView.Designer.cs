@@ -28,21 +28,53 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             System.Windows.Forms.ToolStrip toolStrip1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
+            this._openButton = new System.Windows.Forms.ToolStripButton();
+            this._saveButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._processButton = new System.Windows.Forms.Button();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._openButton = new System.Windows.Forms.ToolStripButton();
-            this._saveButton = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
+            toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            toolStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openButton,
+            this._saveButton});
+            toolStrip1.Location = new System.Drawing.Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new System.Drawing.Size(569, 25);
+            toolStrip1.TabIndex = 3;
+            toolStrip1.Text = "toolStrip1";
+            // 
+            // _openButton
+            // 
+            this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
+            this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._openButton.Name = "_openButton";
+            this._openButton.Size = new System.Drawing.Size(23, 22);
+            this._openButton.Text = "toolStripButton1";
+            this._openButton.Click += new System.EventHandler(this._openButton_Click);
+            // 
+            // _saveButton
+            // 
+            this._saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._saveButton.Enabled = false;
+            this._saveButton.Image = ((System.Drawing.Image)(resources.GetObject("_saveButton.Image")));
+            this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._saveButton.Name = "_saveButton";
+            this._saveButton.Size = new System.Drawing.Size(23, 22);
+            this._saveButton.Text = "toolStripButton1";
+            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
             // 
             // splitContainer1
             // 
@@ -75,7 +107,7 @@ namespace SolidGui
             this._processButton.UseVisualStyleBackColor = true;
             this._processButton.Click += new System.EventHandler(this._processButton_Click);
             // 
-            // _filterChooser
+            // _filterChooserView
             // 
             this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._filterChooserView.Enabled = false;
@@ -106,37 +138,6 @@ namespace SolidGui
             this._sfmEditorView.Size = new System.Drawing.Size(411, 258);
             this._sfmEditorView.TabIndex = 2;
             // 
-            // _openButton
-            // 
-            this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
-            this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._openButton.Name = "_openButton";
-            this._openButton.Size = new System.Drawing.Size(23, 22);
-            this._openButton.Text = "toolStripButton1";
-            this._openButton.Click += new System.EventHandler(this._openButton_Click);
-            // 
-            // _saveButton
-            // 
-            this._saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._saveButton.Image = ((System.Drawing.Image)(resources.GetObject("_saveButton.Image")));
-            this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._saveButton.Name = "_saveButton";
-            this._saveButton.Size = new System.Drawing.Size(23, 22);
-            this._saveButton.Text = "toolStripButton1";
-            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._openButton,
-            this._saveButton});
-            toolStrip1.Location = new System.Drawing.Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(569, 25);
-            toolStrip1.TabIndex = 3;
-            toolStrip1.Text = "toolStrip1";
-            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,11 +148,11 @@ namespace SolidGui
             this.Name = "MainWindowView";
             this.Text = "SOLID";
             this.Load += new System.EventHandler(this.MainWindowView_Load);
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

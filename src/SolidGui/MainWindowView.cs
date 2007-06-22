@@ -29,6 +29,7 @@ namespace SolidGui
  
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
+            _filterChooserView.UpdateDisplay();
             UpdateDisplay();
          }
 
@@ -87,8 +88,14 @@ namespace SolidGui
             _filterChooserView.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _filterChooserView.Model.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
+            Record.RecordTextChanged += this.OnRecordTextChanged;
 
             UpdateDisplay();
+        }
+
+        private void OnRecordTextChanged(object sender, EventArgs e)
+        {
+            _saveButton.Enabled = true;
         }
 
         private void _processButton_Click(object sender, EventArgs e)
@@ -105,6 +112,12 @@ namespace SolidGui
         private void _saveButton_Click(object sender, EventArgs e)
         {
             _mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary);
+            _saveButton.Enabled = false;
+        }
+
+        public static void EnableSave()
+        {
+            
         }
     }
 }

@@ -1,38 +1,32 @@
 \_sh v3.0  231  Dictionary
-\_DateStampHasFourDigitYear
-
+\_DateStampHasFourDigitYear 
 \lx aː˦˨
 \a aː˥˩
 \ps EXCL
 \ge What.Hey
 \nt This shows surprise.
 \dt 16/Aug/2006
-
 \lx aː˥
 \ps PRT
 \ge well
 \nt This is used when refusing or denying something.
 \dt 17/Aug/2006
-
 \lx aiː˥˩
 \ps v
 \ge to plant
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to plant.wav
 \dt 13/Dec/2005
-
 \lx alɘ˥
 \ps N
 \ge purpose
 \nt Perhaps can also be thought of as matter or business.
 \dt 02/Aug/2006
-
 \lx an˧
 \ps v
 \ge to love desirously
 \de to love as boyfriend and girlfriend
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to love desirous.wav
 \dt 16/Jan/2006
-
 \lx aŋ˧
 \a aŋ˦
 \a ɑŋ˦
@@ -44,72 +38,60 @@
 \ge 1sg
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\1st person sg.wav
 \dt 02/May/2006
-
 \lx ap̚˧
 \ps Vtr
 \ge shoot
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to shoot.wav
 \dt 23/Aug/2006
-
 \lx æt̚˦t̪ʰɑŋ˦˨
 \ps loc
 \ge right side
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\right side.wav
 \dt 09/Feb/2006
-
 \lx auː˥
 \ps v
 \ge to shine
 \dt 19/Apr/2006
-
 \lx aweː˥
 \a we˥˩
 \ps PRT
 \ge ***
 \nt Used when feeling close to someone.
 \dt 02/Aug/2006
-
 \lx baː˥
 \ps n
 \ge bee hive
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\b palatalized.wav
 \dt 28/Dec/2005
-
 \lx bʲaː˦˨˦
 \ps n
 \ge root
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\b palatalized.wav
 \dt 28/Dec/2005
-
 \lx baibu˥
 \ps PN
 \ge Bible
 \dt 28/Aug/2006
-
 \lx bɑp̚˦˨
 \ps n
 \ge ashes
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ashes.wav
 \dt 23/Jan/2006
-
 \lx bʲar˥
 \ps n
 \ge bird's tail feathers
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized2.wav
 \dt 14/Dec/2005
-
 \lx bau˦˨
 \ps v
 \ge to swell
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to swell.wav
 \dt 13/Dec/2005
-
 \lx baʔ˧
 \ps N
 \ge Baht
 \nt This came from a Thai based questionnaire.
 \dt 23/Aug/2006
-
 \lx beː˧˥˧
 \a beː˥
 \a be˥
@@ -119,83 +101,66 @@
 \nt to do something over and over
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone be.wav
 \dt 16/Aug/2006
-
 \lx beː˦
 \ps v
 \ge to lick and to sharpen
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to lick.wav
 \dt 27/Dec/2005
-
 \lx beː˦˨
 \ps n
 \ge fish sperm and a kind of bean
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone be.wav
 \dt 27/Dec/2005
-
 \lx bɛ˥
 \ps PRT
 \ge so
 \nt this shows a sense of awe
 \dt 02/Aug/2006
-
 \lx bɛ˥˩
 \a bɛ˥
 \a be˥
 \ps STATE
 \ge ***
 \dt 17/Aug/2006
-
 \lx bɘ˦˨
 \ps PRT
 \ge maybe
 \nt This shows some expectation or hope that it will happen.
 \dt 17/Aug/2006
-
 \lx be˦˨dɔŋ˦˨
 \ps n
 \ge peanut
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\peanut.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\peanut.wav
 \dt 04/Jan/2006
-
 \lx beŋkok˥
 \ps PN
 \ge bangkok
 \dt 21/Aug/2006
-
 \lx bər˦bər˦
 \ps adj
 \ge all
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\all.wav
 \dt 13/Dec/2005
-
 \lx bɨː˥˩
 \ps n
 \ge armadillo
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\armadillo.wav
 \dt 24/Jan/2006
-
 \lx bɨp̚˧
 \ps v
 \ge to be deep
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be deep.wav
 \dt 24/Jan/2006
-
 \lx bɨr˦
 \ps n
 \ge mat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mat.wav
 \dt 24/Jan/2006
-
 \lx bok̚˧
 \ps PRT
 \ge just
 \nt This is used when making something softer, lightening the situation.  Ie only a little more.
 \dt 17/Aug/2006
-
 \lx bɔm˧
 \a bom˥
 \a bom˦˨
@@ -205,67 +170,50 @@ list\peanut.wav
 \a t̪ʰa˧
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hit.wav
 \dt 23/Aug/2006
-
 \lx bɔn˦˨
 \ps n
 \ge soil
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\soil.wav
 \dt 08/Sep/2006
-
 \lx bɔn˧ pʰur˦
 \ps n
 \ge dust
 \de This combines from soil and powder..
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\dust.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\dust.wav
 \dt 04/Jan/2006
-
 \lx bɔnliar˦˨
 \ps N
 \ge world
 \dt 29/Aug/2006
-
 \lx bɔŋ˦˨pɑp̚˦˧pɨː˦
 \ps v
 \ge don't do it
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\don't do it.wav
 \dt 09/Feb/2006
-
 \lx buk̚˧pʰənai˧
 \ps N
 \ge shoe
 \dt 23/Aug/2006
-
 \lx but̚˧
 \ps v
 \ge to boil something
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to boil something.wav
 \dt 26/Jul/2006
-
 \lx dɑm˧
 \ps PN
 \ge Dam
 \dt 21/Aug/2006
-
 \lx daŋ˧
 \ps v
-\ge to reforge a weak knife by putting
-through a fire
+\ge to reforge a weak knife by puttingthrough a fire
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\d.wav
 \dt 18/Jan/2006
-
 \lx dap̚˧
 \ps v
 \ge to be stale or no longer worth anything
-\nt This can be used for paper when it
-gets flimsy or for gunpowder when it
-is no longer flammable.
+\nt This can be used for paper when itgets flimsy or for gunpowder when itis no longer flammable.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\d.wav
 \dt 18/Jan/2006
-
 \lx deː˥
 \a de˥
 \a dɛ˦˨
@@ -274,59 +222,49 @@ is no longer flammable.
 \ps POL
 \ge please
 \dt 17/Aug/2006
-
 \lx dəba˦˨
 \a dəba˥˩
 \ps TAG
 \ge allright?
 \nt This is a question tag on the end of the word.
 \dt 17/Aug/2006
-
 \lx dɛk̚˦˨
 \ps ADV
 \ge viewing
 \nt This refers to the image that you are seeing.  Together with good means beautiful.
 \dt 18/Aug/2006
-
 \lx dɛŋ˧
 \ps PN
 \ge Daeng
 \dt 23/Aug/2006
-
 \lx dɛŋ˧
 \ps N
 \ge class
 \dt 28/Aug/2006
-
 \lx diː˦
 \ps v
 \ge to be few
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be few.wav
 \dt 26/Jan/2006
-
 \lx diː˥
 \ps adj
 \ge a small amount
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\small amount.wav
 \dt 06/Feb/2006
-
 \lx duk̚kʰa˥˩
 \ps N
 \ge suffering
 \dt 28/Aug/2006
-
 \lx duŋ˥˩
 \ps n
 \ge these days and nowadays
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nowadays.wav
 \dt 06/Feb/2006
-
 \lx dIn˦˨
 \ps verb marker
 \ge accidentally
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\accident marker.wav
 \dt 06/Feb/2006
-
 \lx eː˥
 \a e˥˩
 \a eː˥˩
@@ -334,12 +272,10 @@ is no longer flammable.
 \ge yes
 \nt This shows they are happy about it.
 \dt 28/Aug/2006
-
 \lx e˥
 \ps v
 \ge cry
 \dt 19/Jul/2006
-
 \lx ə˥
 \a ɘ˥˩
 \a əː˥
@@ -349,7 +285,6 @@ is no longer flammable.
 \ps POL
 \ge excuse me
 \dt 17/Aug/2006
-
 \lx ɘː˧˥˧
 \a ɘ˧
 \a ɘ˥
@@ -359,45 +294,38 @@ is no longer flammable.
 \ge really
 \nt Also shows closeness in relationship to the other person.  Shows concern for that person.
 \dt 28/Aug/2006
-
 \lx ɘː˦˨
 \ps TAG
 \ge Whadaya think?
 \dt 16/Aug/2006
-
 \lx ɘ˥
 \ps TENSE
 \ge past
 \dt 21/Aug/2006
-
 \lx ɘ˥˩
 \a ɘ˧
 \a ɘ˥
 \ps LOC
 \ge there
 \dt 21/Aug/2006
-
 \lx əbəle˥
 \a ɑbəle˥
 \ps PRT
 \ge Aaw
 \nt This shows a little frustration.
 \dt 17/Aug/2006
-
 \lx ə˦mi˦
 \a ɘmi˥
 \ps det
 \ge that
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\that.wav
 \dt 21/Aug/2006
-
 \lx eŋ˥˩
 \a əŋ˧
 \ps v
 \ge to cook rice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to cook rice.wav
 \dt 23/Aug/2006
-
 \lx ɘn˦˨
 \a ən˦˨
 \a an˦˨
@@ -405,52 +333,41 @@ is no longer flammable.
 \ge 2sg
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\2nd person sg.wav
 \dt 24/Aug/2006
-
 \lx əŋ˧ham˥
 \ps ***
 \ge everywhere
 \dt 24/Aug/2006
-
 \lx ən˧je˦˨
 \ps n
 \ge rainbow
 \a ə˦ɲe˦˨
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\rainbow.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\rainbow.wav
 \dt 18/Jan/2006
-
 \lx əŋ˧ka˦˨˦
 \ps n
 \ge silver
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\silver.wav
 \dt 09/Feb/2006
-
 \lx ən˦˧ni˥˩
 \ps pronoun
 \ge second person plural
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\2nd person pl.wav
 \dt 18/Jan/2006
-
 \lx əpʰoi˦˨
 \ps N
 \ge group
 \nt This is used for people.
 \dt 21/Aug/2006
-
 \lx faː˥
 \ps v
 \ge to be empty
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\empty bird.wav
 \dt 29/Dec/2005
-
 \lx fan˥˩
 \ps v
 \ge to separate
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\separate blanket.wav
 \dt 29/Dec/2005
-
 \lx faŋ˦˨˦
 \a faŋ˥
 \a faŋ˦˨
@@ -459,126 +376,99 @@ list\rainbow.wav
 \ge rain
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\rain.wav
 \dt 21/Aug/2006
-
 \lx far˥˩
 \ps N
 \ge night
 \dt 16/Aug/2006
-
 \lx fɘ˧
 \ps V
 \ge open
 \dt 16/Aug/2006
-
 \lx feŋ˥˩
 \ps v
 \ge to go off the wrong way
-\nt this can be used for paths, spilling
-things, or even a person's disfigured
-face
+\nt this can be used for paths, spillingthings, or even a person's disfiguredface
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to go off.wav
 \dt 06/Feb/2006
-
 \lx fɨː˦
 \ps v
 \ge to open
-\nt this is used for doors, windows,
-boxes, pots, etc.
+\nt this is used for doors, windows,boxes, pots, etc.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to open.wav
 \dt 08/Feb/2006
-
 \lx hʷaː˦˨˦
 \a hʷa˥˩
 \ps n
 \ge husband
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\husband.wav
 \dt 26/Jul/2006
-
 \lx hʷa˥˩
 \ps n
 \ge stone
-\de This is used for when talking about
-stone objects.  It is sometimes used to
-refer to stones, but usually another
-syllable is needed for the individual
-object.
+\de This is used for when talking aboutstone objects.  It is sometimes used torefer to stones, but usually anothersyllable is needed for the individualobject.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\stone.wav
 \dt 24/Jan/2006
-
 \lx hʲa˥˩
 \ps V
 \ge want
 \dt 21/Aug/2006
-
 \lx hai˧
 \a hai˥
 \ps ADV
 \ge able
 \dt 16/Aug/2006
-
 \lx hai˥
 \ps LOC
 \ge from
 \dt 24/Aug/2006
-
 \lx hai˥
 \ps POSS
 \ge 's
 \dt 19/Jul/2006
-
 \lx hai˥
 \ps CONT
 \ge ing
 \dt 19/Jun/2006
-
 \lx hai˥
 \ps ***
 \ge finish
 \nt The V has finished
 \dt 24/Aug/2006
-
 \lx ha˥˩jua˧
 \ps n
 \ge ten people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ten people.wav
 \dt 13/Dec/2005
-
 \lx hak̚˧
 \a hak̚˦˨
 \ps CONJ
 \ge and
 \dt 17/Aug/2006
-
 \lx hak̚˦˨
 \ps ***
 \ge as
 \dt 02/May/2006
-
 \lx hak̚kʰa˧
 \a hak̚˧kʰa˦hai˥vɐ˦˨
 \ps QUES
 \ge when past
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\when past.wav
 \dt 24/Aug/2006
-
 \lx hak̚˧kʰa˥
 \ps question
 \ge when future present
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\when future present.wav
 \dt 28/Aug/2006
-
 \lx ham˧
 \a ham˥va˥˩
 \ps question
 \ge where
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\where.wav
 \dt 24/Aug/2006
-
 \lx ham˥
 \ps ***
 \ge for
 \dt 17/Aug/2006
-
 \lx hɑm˧˥˧
 \a m˥
 \a ham˥
@@ -587,44 +477,36 @@ object.
 \ps FUT.COND
 \ge will
 \dt 28/Aug/2006
-
 \lx haŋ˥
 \ps V
 \ge blow hard
 \dt 16/Aug/2006
-
 \lx hap̚˥
 \ps ADJ
 \ge hot
 \dt 23/Aug/2006
-
 \lx hap̚˥˩
 \ps N
 \ge leaves
 \dt 17/Aug/2006
-
 \lx hap̚˦˨pə˦˨he˦˨
 \ps n
 \ge lizard
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\lizard.wav
 \dt 09/Feb/2006
-
 \lx har˦˨
 \ps v
 \ge to be new
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be new.wav
 \dt 13/Dec/2005
-
 \lx hau˥
 \ps v
 \ge look for
 \dt 19/Jul/2006
-
 \lx hə˦˨
 \ps INCL
 \ge as well
 \dt 02/Aug/2006
-
 \lx həm˥
 \a həm˥˩
 \a həm˧
@@ -633,18 +515,15 @@ object.
 \ps OBJ
 \ge (obj)
 \dt 21/Aug/2006
-
 \lx həm˥kla˦˨
 \ps ADV
 \ge must be
 \dt 23/Aug/2006
-
 \lx hət̚˦˨
 \ps PRT
 \ge indeed
 \nt This shows assertiveness in the statement.
 \dt 21/Aug/2006
-
 \lx hin˥
 \a hin˧˥˧
 \a hin˦˨
@@ -652,82 +531,62 @@ object.
 \ge still.anymore
 \nt could also be similar to just
 \dt 02/May/2006
-
 \lx hɨr˧
 \ps n
 \ge lice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\lice.wav
 \dt 24/Jan/2006
-
 \lx hi˥t̪eŋ˥˩
 \ps v
 \ge to be straight
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be straight.wav
 \dt 18/Jan/2006
-
 \lx hɔk̚˦˨
 \ps v
 \ge to clean with a brush rag etc
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\k h.wav
 \dt 23/Jan/2006
-
 \lx huː˥˩
 \a hu˥
 \ps V
 \ge more.be many
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be many.wav
 \dt 23/Aug/2006
-
 \lx hʲu˦˨˦
 \ps n
 \ge deer
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\deer.wav
 \dt 30/Jan/2006
-
 \lx hup̚˧˥˨
 \ps v
 \ge to be hot because of the weather
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be hot because weather.wav
 \dt 13/Dec/2005
-
 \lx hup̚˥t̪ui˧
 \ps n
 \ge sweat
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\sweat.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\sweat.wav
 \dt 08/Dec/2005
-
 \lx hur˦
 \ps v
 \ge to be sour
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be sour.wav
 \dt 13/Dec/2005
-
 \lx hur˥˩
 \ps v
 \ge to winnow rice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to winnow rice.wav
 \dt 13/Dec/2005
-
 \lx hut̚˦
 \ps n
 \ge bone
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\bone.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\bone.wav
 \dt 04/Jan/2006
-
 \lx hut̚˦
 \a hut̚˥
 \ps v
 \ge blow
 \dt 26/Apr/2006
-
 \lx iː˥
 \a i˦˨
 \a i˥
@@ -735,60 +594,47 @@ list\bone.wav
 \ge 1pl
 \nt This is used for only two people.
 \dt 28/Aug/2006
-
 \lx ɨ̃ː˥
 \a ɨ̃ː˥˩
 \a ɨ̃ː˧
 \ps ***
 \ge yes
 \dt 02/Aug/2006
-
 \lx iː˦eʔ˦˨
 \ps v
 \ge to cry
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to cry.wav
 \dt 13/Dec/2005
-
 \lx i˥m̥at̚˦˨
 \ps 1.pl.poss
 \ge own.kind
 \dt 02/Mar/2006
-
 \lx i˥miː˥
 \a imi˥˩
 \a i˥mi˥
 \ps n
 \ge someone
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\someone.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\someone.wav
 \dt 24/Aug/2006
-
 \lx iŋ˦
 \a iŋ˧
 \ps PRO1pl
 \ge we
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\1st person pl.wav
 \dt 26/Jul/2006
-
 \lx iŋ˦˨˦
 \ps adj
 \ge green
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\green.wav
 \dt 13/Dec/2005
-
 \lx ip̚˦˨
 \ps v
 \ge thirst
 \dt 19/Jun/2006
-
 \lx irau˥˩
 \ps ADJ
 \ge health
 \dt 02/Aug/2006
-
 \lx iu˥˩
 \a iu˥
 \ps v
@@ -796,113 +642,94 @@ list\someone.wav
 \nt used for the sun setting
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sun goes down.wav
 \dt 21/Jun/2006
-
 \lx ja˦˨
 \ps verb marker
 \ge to be doing something
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be doing.wav
 \dt 06/Feb/2006
-
 \lx ja˦˨
 \ps v
 \ge to win a game
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to beat win november.wav
 \dt 08/Feb/2006
-
 \lx ja˦˨
 \ps n
 \ge november
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to beat win november.wav
 \dt 08/Feb/2006
-
 \lx ja˦˨
 \a ja˧
 \ps PRT
 \ge 2 per
 \dt 19/Jul/2006
-
 \lx jak̚˥˩
 \ps N
 \ge night
 \dt 17/Aug/2006
-
 \lx jan˦˨˦
 \ps n
 \ge urine
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\urine.wav
 \dt 30/Jan/2006
-
 \lx jaŋ˧
 \a jaŋ˦˨
 \ps CONJ
 \ge and
 \dt 18/Aug/2006
-
 \lx jaŋ˦
 \ps v
 \ge to wipe
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to wipe.wav
 \dt 30/Jan/2006
-
 \lx jaŋ˥
 \ps v
 \ge to wipe up
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to wipe up.wav
 \dt 08/Feb/2006
-
 \lx jəmjək˥
 \ps V
 \ge slow
 \dt 21/Aug/2006
-
 \lx jəŋ˧˥˧
 \a jɘŋ˧˥˧
 \ps V
 \ge stand
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to stand.wav
 \dt 21/Aug/2006
-
 \lx jəŋ˦˨˦
 \ps v
 \ge to pull
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to pull.wav
 \dt 13/Dec/2005
-
 \lx jɨm˦˨jək̚˧
 \a jɨm˦˨jək̚˦˨
 \ps ADV
 \ge slowly
 \dt 17/Aug/2006
-
 \lx jɨŋ˦˨
 \ps n
 \ge tooth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\tooth.wav
 \dt 10/Sep/2006
-
 \lx jɨŋ˦˨n̥i˦˨
 \ps n
 \ge gums
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\gums.wav
 \dt 24/Jan/2006
-
 \lx jɨr˦˨
 \ps N
 \ge sharp (thing)
 \dt 21/Aug/2006
-
 \lx jɨr˥
 \ps v
 \ge sharp
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be sharp.wav
 \dt 21/Aug/2006
-
 \lx jo˥˩
 \a jo˥
 \ps TENSE
 \ge past
 \dt 23/Aug/2006
-
 \lx jɔk̚˥˩
 \a jok̚˦˨
 \a jɔk̚˦˨
@@ -910,42 +737,32 @@ list\someone.wav
 \ge give
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to give.wav
 \dt 26/Jul/2006
-
 \lx jɔk̚˦˨r̥ʰuŋ˥˩
 \ps v
 \ge to pay
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to pay.wav
 \dt 23/Jan/2006
-
 \lx jɔŋ˦˨˦
 \ps n
 \ge a type of tree
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\a type of tree.wav
 \dt 15/Feb/2006
-
 \lx juː˧
 \ps v
 \ge to suck
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to suck.wav
 \dt 14/Dec/2005
-
 \lx juː˥
 \a ju˧
 \ps n
 \ge wife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\wife.wav
 \dt 02/Mar/2006
-
 \lx juː˥˩
 \ps n
 \ge pus
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\pus.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\pus.wav
 \dt 04/Jan/2006
-
 \lx jua˦˨˦
 \a jua˦˨
 \a jua˥
@@ -954,243 +771,190 @@ list\pus.wav
 \ge person
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\one person.wav
 \dt 21/Aug/2006
-
 \lx jua˥
 \ps CLASS
 \ge person
 \dt 21/Aug/2006
-
 \lx juk̚˦˨
 \ps n
 \ge monkey
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\monkey.wav
 \dt 13/Jan/2006
-
 \lx juŋ˦˨
 \ps n
 \ge rabbit
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\rabbit.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\rabbit.wav
 \dt 05/Dec/2005
-
 \lx juŋ˥˩
 \ps v
-\ge to fix something somewhere so it
-doesn't move
+\ge to fix something somewhere so itdoesn't move
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to fix so doesn't move.wav
 \dt 08/Feb/2006
-
 \lx kʰʲa˦˨
 \ps v
 \ge to cut hair
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to cut hair.wav
 \dt 24/Jan/2006
-
 \lx kʲaː˦˨˦
 \a kʲa˦˨
 \ps n
 \ge cow
 \a tʃʲaː˦˨˦
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\cow.wav
-
 \dt 26/Apr/2006
-
 \lx kʲa˥
 \ps ***
 \ge next
 \dt 24/Aug/2006
-
 \lx kai˥
 \a kai˥˩
 \a kai˧
 \ps Vmot
 \ge go to
 \dt 26/Jul/2006
-
 \lx kai˥˩
 \ps n
 \ge crab
 \dt 04/Jan/2006
-
 \lx kʷai˦˨
 \ps n
 \ge bee
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\bee.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\bee.wav
 \dt 05/Dec/2005
-
 \lx kai˦kɐ˧
 \ps question marker
 \ge ?
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\question marker.wav
 \dt 08/Feb/2006
-
 \lx kai˦kɘ˦˨
 \ps v
 \ge it's gone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\it's gone.wav
 \dt 06/Feb/2006
-
 \lx kʲa̰˦˨˦jɔn˥t̪ui˦˥˨
 \ps n
 \ge cow's milk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\milk.wav
 \dt 24/Jan/2006
-
 \lx kʰak̚˧
 \ps v
 \ge to be bitter
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be bitter.wav
 \dt 13/Dec/2005
-
 \lx kʰam˧
 \a kʰam˦˨
 \ps POST
 \ge to
 \dt 25/Apr/2006
-
 \lx kʰam˥˩
 \ps v
 \ge drink
 \dt 19/Jun/2006
-
 \lx kʰʲa˧miʔ˧
 \ps v
 \ge to shave
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to shave.wav
 \dt 16/Jan/2006
-
 \lx kamtsɘŋ˧
 \ps Vintr
 \ge complete.ready
 \dt 28/Aug/2006
-
 \lx kan˥˩
 \a kan˦˨
 \ps N
 \ge curry
 \dt 17/Aug/2006
-
 \lx kaŋ˦
 \ps n
 \ge forced labor
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone kang.wav
 \dt 30/Jan/2006
-
 \lx kaŋ˦˨
 \ps n
 \ge balloon bladder
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone kang.wav
 \dt 26/Dec/2005
-
 \lx kaŋ˥
 \ps v
 \ge to dry to forbid
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone kang.wav
 \dt 26/Dec/2005
-
 \lx kaŋ˥˩
 \ps n
-\ge edible bulb and seed that falls down
-from plant
+\ge edible bulb and seed that falls downfrom plant
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone kang.wav
 \dt 26/Dec/2005
-
 \lx kʰan˦˨
 \ps LOC
 \ge at.to
 \dt 21/Aug/2006
-
 \lx kʷan˧
 \ps v
 \ge to scratch because of an itch
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to scratch because of itch.wav
 \dt 09/Jan/2006
-
 \lx kʲaŋ˦˨˦
 \ps n
 \ge a fly
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\a fly.wav
 \dt 08/Feb/2006
-
 \lx kʲaŋ˧kʰɹɘŋ˥˩
 \ps n
 \ge mosquito
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mosquito.wav
 \dt 24/Jan/2006
-
 \lx kʲaŋ˧kʰɹɛt̚˦˨
 \ps n
 \ge fly
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\fly.wav
 \dt 11/Jan/2006
-
 \lx kaoː˦˩˦
 \ps n
 \ge bamboo
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\bamboo.wav
 \dt 23/Jan/2006
-
 \lx kʰap̚˧
 \a kʰap̚˥
 \ps CLASS
 \ge cups
 \dt 18/Aug/2006
-
 \lx kar˧
 \a kar˥
 \a kar˦˨
 \ps n
 \ge chicken
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\chicken.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\chicken.wav
 \dt 26/Jul/2006
-
 \lx kʰʲar˦˨
 \ps v
 \ge to pound rice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\khj.wav
 \dt 24/Jan/2006
-
 \lx kʲar˥˩
 \ps v
 \ge to intertwine
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized.wav
 \dt 14/Dec/2005
-
 \lx ⁿkʰɑt̚˦˨
 \ps n
 \ge roof support beam
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nkh.wav
 \dt 19/Jan/2006
-
 \lx kʷa˦˨t̪ʰaŋ˧˥˧
 \ps loc
 \ge left side
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\left side.wav
 \dt 04/Jan/2006
-
 \lx ⁿkʰɑt̚˦˨vɐ˥˩
 \ps question
 \ge how many
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\how many.wav
 \dt 16/Jan/2006
-
 \lx kau˧˥˧
 \ps v
 \ge to be wide broad
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be wide.wav
 \dt 04/Jan/2006
-
 \lx kʰaʔ˦˨
 \a kʰaʔ˦
 \a kʰa˦
@@ -1204,24 +968,20 @@ list\chicken.wav
 \ge time
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 29/Aug/2006
-
 \lx keː˧
 \ps v
 \ge to grind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to grind.wav
 \dt 04/Jan/2006
-
 \lx kə
 \ps PRE
 \ge motion
 \dt 23/Aug/2006
-
 \lx kə˧
 \a kək̚˦˨
 \ps SUP
 \ge est
 \dt 19/Apr/2006
-
 \lx kɘː˥
 \a kɘ˥
 \a kə˥
@@ -1232,20 +992,17 @@ list\chicken.wav
 \ge big
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
 \dt 26/Apr/2006
-
 \lx kɘ˧
 \a kɘː˥
 \a kə
 \ps det
 \ge that
 \dt 02/May/2006
-
 \lx kɘ˦˨
 \a kɘ˧
 \ps RSP
 \ge RSP
 \dt 02/May/2006
-
 \lx kɘ˦˨
 \a kɘ˧
 \a kə˦˨
@@ -1253,541 +1010,431 @@ list\chicken.wav
 \ge have
 \nt Used for future and present.
 \dt 17/Aug/2006
-
 \lx kəak̚˥
 \ps n
 \ge crow
 \dt 19/Jun/2006
-
 \lx kə˧bɔm˦miʔ˦
 \ps v
 \ge to fight
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to fight.wav
 \dt 15/Feb/2006
-
 \lx kəbut̚˥
 \ps V
 \ge go under
 \dt 26/Jul/2006
-
 \lx kə˧but̚˧˥˧t̪ui˦˨
 \ps v
 \ge to sink
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sink.wav
 \dt 04/Jan/2006
-
 \lx kə˧dai˦˨˦
 \ps n
 \ge huge water jar
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\d.wav
 \dt 18/Jan/2006
-
 \lx kə˧dɑn˦
 \ps v
 \ge to think about and remember and miss
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\d.wav
 \dt 18/Jan/2006
-
 \lx kə˧de˧
 \ps n
 \ge close friends and family
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\d.wav
 \dt 13/Feb/2006
-
 \lx kəfar˥˩
 \ps N
 \ge last night
 \dt 16/Aug/2006
-
 \lx kəhəm˦˨
 \ps ***
 \ge for
 \dt 23/Aug/2006
-
 \lx kə˧he˧moi˥miʔ˥
 \ps v
 \ge to hunt
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hunt.wav
 \dt 13/Dec/2005
-
 \lx kə˦˨hɨp̚˥
 \ps adj
 \ge half
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\half.wav
 \dt 24/Jan/2006
-
 \lx kə˧hʲu˦
 \ps v
 \ge to blow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to blow.wav
 \dt 30/Jan/2006
-
 \lx kəjak̚˧
 \a kəjak̚˦˨
 \ps N
 \ge yesterday
 \dt 21/Aug/2006
-
 \lx kəjau˥
 \ps V
 \ge swim
 \dt 26/Jul/2006
-
 \lx kə˧jauŋ˧˥˧t̪ui˦˨
 \ps v
 \ge to swim
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to swim.wav
 \dt 04/Jan/2006
-
 \lx kə˧jaʔ˥˩
 \ps n
 \ge yesterday
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\yesterday.wav
 \dt 13/Jan/2006
-
 \lx ke˦˧jɨː˦
 \a kəjɨ˧
 \ps v
 \ge to fly
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\to
-fly.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\tofly.wav
 \dt 21/Jun/2006
-
 \lx kə˧kam˦˨
 \ps v
 \ge to yawn
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to yawn.wav
 \dt 13/Dec/2005
-
 \lx kə˦kam˦
 \ps v
 \ge to crawl
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to crawl.wav
 \dt 13/Dec/2005
-
 \lx kə˧klaŋ˥˩
 \ps v
 \ge to exchange
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to exchange.wav
 \dt 13/Dec/2005
-
 \lx kə˦koː˥˩
 \a kəko˥˩
 \ps v
 \ge to think
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to think.wav
 \dt 21/Jun/2006
-
 \lx kə˧koi˧
 \ps v
 \ge to snap or break apart
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\it's gone snap.wav
 \dt 29/Dec/2005
-
 \lx kə˧kʰoi˧
 \a kəkʰoi˦˨
 \ps v
 \ge it's gone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\it's gone snap.wav
 \dt 21/Jun/2006
-
 \lx kə˦kʰɔn˥˩
 \ps v
 \ge to bend
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bend.wav
 \dt 26/Dec/2005
-
 \lx kəkrum˥˩
 \a kəkrum˥
 \ps v
 \ge meet
 \dt 21/Aug/2006
-
 \lx kə˦˧kuː˦˨˦
 \a kəku˦˨
 \ps n
 \ge man
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\man.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\man.wav
 \dt 21/Aug/2006
-
 \lx kəlak̚˥˩
 \ps n
 \ge mouth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mouth.wav
 \dt 08/Sep/2006
-
 \lx kəle˧
 \ps N
 \ge forest
 \dt 23/Aug/2006
-
 \lx kəle˥
 \ps ADJ
 \ge wild
 \dt 17/Aug/2006
-
 \lx kə˧ɬeː˧˥˧
 \ps v
 \ge to play
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to play.wav
 \dt 06/Feb/2006
-
 \lx kə˧lɨ˦
 \ps v
 \ge to look for
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to look for.wav
 \dt 06/Feb/2006
-
 \lx kə˧ɬɨ˦
 \ps v
 \ge to be distant or far away
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be distant.wav
 \dt 06/Feb/2006
-
 \lx kə˧loi˦ɔk̚˧
 \ps n
 \ge corn plant edible part
 \de This refers to an ear of corn.
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\corn.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\corn.wav
 \dt 04/Jan/2006
-
 \lx kə˦˧ɬɔr˥˩
 \ps v
 \ge loose baggy not be filled out
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to not be filled be loose.wav
 \dt 26/Dec/2005
-
 \lx kə˧ɬuk̚˧t̪ui˧
 \ps v
 \ge to bathe
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bathe.wav
 \dt 04/Jan/2006
-
 \lx kəlum˥˩
 \ps ***
 \ge thanks
 \dt 17/Aug/2006
-
 \lx kʰəm˥
 \ps ADV
 \ge able
 \dt 21/Aug/2006
-
 \lx kə˦˧m̥aː˧
 \ps v
 \ge to lose something
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to lose something.wav
 \dt 16/Jan/2006
-
 \lx kəmai˥
 \ps N
 \ge today
 \dt 16/Aug/2006
-
 \lx kəman˥
 \ps V
 \ge free
 \nt This refers to not having other obligations.
 \dt 16/Aug/2006
-
 \lx kə˧m̥ui˧
 \ps v
 \ge to be blunt
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be blunt.wav
 \dt 13/Dec/2005
-
 \lx keŋ˥
 \ps V
 \ge hear
 \dt 28/Aug/2006
-
 \lx kəŋ˧
 \ps v
 \ge to kill
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to kill.wav
 \dt 24/Jan/2006
-
 \lx kʰɛŋ˥
 \ps V
 \ge accept.take
 \dt 28/Aug/2006
-
 \lx kəna˥
 \ps v
 \ge to move
 \dt 02/May/2006
-
 \lx kəŋa˦˨
 \ps v
 \ge argue
 \dt 19/Jul/2006
-
 \lx kə˦˧naː˦
 \ps n
 \ge buffalo
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\buffalo.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\buffalo.wav
 \dt 05/Dec/2005
-
 \lx kəni˥
 \a kəni˥˩
 \ps v
 \ge to.be.in.front
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 24/Aug/2006
-
 \lx kə˧ni˥
 \ps ADJ
 \ge long ago
 \dt 29/Aug/2006
-
 \lx kə˧nɔm˦˨
 \ps v
 \ge to float
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to float.wav
 \dt 23/Jan/2006
-
 \lx kənu˥˩
 \ps adj
 \ge mother
 \dt 26/Jul/2006
-
 \lx kə˦nuk̚˧
 \ps v
 \ge to enter
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to enter.wav
 \dt 13/Dec/2005
-
 \lx kəpa˥˩
 \ps N
 \ge father
 \dt 21/Aug/2006
-
 \lx kəpə˧
 \ps DEF
 \ge not entirely
 \dt 19/Apr/2006
-
 \lx kəpə˧
 \ps COND
 \ge if
 \dt 24/Aug/2006
-
 \lx kəpə˦˨
 \ps ***
 \ge even until
 \dt 21/Jun/2006
-
 \lx kə˧pɛt̚˦˨
 \ps v
 \ge to bounce off or fly off
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to bounce off fall down.wav
 \dt 27/Dec/2005
-
 \lx kə˧pʰɛt̚˧
 \ps v
 \ge to fall down
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to bounce off fall down.wav
 \dt 27/Dec/2005
-
 \lx kə˧pɨr˧
 \ps v
 \ge to roll
-\nt this is used for people or things rolling
-on the ground
+\nt this is used for people or things rollingon the ground
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to roll.wav
 \dt 02/Feb/2006
-
 \lx kə˧pʲɨr˦˨
 \ps n
 \ge mirror
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mirror.wav
 \dt 02/Feb/2006
-
 \lx kɘ˥˩poi˦˨
 \ps n
 \ge beard
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\beard.wav
 \dt 16/Jan/2006
-
 \lx kə˧pɔk̚˦˨
 \ps v
 \ge to explode
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to explode to blossom.wav
 \dt 23/Jan/2006
-
 \lx kə˧pʰɔk̚˧
 \ps n
 \ge blossom
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to explode blossom.wav
 \dt 23/Jan/2006
-
 \lx kə˧pɔŋ˥
 \ps v
 \ge to be too much
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\too much to find out.wav
 \dt 23/Jan/2006
-
 \lx kə˧pʰɔŋ˥
 \ps v
 \ge to find out
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\too much to find out.wav
 \dt 23/Jan/2006
-
 \lx kəprai˥
 \ps v
 \ge go apart
 \dt 19/Jul/2006
-
 \lx kə˧pɾɔŋ˦˨˦
 \ps v
 \ge to gossip
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to gossip to clarify something.wav
 \dt 23/Jan/2006
-
 \lx kə˧pʰɹɔŋ˧
 \ps v
 \ge to clarify plans or problems
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to gossip to clarify something.wav
 \dt 23/Jan/2006
-
 \lx kə˧ɾaiː˦˨˦
 \ps n
 \ge thunder
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\thunder.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\thunder.wav
 \dt 04/Jan/2006
-
 \lx kə˧ram˦˨
 \ps n
 \ge bamboo leaves used for roofs
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone keram.wav
 \dt 26/Dec/2005
-
 \lx kə˧ram˥
 \ps v
 \ge to talk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone keram.wav
 \dt 26/Dec/2005
-
 \lx kə˧ram˥
 \ps n
 \ge wild chicken
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone keram.wav
 \dt 15/Feb/2006
-
 \lx kə˦˧ɾʲæt̚˦˨t̪ui˧
 \ps n
 \ge saliva
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\saliva.wav
 \dt 16/Jan/2006
-
 \lx kə˧reː˥
 \ps n
 \ge bullet hole and sting hole
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\bullet hole.wav
 \dt 06/Feb/2006
-
 \lx kəɾɛt̚˦˨
 \ps n
 \ge star
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\star.wav
 \dt 16/Jan/2006
-
 \lx kəroi˥
 \ps NUM
 \ge 20
 \dt 23/Aug/2006
-
 \lx kəroi˥˩
 \a kəroi˦˨
 \ps V
 \ge together
 \dt 26/Jul/2006
-
 \lx kə˦˧sai˥˩
 \ps n
 \ge woman
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\woman.wav
 \dt 19/Jan/2006
-
 \lx kə˧sʰiː˦
 \ps v
 \ge to sneeze
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sneeze.wav
 \dt 13/Dec/2005
-
 \lx kʰɛt̚˧
 \ps v
 \ge to be near
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be near.wav
 \dt 13/Dec/2005
-
 \lx kət̪aŋ˥
 \ps n
 \ge old man
 \dt 02/May/2006
-
 \lx kə˧t̪ɛk̚˧
 \ps v
 \ge to be full
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be full.wav
 \dt 04/Jan/2006
-
 \lx kəteŋ˦˨
 \a kət̪eŋ˥˩
 \ps ADJ
 \ge worthy
 \dt 02/May/2006
-
 \lx kətʰɨp̚˦˨
 \ps v
 \ge go down
 \dt 23/Aug/2006
-
 \lx kə˧t̪ɨr˧˥˧
 \ps v
 \ge to talk and to share with each other
 \dt 24/Jan/2006
-
 \lx kə˧t̪ʰɨr˦
 \ps v
 \ge to shake off or shiver
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to talk with each other shake off.wav
 \dt 24/Jan/2006
-
 \lx kət̪o˦˨
 \ps adj
 \ge pure boy
 \dt 26/Jul/2006
-
 \lx kə˧t̪o˦
 \ps v
 \ge to use
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to use chop.wav
 \dt 29/Dec/2005
-
 \lx kɘtsa˦˨
 \ps ***
 \ge already had
 \dt 17/Aug/2006
-
 \lx kətsə˦˨
 \a kətsə˥˩
 \a kətsə˧
@@ -1795,29 +1442,24 @@ list\thunder.wav
 \ge when.if
 \nt This shows finality, that something has happened.
 \dt 16/Aug/2006
-
 \lx kətsui˥˩
 \ps v
 \ge fight
 \dt 19/Jul/2006
-
 \lx kə˧t̪u˦
 \ps v
 \ge to chop or cut with a knife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to use chop.wav
 \dt 29/Dec/2005
-
 \lx kət̪uŋ˥
 \ps adj
 \ge pure girl
 \dt 26/Jul/2006
-
 \lx kə˧vəŋ˧˥˧
 \ps v
 \ge to fall
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to fall.wav
 \dt 04/Jan/2006
-
 \lx kəzə˥
 \a kəzə˧˥˧
 \a kəzəʔ˦˨
@@ -1825,25 +1467,21 @@ list\thunder.wav
 \ps TEMP
 \ge when
 \dt 16/Aug/2006
-
 \lx kʰəʔ˧
 \a kʰəʔ˦˨
 \a kʰə˧
 \ps PST
 \ge have
 \dt 02/May/2006
-
 \lx kʰəʔ˦˨
 \ps CONJ
 \ge because
 \dt 16/Aug/2006
-
 \lx kəʔ˧əŋ˦˨
 \ps v
 \ge to be the same
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be the same.wav
 \dt 13/Dec/2005
-
 \lx kiː˦
 \a ki˦˨
 \a ki˥˩
@@ -1851,126 +1489,95 @@ list\thunder.wav
 \ge to see
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to see.wav
 \dt 26/Jul/2006
-
 \lx kɨː˧
 \ps v
 \ge to get objects out of a wound
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\get objects out of a wound.wav
 \dt 06/Feb/2006
-
 \lx kim˥˩
 \a kim˦˨
 \a kim˧
 \ps n
 \ge house
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\house.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\house.wav
 \dt 18/Aug/2006
-
 \lx kim˧bɨŋ˥˩
 \a kim˧bɨŋ˥
 \ps n
 \ge window
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\window.wav
 \dt 16/Aug/2006
-
 \lx kiŋ˦
 \ps PRT
 \ge all
 \dt 25/Apr/2006
-
 \lx kʰɨŋ˥˩
 \ps v
 \ge gather
 \dt 19/Jul/2006
-
 \lx klaŋ˧
 \ps v
 \ge to be long
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be long.wav
 \dt 08/Sep/2006
-
 \lx klaŋ˦˨
 \ps n
 \ge body
 \dt 19/Jun/2006
-
 \lx klɘ˥
 \ps N
 \ge language
 \dt 28/Aug/2006
-
 \lx klɘ˥˩
 \a klɘ˥
 \ps N
 \ge south
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\south.wav
 \dt 18/Aug/2006
-
 \lx klɘk̚˧
 \ps adj
 \ge half of something
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\half a unit.wav
 \dt 24/Jan/2006
-
 \lx kʰlək̚˧
 \ps v
 \ge to open and remove meat from a shell
 \dt 27/Dec/2005
-
 \lx klɘŋ˦˨˦
 \ps n
 \ge leg
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\leg.wav
 \dt 24/Jan/2006
-
 \lx kləŋ˦bɔm˦˨˦
 \ps n
 \ge calf
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\calf.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\calf.wav
 \dt 04/Jan/2006
-
 \lx kləŋ˦kɹiŋ˦˨˦
 \ps n
 \ge shin
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\shin.wav
 \dt 10/Jan/2006
-
 \lx kləŋ˦˧mai˦˨˦
 \ps n
 \ge widowed person
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\widow.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\widow.wav
 \dt 04/Jan/2006
-
 \lx kləŋ˦tsun˥
 \ps n
 \ge heel
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\heel.wav
 \dt 11/Jan/2006
-
 \lx ko˦˨
 \a ko˧
 \a ko˥
 \ps LOC
 \ge in
 \dt 23/Aug/2006
-
 \lx ko˥˩
 \ps ADJ
 \ge white
 \dt 19/Apr/2006
-
 \lx kɔk̚˥˩
 \a kok̚˦˨
 \a kok̚˥˩
@@ -1978,147 +1585,117 @@ list\widow.wav
 \ge white
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\white.wav
 \dt 21/Jun/2006
-
 \lx kʰɔk̚˦˨
 \ps n
 \ge foot
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\foot.wav
 \dt 16/Jan/2006
-
 \lx kɔŋ˧˥˧
 \ps v
 \ge to weave
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to weave later behind.wav
 \dt 23/Jan/2006
-
 \lx kɔŋ˧mi˥
 \ps v
 \ge to weave
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to weave.wav
 \dt 23/Jan/2006
-
 \lx kɔt̚˦mi˦˨˦
 \ps adj
 \ge some
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\some.wav
 \dt 13/Dec/2005
-
 \lx kɹa˧
 \ps V
 \ge take time
 \dt 28/Aug/2006
-
 \lx kɾam˧
 \ps v
 \ge to be afraid
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be afraid.wav
 \dt 10/Jan/2006
-
 \lx kreː˥
 \ps n
 \ge mountain or cliff face
 \dt 27/Dec/2005
-
 \lx kʰɹek̚˦˨
 \ps v
 \ge to love
-\de to care for as God to man or husband
-to wife
+\de to care for as God to man or husbandto wife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to love caring.wav
 \dt 11/Jan/2006
-
 \lx kreo˦˨˦
 \ps v
 \ge to be skinny
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be skinny.wav
 \dt 13/Dec/2005
-
 \lx kʰri˥˩
 \ps ADV
 \ge very
 \dt 26/Jul/2006
-
 \lx kʰɹip̚˧mik̚˦˨mi˧
 \ps v
 \ge to blink
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to blink.wav
 \dt 11/Jan/2006
-
 \lx ⁿkʰɹo˦n̥aŋ˥
 \ps n
-\ge a place where trees and brush hang
-over the river
+\ge a place where trees and brush hangover the river
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nkh.wav
 \dt 24/Jan/2006
-
 \lx kɾɔn˥kuŋ˥
 \ps v
 \ge to kneel
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to kneel.wav
 \dt 10/Jan/2006
-
 \lx kuː˧
 \ps v
 \ge to steal
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to steal.wav
 \dt 13/Dec/2005
-
 \lx ku˦˨
 \ps PRT
 \ge ***
 \nt This possibly shows questioning uncertainty.
 \dt 17/Aug/2006
-
 \lx kui˥
 \ps v
 \ge roll up
 \dt 02/May/2006
-
 \lx kui˥˩
 \ps n
 \ge dog
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\dog.wav
 \dt 08/Sep/2006
-
 \lx kui˧meŋ˧
 \ps n
 \ge cat
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\cat.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\cat.wav
 \dt 05/Dec/2005
-
 \lx ku˧˥˧jua˦
 \ps n
 \ge nine people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nine people.wav
 \dt 04/Jan/2006
-
 \lx kuk̚˥
 \ps ADJ
 \ge whole
 \dt 21/Jun/2006
-
 \lx kʰuk̚˦˨ɨk˧˥˨
 \ps n
 \ge clothing
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\clothing.wav
 \dt 24/Jan/2006
-
 \lx ku˦˨ɬip̚˥
 \ps n
 \ge butterfly
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\butterfly.wav
 \dt 30/Jan/2006
-
 \lx kun˥˩
 \ps v
 \ge to be slow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be slow.wav
 \dt 13/Dec/2005
-
 \lx kuŋ˧˥˧
 \a kuŋ˥˩
 \a kuŋ˥
@@ -2127,193 +1704,148 @@ list\cat.wav
 \nt also used for behind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to weave later behind.wav
 \dt 19/Jul/2006
-
 \lx kuŋ˥
 \ps n
 \ge knee
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\knee.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\knee.wav
 \dt 08/Dec/2005
-
 \lx kʰuŋ˥
 \ps N
 \ge desk
 \dt 18/Aug/2006
-
 \lx kʲuŋ˦˨˦
 \ps n
 \ge black forest lizard
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\black forest lizard.wav
 \dt 06/Feb/2006
-
 \lx kʲuŋ˦˨˦
 \ps n
 \ge big lizard
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\big lizard.wav
 \dt 09/Feb/2006
-
 \lx kut̚˥˩ɾæt̚˦˨t̪əŋ˦
 \ps v
 \ge to return
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to return.wav
 \dt 16/Jan/2006
-
 \lx kut̚˦t̪im˦˨
 \ps n
 \ge steel
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\steel.wav
 \dt 24/Jan/2006
-
 \lx kIn˧˥˧
 \ps adj
 \ge farthest
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\rising tone.wav
 \dt 18/Jan/2006
-
 \lx laː˧
 \ps v
 \ge to be rotten
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\alveolar.wav
 \dt 14/Dec/2005
-
 \lx laː˦˨˦
 \ps adj
 \ge male animal
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone la.wavN
 \dt 26/Dec/2005
-
 \lx la˦˨
 \ps N
 \ge month
 \dt 24/Aug/2006
-
 \lx la˥
 \a læ˥
 \ps n
 \ge year
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\year.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\year.wav
 \dt 10/Sep/2006
-
 \lx lʲa˦˨
 \ps n
 \ge bird's stomach
-\nt This is a holding place in birds where
-the food first goes.
+\nt This is a holding place in birds wherethe food first goes.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\bird's stomach.wav
 \dt 08/Feb/2006
-
 \lx ɬaː˧
 \ps v
 \ge to be far
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be far.wav
 \dt 10/Jan/2006
-
 \lx lai˦˨
 \ps ***
 \ge since.because
 \dt 17/Aug/2006
-
 \lx lai˦˨
 \ps n
 \ge tongue
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\tongue.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\tongue.wav
 \dt 10/Sep/2006
-
 \lx lak̚˧
 \a ɬək̚˦˨
 \a lak̚˦˨
 \ps INDEF
 \ge a
 \dt 08/Sep/2006
-
 \lx ɬak̚˦˨
 \ps v
 \ge to split
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to split.wav
 \dt 13/Dec/2005
-
 \lx lam˦˨
 \ps n
 \ge fish
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\fish.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\fish.wav
 \dt 05/Dec/2005
-
 \lx lap̚˦˨
 \ps v
 \ge to shout
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to shout.wav
 \dt 13/Dec/2005
-
 \lx lʲar˦˨
 \ps n
 \ge short snakelike fish
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized.wav
 \dt 14/Dec/2005
-
 \lx lat̚˦˨
 \a lat̚˧
 \ps PRT
 \ge just
 \nt shows surprise about something unexpected
 \dt 02/Aug/2006
-
 \lx læt̚˦˨ui˦
 \ps n
 \ge jackfruit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\jackfruit.wav
 \dt 23/Jan/2006
-
 \lx leː˧
 \ps v
 \ge to be small
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be small.wav
 \dt 27/Dec/2005
-
 \lx leː˧
 \ps v
 \ge to be narrow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be narrow.wav
 \dt 13/Feb/2006
-
 \lx leː˦˨
 \ps n
 \ge field for farm land
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone le.wav
 \dt 27/Dec/2005
-
 \lx leː˥
 \ps n
 \ge rope bridge
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone le.wav
 \dt 27/Dec/2005
-
 \lx leː˥˩
 \ps v
 \ge to dry somthing
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to dry something.wav
 \dt 13/Dec/2005
-
 \lx ɬɘː˥˩
 \a ɬɘ˥
 \ps v
 \ge to ask
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
 \dt 15/Apr/2006
-
 \lx ɬɘ˦˨
 \a ɬɘʔ˥
 \a ɬɘ˥
@@ -2322,13 +1854,11 @@ list\fish.wav
 \ge with
 \nt This could also be thought of as by means of or way of.
 \dt 21/Aug/2006
-
 \lx ⁿleː˥
 \ps n
 \ge path
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\path.wav
 \dt 13/Jan/2006
-
 \lx lək̚˦˨
 \a lɔk̚˦˨
 \a lɔk̚˧
@@ -2336,76 +1866,61 @@ list\fish.wav
 \ge friend
 \nt Used like Australian mate.
 \dt 28/Aug/2006
-
 \lx ləkʰəlklom˥
 \ps ADJ
 \ge happy
 \dt 23/Aug/2006
-
 \lx lək̚˧kar˦˨
 \ps n
 \ge needle
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\needle.wav
 \dt 16/Jan/2006
-
 \lx lə˧la˦˨˦
 \lc ləla˦˨
 \ps n
 \ge moon
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\moon.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\moon.wav
 \dt 08/Sep/2006
-
 \lx ləm˦˨
 \ps ADV
 \ge try
 \dt 17/Aug/2006
-
 \lx ləmsak̚˦˨
 \a lamtsak̚˦˨
 \ps n
 \ge food
 \dt 17/Aug/2006
-
 \lx ləmuʔ˥˩
 \ps n
 \ge sky
-\nt
+\nt 
 \dt 16/Jan/2006
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sky.wav
-
 \lx leŋ˧
 \ps v
 \ge to gather firewood
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone leng.wav
 \dt 27/Dec/2005
-
 \lx leŋ˧˥˧
 \ps v
 \ge to ask
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone leng.wav
 \dt 27/Dec/2005
-
 \lx leŋ˦˨˦
 \ps n
 \ge lasso
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone leng.wav
 \dt 27/Dec/2005
-
 \lx leŋ˥
 \ps v
 \ge to tie
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to tie.wav
 \dt 27/Dec/2005
-
 \lx leŋ˥˩
 \ps n
 \ge wave
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone leng.wav
 \dt 27/Dec/2005
-
 \lx ləŋ˥
 \a ləŋ˦˨
 \a ləŋ˧
@@ -2413,7 +1928,6 @@ list\moon.wav
 \ge no
 \nt This adds more force to the words.  It is used to deny or reject something.
 \dt 17/Aug/2006
-
 \lx leŋ˥kʲar˥˩
 \a leŋ˦˨kʲar˥˩
 \a leŋ˦kʲar˥˩
@@ -2421,297 +1935,223 @@ list\moon.wav
 \ge rope
 \nt This comes from two verbs, to tie and to intertwine.
 \dt 02/May/2006
-
 \lx leŋ˦˨˦ui˧
 \ps n
 \ge banana
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\banana.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\banana.wav
 \dt 18/Jan/2006
-
 \lx ləp̚˦˨
 \ps POSS
 \ge my
 \nt This is used for things.  It is used when talking about something that does not belong to the person in question.
 \dt 17/Aug/2006
-
 \lx lɛʔiuː˥˩
 \ps n
 \ge west
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\west.wav
 \dt 24/Jan/2006
-
 \lx lɨː˦
 \ps v
 \ge to look for
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to look for small.wav
 \dt 30/Jan/2006
-
 \lx lik̚˧
 \ps v
 \ge to be heavy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be heavy.wav
 \dt 13/Dec/2005
-
 \lx lɨm˧
 \ps ***
 \ge might
 \dt 16/Aug/2006
-
 \lx lɨm˦˨
 \ps n
 \ge forest leech
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\forest leech.wav
 \dt 24/Jan/2006
-
 \lx liŋ˧
 \ps v
 \ge to be hot
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be hot.wav
 \dt 13/Dec/2005
-
 \lx lɨŋ˥
 \ps n
 \ge horn
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\horn.wav
 \dt 24/Jan/2006
-
 \lx liŋ˧um˥
 \ps adj
 \ge warm
 \de this is used for water and food
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\warm water and food.wav
 \dt 26/Dec/2005
-
 \lx lɨŋ˦va˦˨
 \ps n
 \ge termite
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\termite.wav
 \dt 24/Jan/2006
-
 \lx lɨp̚˦
 \ps v
 \ge to be sweet
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be sweet.wav
 \dt 24/Jan/2006
-
 \lx li˦˨pɾaŋ˦
 \ps n
 \ge wet rice field
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\wet rice field.wav
 \dt 16/Jan/2006
-
 \lx ɬoi˧
 \ps V
 \ge return
 \nt Used for returning home.  Also go back.
 \dt 16/Aug/2006
-
 \lx loŋ˥˩
 \ps ***
 \ge out
 \nt This is used for out (of).  
 \dt 21/Aug/2006
-
 \lx lɔŋ˦˨˦
 \ps n
 \ge boat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\boat.wav
 \dt 23/Jan/2006
-
 \lx loŋ˥˩hai˥
 \ps ***
 \ge of
 \dt 21/Aug/2006
-
 \lx loŋmai˥
 \ps N
 \ge tail
 \dt 18/Aug/2006
-
 \lx lɔŋ˦˨zeŋ˥˩
 \ps n
 \ge loincloth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\loincloth.wav
 \dt 23/Jan/2006
-
 \lx lɔt̚˦˨
 \a lɔ˦˨
 \ps N
 \ge mate
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\close
-friend.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\closefriend.wav
 \dt 02/Aug/2006
-
 \lx lɔt̚˦˨
 \ps v
 \ge the sun comes up
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sun comes up.wav
 \dt 06/Feb/2006
-
 \lx ⁿlɔt̚˥˩
 \ps n
 \ge east
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\east.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\east.wav
 \dt 05/Dec/2005
-
 \lx luː˧
 \a lu˥
 \a lu˥˩
 \a lu˦˨
 \ps n
 \ge head
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\head.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\head.wav
 \dt 21/Aug/2006
-
 \lx lu˧
 \ps V
 \ge full
 \dt 17/Aug/2006
-
 \lx lʲu˧˥˧
 \ps NUM
 \ge four
 \dt 18/Aug/2006
-
 \lx lua˦˨pʰi˦˨˦
 \ps v
 \ge to be dirty
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be dirty.wav
 \dt 13/Dec/2005
-
 \lx luː˧beŋ˦
 \ps v
 \ge to be bald
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be bald.wav
 \dt 13/Dec/2005
-
 \lx lui˦
 \ps v
 \ge to be short length
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be short length.wav
 \dt 13/Dec/2005
-
 \lx lui˦˨
 \ps n
 \ge egg
-\nt this one show up in a different place in
-the sentence than the one with high to
-low tone
+\nt this one show up in a different place inthe sentence than the one with high tolow tone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone lui.wav
 \dt 27/Dec/2005
-
 \lx lui˥
 \ps v
 \ge all gone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone lui.wav
 \dt 27/Dec/2005
-
 \lx lui˥˩
 \ps n
 \ge egg
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\egg.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\egg.wav
 \dt 27/Dec/2005
-
 \lx lui˥˩
 \ps v
 \ge to lay an egg
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone lui.wav
 \dt 27/Dec/2005
-
 \lx lʲu˧˥˧jua˦
 \a lʲu˧˥˧ jua˧
 \ps n
 \ge four people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\four people.wav
 \dt 18/Aug/2006
-
 \lx luk̚˦˨
 \a luk̚˦˨˦
 \ps COMP
 \ge more than
 \nt also used for because of
 \dt 26/Jul/2006
-
 \lx lu˧kɛt̚˦pɔt̚˦˨
 \ps n
 \ge brain
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\brain.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\brain.wav
 \dt 05/Dec/2005
-
 \lx luk̚˦˨kʰɨ˦˨˦
 \ps n
 \ge eyebrow area
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\chin.wav
 \dt 24/Jan/2006
-
 \lx luk̚˦klɨŋ˥˩
 \ps n
 \ge pillow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\pillow.wav
 \dt 24/Jan/2006
-
 \lx ɬum˦
 \ps v
 \ge to roll clay into a ball using your hands
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to roll clay.wav
 \dt 06/Feb/2006
-
 \lx ɬum˦buk̚˦˨
 \ps v
 \ge to be round
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be round.wav
 \dt 13/Dec/2005
-
 \lx luŋ˧
 \ps n
 \ge salt
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\salt.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\salt.wav
 \dt 05/Dec/2005
-
 \lx luŋ˥˩
 \ps n
 \ge maggot
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\maggot.wav
 \dt 06/Feb/2006
-
 \lx luŋkui˥˩
 \ps N
 \ge caterpillar
 \dt 29/Aug/2006
-
 \lx luŋ˧mai˦
 \ps n
 \ge tail
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\tail.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\tail.wav
 \dt 05/Dec/2005
-
 \lx luŋ˦˧t̪e˥
 \a luŋt̪e˥˩
 \a luŋt̪e˥
@@ -2719,19 +2159,16 @@ klir\Ling\Data\Sound\word list\tail.wav
 \ge earthworm
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\earthworm.wav
 \dt 19/Jul/2006
-
 \lx lut̚˦˧t̪ʲu˦˨
 \ps n
 \ge forehead
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\forehead.wav
 \dt 30/Jan/2006
-
 \lx lu˧vʲa˧˥˨
 \ps v
 \ge to be lightheaded
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized.wav
 \dt 14/Dec/2005
-
 \lx ma˧
 \a maː˦˨
 \a ma˥˩
@@ -2740,29 +2177,24 @@ klir\Ling\Data\Sound\word list\tail.wav
 \ge ?
 \nt This is for open content questions.
 \dt 02/Aug/2006
-
 \lx ma˦˨
 \ps fem
 \ge mama
 \dt 26/Apr/2006
-
 \lx mɑ˦˨
 \ps ***
 \ge let's
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\let's.wav
 \dt 16/Aug/2006
-
 \lx m̥aː˧
 \ps v
 \ge to forget
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to forget.wav
 \dt 13/Dec/2005
-
 \lx mahə˥˩
 \ps ***
 \ge maybe
 \dt 16/Aug/2006
-
 \lx mai˧˥˧
 \a mai˥
 \ps v
@@ -2770,77 +2202,62 @@ klir\Ling\Data\Sound\word list\tail.wav
 \nt describes a widow living with his\her son
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p and m.wav
 \dt 26/Jul/2006
-
 \lx m̥aiː˥˩
 \ps n
 \ge fire
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\fire.wav
 \dt 13/Dec/2005
-
 \lx m̥ai˦˨kʰɨk̚˥˩
 \ps n
 \ge smoke
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\smoke.wav
 \dt 24/Jan/2006
-
 \lx ma˦jau˦˨˦
 \ps v
 \ge to hate someone
-\de to hate someone to the point that you
-don't want to see them at all
+\de to hate someone to the point that youdon't want to see them at all
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hate don't want to see.wav
 \dt 04/Jan/2006
-
 \lx maŋ˦
 \ps n
 \ge dream
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\dream.wav
 \dt 06/Feb/2006
-
 \lx m̥aŋ˥˩
 \ps v
 \ge to walk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p and voiceless m.wav
 \dt 28/Dec/2005
-
 \lx mɑp̚˦˨
 \ps v
 \ge to bite
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bite.wav
 \dt 23/Jan/2006
-
 \lx mar˦˨
 \ps n
 \ge forest cat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\forest cat.wav
 \dt 02/Feb/2006
-
 \lx m̥ar˧
 \ps v
 \ge to know someone
-\nt Also to know of someone or
-something.  How is this different from
-the other (tuk)?
+\nt Also to know of someone orsomething.  How is this different fromthe other (tuk)?
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to know someone.wav
 \dt 02/Feb/2006
-
 \lx m̥at̚˧
 \a m̥at̚˦˨
 \ps ***
 \ge own.self
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\m and n voiceless.wav
 \dt 23/Aug/2006
-
 \lx mat̪ʰaŋ˦˨
 \ps ***
 \ge become
 \dt 23/Aug/2006
-
 \lx maʔ˧
 \ps ADVLZ
 \ge ly
 \dt 16/Aug/2006
-
 \lx maʔ˥
 \a maʔ˧
 \a maʔ˦˨
@@ -2849,135 +2266,98 @@ the other (tuk)?
 \ps A
 \ge CaseM
 \dt 17/Aug/2006
-
 \lx meː˧
 \ps n
 \ge branch
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\branch.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\branch.wav
 \dt 29/Dec/2005
-
 \lx mɘː˥
 \ps v
 \ge to carry a child on your back
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
 \dt 24/Jan/2006
-
 \lx mək̚˦kuː˦˨˦
 \ps n
 \ge gold
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\gold.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\gold.wav
 \dt 04/Jan/2006
-
 \lx məkle˥˩
 \ps N
 \ge firefly
 \dt 29/Aug/2006
-
 \lx mə˥lai˦˨
 \ps ADJ
 \ge wealthy
 \dt 02/May/2006
-
 \lx mə˧lak̚˧
 \ps n
 \ge area under house
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\area under house.wav
 \dt 16/Jan/2006
-
 \lx məɬək̚˦˨
 \ps ***
 \ge only
 \dt 02/Aug/2006
-
 \lx mə˧luk̚˧˥˧
 \a məluk̚˥
 \ps n
 \ge roof
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\roof.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\roof.wav
 \dt 24/Aug/2006
-
 \lx mɛŋ˦˨
 \ps N
 \ge song
 \dt 24/Aug/2006
-
 \lx məŋ̥a˦˨
 \ps ADJ
 \ge bad
 \dt 02/May/2006
-
 \lx mənam˥˩
 \ps N
 \ge village
 \nt This can also refer to one's home.
 \dt 23/Aug/2006
-
 \lx m̥əŋ˦m̥aː˧
 \ps v
 \ge to walk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to walk.wav
 \dt 13/Dec/2005
-
 \lx mər̥ʰɛk̚˦˨
 \a mər̥ek̚˥˩
 \ps n
 \ge rice husk
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\rice husk.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\rice husk.wav
 \dt 18/Aug/2006
-
 \lx mərɨn˦˨˦
 \ps n
 \ge chili pepper
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\chili pepper.wav
 \dt 24/Jan/2006
-
 \lx mə˧r̥ʰiŋ˦˨˦
 \ps n
 \ge back
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\back.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\back.wav
 \dt 04/Jan/2006
-
 \lx mə˧ɾɨn˧nɛt̚˦˨hʷa˦˨˦
 \ps n
 \ge pestle
 \de literally means chili to pound stone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\pestle.wav
 \dt 24/Jan/2006
-
 \lx mət̪eŋ˥
 \ps PRT
 \ge unfortunately
 \nt This is used to concede something.
 \dt 25/Apr/2006
-
 \lx mət̚˧tʰi˦˨˦
 \ps n
 \ge comb
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\comb.wav
 \dt 16/Jan/2006
-
 \lx mət̪ʰu˦˨
 \ps ADJ
 \ge foolish
 \dt 02/May/2006
-
 \lx miː˦˨˦
 \a mi
 \a mi˥
@@ -2987,162 +2367,121 @@ list\back.wav
 \ge this
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\this.wav
 \dt 30/Aug/2006
-
 \lx miː˥
 \a mi˥˩
 \ps pronoun
 \ge 3sg
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\3rd person sg.wav
 \dt 24/Aug/2006
-
 \lx mi˧
 \ps COMP
 \ge that
 \dt 26/Jul/2006
-
 \lx mi˦˨
 \ps n
 \ge rice plant
-\de this refers to the plant that is planted in
-the ground
+\de this refers to the plant that is planted inthe ground
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\rice plant.wav
 \dt 29/Dec/2005
-
 \lx mɨː˦
 \ps v
 \ge to be lazy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be lazy.wav
 \dt 08/Feb/2006
-
 \lx mɨ˦˨
 \ps PRT
 \ge I think
 \nt Shows that the person in guessing.  It is possible.
 \dt 17/Aug/2006
-
 \lx mik̚˦˨
 \ps n
 \ge eye
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\eye.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\eye.wav
 \dt 05/Dec/2005
-
 \lx mi˥klaː˥˩
 \ps IMP
 \ge must
 \dt 02/May/2006
-
 \lx mik̚˦˨meŋ˧
 \ps v
 \ge to be blind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be blind.wav
 \dt 18/Jan/2006
-
 \lx mik̚˦˨naː˦˨
 \ps n
 \ge face
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\face.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\face.wav
 \dt 07/Dec/2005
-
 \lx mik̚˦˨pik̚˦˨
 \ps n
 \ge eyelid
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\eyelid.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\eyelid.wav
 \dt 05/Dec/2005
-
 \lx m̥ɨk̚˥˩ɾim˦˨
 \ps v
 \ge to smell
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to smell.wav
 \dt 08/Sep/2006
-
 \lx mik̚˦˨t̪ɨr˧
 \ps n
 \ge eyebrow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\eyebrow.wav
 \dt 24/Jan/2006
-
 \lx mi˥lʲu˦
 \ps n
 \ge rice seedling
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\rice seedling.wav
 \dt 30/Jan/2006
-
 \lx mi˥luk̚˦˨
 \ps CONJ
 \ge so
 \nt This can also be understood as that's why or for that reason.
 \dt 28/Aug/2006
-
 \lx min˧
 \ps v
 \ge collapse
 \dt 26/Apr/2006
-
 \lx miŋ˦˨
 \a min˥˩
 \ps n
 \ge name
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\name.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\name.wav
 \dt 08/Sep/2006
-
 \lx mĩn˧˥˧
 \ps v
 \ge to be ripe
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be ripe.wav
 \dt 26/Dec/2005
-
 \lx mĩŋ˧˥˧
 \ps v
 \ge to wait
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to wait.wav
 \dt 04/Jan/2006
-
 \lx m̥ɨŋ˦
 \ps v
 \ge to be impossible
 \a ᵐm̥ɨŋ˦
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be impossible.wav
 \dt 06/Feb/2006
-
 \lx mi˥ni˦˨
 \ps ***
 \ge for
 \dt 28/Aug/2006
-
 \lx mit̚˦
 \ps relative clause marker
 \ge that which
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sleeping area.wav
 \dt 26/Dec/2005
-
 \lx mita˧
 \ps N
 \ge meter
 \nt Comes from English via Burmese.
 \dt 23/Aug/2006
-
 \lx mi˥tsa˦˨
 \ps pronoun
 \ge it
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\it.wav
 \dt 26/Dec/2005
-
 \lx mi˦vaː˦˨
 \a miva˥
 \ps PRO
@@ -3150,13 +2489,11 @@ list\name.wav
 \nt For people and things.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\3rd person pl.wav
 \dt 18/Aug/2006
-
 \lx mi˥va˦˨
 \ps question
 \ge who
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\who.wav
 \dt 26/Dec/2005
-
 \lx miʔ˥
 \a miʔ˦˨
 \a miʔ˧
@@ -3168,44 +2505,33 @@ list\name.wav
 \ps REL
 \ge that
 \dt 02/May/2006
-
 \lx mɔ˦˨
 \ps POST
 \ge at
 \dt 16/Aug/2006
-
 \lx mɔ˦˨
 \ps ***
 \ge let's
 \dt 17/Aug/2006
-
 \lx moi˥
 \ps N
 \ge meat
 \dt 17/Aug/2006
-
 \lx mɔk̚˦˨
 \ps n
 \ge son in law
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\son in
-law.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\son inlaw.wav
 \dt 08/Dec/2005
-
 \lx mɔŋ˦˨˦
 \ps n
 \ge excrement
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\excrement.wav
 \dt 23/Jan/2006
-
 \lx muː˦
 \ps v
 \ge to be dark
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be dark.wav
 \dt 13/Dec/2005
-
 \lx mu˦˨˦
 \a muː˦˨˦
 \a mu˦˨
@@ -3213,68 +2539,52 @@ law.wav
 \ge belly
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\belly stomach.wav
 \dt 17/Aug/2006
-
 \lx mua˦˨
 \ps N
 \ge mustard
 \dt 17/Aug/2006
-
 \lx mui˥˩
 \a mui˥
 \ps v
 \ge to sleep
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sleep.wav
 \dt 16/Aug/2006
-
 \lx mui˥mit̚˦t̪ɑm˦˨
 \ps n
 \ge sleeping area
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sleeping area.wav
 \dt 26/Dec/2005
-
 \lx mu˧maiː˦˨˦
 \a mu˥mai˦˨
 \a mu˧mai˦˨
 \ps n
 \ge cloud
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\cloud
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\cloud
 \dt 25/Apr/2006
-
 \lx mu˧mai˧jan˦˨˦
 \ps n
 \ge mist
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\mist.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\mist.wav
 \dt 04/Jan/2006
-
 \lx m̥un˧
 \ps v
 \ge tear up
 \dt 02/May/2006
-
 \lx m̥ur˦
 \ps v
 \ge to wipe your face early in the morning
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to wipe your face.wav
 \dt 06/Feb/2006
-
 \lx mIn˧˥˧
 \ps verb
 \ge yellow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\rising tone.wav
 \dt 18/Jan/2006
-
 \lx mIn˦˨˦
 \ps adj
 \ge yellow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\yellow.wav
 \dt 18/Jan/2006
-
 \lx naː˥˩
 \a naː˥
 \a na˦˨
@@ -3285,30 +2595,25 @@ list\mist.wav
 \nt that's right
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\that's right.wav
 \dt 17/Aug/2006
-
 \lx naː˥˩
 \ps QUES
 \ge what
 \dt 17/Aug/2006
-
 \lx n̥a˥
 \a n̥a˧
 \ps v
 \ge to be over
 \dt 02/May/2006
-
 \lx ŋaː˥˩
 \ps v
 \ge to be bad
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be bad.wav
 \dt 13/Dec/2005
-
 \lx ŋa˦˨˦
 \ps n
 \ge flesh and body
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\flesh.wav
 \dt 06/Feb/2006
-
 \lx n̥ai˥˩
 \a n̥ai˥
 \ps V
@@ -3316,178 +2621,139 @@ list\mist.wav
 \nt also for being pretty
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be good.wav
 \dt 02/Aug/2006
-
 \lx n̥ak̚˧
 \a n̥ak̚˦˨
 \ps ADV
 \ge for whole amount
 \nt This can be used for time or things like food.  It is used for grouping the thing as a whole.  It can sometimes mean by myself, the whole time, or deeply.
 \dt 17/Aug/2006
-
 \lx n̥ak̚˦˨
 \ps NOM
 \ge being
 \dt 21/Jun/2006
-
 \lx n̥akəzəʔ˥
 \ps CONJ
 \ge and then
 \dt 23/Aug/2006
-
 \lx nam˦˨˦
 \a nam˦˨
 \ps n
 \ge village
 \nt also used for house
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\village.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\village.wav
 \dt 17/Aug/2006
-
 \lx naŋ˦
 \ps v
 \ge to bring and give
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bring and give.wav
 \dt 06/Feb/2006
-
 \lx naŋ˥˩
 \ps v
 \ge to be poor
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\poor.wav
 \dt 06/Feb/2006
-
 \lx ŋaŋ˥
 \a naŋ˧
 \a neŋ˥
 \ps COP
 \ge be so
 \dt 29/Aug/2006
-
 \lx n̥ɑt̚˦˨
 \ps n
 \ge loom
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\m and n voiceless.wav
 \dt 16/Jan/2006
-
 \lx ŋɑt̚˦˨
 \ps adj
 \ge the fifth time to
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\ng.wav
 \dt 16/Jan/2006
-
 \lx ŋ̥ɑt̚˦˨
 \ps v
 \ge to prepare food
-\de this is used to say that the food has
-finished cooking and is ready to eat or
-with a different suffix to mean it is not
-ready yet
+\de this is used to say that the food hasfinished cooking and is ready to eat orwith a different suffix to mean it is notready yet
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\ng.wav
 \dt 16/Jan/2006
-
 \lx n̥au˦˨
 \ps n
 \ge younger sibling
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\younger sibling.wav
 \dt 10/Jan/2006
-
 \lx ŋau˧˥˧jua˦
 \ps n
 \ge five people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\five people.wav
 \dt 08/Sep/2006
-
 \lx na˦˨va˦˨
 \ps question
 \ge what
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\what.wav
 \dt 26/Dec/2005
-
 \lx ne˦˨
 \a ne˧
 \ps PRT
 \ge it's
 \nt This is used when answering open questions.
 \dt 17/Aug/2006
-
 \lx nə˧
 \a nə˦˨
 \a nə˥
 \ps V
 \ge finish
 \dt 28/Aug/2006
-
 \lx nə˦˨
 \ps Q
 \ge what
 \dt 26/Apr/2006
-
 \lx nə˦˨
 \ps CONJ
 \ge so that
 \dt 16/Aug/2006
-
 \lx n̥ə
 \ps n
 \ge that place
 \dt 26/Apr/2006
-
 \lx n̥em˦
 \ps v
 \ge to be short height
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be short height.wav
 \dt 13/Dec/2005
-
 \lx nəpu˥
 \ps n
 \ge nose
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\nose.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\nose.wav
 \dt 08/Sep/2006
-
 \lx n̥ɛt̚˦˨
 \ps v
 \ge to tighten a weave of cloth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to tighten weave.wav
 \dt 06/Feb/2006
-
 \lx ŋɛt̚˦˨
 \ps v
 \ge to be eaten by termites
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be eaten by termites.wav
 \dt 06/Feb/2006
-
 \lx ŋ̥ɛt̚˥˩
 \ps v
 \ge to tear or break or crack
-\nt this is used with things like clothes or
-chewing hard rice or breaking a stick
+\nt this is used with things like clothes orchewing hard rice or breaking a stick
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to tear break crack.wav
 \dt 06/Feb/2006
-
 \lx nəʔ˥
 \a nəʔ˧
 \ps CONJ
 \ge so
 \dt 02/May/2006
-
 \lx niː˥˩
 \ps n
 \ge the date
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\date.wav
 \dt 06/Feb/2006
-
 \lx ni˥
 \ps PRO
 \ge 2pl
 \nt This is used for more than two people.
 \dt 17/Aug/2006
-
 \lx nik̚˦˨
 \a ni˥
 \a ni˦˨
@@ -3496,89 +2762,68 @@ chewing hard rice or breaking a stick
 \ps n
 \ge day
 \dt 18/Aug/2006
-
 \lx nin˦
 \ps Vtr
 \ge cover
 \dt 19/Apr/2006
-
 \lx nĩn˦˨˦
 \ps n
 \ge navel
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\navel.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\navel.wav
 \dt 04/Jan/2006
-
 \lx ŋɨr˧
 \ps n
 \ge morning
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\morning.wav
 \dt 24/Jan/2006
-
 \lx nit̚˦˨
 \ps ***
 \ge later
 \nt In leaving example used for another day in the future.
 \dt 16/Aug/2006
-
 \lx ŋkʰət̚˦˨
 \ps QUES
 \ge how much
 \dt 02/Aug/2006
-
 \lx no˦˨
 \a no˧
 \a no
 \ps NEG
 \ge not
 \dt 02/May/2006
-
 \lx nok̚˦kɹɛk̚˧
 \ps v
 \ge to hate
 \de to not care about someone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hate don't care.wav
 \dt 18/Jan/2006
-
 \lx ŋoŋ˦˨˦
 \a ŋoŋ˥˩
 \ps n
 \ge neck
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\neck.wav
 \dt 19/Jul/2006
-
 \lx ŋ̥ɔr˦˨
 \ps v
 \ge to snore
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to snore.wav
 \dt 13/Dec/2005
-
 \lx no˦rui˦˨
 \ps v
 \ge to be incorrect
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be incorrect.wav
 \dt 13/Dec/2005
-
 \lx n̥ɔt̚˥˩
 \ps v
 \ge to push
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to push.wav
 \dt 13/Dec/2005
-
 \lx nuː˥˩
 \a nu˥
 \ps n
 \ge mother
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\mother.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\mother.wav
 \dt 26/Jul/2006
-
 \lx nui˥˩
 \a nui˧
 \ps POST
@@ -3586,44 +2831,37 @@ list\mother.wav
 \nt also for above
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\sleep above on.wav
 \dt 21/Jun/2006
-
 \lx nuk̚˦˨
 \ps n
 \ge seed
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\seed.wav
 \dt 24/Jan/2006
-
 \lx n̥ur˦˨
 \ps n
 \ge a snakelike fish
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\snakelike fish.wav
 \dt 09/Feb/2006
-
 \lx ŋIn˧˥˧
 \ps n
 \ge a long time (over 100 years)
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\rising tone.wav
 \dt 18/Jan/2006
-
 \lx ɔ˥˩
 \ps PRT
 \ge what
 \nt This shows some surprise at the news.  Perhaps a little excitement and anticipation and even disbelief.
 \dt 28/Aug/2006
-
 \lx ɔn˧
 \ps v
 \ge to be fat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be fat.wav
 \dt 13/Dec/2005
-
 \lx oʔ˧˥˧
 \a o̤ʔ˥
 \ps EXCL
 \ge huh
 \nt The person is not pleased.  Quite frustrated.
 \dt 28/Aug/2006
-
 \lx paː˧
 \a pa˧
 \a pa˥
@@ -3637,144 +2875,111 @@ list\mother.wav
 \nt also for to do
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pa.wav
 \dt 26/Jul/2006
-
 \lx paː˦˨
 \ps adj
 \ge good
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pa.wav
 \dt 27/Dec/2005
-
 \lx paː˥
 \ps v
 \ge to be thin
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be thin.wav
 \dt 27/Dec/2005
-
 \lx paː˥˩
 \ps n
 \ge father
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\father.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\father.wav
 \dt 26/Apr/2006
-
 \lx pʰaː˥˩
 \ps n
 \ge soft shell turtle
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\father soft shell turtle.wav
 \dt 27/Dec/2005
-
 \lx pʰʷa˦˨
 \ps v
 \ge to sharpen a knife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\labialized visit drunk sharpen vagina.wav
 \dt 14/Dec/2005
-
 \lx pʷa˧˥˧
 \ps v
 \ge to be drunk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\labialized visit drunk sharpen vagina.wav
 \dt 04/Jan/2006
-
 \lx pʷa˥˩
 \ps v
 \ge to visit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\labialized visit drunk sharpen vagina.wav
 \dt 14/Dec/2005
-
 \lx pʲaː˥
 \ps v
 \ge to roll up something
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\labial vs palatal.wav
 \dt 10/Jan/2006
-
 \lx pai˧˥˧
 \ps v
 \ge to pass gas
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p prenasalized.wav
 \dt 28/Dec/2005
-
 \lx pɑk̚˦˨
 \ps n
 \ge pig
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\pig.wav
 \dt 16/Jan/2006
-
 \lx pɑk̚˧vʲa˦˨
 \ps n
 \ge female wild pig
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized.wav
 \dt 16/Jan/2006
-
 \lx paŋ˧
 \ps v
 \ge a taste similar to a tamarind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p and voiceless m.wav
 \dt 29/Dec/2005
-
 \lx paŋ˦˨˦
 \ps n
 \ge arm
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\arm.wav
 \dt 08/Feb/2006
-
 \lx paoː˦˨
 \ps n
 \ge flower
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\flower.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\flower.wav
 \dt 08/Sep/2006
-
 \lx pʲao˦˨
 \ps v
 \ge to pity someone
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p aspirate palatalized.wav
 \dt 28/Dec/2005
-
 \lx pʲar˦˨˦
 \ps n
 \ge basket for sifting rice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\palatalized2.wav
 \dt 14/Dec/2005
-
 \lx pau˦˨˦
 \ps n
 \ge flower
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\flower to call.wav
 \dt 27/Dec/2005
-
 \lx pʰau˧
 \a pʰau˦˨
 \ps V
 \ge call
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\flower to call.wav
 \dt 22/Aug/2006
-
 \lx pʰʲau˧
 \ps v
 \ge to wash
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to wash.wav
 \dt 10/Jan/2006
-
 \lx pauma˦˨
 \ps N
 \ge bug
 \dt 29/Aug/2006
-
 \lx pau˦˨ma˥˩
 \ps n
 \ge cockroach
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\cockroach.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\cockroach.wav
 \dt 04/Jan/2006
-
 \lx peː˧
 \a bɛ˦˨
 \a pe˦˨
@@ -3783,37 +2988,31 @@ list\cockroach.wav
 \nt this shows the information is secondhand
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pe.wav
 \dt 28/Aug/2006
-
 \lx peː˦˨
 \a pe
 \ps V
 \ge like this.that's right
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pe.wav
 \dt 24/Aug/2006
-
 \lx peː˥
 \ps n
 \ge rib
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pe.wav
 \dt 27/Dec/2005
-
 \lx peː˥˩
 \ps n
 \ge a type of tree and fruit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pe.wav
 \dt 27/Dec/2005
-
 \lx pe˧
 \ps v
 \ge called
 \dt 21/Aug/2006
-
 \lx pe˦˨
 \a pe˧
 \ps DET
 \ge this
 \dt 19/Jul/2006
-
 \lx pɛ˧
 \a pe˥
 \a pɛ˦˨
@@ -3822,14 +3021,12 @@ list\cockroach.wav
 \ps COP
 \ge happen.can be
 \dt 24/Aug/2006
-
 \lx pə˦˨
 \a pə˧
 \ps ***
 \ge also
 \nt Sometimes thought of as for.  This is used when something is fronted and marked.
 \dt 17/Aug/2006
-
 \lx pɘː˧
 \a pɘ˥
 \a pɘ˧
@@ -3838,99 +3035,80 @@ list\cockroach.wav
 \nt Also used for to make.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to do make.wav
 \dt 22/Aug/2006
-
 \lx pədɛ˥˩
 \ps PRT
 \ge won't you
 \dt 16/Aug/2006
-
 \lx pe˥hut̚˦˧
 \ps n
 \ge rib
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\rib.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\rib.wav
 \dt 08/Dec/2005
-
 \lx pək̚˧
 \ps V
 \ge surprise
 \nt This means to do something to an unsuspecting person.
 \dt 23/Aug/2006
-
 \lx pɘ˥˩klɘː˥
 \ps v
 \ge to talk
 \de literally to do language
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to talk.wav
 \dt 24/Jan/2006
-
 \lx pək̚t̪əɹua˥
 \ps N
 \ge badger
 \dt 29/Aug/2006
-
 \lx pəlaŋ˧krum˦˨
 \ps N
 \ge Paletwa
 \dt 02/Aug/2006
-
 \lx pɘ˦maŋ˥
 \ps v
 \ge to dream
 \de to do a dream
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to dream.wav
 \dt 24/Jan/2006
-
 \lx pɘ˦meŋ˦˨˦
 \ps n
 \ge to sing
 \de to do a song
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sing.wav
 \dt 24/Jan/2006
-
 \lx pʰeŋ˦
 \ps v
 \ge to cut or chop down in one swoop
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to cut chop down.wav
 \dt 08/Feb/2006
-
 \lx peni˥
 \ps V
 \ge think
 \dt 16/Aug/2006
-
 \lx pəŋ˦˨kɨn˧
 \ps n
 \ge elbow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\elbow.wav
 \dt 24/Jan/2006
-
 \lx pəŋ˦˨˦lɑk̚˦˨kɛp̚˧
 \ps n
 \ge armpit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\armpit.wav
 \dt 09/Feb/2006
-
 \lx pəŋ˦˨lɘk̚˧˥˧
 \ps v
 \ge to be shallow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be shallow.wav
 \dt 09/Feb/2006
-
 \lx pəsan˥˩
 \ps N
 \ge money
 \nt Taken from Burmese.
 \dt 17/Aug/2006
-
 \lx pɛt̚˦˨
 \ps v
 \ge to be different
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be different.wav
 \dt 13/Dec/2005
-
 \lx pɛt̚˦˨
 \a pɛʔ˦˨
 \a pɛʔ˧
@@ -3940,100 +3118,74 @@ klir\Ling\Data\Sound\word list\rib.wav
 \ge end.of.statement
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 02/May/2006
-
 \lx pɘ˦t̪ɔk̚˦˨
 \ps v
 \ge to work
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to work.wav
 \dt 24/Jan/2006
-
 \lx petso˦˨
 \ps ***
 \ge ***
 \dt 28/Aug/2006
-
 \lx pɛʔ˥˩
 \ps Q
 \ge what
 \dt 26/Apr/2006
-
 \lx pʰi˦˨
 \a pʰi˥
 \a pʰi˧
 \ps ADV
 \ge very very
 \dt 16/Aug/2006
-
 \lx pik̚˦˨
 \ps n
 \ge skin
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\skin.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\skin.wav
 \dt 08/Dec/2005
-
 \lx pla̰ː˥˩
 \ps n
 \ge lightning
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\lightning.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\lightning.wav
 \dt 05/Dec/2005
-
 \lx plai˧
 \ps v
 \ge to be smooth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be smooth.wav
 \dt 13/Dec/2005
-
 \lx plai˥˩
 \ps v
 \ge to dance
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to dance.wav
 \dt 13/Dec/2005
-
 \lx plaŋ˧
 \ps v
 \ge to answer a spoken question
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to answer spoken.wav
 \dt 13/Dec/2005
-
 \lx plɛk̚˥
 \ps v
 \ge to pick fruit
 \dt 27/Dec/2005
-
 \lx pʰlɛk̚˦˨
 \ps adv
 \ge to splatter
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p aspirate cluster.wav
 \dt 27/Dec/2005
-
 \lx plo˧ba˥˩
 \a ploba˥˩
 \ps n
 \ge bow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\bow.wav
 \dt 21/Aug/2006
-
 \lx plɔŋ˦˨
 \ps n
 \ge liver
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\liver.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\liver.wav
 \dt 08/Sep/2006
-
 \lx plun˦˨
 \ps V
 \ge finish
 \dt 28/Aug/2006
-
 \lx poː˧
 \a po˧
 \a po˥
@@ -4042,133 +3194,108 @@ list\liver.wav
 \ge to take
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to take.wav
 \dt 02/May/2006
-
 \lx pʰoː˦
 \a pʰo˥˩
 \ps Vintr
 \ge be tired
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be tired.wav
 \dt 23/Aug/2006
-
 \lx poi˦˨˦
 \ps n
 \ge fur and body hair
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\fur body hair seed used for games.wav
 \dt 27/Dec/2005
-
 \lx pʰoi˦˨˦
 \ps n
 \ge a seed used for games
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\fur body hair seed used for games.wav
 \dt 27/Dec/2005
-
 \lx pʰo˧lar˧˥˧ui˧
 \ps n
 \ge papaya
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\papaya.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\papaya.wav
 \dt 04/Jan/2006
-
 \lx pɔm˦˨˦
 \ps v
 \ge to be pregnant
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\pregnant to pound.wav
 \dt 23/Jan/2006
-
 \lx pʰɔm˥˩
 \ps v
 \ge to pound
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\pregnant to pound.wav
 \dt 23/Jan/2006
-
 \lx pʰɔŋ˧
 \ps v
 \ge to turn on something electric
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p palatalized.wav
 \dt 23/Jan/2006
-
 \lx pʰʲɔŋ˧
 \ps v
 \ge to straighten stiff limbs
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p palatalized.wav
 \dt 23/Jan/2006
-
 \lx pʲɔn˧
 \ps v
 \ge to swallow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to swallow.wav
 \dt 13/Dec/2005
-
 \lx pʰɔŋ˧pʰi˧klaŋ˥˩
 \ps n
 \ge trousers
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\trousers.wav
 \dt 23/Jan/2006
-
 \lx pɔp̚˦
 \ps v
 \ge to lie
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to lie.wav
 \dt 23/Jan/2006
-
 \lx pɔr˧˥˧
 \ps v
 \ge to be bloated
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\p and glottal stop.wav
 \dt 29/Dec/2005
-
 \lx prai˥
 \a prai˥˩
 \ps ADV
 \ge very
 \dt 21/Aug/2006
-
 \lx pɾam˦˨˦
 \a pram˦˨
 \ps n
 \ge medicine
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\medicine.wav
 \dt 17/Aug/2006
-
 \lx praŋ˥
 \ps N
 \ge outside
 \dt 24/Aug/2006
-
 \lx pɾan˧
 \ps v
 \ge to scratch something
 \sd C:\Documents andSettings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to scratch something.wav
 \dt 03/Jan/2006
-
 \lx pɾæt̚˧t̪aː˥˩
 \ps n
 \ge grass
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\grass.wav
 \dt 16/Jan/2006
-
 \lx prau˦˨
 \ps n
 \ge kitchen shelf
 \dt 02/May/2006
-
 \lx pɾeː˧
 \a pɹe˧
 \a pɹe˥
 \ps v
-\ge to be filled up and all here accounted
-for
+\ge to be filled up and all here accountedfor
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pre.wav
 \dt 30/Aug/2006
-
 \lx pɾeː˧˥˧
 \ps v
 \ge to puncture and to cut off the fat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pre.wav
 \dt 11/Jan/2006
-
 \lx pɾeː˥˩
 \a pre˥
 \a pre˥˩
@@ -4176,136 +3303,108 @@ for
 \ge two
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone pre.wav
 \dt 23/Aug/2006
-
 \lx pʰreː˧˥˧
 \ps v
 \ge to answer a written question
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to answer written.wav
 \dt 23/Jan/2006
-
 \lx pɾe˦jua˦˨˦
 \ps n
 \ge two people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\two persons.wav
 \dt 11/Jan/2006
-
 \lx prek̚˧
 \ps COMP
 \ge est
 \dt 23/Aug/2006
-
 \lx pɹɛŋ˥
 \ps V
 \ge translate
 \dt 28/Aug/2006
-
 \lx pɹɛŋməri˥
 \ps ADJ
 \ge primer
 \dt 28/Aug/2006
-
 \lx pɾiː˧
 \ps n
 \ge tiger
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\tiger.wav
 \dt 11/Jan/2006
-
 \lx pɾim˦˨
 \ps v
 \ge to be old
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be old.wav
 \dt 08/Sep/2006
-
 \lx prɨŋ˥˩
 \ps V
 \ge strong
 \dt 16/Aug/2006
-
 \lx puː˥˩
 \ps n
 \ge pot and grandfather
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\pot.wav
 \dt 27/Dec/2005
-
 \lx pu˥˩
 \ps n
 \ge cooking pot
-\nt This is without a handle.  This is
-combined with a suffix for different
-kinds of pots.
+\nt This is without a handle.  This iscombined with a suffix for differentkinds of pots.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\cooking pot.wav
 \dt 02/Feb/2006
-
 \lx pʰuː˥˩
 \ps v
 \ge to blow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\grandfather to blow.wav
 \dt 27/Dec/2005
-
 \lx pua˥˩
 \ps v
 \ge to visit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to visit sharp.wav
 \dt 27/Dec/2005
-
 \lx pʰua˧
 \ps v
 \ge to be sharp
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to visit sharp.wav
 \dt 27/Dec/2005
-
 \lx pum˧
 \ps v
 \ge to be lazy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\bury lazy.wav
 \dt 29/Dec/2005
-
 \lx pʰum˧
 \ps v
 \ge to bury a corpse
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bury.wav
 \dt 29/Dec/2005
-
 \lx pʰum˥˩ui˧
 \ps n
 \ge mango
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\mango.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\mango.wav
 \dt 04/Jan/2006
-
 \lx pʲuŋ˥
 \ps Vintr
 \ge run
 \dt 23/Aug/2006
-
 \lx pup̚˦˧pɛt̚˦˨
 \ps n
 \ge turtle
 \a khup̚˥pɨ˧li˧
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\turtle.wav
-
 \dt 10/Jan/2006
-
 \lx pʰut̚˧
 \a pʰut̚˥˩
 \ps progressive suffix
 \ge ing
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ing.wav
 \dt 21/Aug/2006
-
 \lx pʰʲut˧
 \ps v
 \ge to pull the grain off the stalk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to pull off.wav
 \dt 02/Feb/2006
-
 \lx pwa˥
 \ps vV
 \ge visit
 \dt 02/Aug/2006
-
 \lx ra˦˨˦
 \a ra˦˨
 \ps V
@@ -4313,74 +3412,62 @@ list\mango.wav
 \nt also used for to become shows transition
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to come.wav
 \dt 02/Aug/2006
-
 \lx r̥ʰaː˦˨
 \a r̥ʰa˥˩
 \ps n
 \ge strength power
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\alveolar.wav
 \dt 23/Aug/2006
-
 \lx ɾai˦
 \ps adj
 \ge difficult
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be difficult.wav
 \dt 11/Jan/2006
-
 \lx ræk̚˧
 \ps n
 \ge alcohol (for drinking)
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\alcohol.wav
 \dt 08/Feb/2006
-
 \lx ræk̚˦˨
 \ps v
 \ge to itch
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to itch.wav
 \dt 08/Feb/2006
-
 \lx rʰak̚˥
 \a r̥ʰak̚˧
 \ps n
 \ge mind
 \dt 28/Aug/2006
-
 \lx r̥ak̚˥bɨt̚˧
 \ps ADJ
 \ge hungry
 \dt 23/Aug/2006
-
 \lx r̥ʰæk̚˥˩kɘ˥
 \ps v
 \ge to be strong
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be strong.wav
 \dt 08/Feb/2006
-
 \lx r̥ʰæk̚˦˨kə˦luk̚˧
 \ps v
 \ge to be angry
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be angry.wav
 \dt 08/Feb/2006
-
 \lx r̥ʰa˥˩le˧
 \ps v
 \ge to be weak
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be weak.wav
 \dt 13/Dec/2005
-
 \lx ran˧
 \a ran˧˥˧
 \ps V
 \ge buy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to buy.wav
 \dt 17/Aug/2006
-
 \lx ɾʲaŋ˧t̪uŋ˦
 \ps n
 \ge intestines
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\intestines.wav
 \dt 23/Jan/2006
-
 \lx rau˥
 \a rau˥˩
 \a ɾau˥
@@ -4388,60 +3475,50 @@ list\mango.wav
 \ge hurt
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hurt.wav
 \dt 17/Aug/2006
-
 \lx r̥ʰau˧
 \a r̥ʰau˥˩
 \ps ADJ
 \ge tall
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be tall.wav
 \dt 23/Aug/2006
-
 \lx r̥ʰau˦˨
 \ps n
 \ge fat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\fat.wav
 \dt 10/Jan/2006
-
 \lx reː˥
 \ps v
 \ge to drill
 \dt 27/Dec/2005
-
 \lx rɘ˥
 \ps CONT
 \ge ing
 \dt 16/Aug/2006
-
 \lx ɾeː˥
 \ps n
 \ge spear
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\spear.wav
 \dt 12/Jan/2006
-
 \lx r̥ʰe˧ba˥˩
 \ps n
 \ge arrow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\arrow.wav
 \dt 13/Dec/2005
-
 \lx ɾe˧jæt̚˦˨jua˧
 \ps n
 \ge eight people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\eight people.wav
 \dt 11/Jan/2006
-
 \lx ɾe˦jau˦˨˦
 \ps n
 \ge brother
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\brother.wav
 \dt 11/Jan/2006
-
 \lx rə˦kʰuː˦˨˦
 \ps n
 \ge knife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\knife.wav
 \dt 13/Dec/2005
-
 \lx rəm˧pai˦
 \a rəmpai˥
 \a rəmpai˥˩
@@ -4449,38 +3526,32 @@ list\mango.wav
 \ge duck
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\duck.wav
 \dt 19/Jun/2006
-
 \lx ɾə˦nit̚˦˨jua˧
 \ps n
 \ge seven people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\seven people.wav
 \dt 11/Jan/2006
-
 \lx ɾə˧ɔn˦˨˦
 \ps n
 \ge bamboo shoot
 \de These are the parts that you can eat.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\bamboo shoot.wav
 \dt 11/Jan/2006
-
 \lx rəp̚˧
 \ps ***
 \ge already
 \nt This shows that it has been a short tiime.
 \dt 16/Aug/2006
-
 \lx ɾɛp̚˧
 \ps v
 \ge to count
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to count.wav
 \dt 11/Jan/2006
-
 \lx rɘ˥rɘ˥
 \ps ADJ
 \ge just
 \nt This is used to say there is only one purpose or thing they are doing.
 \dt 02/Aug/2006
-
 \lx rəsʰa˦˨
 \a ɾəsʰa˦˨
 \a rəsʰa˥˩
@@ -4488,100 +3559,78 @@ list\mango.wav
 \ge sun
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sun.wav
 \dt 16/Aug/2006
-
 \lx ɾə˦˧sʰa˦˨kai˥˩
 \ps n
 \ge scorpion
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\scorpion.wav
 \dt 10/Jan/2006
-
 \lx ɾəsʰiak̚˥˩
 \ps ADJ
 \ge many
 \dt 23/Aug/2006
-
 \lx r̥ʰɛt̚˧
 \a r̥ɛt̚˧
 \ps V
 \ge fast
-\nt this always modifies an action such as
-running fast or driving fast
+\nt this always modifies an action such asrunning fast or driving fast
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be fast.wav
 \dt 21/Aug/2006
-
 \lx ɾət̚˦˨sʰaː˥˩
 \a rət̚sa˦˨
 \a rətsa˥˩
 \ps n
 \ge child
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\child.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\child.wav
 \dt 23/Aug/2006
-
 \lx ɾət̚˦˨t̪aŋ˧
 \ps n
 \ge buttocks
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\buttocks.wav
 \dt 09/Feb/2006
-
 \lx ɾət̚˧t̪uŋ˥˩
 \a rət̪uŋ˥
 \ps n
 \ge wall of house
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\wall of house.wav
 \dt 24/Aug/2006
-
 \lx r̥eu˥˩
 \ps N
 \ge hook
 \dt 16/Aug/2006
-
 \lx ɾəui˥
 \ps n
 \ge insides
 \dt 19/Jun/2006
-
 \lx ɾəʔ˦˨uiː˥
 \ps n
 \ge heart
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\heart.wav
 \dt 14/Dec/2005
-
 \lx riː˥
 \a ri˥
 \ps adj
 \ge first
-\nt this is used for first time and it can
-also be used for telling someone to go
-to the front of a line
+\nt this is used for first time and it canalso be used for telling someone to goto the front of a line
 \dt 23/Aug/2006
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\first.wav
-
 \lx ri˥
 \ps ***
 \ge some more
 \dt 16/Aug/2006
-
 \lx r̥ʰiː˧
 \ps n
 \ge porcupine
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\porcupine.wav
 \dt 11/Jan/2006
-
 \lx rik̚˦˨
 \ps adj
 \ge red
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\red.wav
 \dt 13/Dec/2005
-
 \lx r̥ʰiŋ˥˩
 \ps N
 \ge tree
 \dt 10/Sep/2006
-
 \lx r̥ʰɨŋ˦˨˦
 \a r̥ʰɨŋ˧
 \a r̥ʰɨŋ˥
@@ -4589,68 +3638,50 @@ to the front of a line
 \ge mountain
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mountain.wav
 \dt 26/Apr/2006
-
 \lx r̥ʰiŋ˧hiŋ˥˩
 \ps n
 \ge roots
 \de tree ?
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\roots.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\roots.wav
 \dt 04/Jan/2006
-
 \lx r̥ʰiŋ˧pik̚˦˨
 \ps n
 \ge bark
 \de tree skin
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\bark.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\bark.wav
 \dt 04/Jan/2006
-
 \lx r̥ʰiŋ˦ɾam˥˩
 \ps n
 \ge leaf
 \de tree flat thing?
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\leaf.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\leaf.wav
 \dt 04/Jan/2006
-
 \lx r̥ʰɨ˦r̥ʰak̚˥˩
 \ps v
 \ge to breathe
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to breathe.wav
 \dt 30/Jan/2006
-
 \lx riu˥˩
 \a riu˧
 \ps V
 \ge teach.learn
 \dt 28/Aug/2006
-
 \lx roː˦˨˦
 \ps v
 \ge to be dry
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be dry.wav
 \dt 13/Dec/2005
-
 \lx roaː˦˨˦
 \ps n
 \ge snake
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\snake.wav
 \dt 26/Jan/2006
-
 \lx roi˧˥˧
 \ps v
 \ge to choose
 \a ɾoi˧˥˧
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to choose.wav
 \dt 11/Jan/2006
-
 \lx ɾoi˦˨˦
 \a ɾoi˦˨
 \a roi˥
@@ -4658,44 +3689,37 @@ list\leaf.wav
 \ge friend
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\friend.wav
 \dt 22/Aug/2006
-
 \lx rua˥˩
 \a rua˦˨
 \ps n
 \ge snake
 \dt 19/Jul/2006
-
 \lx rui˦˨˦
 \ps v
 \ge to be correct
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be correct.wav
 \dt 13/Dec/2005
-
 \lx rui˥˩
 \ps V
 \ge choose
 \nt Used for to elect.
 \dt 22/Aug/2006
-
 \lx r̥uk̚˦˨
 \a ɾuk̚˦˨
 \nt The flap occurs if there is no stop before it.
 \ps NUM
 \ge six
 \dt 23/Aug/2006
-
 \lx r̥ʰuk̚˦˨jua˦˨˦
 \ps n
 \ge six people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\six people.wav
 \dt 11/Jan/2006
-
 \lx ɾu˦lɨŋ˥˩
 \ps n
 \ge finger
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\finger.wav
 \dt 24/Jan/2006
-
 \lx r̥ʰum˥˩
 \a rʰum˥
 \a r̥um˥˩
@@ -4703,183 +3727,141 @@ list\leaf.wav
 \ge three
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\three.wav
 \dt 18/Aug/2006
-
 \lx r̥ʰum˦jua˦˨˦
 \ps n
 \ge three people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\three people.wav
 \dt 13/Dec/2005
-
 \lx r̥uŋ˥
 \a r̥uŋ˥˩
 \ps N
 \ge price
 \dt 23/Aug/2006
-
 \lx ru˦niː˥˩
 \ps n
 \ge day
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\day.wav
 \dt 11/Jan/2006
-
 \lx r̥ʰup̚˦˨
 \ps n
 \ge lungs
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\lungs.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\lungs.wav
 \dt 08/Dec/2005
-
 \lx rut̚˦˨
 \ps n
 \ge hand
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\hand.wav
 \dt 10/Jan/2006
-
 \lx r̥ʰut̚˥˩
 \ps n
 \ge night
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\night.wav
 \dt 10/Jan/2006
-
 \lx ɾut̚˦˨n̥iː˥˩
 \ps n
 \ge fingernail
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\fingernail.wav
 \dt 11/Jan/2006
-
 \lx ɾut̚˦˨pʰaː˥˩
 \ps n
 \ge palm
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\palm.wav
 \dt 16/Jan/2006
-
 \lx rut̚˧tɨp̚˥˩
 \ps n
 \ge ring
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ring.wav
 \dt 24/Jan/2006
-
 \lx r̥ʰu:˧
 \ps v
 \ge to be rotten
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be rotten.wav
 \dt 10/Jan/2006
-
 \lx ɾIn˦
 \a ren˥
 \ps v
 \ge to laugh
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to laugh.wav
 \dt 19/Jul/2006
-
 \lx ɾIn˦jum˦˨˦
 \ps v
 \ge to smile
 \a ɾIn˦ɨm˦˨˦
-\nt the alternative form may be influenced
-by a neighboring language, but they
-are both used
+\nt the alternative form may be influencedby a neighboring language, but theyare both used
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to smile.wav
 \dt 24/Jan/2006
-
 \lx sʰam˥˩
 \ps n
 \ge hair
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\hair.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\hair.wav
 \dt 04/Jan/2006
-
 \lx sʰan˥˩
 \ps n
 \ge rattan
-\nt I'm not sure if the part of speech is n
-or adj.
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\rattan.wav
+\nt I'm not sure if the part of speech is nor adj.
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\rattan.wav
 \dt 04/Jan/2006
-
 \lx sʰaŋ˥
 \ps ADJ
 \ge training
 \dt 28/Aug/2006
-
 \lx ⁿsʰan˦˨
 \a ⁿsʰan˧
 \ps n
 \ge spider
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\spider.wav
 \dt 29/Aug/2006
-
 \lx sʰaŋ˦˨˦jua˦
 \ps n
 \ge thousand people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\thousand people.wav
 \dt 04/Jan/2006
-
 \lx ⁿsʰan˦˨pum˦˨
 \ps n
 \ge spider web
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\spider web.wav
 \dt 19/Jan/2006
-
 \lx sʰɑt̚˦˨
 \ps v
 \ge to be spicy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be spicy.wav
 \dt 09/Feb/2006
-
 \lx sə˧
 \ps A
 \ge CaseM
 \dt 25/Apr/2006
-
 \lx sʰe˦˨˦
 \ps n
 \ge sister
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sister.wav
 \dt 13/Feb/2006
-
 \lx sʰɛ˥˩
 \ps ***
 \ge how about
 \dt 02/Aug/2006
-
 \lx sʰɘː˧
 \ps v
 \ge to leave behind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
 \dt 24/Jan/2006
-
 \lx sʰəm˧t̪aŋ˧
 \ps n
 \ge plate
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\plate.wav
 \dt 12/Dec/2005
-
 \lx sʰənui˥˩
 \ps ADJ
 \ge half
 \dt 18/Aug/2006
-
 \lx sʰɛt̚˦˨
 \ps N
 \ge set
 \dt 18/Aug/2006
-
 \lx sʰəʔ˦sʰiː˥˩
 \ps n
 \ge ghost
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ghost.wav
 \dt 13/Dec/2005
-
 \lx sʰi˦˨
 \a sʰi˧
 \a sʰi˥
@@ -4887,189 +3869,149 @@ list\rattan.wav
 \ps pl
 \ge s
 \dt 19/Jul/2006
-
 \lx sʰɨn˧˥˧
 \a sʰɨn˥
 \ps v
 \ge to bring
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to bring.wav
 \dt 21/Aug/2006
-
 \lx sʰĭ˦puiʔ˦ui˥
 \ps n
 \ge coconut
 \a sʰĭ˧kɔn˧ui˧
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\coconut.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\coconut.wav
 \dt 04/Jan/2006
-
 \lx sʰɨr˧
 \ps v
 \ge to disgust
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to disgust.wav
 \dt 24/Jan/2006
-
 \lx sʰɔn˧
 \ps adj
 \ge easy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\easy.wav
 \dt 26/Dec/2005
-
 \lx sʰɔn˦˨mi˧
 \ps v
 \ge to sew
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sew.wav
 \dt 12/Dec/2005
-
 \lx sʰɔp̚˦
 \ps v
 \ge to do laundry
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to launder.wav
 \dt 23/Jan/2006
-
 \lx sʰɔp̚˥˩
 \ps n
 \ge firewood
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\firewood.wav
 \dt 12/Dec/2005
-
 \lx sʰo˧ɾa˦˨˦
 \ps n
 \ge mortar
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\mortar.wav
 \dt 12/Dec/2005
-
 \lx sʰɔt̚˧klak̚˦
 \ps v
 \ge to stab to death
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to stab.wav
 \dt 23/Jan/2006
-
 \lx sʰuː˦
 \ps v
 \ge to pound rice
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to pound rice.wav
 \dt 13/Dec/2005
-
 \lx sʰui˧
 \ps v
 \ge to burn
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to burn.wav
 \dt 13/Dec/2005
-
 \lx sʰui˦˨kɔk̚˥˩
 \ps n
-\ge garlic�
+\ge garlic
 \de bulb white
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\garlic.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\garlic.wav
 \dt 04/Jan/2006
-
 \lx sʰum˥˩
 \ps v
 \ge to sell
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sell.wav
 \dt 13/Dec/2005
-
 \lx sʰum˥˩jua˦
 \ps n
 \ge hundred people
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\hundred people.wav
 \dt 04/Jan/2006
-
 \lx t̪a˧
 \ps v
 \ge to finish or complete
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to finish.wav
 \dt 06/Feb/2006
-
 \lx t̪ʷa˥˩
 \ps n
 \ge vagina
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\labialized visit drunk sharpen vagina.wav
 \dt 14/Dec/2005
-
 \lx t̪ai˥˩
 \ps n
 \ge older sibling
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\older
-sibling.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\oldersibling.wav
 \dt 29/Dec/2005
-
 \lx t̪ʰai˥˩
 \ps v
 \ge to dig
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to dig.wav
 \dt 13/Dec/2005
-
 \lx t̪ak̚˦˨
 \ps n
 \ge north
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\north.wav
 \dt 24/Jan/2006
-
 \lx t̪ʰɑk̚˦˨
 \ps v
 \ge to die
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to die.wav
 \dt 09/Feb/2006
-
 \lx t̪ʰɑk̚˦˨pai˦˨m̥ai˥miʔ˧
 \ps v
 \ge to extinguish fire
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to extinguish fire.wav
 \dt 09/Feb/2006
-
 \lx t̪am˦˨˦
 \ps n
 \ge ginger and crocodile
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\ginger.wav
 \dt 09/Feb/2006
-
 \lx t̪ʰam˧
 \ps adj
 \ge cool
 \de used for water and food
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\cool water and food.wav
 \dt 26/Dec/2005
-
 \lx t̪am˧klaŋ˥˩
 \ps n
 \ge gong
 \dt 13/Dec/2005
-
 \lx tʰaŋ˥
 \ps ADV
 \ge try to
 \dt 16/Aug/2006
-
 \lx t̪an˥
 \ps v
 \ge much
 \dt 21/Jun/2006
-
 \lx t̪aŋ˥˩
 \ps v
 \ge to put on
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\put on side right left.wav
 \dt 29/Dec/2005
-
 \lx t̪ʰaŋ˧˥˧
 \a t̪ʰaŋ˦˨
 \ps v
 \ge side
-\nt This can be used for right, left, this,
-that.
+\nt This can be used for right, left, this,that.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\put on side right left.wav
 \dt 25/Apr/2006
-
 \lx t̪ʰaŋ˦˨
 \a t̪ʰaŋ˥˩
 \a t̪ʰaŋ˥
@@ -5077,34 +4019,26 @@ that.
 \ps POST
 \ge to
 \dt 24/Aug/2006
-
 \lx ⁿt̪ao˦˨˦ui˧
 \ps n
 \ge eggplant
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\eggplant.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\eggplant.wav
 \dt 04/Jan/2006
-
 \lx t̪ap̚˧
 \ps v
 \ge to be thick
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be thick.wav
 \dt 13/Dec/2005
-
 \lx t̪ɘː˥
 \a t̪ɘ˥
 \ps v
 \ge to leave it there
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
 \dt 02/May/2006
-
 \lx t̪əbai˧
 \ps N
 \ge a week
 \dt 02/Aug/2006
-
 \lx t̪əhi˧
 \a t̪əhi˦˨
 \a t̪əhi˥˩
@@ -5112,23 +4046,16 @@ list\eggplant.wav
 \ge son
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 26/Jul/2006
-
 \lx t̪ʰək̚˧
 \a t̪ʰək̚˦˨
 \ps v
 \ge die
 \dt 26/Jul/2006
-
 \lx t̪em˦˨
 \ps n
 \ge snail
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\snail.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\snail.wav
 \dt 05/Dec/2005
-
 \lx t̪əm˦˨˦
 \a t̪əm˦˨
 \ps n
@@ -5137,41 +4064,34 @@ list\snail.wav
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\drum.wav
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sleeping area.wav
 \dt 21/Jun/2006
-
 \lx t̪əma˦˨
 \a t̪əma˥˩
 \ps n
 \ge daughter
 \dt 14/Apr/2006
-
 \lx t̪ə˧m̥aŋ˧
 \a t̪əm̥aŋ˧
 \ps V
 \ge wrong
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be wrong.wav
 \dt 17/Aug/2006
-
 \lx t̪əmuk̚˧
 \ps PN
 \ge God
 \dt 28/Aug/2006
-
 \lx təmuʔ˧
 \ps N
 \ge brother
 \dt 29/Aug/2006
-
 \lx tʰeŋ˥
 \ps PN
 \ge Thailand
 \dt 24/Aug/2006
-
 \lx t̪eŋ˦˨˦
 \ps n
 \ge cliff
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\cliff put in.wav
 \dt 29/Dec/2005
-
 \lx t̪əŋ˧
 \a t̪əŋ˥˩
 \a t̪əŋ˦˨
@@ -5179,120 +4099,91 @@ list\snail.wav
 \ge return
 \nt also used for changing your mind
 \dt 19/Jul/2006
-
 \lx t̪əŋ˧˥˧
 \ps v
 \ge to lift
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to lift.wav
 \dt 16/Jan/2006
-
 \lx t̪ʰeŋ˥˩
 \ps v
 \ge to put in
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\cliff put in.wav
 \dt 16/Jan/2006
-
 \lx t̪əŋɨr˥˩
 \ps n
 \ge tomorrow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\tomorrow.wav
 \dt 21/Aug/2006
-
 \lx t̪ə˦˧oː˦
 \a t̪əo˧
 \ps n
 \ge stream
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\stream.wav
 \dt 19/Jun/2006
-
 \lx ⁿt̪eo˧˥˧
 \ps n
 \ge light colored flexible bamboo
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nt.wav
 \dt 19/Jan/2006
-
 \lx t̪ə˦˧pur˥˩
 \ps n
 \ge frog
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\frog.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\frog.wav
 \dt 04/Jan/2006
-
 \lx t̪ərai˥˩
 \ps ADJ
 \ge heroic
 \dt 02/May/2006
-
 \lx t̪ə˦˧ɾam˦˨
 \ps n
 \ge ear
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\ear.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\ear.wav
 \dt 08/Dec/2005
-
 \lx t̪ə˧ram˦˨˦pãŋ˥˩
 \ps v
 \ge to be deaf
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be deaf.wav
 \dt 13/Dec/2005
-
 \lx t̪ʰət̚˦˨t̪ʰoi˥˩
 \ps v
 \ge to be bright
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be bright.wav
 \dt 24/Jan/2006
-
 \lx t̪əʔiː˥˩
 \ps n
 \ge sand
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sand.wav
 \dt 19/Jan/2006
-
 \lx t̪əʔ˧oː˧
 \ps n
 \ge river
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\river.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\river.wav
 \dt 04/Jan/2006
-
 \lx t̪ʰiː˦˨
 \ps v
 \ge to split with a knife
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to split with a knife.wav
 \dt 26/Jan/2006
-
 \lx ⁿt̪i˦˨
 \ps n
 \ge hard dark green bamboo
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nt.wav
 \dt 09/Feb/2006
-
 \lx tʰia˥˩
 \ps v
 \ge step on
 \dt 26/Apr/2006
-
 \lx t̪im˥˩
 \a t̪im˥
 \ps N
 \ge wind
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\wind.wav
 \dt 16/Aug/2006
-
 \lx t̪ʰɨm˥˩
 \a t̪ʰɨm˥
 \ps V
 \ge miss
 \dt 02/Aug/2006
-
 \lx t̪ɨr˧˥˧
 \a t̪ɨr˥
 \a t̪ɨr˧
@@ -5300,134 +4191,108 @@ list\river.wav
 \ge to tell
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to tell.wav
 \dt 14/Apr/2006
-
 \lx t̪ɨt̚˦˨
 \ps n
 \ge end
 \dt 02/May/2006
-
 \lx t̪o˦˨
 \ps QUES TAG
 \ge right?
 \dt 02/Aug/2006
-
 \lx t̪ɔk̚˥
 \a t̪ɔk̚˥˩
 \ps COP
 \ge is
 \dt 26/Apr/2006
-
 \lx t̪ok̚kʰi˥
 \ps N
 \ge deer
 \dt 23/Aug/2006
-
 \lx tɔm˥
 \ps n
 \ge corner
 \dt 25/Apr/2006
-
 \lx t̪ɔm˦˨
 \ps adj
 \ge black
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\black.wav
 \dt 04/Jan/2006
-
 \lx t̪ɔm˦˨˦
 \ps n
 \ge bear
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\bear.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\bear.wav
 \dt 14/Dec/2005
-
 \lx t̪ɔŋ˦˨˦
 \ps n
 \ge the name of a fish
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\the name of a fish punch.wav
 \dt 29/Dec/2005
-
 \lx t̪ʰɔŋ˥
 \ps v
 \ge to punch
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\the name of a fish punch.wav
 \dt 29/Dec/2005
-
 \lx tɔŋ˧ŋIn˦˨˦
 \ps n
 \ge animal
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\animal.wav
 \dt 18/Jan/2006
-
 \lx tsaː˥
 \a tsa˥
 \ps v
 \ge to eat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to eat.wav
 \dt 17/Aug/2006
-
 \lx tsa˦˨
 \ps N
 \ge literacy
 \dt 28/Aug/2006
-
 \lx tsai˦˨
 \ps n
 \ge elephant
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\elephant.wav
 \dt 11/Jan/2006
-
 \lx tsai˦˨jɨŋ˧lɔt̚˦
 \ps n
 \ge elephant tusk
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\elephant tusk.wav
 \dt 24/Jan/2006
-
 \lx tsak̚˦˨
 \ps n
 \ge rice
-\de This is what it is called at the time of
-eating it.
+\de This is what it is called at the time ofeating it.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\rice.wav
 \dt 16/Jan/2006
-
 \lx tsak̚˦˨
 \ps v
 \ge to stand firm
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to stand firm.wav
 \dt 09/Feb/2006
-
 \lx ⁿtsak˥˩
 \ps n
 \ge demon
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nts.wav
 \dt 19/Jan/2006
-
 \lx tsɑk̚˦˨klai˥˩
 \ps v
 \ge to be naked
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be naked.wav
 \dt 16/Jan/2006
-
 \lx tsam˧˥˧
 \ps v
 \ge to sit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to sit.wav
 \dt 04/Jan/2006
-
 \lx tsan˦˨˦
 \ps n
 \ge meat
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\meat.wav
 \dt 26/Jan/2006
-
 \lx tsauk̚˦˨
 \a tsauk̚˧
 \ps N
 \ge book
 \dt 28/Aug/2006
-
 \lx tsə˦˨
 \a tsa˦˨
 \ps LOC
@@ -5435,163 +4300,131 @@ eating it.
 \nt This refers to some point, whether place or time.  It is used for "now".
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 02/Aug/2006
-
 \lx tsə˥
 \ps LOC
 \ge here
 \dt 17/Aug/2006
-
 \lx tsɘ˧˥˧
 \ps ***
 \ge as well
 \dt 02/Aug/2006
-
 \lx tsəboi˧
 \ps N
 \ge table
 \nt Comes from Burmese.
 \dt 18/Aug/2006
-
 \lx tseŋmai˥˩
 \ps PN
 \ge Chiangmai
 \dt 24/Aug/2006
-
 \lx tsə˦˨ɾam˥˩
 \ps n
 \ge paper
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\paper.wav
 \dt 04/Jan/2006
-
 \lx tsi˦˨bai˥˩
 \ps N
 \ge shaking hands
 \dt 16/Aug/2006
-
 \lx tsiŋ˥
 \ps ***
 \ge each other
 \dt 23/Aug/2006
-
 \lx tsɨŋ˥
 \ps ADJ
 \ge whole
 \dt 16/Aug/2006
-
 \lx tso˥
 \ps EXCL
 \ge That's why
 \dt 21/Jun/2006
-
 \lx tsoi˥˩
 \ps n
 \ge spoon
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\spoon.wav
 \dt 12/Dec/2005
-
 \lx tsok̚˥˩
 \a tsoʔ˥˩
 \a tsoʔ˦˨
 \ps PRT
 \ge COME ON
 \dt 17/Aug/2006
-
 \lx tsom˥
 \ps V
 \ge pick up
 \nt This can be used to mean eat.
 \dt 17/Aug/2006
-
 \lx tson˥
 \ps Vintr
 \ge leave
 \dt 24/Aug/2006
-
 \lx ⁿtsɔn˦˨˦
 \ps n
 \ge a string of cotton
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\nts.wav
 \dt 19/Jan/2006
-
 \lx tsɔp̚˦
 \ps v
 \ge to be hard
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be hard.wav
 \dt 13/Dec/2005
-
 \lx ⁿtsuː˥˩
 \ps n
 \ge thorn
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\thorn.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\thorn.wav
 \dt 04/Jan/2006
-
 \lx tsuk̚˥
 \ps v
 \ge to pray and worship
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to pray worship.wav
-\nt this comes as a verb with a prefix and
-as a noun with a suffix
+\nt this comes as a verb with a prefix andas a noun with a suffix
 \dt 06/Feb/2006
-
 \lx tsuŋ˦˨˦
 \a tsuŋ˦˨
 \ps n
 \ge cold season
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\cold season.wav
 \dt 16/Aug/2006
-
 \lx tsuŋ˥˩rao˥
 \ps v
 \ge to be cold
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be cold.wav
 \dt 13/Dec/2005
-
 \lx tsIn˧
 \ps v
 \ge to start a fire
-\nt this can be used with fire and
-cigarettes
+\nt this can be used with fire andcigarettes
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tsen.wav
 \dt 18/Jan/2006
-
 \lx tsIn˥
 \ps v
 \ge to pinch
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tsen.wav
 \dt 18/Jan/2006
-
 \lx tsIn˥˩
 \ps n
 \ge bud of fruit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tsen.wav
 \dt 18/Jan/2006
-
 \lx t̪uː˧
 \ps v
 \ge to chop or cut
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to chop to be crazy.wav
 \dt 27/Dec/2005
-
 \lx t̪u˥
 \ps v
 \ge peck
 \dt 19/Jul/2006
-
 \lx t̪ʰuː˧
 \ps v
 \ge to be crazy
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\to chop to be crazy.wav
 \dt 27/Dec/2005
-
 \lx t̪ui˧˥˧
 \ps v
 \ge to be wet
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be wet.wav
 \dt 04/Jan/2006
-
 \lx t̪ui˦˨˦
 \a t̪ui˧
 \a t̪ui˥˩
@@ -5600,182 +4433,135 @@ cigarettes
 \ge water
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\water.wav
 \dt 18/Aug/2006
-
 \lx t̪ʰui˥
 \ps v
 \ge to kick
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to kick.wav
 \dt 13/Dec/2005
-
 \lx t̪ui˦˨kə˧pʲæt̚˦˨
 \ps v
 \ge to flow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to flow.wav
 \dt 23/Jan/2006
-
 \lx t̪uk̚˦˨
 \ps V
 \ge know
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to know2.wav
 \dt 28/Aug/2006
-
 \lx t̪uk̚˦˨keŋ˥˩
 \ps v
 \ge to hear
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to hear.wav
 \dt 18/Jan/2006
-
 \lx t̪uk̚˧kliŋ˥˩
 \ps n
 \ge mud
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\mud.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\mud.wav
 \dt 04/Jan/2006
-
 \lx tʰuk̚˦˨mi˦
 \ps v
 \ge to dye
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to dye.wav
 \dt 12/Dec/2005
-
 \lx t̪um˥
 \a t̪um˥˩
 \ps LOC
 \ge at
 \dt 24/Aug/2006
-
 \lx t̪uŋ˧
 \ps v
 \ge to build a wall
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tung.wav
 \dt 26/Dec/2005
-
 \lx t̪uŋ˦˨
 \ps n
 \ge house support pole
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\house support pole.wav
 \dt 06/Feb/2006
-
 \lx t̪uŋ˦˨
 \ps PRO
 \ge those
 \dt 02/May/2006
-
 \lx t̪uŋ˦˨˦
 \ps n
-\ge housepost and name of a small fish
-with big mouth and teeth
+\ge housepost and name of a small fishwith big mouth and teeth
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tung.wav
 \dt 26/Dec/2005
-
 \lx t̪uŋ˥
 \ps n
 \ge sesame seed
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone tung.wav
 \dt 26/Dec/2005
-
 \lx t̪ʰuŋ˦˨
 \ps POL
 \ge ***
 \dt 02/Aug/2006
-
 \lx t̪ʰuŋ˦˨˦
 \ps n
 \ge thigh
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\thigh.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\thigh.wav
 \dt 29/Dec/2005
-
 \lx t̪ʰuŋ˥
 \ps n
 \ge lime (as used in betel nut)
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word
-list\lime.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnu klir\Ling\Data\Sound\wordlist\lime.wav
 \dt 08/Dec/2005
-
 \lx t̪ʰʲu˥ɔn˧
 \ps n
 \ge sugar cane
 \de sugar stick
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\sugarcane.wav
 \dt 30/Jan/2006
-
 \lx t̪ur˧
 \ps n
 \ge stump
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\stump prophet.wav
 \dt 29/Dec/2005
-
 \lx t̪ur˧˥˧
 \ps PN
 \ge Tur
 \nt This is the name of one of two gods that created the world.
 \dt 29/Aug/2006
-
 \lx t̪ʰur˧
 \ps n
 \ge prophet
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\stump prophet.wav
 \dt 29/Dec/2005
-
 \lx ubon˧
 \ps PN
 \ge Ubon city
 \dt 21/Aug/2006
-
 \lx ui˥
 \ps n
 \ge fruit
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\fruit.wav
 \dt 13/Jan/2006
-
 \lx uk̚˦˨
 \ps v
 \ge to bark
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\to
-bark.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\tobark.wav
 \dt 05/Dec/2005
-
 \lx ur˧
 \ps n
 \ge cheek
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\cheek.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\cheek.wav
 \dt 05/Dec/2005
-
 \lx ut̚˥
 \a ut̚˧
 \ps n
 \ge mouse
 \dt 02/Mar/2006
-
 \lx uʔɸ˥˩
 \a uʔ˥˩
 \ps PRT
 \ge It's okay
 \nt This particle is used when consoling someone.  Also a polite way of refusing something offered.
 \dt 17/Aug/2006
-
 \lx vaː˦˨
 \ps n
-\ge old field (when it comes before the
-verb)
+\ge old field (when it comes before theverb)
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone va.wav
 \dt 26/Dec/2005
-
 \lx vaː˦˧
 \a va˥
 \a va˧
@@ -5786,92 +4572,63 @@ verb)
 \nt means more than 2
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone va.wav
 \dt 29/Aug/2006
-
 \lx vaː˥
 \a va˥
 \ps n
 \ge bird
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\bird.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\bird.wav
 \dt 19/Jul/2006
-
 \lx vaː˥˩
 \ps n
-\ge old field (when it comes after the
-verb)
+\ge old field (when it comes after theverb)
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\tone va.wav
 \dt 26/Dec/2005
-
 \lx va˦˨
 \a va˧
 \ps QUES
 \ge ?
 \nt Used for open content questions.
 \dt 17/Aug/2006
-
 \lx vai˧
 \a vai˦˨
 \ps ***
 \ge never
 \dt 21/Aug/2006
-
 \lx vai˥
 \ps PN
 \ge Vai
 \nt This is the name of one of the gods that created the world.
 \dt 29/Aug/2006
-
 \lx van˦˨
 \ps v
 \ge pity
 \dt 26/Jul/2006
-
 \lx van˥˩
 \ps n
 \ge blanket
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\blanket.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\blanket.wav
 \dt 29/Dec/2005
-
 \lx va˦poi˧
 \ps n
 \ge feather
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\feather.wav
 \dt 06/Jan/2006
-
 \lx va˦pum˦˨
 \ps n
 \ge bird's nest
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word list\bird's
-nest.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\word list\bird'snest.wav
 \dt 05/Dec/2005
-
 \lx var˦˨˦
 \a var˦˨
 \ps v
 \ge to throw
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to throw.wav
 \dt 16/Aug/2006
-
 \lx vʲar˥
 \ps n
 \ge wing
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\wing.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\wing.wav
 \dt 14/Dec/2005
-
 \lx ve˥
 \a ve˥˩
 \a ve˧
@@ -5881,25 +4638,21 @@ list\wing.wav
 \nt This can be used as an adverb to mean it has been done.
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\stories\mouse.wav
 \dt 21/Aug/2006
-
 \lx vɛ˦˨
 \a və˧
 \ps PRT
 \ge I know it
 \nt Seems to be used when saying something with finality as if it is a fact.  Also shows up as a command or request.
 \dt 17/Aug/2006
-
 \lx veŋ˥
 \ps v
 \ge to harvest
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to harvest.wav
 \dt 06/Feb/2006
-
 \lx vɘŋ˥
 \ps V
 \ge cost
 \dt 23/Aug/2006
-
 \lx vətse˥˩
 \a va˥tse˦˨
 \a vətse˦˨
@@ -5908,35 +4661,26 @@ list\wing.wav
 \ps n
 \ge little bird
 \dt 19/Jul/2006
-
 \lx viː˦
 \ps n
 \ge blood
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\blood.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\blood.wav
 \dt 08/Dec/2005
-
 \lx vit̚˦˨
 \ps N
 \ge field
 \dt 16/Aug/2006
-
 \lx vit̚˥
 \a vit̚˧˥˧
 \ps PFV
 \ge has
 \nt This seems to show some transition that has occured.  Possibly only for past.
 \dt 16/Aug/2006
-
 \lx vIn˧˥˧
 \ps v
 \ge don't get close
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\rising tone.wav
 \dt 18/Jan/2006
-
 \lx zə˧
 \a zɘ˦˨
 \a zə˦˨
@@ -5950,7 +4694,6 @@ list\blood.wav
 \ps COP
 \ge to be
 \dt 22/Aug/2006
-
 \lx zɘʔ˧
 \a zəʔ˧
 \a zəʔ˦˨
@@ -5958,37 +4701,27 @@ list\blood.wav
 \ge thing.time
 \nt Also used for the time.  Same as subj marker?
 \dt 02/May/2006
-
 \lx ʔɔr˥
 \ps v
 \ge to shiver
-\de also used when someone is about to
-die
+\de also used when someone is about todie
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to shiver going to die.wav
 \dt 29/Dec/2005
-
 \lx ᵐm̥a˦˨
 \ps n
 \ge road
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\prenasal.wav
 \dt 19/Jan/2006
-
 \lx ᵐpai˦˨˦
 \ps v
 \ge to carry a basket on your back
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\prenasal.wav
 \dt 29/Dec/2005
-
 \lx ᵐplɔt̚˦
 \ps n
 \ge door
-\sd C:\Documents and
-Settings\Administrator\My
-Documents\Jonathan\professional\khawngnu
-klir\Ling\Data\Sound\word
-list\door.wav
+\sd C:\Documents andSettings\Administrator\MyDocuments\Jonathan\professional\khawngnuklir\Ling\Data\Sound\wordlist\door.wav
 \dt 08/Dec/2005
-
 \lx ᵐpu˧
 \ps n
 \ge smoking pipe

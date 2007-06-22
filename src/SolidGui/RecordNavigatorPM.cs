@@ -43,7 +43,7 @@ namespace SolidGui
             set
             {
                 _recordFilter = value;
-                _indexesOfFilteredRecords = new List<int>(_recordFilter.GetIndicesOfMatchingRecords(_masterRecordList));
+                _indexesOfFilteredRecords = new List<int>(_recordFilter.IndexesOfRecords);
 
                 if (_indexesOfFilteredRecords.Count == 0)
                 {

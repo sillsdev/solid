@@ -8,6 +8,9 @@ namespace SolidGui
     {
         private string _value;
 
+        public static event EventHandler RecordTextChanged;
+
+
         public Record(string value)
         {
             _value = value;
@@ -20,7 +23,13 @@ namespace SolidGui
             }
             set
             {
+                string oldValue = _value;
                 _value = value;
+
+                if (oldValue != _value && RecordTextChanged != null)
+                {
+                        RecordTextChanged.Invoke(this, new EventArgs());
+                }
             }
         }
     }

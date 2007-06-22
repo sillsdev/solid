@@ -14,10 +14,21 @@ namespace SolidGui
         private XmlNode _recordFilterDescriptionNode;
         private XmlNodeList _recordFilterIndexes;
 
-        public ReportReader(string path)
+        public ReportReader()
         {
             _report = new XmlDocument();
-            _report.Load(path);
+        }
+
+        public void Load(string path)
+        {
+            try
+            {
+                _report.Load(path);
+            }
+            catch
+            {
+                
+            }
             _recordFilterNodes = _report.GetElementsByTagName("recordfilter");
             _currentRecordFilter = -1;
         }

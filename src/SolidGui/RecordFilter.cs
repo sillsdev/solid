@@ -9,31 +9,35 @@ namespace SolidGui
     {
         private readonly bool _matchWhenNotFound;
         private string _pattern;
-        public RegExRecordFilter(string name, string pattern, bool matchWhenNotFound)
+        public RegExRecordFilter(string name, string pattern, bool matchWhenNotFound,List<Record> records)
         {
             _matchWhenNotFound = matchWhenNotFound;
             _name = name;
             _pattern = pattern;
+            _indexesOfRecords = GetIndicesOfMatchingRecords(records);
         }
-        public RegExRecordFilter(string name, string pattern):this(name,pattern,false)
+        public RegExRecordFilter(string name, string pattern, List<Record> records):this(name,pattern,false,records)
         {
             _name = name;
             _pattern = pattern;
         }
 
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
+        protected override List<int> GetIndicesOfMatchingRecords(List<Record> records)
         {
+            _indexesOfRecords.Clear();
+
             System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(_pattern, 
                 System.Text.RegularExpressions.RegexOptions.Compiled & System.Text.RegularExpressions.RegexOptions.Singleline);
-           
+
             for (int i = 0; i < records.Count; i++)
             {
                 bool match = regex.IsMatch(records[i].Value);
                 if(match == !_matchWhenNotFound)
                 {
-                    yield return i;
+                    _indexesOfRecords.Add(i);
                 }
             }
+            return _indexesOfRecords;
         }
 
         public override string Description
@@ -48,17 +52,22 @@ namespace SolidGui
 
     public class AllRecordFilter : RecordFilter
     {
-        public AllRecordFilter()
-            : base("All", "These are all the records in the dictionary",null)
+        public AllRecordFilter(List<Record> records)
         {
+            _name = "All";
+            _description = "These are all the records in the dictionary";
+            _indexesOfRecords = GetIndicesOfMatchingRecords(records);
         }
 
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
+        protected override List<int> GetIndicesOfMatchingRecords(List<Record> records)
         {
+            _indexesOfRecords.Clear();
+
             for(int i = 0 ; i <records.Count ; i++)
             {
-                yield return i;
+                _indexesOfRecords.Add(i);
             }
+            return _indexesOfRecords;
         }
     }
 
@@ -124,9 +133,17 @@ namespace SolidGui
                 _indexesOfRecords = value;
             }
         }
-        public virtual IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
+        protected virtual List<int> GetIndicesOfMatchingRecords(List<Record> records)
         {
             return IndexesOfRecords;
+        }
+
+        public int RecordCount
+        {
+            get
+            {
+                return _indexesOfRecords.Count;
+            }
         }
     }
 }

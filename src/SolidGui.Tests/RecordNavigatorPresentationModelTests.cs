@@ -24,7 +24,7 @@ namespace SolidGui.Tests
 
             _navigator.MasterRecordList = masterRecordList;
 
-            _navigator.ActiveFilter = new RegExRecordFilter("Has X", "X");
+            _navigator.ActiveFilter = new RegExRecordFilter("Has X", "X",masterRecordList);
         }
 
         [TearDown]
@@ -93,7 +93,7 @@ namespace SolidGui.Tests
         public void WhenFilterChangesShowFirst()
         {
             _navigator.ActiveFilter = new NullRecordFilter();
-            _navigator.ActiveFilter = new AllRecordFilter();
+            _navigator.ActiveFilter = new AllRecordFilter(new List<Record>(_navigator.MasterRecordList));
             Assert.AreEqual(4, _navigator.Count);
             Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
             Assert.IsNotNull(_navigator.CurrentRecord);

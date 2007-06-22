@@ -66,9 +66,8 @@ namespace SolidGui.Tests
         {
             _mainWindowPM.OpenDictionary(DictionaryPath);
             _mainWindowPM.SaveDictionary(SavePath);
-            _mainWindowPM.OpenDictionary(SavePath);
-
-            Assert.AreEqual(2, _mainWindowPM.MasterRecordList.Count);
+            
+            Assert.AreEqual(File.ReadAllText(SavePath),File.ReadAllText(DictionaryPath));
         }
     }
 
