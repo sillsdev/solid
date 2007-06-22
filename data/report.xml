@@ -1,0 +1,29 @@
+<root timestamp="">
+ <recordfilter>
+  <name>infered structure [KEY1] </name>
+  <description>all structure inferences for a given [KEY1]</description>
+  <nodes>
+   <node startline="3" endline="40"> 1 </node>
+   <node startline="41" endline="50"> 2 </node>
+   <node startline="200" endline="225"> 22 </node>
+  </nodes>
+ </recordfilter>
+ <recordfilter>
+  <name>missing [KEY2] </name>
+  <description>all [KEY2]s that were missing from the dictionary</description>
+  <nodes>
+   <node startline="3" endline="40"> 1 </node>
+   <node startline="41" endline="50"> 2 </node>
+   <node startline="200" endline="225"> 22 </node>
+  </nodes>
+ </recordfilter>
+ <recordfilter>
+  <name>incorrect parent for [KEY3]</name>
+  <description>all [KEY3]s with an incorrect parent</description>
+  <nodes>
+   <node startline="3" endline="40"> 1 </node>
+   <node startline="41" endline="50"> 2 </node>
+   <node startline="200" endline="225"> 22 </node>
+  </nodes>
+ </recordfilter>
+</root>

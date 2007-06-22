@@ -24,11 +24,18 @@ namespace SolidGui
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM();
 
+            string path = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml";
+            ReportReader report = new ReportReader(path);
             _recordFilters.Add(new AllRecordFilter());
             _recordFilters.Add(new NullRecordFilter());
             _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w"));
             _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true));
             _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true));
+            
+            while (report.NextRecordFilter())
+            {
+                _recordFilters.Add(new RecordFilter(report.Name,report.Description,report.Indexes));
+            }
 
             FilterChooserModel.RecordFilters = _recordFilters;
 

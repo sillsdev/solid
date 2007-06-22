@@ -49,15 +49,15 @@ namespace SolidGui
     public class AllRecordFilter : RecordFilter
     {
         public AllRecordFilter()
-            : base("All", "These are all the records in the dictionary")
+            : base("All", "These are all the records in the dictionary",null)
         {
         }
 
         public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
         {
-            for (int i = 0; i < records.Count; i++)
+            for(int i = 0 ; i <records.Count ; i++)
             {
-                yield return i;   
+                yield return i;
             }
         }
     }
@@ -65,32 +65,30 @@ namespace SolidGui
     public class NullRecordFilter : RecordFilter
     {
         public NullRecordFilter()
-            : base("None", "Should be empty")
+            : base("None", "Should be empty",new List<int>())
         {
-        }
-
-        public override IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
-        {
-            for (int i = 0; false;)
-            {
-                yield return i;
-            }
         }
     }
 
-    public abstract class RecordFilter
+    public class RecordFilter
     {
         protected string _name;
         protected string _description;
+        protected List<int> _indexesOfRecords;
 
         public RecordFilter()
         {
+            _name = "";
+            _description = "";
+            _indexesOfRecords = new List<int>();
         }
 
-        public RecordFilter(string name, string description)
+        public RecordFilter(string name, string description, List<int> indexes)
         {
             _name = name;
             _description = description;
+            _indexesOfRecords = indexes;
+
         }
 
         public string Name
@@ -99,6 +97,10 @@ namespace SolidGui
             {
                 return _name;
             }
+            set
+            {
+                _name = value;
+            }
         }
         public virtual string Description
         {
@@ -106,15 +108,25 @@ namespace SolidGui
             {
                 return _description;
             }
+            set
+            {
+                _description = value;
+            }
+        }
+        public List<int> IndexesOfRecords
+        {
+            get
+            {
+                return _indexesOfRecords;
+            }
+            set
+            {
+                _indexesOfRecords = value;
+            }
         }
         public virtual IEnumerable<int> GetIndicesOfMatchingRecords(IList<Record> records)
         {
-            yield return 2;
-            yield return 3;
+            return IndexesOfRecords;
         }
-
-        //public abstract IEnumerable<int> GetIndicesOfMatchingRecords(IList<string> records);
-
-   
     }
 }

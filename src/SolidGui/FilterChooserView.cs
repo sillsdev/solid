@@ -10,6 +10,7 @@ namespace SolidGui
     public partial class FilterChooserView : UserControl
     {
         private FilterChooserPM _model;
+        private bool _changingFilter = false;
 
         public FilterChooserView()
         {
@@ -49,6 +50,7 @@ namespace SolidGui
         //when someone changes the filter in our PM
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
+            _changingFilter = true;
             foreach (ListViewItem item in _listControl.Items)
             {
                 if (item.Tag == e._recordFilter)
@@ -57,11 +59,12 @@ namespace SolidGui
                     break;
                 }
             }
+            _changingFilter = false;
         }
 
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0)
+            if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0 && !_changingFilter)
             {
                 _model.ActiveRecordFilter = (RecordFilter)_listControl.SelectedItems[0].Tag;
             }

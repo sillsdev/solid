@@ -80,7 +80,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,6 +98,7 @@
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportReader.cs" />
     <Compile Include="SfmEditorPM.cs" />
     <Compile Include="SfmEditorView.cs">
       <SubType>UserControl</SubType>
