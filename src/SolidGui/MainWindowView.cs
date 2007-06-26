@@ -126,7 +126,7 @@ namespace SolidGui
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             //_searchView hides itself when closed
-            if (_searchView == null)
+            //if (_searchView == null)
             {
                 _searchView = new SearchView(_recordNavigatorView,_sfmEditorView);
                 _searchView.SearchModel = _mainWindowPM.SearchModel;

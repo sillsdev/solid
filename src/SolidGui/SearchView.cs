@@ -58,27 +58,37 @@ namespace SolidGui
 
         private void _findNextButton_Click(object sender, EventArgs e)
         {
-            //move past the currently highlighted word in case it was the one just found
-            TextIndex = _sfmEditorView._contentsBox.SelectionStart + _sfmEditorView._contentsBox.SelectionLength;
-
             RecordIndex = _navigatorView.Model.CurrentRecordIndex;
+            TextIndex = _sfmEditorView._contentsBox.SelectionStart;
 
-            _searchModel.FindNext(_findTextbox.Text, RecordIndex, TextIndex);
+            if(_forwardRadioButton.Checked)
+            {
+                //move past the currently highlighted word in case it was the one just found
+                TextIndex ++;
+
+                _searchModel.FindNext(_findTextbox.Text, RecordIndex, TextIndex);
+            }
+            else
+            {
+                _searchModel.FindPrevious(_findTextbox.Text,RecordIndex,TextIndex);
+            }
         }
 
         private void _cancelButton_Click(object sender, EventArgs e)
         {
-            Hide();
+            Dispose();
         }
 
-        private void _findPreviousButton_Click(object sender, EventArgs e)
+        private void _replaceButton_Click(object sender, EventArgs e)
         {
-           
-            TextIndex = _sfmEditorView._contentsBox.SelectionStart;
-            RecordIndex = _navigatorView.Model.CurrentRecordIndex;
-
-            _searchModel.FindPrevious(_findTextbox.Text, RecordIndex, TextIndex);
-
+            if(_sfmEditorView._contentsBox.SelectedText != _findTextbox.Text)
+            {
+                _findNextButton_Click(new object(),new EventArgs());
+            }
+            else
+            {
+                _sfmEditorView._contentsBox.SelectedText = _replaceTextBox.Text;
+            }
         }
     }
 }
