@@ -37,7 +37,7 @@ namespace SolidGui
             UpdateDisplay();
         }
 
-        private void UpdateDisplay()
+        public void UpdateDisplay()
         {
             if (_model == null)
                 return;

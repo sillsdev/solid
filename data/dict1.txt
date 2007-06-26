@@ -1,7 +1,6 @@
 \_sh v3.0  231  Dictionary
-\_DateStampHasFourDigitYear 
-\lx aː˦˨
-\a aː˥˩
+\_DateStampHasFourDigitYear h\lx aː˦˨
+\lx aː˥˩
 \ps EXCL
 \ge What.Hey
 \nt This shows surprise.
@@ -4028,14 +4027,12 @@
 \ps v
 \ge to be thick
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\to be thick.wav
-\dt 13/Dec/2005
-\lx t̪ɘː˥
+\dt 13/Dec/2005\lx t̪ɘː˥
 \a t̪ɘ˥
 \ps v
 \ge to leave it there
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\close mid central vowel.wav
-\dt 02/May/2006
-\lx t̪əbai˧
+\dt 02/May/2006\lx t̪əbai˧
 \ps N
 \ge a week
 \dt 02/Aug/2006
@@ -4108,8 +4105,7 @@
 \ps v
 \ge to put in
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\tone\cliff put in.wav
-\dt 16/Jan/2006
-\lx t̪əŋɨr˥˩
+\dt 16/Jan/2006\lx t̪əŋɨr˥˩
 \ps n
 \ge tomorrow
 \sd C:\Documents and Settings\Administrator\My Documents\Jonathan\professional\khawngnu klir\Ling\Data\Sound\word list\tomorrow.wav

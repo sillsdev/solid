@@ -65,9 +65,33 @@ namespace SolidGui.Tests
         public void SaveDictionarySavesCurrentDictionary()
         {
             _mainWindowPM.OpenDictionary(DictionaryPath);
-            _mainWindowPM.SaveDictionary(SavePath);
+            _mainWindowPM.SaveDictionary(SavePath, false);
             
             Assert.AreEqual(File.ReadAllText(SavePath),File.ReadAllText(DictionaryPath));
+        }
+
+        [Test]
+        public void SaveDictionaryFailsWhenDictionaryEditedOutsideOfSolid()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath);
+
+            File.WriteAllText(DictionaryPath,"This is a test");
+
+            Assert.IsFalse(_mainWindowPM.SaveDictionary(DictionaryPath, true));
+        }
+
+        [Test]
+        public void SaveDictionarySucceedsWhenDictionaryNotEditedOutsideOfSolid()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath);
+            Assert.IsTrue(_mainWindowPM.SaveDictionary(DictionaryPath, true));
+        }
+
+        [Test]
+        public void SaveDictionaryWritesWhenThePathDoesNotExist()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath);
+            Assert.IsTrue(_mainWindowPM.SaveDictionary(SavePath,true));
         }
     }
 

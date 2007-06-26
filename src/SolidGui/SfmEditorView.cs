@@ -12,6 +12,11 @@ namespace SolidGui
             InitializeComponent();
         }
 
+        public void Highlight(int startIndex, int length)
+        {
+            _contentsBox.Select(startIndex, length);
+        }
+
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
             if (e._record == null)
@@ -33,7 +38,6 @@ namespace SolidGui
                 MainWindowView.EnableSave();
                 _currentRecord.Value = _contentsBox.Text;
             }
-
         }
     }
 }

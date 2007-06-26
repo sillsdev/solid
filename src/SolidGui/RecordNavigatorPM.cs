@@ -12,8 +12,10 @@ namespace SolidGui
     {
         private int _CurrentIndexIntoFilteredRecords;
         private IList<Record> _masterRecordList;
+        private int _currentRecordIndex;
         private RecordFilter _recordFilter;
         private IList<int> _indexesOfFilteredRecords;
+        private Record currentRecord;
 
         public class RecordChangedEventArgs:System.EventArgs 
         {
@@ -131,6 +133,28 @@ namespace SolidGui
             }
         }
 
+        public int CurrentRecordIndex
+        {
+            set
+            {
+                if(_indexesOfFilteredRecords.Contains(value))
+                {
+                   CurrentIndexIntoFilteredRecords = _indexesOfFilteredRecords.IndexOf(value);
+                }
+            }
+            get
+            {
+                if(CurrentIndexIntoFilteredRecords!=-1)
+                {
+                        return _indexesOfFilteredRecords[CurrentIndexIntoFilteredRecords];
+                }
+                else
+                {
+                    return -1;
+                } 
+            }
+        }
+
         public Record CurrentRecord
         {
             get
@@ -139,7 +163,11 @@ namespace SolidGui
                 {
                     return null;
                 }
-                return _masterRecordList[_indexesOfFilteredRecords[_CurrentIndexIntoFilteredRecords]];
+                return _masterRecordList[CurrentRecordIndex];
+            }
+            set
+            {
+                currentRecord = value;
             }
         }
 
@@ -159,7 +187,7 @@ namespace SolidGui
 
         public void OnRecordEdited(object sender, SfmEditorPM.RecordEditedEventArgs e)
         {
-            _masterRecordList[_indexesOfFilteredRecords[_CurrentIndexIntoFilteredRecords]].Value = e._record;
+            _masterRecordList[CurrentRecordIndex].Value = e._record;
        }
     
     }

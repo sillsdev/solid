@@ -21,7 +21,7 @@ namespace SolidGui
             }
             _mainWindowPM = mainWindowPM;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
-            _filterChooserView.Model = _mainWindowPM.FilterChooserModel;            
+            _filterChooserView.Model = _mainWindowPM.FilterChooserModel; 
         }
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
@@ -88,7 +88,8 @@ namespace SolidGui
             _filterChooserView.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _filterChooserView.Model.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
-            Record.RecordTextChanged += this.OnRecordTextChanged;
+            _mainWindowPM.SearchModel.wordFound += OnWordFound;
+            Record.RecordTextChanged += OnRecordTextChanged;
 
             UpdateDisplay();
         }
@@ -111,13 +112,34 @@ namespace SolidGui
 
         private void _saveButton_Click(object sender, EventArgs e)
         {
-            _mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary);
-            _saveButton.Enabled = false;
+            if(_mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary, true))
+            {
+                _saveButton.Enabled = false;
+            }
         }
 
         public static void EnableSave()
         {
             
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            //_searchView hides itself when closed
+            if (_searchView == null)
+            {
+                _searchView = new SearchView(_recordNavigatorView,_sfmEditorView);
+                _searchView.SearchModel = _mainWindowPM.SearchModel;
+            }
+            _searchView.Show();
+        }
+
+        private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
+        {
+            _mainWindowPM.FilterChooserModel.ActiveRecordFilter = _mainWindowPM.RecordFilters[0];
+            _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
+            _recordNavigatorView.UpdateDisplay();
+            _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
         }
     }
 }

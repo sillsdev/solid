@@ -10,6 +10,7 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private DateTime _lastWrittenTo;
         private ReportReader _reportReader;
         private String _TempDictionaryPath;
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
@@ -17,23 +18,39 @@ namespace SolidGui
         private RecordNavigatorPM _navigatorModel;
         private FilterChooserPM _filterChooserModel;
         private SfmEditorPM _sfmEditorModel;
+        private SearchPM _searchModel;
 
         public event EventHandler DictionaryProcessed;
 
         public MainWindowPM()
         {
+            _lastWrittenTo = DateTime.Now;
             _reportReader = new ReportReader();
             _TempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.txt");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM();
+            _searchModel = new SearchPM();
 
             FilterChooserModel.RecordFilters = new List<RecordFilter>();
 
+            _searchModel.MasterRecordList = MasterRecordList;
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new RecordFilter();
 
             this.DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
+        }
+
+        public SearchPM SearchModel
+        {
+            get
+            {
+                return _searchModel;
+            }
+            set
+            {
+                _searchModel = value;
+            }
         }
 
         /// <summary>
@@ -94,29 +111,31 @@ namespace SolidGui
 
         public void OpenDictionary(string path)
         {
+            _lastWrittenTo = File.GetLastWriteTime(path);
             _masterRecordList.Clear();
-           TextReader dictReader= File.OpenText(path);
-           SolidConsole.SfmRecordReader reader = new SolidConsole.SfmRecordReader(dictReader, 10000);
-            while (reader.Read())
+            using (TextReader dictReader = File.OpenText(path))
             {
-                if (reader.FieldCount == 0)
-                    continue;
-
-                StringBuilder recordContents = new StringBuilder();
-                for(int i=0; i<reader.FieldCount;i++)
+                SolidConsole.SfmRecordReader reader = new SolidConsole.SfmRecordReader(dictReader, 10000);
+                while (reader.Read())
                 {
-                    recordContents.AppendLine("\\"+reader.Key(i)+" " + reader.Value(i));
-                }
-                _masterRecordList.Add(new Record(recordContents.ToString()));
-            }
+                    if (reader.FieldCount == 0)
+                        continue;
 
+                    StringBuilder recordContents = new StringBuilder();
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        recordContents.AppendLine("\\" + reader.Key(i) + " " + reader.Value(i));
+                    }
+                    _masterRecordList.Add(new Record(recordContents.ToString()));
+                }
+            }
             ProcessLexicon();
         }
 
         public void ProcessLexicon()
         {
 
-            SaveDictionary(_TempDictionaryPath);
+            SaveDictionary(_TempDictionaryPath, false);
             
             //proccess temporary dictionary
             //_TempDictionaryPath
@@ -152,17 +171,35 @@ namespace SolidGui
             FilterChooserModel.RecordFilters = _recordFilters;
         }
 
-        public void SaveDictionary(string path)
+        public bool SaveDictionary(string path, bool checkWriteTime)
         {
-            if(_masterRecordList != null)
+            if (_lastWrittenTo == File.GetLastWriteTime(path) || 
+                !checkWriteTime || 
+                !File.Exists(path))
             {
-                System.Text.StringBuilder builder = new System.Text.StringBuilder();
-                for(int i = 0 ; i < _masterRecordList.Count; i++)
+                if (_masterRecordList != null)
                 {
-                    builder.Append(_masterRecordList[i].Value);
+                    System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                    for (int i = 0; i < _masterRecordList.Count; i++)
+                    {
+                        builder.Append(_masterRecordList[i].Value);
+                    }
+                    File.WriteAllText(path, builder.ToString());
+                    if(checkWriteTime)
+                    {
+                        _lastWrittenTo = File.GetLastWriteTime(path);
+                    }
+                    return true;
                 }
-                File.WriteAllText(path, builder.ToString());
             }
+
+            System.Windows.Forms.MessageBox.Show("The file has been altered outside of Solid",
+                                                 "Error Message",
+                                                 System.Windows.Forms.MessageBoxButtons.OK,
+                                                 System.Windows.Forms.MessageBoxIcon.Error);
+            return false;
+            
+            
         }
     }
 }

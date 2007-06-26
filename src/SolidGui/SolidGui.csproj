@@ -71,6 +71,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SearchView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SearchView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SfmEditorView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SfmEditorView.cs</DependentUpon>
@@ -99,6 +103,14 @@
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportReader.cs" />
+    <Compile Include="SearchPM.cs" />
+    <Compile Include="SearchResult.cs" />
+    <Compile Include="SearchView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchView.Designer.cs">
+      <DependentUpon>SearchView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SfmEditorPM.cs" />
     <Compile Include="SfmEditorView.cs">
       <SubType>UserControl</SubType>

@@ -37,6 +37,7 @@ namespace SolidGui
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -48,7 +49,8 @@ namespace SolidGui
             // 
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
-            this._saveButton});
+            this._saveButton,
+            this.toolStripButton1});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(569, 25);
@@ -138,6 +140,16 @@ namespace SolidGui
             this._sfmEditorView.Size = new System.Drawing.Size(411, 258);
             this._sfmEditorView.TabIndex = 2;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,9 +176,11 @@ namespace SolidGui
         private RecordNavigatorView _recordNavigatorView;
         private SfmEditorView _sfmEditorView;
         private FilterChooserView _filterChooserView;
+        private SearchView _searchView;
         private System.Windows.Forms.Button _processButton;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
