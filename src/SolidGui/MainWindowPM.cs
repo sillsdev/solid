@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace SolidGui
 {
@@ -10,7 +11,11 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private DummyProcessor _dummyProcessor;
+        private string _rulesXmlPath;
+        private MarkerRulesPM _markerRulesModel;
         private DateTime _lastWrittenTo;
+        private List<string> _allMarkers;
         private ReportReader _reportReader;
         private String _TempDictionaryPath;
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
@@ -24,6 +29,11 @@ namespace SolidGui
 
         public MainWindowPM()
         {
+            _rulesXmlPath = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\rules.xml";
+            
+            _dummyProcessor = new DummyProcessor();
+            _markerRulesModel = new MarkerRulesPM();
+            _allMarkers = new List<string>();
             _lastWrittenTo = DateTime.Now;
             _reportReader = new ReportReader();
             _TempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.txt");
@@ -37,8 +47,18 @@ namespace SolidGui
             _searchModel.MasterRecordList = MasterRecordList;
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new RecordFilter();
+            _markerRulesModel.AllMarkers = _allMarkers;
+            _markerRulesModel.RulesXmlPath = _rulesXmlPath;
 
             this.DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
+        }
+
+        public MarkerRulesPM MarkerRulesModel
+        {
+            get
+            {
+                return _markerRulesModel;
+            }
         }
 
         public SearchPM SearchModel
@@ -125,6 +145,10 @@ namespace SolidGui
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
                         recordContents.AppendLine("\\" + reader.Key(i) + " " + reader.Value(i));
+                        if (!_allMarkers.Contains(reader.Key(i)))
+                        {
+                            _allMarkers.Add(reader.Key(i));
+                        }
                     }
                     _masterRecordList.Add(new Record(recordContents.ToString()));
                 }
@@ -139,6 +163,8 @@ namespace SolidGui
             
             //proccess temporary dictionary
             //_TempDictionaryPath
+            _dummyProcessor.ReadRules(_rulesXmlPath);
+            _dummyProcessor.ProcessDictionary(MasterRecordList);
 
             UpdateRecordFilters(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml");
 
@@ -152,6 +178,9 @@ namespace SolidGui
 
         private void UpdateRecordFilters(string reportPath)
         {
+            XmlSerializer xs = new XmlSerializer(typeof(List<RecordFilter>));
+            
+
             _recordFilters.Clear();
 
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
@@ -160,13 +189,20 @@ namespace SolidGui
             _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
 
-            _reportReader.Load(reportPath);
+            if (File.Exists(reportPath))
+            {
+                using (StreamReader reader = new StreamReader(reportPath))
+                {
+                    _recordFilters.AddRange((List<RecordFilter>) xs.Deserialize(reader));
+                }
+            }
+            /*_reportReader.Load(reportPath);
             while (_reportReader.NextRecordFilter())
             {
                 _recordFilters.Add(new RecordFilter(_reportReader.Name,
                                                     _reportReader.Description,
                                                     _reportReader.Indexes));
-            }
+            }*/
 
             FilterChooserModel.RecordFilters = _recordFilters;
         }

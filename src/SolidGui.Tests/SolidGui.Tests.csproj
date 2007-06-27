@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />
+    <Compile Include="MarkerRulesPMTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecordNavigatorPresentationModelTests.cs" />
     <Compile Include="SfmEditorPresentationModelTests.cs" />

@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyProcessor.cs" />
     <Compile Include="FilterChooserPM.cs" />
     <Compile Include="FilterChooserView.cs">
       <SubType>UserControl</SubType>
@@ -52,6 +53,13 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowPM.cs" />
+    <Compile Include="MarkerRulesPM.cs" />
+    <Compile Include="MarkerRulesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MarkerRulesView.Designer.cs">
+      <DependentUpon>MarkerRulesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FilterChooserView.resx">
@@ -61,6 +69,10 @@
     <EmbeddedResource Include="MainWindowView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainWindowView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MarkerRulesView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MarkerRulesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -103,6 +115,7 @@
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportReader.cs" />
+    <Compile Include="Rule.cs" />
     <Compile Include="SearchPM.cs" />
     <Compile Include="SearchResult.cs" />
     <Compile Include="SearchView.cs">

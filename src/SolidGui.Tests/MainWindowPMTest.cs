@@ -73,6 +73,8 @@ namespace SolidGui.Tests
         [Test]
         public void SaveDictionaryFailsWhenDictionaryEditedOutsideOfSolid()
         {
+            //passes when ran individually
+
             _mainWindowPM.OpenDictionary(DictionaryPath);
 
             File.WriteAllText(DictionaryPath,"This is a test");

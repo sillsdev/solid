@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfRule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Rule>
+    <Required>true</Required>
+    <Marker>_sh</Marker>
+    <Name>This is a test?</Name>
+  </Rule>
+  <Rule>
+    <Required>true</Required>
+    <Marker>lx</Marker>
+    <Name>yes it is</Name>
+  </Rule>
+  <Rule>
+    <Required>true</Required>
+    <Marker>nt</Marker>
+    <Name>Missing Note</Name>
+  </Rule>
+  <Rule>
+    <Required>true</Required>
+    <Marker>sd</Marker>
+    <Name>Requires sd Marker</Name>
+  </Rule>
+</ArrayOfRule>

@@ -32,17 +32,22 @@ namespace SolidGui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._saveButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._processButton = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this._filterChooserView = new SolidGui.FilterChooserView();
-            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
+            this._markerRulesView = new SolidGui.MarkerRulesView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -53,7 +58,7 @@ namespace SolidGui
             this.toolStripButton1});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(569, 25);
+            toolStrip1.Size = new System.Drawing.Size(755, 25);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -78,6 +83,16 @@ namespace SolidGui
             this._saveButton.Text = "toolStripButton1";
             this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -93,10 +108,9 @@ namespace SolidGui
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
-            this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
-            this.splitContainer1.Size = new System.Drawing.Size(567, 320);
-            this.splitContainer1.SplitterDistance = 146;
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(753, 323);
+            this.splitContainer1.SplitterDistance = 193;
             this.splitContainer1.TabIndex = 2;
             // 
             // _processButton
@@ -109,52 +123,70 @@ namespace SolidGui
             this._processButton.UseVisualStyleBackColor = true;
             this._processButton.Click += new System.EventHandler(this._processButton_Click);
             // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this._sfmEditorView);
+            this.splitContainer2.Panel1.Controls.Add(this._recordNavigatorView);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this._markerRulesView);
+            this.splitContainer2.Size = new System.Drawing.Size(556, 323);
+            this.splitContainer2.SplitterDistance = 329;
+            this.splitContainer2.TabIndex = 4;
+            // 
             // _filterChooserView
             // 
             this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
+            this._filterChooserView.Location = new System.Drawing.Point(0, 33);
             this._filterChooserView.Model = null;
             this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(146, 290);
+            this._filterChooserView.Size = new System.Drawing.Size(193, 290);
             this._filterChooserView.TabIndex = 0;
+            // 
+            // _sfmEditorView
+            // 
+            this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 65);
+            this._sfmEditorView.Name = "_sfmEditorView";
+            this._sfmEditorView.Size = new System.Drawing.Size(329, 258);
+            this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
             this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._recordNavigatorView.Location = new System.Drawing.Point(3, 0);
+            this._recordNavigatorView.Location = new System.Drawing.Point(3, 3);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(411, 53);
+            this._recordNavigatorView.Size = new System.Drawing.Size(327, 61);
             this._recordNavigatorView.TabIndex = 3;
             // 
-            // _sfmEditorView
+            // _markerRulesView
             // 
-            this._sfmEditorView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._markerRulesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Location = new System.Drawing.Point(3, 59);
-            this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(411, 258);
-            this._sfmEditorView.TabIndex = 2;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this._markerRulesView.Enabled = false;
+            this._markerRulesView.Location = new System.Drawing.Point(3, 57);
+            this._markerRulesView.MarkerRulesModel = null;
+            this._markerRulesView.Name = "_markerRulesView";
+            this._markerRulesView.Size = new System.Drawing.Size(217, 266);
+            this._markerRulesView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(569, 349);
+            this.ClientSize = new System.Drawing.Size(755, 352);
             this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainWindowView";
@@ -165,6 +197,9 @@ namespace SolidGui
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,6 +216,8 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private MarkerRulesView _markerRulesView;
     }
 }
 

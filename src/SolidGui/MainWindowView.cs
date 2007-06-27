@@ -20,6 +20,7 @@ namespace SolidGui
                 return;
             }
             _mainWindowPM = mainWindowPM;
+            _markerRulesView.MarkerRulesModel = _mainWindowPM.MarkerRulesModel;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel; 
         }
@@ -30,6 +31,8 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
+            _markerRulesView.UpdateDisplay();
+            _markerRulesView.Enabled = true;
             UpdateDisplay();
          }
 
