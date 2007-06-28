@@ -34,8 +34,293 @@ namespace SolidConsole {
   //      bool _asAttrs = false;
 //        bool _firstRowHasColumnNames = false;
 //        char _delimiter;
-//        Encoding _encoding;
+        //        Encoding _encoding;
 
+        #region overrides
+        public override bool CanReadBinaryContent
+        {
+            get
+            {
+                return base.CanReadBinaryContent;
+            }
+        }
+
+        public override bool CanReadValueChunk
+        {
+            get
+            {
+                return base.CanReadValueChunk;
+            }
+        }
+        public override bool CanResolveEntity
+        {
+            get
+            {
+                return base.CanResolveEntity;
+            }
+        }
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+        public override bool HasAttributes
+        {
+            get
+            {
+                return (AttributeCount > 0);
+            }
+        }
+        public override bool IsStartElement()
+        {
+            return base.IsStartElement();
+        }
+        public override bool IsStartElement(string localname, string ns)
+        {
+            return base.IsStartElement(localname, ns);
+        }
+        public override bool IsStartElement(string name)
+        {
+            return base.IsStartElement(name);
+        }
+        public override XmlNodeType MoveToContent()
+        {
+            return base.MoveToContent();
+        }
+        public override object ReadContentAs(Type returnType, IXmlNamespaceResolver namespaceResolver)
+        {
+            return base.ReadContentAs(returnType, namespaceResolver);
+        }
+        public override int ReadContentAsBase64(byte[] buffer, int index, int count)
+        {
+            return base.ReadContentAsBase64(buffer, index, count);
+        }
+        public override int ReadContentAsBinHex(byte[] buffer, int index, int count)
+        {
+            return base.ReadContentAsBinHex(buffer, index, count);
+        }
+        public override bool ReadContentAsBoolean()
+        {
+            return base.ReadContentAsBoolean();
+        }
+        public override DateTime ReadContentAsDateTime()
+        {
+            return base.ReadContentAsDateTime();
+        }
+        public override decimal ReadContentAsDecimal()
+        {
+            return base.ReadContentAsDecimal();
+        }
+        public override double ReadContentAsDouble()
+        {
+            return base.ReadContentAsDouble();
+        }
+        public override float ReadContentAsFloat()
+        {
+            return base.ReadContentAsFloat();
+        }
+        public override int ReadContentAsInt()
+        {
+            return base.ReadContentAsInt();
+        }
+        public override long ReadContentAsLong()
+        {
+            return base.ReadContentAsLong();
+        }
+        public override object ReadContentAsObject()
+        {
+            return base.ReadContentAsObject();
+        }
+        public override string ReadContentAsString()
+        {
+            return base.ReadContentAsString();
+        }
+        public override object ReadElementContentAs(Type returnType, IXmlNamespaceResolver namespaceResolver)
+        {
+            return base.ReadElementContentAs(returnType, namespaceResolver);
+        }
+        public override object ReadElementContentAs(Type returnType, IXmlNamespaceResolver namespaceResolver, string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAs(returnType, namespaceResolver, localName, namespaceURI);
+        }
+        public override int ReadElementContentAsBase64(byte[] buffer, int index, int count)
+        {
+            return base.ReadElementContentAsBase64(buffer, index, count);
+        }
+        public override int ReadElementContentAsBinHex(byte[] buffer, int index, int count)
+        {
+            return base.ReadElementContentAsBinHex(buffer, index, count);
+        }
+        public override bool ReadElementContentAsBoolean()
+        {
+            return base.ReadElementContentAsBoolean();
+        }
+        public override bool ReadElementContentAsBoolean(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsBoolean(localName, namespaceURI);
+        }
+        public override DateTime ReadElementContentAsDateTime()
+        {
+            return base.ReadElementContentAsDateTime();
+        }
+        public override DateTime ReadElementContentAsDateTime(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsDateTime(localName, namespaceURI);
+        }
+        public override decimal ReadElementContentAsDecimal()
+        {
+            return base.ReadElementContentAsDecimal();
+        }
+        public override decimal ReadElementContentAsDecimal(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsDecimal(localName, namespaceURI);
+        }
+        public override double ReadElementContentAsDouble()
+        {
+            return base.ReadElementContentAsDouble();
+        }
+        public override double ReadElementContentAsDouble(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsDouble(localName, namespaceURI);
+        }
+        public override float ReadElementContentAsFloat()
+        {
+            return base.ReadElementContentAsFloat();
+        }
+        public override float ReadElementContentAsFloat(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsFloat(localName, namespaceURI);
+        }
+        public override int ReadElementContentAsInt()
+        {
+            return base.ReadElementContentAsInt();
+        }
+        public override int ReadElementContentAsInt(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsInt(localName, namespaceURI);
+        }
+        public override long ReadElementContentAsLong()
+        {
+            return base.ReadElementContentAsLong();
+        }
+        public override long ReadElementContentAsLong(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsLong(localName, namespaceURI);
+        }
+        public override object ReadElementContentAsObject()
+        {
+            return base.ReadElementContentAsObject();
+        }
+        public override object ReadElementContentAsObject(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsObject(localName, namespaceURI);
+        }
+        public override string ReadElementContentAsString()
+        {
+            return base.ReadElementContentAsString();
+        }
+        public override string ReadElementContentAsString(string localName, string namespaceURI)
+        {
+            return base.ReadElementContentAsString(localName, namespaceURI);
+        }
+        public override string ReadElementString()
+        {
+            return base.ReadElementString();
+        }
+        public override string ReadElementString(string localname, string ns)
+        {
+            return base.ReadElementString(localname, ns);
+        }
+        public override string ReadElementString(string name)
+        {
+            return base.ReadElementString(name);
+        }
+        public override void ReadEndElement()
+        {
+            base.ReadEndElement();
+        }
+        public override void ReadStartElement()
+        {
+            base.ReadStartElement();
+        }
+        public override void ReadStartElement(string localname, string ns)
+        {
+            
+            base.ReadStartElement(localname, ns);
+        }
+        public override void ReadStartElement(string name)
+        {
+            base.ReadStartElement(name);
+        }
+        public override XmlReader ReadSubtree()
+        {
+            return base.ReadSubtree();
+        }
+        public override bool ReadToDescendant(string localName, string namespaceURI)
+        {
+            return base.ReadToDescendant(localName, namespaceURI);
+        }
+        public override bool ReadToDescendant(string name)
+        {
+            return base.ReadToDescendant(name);
+        }
+        public override bool ReadToFollowing(string localName, string namespaceURI)
+        {
+            return base.ReadToFollowing(localName, namespaceURI);
+        }
+        public override bool ReadToFollowing(string name)
+        {
+            return base.ReadToFollowing(name);
+        }
+        public override bool ReadToNextSibling(string localName, string namespaceURI)
+        {
+            return base.ReadToNextSibling(localName, namespaceURI);
+        }
+        public override bool ReadToNextSibling(string name)
+        {
+            return base.ReadToNextSibling(name);
+        }
+        public override int ReadValueChunk(char[] buffer, int index, int count)
+        {
+            return base.ReadValueChunk(buffer, index, count);
+        }
+        public override System.Xml.Schema.IXmlSchemaInfo SchemaInfo
+        {
+            get
+            {
+                return base.SchemaInfo;
+            }
+        }
+        public override XmlReaderSettings Settings
+        {
+            get
+            {
+                return base.Settings;
+            }
+        }
+        public override void Skip()
+        {
+            base.Skip();
+        }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+        public override Type ValueType
+        {
+            get
+            {
+                return base.ValueType;
+            }
+        }
+        #endregion
         protected virtual void Init() {
         }
 
@@ -47,6 +332,18 @@ namespace SolidConsole {
             _nt = new NameTable();
         }
 
+        /// <summary>
+        /// Construct an XmlCustomReader.
+        /// </summary>
+        /// <param name="location">The location of the .csv file</param>
+        /// <param name="nametable">The nametable to use for atomizing element names</param>
+        public CustomXmlReader(Uri location)
+        {
+            _baseUri = location;
+            _href = location;
+            _nt = new NameTable();
+        }
+        
         /// <summary>
         /// Construct an XmlCustomReader.
         /// </summary>
@@ -67,7 +364,7 @@ namespace SolidConsole {
         /// This is optional.
         /// </summary>
         public string BaseUri {
-            get { return _baseUri == null ? "" : _baseUri.AbsoluteUri; }
+            get { return _baseUri == null ? String.Empty : _baseUri.AbsoluteUri; }
             set { _baseUri = new Uri(value); }
         }
 
@@ -150,7 +447,7 @@ namespace SolidConsole {
         { 
             get 
             {
-                return false;
+                return Value != String.Empty;
             }
         }
 
@@ -174,7 +471,7 @@ namespace SolidConsole {
         { 
             get 
             {
-                return _baseUri.AbsolutePath;
+                return _baseUri != null ? _baseUri.AbsolutePath : String.Empty;
             }
         }
 

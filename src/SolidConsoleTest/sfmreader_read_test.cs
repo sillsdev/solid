@@ -1,75 +1,100 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using NUnit.Framework;
 using SolidConsole;
 
-namespace SolidConsoleTest
+namespace SolidTests
 {
     [TestFixture]
     public class SfmReader_Read_Test
     {
-        SfmRecordReader _sfmReader;
-        bool _result;
-
         [TestFixtureSetUp]
         public void Init()
         {
-            Uri uri = new Uri("file://c:/src/sil/solid/trunk/data/dict2.txt");
-            _sfmReader = new SfmRecordReader(uri, Encoding.Default, "", 4096);
-            _result = _sfmReader.Read();
-            _result = _sfmReader.Read();
         }
 
         [Test]
-        public void RecordRead_True()
+        public void EmptySFMRecordRead_False()
         {
-            Assert.AreEqual(true, _result);
+            string sfm = @"";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(false, result);
         }
 
         [Test]
-        public void RecordFieldCount_38()
+        public void HeaderOnlySFMRecordRead_False()
         {
-            Assert.AreEqual(38, _sfmReader.FieldCount);
+            string sfm = 
+                "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
+                "\\_DateStampHasFourDigitYear\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(false, result);
         }
 
         [Test]
-        public void RecordKey0_Correct()
+        public void OneSFMRecordRead_Correct()
         {
-            Assert.AreEqual("lx", _sfmReader.Key(0));
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(38, r.FieldCount);
+            Assert.AreEqual("lx", r.Key(0));
         }
 
         [Test]
-        public void RecordKey1_Correct()
+        public void OneSFMRecordRead_FieldCount_Correct()
         {
-            Assert.AreEqual("ph", _sfmReader.Key(1));
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(38, r.FieldCount);
+        }
+
+        [Test]
+        public void OneSFMRecordRead_Key0_Correct()
+        {
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual("lx", r.Key(0));
+        }
+
+        [Test]
+        public void OneSFMRecordRead_Key1_Correct()
+        {
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual("ph", r.Key(1));
         }
 
         [Test]
         public void RecordStartLine_Correct()
         {
-            Assert.AreEqual(4, _sfmReader._recordStartLine);
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(4, r._recordStartLine);
         }
 
         [Test]
         public void RecordEndLine_Correct()
         {
-            Assert.AreEqual(44, _sfmReader._recordEndLine);
+            string file = "../../../../data/dict2.txt";
+            SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(44, r._recordEndLine);
         }
-
-
-        /*
-        [Test]
-        public void Key1_Correct()
-        { 
-            foreach (SFMRecord record in _sfmReader)
-            {
-                foreach (SFMField field in record)
-                {
-                }
-            }
-        }
-        */
 
     }
 }
