@@ -11,7 +11,11 @@ namespace SolidGui
         private string _name;
 
         public Rule()
-        {}
+        {
+            Name = "";
+            Marker = "";
+            Required = false;
+        }
 
         public Rule(string name, string marker, bool required)
         {

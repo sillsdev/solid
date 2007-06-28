@@ -31,7 +31,7 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
-            _markerRulesView.UpdateDisplay();
+            _markerRulesView.UpdateRuleNameComboBox("(New Rule)");
             _markerRulesView.Enabled = true;
             UpdateDisplay();
          }

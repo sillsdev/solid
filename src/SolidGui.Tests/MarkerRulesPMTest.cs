@@ -17,12 +17,13 @@ namespace SolidGui.Tests
             _folderPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_folderPath);
             _xmlPath = Path.Combine(_folderPath, "test.xml");
-            
+
             _markerRulesModel = new MarkerRulesPM();
-            _markerRulesModel.AddRule("name","nt", true);
-            _markerRulesModel.AddRule("name","ge", true);
-            _markerRulesModel.AddRule("name","ps", false);
             _markerRulesModel.RulesXmlPath = _xmlPath;
+            _markerRulesModel.AddRule("name1","nt", true);
+            _markerRulesModel.AddRule("name2","ge", true);
+            _markerRulesModel.AddRule("name3","ps", false);
+            
         }
 
         [TearDown]
@@ -31,7 +32,7 @@ namespace SolidGui.Tests
             TestUtilities.DeleteFolderThatMayBeInUse(_folderPath);
         }
 
-        [Test]
+       [Test]
         public void WriteRulestoXmlWillWriteXmlFile()
         {
             _markerRulesModel.WriteRulesToXml();
@@ -45,20 +46,20 @@ namespace SolidGui.Tests
         [Test]
         public void GetRuleReturnsCorrectRule()
         {
-            Rule rule = _markerRulesModel.GetRule("nt");
-            Assert.AreEqual(rule.Marker,"nt");
+            Rule rule = _markerRulesModel.GetRule("name1");
+            Assert.AreEqual(rule.Name,"name1");
         }
 
         [Test]
-        public void MarkerAlreadyHasRuleFindsRealMarker()
+        public void RuleNameDoesNotExistAssertsNamesExistance()
         {
-            Assert.IsTrue(_markerRulesModel.MarkerAlreadyHasRule("nt"));
+            Assert.IsFalse(_markerRulesModel.RuleNameDoesNotExist("name1"));
         }
 
         [Test]
-        public void MarkerAllreadyHasRuleDoesntFindFakeMarker()
+        public void RuleNameDoesNotExistAssertsNamesNonExistance()
         {
-            Assert.IsFalse(_markerRulesModel.MarkerAlreadyHasRule("soidjfsod"));
+            Assert.IsTrue(_markerRulesModel.RuleNameDoesNotExist("nt"));
         }
 
         [Test]
@@ -71,7 +72,7 @@ namespace SolidGui.Tests
             _markerRulesModel.WriteRulesToXml();
             model.ReadRulesFromXml();
 
-            Assert.IsTrue(model.MarkerAlreadyHasRule("nt"));
+            Assert.IsFalse(model.RuleNameDoesNotExist("name1"));
         }
     }
 }

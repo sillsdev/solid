@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -17,27 +18,27 @@ namespace SolidGui
 
         public void AddRule(string name, string marker, bool required)
         {
-            if(!MarkerAlreadyHasRule(marker))
+            if(RuleNameDoesNotExist(name))
             {
                 _rules.Add(new Rule(name, marker, required));
             }
             else
             {
-                Rule rule = GetRule(marker);
+                Rule rule = GetRule(name);
                 rule.Required = required;
             }
         }
 
-        public bool MarkerAlreadyHasRule(string marker)
+        public bool RuleNameDoesNotExist(string name)
         {
             foreach (Rule rule in _rules)
             {
-                if (rule.Marker == marker)
+                if (rule.Name == name)
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
 
         public void WriteRulesToXml()
@@ -54,16 +55,16 @@ namespace SolidGui
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<Rule>));
 
-            if (File.Exists(_rulesXmlPath))
+            try 
             {
                 using (StreamReader reader = new StreamReader(_rulesXmlPath))
                 {
-                    _rules = (List<Rule>) xs.Deserialize(reader);
+                        _rules = (List<Rule>) xs.Deserialize(reader);
                 }
             }
-            else
+            catch
             {
-                _rules = new List<Rule>();   
+                _rules = new List<Rule>();
             }
         }
 
@@ -88,16 +89,31 @@ namespace SolidGui
             }
         }
 
-        public Rule GetRule(string marker)
+        public Rule GetRule(string name)
         {
             foreach (Rule rule in _rules)
             {
-                if (rule.Marker == marker)
+                if (rule.Name == name)
                 {
                     return rule;
                 }
             }
-            return new Rule(marker);
+            return new Rule();
+        }
+
+        public List<string> GetAllRuleNames()
+        {
+            List<string> allNames = new List<string>();
+            foreach(Rule rule in _rules)
+            {
+                allNames.Add(rule.Name);
+            }
+            return allNames;
+        }
+
+        public void RemoveRule(string name)
+        {
+            _rules.Remove(GetRule(name));
         }
     }
 }

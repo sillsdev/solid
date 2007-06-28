@@ -11,10 +11,12 @@ namespace SolidGui
         private string _pattern;
         public RegExRecordFilter(string name, string pattern, bool matchWhenNotFound,List<Record> records)
         {
+            _descriptions = new List<string>();
             _matchWhenNotFound = matchWhenNotFound;
             _name = name;
             _pattern = pattern;
             _indexesOfRecords = GetIndicesOfMatchingRecords(records);
+            
         }
         public RegExRecordFilter(string name, string pattern, List<Record> records):this(name,pattern,false,records)
         {
@@ -35,16 +37,17 @@ namespace SolidGui
                 if(match == !_matchWhenNotFound)
                 {
                     _indexesOfRecords.Add(i);
+                    _descriptions.Add(String.Format("Records that match '{0}'", _pattern));
                 }
             }
             return _indexesOfRecords;
         }
 
-        public override string Description
+        public override List<string> Descriptions
         {
             get
             {
-                return String.Format("Records that match '{0}'",_pattern);
+                return _descriptions;
             }
         }
     }
@@ -55,7 +58,7 @@ namespace SolidGui
         public AllRecordFilter(List<Record> records)
         {
             _name = "All";
-            _description = "These are all the records in the dictionary";
+            _descriptions = new List<string>();
             _indexesOfRecords = GetIndicesOfMatchingRecords(records);
         }
 
@@ -65,6 +68,7 @@ namespace SolidGui
 
             for(int i = 0 ; i <records.Count ; i++)
             {
+                _descriptions.Add("These are all the records in the dictionary");
                 _indexesOfRecords.Add(i);
             }
             return _indexesOfRecords;
@@ -74,7 +78,7 @@ namespace SolidGui
     public class NullRecordFilter : RecordFilter
     {
         public NullRecordFilter()
-            : base("None", "Should be empty",new List<int>())
+            : base("None", new List<string>(), new List<int>())
         {
         }
     }
@@ -82,20 +86,20 @@ namespace SolidGui
     public class RecordFilter
     {
         protected string _name;
-        protected string _description;
+        protected List<string> _descriptions;
         protected List<int> _indexesOfRecords;
 
         public RecordFilter()
         {
             _name = "";
-            _description = "";
+            _descriptions = new List<string>();
             _indexesOfRecords = new List<int>();
         }
 
-        public RecordFilter(string name, string description, List<int> indexes)
+        public RecordFilter(string name, List<string> descriptions, List<int> indexes)
         {
             _name = name;
-            _description = description;
+            _descriptions = descriptions;
             _indexesOfRecords = indexes;
 
         }
@@ -111,15 +115,15 @@ namespace SolidGui
                 _name = value;
             }
         }
-        public virtual string Description
+        public virtual List<string> Descriptions
         {
             get
             {
-                return _description;
+                return _descriptions;
             }
             set
             {
-                _description = value;
+                _descriptions = value;
             }
         }
         public List<int> IndexesOfRecords

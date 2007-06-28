@@ -22,9 +22,16 @@ namespace SolidGui
         public void ReadRules(string rulesPath)
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<Rule>));
-            using (StreamReader reader = new StreamReader(rulesPath))
+            try
             {
-                _rules = (List<Rule>) xs.Deserialize(reader);
+                using (StreamReader reader = new StreamReader(rulesPath))
+                {
+                    _rules = (List<Rule>) xs.Deserialize(reader);
+                }
+            }
+            catch
+            {
+                _rules = new List<Rule>();
             }
         }
 
@@ -36,22 +43,21 @@ namespace SolidGui
             {
                 int index = 0;
                 List<int> indexesOfRecords = new List<int>();
+                List<string> description = new List<string>();
                 
                 foreach (Record record in masterRecordList)
                 {
                     if(rule.Required == true && record.Value.IndexOf(rule.Marker) == -1)
                     {
+                        description.Add("This Record doesn't have a " + rule.Marker + " marker");
                         indexesOfRecords.Add(index);
                     }
 
                     index++;
                 }
-                if(indexesOfRecords.Count > 0)
-                {
                     _filters.Add(new RecordFilter("Violations of rule "+rule.Name,
-                                                   "These Records don't have a " + rule.Marker + " marker",
+                                                   description,
                                                    indexesOfRecords));
-                }
             }
 
             WriteReport();

@@ -79,7 +79,14 @@ namespace SolidGui
         {
             get
             {
-                return _recordFilter.Description;
+                if (CurrentIndexIntoFilteredRecords != -1)
+                {
+                    return _recordFilter.Descriptions[CurrentIndexIntoFilteredRecords];
+                }
+                else 
+                {
+                    return "";
+                }
             }
         }
 
