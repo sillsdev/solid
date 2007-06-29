@@ -43,6 +43,7 @@
     <Compile Include="sfmreader_read_test.cs" />
     <Compile Include="sfmxmlreader_read_test.cs" />
     <Compile Include="sfmxmlreader_xmldoc_test.cs" />
+    <Compile Include="SolidFile_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolidConsole\SolidConsole.csproj">
