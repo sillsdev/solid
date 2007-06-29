@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="customxmlreader.cs" />
     <Compile Include="MultiplicityAdjacency.cs" />
+    <Compile Include="ProcessStructure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sfmxmlreader.cs" />

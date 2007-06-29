@@ -25,34 +25,15 @@ namespace SolidTests
         }
 
         [Test]
-        public void SolidFile_Close_ResetProperties()
+        public void SolidFile_Write1Read1_Correct()
         {
-            SolidFile f = new SolidFile();
-            f.File = "myfile";
-            f.Close();
-            Assert.AreEqual(String.Empty, f.File);
-        }
-
-        [Test]
-        public void SolidFile_WriteRead_Correct()
-        {
-            SolidFile f = new SolidFile();
-            f.File = "myfile.solid";
-            f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
-            Assert.AreEqual(1, f.MarkerSettings.Count);
-            f.Close();
-            Assert.AreEqual(0, f.MarkerSettings.Count);
-            Assert.AreEqual("myfile.solid", f.File);
-        }
-
-        [Test]
-        public void SolidFileWriteRead_Correct()
-        {
-            SolidFile f = new SolidFile();
+            SolidFile f;
+            f = new SolidFile();
             f.File = "myfile.solid";
             f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
             f.Write();
-            f.Close();
+            f = new SolidFile();
+            f.File = "myfile.solid";
             Assert.AreEqual(0, f.MarkerSettings.Count);
             f.Read();
             Assert.AreEqual(1, f.MarkerSettings.Count);

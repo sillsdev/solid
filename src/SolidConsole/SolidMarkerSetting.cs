@@ -5,6 +5,10 @@ using System.Text;
 namespace SolidConsole
 {
 
+    public class SolidMarkerSettings : List<SolidMarkerSetting>
+    {
+    }
+
     public class SolidMarkerSetting
     {
         private List<SolidStructureProperty> _structureProperties;

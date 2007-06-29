@@ -8,13 +8,16 @@ namespace SolidConsole
 {
     public class SolidFile
     {
-        public class SolidMarkerSettings : List<SolidMarkerSetting>
+        public class SolidFileData
         {
-        }
-
-        class SolidFileData
-        {
+            private string _recordMarker = "\\_lx";
             private SolidMarkerSettings _markerSettings = new SolidMarkerSettings();
+
+            public string RecordMarker
+            {
+                get { return _recordMarker; }
+                set { _recordMarker = value; }
+            }
 
             public SolidMarkerSettings MarkerSettings
             {
@@ -26,7 +29,7 @@ namespace SolidConsole
             }
         }
 
-        private SolidFileData _solidData;
+        private SolidFileData _solidData = new SolidFileData();
 
         private string _file;
 
@@ -59,12 +62,6 @@ namespace SolidConsole
         {
             _file = file;
             Read();
-        }
-
-        public void Close()
-        {
-            _solidData = new SolidFileData();
-            _file = String.Empty;
         }
 
         public void Read()

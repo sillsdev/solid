@@ -10,6 +10,9 @@ namespace SolidConsole
         string _reportFile;
         string _outputFile;
 
+        SolidFile _solidFile = new SolidFile();
+        SolidReport _solidReport = new SolidReport();
+
         public Solidifier()
         {
         
@@ -32,8 +35,6 @@ namespace SolidConsole
 
         private void ProcessEntry(XmlReader r)
         {
-            XmlDocument d = new XmlDocument();
-            d.Load(r);
         }
 
     }
