@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Text;
+using System.Windows.Forms;
+
+namespace SolidGui
+{
+    public partial class MarkerSettingsView : UserControl
+    {
+        private MarkerSettingsPM _model;
+
+        public MarkerSettingsPM Model
+        {
+            get
+            {
+                return _model; 
+            }
+            set
+            {
+                _model = value;
+            }
+        }
+
+        public MarkerSettingsView()
+        {
+            InitializeComponent();
+        }
+
+        public void UpdateDisplay()
+        {
+            foreach (string marker in _model.AllMarkers)
+            {
+                ListViewItem item = new ListViewItem(marker);
+                item.Tag = _model.GetMarkerSetting(marker);
+                _markersListView.Items.Add(item);
+            }
+        }
+
+        private void _markersListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_markersListView.SelectedItems.Count > 0)
+            {
+                _structurePropertiesView.Model.MarkerSetting = (SolidConsole.SolidMarkerSetting) _markersListView.SelectedItems[0].Tag;
+                _structurePropertiesView.UpdateDisplay();
+            }
+
+             
+        }
+    }
+}

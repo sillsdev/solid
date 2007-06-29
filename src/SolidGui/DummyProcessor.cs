@@ -3,64 +3,41 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+using SolidConsole;
 
 namespace SolidGui
 {
     class DummyProcessor
     {
-        private List<Rule> _rules;
+        private List<SolidStructureProperty> _rules;
         private string _reportPath;
         private List<RecordFilter> _filters;
 
         public DummyProcessor()
         {
-            _rules = new List<Rule>();
+            _rules = new List<SolidStructureProperty>();
             _reportPath = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml";
             _filters = new List<RecordFilter>();
         }
 
         public void ReadRules(string rulesPath)
         {
-            XmlSerializer xs = new XmlSerializer(typeof(List<Rule>));
+            XmlSerializer xs = new XmlSerializer(typeof(List<SolidStructureProperty>));
             try
             {
                 using (StreamReader reader = new StreamReader(rulesPath))
                 {
-                    _rules = (List<Rule>) xs.Deserialize(reader);
+                    _rules = (List<SolidStructureProperty>) xs.Deserialize(reader);
                 }
             }
             catch
             {
-                _rules = new List<Rule>();
+                _rules = new List<SolidStructureProperty>();
             }
         }
 
         public void ProcessDictionary(List<Record> masterRecordList)
         {
-            _filters.Clear();
-
-            foreach (Rule rule in _rules)
-            {
-                int index = 0;
-                List<int> indexesOfRecords = new List<int>();
-                List<string> description = new List<string>();
-                
-                foreach (Record record in masterRecordList)
-                {
-                    if(rule.Required == true && record.Value.IndexOf(rule.Marker) == -1)
-                    {
-                        description.Add("This Record doesn't have a " + rule.Marker + " marker");
-                        indexesOfRecords.Add(index);
-                    }
-
-                    index++;
-                }
-                    _filters.Add(new RecordFilter("Violations of rule "+rule.Name,
-                                                   description,
-                                                   indexesOfRecords));
-            }
-
-            WriteReport();
         }
 
         private void WriteReport()

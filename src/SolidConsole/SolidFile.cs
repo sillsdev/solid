@@ -8,17 +8,17 @@ namespace SolidConsole
 {
     public class SolidFile
     {
-        public class SolidRules : List<SolidRule>
+        public class SolidMarkerSettings : List<SolidMarkerSetting>
         {
         }
 
         class SolidFileData
         {
-            private SolidRules _rules = new SolidRules();
+            private SolidMarkerSettings _markerSettings = new SolidMarkerSettings();
 
-            public SolidRules Rules
+            public SolidMarkerSettings MarkerSettings
             {
-                get { return _rules; }
+                get { return _markerSettings; }
             }
 
             public SolidFileData()
@@ -37,9 +37,9 @@ namespace SolidConsole
             set { _file = value; }
         }
 
-        public SolidRules Rules
+        public SolidMarkerSettings MarkerSettings
         {
-            get { return _solidData.Rules; }
+            get { return _solidData.MarkerSettings; }
         }
 
         #endregion

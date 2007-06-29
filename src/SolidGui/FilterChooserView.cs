@@ -69,7 +69,7 @@ namespace SolidGui
             {
                 ListViewItem item = new ListViewItem();
                 item.Tag = filter;
-                item.Text = filter.Name+"("+filter.RecordCount+")";
+                item.Text = filter.Name+" ("+filter.RecordCount+")";
                 _listControl.Items.Add(item);
             }
         }

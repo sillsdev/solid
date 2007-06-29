@@ -54,11 +54,19 @@
     </Compile>
     <Compile Include="MainWindowPM.cs" />
     <Compile Include="MarkerRulesPM.cs" />
-    <Compile Include="MarkerRulesView.cs">
+    <Compile Include="MarkerSettingsPM.cs" />
+    <Compile Include="MarkerSettingsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MarkerRulesView.Designer.cs">
-      <DependentUpon>MarkerRulesView.cs</DependentUpon>
+    <Compile Include="MarkerSettingsView.Designer.cs">
+      <DependentUpon>MarkerSettingsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StructurePropertiesPM.cs" />
+    <Compile Include="StructurePropertiesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="StructurePropertiesView.Designer.cs">
+      <DependentUpon>StructurePropertiesView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,9 +78,13 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MarkerRulesView.resx">
+    <EmbeddedResource Include="MarkerSettingsView.resx">
       <SubType>Designer</SubType>
-      <DependentUpon>MarkerRulesView.cs</DependentUpon>
+      <DependentUpon>MarkerSettingsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StructurePropertiesView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>StructurePropertiesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -115,7 +127,6 @@
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportReader.cs" />
-    <Compile Include="Rule.cs" />
     <Compile Include="SearchPM.cs" />
     <Compile Include="SearchResult.cs" />
     <Compile Include="SearchView.cs">

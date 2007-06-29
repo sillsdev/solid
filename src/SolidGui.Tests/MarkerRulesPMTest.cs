@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using SolidConsole;
 using NUnit.Framework;
 
 namespace SolidGui.Tests
@@ -20,9 +22,19 @@ namespace SolidGui.Tests
 
             _markerRulesModel = new MarkerRulesPM();
             _markerRulesModel.RulesXmlPath = _xmlPath;
-            _markerRulesModel.AddRule("name1","nt", true);
-            _markerRulesModel.AddRule("name2","ge", true);
-            _markerRulesModel.AddRule("name3","ps", false);
+
+            List<string> allMarkers = new List<string>();
+
+            allMarkers.Add("lx");
+            allMarkers.Add("nt");
+            allMarkers.Add("ps");
+
+            _markerRulesModel.AllMarkers = allMarkers;
+            _markerRulesModel.SelectedMarker = "lx";
+
+            _markerRulesModel.AddProperty("nt",MultiplicityAdjacency.Once);
+            _markerRulesModel.AddProperty("ge",MultiplicityAdjacency.Once);
+            _markerRulesModel.AddProperty("ps",MultiplicityAdjacency.Once);
             
         }
 
@@ -39,27 +51,27 @@ namespace SolidGui.Tests
             string[] file = File.ReadAllLines(_xmlPath);
             System.Xml.XmlDocument doc = new XmlDocument();
             doc.Load(_xmlPath);
-            XmlNodeList nodelist = doc.GetElementsByTagName("Rule");
+            XmlNodeList nodelist = doc.GetElementsByTagName("StructureProperty");
 
             Assert.AreEqual(3, nodelist.Count );
         }
         [Test]
         public void GetRuleReturnsCorrectRule()
         {
-            Rule rule = _markerRulesModel.GetRule("name1");
-            Assert.AreEqual(rule.Name,"name1");
+            SolidStructureProperty structureProperty = _markerRulesModel.GetProperty("nt");
+            Assert.AreEqual(structureProperty.Parent,"nt");
         }
 
         [Test]
         public void RuleNameDoesNotExistAssertsNamesExistance()
         {
-            Assert.IsFalse(_markerRulesModel.RuleNameDoesNotExist("name1"));
+            Assert.IsFalse(_markerRulesModel.PropertyDoesNotExist("nt"));
         }
 
         [Test]
         public void RuleNameDoesNotExistAssertsNamesNonExistance()
         {
-            Assert.IsTrue(_markerRulesModel.RuleNameDoesNotExist("nt"));
+            Assert.IsTrue(_markerRulesModel.PropertyDoesNotExist("nts"));
         }
 
         [Test]
@@ -72,7 +84,9 @@ namespace SolidGui.Tests
             _markerRulesModel.WriteRulesToXml();
             model.ReadRulesFromXml();
 
-            Assert.IsFalse(model.RuleNameDoesNotExist("name1"));
+            model.SelectedMarker = "lx";
+
+            Assert.IsFalse(model.PropertyDoesNotExist("nt"));
         }
     }
 }

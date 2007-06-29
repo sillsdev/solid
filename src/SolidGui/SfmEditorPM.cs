@@ -6,7 +6,6 @@ namespace SolidGui
 {
     public class SfmEditorPM
     {
-        private string _currentRecord;
         public class RecordEditedEventArgs:EventArgs
         {
             public string _record;

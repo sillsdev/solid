@@ -2,40 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
+using SolidConsole;
 
 namespace SolidGui
 {
     public class MarkerRulesPM
     {
+        private string _selectedMarker;
         private List<string> _allMarkers;
-        private List<Rule> _rules;
+        private List<SolidMarkerSetting> _markerProperties;
         private string _rulesXmlPath;
 
         public MarkerRulesPM()
         {
-            _rules = new List<Rule>();
+            _markerProperties = new List<SolidMarkerSetting>();
         }
 
-        public void AddRule(string name, string marker, bool required)
+        public void AddProperty(string parent, MultiplicityAdjacency ma)
         {
-            if(RuleNameDoesNotExist(name))
-            {
-                _rules.Add(new Rule(name, marker, required));
-            }
-            else
-            {
-                Rule rule = GetRule(name);
-                rule.Required = required;
-            }
-        }
+            SolidMarkerSetting current = GetMarkerProperties(_selectedMarker);
 
-        public bool RuleNameDoesNotExist(string name)
-        {
-            foreach (Rule rule in _rules)
+            if(current!= null)
             {
-                if (rule.Name == name)
+                if (PropertyDoesNotExist(parent))
                 {
-                    return false;
+                    current.StructureProperties.Add(new SolidStructureProperty(parent,ma));
+                }
+                else
+                {
+                    SolidStructureProperty structureProperty = GetProperty(parent);
+
+                    structureProperty.Parent = parent;
+                    structureProperty.MultipleAdjacent = ma;
+                }
+            }
+        }
+
+        private SolidMarkerSetting GetMarkerProperties(string marker)
+        {
+            foreach(SolidMarkerSetting mp in _markerProperties)
+            {
+                if(mp.Marker == marker)
+                {
+                    return mp;
+                }
+            }
+            SolidMarkerSetting newProperty = new SolidMarkerSetting(marker);
+            _markerProperties.Add(newProperty);
+            return newProperty;
+        }
+
+        public bool PropertyDoesNotExist(string parent)
+        {
+            SolidMarkerSetting current = GetMarkerProperties(_selectedMarker);
+
+            if (current != null)
+            {
+                foreach (SolidStructureProperty property in current.StructureProperties)
+                {
+                    if (property.Parent == parent)
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -43,28 +71,40 @@ namespace SolidGui
 
         public void WriteRulesToXml()
         {
-            XmlSerializer xs = new XmlSerializer(typeof (List<Rule>));
+            XmlSerializer xs = new XmlSerializer(typeof (List<SolidMarkerSetting>));
 
             using (StreamWriter writer = new StreamWriter(_rulesXmlPath))
             {
-                xs.Serialize(writer, _rules);
+                xs.Serialize(writer, _markerProperties);
             }
         }
 
         public void ReadRulesFromXml()
         {
-            XmlSerializer xs = new XmlSerializer(typeof(List<Rule>));
+            XmlSerializer xs = new XmlSerializer(typeof(List<SolidMarkerSetting>));
 
             try 
             {
                 using (StreamReader reader = new StreamReader(_rulesXmlPath))
                 {
-                        _rules = (List<Rule>) xs.Deserialize(reader);
+                        _markerProperties = (List<SolidMarkerSetting>) xs.Deserialize(reader);
                 }
             }
             catch
             {
-                _rules = new List<Rule>();
+                _markerProperties = new List<SolidMarkerSetting>();
+            }
+        }
+
+        public string SelectedMarker
+        {
+            get
+            {
+                return _selectedMarker;
+            }
+            set
+            {
+                _selectedMarker = value;
             }
         }
 
@@ -89,31 +129,42 @@ namespace SolidGui
             }
         }
 
-        public Rule GetRule(string name)
+        public SolidStructureProperty GetProperty(string parent)
         {
-            foreach (Rule rule in _rules)
+            SolidMarkerSetting current = GetMarkerProperties(_selectedMarker);
+            if (current != null)
             {
-                if (rule.Name == name)
+                foreach (SolidStructureProperty property in current.StructureProperties)
                 {
-                    return rule;
+                    if (property.Parent == parent)
+                    {
+                        return property;
+                    }
                 }
             }
-            return new Rule();
+            return new SolidStructureProperty();
         }
 
-        public List<string> GetAllRuleNames()
+        public void RemoveRule(string description)
         {
-            List<string> allNames = new List<string>();
-            foreach(Rule rule in _rules)
+            SolidMarkerSetting current = GetMarkerProperties(_selectedMarker);
+            if (current != null)
             {
-                allNames.Add(rule.Name);
+                current.StructureProperties.Remove(GetProperty(description));
             }
-            return allNames;
         }
 
-        public void RemoveRule(string name)
+        public void SetInferedParent(string inferedParent)
         {
-            _rules.Remove(GetRule(name));
+            SolidMarkerSetting current = GetMarkerProperties(_selectedMarker);
+            {
+                current.InferedParent = inferedParent;
+            }
+        }
+
+        public string GetInferedParent()
+        {
+            return GetMarkerProperties(_selectedMarker).InferedParent;
         }
     }
 }

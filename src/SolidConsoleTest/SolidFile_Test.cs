@@ -38,10 +38,10 @@ namespace SolidTests
         {
             SolidFile f = new SolidFile();
             f.File = "myfile.solid";
-            f.Rules.Add(new SolidRule("marker", "mk", true));
-            Assert.AreEqual(1, f.Rules.Count);
+            f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
+            Assert.AreEqual(1, f.MarkerSettings.Count);
             f.Close();
-            Assert.AreEqual(0, f.Rules.Count);
+            Assert.AreEqual(0, f.MarkerSettings.Count);
             Assert.AreEqual("myfile.solid", f.File);
         }
 
@@ -50,12 +50,12 @@ namespace SolidTests
         {
             SolidFile f = new SolidFile();
             f.File = "myfile.solid";
-            f.Rules.Add(new SolidRule("marker", "mk", true));
+            f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
             f.Write();
             f.Close();
-            Assert.AreEqual(0, f.Rules.Count);
+            Assert.AreEqual(0, f.MarkerSettings.Count);
             f.Read();
-            Assert.AreEqual(1, f.Rules.Count);
+            Assert.AreEqual(1, f.MarkerSettings.Count);
         }
 
     }
