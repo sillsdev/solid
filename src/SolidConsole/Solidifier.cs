@@ -26,7 +26,7 @@ namespace SolidConsole
 
         public void Process(XmlReader xr)
         {
-            ProcessStructure process = new ProcessStructure(_solidReport);
+            ProcessStructure process = new ProcessStructure(_solidReport, null); //!!!
             while (xr.ReadToFollowing("entry"))
             {
                 XmlReader entryReader = xr.ReadSubtree();
