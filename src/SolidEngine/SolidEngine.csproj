@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="customxmlreader.cs" />
-    <Compile Include="lexmgr.cs" />
     <Compile Include="MultiplicityAdjacency.cs" />
     <Compile Include="ProcessStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -50,6 +50,10 @@
       <Project>{2AE6670D-904B-42E3-AEBC-453649B1A6A3}</Project>
       <Name>SolidConsole</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
+      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
+      <Name>SolidEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SolidGui\SolidGui.csproj">
       <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
       <Name>SolidGui</Name>
