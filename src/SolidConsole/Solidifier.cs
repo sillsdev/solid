@@ -24,17 +24,22 @@ namespace SolidConsole
             Process(reader);
         }
 
-        public void Process(XmlReader r)
+        public void Process(XmlReader xr)
         {
-            while (r.ReadToFollowing("entry"))
+            ProcessStructure process = new ProcessStructure(_solidReport);
+            while (xr.ReadToFollowing("entry"))
             {
-                XmlReader entryReader = r.ReadSubtree();
-                ProcessEntry(entryReader);
+                XmlReader entryReader = xr.ReadSubtree();
+                // Load the current record from xr into an XmlDocument
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.Load(xr);
+                process.Process(xmldoc);
             }
         }
 
         private void ProcessEntry(XmlReader r)
         {
+
         }
 
     }

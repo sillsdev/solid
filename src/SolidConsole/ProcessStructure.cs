@@ -8,12 +8,14 @@ namespace SolidConsole
     public class ProcessStructure
     {
         SolidReport _report;
+        SolidMarkerSettings _markerSettings;
 
         XmlDocument _xmlDoc;
 
-        public ProcessStructure(SolidReport report)
+        public ProcessStructure(SolidReport report, SolidMarkerSettings markerSettings)
         {
             _report = report;
+            _markerSettings = markerSettings;
         }
 
         private void Reset()
@@ -25,11 +27,13 @@ namespace SolidConsole
         {
             Reset();
 
-            // Iterate through each (flat) node in the src xr
+            // Iterate through each (flat) node in the src d
             XmlNode n = d.FirstChild;
             XmlNode parent = null;
             while (n != null)
             {
+                // Get the marker settings for this node.
+                SolidMarkerSetting setting = _markerSettings.Find(n.Name);
                 // Check for record marker (assume is root)
                 //!!!if (n.Name == 
 
