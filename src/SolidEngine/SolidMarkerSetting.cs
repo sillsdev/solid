@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SolidConsole
+namespace SolidEngine
 {
 
     public class SolidMarkerSettings : List<SolidMarkerSetting>

@@ -4,7 +4,7 @@ using System.IO;
 //using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using SolidConsole;
+using SolidEngine;
 
 namespace SolidTests
 {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using SolidConsole;
+using SolidEngine;
 using NUnit.Framework;
 
 namespace SolidGui.Tests

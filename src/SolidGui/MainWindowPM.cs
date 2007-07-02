@@ -142,7 +142,7 @@ namespace SolidGui
             _masterRecordList.Clear();
             using (TextReader dictReader = File.OpenText(path))
             {
-                SolidConsole.SfmRecordReader reader = new SolidConsole.SfmRecordReader(dictReader, 10000);
+                SolidEngine.SfmRecordReader reader = new SolidEngine.SfmRecordReader(dictReader, 10000);
                 while (reader.Read())
                 {
                     if (reader.FieldCount == 0)

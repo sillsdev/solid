@@ -47,7 +47,7 @@ namespace SolidGui
         {
             if (_markersListView.SelectedItems.Count > 0)
             {
-                _structurePropertiesView.Model.MarkerSetting = (SolidConsole.SolidMarkerSetting) _markersListView.SelectedItems[0].Tag;
+                _structurePropertiesView.Model.MarkerSetting = (SolidEngine.SolidMarkerSetting) _markersListView.SelectedItems[0].Tag;
                 _structurePropertiesView.UpdateDisplay();
             }
         }

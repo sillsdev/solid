@@ -1,6 +1,6 @@
 using SolidGui;
 
-namespace SolidConsole
+namespace SolidEngine
 {
     public class SolidStructureProperty
     {

@@ -18,7 +18,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Net;
 
-namespace SolidConsole
+namespace SolidEngine
 {
 
     /// <summary>

@@ -1,5 +1,5 @@
 using System;
-using SolidConsole;
+using SolidEngine;
 using System.Windows.Forms;
 
 namespace SolidGui
