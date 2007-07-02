@@ -35,8 +35,8 @@ namespace SolidGui
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._processButton = new System.Windows.Forms.Button();
-            this._filterChooserView = new SolidGui.FilterChooserView();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._markerSettingsView = new SolidGui.MarkerSettingsView();
@@ -123,16 +123,6 @@ namespace SolidGui
             this._processButton.UseVisualStyleBackColor = true;
             this._processButton.Click += new System.EventHandler(this._processButton_Click);
             // 
-            // _filterChooserView
-            // 
-            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
-            this._filterChooserView.Model = null;
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(150, 296);
-            this._filterChooserView.TabIndex = 0;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -151,10 +141,23 @@ namespace SolidGui
             this.splitContainer2.SplitterDistance = 311;
             this.splitContainer2.TabIndex = 4;
             // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)));
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
+            this._filterChooserView.Model = null;
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(150, 296);
+            this._filterChooserView.TabIndex = 0;
+            // 
             // _sfmEditorView
             // 
+            this._sfmEditorView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._sfmEditorView.Location = new System.Drawing.Point(0, 70);
             this._sfmEditorView.Name = "_sfmEditorView";
             this._sfmEditorView.Size = new System.Drawing.Size(311, 256);

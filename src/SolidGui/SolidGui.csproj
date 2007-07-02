@@ -142,9 +142,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidConsole\SolidConsole.csproj">
-      <Project>{2AE6670D-904B-42E3-AEBC-453649B1A6A3}</Project>
-      <Name>SolidConsole</Name>
+    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
+      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
+      <Name>SolidEngine</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
