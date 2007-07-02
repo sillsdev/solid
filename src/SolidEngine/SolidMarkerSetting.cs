@@ -2,21 +2,6 @@ using System.Collections.Generic;
 
 namespace SolidEngine
 {
-
-    public class SolidMarkerSettings : List<SolidMarkerSetting>
-    {
-        public SolidMarkerSetting Find(string marker)
-        {
-            // Search for the marker. If not found return default marker settings.
-            SolidMarkerSetting result = Find(delegate(SolidMarkerSetting item) { return item.Marker == marker; });
-            if (result == null)
-            {
-                result = new SolidMarkerSetting(marker);
-            }
-            return result;
-        }
-    }
-
     public class SolidMarkerSetting
     {
         private List<SolidStructureProperty> _structureProperties;

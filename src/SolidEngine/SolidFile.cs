@@ -10,19 +10,7 @@ namespace SolidEngine
     {
         public class SolidFileData
         {
-            private string _recordMarker = "\\_lx";
-            private SolidMarkerSettings _markerSettings = new SolidMarkerSettings();
 
-            public string RecordMarker
-            {
-                get { return _recordMarker; }
-                set { _recordMarker = value; }
-            }
-
-            public SolidMarkerSettings MarkerSettings
-            {
-                get { return _markerSettings; }
-            }
 
             public SolidFileData()
             {
@@ -40,7 +28,7 @@ namespace SolidEngine
             set { _file = value; }
         }
 
-        public SolidMarkerSettings MarkerSettings
+        public SolidSettings MarkerSettings
         {
             get { return _solidData.MarkerSettings; }
         }

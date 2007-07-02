@@ -8,7 +8,7 @@ using SolidEngine;
 namespace SolidTests
 {
     [TestFixture]
-    public class SolidFileTest
+    public class SolidSettingsTest
     {
 
         [TestFixtureSetUp]
@@ -17,25 +17,22 @@ namespace SolidTests
         }
 
         [Test]
-        public void SolidFile_FileProperty_SetGetCorrect()
+        public void SolidSettings_FileProperty_SetGetCorrect()
         {
-            SolidFile f = new SolidFile();
-            f.File = "myfile";
-            Assert.AreEqual("myfile", f.File);
+            SolidSettings f = new SolidSettings();
+            f.FilePath = "myfile";
+            Assert.AreEqual("myfile", f.FilePath);
         }
 
         [Test]
-        public void SolidFile_Write1Read1_Correct()
+        public void SolidSettings_Write1Read1_Correct()
         {
-            SolidFile f;
-            f = new SolidFile();
-            f.File = "myfile.solid";
+            SolidSettings f;
+            f = new SolidSettings();
+            f.FilePath = "myfile.solid";
             f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
-            f.Write();
-            f = new SolidFile();
-            f.File = "myfile.solid";
-            Assert.AreEqual(0, f.MarkerSettings.Count);
-            f.Read();
+            f.Save();
+            f =  SolidSettings.OpenSolidFile("myfile.solid");
             Assert.AreEqual(1, f.MarkerSettings.Count);
         }
 

@@ -8,11 +8,11 @@ namespace SolidEngine
     public class ProcessStructure
     {
         SolidReport _report;
-        SolidMarkerSettings _markerSettings;
+        SolidSettings _markerSettings;
 
         XmlDocument _xmlDoc;
 
-        public ProcessStructure(SolidReport report, SolidMarkerSettings markerSettings)
+        public ProcessStructure(SolidReport report, SolidSettings markerSettings)
         {
             _report = report;
             _markerSettings = markerSettings;

@@ -10,7 +10,7 @@ namespace SolidEngine
         string _reportFile;
         string _outputFile;
 
-        SolidFile _solidFile = new SolidFile();
+      //  SolidSettings _solidFile = new SolidSettings();
         SolidReport _solidReport = new SolidReport();
 
         public Solidifier()

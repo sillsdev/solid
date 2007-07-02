@@ -10,8 +10,8 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
-            SolidFileTest t = new SolidFileTest();
-            t.SolidFile_Write1Read1_Correct();
+            SolidSettingsTest t = new SolidSettingsTest();
+            t.SolidSettings_Write1Read1_Correct();
             
             //SfmReader_Header_Test t = new SfmReader_Header_Test();
             //t.HeaderOnly_Header_Correct();
