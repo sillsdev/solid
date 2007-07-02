@@ -21,7 +21,8 @@ namespace SolidGui
             }
             _mainWindowPM = mainWindowPM;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
-            _filterChooserView.Model = _mainWindowPM.FilterChooserModel; 
+            _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
+            _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
         }
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
@@ -30,6 +31,7 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
+            _markerSettingsView.UpdateDisplay();
             UpdateDisplay();
          }
 

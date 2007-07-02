@@ -7,7 +7,7 @@ namespace SolidGui
     public enum MultiplicityAdjacency
     {
         Once,
-        Multiple,
-        MultipleAdjacent
+        MultipleApart,
+        MultipleTogether
     }
 }

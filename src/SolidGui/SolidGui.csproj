@@ -53,7 +53,6 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowPM.cs" />
-    <Compile Include="MarkerRulesPM.cs" />
     <Compile Include="MarkerSettingsPM.cs" />
     <Compile Include="MarkerSettingsView.cs">
       <SubType>UserControl</SubType>
@@ -126,7 +125,6 @@
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportReader.cs" />
     <Compile Include="SearchPM.cs" />
     <Compile Include="SearchResult.cs" />
     <Compile Include="SearchView.cs">

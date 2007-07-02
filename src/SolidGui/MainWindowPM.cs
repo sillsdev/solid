@@ -11,12 +11,11 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private MarkerSettingsPM _markerSettingsModel;
         private DummyProcessor _dummyProcessor;
         private string _rulesXmlPath;
-        private MarkerRulesPM _markerRulesModel;
         private DateTime _lastWrittenTo;
         private List<string> _allMarkers;
-        private ReportReader _reportReader;
         private String _TempDictionaryPath;
         private List<RecordFilter> _recordFilters = new List<RecordFilter>();
         private List<Record> _masterRecordList = new List<Record>();
@@ -30,12 +29,11 @@ namespace SolidGui
         public MainWindowPM()
         {
             _rulesXmlPath = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\rules.xml";
-            
+
+            _markerSettingsModel = new MarkerSettingsPM();
             _dummyProcessor = new DummyProcessor();
-            _markerRulesModel = new MarkerRulesPM();
             _allMarkers = new List<string>();
             _lastWrittenTo = DateTime.Now;
-            _reportReader = new ReportReader();
             _TempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.txt");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
@@ -47,12 +45,20 @@ namespace SolidGui
             _searchModel.MasterRecordList = MasterRecordList;
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new RecordFilter();
-            _markerRulesModel.AllMarkers = _allMarkers;
-            _markerRulesModel.RulesXmlPath = _rulesXmlPath;
+            _markerSettingsModel.AllMarkers = _allMarkers;
 
-            this.DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
+            DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
 
+        public MarkerSettingsPM MarkerSettingsModel
+        {
+            get
+            {
+                return _markerSettingsModel;
+            }
+        }
+
+        /*
         public MarkerRulesPM MarkerRulesModel
         {
             get
@@ -60,6 +66,7 @@ namespace SolidGui
                 return _markerRulesModel;
             }
         }
+        */
 
         public SearchPM SearchModel
         {
@@ -189,20 +196,20 @@ namespace SolidGui
             _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
 
-            if (File.Exists(reportPath))
+            try
             {
-                using (StreamReader reader = new StreamReader(reportPath))
+                if (File.Exists(reportPath))
                 {
-                    _recordFilters.AddRange((List<RecordFilter>) xs.Deserialize(reader));
+                    using (StreamReader reader = new StreamReader(reportPath))
+                    {
+                        _recordFilters.AddRange((List<RecordFilter>) xs.Deserialize(reader));
+                    }
                 }
             }
-            /*_reportReader.Load(reportPath);
-            while (_reportReader.NextRecordFilter())
+            catch
             {
-                _recordFilters.Add(new RecordFilter(_reportReader.Name,
-                                                    _reportReader.Description,
-                                                    _reportReader.Indexes));
-            }*/
+                
+            }
 
             FilterChooserModel.RecordFilters = _recordFilters;
         }

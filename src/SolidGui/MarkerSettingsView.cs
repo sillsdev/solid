@@ -10,7 +10,14 @@ namespace SolidGui
 {
     public partial class MarkerSettingsView : UserControl
     {
+
         private MarkerSettingsPM _model;
+
+        public MarkerSettingsView()
+        {
+            InitializeComponent();
+            _structurePropertiesView.Model = new StructurePropertiesPM();
+        }
 
         public MarkerSettingsPM Model
         {
@@ -24,13 +31,10 @@ namespace SolidGui
             }
         }
 
-        public MarkerSettingsView()
-        {
-            InitializeComponent();
-        }
-
         public void UpdateDisplay()
         {
+            _markersListView.Clear();
+
             foreach (string marker in _model.AllMarkers)
             {
                 ListViewItem item = new ListViewItem(marker);
@@ -46,8 +50,6 @@ namespace SolidGui
                 _structurePropertiesView.Model.MarkerSetting = (SolidConsole.SolidMarkerSetting) _markersListView.SelectedItems[0].Tag;
                 _structurePropertiesView.UpdateDisplay();
             }
-
-             
         }
     }
 }

@@ -35,16 +35,18 @@ namespace SolidGui
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._processButton = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this._filterChooserView = new SolidGui.FilterChooserView();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
+            this._markerSettingsView = new SolidGui.MarkerSettingsView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +58,7 @@ namespace SolidGui
             this.toolStripButton1});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(728, 25);
+            toolStrip1.Size = new System.Drawing.Size(892, 25);
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -107,8 +109,8 @@ namespace SolidGui
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(726, 350);
-            this.splitContainer1.SplitterDistance = 186;
+            this.splitContainer1.Size = new System.Drawing.Size(890, 326);
+            this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 2;
             // 
             // _processButton
@@ -121,6 +123,16 @@ namespace SolidGui
             this._processButton.UseVisualStyleBackColor = true;
             this._processButton.Click += new System.EventHandler(this._processButton_Click);
             // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
+            this._filterChooserView.Model = null;
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(150, 296);
+            this._filterChooserView.TabIndex = 0;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -131,44 +143,47 @@ namespace SolidGui
             // 
             this.splitContainer2.Panel1.Controls.Add(this._sfmEditorView);
             this.splitContainer2.Panel1.Controls.Add(this._recordNavigatorView);
-            this.splitContainer2.Size = new System.Drawing.Size(536, 350);
-            this.splitContainer2.SplitterDistance = 304;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this._markerSettingsView);
+            this.splitContainer2.Size = new System.Drawing.Size(736, 326);
+            this.splitContainer2.SplitterDistance = 311;
             this.splitContainer2.TabIndex = 4;
-            // 
-            // _filterChooserView
-            // 
-            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 43);
-            this._filterChooserView.Model = null;
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(186, 307);
-            this._filterChooserView.TabIndex = 0;
             // 
             // _sfmEditorView
             // 
             this._sfmEditorView.AutoScroll = true;
             this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 61);
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 70);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(304, 289);
+            this._sfmEditorView.Size = new System.Drawing.Size(311, 256);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
             this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._recordNavigatorView.Location = new System.Drawing.Point(3, 3);
+            this._recordNavigatorView.Location = new System.Drawing.Point(2, 3);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(302, 61);
+            this._recordNavigatorView.Size = new System.Drawing.Size(309, 61);
             this._recordNavigatorView.TabIndex = 3;
+            // 
+            // _markerSettingsView
+            // 
+            this._markerSettingsView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerSettingsView.Location = new System.Drawing.Point(0, 0);
+            this._markerSettingsView.Model = null;
+            this._markerSettingsView.Name = "_markerSettingsView";
+            this._markerSettingsView.Size = new System.Drawing.Size(421, 326);
+            this._markerSettingsView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 379);
+            this.ClientSize = new System.Drawing.Size(892, 355);
             this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainWindowView";
@@ -180,6 +195,7 @@ namespace SolidGui
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,6 +214,7 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripButton _saveButton;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.SplitContainer splitContainer2;
+        private MarkerSettingsView _markerSettingsView;
     }
 }
 

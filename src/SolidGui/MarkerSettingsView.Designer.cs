@@ -31,10 +31,9 @@ namespace SolidGui
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._structureTabControl = new System.Windows.Forms.TabControl();
             this._structureTabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.label1 = new System.Windows.Forms.Label();
             this._markersListView = new System.Windows.Forms.ListView();
-            this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.groupBox1.SuspendLayout();
             this._structureTabControl.SuspendLayout();
             this._structureTabPage1.SuspendLayout();
@@ -45,9 +44,9 @@ namespace SolidGui
             this.groupBox1.Controls.Add(this._structureTabControl);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this._markersListView);
-            this.groupBox1.Location = new System.Drawing.Point(13, 29);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(420, 351);
+            this.groupBox1.Size = new System.Drawing.Size(413, 326);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Field Settings";
@@ -55,8 +54,7 @@ namespace SolidGui
             // _structureTabControl
             // 
             this._structureTabControl.Controls.Add(this._structureTabPage1);
-            this._structureTabControl.Controls.Add(this.tabPage2);
-            this._structureTabControl.Location = new System.Drawing.Point(70, 33);
+            this._structureTabControl.Location = new System.Drawing.Point(65, 16);
             this._structureTabControl.Name = "_structureTabControl";
             this._structureTabControl.SelectedIndex = 0;
             this._structureTabControl.Size = new System.Drawing.Size(337, 302);
@@ -73,20 +71,19 @@ namespace SolidGui
             this._structureTabPage1.Text = "Structure";
             this._structureTabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // _structurePropertiesView
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(329, 276);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this._structurePropertiesView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
+            this._structurePropertiesView.Model = null;
+            this._structurePropertiesView.Name = "_structurePropertiesView";
+            this._structurePropertiesView.Size = new System.Drawing.Size(323, 270);
+            this._structurePropertiesView.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 37);
+            this.label1.Location = new System.Drawing.Point(12, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 1;
@@ -94,7 +91,10 @@ namespace SolidGui
             // 
             // _markersListView
             // 
-            this._markersListView.Location = new System.Drawing.Point(18, 63);
+            this._markersListView.HideSelection = false;
+            this._markersListView.LabelWrap = false;
+            this._markersListView.Location = new System.Drawing.Point(13, 46);
+            this._markersListView.MultiSelect = false;
             this._markersListView.Name = "_markersListView";
             this._markersListView.Size = new System.Drawing.Size(35, 272);
             this._markersListView.TabIndex = 0;
@@ -102,21 +102,13 @@ namespace SolidGui
             this._markersListView.View = System.Windows.Forms.View.List;
             this._markersListView.SelectedIndexChanged += new System.EventHandler(this._markersListView_SelectedIndexChanged);
             // 
-            // _structurePropertiesView
-            // 
-            this._structurePropertiesView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
-            this._structurePropertiesView.Name = "_structurePropertiesView";
-            this._structurePropertiesView.Size = new System.Drawing.Size(323, 270);
-            this._structurePropertiesView.TabIndex = 0;
-            // 
             // MarkerSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "MarkerSettingsView";
-            this.Size = new System.Drawing.Size(446, 397);
+            this.Size = new System.Drawing.Size(417, 330);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this._structureTabControl.ResumeLayout(false);
@@ -131,7 +123,6 @@ namespace SolidGui
         private System.Windows.Forms.ListView _markersListView;
         private System.Windows.Forms.TabControl _structureTabControl;
         private System.Windows.Forms.TabPage _structureTabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label1;
         private StructurePropertiesView _structurePropertiesView;
     }
