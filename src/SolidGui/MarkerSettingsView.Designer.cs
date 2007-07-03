@@ -59,9 +59,9 @@ namespace SolidGui
             // _markerListBox
             // 
             this._markerListBox.FormattingEnabled = true;
-            this._markerListBox.Location = new System.Drawing.Point(13, 47);
+            this._markerListBox.Location = new System.Drawing.Point(6, 47);
             this._markerListBox.Name = "_markerListBox";
-            this._markerListBox.Size = new System.Drawing.Size(34, 264);
+            this._markerListBox.Size = new System.Drawing.Size(51, 264);
             this._markerListBox.TabIndex = 3;
             this._markerListBox.SelectedIndexChanged += new System.EventHandler(this._markerListBox_SelectedIndexChanged);
             // 
@@ -73,10 +73,10 @@ namespace SolidGui
             this._structureTabControl.Controls.Add(this._structureTabPage1);
             this._structureTabControl.Controls.Add(this.tabPage1);
             this._structureTabControl.Controls.Add(this.tabPage2);
-            this._structureTabControl.Location = new System.Drawing.Point(54, 46);
+            this._structureTabControl.Location = new System.Drawing.Point(63, 46);
             this._structureTabControl.Name = "_structureTabControl";
             this._structureTabControl.SelectedIndex = 0;
-            this._structureTabControl.Size = new System.Drawing.Size(353, 265);
+            this._structureTabControl.Size = new System.Drawing.Size(339, 265);
             this._structureTabControl.TabIndex = 2;
             // 
             // _structureTabPage1
@@ -85,7 +85,7 @@ namespace SolidGui
             this._structureTabPage1.Location = new System.Drawing.Point(4, 22);
             this._structureTabPage1.Name = "_structureTabPage1";
             this._structureTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this._structureTabPage1.Size = new System.Drawing.Size(345, 239);
+            this._structureTabPage1.Size = new System.Drawing.Size(331, 239);
             this._structureTabPage1.TabIndex = 0;
             this._structureTabPage1.Text = "Structure";
             this._structureTabPage1.UseVisualStyleBackColor = true;
@@ -96,7 +96,7 @@ namespace SolidGui
             this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
             this._structurePropertiesView.Model = null;
             this._structurePropertiesView.Name = "_structurePropertiesView";
-            this._structurePropertiesView.Size = new System.Drawing.Size(339, 233);
+            this._structurePropertiesView.Size = new System.Drawing.Size(325, 233);
             this._structurePropertiesView.TabIndex = 0;
             // 
             // tabPage1
