@@ -2,23 +2,41 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace SolidEngine
 {
     public class SolidReport
     {
+        public enum EntryType
+        {
+            Error,
+            Info,
+            Warning
+        }
+
         public class Entry
         {
+            EntryType _type;
             int _recordID;
             int _sourceLine;
-            string _errorClass;
+            string _entry;
             string _marker;
             string _description;
 
-            public Entry()
+            public Entry(EntryType type, XmlNode entry, XmlNode field, string description)
             {
-
+                _type = type;
+                if (entry != null)
+                {
+                    _entry = entry.Name;
+                }
+                if (field != null)
+                {
+                    _marker = field.Name;
+                }
+                _description = description;
             }
         }
 
@@ -26,24 +44,25 @@ namespace SolidEngine
         {
         }
 
-        private SolidEntries _entries = new SolidEntries();
+        private SolidEntries _entries;
 
-        private string _file;
+        [XmlIgnore]
+        private string _filePath;
 
         public SolidEntries Entries
         {
             get { return _entries; }
         }
 
-        public string File
+        public string FilePath
         {
-            get { return _file; }
-            set { _file = value; }
+            get { return _filePath; }
+            set { _filePath = value; }
         }
 	
         public SolidReport()
         {
-
+            _entries = new SolidEntries();
         }
 
         public void Reset()
@@ -51,40 +70,34 @@ namespace SolidEngine
             _entries.Clear();
         }
 
-        public void Open(string file)
-        {
-            _file = file;
-        }
-
         public void Add(Entry e)
         {
             _entries.Add(e);
         }
 
-        public bool Read()
+        public static SolidReport OpenSolidReport(string path)
         {
-            bool retval = true;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidEntries));
+            SolidReport r;
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
             try
             {
-                using (StreamReader reader = new StreamReader(_file))
+                using (StreamReader reader = new StreamReader(path))
                 {
-                    _entries = (SolidEntries)xs.Deserialize(reader);
+                    r = (SolidReport)xs.Deserialize(reader);
+                    r.FilePath = path;
                 }
             }
             catch
             {
-                _entries = new SolidEntries();
-                retval = false;
-                //!!! Should rethrow the exception
+                r = new SolidReport();
             }
-            return retval;
+            return r;
         }
 
-        public void Write()
+        public void Save()
         {
-            XmlSerializer xs = new XmlSerializer(typeof(SolidEntries));
-            using (StreamWriter writer = new StreamWriter(_file))
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
+            using (StreamWriter writer = new StreamWriter(_filePath))
             {
                 xs.Serialize(writer, _entries);
             }

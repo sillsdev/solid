@@ -33,7 +33,7 @@ namespace SolidEngine
             set { _filePath = value; }
         }
 
-        public SolidMarkerSetting Find(string marker)
+        public SolidMarkerSetting FindMarkerSetting(string marker)
         {
             // Search for the marker. If not found return default marker settings.
             SolidMarkerSetting result = _markerSettings.Find(delegate(SolidMarkerSetting item) { return item.Marker == marker; });

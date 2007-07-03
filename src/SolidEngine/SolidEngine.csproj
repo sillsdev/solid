@@ -40,6 +40,7 @@
     <Compile Include="sfmreader.cs" />
     <Compile Include="sfmxmlreader.cs" />
     <Compile Include="Solidifier.cs" />
+    <Compile Include="SolidMarkerOps.cs" />
     <Compile Include="SolidMarkerSetting.cs" />
     <Compile Include="SolidReport.cs" />
     <Compile Include="SolidSettings.cs" />

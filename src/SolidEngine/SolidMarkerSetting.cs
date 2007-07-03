@@ -11,14 +11,14 @@ namespace SolidEngine
         public SolidMarkerSetting()
         {
             _marker = "";
-            _inferedParent = "Report Error";
+            _inferedParent = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 
         public SolidMarkerSetting(string marker)
         {
             _marker = marker;
-            _inferedParent = "Report Error";
+            _inferedParent = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 

@@ -7,8 +7,8 @@
     <ProjectGuid>{89CEA606-4FAA-4E31-A20B-2C453E458236}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SolidConsoleTest</RootNamespace>
-    <AssemblyName>SolidConsoleTest</AssemblyName>
+    <RootNamespace>SolidEngineTests</RootNamespace>
+    <AssemblyName>SolidEngineTest</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,13 +37,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProcessStructure_Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sfmreader_header_test.cs" />
     <Compile Include="sfmreader_read_test.cs" />
     <Compile Include="sfmxmlreader_read_test.cs" />
     <Compile Include="sfmxmlreader_xmldoc_test.cs" />
-    <Compile Include="SolidFile_Test.cs" />
+    <Compile Include="SolidReport_Test.cs" />
+    <Compile Include="SolidSettings_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">

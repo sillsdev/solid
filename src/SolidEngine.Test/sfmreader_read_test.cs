@@ -38,7 +38,7 @@ namespace SolidTests
         [Test]
         public void OneSFMRecordRead_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
@@ -49,7 +49,7 @@ namespace SolidTests
         [Test]
         public void OneSFMRecordRead_FieldCount_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
@@ -59,7 +59,7 @@ namespace SolidTests
         [Test]
         public void OneSFMRecordRead_Key0_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
@@ -69,7 +69,7 @@ namespace SolidTests
         [Test]
         public void OneSFMRecordRead_Key1_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
@@ -79,7 +79,7 @@ namespace SolidTests
         [Test]
         public void RecordStartLine_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
@@ -89,7 +89,7 @@ namespace SolidTests
         [Test]
         public void RecordEndLine_Correct()
         {
-            string file = "../../../../data/dict2.txt";
+            string file = "../../data/dict2.txt";
             SfmRecordReader r = new SfmRecordReader(new StreamReader(file), 4096);
             bool result = r.Read();
             Assert.AreEqual(true, result);
