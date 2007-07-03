@@ -10,12 +10,11 @@ namespace SolidGui
     /// </summary>
     public class RecordNavigatorPM
     {
-        private int _CurrentIndexIntoFilteredRecords;
+        private int _currentIndexIntoFilteredRecords;
         private IList<Record> _masterRecordList;
-        private int _currentRecordIndex;
         private RecordFilter _recordFilter;
         private IList<int> _indexesOfFilteredRecords;
-        private Record currentRecord;
+        private Record _currentRecord;
 
         public class RecordChangedEventArgs:System.EventArgs 
         {
@@ -33,7 +32,7 @@ namespace SolidGui
 
         public RecordNavigatorPM()
         {
-            _CurrentIndexIntoFilteredRecords = -1;
+            _currentIndexIntoFilteredRecords = -1;
         }
 
         public RecordFilter ActiveFilter
@@ -128,11 +127,11 @@ namespace SolidGui
         {
             get
             {
-                return _CurrentIndexIntoFilteredRecords;
+                return _currentIndexIntoFilteredRecords;
             }
             set
             {
-                _CurrentIndexIntoFilteredRecords = value;
+                _currentIndexIntoFilteredRecords = value;
                 if (RecordChanged != null)
                 {
                     RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
@@ -166,7 +165,7 @@ namespace SolidGui
         {
             get
             {
-                if (_CurrentIndexIntoFilteredRecords <0)
+                if (_currentIndexIntoFilteredRecords <0)
                 {
                     return null;
                 }
@@ -174,7 +173,7 @@ namespace SolidGui
             }
             set
             {
-                currentRecord = value;
+                _currentRecord = value;
             }
         }
 

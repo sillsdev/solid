@@ -28,18 +28,33 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStrip toolStrip1;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._saveButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._processButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._processButton = new System.Windows.Forms.Button();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
             this._filterChooserView = new SolidGui.FilterChooserView();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this._searchButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this._markerSettingsView = new SolidGui.MarkerSettingsView();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._markerSettingsView = new SolidGui.MarkerSettingsView();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._markerSettingsView = new SolidGui.MarkerSettingsView();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -52,10 +67,14 @@ namespace SolidGui
             // 
             // toolStrip1
             // 
+            toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
             this._saveButton,
-            this.toolStripButton1});
+            this.toolStripSeparator2,
+            this._processButton,
+            this.toolStripSeparator1,
+            this._aboutBoxButton});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(892, 25);
@@ -64,34 +83,52 @@ namespace SolidGui
             // 
             // _openButton
             // 
-            this._openButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
-            this._openButton.Size = new System.Drawing.Size(23, 22);
-            this._openButton.Text = "toolStripButton1";
+            this._openButton.Size = new System.Drawing.Size(104, 22);
+            this._openButton.Text = "Open Lexicon...";
             this._openButton.Click += new System.EventHandler(this._openButton_Click);
             // 
             // _saveButton
             // 
-            this._saveButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this._saveButton.Enabled = false;
-            this._saveButton.Image = ((System.Drawing.Image)(resources.GetObject("_saveButton.Image")));
+            this._saveButton.Image = global::SolidGui.Properties.Resources.saveHS;
             this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._saveButton.Name = "_saveButton";
-            this._saveButton.Size = new System.Drawing.Size(23, 22);
-            this._saveButton.Text = "toolStripButton1";
-            this._saveButton.Click += new System.EventHandler(this._saveButton_Click);
+            this._saveButton.Size = new System.Drawing.Size(51, 22);
+            this._saveButton.Text = "Save";
+            this._saveButton.Click += new System.EventHandler(this.OnSaveClick);
             // 
-            // toolStripButton1
+            // toolStripSeparator2
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _processButton
+            // 
+            this._processButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this._processButton.Image = global::SolidGui.Properties.Resources.PlayHS;
+            this._processButton.ImageTransparentColor = System.Drawing.Color.Black;
+            this._processButton.Name = "_processButton";
+            this._processButton.Size = new System.Drawing.Size(103, 22);
+            this._processButton.Text = "Process Lexicon";
+            this._processButton.ToolTipText = "Reprocess the lexicon using the current settings.";
+            this._processButton.Click += new System.EventHandler(this.OnProcessButtonClick);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // _aboutBoxButton
+            // 
+            this._aboutBoxButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._aboutBoxButton.Image = global::SolidGui.Properties.Resources.INFO;
+            this._aboutBoxButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._aboutBoxButton.Name = "_aboutBoxButton";
+            this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
+            this._aboutBoxButton.Text = "About Solid...";
             // 
             // splitContainer1
             // 
@@ -103,25 +140,37 @@ namespace SolidGui
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this._processButton);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this._filterChooserView);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(890, 326);
+            this.splitContainer1.Size = new System.Drawing.Size(890, 430);
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 2;
             // 
-            // _processButton
+            // label1
             // 
-            this._processButton.Location = new System.Drawing.Point(10, 1);
-            this._processButton.Name = "_processButton";
-            this._processButton.Size = new System.Drawing.Size(121, 23);
-            this._processButton.TabIndex = 1;
-            this._processButton.Text = "Process Lexicon";
-            this._processButton.UseVisualStyleBackColor = true;
-            this._processButton.Click += new System.EventHandler(this._processButton_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-4, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Results";
+            // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 43);
+            this._filterChooserView.Model = null;
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(134, 387);
+            this._filterChooserView.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -131,26 +180,49 @@ namespace SolidGui
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this._searchButton);
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
             this.splitContainer2.Panel1.Controls.Add(this._sfmEditorView);
             this.splitContainer2.Panel1.Controls.Add(this._recordNavigatorView);
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.label4);
+            this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this._markerSettingsView);
-            this.splitContainer2.Size = new System.Drawing.Size(736, 326);
+            this.splitContainer2.Size = new System.Drawing.Size(736, 430);
             this.splitContainer2.SplitterDistance = 311;
             this.splitContainer2.TabIndex = 4;
             // 
-            // _filterChooserView
+            // _searchButton
             // 
-            this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 30);
-            this._filterChooserView.Model = null;
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(150, 296);
-            this._filterChooserView.TabIndex = 0;
+            this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._searchButton.FlatAppearance.BorderSize = 0;
+            this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._searchButton.Image = global::SolidGui.Properties.Resources.search;
+            this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._searchButton.Location = new System.Drawing.Point(263, 400);
+            this._searchButton.Name = "_searchButton";
+            this._searchButton.Size = new System.Drawing.Size(27, 27);
+            this._searchButton.TabIndex = 4;
+            this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip1.SetToolTip(this._searchButton, "Search/Replace text in lexicon");
+            this._searchButton.UseVisualStyleBackColor = true;
+            this._searchButton.Click += new System.EventHandler(this.OnSearchClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(-1, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Lexicon";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // _sfmEditorView
             // 
@@ -158,35 +230,66 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 70);
+            this._sfmEditorView.Location = new System.Drawing.Point(3, 43);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(311, 256);
+            this._sfmEditorView.Size = new System.Drawing.Size(287, 325);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
-            this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._recordNavigatorView.Location = new System.Drawing.Point(2, 3);
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 374);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(309, 61);
+            this._recordNavigatorView.Size = new System.Drawing.Size(261, 56);
             this._recordNavigatorView.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(239, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Solid Template:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(325, 23);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(92, 21);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.Text = "MDF";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 20);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Settings";
+            this.label3.Click += new System.EventHandler(this.label2_Click);
             // 
             // _markerSettingsView
             // 
-            this._markerSettingsView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerSettingsView.Location = new System.Drawing.Point(0, 0);
+            this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._markerSettingsView.Location = new System.Drawing.Point(3, 26);
             this._markerSettingsView.Model = null;
             this._markerSettingsView.Name = "_markerSettingsView";
-            this._markerSettingsView.Size = new System.Drawing.Size(421, 326);
+            this._markerSettingsView.Size = new System.Drawing.Size(421, 404);
             this._markerSettingsView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 355);
+            this.ClientSize = new System.Drawing.Size(892, 459);
             this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainWindowView";
@@ -195,10 +298,13 @@ namespace SolidGui
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -212,12 +318,21 @@ namespace SolidGui
         private SfmEditorView _sfmEditorView;
         private FilterChooserView _filterChooserView;
         private SearchView _searchView;
-        private System.Windows.Forms.Button _processButton;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private MarkerSettingsView _markerSettingsView;
+        private System.Windows.Forms.ToolStripButton _processButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button _searchButton;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton _aboutBoxButton;
     }
 }
 

@@ -1,4 +1,5 @@
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using SolidGui.Properties;
@@ -25,6 +26,14 @@ namespace SolidGui
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
             _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
+            _searchButton.Image =
+                _searchButton.Image.GetThumbnailImage(_searchButton.Width-8, _searchButton.Height-8, ReturnFalse,
+                                                      System.IntPtr.Zero);
+        }
+
+        private bool ReturnFalse()
+        {
+            return false;
         }
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
@@ -108,7 +117,7 @@ namespace SolidGui
             _saveButton.Enabled = true;
         }
 
-        private void _processButton_Click(object sender, EventArgs e)
+        private void OnProcessButtonClick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             _mainWindowPM.ProcessLexicon();
@@ -121,7 +130,7 @@ namespace SolidGui
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
         }
 
-        private void _saveButton_Click(object sender, EventArgs e)
+        private void OnSaveClick(object sender, EventArgs e)
         {
             if(_mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary, true))
             {
@@ -134,7 +143,7 @@ namespace SolidGui
             
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void OnSearchClick(object sender, EventArgs e)
         {
             //_searchView hides itself when closed
             //if (_searchView == null)
@@ -151,6 +160,11 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
