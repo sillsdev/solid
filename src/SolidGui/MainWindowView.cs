@@ -166,5 +166,12 @@ namespace SolidGui
         {
 
         }
+
+        private void OnAboutBoxButton_Click(object sender, EventArgs e)
+        {
+            AboutBox box = new AboutBox();
+            box.ShowDialog();
+            box.Dispose();
+        }
     }
 }

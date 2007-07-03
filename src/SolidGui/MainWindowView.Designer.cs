@@ -124,6 +124,7 @@ namespace SolidGui
             this._aboutBoxButton.Name = "_aboutBoxButton";
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "About Solid...";
+            this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
             // 
             // splitContainer1
             // 

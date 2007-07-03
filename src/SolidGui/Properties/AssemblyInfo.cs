@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SolidGui")]
+[assembly: AssemblyTitle("Solid")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SIL")]
-[assembly: AssemblyProduct("SolidGui")]
+[assembly: AssemblyProduct("Solid")]
 [assembly: AssemblyCopyright("Copyright © SIL 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

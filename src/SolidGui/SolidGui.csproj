@@ -30,9 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PaLaSo Reporting, Version=1.0.2734.26603, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Reporting, Version=1.0.2734.26603, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\PaLaSo Reporting.dll</HintPath>
+      <HintPath>..\..\lib\Reporting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
