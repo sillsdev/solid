@@ -12,7 +12,7 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
-        private SolidEngine.SolidSettings _solidSettings;
+        private SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
         private DummyProcessor _dummyProcessor;
         private string _rulesXmlPath;

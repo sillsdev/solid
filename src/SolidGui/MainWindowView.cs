@@ -14,12 +14,14 @@ namespace SolidGui
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
+            _mainWindowPM = mainWindowPM;
+            
             InitializeComponent();
             if (DesignMode)
             {
                 return;
             }
-            _mainWindowPM = mainWindowPM;
+
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
             _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;

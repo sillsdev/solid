@@ -9,10 +9,11 @@ namespace SolidGui
 
         private MarkerSettingsPM _model;
 
-        public MarkerSettingsView()
+        public MarkerSettingsView( MarkerSettingsPM model)
         {
             InitializeComponent();
-            _structurePropertiesView.Model = new StructurePropertiesPM();
+            Model = model;
+            _structurePropertiesView.Model = model.StructurePropertiesModel;
         }
 
         public MarkerSettingsPM Model

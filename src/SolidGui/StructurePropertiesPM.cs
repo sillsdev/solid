@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SolidEngine;
@@ -7,6 +8,7 @@ namespace SolidGui
     public class StructurePropertiesPM
     {
         private SolidMarkerSetting _markerSetting;
+        private List<string> _allMarkers;
 
         public SolidMarkerSetting MarkerSetting
         {
@@ -36,17 +38,31 @@ namespace SolidGui
             }
         }
 
-        public void UpdateInferedParent(string parent)
+        public List<string> AllMarkers
+        {
+            set
+            {
+                _allMarkers = value;
+            }
+        }
+
+        public void UpdateInferedParent(String comboBoxText)
         {
             if (_markerSetting != null)
             {
-                _markerSetting.InferedParent = parent;
+                if(comboBoxText == "Report Error")
+                {
+                    _markerSetting.InferedParent = "";
+                }
+                else
+                {
+                    _markerSetting.InferedParent = comboBoxText.Substring(6);
+                }
             }
         }
 
         public void UpdateParentMarkers(ListView.ListViewItemCollection items)
         {
-
             _markerSetting.StructureProperties.Clear();
 
             foreach (ListViewItem item in items)
@@ -61,11 +77,10 @@ namespace SolidGui
             }
         }
 
-        private bool ValidParent(string parent)
+        public bool ValidParent(string parent)
         {
             return (
-                    parent != "(New)" && 
-                    parent != "" && 
+                    _allMarkers.Contains(parent) &&
                     !_markerSetting.ParentExists(parent) &&
                     _markerSetting.Marker != parent
                    );

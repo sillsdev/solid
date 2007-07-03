@@ -9,12 +9,15 @@ namespace SolidGui
     {
         private List<string> _allMarkers;
         private List<SolidMarkerSetting> _markerSettings;
+        private StructurePropertiesPM _structurePropertiesModel;
         private string _root;
 
         public MarkerSettingsPM()
         {
+            _root = "";
             _allMarkers = new List<string>();
             _markerSettings = new List<SolidMarkerSetting>();
+            _structurePropertiesModel = new StructurePropertiesPM();
         }
 
         public SolidMarkerSetting GetMarkerSetting(string marker)
@@ -40,6 +43,7 @@ namespace SolidGui
             set
             {
                 _allMarkers = value;
+                _structurePropertiesModel.AllMarkers = _allMarkers;
             }
         }
         public List<SolidMarkerSetting>MarkerSettings
@@ -63,6 +67,11 @@ namespace SolidGui
             {
                 _root = value;
             }
+        }
+
+        public StructurePropertiesPM StructurePropertiesModel
+        {
+            get { return _structurePropertiesModel; }
         }
     }
 }

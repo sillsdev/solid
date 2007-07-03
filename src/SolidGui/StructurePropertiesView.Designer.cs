@@ -114,13 +114,14 @@ namespace SolidGui
             // 
             // _parentListView
             // 
+            this._parentListView.HideSelection = false;
             this._parentListView.LabelEdit = true;
-            this._parentListView.Location = new System.Drawing.Point(22, 62);
+            this._parentListView.Location = new System.Drawing.Point(20, 62);
             this._parentListView.Name = "_parentListView";
-            this._parentListView.Size = new System.Drawing.Size(50, 89);
+            this._parentListView.Size = new System.Drawing.Size(61, 89);
             this._parentListView.TabIndex = 8;
             this._parentListView.UseCompatibleStateImageBehavior = false;
-            this._parentListView.View = System.Windows.Forms.View.List;
+            this._parentListView.View = System.Windows.Forms.View.SmallIcon;
             this._parentListView.SelectedIndexChanged += new System.EventHandler(this._parentListBox_SelectedIndexChanged);
             this._parentListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._parentListView_AfterLabelEdit);
             this._parentListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this._parentListView_KeyUp);

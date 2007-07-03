@@ -44,26 +44,28 @@ namespace SolidGui
 
             _InferComboBox.Items.Add("Report Error");
 
-            //if (selected == "(New)")
-            //{
-            //    newItem.Selected = true;
-            //}
-
             foreach (SolidStructureProperty property in _model.StructureProperties)
             {
                 ListViewItem item = new ListViewItem(property.Parent);
                 item.Tag = property;
                 _parentListView.Items.Add(item);
-                _InferComboBox.Items.Add("Infer "+property.Parent);
+                _InferComboBox.Items.Add("Infer " + property.Parent);
 
                 if (item.Text == selected)
                 {
                     item.Selected = true;
                 }
             }
-            _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf(_model.InferedParent);
+            if (Model.InferedParent == "")
+            {
+                _InferComboBox.SelectedIndex = 0;
+            }
+            else
+            {
+                _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf("Infer " + _model.InferedParent);
+            }
         }
-
+        
         private void UpdateRadioButtonsAndExplanation()
         {
             if (_parentListView.SelectedItems.Count > 0)
@@ -127,22 +129,13 @@ namespace SolidGui
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            if (e.Label != "")
+            if (_model.ValidParent(e.Label))
             {
                 _parentListView.Items[e.Item].Text = e.Label;
                 _model.UpdateParentMarkers(_parentListView.Items);
                 UpdateDisplay();
             }
             e.CancelEdit = true;
-        }
-
-        private void _parentListView_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar.Equals(Keys.Delete))
-            {
-                _model.RemoveStructureProperty(_model.GetSelectedText(_parentListView));
-                UpdateDisplay();
-            }
         }
 
         private void _parentListView_KeyUp(object sender, KeyEventArgs e)
