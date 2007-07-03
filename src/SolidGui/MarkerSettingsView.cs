@@ -55,6 +55,11 @@ namespace SolidGui
 
         private void MarkerSettingsView_Load(object sender, EventArgs e)
         {
+          
+            if(this.DesignMode)
+            {
+                return;
+            }
             _structurePropertiesView.Model = Model.StructurePropertiesModel;
         }
     }

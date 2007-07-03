@@ -45,12 +45,7 @@ namespace SolidGui
             this.label2 = new System.Windows.Forms.Label();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this._markerSettingsView = new SolidGui.MarkerSettingsView();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this._markerSettingsView = new SolidGui.MarkerSettingsView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this._markerSettingsView = new SolidGui.MarkerSettingsView();
@@ -146,7 +141,7 @@ namespace SolidGui
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(890, 430);
+            this.splitContainer1.Size = new System.Drawing.Size(890, 423);
             this.splitContainer1.SplitterDistance = 150;
             this.splitContainer1.TabIndex = 2;
             // 
@@ -169,7 +164,7 @@ namespace SolidGui
             this._filterChooserView.Location = new System.Drawing.Point(0, 43);
             this._filterChooserView.Model = null;
             this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(134, 387);
+            this._filterChooserView.Size = new System.Drawing.Size(134, 377);
             this._filterChooserView.TabIndex = 0;
             // 
             // splitContainer2
@@ -191,7 +186,7 @@ namespace SolidGui
             this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this._markerSettingsView);
-            this.splitContainer2.Size = new System.Drawing.Size(736, 430);
+            this.splitContainer2.Size = new System.Drawing.Size(736, 423);
             this.splitContainer2.SplitterDistance = 311;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -203,7 +198,7 @@ namespace SolidGui
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._searchButton.Image = global::SolidGui.Properties.Resources.search;
             this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(263, 400);
+            this._searchButton.Location = new System.Drawing.Point(281, 360);
             this._searchButton.Name = "_searchButton";
             this._searchButton.Size = new System.Drawing.Size(27, 27);
             this._searchButton.TabIndex = 4;
@@ -230,19 +225,19 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Location = new System.Drawing.Point(3, 43);
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 43);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(287, 325);
+            this._sfmEditorView.Size = new System.Drawing.Size(308, 311);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
             this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._recordNavigatorView.Location = new System.Drawing.Point(0, 374);
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 360);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(261, 56);
+            this._recordNavigatorView.Size = new System.Drawing.Size(302, 63);
             this._recordNavigatorView.TabIndex = 3;
             // 
             // label4
@@ -279,17 +274,17 @@ namespace SolidGui
             this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsView.Location = new System.Drawing.Point(3, 26);
+            this._markerSettingsView.Location = new System.Drawing.Point(7, 26);
             this._markerSettingsView.Model = null;
             this._markerSettingsView.Name = "_markerSettingsView";
-            this._markerSettingsView.Size = new System.Drawing.Size(421, 404);
+            this._markerSettingsView.Size = new System.Drawing.Size(410, 394);
             this._markerSettingsView.TabIndex = 0;
             // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 459);
+            this.ClientSize = new System.Drawing.Size(892, 452);
             this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Name = "MainWindowView";
