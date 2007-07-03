@@ -28,34 +28,24 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("j");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("k");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("p");
-            this._listControl = new System.Windows.Forms.ListView();
+            this._filterListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // _listControl
+            // _filterListBox
             // 
-            this._listControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listControl.HideSelection = false;
-            this._listControl.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3});
-            this._listControl.Location = new System.Drawing.Point(0, 0);
-            this._listControl.MultiSelect = false;
-            this._listControl.Name = "_listControl";
-            this._listControl.Size = new System.Drawing.Size(150, 150);
-            this._listControl.TabIndex = 0;
-            this._listControl.UseCompatibleStateImageBehavior = false;
-            this._listControl.View = System.Windows.Forms.View.List;
-            this._listControl.SelectedIndexChanged += new System.EventHandler(this._filterList_SelectedIndexChanged);
+            this._filterListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterListBox.FormattingEnabled = true;
+            this._filterListBox.Location = new System.Drawing.Point(0, 0);
+            this._filterListBox.Name = "_filterListBox";
+            this._filterListBox.Size = new System.Drawing.Size(150, 147);
+            this._filterListBox.TabIndex = 1;
+            this._filterListBox.SelectedIndexChanged += new System.EventHandler(this._filterList_SelectedIndexChanged);
             // 
             // FilterChooserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._listControl);
+            this.Controls.Add(this._filterListBox);
             this.Name = "FilterChooserView";
             this.Load += new System.EventHandler(this.FilterChooserView_Load);
             this.ResumeLayout(false);
@@ -64,6 +54,7 @@ namespace SolidGui
 
         #endregion
 
-        private System.Windows.Forms.ListView _listControl;
+        private System.Windows.Forms.ListBox _filterListBox;
+
     }
 }

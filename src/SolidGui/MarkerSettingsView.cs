@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -33,22 +29,28 @@ namespace SolidGui
 
         public void UpdateDisplay()
         {
-            _markersListView.Clear();
+            _markerListBox.Items.Clear();
 
             foreach (string marker in _model.AllMarkers)
             {
-                ListViewItem item = new ListViewItem(marker);
-                item.Tag = _model.GetMarkerSetting(marker);
-                _markersListView.Items.Add(item);
+                _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
             }
         }
 
-        private void _markersListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_markersListView.SelectedItems.Count > 0)
+            if (_markerListBox.SelectedItem != null)
             {
-                _structurePropertiesView.Model.MarkerSetting = (SolidEngine.SolidMarkerSetting) _markersListView.SelectedItems[0].Tag;
-                _structurePropertiesView.UpdateDisplay();
+                if ( ("\\_" + _markerListBox.Text) != Model.Root)
+                {
+                    _structurePropertiesView.Model.MarkerSetting = (SolidMarkerSetting) _markerListBox.SelectedItem;
+                    _structurePropertiesView.UpdateDisplay();
+                    _structurePropertiesView.Enabled = true;
+                }
+                else
+                {
+                    _structurePropertiesView.Enabled = false;
+                }
             }
         }
     }

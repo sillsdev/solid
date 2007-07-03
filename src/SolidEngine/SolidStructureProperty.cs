@@ -25,6 +25,11 @@ namespace SolidEngine
             _multipleAdjacent = MultiplicityAdjacency.Once;
         }
 
+        public override string ToString()
+        {
+            return Parent;
+        }
+
         public string Parent
         {
             get

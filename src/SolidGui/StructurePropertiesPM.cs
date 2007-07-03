@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Forms;
 using SolidEngine;
 
@@ -40,7 +38,10 @@ namespace SolidGui
 
         public void UpdateInferedParent(string parent)
         {
-            _markerSetting.InferedParent = parent;
+            if (_markerSetting != null)
+            {
+                _markerSetting.InferedParent = parent;
+            }
         }
 
         public void UpdateParentMarkers(ListView.ListViewItemCollection items)
@@ -53,12 +54,23 @@ namespace SolidGui
                 SolidStructureProperty property = (SolidStructureProperty) item.Tag;
                 property.Parent = item.Text;
                 
-                if (property.Parent != "(New)" && property.Parent != "")
+                if (ValidParent(property.Parent))
                 {
                     _markerSetting.StructureProperties.Add(property);
                 }
             }
         }
+
+        private bool ValidParent(string parent)
+        {
+            return (
+                    parent != "(New)" && 
+                    parent != "" && 
+                    !_markerSetting.ParentExists(parent) &&
+                    _markerSetting.Marker != parent
+                   );
+        }
+
 
         public void UpdateMultiplicity(SolidStructureProperty selected, 
                                        bool onceChecked, 

@@ -42,24 +42,25 @@ namespace SolidGui
             newItem.Tag = new SolidStructureProperty();
             _parentListView.Items.Add(newItem);
 
-            if (selected == "(New)")
-            {
-                newItem.Selected = true;
-            }
+            _InferComboBox.Items.Add("Report Error");
+
+            //if (selected == "(New)")
+            //{
+            //    newItem.Selected = true;
+            //}
 
             foreach (SolidStructureProperty property in _model.StructureProperties)
             {
                 ListViewItem item = new ListViewItem(property.Parent);
                 item.Tag = property;
                 _parentListView.Items.Add(item);
-                _InferComboBox.Items.Add(property.Parent);
+                _InferComboBox.Items.Add("Infer "+property.Parent);
 
                 if (item.Text == selected)
                 {
                     item.Selected = true;
                 }
             }
-
             _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf(_model.InferedParent);
         }
 
@@ -89,9 +90,6 @@ namespace SolidGui
                 _onceRadioButton.Enabled = true;
                 _multipleTogetherRadioButton.Enabled = true;
                 _multipleApartRadioButton.Enabled = true;
-
-                string selected = _model.GetSelectedText(_parentListView);
-                _explanationLabel.Text = string.Format("{0} can appear under {1} ", _model.MarkerSetting.Marker, selected);
             }
             else
             {
@@ -99,9 +97,12 @@ namespace SolidGui
                 _multipleTogetherRadioButton.Enabled = false;
                 _multipleApartRadioButton.Enabled = false;
             }
+
+            string selected = _model.GetSelectedText(_parentListView);
+            _explanationLabel.Text = string.Format("{0} can appear under {1} ", _model.MarkerSetting.Marker, selected);
         }
 
-        private void _parentListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void _parentListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateRadioButtonsAndExplanation();
         }

@@ -78,7 +78,7 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void UpdateParentMarkersGivenAListOfITemsUpdatesTheStructurePropertiesList()
+        public void UpdateParentMarkersUpdatesTheStructurePropertiesList()
         {
 
         }
@@ -88,8 +88,5 @@ namespace SolidGui.Tests
         {
             
         }
-
-
-            
     }
 }

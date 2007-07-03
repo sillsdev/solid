@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -11,6 +12,7 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private SolidEngine.SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
         private DummyProcessor _dummyProcessor;
         private string _rulesXmlPath;
@@ -30,6 +32,7 @@ namespace SolidGui
         {
             _rulesXmlPath = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\rules.xml";
 
+            _solidSettings = new SolidSettings();
             _markerSettingsModel = new MarkerSettingsPM();
             _dummyProcessor = new DummyProcessor();
             _allMarkers = new List<string>();
@@ -46,6 +49,8 @@ namespace SolidGui
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new RecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
+            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
+            _markerSettingsModel.Root = _solidSettings.RecordMarker;
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -57,16 +62,6 @@ namespace SolidGui
                 return _markerSettingsModel;
             }
         }
-
-        /*
-        public MarkerRulesPM MarkerRulesModel
-        {
-            get
-            {
-                return _markerRulesModel;
-            }
-        }
-        */
 
         public SearchPM SearchModel
         {

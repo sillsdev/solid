@@ -38,11 +38,11 @@ namespace SolidGui
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             _changingFilter = true;
-            foreach (ListViewItem item in _listControl.Items)
+            foreach (RecordFilter filter in _filterListBox.Items)
             {
-                if (item.Tag == e._recordFilter)
+                if (filter == e._recordFilter)
                 {
-                    item.Selected = true;
+                    _filterListBox.SelectedIndex = _filterListBox.Items.IndexOf(filter);
                     break;
                 }
             }
@@ -51,9 +51,9 @@ namespace SolidGui
 
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_listControl.SelectedItems != null && _listControl.SelectedItems.Count > 0 && !_changingFilter)
+            if (_filterListBox.SelectedItems != null && _filterListBox.SelectedItems.Count > 0 && !_changingFilter)
             {
-                _model.ActiveRecordFilter = (RecordFilter)_listControl.SelectedItems[0].Tag;
+                _model.ActiveRecordFilter = (RecordFilter) _filterListBox.SelectedItem;
             }
         }
 
@@ -63,20 +63,12 @@ namespace SolidGui
             {
                 return;
             }
-            _listControl.Clear();
+            _filterListBox.Items.Clear();
 
             foreach (RecordFilter filter in Model.RecordFilters)
             {
-                ListViewItem item = new ListViewItem();
-                item.Tag = filter;
-                item.Text = filter.Name+" ("+filter.RecordCount+")";
-                _listControl.Items.Add(item);
+                _filterListBox.Items.Add(filter);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

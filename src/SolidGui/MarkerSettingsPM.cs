@@ -9,6 +9,7 @@ namespace SolidGui
     {
         private List<string> _allMarkers;
         private List<SolidMarkerSetting> _markerSettings;
+        private string _root;
 
         public MarkerSettingsPM()
         {
@@ -39,6 +40,28 @@ namespace SolidGui
             set
             {
                 _allMarkers = value;
+            }
+        }
+        public List<SolidMarkerSetting>MarkerSettings
+        {
+            get
+            {
+                return _markerSettings;
+            }
+            set
+            {
+                _markerSettings = value;
+            }
+        }
+        public string Root
+        {
+            get
+            {
+                return _root;
+            }
+            set
+            {
+                _root = value;
             }
         }
     }

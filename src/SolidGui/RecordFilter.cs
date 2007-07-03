@@ -104,6 +104,11 @@ namespace SolidGui
 
         }
 
+        public override string ToString()
+        {
+            return _name + " (" + RecordCount + ")";
+        }
+
         public string Name
         {
             get
