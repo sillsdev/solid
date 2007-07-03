@@ -76,6 +76,7 @@ namespace SolidEngine
                 if (!InsertInTree(field, xmlOut, scope))
                 {
                     // Can we infer a node.
+                    //!!! TODO Add xpath here to check for conditions based on adjacency etc.
                     if (setting.InferedParent != String.Empty)
                     {
                         XmlNode inferredNode = xmlOut.CreateElement(setting.InferedParent);

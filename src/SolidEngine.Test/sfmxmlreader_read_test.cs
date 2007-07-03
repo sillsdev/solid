@@ -11,6 +11,18 @@ namespace SolidTests
     [TestFixture]
     public class SfmXmlReaderTests : Assertion
     {
+
+        private XmlReader ReadOneRecordData()
+        {
+            string sfm =
+                "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
+                "\\_DateStampHasFourDigitYear\n" +
+                "\\lx a\n" +
+                "\\ge b\n";
+            XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
+            return xmlReader;
+        }
+
         private void AssertStartDocument(XmlReader xmlReader)
         {
             Assert(xmlReader.ReadState == ReadState.Initial);
@@ -198,11 +210,11 @@ namespace SolidTests
             AssertEndDocument(xmlReader);
         }
 
-        [Test]
+        [Ignore]
         public void SFMSingleEntryDocument_Correct()
         {
-            string file = @"../../data/dict2-1entry.txt";
-            XmlReader xmlReader = new SfmXmlReader(new StreamReader(file));
+            //string file = @"../../data/dict2-1entry.txt";
+            XmlReader xmlReader = ReadOneRecordData();
 
             AssertStartDocument(xmlReader);
 
@@ -217,9 +229,9 @@ namespace SolidTests
                 "root", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                2 // attributeCount
             );
-
+            /*
             // elementvalue empty
             AssertNode(
                 xmlReader, // xmlReader
@@ -233,7 +245,7 @@ namespace SolidTests
                 String.Empty, // value
                 0 // attributeCount
             );
-
+            */
             // element entry
             AssertNode(
                 xmlReader, // xmlReader
@@ -247,21 +259,34 @@ namespace SolidTests
                 String.Empty, // value
                 0 // attributeCount
             );
-
+            // element entry
+            AssertNode(
+                xmlReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                2, //depth
+                false, // isEmptyElement
+                "lx", // name
+                String.Empty, // prefix
+                "lx", // localName
+                String.Empty, // namespaceURI
+                "a", // value
+                0 // attributeCount
+            );
+            
             // elementvalue empty
             AssertNode(
                 xmlReader, // xmlReader
                 XmlNodeType.Text, // nodeType
-                2, //depth
+                3, //depth
                 false, // isEmptyElement
-                String.Empty, // name
+                "a", // name
                 String.Empty, // prefix
-                String.Empty, // localName
+                "a", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
             );
-
+            
 
             AssertNode(
                 xmlReader, // xmlReader

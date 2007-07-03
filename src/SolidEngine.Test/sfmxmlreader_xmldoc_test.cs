@@ -37,8 +37,6 @@ namespace SolidTests
                 "\\_DateStampHasFourDigitYear\n";
 
             string xml = "<root _sh=\"v3.0  269  MDF 4.0 (alternate hierarchy)\" _DateStampHasFourDigitYear=\"\"></root>";
-            //            XmlReader xmlReader = new SfmXmlReader("file://c:/src/sil/solid/trunk/data/dict2-1entry.txt");
-            //            XmlReader xmlReader = new SfmXmlReader("file://c:/src/sil/solid/trunk/data/empty.txt");
             XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlReader);
