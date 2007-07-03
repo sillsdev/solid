@@ -4,9 +4,18 @@ namespace SolidEngine
 {
     public class SolidMarkerSetting
     {
-        private List<SolidStructureProperty> _structureProperties;
+        public enum MappingType
+        {
+            Lift,
+            Flex,
+            Max
+        }
+
         private string _marker;
         private string _inferedParent;
+        private string _writingSystem;
+        private List<SolidStructureProperty> _structureProperties;
+        private string[] _mappings = new string[(int)MappingType.Max];
 
         public SolidMarkerSetting()
         {
@@ -22,16 +31,26 @@ namespace SolidEngine
             _structureProperties = new List<SolidStructureProperty>();
         }
 
-        public bool ParentExists(string parent)
+        public string WritingSystem
         {
-            foreach (SolidStructureProperty property in _structureProperties)
-            {
-                if(property.Parent == parent)
+            get { return _writingSystem; }
+            set { _writingSystem = value; }
+        }
+
+        public string[] Mapping
+        {
+            get { return _mappings; }
+        }
+	
+        public bool ParentExists(string marker)
+        {
+            SolidStructureProperty result = _structureProperties.Find(
+                delegate(SolidStructureProperty item)
                 {
-                    return true;
+                    return item.Parent == marker;
                 }
-            }
-            return false;
+            );
+            return result != null;
         }
 
         public override string ToString()

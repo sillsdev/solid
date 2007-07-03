@@ -11,22 +11,26 @@ namespace SolidEngine
         SolidReport _report;
         SolidSettings _settings;
 
+        string[] _mapNames = new string[(int)SolidMarkerSetting.MappingType.Max];
+
         public ProcessStructure(SolidReport report, SolidSettings settings)
         {
             _report = report;
             _settings = settings;
+            _mapNames[(int)SolidMarkerSetting.MappingType.Lift] = "lift";
+            _mapNames[(int)SolidMarkerSetting.MappingType.Flex] = "flex";
+
         }
 
         private bool InsertInTree(XmlNode src, XmlDocument xmlOut, List<XmlNode> scope)
         {
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindMarkerSetting(src.Name);
-            SolidMarkerOps ops = new SolidMarkerOps(setting);
             bool foundParent = false;
             // Check for record marker (assume is root)
             for (int i = scope.Count - 1; !foundParent && i >= 0; i--)
             {
-                if (ops.IsParent(scope[i].Name))
+                if (setting.ParentExists(scope[i].Name))
                 {
                     foundParent = true;
                     // Truncate the scope
@@ -36,15 +40,21 @@ namespace SolidEngine
                     }
                     // Add the node under this parent
                     XmlNode fieldNode = xmlOut.ImportNode(src, true);
+                    for (int j = 0; j < setting.Mapping.Length; j++)
+                    {
+                        if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
+                        {
+                            XmlAttribute attribute = xmlOut.CreateAttribute(_mapNames[j]);
+                            attribute.Value = setting.Mapping[j];
+                            fieldNode.Attributes.Append(attribute);
+                        }
+                    }
                     XmlNode dataNode = xmlOut.CreateElement("data");
                     if (fieldNode.FirstChild != null)
                     {
                         dataNode.AppendChild(fieldNode.FirstChild);
                     }
                     fieldNode.AppendChild(dataNode);
-
-                    //dataNode.AppendChild(fieldNode.FirstChild);
-                    //fieldNode.ReplaceChild(dataNode, fieldNode.FirstChild);
                     XmlNode n = scope[i].AppendChild(fieldNode);
                     // Add this node to the scope
                     scope.Add(n);
@@ -69,20 +79,13 @@ namespace SolidEngine
                     if (setting.InferedParent != String.Empty)
                     {
                         XmlNode inferredNode = xmlOut.CreateElement(setting.InferedParent);
+                        XmlNode attribute = inferredNode.Attributes.Append(xmlOut.CreateAttribute("inferred"));
+                        attribute.Value = "true";
                         // Attempt to insert the inferred node in the tree.
                         // The inferred node needs to find a valid parent
-                        if (!InsertInTree(inferredNode, xmlOut, scope))
+                        if (InsertInTree(inferredNode, xmlOut, scope))
                         {
-                            // Error.
-                            _report.Add(new SolidReport.Entry(
-                                SolidReport.EntryType.Error,
-                                entry,
-                                inferredNode,
-                                "No parent for inferred marker"
-                            ));
-                        }
-                        else
-                        {
+                            //inferredNode.Attributes["inferred"].Value = "true";
                             // Now try and add the current node under the inferred node.
                             if (!InsertInTree(field, xmlOut, scope))
                             {
@@ -95,6 +98,16 @@ namespace SolidEngine
                                     "Cannot insert field into inferred parent"
                                 ));
                             }
+                        }
+                        else
+                        {
+                            // Error.
+                            _report.Add(new SolidReport.Entry(
+                                SolidReport.EntryType.Error,
+                                entry,
+                                inferredNode,
+                                "No parent for inferred marker"
+                            ));
                         }
                     } 
                     else
@@ -111,7 +124,6 @@ namespace SolidEngine
                 field = field.NextSibling;
             }
             return xmlOut;
-
         }
     }
 }
