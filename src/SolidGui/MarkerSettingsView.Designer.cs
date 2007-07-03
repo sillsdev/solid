@@ -29,13 +29,13 @@ namespace SolidGui
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this._markerListBox = new System.Windows.Forms.ListBox();
             this._structureTabControl = new System.Windows.Forms.TabControl();
             this._structureTabPage1 = new System.Windows.Forms.TabPage();
+            this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
-            this._markerListBox = new System.Windows.Forms.ListBox();
-            this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.groupBox1.SuspendLayout();
             this._structureTabControl.SuspendLayout();
             this._structureTabPage1.SuspendLayout();
@@ -55,6 +55,15 @@ namespace SolidGui
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Field Settings";
+            // 
+            // _markerListBox
+            // 
+            this._markerListBox.FormattingEnabled = true;
+            this._markerListBox.Location = new System.Drawing.Point(13, 47);
+            this._markerListBox.Name = "_markerListBox";
+            this._markerListBox.Size = new System.Drawing.Size(34, 264);
+            this._markerListBox.TabIndex = 3;
+            this._markerListBox.SelectedIndexChanged += new System.EventHandler(this._markerListBox_SelectedIndexChanged);
             // 
             // _structureTabControl
             // 
@@ -80,6 +89,15 @@ namespace SolidGui
             this._structureTabPage1.TabIndex = 0;
             this._structureTabPage1.Text = "Structure";
             this._structureTabPage1.UseVisualStyleBackColor = true;
+            // 
+            // _structurePropertiesView
+            // 
+            this._structurePropertiesView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
+            this._structurePropertiesView.Model = null;
+            this._structurePropertiesView.Name = "_structurePropertiesView";
+            this._structurePropertiesView.Size = new System.Drawing.Size(339, 233);
+            this._structurePropertiesView.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -108,24 +126,6 @@ namespace SolidGui
             this.label1.TabIndex = 1;
             this.label1.Text = "Marker";
             // 
-            // _markerListBox
-            // 
-            this._markerListBox.FormattingEnabled = true;
-            this._markerListBox.Location = new System.Drawing.Point(13, 47);
-            this._markerListBox.Name = "_markerListBox";
-            this._markerListBox.Size = new System.Drawing.Size(34, 264);
-            this._markerListBox.TabIndex = 3;
-            this._markerListBox.SelectedIndexChanged += new System.EventHandler(this._markerListBox_SelectedIndexChanged);
-            // 
-            // _structurePropertiesView
-            // 
-            this._structurePropertiesView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
-            this._structurePropertiesView.Model = null;
-            this._structurePropertiesView.Name = "_structurePropertiesView";
-            this._structurePropertiesView.Size = new System.Drawing.Size(339, 233);
-            this._structurePropertiesView.TabIndex = 0;
-            // 
             // MarkerSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +133,7 @@ namespace SolidGui
             this.Controls.Add(this.groupBox1);
             this.Name = "MarkerSettingsView";
             this.Size = new System.Drawing.Size(417, 330);
+            this.Load += new System.EventHandler(this.MarkerSettingsView_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this._structureTabControl.ResumeLayout(false);

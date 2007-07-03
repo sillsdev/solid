@@ -165,8 +165,6 @@ namespace SolidGui
             
             //proccess temporary dictionary
             //_TempDictionaryPath
-            _dummyProcessor.ReadRules(_rulesXmlPath);
-            _dummyProcessor.ProcessDictionary(MasterRecordList);
 
             UpdateRecordFilters(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml");
 
@@ -181,7 +179,7 @@ namespace SolidGui
         private void UpdateRecordFilters(string reportPath)
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<RecordFilter>));
-            
+
 
             _recordFilters.Clear();
 
@@ -203,27 +201,27 @@ namespace SolidGui
             }
             catch
             {
-                
+
             }
 
             FilterChooserModel.RecordFilters = _recordFilters;
         }
 
-        public bool SaveDictionary(string path, bool checkWriteTime)
+        public bool SaveDictionary(string path, bool checkLastWriteTime)
         {
             if (_lastWrittenTo == File.GetLastWriteTime(path) || 
-                !checkWriteTime || 
+                !checkLastWriteTime || 
                 !File.Exists(path))
             {
                 if (_masterRecordList != null)
                 {
-                    System.Text.StringBuilder builder = new System.Text.StringBuilder();
+                    StringBuilder builder = new System.Text.StringBuilder();
                     for (int i = 0; i < _masterRecordList.Count; i++)
                     {
                         builder.Append(_masterRecordList[i].Value);
                     }
                     File.WriteAllText(path, builder.ToString());
-                    if(checkWriteTime)
+                    if(checkLastWriteTime)
                     {
                         _lastWrittenTo = File.GetLastWriteTime(path);
                     }
@@ -236,8 +234,8 @@ namespace SolidGui
                                                  System.Windows.Forms.MessageBoxButtons.OK,
                                                  System.Windows.Forms.MessageBoxIcon.Error);
             return false;
-            
-            
+
+
         }
     }
 }

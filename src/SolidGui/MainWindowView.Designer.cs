@@ -39,7 +39,7 @@ namespace SolidGui
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this._markerSettingsView = new SolidGui.MarkerSettingsView(_mainWindowPM.MarkerSettingsModel);
+            this._markerSettingsView = new SolidGui.MarkerSettingsView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();

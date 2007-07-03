@@ -14,7 +14,6 @@ namespace SolidGui
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
-            _mainWindowPM = mainWindowPM;
             
             InitializeComponent();
             if (DesignMode)
@@ -22,6 +21,7 @@ namespace SolidGui
                 return;
             }
 
+            _mainWindowPM = mainWindowPM;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
             _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
@@ -39,7 +39,9 @@ namespace SolidGui
 
         private void _openButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             ChooseProject();
+            Cursor = Cursors.Default;
         }
 
         private void ChooseProject()
@@ -78,7 +80,10 @@ namespace SolidGui
             }
 
             Settings.Default.PreviousPathToDictionary = dlg.FileName;
+
+            Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName);
+            Cursor = Cursors.WaitCursor;
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -105,7 +110,9 @@ namespace SolidGui
 
         private void _processButton_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             _mainWindowPM.ProcessLexicon();
+            Cursor = Cursors.Default;
         }
 
         private void UpdateDisplay()

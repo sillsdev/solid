@@ -9,11 +9,9 @@ namespace SolidGui
 
         private MarkerSettingsPM _model;
 
-        public MarkerSettingsView( MarkerSettingsPM model)
+        public MarkerSettingsView()
         {
             InitializeComponent();
-            Model = model;
-            _structurePropertiesView.Model = model.StructurePropertiesModel;
         }
 
         public MarkerSettingsPM Model
@@ -53,6 +51,11 @@ namespace SolidGui
                     _structurePropertiesView.Enabled = false;
                 }
             }
+        }
+
+        private void MarkerSettingsView_Load(object sender, EventArgs e)
+        {
+            _structurePropertiesView.Model = Model.StructurePropertiesModel;
         }
     }
 }

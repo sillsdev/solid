@@ -123,6 +123,7 @@ namespace SolidGui
             this._parentListView.UseCompatibleStateImageBehavior = false;
             this._parentListView.View = System.Windows.Forms.View.SmallIcon;
             this._parentListView.SelectedIndexChanged += new System.EventHandler(this._parentListBox_SelectedIndexChanged);
+            this._parentListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this._parentListView_MouseUp);
             this._parentListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._parentListView_AfterLabelEdit);
             this._parentListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this._parentListView_KeyUp);
             // 
@@ -140,6 +141,7 @@ namespace SolidGui
             this.Controls.Add(this.label1);
             this.Name = "StructurePropertiesView";
             this.Size = new System.Drawing.Size(320, 223);
+            this.Load += new System.EventHandler(this.StructurePropertiesView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

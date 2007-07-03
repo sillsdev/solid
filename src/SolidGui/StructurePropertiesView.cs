@@ -146,5 +146,21 @@ namespace SolidGui
                 UpdateDisplay();
             }
         }
+
+        private void StructurePropertiesView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _parentListView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(_parentListView.SelectedItems.Count >0)
+            {
+                if (_model.GetSelectedText(_parentListView) == "(New)")
+                {
+                    _parentListView.SelectedItems[0].BeginEdit();
+                }
+            }
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace SolidGui.Tests
         [Test]
         public void UpdateInferedParentChangesMarkerSettingInfereParentProperty()
         {
-            _model.UpdateInferedParent("lx");
+            _model.UpdateInferedParent("Infer lx");
             Assert.AreEqual("lx",_markerSetting.InferedParent);
         }
 
