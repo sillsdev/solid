@@ -328,6 +328,10 @@ namespace SolidGui
         {
             get
             {
+                if (_solidSettings == null)
+                {
+                    return null;
+                }
                 return _solidSettings.FilePath;
             }
         }

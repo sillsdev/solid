@@ -12,7 +12,7 @@ namespace SolidGui
     public partial class TemplateChooser : Form
     {
         private List<string> _templatePaths;
-        private string _pathToSettingsFileInUse="";
+        private string _pathToChosenTemplate="";
         private bool _HighlightADefaultChoice=false;
 
         public TemplateChooser()
@@ -46,15 +46,11 @@ namespace SolidGui
             }
         }
 
-        public string SelectedToSettingsFileInUse
+        public string PathToChosenTemplate
         {
             get
             {
-                return _pathToSettingsFileInUse;
-            }
-            set
-            {
-                _pathToSettingsFileInUse = value;
+                return _pathToChosenTemplate;
             }
         }
 
@@ -108,6 +104,10 @@ namespace SolidGui
 
         private void _templateChooser_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_templateChooser.SelectedItems.Count == 1)
+            {
+                _pathToChosenTemplate =(string) _templateChooser.SelectedItems[0].Tag;
+            }
             UpdateDisplay();
         }
     }

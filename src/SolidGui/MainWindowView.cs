@@ -95,6 +95,10 @@ namespace SolidGui
             if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
             {
                 templatePath = RequestTemplatePath(dlg.FileName);
+                if (string.IsNullOrEmpty(templatePath))
+                {
+                    return; //they cancelled
+                }
             }
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
             splitContainer1.Panel1.Enabled = true;
@@ -197,12 +201,11 @@ namespace SolidGui
             TemplateChooser chooser = new TemplateChooser();
             chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.GetSettingsPathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
-            chooser.SelectedToSettingsFileInUse = _mainWindowPM.PathToCurrentSolidSettingsFile;
             chooser.HighlightADefaultChoice = false;
             chooser.ShowDialog();
-           if (chooser.DialogResult == DialogResult.OK && chooser.SelectedToSettingsFileInUse != _mainWindowPM.PathToCurrentSolidSettingsFile)
+           if (chooser.DialogResult == DialogResult.OK && chooser.PathToChosenTemplate != _mainWindowPM.PathToCurrentSolidSettingsFile)
            {
-               return chooser.SelectedToSettingsFileInUse;
+               return chooser.PathToChosenTemplate;
            }
             return null;
         }
