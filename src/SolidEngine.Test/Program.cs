@@ -10,14 +10,17 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
+            SolidReportTest t = new SolidReportTest();
+            t.SolidReport_AddEntry_Correct();
+
             //SolidSettingsTest t = new SolidSettingsTest();
             //t.SolidSettings_Write1Read1_Correct();
 
             //ProcessStructureTest t = new ProcessStructureTest();
             //t.ProcessStructure_InferNode_Correct();
 
-            SolidifierTest t = new SolidifierTest();
-            t.Solidifier_InferNode_Correct();
+            //SolidifierTest t = new SolidifierTest();
+            //t.Solidifier_InferNode_Correct();
             
             //SfmReader_Header_Test t = new SfmReader_Header_Test();
             //t.HeaderOnly_Header_Correct();

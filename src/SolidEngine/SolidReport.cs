@@ -20,8 +20,9 @@ namespace SolidEngine
         {
             EntryType _type;
             int _recordID;
-            int _sourceLine;
-            string _entry;
+            int _recordStartLine;
+            int _recordEndLine;
+            string _entryName;
             string _marker;
             string _description;
 
@@ -30,7 +31,10 @@ namespace SolidEngine
                 _type = type;
                 if (entry != null)
                 {
-                    _entry = entry.Name;
+                    _entryName = entry.Name; //??? TODO what's a good name for this entry???
+                    _recordID = Convert.ToInt32(entry.Attributes["id"].Value);
+                    _recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
+                    _recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
                 }
                 if (field != null)
                 {
@@ -38,6 +42,37 @@ namespace SolidEngine
                 }
                 _description = description;
             }
+
+            public int RecordID
+            {
+                get { return _recordID; }
+            }
+
+            public int RecordStartLine
+            {
+                get { return _recordStartLine; }
+            }
+
+            public int RecordEndLine
+            {
+                get { return _recordEndLine; }
+            }
+
+            public string Marker
+            {
+                get { return _marker; }
+            }
+
+            public string Description
+            {
+                get { return _description; }
+            }
+
+            public string Name
+            {
+                get { return _entryName; }
+            }
+
         }
 
         public class SolidEntries : List<Entry>
