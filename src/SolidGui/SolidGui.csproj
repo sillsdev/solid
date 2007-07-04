@@ -118,6 +118,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>SfmEditorView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TemplateChooser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>TemplateChooser.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -155,6 +159,12 @@
     </Compile>
     <Compile Include="SfmEditorView.Designer.cs">
       <DependentUpon>SfmEditorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemplateChooser.Designer.cs">
+      <DependentUpon>TemplateChooser.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

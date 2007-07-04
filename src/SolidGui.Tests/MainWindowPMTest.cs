@@ -16,6 +16,7 @@ namespace SolidGui.Tests
         [SetUp]
         public void Setup()
         {
+            Reporting.ErrorReporter.OkToInteractWithUser = false;
             _mainWindowPM = new MainWindowPM();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
@@ -71,7 +72,7 @@ namespace SolidGui.Tests
             Assert.AreEqual(File.ReadAllText(SavePath),File.ReadAllText(DictionaryPath));
         }
 
-        [Test]
+        [Test, ExpectedException(typeof(Reporting.ErrorReporter.NonFatalMessageSentToUserException))]
         public void SaveDictionaryFailsWhenDictionaryEditedOutsideOfSolid()
         {
             //passes when ran individually
@@ -101,16 +102,16 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void TemplatePathsFindsTemplatesInProgramDir()
+        public void TemplatePathsFindsTemplatesInTemplatesDir()
         {
-            string one = Path.Combine(GetTopAppDirectory(), "testTemplate1.solid");
-            string two = Path.Combine(GetTopAppDirectory(), "testTemplate2.solid");
+            string one = Path.Combine(_mainWindowPM.PathToFactoryTemplatesDirectory, "testTemplate1.solid");
+            string two = Path.Combine(_mainWindowPM.PathToFactoryTemplatesDirectory, "testTemplate2.solid");
             try
             {
                 File.WriteAllText(one, "test");
                 File.WriteAllText(two, "test");
-                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(one));
-                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(two));
+                Assert.IsTrue(_mainWindowPM.TemplatePaths.Contains(one));
+                Assert.IsTrue(_mainWindowPM.TemplatePaths.Contains(two));
             }
             finally
             {
@@ -130,48 +131,13 @@ namespace SolidGui.Tests
             {
                 File.WriteAllText(one, "test");
                 File.WriteAllText(two, "test");
-                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(one));
-                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(two));
+                Assert.IsTrue(_mainWindowPM.TemplatePaths.Contains(one));
+                Assert.IsTrue(_mainWindowPM.TemplatePaths.Contains(two));
             }
             finally
             {
                 File.Delete(one);
                 File.Delete(two);
-            }
-        }
-
-
-        private static string GetTopAppDirectory()
-        {
-            string path;
-
-            path = DirectoryOfExecutingAssembly;
-
-            if (path.ToLower().IndexOf("output") > -1)
-            {
-                //go up to output
-                path = Directory.GetParent(path).FullName;
-                //go up to directory containing output
-                path = Directory.GetParent(path).FullName;
-            }
-            return path;
-        }
-        private static string DirectoryOfExecutingAssembly
-        {
-            get
-            {
-                string path;
-                bool unitTesting = Assembly.GetEntryAssembly() == null;
-                if (unitTesting)
-                {
-                    path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
-                    path = Uri.UnescapeDataString(path);
-                }
-                else
-                {
-                    path = Assembly.GetExecutingAssembly().Location;
-                }
-                return Directory.GetParent(path).FullName;
             }
         }
     }

@@ -73,7 +73,7 @@ namespace SolidGui.Tests
             Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
-        [Test]
+        [Test, Ignore("TODO")]
         public void SaveWritesDictionaryToFile()
         {
             Assert.AreEqual("This Test Needs to Be Written","");

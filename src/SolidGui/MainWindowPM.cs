@@ -205,20 +205,37 @@ namespace SolidGui
             return _workingDictionary.SaveAs(path);
         }
 
-        public List<string> GetTemplatePaths()
+        /// <summary>
+        /// Note: omits the currently in-use settings
+        /// </summary>
+        public List<string> TemplatePaths
         {
-            List<string> paths = new List<string>();
-
-            foreach (string path in Directory.GetFiles(TopAppDirectory, "*.solid"))
+            get
             {
-                paths.Add(path);
-            }
+                List<string> paths = new List<string>();
 
-            foreach (string path in Directory.GetFiles(_workingDictionary.GetDirectoryPath(), "*.solid"))
-            {
-                paths.Add(path);
+                foreach (string path in Directory.GetFiles(PathToFactoryTemplatesDirectory, "*.solid"))
+                {
+                    paths.Add(path);
+                }
+
+                foreach (string path in Directory.GetFiles(_workingDictionary.GetDirectoryPath(), "*.solid"))
+                {
+                    if (path != _solidSettings.FilePath)
+                    {
+                        paths.Add(path);
+                    }
+                }
+                return paths;
             }
-            return paths;
+        }
+
+        public string PathToFactoryTemplatesDirectory
+        {
+            get
+            {
+                return Path.Combine(TopAppDirectory, "templates");
+            }
         }
 
 
@@ -266,6 +283,11 @@ namespace SolidGui
             {
                 return _solidSettings.FilePath;
             }
+        }
+
+        public void UseSolidSettingsTemplate(string path)
+        {
+            
         }
     }
 }

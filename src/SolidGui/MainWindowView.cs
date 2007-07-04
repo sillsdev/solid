@@ -96,18 +96,6 @@ namespace SolidGui
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
             Cursor = Cursors.WaitCursor;
-            LoadTemplateCombo();
-        }
-
-        private void LoadTemplateCombo()
-        {
-            _templateChooserCombo.Items.Clear();
-            _templateChooserCombo.Text = "";
-            foreach (string path in _mainWindowPM.GetTemplatePaths())
-            {
-                _templateChooserCombo.Items.Add(Path.GetFileNameWithoutExtension(path));
-            }
-            _templateChooserCombo.Text = Path.GetFileNameWithoutExtension(_mainWindowPM.PathToCurrentSolidSettingsFile);
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -143,6 +131,7 @@ namespace SolidGui
         {
             _processButton.Enabled = _mainWindowPM.CanProcessLexicon;
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
+            _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
         }
 
         private void OnSaveClick(object sender, EventArgs e)
@@ -177,11 +166,6 @@ namespace SolidGui
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void OnAboutBoxButton_Click(object sender, EventArgs e)
         {
             AboutBox box = new AboutBox();
@@ -192,6 +176,20 @@ namespace SolidGui
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
             _mainWindowPM.SolidSettings.Save();
+        }
+
+        private void OnChangeTemplate_Click(object sender, EventArgs e)
+        {
+            TemplateChooser chooser = new TemplateChooser();
+            chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.PathToCurrentSolidSettingsFile);
+            chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
+            chooser.SelectedToSettingsFileInUse = _mainWindowPM.PathToCurrentSolidSettingsFile;
+            chooser.ShowDialog();
+            chooser.HighlightADefaultChoice = false;
+            if (chooser.DialogResult == DialogResult.OK && chooser.SelectedToSettingsFileInUse != _mainWindowPM.PathToCurrentSolidSettingsFile)
+            {
+                _mainWindowPM.UseSolidSettingsTemplate(chooser.SelectedToSettingsFileInUse);
+            }
         }
     }
 }
