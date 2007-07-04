@@ -13,8 +13,11 @@ namespace SolidTests
             //SolidSettingsTest t = new SolidSettingsTest();
             //t.SolidSettings_Write1Read1_Correct();
 
-            ProcessStructureTest t = new ProcessStructureTest();
-                t.ProcessStructure_InferNode_Correct();
+            //ProcessStructureTest t = new ProcessStructureTest();
+            //t.ProcessStructure_InferNode_Correct();
+
+            SolidifierTest t = new SolidifierTest();
+            t.Solidifier_InferNode_Correct();
             
             //SfmReader_Header_Test t = new SfmReader_Header_Test();
             //t.HeaderOnly_Header_Correct();
@@ -28,7 +31,7 @@ namespace SolidTests
             //t.EmptySfmDoc_Correct();
 
             //SfmXmlReaderTests t = new SfmXmlReaderTests();
-            //t.SFMHeaderDocument_Correct();
+            //t.ReadSubtreeFromSfm_Correct();
         }
     }
 }

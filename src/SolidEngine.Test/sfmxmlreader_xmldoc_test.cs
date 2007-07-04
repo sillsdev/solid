@@ -57,6 +57,22 @@ namespace SolidTests
             Assert.AreEqual(xml, xmlDoc.InnerXml);
         }
 
+        [Test]
+        public void ReadSubtree_Correct()
+        {
+            string sfm = 
+                "\\_a 1\n" +
+                "\\lx lex1\n" +
+                "\\ph ph1\n";
+            string xml = "<entry><lx>lex1</lx><ph>ph1</ph></entry>";
+            XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
+            xmlReader.ReadToFollowing("entry");
+            XmlReader entryReader = xmlReader.ReadSubtree();
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(entryReader);
+            Assert.AreEqual(xml, xmlDoc.InnerXml);
+       }
+
 
     }
 }

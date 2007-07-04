@@ -210,6 +210,245 @@ namespace SolidTests
             AssertEndDocument(xmlReader);
         }
 
+        [Test]
+        public void ReadSubtreeFromXml_Correct()
+        {
+            string xmlIn = "<root _sh=\"sh\" _DateTimeStampHasFourDigitYear=\"true\"><entry><lx>lex1</lx><ge>ggg</ge></entry></root>";
+            XmlReader xmlReader = XmlReader.Create(new StringReader(xmlIn));
+            xmlReader.ReadToFollowing("entry");
+            XmlReader entryReader = xmlReader.ReadSubtree();
+
+            AssertStartDocument(entryReader);
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                0, //depth
+                false, // isEmptyElement
+                "entry", // name
+                String.Empty, // prefix
+                "entry", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "lx", // name
+                String.Empty, // prefix
+                "lx", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Text, // nodeType
+                2, //depth
+                false, // isEmptyElement
+                String.Empty, // name
+                String.Empty, // prefix
+                String.Empty, // localName
+                String.Empty, // namespaceURI
+                "lex1", // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "lx", // name
+                String.Empty, // prefix
+                "lx", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "ge", // name
+                String.Empty, // prefix
+                "ge", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Text, // nodeType
+                2, //depth
+                false, // isEmptyElement
+                String.Empty, // name
+                String.Empty, // prefix
+                String.Empty, // localName
+                String.Empty, // namespaceURI
+                "ggg", // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "ge", // name
+                String.Empty, // prefix
+                "ge", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                0, //depth
+                false, // isEmptyElement
+                "entry", // name
+                String.Empty, // prefix
+                "entry", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertEndDocument(entryReader);
+        }
+
+
+        [Test]
+        public void ReadSubtreeFromSfm_Correct()
+        {
+            string sfm =
+                "\\_a 1\n" +
+                "\\lx lex1\n" +
+                "\\ge ggg\n";
+            XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
+            xmlReader.ReadToFollowing("entry");
+            XmlReader entryReader = xmlReader.ReadSubtree();
+
+            AssertStartDocument(entryReader);
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                0, //depth
+                false, // isEmptyElement
+                "entry", // name
+                String.Empty, // prefix
+                "entry", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "lx", // name
+                String.Empty, // prefix
+                "lx", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Text, // nodeType
+                2, //depth
+                false, // isEmptyElement
+                String.Empty, // name
+                String.Empty, // prefix
+                String.Empty, // localName
+                String.Empty, // namespaceURI
+                "lex1", // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "lx", // name
+                String.Empty, // prefix
+                "lx", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Element, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "ge", // name
+                String.Empty, // prefix
+                "ge", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.Text, // nodeType
+                2, //depth
+                false, // isEmptyElement
+                String.Empty, // name
+                String.Empty, // prefix
+                String.Empty, // localName
+                String.Empty, // namespaceURI
+                "ggg", // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                1, //depth
+                false, // isEmptyElement
+                "ge", // name
+                String.Empty, // prefix
+                "ge", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                0 // attributeCount
+            );
+
+            AssertNode(
+               entryReader, // xmlReader
+               XmlNodeType.EndElement, // nodeType
+               0, //depth
+               false, // isEmptyElement
+               "entry", // name
+               String.Empty, // prefix
+               "entry", // localName
+               String.Empty, // namespaceURI
+               String.Empty, // value
+               0 // attributeCount
+           );
+            
+           AssertEndDocument(entryReader);
+        }
+
+
         [Ignore]
         public void SFMSingleEntryDocument_Correct()
         {

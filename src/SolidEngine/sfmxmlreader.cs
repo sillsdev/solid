@@ -635,7 +635,8 @@ namespace SolidEngine
             bool retval = false;
             switch (_xmlState)
             {
-                default:
+                case XmlState.Attribute:
+                case XmlState.AttributeValue:
                     _xmlState = XmlState.Element;
                     _attributeIndex = 0;
                     retval = true;

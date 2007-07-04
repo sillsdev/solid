@@ -7,39 +7,31 @@ namespace SolidEngine
 {
     public class Solidifier
     {
-        string _reportFile;
-        string _outputFile;
-
-      //  SolidSettings _solidFile = new SolidSettings();
-        SolidReport _solidReport = new SolidReport();
-
         public Solidifier()
-        {
-        
+        {        
         }
 
-        public void Process(string file)
+        public SolidReport Process(string filePath)
         {
-            SfmXmlReader reader = new SfmXmlReader(file);
-            Process(reader);
+            SolidReport solidReport = new SolidReport();
+            SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.SettingsFilePath(filePath));
+            SfmXmlReader reader = new SfmXmlReader(filePath);
+            return Process(reader, solidSettings);
         }
 
-        public void Process(XmlReader xr)
+        public SolidReport Process(XmlReader xr, SolidSettings solidSettings)
         {
-            ProcessStructure process = new ProcessStructure(_solidReport, null); //!!!
+            SolidReport solidReport = new SolidReport();
+            ProcessStructure process = new ProcessStructure(solidReport, solidSettings);
             while (xr.ReadToFollowing("entry"))
             {
                 XmlReader entryReader = xr.ReadSubtree();
                 // Load the current record from xr into an XmlDocument
                 XmlDocument xmldoc = new XmlDocument();
-                xmldoc.Load(xr);
-                process.Process(xmldoc);
+                xmldoc.Load(entryReader);
+                process.Process(xmldoc.DocumentElement);
             }
-        }
-
-        private void ProcessEntry(XmlReader r)
-        {
-
+            return solidReport;
         }
 
     }

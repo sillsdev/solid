@@ -36,5 +36,14 @@ namespace SolidTests
             Assert.AreEqual(1, f.MarkerSettings.Count);
         }
 
+        [Test]
+        public void SolidSettings_SettingsFilePath_Correct()
+        {
+            string result = SolidSettings.SettingsFilePath("mydatafile.txt");
+            Assert.AreEqual("mydatafile.solid", result);
+        }
+
+
+
     }
 }

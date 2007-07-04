@@ -44,6 +44,7 @@
     <Compile Include="sfmreader_read_test.cs" />
     <Compile Include="sfmxmlreader_read_test.cs" />
     <Compile Include="sfmxmlreader_xmldoc_test.cs" />
+    <Compile Include="Solidifier_Test.cs" />
     <Compile Include="SolidReport_Test.cs" />
     <Compile Include="SolidSettings_Test.cs" />
   </ItemGroup>

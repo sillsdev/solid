@@ -78,5 +78,13 @@ namespace SolidEngine
                 xs.Serialize(writer, this);
             }
         }
+
+        public static string SettingsFilePath(string dataFilePath)
+        {
+            int lastDot = dataFilePath.LastIndexOf('.');
+            string retval = dataFilePath.Substring(0, lastDot) + ".solid";
+            return retval;
+        }
+
     }
 }
