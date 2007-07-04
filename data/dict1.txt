@@ -2,7 +2,7 @@
 \lx aː˥˩
 \ps EXCL
 \ge What.Hey
-\nt This shows surprise.
+\nt This shows surprise.i
 \dt 16/Aug/2006
 \lx aː˥
 \ps PRT

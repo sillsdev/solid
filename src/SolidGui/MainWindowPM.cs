@@ -12,15 +12,14 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        private Dictionary _workingDictionary;
+        private Dictionary _tempDictionary;
         private SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
-        private DummyProcessor _dummyProcessor;
-        private string _rulesXmlPath;
-        private DateTime _lastWrittenTo;
         private List<string> _allMarkers;
-        private String _TempDictionaryPath;
-        private List<RecordFilter> _recordFilters = new List<RecordFilter>();
-        private List<Record> _masterRecordList = new List<Record>();
+        private String _tempDictionaryPath;
+        private List<RecordFilter> _recordFilters;
+        private List<Record> _masterRecordList;
         private RecordNavigatorPM _navigatorModel;
         private FilterChooserPM _filterChooserModel;
         private SfmEditorPM _sfmEditorModel;
@@ -30,27 +29,26 @@ namespace SolidGui
 
         public MainWindowPM()
         {
-            _rulesXmlPath = @"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\rules.xml";
-
+            _recordFilters = new List<RecordFilter>();
+            _workingDictionary = new Dictionary();
+            _tempDictionary = new Dictionary();
             _solidSettings = new SolidSettings();
             _markerSettingsModel = new MarkerSettingsPM();
-            _dummyProcessor = new DummyProcessor();
-            _allMarkers = new List<string>();
-            _lastWrittenTo = DateTime.Now;
-            _TempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.txt");
+            _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM();
             _searchModel = new SearchPM();
 
-            FilterChooserModel.RecordFilters = new List<RecordFilter>();
 
+            _allMarkers = _workingDictionary.AllMarkers;
+            _masterRecordList = _workingDictionary.AllRecords;
+            FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
             _navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new RecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
-            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
-            _markerSettingsModel.Root = _solidSettings.RecordMarker;
+
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -133,42 +131,24 @@ namespace SolidGui
 
         public void OpenDictionary(string path)
         {
-            _lastWrittenTo = File.GetLastWriteTime(path);
-            _masterRecordList.Clear();
-            using (TextReader dictReader = File.OpenText(path))
-            {
-                SolidEngine.SfmRecordReader reader = new SolidEngine.SfmRecordReader(dictReader, 10000);
-                while (reader.Read())
-                {
-                    if (reader.FieldCount == 0)
-                        continue;
+            _workingDictionary.Open(path);
+            _solidSettings =
+                SolidSettings.OpenSolidFile(
+                    Path.Combine(_workingDictionary.GetDirectoryPath(), _workingDictionary.GetFileName() + ".solid"));
 
-                    StringBuilder recordContents = new StringBuilder();
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        recordContents.AppendLine("\\" + reader.Key(i) + " " + reader.Value(i));
-                        if (!_allMarkers.Contains(reader.Key(i)))
-                        {
-                            _allMarkers.Add(reader.Key(i));
-                        }
-                    }
-                    _masterRecordList.Add(new Record(recordContents.ToString()));
-                }
-            }
+            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
+            _markerSettingsModel.Root = _solidSettings.RecordMarker;
             ProcessLexicon();
         }
 
         public void ProcessLexicon()
         {
-
-            SaveDictionary(_TempDictionaryPath, false);
+            _tempDictionary = _workingDictionary.SaveAs(_tempDictionaryPath);
             
             //proccess temporary dictionary
-            //_TempDictionaryPath
+            //_tempDictionaryPath
 
-            UpdateRecordFilters(@"C:\Documents and Settings\WeSay\Desktop\Solid\trunk\data\report.xml");
-
-            FilterChooserModel.RecordFilters = _recordFilters;
+            UpdateRecordFilters(Path.Combine(_workingDictionary.GetDirectoryPath(),"report.xml"));
 
             if (DictionaryProcessed != null)
             {
@@ -179,7 +159,6 @@ namespace SolidGui
         private void UpdateRecordFilters(string reportPath)
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<RecordFilter>));
-
 
             _recordFilters.Clear();
 
@@ -203,39 +182,17 @@ namespace SolidGui
             {
 
             }
-
-            FilterChooserModel.RecordFilters = _recordFilters;
         }
 
-        public bool SaveDictionary(string path, bool checkLastWriteTime)
+        public bool SaveDictionary()
         {
-            if (_lastWrittenTo == File.GetLastWriteTime(path) || 
-                !checkLastWriteTime || 
-                !File.Exists(path))
-            {
-                if (_masterRecordList != null)
-                {
-                    StringBuilder builder = new System.Text.StringBuilder();
-                    for (int i = 0; i < _masterRecordList.Count; i++)
-                    {
-                        builder.Append(_masterRecordList[i].Value);
-                    }
-                    File.WriteAllText(path, builder.ToString());
-                    if(checkLastWriteTime)
-                    {
-                        _lastWrittenTo = File.GetLastWriteTime(path);
-                    }
-                    return true;
-                }
-            }
+            _solidSettings.Save();
+            return _workingDictionary.Save();
+        }
 
-            System.Windows.Forms.MessageBox.Show("The file has been altered outside of Solid",
-                                                 "Error Message",
-                                                 System.Windows.Forms.MessageBoxButtons.OK,
-                                                 System.Windows.Forms.MessageBoxIcon.Error);
-            return false;
-
-
+        public Dictionary SaveDictionaryAs(string path)
+        {
+            return _workingDictionary.SaveAs(path);
         }
     }
 }

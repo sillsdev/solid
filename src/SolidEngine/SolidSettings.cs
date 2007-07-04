@@ -48,12 +48,25 @@ namespace SolidEngine
         {
             SolidSettings settings;
             XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
-            using (StreamReader reader = new StreamReader(path))
+            
+            if(!File.Exists(path))
             {
-                settings = (SolidSettings)xs.Deserialize(reader);
-                settings.FilePath = path;
+                using(File.Create(path))
+                {}
+            }
+            try
+            {
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    settings = (SolidSettings) xs.Deserialize(reader);
+                }
+            }
+            catch
+            {
+                settings = new SolidSettings();   
             }
 
+            settings.FilePath = path;
             return settings;
         }
 

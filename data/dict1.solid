@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RecordMarker>\_lx</RecordMarker>
+  <MarkerSettings>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent>nt</InferedParent>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>nt</Parent>
+          <MultipleAdjacent>MultipleTogether</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ge</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>ps</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>ge</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>nt</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent>lx</InferedParent>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>dt</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>sd</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>de</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>a</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lc</Marker>
+    </SolidMarkerSetting>
+  </MarkerSettings>
+</SolidSettings>

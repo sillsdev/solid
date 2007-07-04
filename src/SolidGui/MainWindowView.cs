@@ -132,7 +132,7 @@ namespace SolidGui
 
         private void OnSaveClick(object sender, EventArgs e)
         {
-            if(_mainWindowPM.SaveDictionary(Settings.Default.PreviousPathToDictionary, true))
+            if(_mainWindowPM.SaveDictionary())
             {
                 _saveButton.Enabled = false;
             }
