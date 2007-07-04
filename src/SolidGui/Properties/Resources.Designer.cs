@@ -110,5 +110,12 @@ namespace SolidGui.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap WarningHS {
+            get {
+                object obj = ResourceManager.GetObject("WarningHS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

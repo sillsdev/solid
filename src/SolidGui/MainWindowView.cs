@@ -94,7 +94,7 @@ namespace SolidGui
             string templatePath = null;
             if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
             {
-                templatePath = RequestTemplatePath(dlg.FileName);
+                templatePath = RequestTemplatePath(dlg.FileName, false);
                 if (string.IsNullOrEmpty(templatePath))
                 {
                     return; //they cancelled
@@ -189,19 +189,19 @@ namespace SolidGui
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
         {
-            string path =RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary);
+            string path =RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
             if(!String.IsNullOrEmpty(path))
             {
                 _mainWindowPM.UseSolidSettingsTemplate(path);
             }
         }
 
-        private string RequestTemplatePath(string dictionaryPath)
+        private string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)
         {
             TemplateChooser chooser = new TemplateChooser();
             chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.GetSettingsPathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
-            chooser.HighlightADefaultChoice = false;
+            chooser.WouldBeReplacingExistingSettings = wouldBeReplacingExistingSettings;
             chooser.ShowDialog();
            if (chooser.DialogResult == DialogResult.OK && chooser.PathToChosenTemplate != _mainWindowPM.PathToCurrentSolidSettingsFile)
            {

@@ -13,11 +13,12 @@ namespace SolidGui
     {
         private List<string> _templatePaths;
         private string _pathToChosenTemplate="";
-        private bool _HighlightADefaultChoice=false;
+        private bool _wouldBeReplacingExistingSettings=false;
 
         public TemplateChooser()
         {
             InitializeComponent();
+            _instructionsLabelForReplacement.Location = _instructionsLabel.Location;
         }
 
 
@@ -54,15 +55,15 @@ namespace SolidGui
             }
         }
 
-        public bool HighlightADefaultChoice
+        public bool WouldBeReplacingExistingSettings
         {
             get
             {
-                return _HighlightADefaultChoice;
+                return _wouldBeReplacingExistingSettings;
             }
             set
             {
-                _HighlightADefaultChoice = value;
+                _wouldBeReplacingExistingSettings = value;
             }
         }
 
@@ -77,9 +78,17 @@ namespace SolidGui
                 item.ToolTipText = path;
                 _templateChooser.Items.Add(item);
 
-                if (_HighlightADefaultChoice)
+                _labelSaveFirst1.Visible = _labelSaveFirst2.Visible = _warningImage.Visible = _saveCurrentFirst.Visible = _wouldBeReplacingExistingSettings;
+                _instructionsLabelForReplacement.Visible = _wouldBeReplacingExistingSettings;
+                _instructionsLabel.Visible = !_wouldBeReplacingExistingSettings;
+
+                if (_wouldBeReplacingExistingSettings)
                 {
-                    if(path.ToLower().Contains("mdf.solid"))
+                    _templateChooser.Top = 64;
+                }
+                else
+                {
+                    if (path.ToLower().Contains("mdf.solid"))
                     {
                         item.Selected = true;
                     }
