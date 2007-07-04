@@ -33,8 +33,6 @@ namespace SolidGui
         {
             _recordFilters = new List<RecordFilter>();
             _workingDictionary = new Dictionary();
-            _tempDictionary = new Dictionary();
-            _solidSettings = new SolidSettings();
             _markerSettingsModel = new MarkerSettingsPM();
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
@@ -61,6 +59,11 @@ namespace SolidGui
             {
                 return _markerSettingsModel;
             }
+        }
+
+        public SolidSettings SolidSettings
+        {
+            get { return _solidSettings; }
         }
 
         public SearchPM SearchModel
@@ -133,6 +136,11 @@ namespace SolidGui
 
         public void OpenDictionary(string path)
         {
+            if(_solidSettings!=null)
+            {
+                _solidSettings.Save();
+            }
+
             _workingDictionary.Open(path);
             _solidSettings =
                 SolidSettings.OpenSolidFile(

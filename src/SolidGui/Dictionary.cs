@@ -44,6 +44,7 @@ namespace SolidGui
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
 
             _recordList.Clear();
+            _allMarkers.Clear();
             using (TextReader dictReader = File.OpenText(_filePath))
             {
                 SolidEngine.SfmRecordReader reader = new SolidEngine.SfmRecordReader(dictReader, 10000);

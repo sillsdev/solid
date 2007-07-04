@@ -1,4 +1,4 @@
-﻿\lx aamc
+\lx aamc
 \ph ʔaːm³
 \ps n
 \pn 

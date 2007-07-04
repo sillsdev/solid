@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RecordMarker>\_lx</RecordMarker>
+  <MarkerSettings>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>ph</Marker>
+    </SolidMarkerSetting>
+  </MarkerSettings>
+</SolidSettings>

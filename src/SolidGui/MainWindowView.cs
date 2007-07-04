@@ -92,6 +92,9 @@ namespace SolidGui
 
             Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName);
+            splitContainer1.Panel1.Enabled = true;
+            splitContainer2.Panel1.Enabled = true;
+            splitContainer2.Panel2.Enabled = true;
             Cursor = Cursors.WaitCursor;
             LoadTemplateCombo();
         }
@@ -184,6 +187,11 @@ namespace SolidGui
             AboutBox box = new AboutBox();
             box.ShowDialog();
             box.Dispose();
+        }
+
+        private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _mainWindowPM.SolidSettings.Save();
         }
     }
 }

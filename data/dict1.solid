@@ -23,12 +23,22 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>nt</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>ge</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -43,7 +53,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>de</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>sd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
