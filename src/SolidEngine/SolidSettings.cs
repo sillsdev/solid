@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
@@ -44,6 +45,38 @@ namespace SolidEngine
             return result;
         }
 
+        /// <summary>
+        /// will overwrite existing file, if needed
+        /// </summary>
+        /// <param name="templatePath"></param>
+        /// <param name="outputPath"></param>
+        /// <returns></returns>
+        public static SolidSettings CreateSolidFileFromTemplate(string templatePath, string outputPath)
+        {
+            SolidSettings settings;
+
+            try
+            {
+                if (File.Exists(outputPath))
+                {
+                    File.Delete(outputPath);
+                }
+                File.Copy(templatePath, outputPath);
+            }
+            catch (Exception e)
+            {
+                Reporting.ErrorReporter.ReportNonFatalMessage(
+                    "There was a problem opening that settings file.  The error was\r\n" + e.Message);
+                return null;
+            }
+            return OpenSolidFile(outputPath);
+        }
+
+        /// <summary>
+        /// Open existing file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
         public static SolidSettings OpenSolidFile(string path)
         {
             SolidSettings settings;
@@ -61,9 +94,11 @@ namespace SolidEngine
                     settings = (SolidSettings) xs.Deserialize(reader);
                 }
             }
-            catch
+            catch(Exception e)
             {
-                settings = new SolidSettings();   
+                Reporting.ErrorReporter.ReportNonFatalMessage(
+                    "There was a problem opening that settings file.  The error was\r\n" + e.Message);
+                return null              ;
             }
 
             settings.FilePath = path;

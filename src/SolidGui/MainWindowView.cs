@@ -91,7 +91,12 @@ namespace SolidGui
             Settings.Default.PreviousPathToDictionary = dlg.FileName;
 
             Cursor = Cursors.WaitCursor;
-            _mainWindowPM.OpenDictionary(dlg.FileName);
+            string templatePath = null;
+            if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
+            {
+                templatePath = RequestTemplatePath(dlg.FileName);
+            }
+            _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
@@ -180,16 +185,26 @@ namespace SolidGui
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
         {
+            string path =RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary);
+            if(!String.IsNullOrEmpty(path))
+            {
+                _mainWindowPM.UseSolidSettingsTemplate(path);
+            }
+        }
+
+        private string RequestTemplatePath(string dictionaryPath)
+        {
             TemplateChooser chooser = new TemplateChooser();
-            chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.PathToCurrentSolidSettingsFile);
+            chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.GetSettingsPathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
             chooser.SelectedToSettingsFileInUse = _mainWindowPM.PathToCurrentSolidSettingsFile;
-            chooser.ShowDialog();
             chooser.HighlightADefaultChoice = false;
-            if (chooser.DialogResult == DialogResult.OK && chooser.SelectedToSettingsFileInUse != _mainWindowPM.PathToCurrentSolidSettingsFile)
-            {
-                _mainWindowPM.UseSolidSettingsTemplate(chooser.SelectedToSettingsFileInUse);
-            }
+            chooser.ShowDialog();
+           if (chooser.DialogResult == DialogResult.OK && chooser.SelectedToSettingsFileInUse != _mainWindowPM.PathToCurrentSolidSettingsFile)
+           {
+               return chooser.SelectedToSettingsFileInUse;
+           }
+            return null;
         }
     }
 }

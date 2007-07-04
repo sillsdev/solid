@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -134,21 +135,67 @@ namespace SolidGui
             }
         }
 
-        public void OpenDictionary(string path)
+        /// <summary>
+        /// Called by the view to determine whether to ask the user for a starting template
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool ShouldAskForTemplateBeforeOpening(string path)
         {
+            return !File.Exists(GetSettingsPathFromDictionaryPath(path));
+        }
+
+        /// <summary>
+        /// Caller should first call ShouldAskForTemplateBeforeOpening, and supply a templatePath iff that returns true
+        /// </summary>
+        /// <param name="dictionaryPath"></param>
+        /// <param name="templatePath"></param>
+        public void OpenDictionary(string dictionaryPath, string templatePath)
+        {
+            if (!SaveOffOpenModifiedStuff())
+            {
+                return;
+            }
+
+            _workingDictionary.Open(dictionaryPath);
+
+            if (File.Exists(GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath)))
+            {
+                _solidSettings =
+                    SolidSettings.OpenSolidFile(
+                        Path.Combine(_workingDictionary.GetDirectoryPath(),
+                                     GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath)));
+            }
+            else
+            {
+                Debug.Assert(!string.IsNullOrEmpty(templatePath));
+                _solidSettings =
+                    SolidSettings.CreateSolidFileFromTemplate(templatePath, GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath));
+            }
+            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
+            _markerSettingsModel.Root = _solidSettings.RecordMarker;
+            ProcessLexicon();
+        }
+
+        /// <summary>
+        /// Call this before switching dictionaries or quitting
+        /// </summary>
+        /// <returns>false if user cancelled</returns>
+        private bool SaveOffOpenModifiedStuff()
+        {
+            //review Mark(JH): do we need to save an existing, open dictionary at this point (and let the user cancel)?
+
             if(_solidSettings!=null)
             {
                 _solidSettings.Save();
             }
 
-            _workingDictionary.Open(path);
-            _solidSettings =
-                SolidSettings.OpenSolidFile(
-                    Path.Combine(_workingDictionary.GetDirectoryPath(), _workingDictionary.GetFileNameNoExtension() + ".solid"));
+            return true; //todo: let the user cancel if the dictionary was changed
+        }
 
-            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
-            _markerSettingsModel.Root = _solidSettings.RecordMarker;
-            ProcessLexicon();
+        public string GetSettingsPathFromDictionaryPath(string dictionaryPath)
+        {
+            return Path.Combine(Path.GetDirectoryName(dictionaryPath), Path.GetFileNameWithoutExtension(dictionaryPath)) + ".solid";
         }
 
         public void ProcessLexicon()
@@ -282,6 +329,14 @@ namespace SolidGui
             get
             {
                 return _solidSettings.FilePath;
+            }
+        }
+
+        public string PathToCurrentDictionary
+        {
+            get
+            {
+                return _workingDictionary.FilePath;
             }
         }
 

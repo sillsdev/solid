@@ -59,14 +59,20 @@ namespace SolidGui.Tests
         [Test]
         public void OpenExistingDictionaryLoadsRecordLists()
         {
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
             Assert.AreEqual(2,_mainWindowPM.MasterRecordList.Count);
+        }
+
+        private void OpenDictionaryWithPreExistingSettings()
+        {
+            File.Copy(PathToMDFTemplate, PathToSettingsFileThatGoesWithDictionary);
+            _mainWindowPM.OpenDictionary(DictionaryPath, null);
         }
 
         [Test]
         public void SaveDictionarySavesCurrentDictionary()
         {
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
             _mainWindowPM.SaveDictionaryAs(SavePath);
             
             Assert.AreEqual(File.ReadAllText(SavePath),File.ReadAllText(DictionaryPath));
@@ -77,7 +83,7 @@ namespace SolidGui.Tests
         {
             //passes when ran individually
 
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
 
             System.Threading.Thread.Sleep(2000);
 
@@ -90,15 +96,64 @@ namespace SolidGui.Tests
         public void SaveDictionarySucceedsWhenDictionaryNotEditedOutsideOfSolid()
         {
             MainWindowPM temp = new MainWindowPM();
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
             Assert.IsTrue(_mainWindowPM.SaveDictionary());
         }
 
         [Test]
         public void SaveDictionaryWritesWhenThePathDoesNotExist()
         {
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
             Assert.IsTrue(_mainWindowPM.SaveDictionary());
+        }
+
+        [Test]
+        public void ShouldAskForTemplateBeforeOpeningWhenSettingsMissing()
+        {
+            Assert.IsTrue(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
+        }
+
+        [Test]
+        public void ShouldNotAskTemplateBeforeOpeningWhenSettingsExist()
+        {
+            string path = PathToSettingsFileThatGoesWithDictionary;
+            try
+            {
+                File.WriteAllText(
+                    path,
+                    "hello");
+                Assert.IsFalse(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
+            }
+            finally
+            {
+                File.Delete(path);
+            }
+        }
+
+        private string PathToSettingsFileThatGoesWithDictionary
+        {
+            get
+            {
+                return
+                    Path.Combine(Path.GetDirectoryName(DictionaryPath),
+                                 Path.GetFileNameWithoutExtension(DictionaryPath) + ".solid");
+            }
+        }
+
+        [Test]
+        public void OpeningWithTemplateMakesCorrectSettingsFile()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath, PathToMDFTemplate);
+            Assert.IsTrue(File.Exists(PathToSettingsFileThatGoesWithDictionary));
+            Assert.AreEqual(File.ReadAllText(PathToMDFTemplate), File.ReadAllText(PathToSettingsFileThatGoesWithDictionary));
+        }
+
+        private string PathToMDFTemplate
+        {
+            get
+            {
+                return Path.Combine(_mainWindowPM.PathToFactoryTemplatesDirectory, "mdf.solid");
+            }
         }
 
         [Test]
@@ -123,7 +178,7 @@ namespace SolidGui.Tests
         [Test]
         public void TemplatePathsFindsTemplatesDictionaryDir()
         {
-            _mainWindowPM.OpenDictionary(DictionaryPath);
+            OpenDictionaryWithPreExistingSettings();
 
             string one = Path.Combine(_projectFolder, "testTemplate1.solid");
             string two = Path.Combine(_projectFolder, "testTemplate2.solid");
