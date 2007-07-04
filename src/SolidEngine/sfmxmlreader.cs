@@ -75,13 +75,13 @@ namespace SolidEngine
                 1, 
                 "entry",
                 false,
-                new string[] {"id", "startline", "endline"}
+                new string[] {"record", "startline", "endline"}
             ),
             new SfmStateInfo(
                 2,
                 "field", // Not its real name
                 true,
-                null
+                new string[] {"field"}
             )
         };
 
@@ -409,6 +409,9 @@ namespace SolidEngine
                                         break;
                                 }
                                 break;
+                            case SfmState.Field:
+                                retval = String.Format("{0:D}", _fieldIndex);
+                                break;
                         }
                         break;
                 }
@@ -607,6 +610,7 @@ namespace SolidEngine
             {
                 case SfmState.Root:
                 case SfmState.Record:
+                case SfmState.Field:
                     _xmlState = XmlState.Attribute;
                     _attributeIndex = i;
                     break;

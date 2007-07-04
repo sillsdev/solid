@@ -364,7 +364,7 @@ namespace SolidTests
                 "lx", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(
@@ -377,7 +377,7 @@ namespace SolidTests
                 String.Empty, // localName
                 String.Empty, // namespaceURI
                 "lex1", // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(
@@ -390,7 +390,7 @@ namespace SolidTests
                 "lx", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(
@@ -403,7 +403,7 @@ namespace SolidTests
                 "ge", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(
@@ -416,7 +416,7 @@ namespace SolidTests
                 String.Empty, // localName
                 String.Empty, // namespaceURI
                 "ggg", // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(
@@ -429,7 +429,7 @@ namespace SolidTests
                 "ge", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                1 // attributeCount
             );
 
             AssertNode(

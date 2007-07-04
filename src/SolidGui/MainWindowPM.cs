@@ -201,11 +201,14 @@ namespace SolidGui
         public void ProcessLexicon()
         {
             _tempDictionary = _workingDictionary.SaveAs(_tempDictionaryPath);
+
+            Solidifier solid = new Solidifier();
+            SolidReport report = solid.Process(_tempDictionary.FilePath, _solidSettings);
             
             //proccess temporary dictionary
             //_tempDictionaryPath
 
-            UpdateRecordFilters(Path.Combine(_workingDictionary.GetDirectoryPath(),"report.xml"));
+            UpdateRecordFilters(report);
 
             if (DictionaryProcessed != null)
             {
@@ -213,32 +216,19 @@ namespace SolidGui
             }
         }
 
-        private void UpdateRecordFilters(string reportPath)
+        private void UpdateRecordFilters(SolidReport report)
         {
             XmlSerializer xs = new XmlSerializer(typeof(List<RecordFilter>));
 
             _recordFilters.Clear();
 
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
+            _recordFilters.Add(new SolidReportRecordFilter(report));
             _recordFilters.Add(new NullRecordFilter());
             _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w",_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
 
-            try
-            {
-                if (File.Exists(reportPath))
-                {
-                    using (StreamReader reader = new StreamReader(reportPath))
-                    {
-                        _recordFilters.AddRange((List<RecordFilter>) xs.Deserialize(reader));
-                    }
-                }
-            }
-            catch
-            {
-
-            }
         }
 
         public bool SaveDictionary()

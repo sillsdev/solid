@@ -50,7 +50,7 @@ namespace SolidTests
             string sfm = "\\_a 1\n"
                 + "\\lx lex1\n"
                 + "\\ph ph1\n";
-            string xml = "<root _a=\"1\"><entry id=\"0\" startline=\"2\" endline=\"3\"><lx>lex1</lx><ph>ph1</ph></entry></root>";
+            string xml = "<root _a=\"1\"><entry record=\"0\" startline=\"2\" endline=\"3\"><lx field=\"0\">lex1</lx><ph field=\"1\">ph1</ph></entry></root>";
             XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlReader);
@@ -64,7 +64,7 @@ namespace SolidTests
                 "\\_a 1\n" +
                 "\\lx lex1\n" +
                 "\\ph ph1\n";
-            string xml = "<entry id=\"0\" startline=\"2\" endline=\"3\"><lx>lex1</lx><ph>ph1</ph></entry>";
+            string xml = "<entry record=\"0\" startline=\"2\" endline=\"3\"><lx field=\"0\">lex1</lx><ph field=\"1\">ph1</ph></entry>";
             XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
             xmlReader.ReadToFollowing("entry");
             XmlReader entryReader = xmlReader.ReadSubtree();

@@ -48,6 +48,7 @@
     <Compile Include="SolidReport.cs" />
     <Compile Include="SolidSettings.cs" />
     <Compile Include="SolidStructureProperty.cs" />
+    <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,9 +1,27 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SolidEngine;
 
 namespace SolidGui
 {
+
+    public class SolidReportRecordFilter : RecordFilter
+    {
+        SolidReport _report;
+
+        public SolidReportRecordFilter(SolidReport report)
+        {
+            _report = report;
+            Name = "Solid Report";
+
+        }
+
+        public static SolidReportRecordFilter Create()
+        {
+            return new SolidReportRecordFilter(null);
+        }
+    }
 
     public class RegExRecordFilter : RecordFilter
     {

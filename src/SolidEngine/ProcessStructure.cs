@@ -92,34 +92,34 @@ namespace SolidEngine
                             {
                                 //??? This is bordering on an exception. It indicates that there is an inconsistency with the seutp.
                                 // Error.
-                                _report.Add(new SolidReport.Entry(
-                                    SolidReport.EntryType.Error,
+                                _report.AddEntry(
+                                    SolidReport.EntryType.StructureInsertInInferredFailed,
                                     entry,
                                     field,
-                                    "Cannot insert field into inferred parent"
-                                ));
+                                    String.Format("Inferred marker '{0}' is not a valid parent of '{1}'", setting.InferedParent, field.Name)
+                                );
                             }
                         }
                         else
                         {
                             // Error.
-                            _report.Add(new SolidReport.Entry(
-                                SolidReport.EntryType.Error,
+                            _report.AddEntry(
+                                SolidReport.EntryType.StructureParentNotFoundForInferred,
                                 entry,
-                                inferredNode,
-                                "No parent for inferred marker"
-                            ));
+                                field,
+                                "No parent found for inferred marker " + String.Format("'{0}'", inferredNode.Name)
+                            );
                         }
                     } 
                     else
                     {
                         // Error
-                        _report.Add(new SolidReport.Entry(
-                            SolidReport.EntryType.Error,
+                        _report.AddEntry(
+                            SolidReport.EntryType.StructureParentNotFound,
                             entry,
                             field,
                             "No parent for this field and none could be inferred"
-                        ));
+                        );
                     }
                 }
                 field = field.NextSibling;

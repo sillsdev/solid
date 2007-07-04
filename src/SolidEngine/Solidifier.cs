@@ -13,8 +13,12 @@ namespace SolidEngine
 
         public SolidReport Process(string filePath)
         {
-            SolidReport solidReport = new SolidReport();
             SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.SettingsFilePath(filePath));
+            return Process(filePath, solidSettings);
+        }
+
+        public SolidReport Process(string filePath, SolidSettings solidSettings)
+        {
             SfmXmlReader reader = new SfmXmlReader(filePath);
             return Process(reader, solidSettings);
         }
