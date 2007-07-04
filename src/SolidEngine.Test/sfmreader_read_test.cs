@@ -97,15 +97,34 @@ namespace SolidTests
         public void RecordStartLine_Correct()
         {
             SfmRecordReader r = ReadTwoRecordData();
-            Assert.AreEqual(3, r._recordStartLine);
+            Assert.AreEqual(3, r.RecordStartLine);
         }
 
         [Test]
         public void RecordEndLine_Correct()
         {
             SfmRecordReader r = ReadTwoRecordData();
-            Assert.AreEqual(4, r._recordEndLine);
+            Assert.AreEqual(4, r.RecordEndLine);
         }
 
+        [Test]
+        public void Record_EOF_Correct()
+        {
+            SfmRecordReader r = ReadTwoRecordData(); // Reads the first record for us.
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            result = r.Read();
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void RecordID_Correct()
+        {
+            SfmRecordReader r = ReadTwoRecordData();
+            Assert.AreEqual(0, r.RecordID);
+            bool result = r.Read();
+            Assert.IsTrue(result); // Should be for two records.
+            Assert.AreEqual(1, r.RecordID);
+        }
     }
 }

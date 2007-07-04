@@ -351,7 +351,7 @@ namespace SolidTests
                 "entry", // localName
                 String.Empty, // namespaceURI
                 String.Empty, // value
-                0 // attributeCount
+                3 // attributeCount
             );
 
             AssertNode(
@@ -442,7 +442,7 @@ namespace SolidTests
                "entry", // localName
                String.Empty, // namespaceURI
                String.Empty, // value
-               0 // attributeCount
+               3 // attributeCount
            );
             
            AssertEndDocument(entryReader);

@@ -75,7 +75,7 @@ namespace SolidEngine
                 1, 
                 "entry",
                 false,
-                null //!!! new string[] {"startline", "endline"}
+                new string[] {"id", "startline", "endline"}
             ),
             new SfmStateInfo(
                 2,
@@ -86,8 +86,6 @@ namespace SolidEngine
         };
 
         SfmRecordReader _sfmReader;
-//!!!        string _root = "root";
-//!!!        string _recordName = "entry";
         
         SfmState _sfmContext = SfmState.Root;
         int _fieldIndex = 0;
@@ -401,7 +399,13 @@ namespace SolidEngine
                                 switch (_attributeIndex)
                                 {
                                     case 0:
-                                        retval = String.Format("{0:D}", _sfmReader.Field(_fieldIndex).sourceLine);
+                                        retval = String.Format("{0:D}", _sfmReader.RecordID);
+                                        break;
+                                    case 1:
+                                        retval = String.Format("{0:D}", _sfmReader.RecordStartLine);
+                                        break;
+                                    case 2:
+                                        retval = String.Format("{0:D}", _sfmReader.RecordEndLine);
                                         break;
                                 }
                                 break;
@@ -602,6 +606,7 @@ namespace SolidEngine
             switch (_sfmContext)
             {
                 case SfmState.Root:
+                case SfmState.Record:
                     _xmlState = XmlState.Attribute;
                     _attributeIndex = i;
                     break;
@@ -928,8 +933,9 @@ namespace SolidEngine
         StateLex _stateLex = StateLex.StartFile;
         StateParse _stateParse = StateParse.Header;
 
-        public int _recordStartLine;
-        public int _recordEndLine;
+        private int _recordStartLine;
+        private int _recordEndLine;
+        private int _recordID = 0;
 
         // Internal buffer state
         char[] _buffer;
@@ -983,6 +989,21 @@ namespace SolidEngine
             _record = new SfmRecord();
         }
 
+        public int RecordID
+        {
+            get { return _recordID; }
+        }
+
+        public int RecordStartLine
+        {
+            get { return _recordStartLine; }
+        }
+
+        public int RecordEndLine
+        {
+            get { return _recordEndLine; }
+        }
+
         public TextReader Reader
         {
             get
@@ -1015,6 +1036,7 @@ namespace SolidEngine
                     break;
                 case StateParse.Records:
                     retval = ReadRecord();
+                    _recordID++;
                     break;
             }
             return retval;
