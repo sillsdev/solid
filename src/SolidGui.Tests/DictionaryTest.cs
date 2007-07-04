@@ -16,6 +16,7 @@ namespace SolidGui.Tests
         [SetUp]
         public void SetUp()
         {
+            Reporting.ErrorReporter.OkToInteractWithUser = false;
             _dictionary = new Dictionary();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
@@ -69,7 +70,7 @@ namespace SolidGui.Tests
         public void GetFileNameReturnsNameOfDictionary()
         {
             _dictionary.Open(_dictionaryPath);
-            Assert.AreEqual("Dictionary",_dictionary.GetFileName());
+            Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
         [Test]

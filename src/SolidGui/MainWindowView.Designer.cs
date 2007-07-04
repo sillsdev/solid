@@ -46,7 +46,7 @@ namespace SolidGui
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this._templateChooserCombo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this._markerSettingsView = new SolidGui.MarkerSettingsView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -184,7 +184,7 @@ namespace SolidGui
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.label4);
-            this.splitContainer2.Panel2.Controls.Add(this.comboBox1);
+            this.splitContainer2.Panel2.Controls.Add(this._templateChooserCombo);
             this.splitContainer2.Panel2.Controls.Add(this.label3);
             this.splitContainer2.Panel2.Controls.Add(this._markerSettingsView);
             this.splitContainer2.Size = new System.Drawing.Size(736, 423);
@@ -250,14 +250,14 @@ namespace SolidGui
             this.label4.TabIndex = 3;
             this.label4.Text = "Solid Template:";
             // 
-            // comboBox1
+            // _templateChooserCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(325, 23);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(92, 21);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.Text = "MDF";
+            this._templateChooserCombo.FormattingEnabled = true;
+            this._templateChooserCombo.Location = new System.Drawing.Point(325, 23);
+            this._templateChooserCombo.Name = "_templateChooserCombo";
+            this._templateChooserCombo.Size = new System.Drawing.Size(92, 21);
+            this._templateChooserCombo.TabIndex = 2;
+            this._templateChooserCombo.Text = "MDF";
             // 
             // label3
             // 
@@ -324,7 +324,7 @@ namespace SolidGui
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox _templateChooserCombo;
         private System.Windows.Forms.Button _searchButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

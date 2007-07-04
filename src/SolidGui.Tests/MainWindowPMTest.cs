@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace SolidGui.Tests
@@ -97,6 +98,81 @@ namespace SolidGui.Tests
         {
             _mainWindowPM.OpenDictionary(DictionaryPath);
             Assert.IsTrue(_mainWindowPM.SaveDictionary());
+        }
+
+        [Test]
+        public void TemplatePathsFindsTemplatesInProgramDir()
+        {
+            string one = Path.Combine(GetTopAppDirectory(), "testTemplate1.solid");
+            string two = Path.Combine(GetTopAppDirectory(), "testTemplate2.solid");
+            try
+            {
+                File.WriteAllText(one, "test");
+                File.WriteAllText(two, "test");
+                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(one));
+                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(two));
+            }
+            finally
+            {
+                File.Delete(one);
+                File.Delete(two);
+            }
+        }
+
+        [Test]
+        public void TemplatePathsFindsTemplatesDictionaryDir()
+        {
+            _mainWindowPM.OpenDictionary(DictionaryPath);
+
+            string one = Path.Combine(_projectFolder, "testTemplate1.solid");
+            string two = Path.Combine(_projectFolder, "testTemplate2.solid");
+            try
+            {
+                File.WriteAllText(one, "test");
+                File.WriteAllText(two, "test");
+                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(one));
+                Assert.IsTrue(_mainWindowPM.GetTemplatePaths().Contains(two));
+            }
+            finally
+            {
+                File.Delete(one);
+                File.Delete(two);
+            }
+        }
+
+
+        private static string GetTopAppDirectory()
+        {
+            string path;
+
+            path = DirectoryOfExecutingAssembly;
+
+            if (path.ToLower().IndexOf("output") > -1)
+            {
+                //go up to output
+                path = Directory.GetParent(path).FullName;
+                //go up to directory containing output
+                path = Directory.GetParent(path).FullName;
+            }
+            return path;
+        }
+        private static string DirectoryOfExecutingAssembly
+        {
+            get
+            {
+                string path;
+                bool unitTesting = Assembly.GetEntryAssembly() == null;
+                if (unitTesting)
+                {
+                    path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
+                    path = Uri.UnescapeDataString(path);
+                }
+                else
+                {
+                    path = Assembly.GetExecutingAssembly().Location;
+                }
+                return Directory.GetParent(path).FullName;
+            }
         }
     }
 

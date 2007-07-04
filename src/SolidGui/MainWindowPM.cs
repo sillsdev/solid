@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Xml.Serialization;
 using SolidEngine;
+using SolidGui.Properties;
 
 namespace SolidGui
 {
@@ -134,7 +136,7 @@ namespace SolidGui
             _workingDictionary.Open(path);
             _solidSettings =
                 SolidSettings.OpenSolidFile(
-                    Path.Combine(_workingDictionary.GetDirectoryPath(), _workingDictionary.GetFileName() + ".solid"));
+                    Path.Combine(_workingDictionary.GetDirectoryPath(), _workingDictionary.GetFileNameNoExtension() + ".solid"));
 
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
@@ -193,6 +195,69 @@ namespace SolidGui
         public Dictionary SaveDictionaryAs(string path)
         {
             return _workingDictionary.SaveAs(path);
+        }
+
+        public List<string> GetTemplatePaths()
+        {
+            List<string> paths = new List<string>();
+
+            foreach (string path in Directory.GetFiles(TopAppDirectory, "*.solid"))
+            {
+                paths.Add(path);
+            }
+
+            foreach (string path in Directory.GetFiles(_workingDictionary.GetDirectoryPath(), "*.solid"))
+            {
+                paths.Add(path);
+            }
+            return paths;
+        }
+
+
+        private static string TopAppDirectory
+        {
+            get
+            {
+                string path;
+
+                path = DirectoryOfExecutingAssembly;
+
+                if (path.ToLower().IndexOf("output") > -1)
+                {
+                    //go up to output
+                    path = Directory.GetParent(path).FullName;
+                    //go up to directory containing output
+                    path = Directory.GetParent(path).FullName;
+                }
+                return path;
+            }
+        }
+
+        private static string DirectoryOfExecutingAssembly
+        {
+            get
+            {
+                string path;
+                bool unitTesting = Assembly.GetEntryAssembly() == null;
+                if (unitTesting)
+                {
+                    path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
+                    path = Uri.UnescapeDataString(path);
+                }
+                else
+                {
+                    path = Assembly.GetExecutingAssembly().Location;
+                }
+                return Directory.GetParent(path).FullName;
+            }
+        }
+
+        public string PathToCurrentSolidSettingsFile
+        {
+            get
+            {
+                return _solidSettings.FilePath;
+            }
         }
     }
 }

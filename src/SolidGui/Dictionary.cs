@@ -33,11 +33,9 @@ namespace SolidGui
             return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));
         }
  
-        public string GetFileName()
+        public string GetFileNameNoExtension()
         {
-            int startIndex = _filePath.LastIndexOf(@"\")+1;
-            int length = _filePath.LastIndexOf(".") - startIndex;
-            return _filePath.Substring(startIndex, length);
+            return Path.GetFileNameWithoutExtension(_filePath);
         }
 
         public void Open(string path)

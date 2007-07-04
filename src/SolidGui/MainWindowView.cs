@@ -93,6 +93,18 @@ namespace SolidGui
             Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName);
             Cursor = Cursors.WaitCursor;
+            LoadTemplateCombo();
+        }
+
+        private void LoadTemplateCombo()
+        {
+            _templateChooserCombo.Items.Clear();
+            _templateChooserCombo.Text = "";
+            foreach (string path in _mainWindowPM.GetTemplatePaths())
+            {
+                _templateChooserCombo.Items.Add(Path.GetFileNameWithoutExtension(path));
+            }
+            _templateChooserCombo.Text = Path.GetFileNameWithoutExtension(_mainWindowPM.PathToCurrentSolidSettingsFile);
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
