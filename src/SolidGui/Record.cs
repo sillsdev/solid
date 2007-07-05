@@ -1,11 +1,22 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace SolidGui
 {
     public class Record
     {
+        class Field
+        {
+            int _id;
+            string _marker;
+            string _value;
+            int _depth;
+            int _errorState;
+            bool _inferred;
+        }
+
         private string _value;
 
         public static event EventHandler RecordTextChanged;
@@ -15,6 +26,16 @@ namespace SolidGui
         {
             _value = value;
         }
+
+        public string GetField(int id)
+        {
+            return "";
+        }
+
+        public void SetField(int id, string value)
+        {
+        }
+
         public string Value
         {
             get

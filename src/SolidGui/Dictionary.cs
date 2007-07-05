@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Xml;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -36,6 +38,19 @@ namespace SolidGui
         public string GetFileNameNoExtension()
         {
             return Path.GetFileNameWithoutExtension(_filePath);
+        }
+
+        public void Clear()
+        {
+        }
+
+        public void AddRecord(XmlNode entry, SolidReport report)
+        {
+        }
+
+        public int Count
+        {
+            get { return _recordList.Count; }
         }
 
         public void Open(string path)
@@ -88,7 +103,7 @@ namespace SolidGui
             return false;
         }
 
-        public Dictionary SaveAs(string path)
+        public Dictionary CopyTo(string path)
         {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < _recordList.Count; i++)

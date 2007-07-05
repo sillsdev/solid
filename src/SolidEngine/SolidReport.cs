@@ -11,17 +11,91 @@ namespace SolidEngine
     {
         public enum EntryType
         {
-            StructureInsertInInferredFailed,
-            StructureParentNotFound,
-            StructureParentNotFoundForInferred,
-            Max
+            StructureInsertInInferredFailed, 
+ 	        StructureParentNotFound, 
+ 	        StructureParentNotFoundForInferred, 
+ 	        Max 
         }
 
-        private XmlDocument _xmlDoc = new XmlDocument();
-        private int _entryID = 0;
+        public class Entry
+        {
+            EntryType _type;
+            string _recordID;
+            string _fieldID;
+            //int _recordStartLine;
+            //int _recordEndLine;
+            string _entryName;
+            string _marker;
+            string _description;
+
+            public Entry(EntryType type, XmlNode entry, XmlNode field, string description)
+            {
+                _type = type;
+                if (entry != null)
+                {
+                    _entryName = entry.Name; //??? TODO what's a good name for this entry???
+                    _recordID = entry.Attributes["record"].Value;
+                    //_recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
+                    //_recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
+                }
+                if (field != null)
+                {
+                    _fieldID = field.Attributes["field"].Value;
+                    _marker = field.Name;
+                }
+                _description = description;
+            }
+
+            public string RecordID
+            {
+                get { return _recordID; }
+            }
+
+            public string FieldID
+            {
+                get { return _fieldID; }
+            }
+            /*
+            public int RecordStartLine
+            {
+                get { return _recordStartLine; }
+            }
+
+            public int RecordEndLine
+            {
+                get { return _recordEndLine; }
+            }
+            */
+            public string Marker
+            {
+                get { return _marker; }
+            }
+
+            public string Description
+            {
+                get { return _description; }
+            }
+
+            public string Name
+            {
+                get { return _entryName; }
+            }
+
+        }
+
+        public class SolidEntries : List<Entry>
+        {
+        }
+
+        private SolidEntries _entries;
 
         [XmlIgnore]
         private string _filePath;
+
+        public SolidEntries Entries
+        {
+            get { return _entries; }
+        }
 
         public string FilePath
         {
@@ -29,69 +103,67 @@ namespace SolidEngine
             set { _filePath = value; }
         }
 	
-        public int Count
-        {
-            get { return _xmlDoc.ChildNodes.Count; }
-        }
-
         public SolidReport()
         {
-        }
-
-        private SolidReport(string filePath)
-        {
-            _filePath = filePath;
-            _xmlDoc.Load(_filePath);
+            _entries = new SolidEntries();
         }
 
         public void Reset()
         {
-            _entryID = 0;
+            _entries.Clear();
+        }
+
+        public void Add(Entry e)
+        {
+            _entries.Add(e);
         }
 
         public void AddEntry(EntryType type, XmlNode entry, XmlNode field, string description)
         {
-            XmlHelper xmlHelp = new XmlHelper(_xmlDoc);
-            XmlNode reportEntry = _xmlDoc.CreateElement("entry");
-            xmlHelp.AppendAttribute(reportEntry, "id", String.Format("{0:D}", _entryID));
-            if (entry != null)
+            Add(new Entry(type, entry, field, description));
+        }
+
+        public List<SolidReport.Entry> EntriesForRecord(string recordID)
+        {
+            return _entries.FindAll(
+                delegate(Entry rhs)
+                {
+                    return rhs.RecordID == recordID;
+                }
+            );
+        }
+
+        public List<SolidReport.Entry> EntriesForMarker(string marker)
+        {
+            return _entries.FindAll(
+                delegate(Entry rhs)
+                {
+                    return rhs.Marker == marker;
+                }
+            );
+        }
+  
+        public int Count
+        {
+            get { return _entries.Count; }
+        }
+
+        public static SolidReport OpenSolidReport(string path)
+        {
+            SolidReport r;
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
+            try
             {
-                xmlHelp.AppendAttribute(reportEntry, "record", entry.Attributes["record"].Value);
+                using (StreamReader reader = new StreamReader(path))
+                {
+                    r = (SolidReport)xs.Deserialize(reader);
+                    r.FilePath = path;
+                }
             }
-            if (field != null)
+            catch
             {
-                xmlHelp.AppendAttribute(reportEntry, "field", field.Attributes["field"].Value); //!!! TODO
-                xmlHelp.AppendAttribute(reportEntry, "marker", field.Name);
+                r = new SolidReport();
             }
-            reportEntry.InnerText = description;
-            _xmlDoc.AppendChild(reportEntry);
-
-            _entryID++;
-        }
-
-        public XmlNode AllEntries()
-        {
-            return _xmlDoc;
-        }
-
-        public XmlNode EntriesForRecord(int record)
-        {
-            return null;
-        }
-
-        public XmlNode EntriesForMarker(string marker)
-        {
-            return null;
-        }
-
-        public XmlNode EntriesForXPath(string xpath)
-        {
-            return null;
-        }
-
-        public static SolidReport OpenSolidReport(string filePath)
-        {
-            SolidReport r = new SolidReport(filePath);
             return r;
         }
 
@@ -103,9 +175,13 @@ namespace SolidEngine
         public void SaveAs(string filePath)
         {
             _filePath = filePath;
-            _xmlDoc.Save(_filePath);
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
+            using (StreamWriter writer = new StreamWriter(_filePath))
+            {
+                xs.Serialize(writer, _entries);
+            }
         }
 
-    }
 
+    }
 }

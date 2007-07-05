@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Xml;
 using System.Xml.Serialization;
 using SolidEngine;
 using SolidGui.Properties;
@@ -15,13 +16,28 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
+        class SolidObserver : Solidifier.SolidifierObserver
+        {
+            private MainWindowPM _pm;
+            private Dictionary _dictionary;
+
+            public SolidObserver(Dictionary dictionary)
+            {
+                _dictionary = dictionary;
+            }
+
+            public override void onRecord(XmlNode structure, SolidReport report)
+            {
+                _dictionary.AddRecord(structure, report);
+            }
+        }
+
         private Dictionary _workingDictionary;
-        private Dictionary _tempDictionary;
         private SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
         private List<string> _allMarkers;
         private String _tempDictionaryPath;
-        private List<RecordFilter> _recordFilters;
+        private RecordFilterSet _recordFilters;
         private List<Record> _masterRecordList;
         private RecordNavigatorPM _navigatorModel;
         private FilterChooserPM _filterChooserModel;
@@ -32,7 +48,7 @@ namespace SolidGui
 
         public MainWindowPM()
         {
-            _recordFilters = new List<RecordFilter>();
+            _recordFilters = new RecordFilterSet();
             _workingDictionary = new Dictionary();
             _markerSettingsModel = new MarkerSettingsPM();
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
@@ -47,7 +63,7 @@ namespace SolidGui
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
             _navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = new RecordFilter();
+            _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
 
 
@@ -94,7 +110,7 @@ namespace SolidGui
             }
         }
 
-        public List<RecordFilter> RecordFilters
+        public RecordFilterSet RecordFilters
         {
             get
             {
@@ -200,15 +216,18 @@ namespace SolidGui
 
         public void ProcessLexicon()
         {
-            _tempDictionary = _workingDictionary.SaveAs(_tempDictionaryPath);
+            _workingDictionary.CopyTo(_tempDictionaryPath);
 
+            _workingDictionary.Clear();
+            SolidObserver observer = new SolidObserver(_workingDictionary);
             Solidifier solid = new Solidifier();
-            SolidReport report = solid.Process(_tempDictionary.FilePath, _solidSettings);
+            solid.Attach(observer);
+            solid.Process(_tempDictionaryPath, _solidSettings);
             
             //proccess temporary dictionary
             //_tempDictionaryPath
-
-            UpdateRecordFilters(report);
+            //!!!_recordFilters.OnSolidReportChange(report);
+            //!!!UpdateRecordFilters(report);
 
             if (DictionaryProcessed != null)
             {
@@ -218,8 +237,7 @@ namespace SolidGui
 
         private void UpdateRecordFilters(SolidReport report)
         {
-            XmlSerializer xs = new XmlSerializer(typeof(List<RecordFilter>));
-
+            /*
             _recordFilters.Clear();
 
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
@@ -228,7 +246,7 @@ namespace SolidGui
             _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w",_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
             _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
-
+            */
         }
 
         public bool SaveDictionary()
@@ -239,7 +257,7 @@ namespace SolidGui
 
         public Dictionary SaveDictionaryAs(string path)
         {
-            return _workingDictionary.SaveAs(path);
+            return _workingDictionary.CopyTo(path);
         }
 
         /// <summary>

@@ -10,11 +10,10 @@ namespace SolidGui
     {
         SolidReport _report;
 
-        public SolidReportRecordFilter(SolidReport report)
+        public SolidReportRecordFilter(SolidReport report) :
+            base("Solid Report")
         {
             _report = report;
-            Name = "Solid Report";
-
         }
 
         public static SolidReportRecordFilter Create()
@@ -22,7 +21,7 @@ namespace SolidGui
             return new SolidReportRecordFilter(null);
         }
     }
-
+    /*
     public class RegExRecordFilter : RecordFilter
     {
         private readonly bool _matchWhenNotFound;
@@ -69,17 +68,27 @@ namespace SolidGui
             }
         }
     }
-
+    */
 
     public class AllRecordFilter : RecordFilter
     {
-        public AllRecordFilter(List<Record> records)
+        Dictionary _dictionary;
+
+
+        public AllRecordFilter(Dictionary dictionary) :
+            base("All")
         {
-            _name = "All";
-            _descriptions = new List<string>();
-            _indexesOfRecords = GetIndicesOfMatchingRecords(records);
+            _dictionary = dictionary;
         }
 
+        public override int RecordCount
+        {
+            get
+            {
+                return _dictionary.Count;
+            }
+        }
+        /*
         protected override List<int> GetIndicesOfMatchingRecords(List<Record> records)
         {
             _indexesOfRecords.Clear();
@@ -91,12 +100,13 @@ namespace SolidGui
             }
             return _indexesOfRecords;
         }
+         */ 
     }
 
     public class NullRecordFilter : RecordFilter
     {
         public NullRecordFilter()
-            : base("None", new List<string>(), new List<int>())
+            : base("None")
         {
         }
     }
@@ -104,22 +114,14 @@ namespace SolidGui
     public class RecordFilter
     {
         protected string _name;
-        protected List<string> _descriptions;
-        protected List<int> _indexesOfRecords;
+    //    protected List<string> _descriptions;
+      //  protected List<int> _indexesOfRecords;
 
-        public RecordFilter()
-        {
-            _name = "";
-            _descriptions = new List<string>();
-            _indexesOfRecords = new List<int>();
-        }
-
-        public RecordFilter(string name, List<string> descriptions, List<int> indexes)
+        protected RecordFilter(string name)
         {
             _name = name;
-            _descriptions = descriptions;
-            _indexesOfRecords = indexes;
-
+        //    _descriptions = new List<string>();
+        //    _indexesOfRecords = new List<int>();
         }
 
         public override string ToString()
@@ -133,43 +135,38 @@ namespace SolidGui
             {
                 return _name;
             }
+            /*
             set
             {
                 _name = value;
             }
+            */
         }
-        public virtual List<string> Descriptions
+        
+        public virtual string Description(int index)
+        {
+            return "unknown description";
+        }
+
+        public virtual List<int> IndexesOfRecords
         {
             get
             {
-                return _descriptions;
+                return new List<int>();
             }
-            set
-            {
-                _descriptions = value;
-            }
-        }
-        public List<int> IndexesOfRecords
-        {
-            get
-            {
-                return _indexesOfRecords;
-            }
+            /*
             set
             {
                 _indexesOfRecords = value;
             }
+            */
         }
-        protected virtual List<int> GetIndicesOfMatchingRecords(List<Record> records)
-        {
-            return IndexesOfRecords;
-        }
-
-        public int RecordCount
+        
+        public virtual int RecordCount
         {
             get
             {
-                return _indexesOfRecords.Count;
+                return 0;
             }
         }
     }

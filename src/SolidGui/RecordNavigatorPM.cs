@@ -80,7 +80,7 @@ namespace SolidGui
             {
                 if (CurrentIndexIntoFilteredRecords != -1)
                 {
-                    return _recordFilter.Descriptions[CurrentIndexIntoFilteredRecords];
+                    return _recordFilter.Description(CurrentIndexIntoFilteredRecords);
                 }
                 else 
                 {

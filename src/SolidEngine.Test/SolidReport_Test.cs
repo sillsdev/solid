@@ -17,14 +17,6 @@ namespace SolidTests
         }
 
         [Test]
-        public void SolidReport_Empty_AllEntriesCorrect()
-        {
-            SolidReport r = new SolidReport();
-            XmlNode n = r.AllEntries();
-            Assert.IsNotNull(n);
-        }
-
-        [Test]
         public void SolidReport_Empty_CountCorrect()
         {
             SolidReport r = new SolidReport();
@@ -55,15 +47,14 @@ namespace SolidTests
                 SolidReport.EntryType.StructureParentNotFound, entry.DocumentElement, field, "Test"
             );
             Assert.AreEqual(1, r.Count);
-            XmlNode reportEntries = r.AllEntries();
-            XmlNode reportEntry = reportEntries.FirstChild;
-            Assert.AreEqual("0", reportEntry.Attributes["id"].Value);
-            Assert.AreEqual("22", reportEntry.Attributes["record"].Value);
-            //Assert.AreEqual("33", reportEntry.RecordStartLine);
-            //Assert.AreEqual("44", reportEntry.RecordEndLine);
-            Assert.AreEqual("ge", reportEntry.Attributes["marker"].Value);
-            Assert.AreEqual("Test", reportEntry.InnerText);
-            Assert.AreEqual("1", reportEntry.Attributes["field"].Value);
+
+            SolidReport.Entry reportEntry = r.Entries[0]; 
+            Assert.AreEqual(22, reportEntry.RecordID);
+            Assert.AreEqual(0, reportEntry.FieldID);
+            //Assert.AreEqual(33, reportEntry.RecordStartLine); 
+            //Assert.AreEqual(44, reportEntry.RecordEndLine); 
+            Assert.AreEqual("ge", reportEntry.Marker); 
+            Assert.AreEqual("Test", reportEntry.Description); 
         }
 
         [Test]

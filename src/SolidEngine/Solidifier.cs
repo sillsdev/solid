@@ -7,26 +7,40 @@ namespace SolidEngine
 {
     public class Solidifier
     {
+
+        public class SolidifierObserver
+        {
+            public virtual void onRecord(XmlNode structure, SolidReport report)
+            {
+            }
+        }
+
+        List<SolidifierObserver> _observers = new List<SolidifierObserver>();
+
         public Solidifier()
         {        
         }
 
-        public SolidReport Process(string filePath)
+        public void Attach(SolidifierObserver observer)
+        {
+            _observers.Add(observer);
+        }
+
+        public void Process(string filePath)
         {
             SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.SettingsFilePath(filePath));
-            return Process(filePath, solidSettings);
+            Process(filePath, solidSettings);
         }
 
-        public SolidReport Process(string filePath, SolidSettings solidSettings)
+        public void Process(string filePath, SolidSettings solidSettings)
         {
             SfmXmlReader reader = new SfmXmlReader(filePath);
-            return Process(reader, solidSettings);
+            Process(reader, solidSettings);
         }
 
-        public SolidReport Process(XmlReader xr, SolidSettings solidSettings)
+        public void Process(XmlReader xr, SolidSettings solidSettings)
         {
-            SolidReport solidReport = new SolidReport();
-            ProcessStructure process = new ProcessStructure(solidReport, solidSettings);
+            ProcessStructure process = new ProcessStructure(solidSettings);
             while (xr.ReadToFollowing("entry"))
             {
                 XmlReader entryReader = xr.ReadSubtree();
@@ -34,8 +48,16 @@ namespace SolidEngine
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.Load(entryReader);
                 process.Process(xmldoc.DocumentElement);
+                OnRecord(process.Document, process.Report);
             }
-            return solidReport;
+        }
+
+        public void OnRecord(XmlNode structure, SolidReport report)
+        {
+            foreach (SolidifierObserver observer in _observers)
+            {
+                observer.onRecord(structure, report);
+            }
         }
 
     }
