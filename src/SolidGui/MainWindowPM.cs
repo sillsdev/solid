@@ -157,7 +157,7 @@ namespace SolidGui
         /// <returns></returns>
         public bool ShouldAskForTemplateBeforeOpening(string path)
         {
-            return !File.Exists(GetSettingsPathFromDictionaryPath(path));
+            return !File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(path));
         }
 
         /// <summary>
@@ -174,18 +174,18 @@ namespace SolidGui
 
             _workingDictionary.Open(dictionaryPath);
 
-            if (File.Exists(GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath)))
+            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath)))
             {
                 _solidSettings =
                     SolidSettings.OpenSolidFile(
                         Path.Combine(_workingDictionary.GetDirectoryPath(),
-                                     GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath)));
+                                     SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath)));
             }
             else
             {
                 Debug.Assert(!string.IsNullOrEmpty(templatePath));
                 _solidSettings =
-                    SolidSettings.CreateSolidFileFromTemplate(templatePath, GetSettingsPathFromDictionaryPath(_workingDictionary.FilePath));
+                    SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath));
             }
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
@@ -206,11 +206,6 @@ namespace SolidGui
             }
 
             return true; //todo: let the user cancel if the dictionary was changed
-        }
-
-        public string GetSettingsPathFromDictionaryPath(string dictionaryPath)
-        {
-            return Path.Combine(Path.GetDirectoryName(dictionaryPath), Path.GetFileNameWithoutExtension(dictionaryPath)) + ".solid";
         }
 
         public void ProcessLexicon()
@@ -293,7 +288,7 @@ namespace SolidGui
         }
 
 
-        private static string TopAppDirectory
+        public static string TopAppDirectory
         {
             get
             {
@@ -353,7 +348,12 @@ namespace SolidGui
 
         public void UseSolidSettingsTemplate(string path)
         {
-            
+            _solidSettings.Save();
+           
+            //???? do we replace these settings, or ask the settings to do the switch?
+            //todo: copy over this set of settings
+            //todo: reload settings UI
+            //todo: clear out the report
         }
     }
 }

@@ -35,8 +35,10 @@ namespace SolidGui
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
+            this._mappingView = new SolidGui.MappingView();
             this._structureTabControl.SuspendLayout();
             this._structureTabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // _markerListBox
@@ -88,16 +90,17 @@ namespace SolidGui
             // 
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(331, 239);
+            this.tabPage1.Size = new System.Drawing.Size(346, 239);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Writing Systems";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this._mappingView);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(331, 239);
+            this.tabPage2.Size = new System.Drawing.Size(346, 239);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Mapping";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -111,6 +114,14 @@ namespace SolidGui
             this.label1.TabIndex = 1;
             this.label1.Text = "Marker";
             // 
+            // mappingView1
+            // 
+            this._mappingView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._mappingView.Location = new System.Drawing.Point(0, 0);
+            this._mappingView.Name = "_mappingView";
+            this._mappingView.Size = new System.Drawing.Size(346, 239);
+            this._mappingView.TabIndex = 0;
+            // 
             // MarkerSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -123,6 +134,7 @@ namespace SolidGui
             this.Load += new System.EventHandler(this.MarkerSettingsView_Load);
             this._structureTabControl.ResumeLayout(false);
             this._structureTabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +149,6 @@ namespace SolidGui
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox _markerListBox;
+        private MappingView _mappingView;
     }
 }

@@ -65,6 +65,7 @@ namespace SolidGui
                 return;
             }
             _structurePropertiesView.Model = Model.StructurePropertiesModel;
+            _mappingView.Model = Model.MappingModel;
         }
     }
 }

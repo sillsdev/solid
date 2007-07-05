@@ -28,7 +28,7 @@ namespace SolidEngine
 
         public void Process(string filePath)
         {
-            SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.SettingsFilePath(filePath));
+            SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(filePath));
             Process(filePath, solidSettings);
         }
 

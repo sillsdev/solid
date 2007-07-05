@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Notes on the fields and attributes:
+	id: used for XSLT identification (a SFM marker maps to one of these as used as the id in the map file)
+	type: data type (date and string currently)
+	property: rough FW property that we store the data in
+	uiname: what shows up in the Import Wizard
+	signature: kind of FW object that is stored in this property
+	list: 'yes' if a ref to a possiblilty list
+	multi: 'yes' if this field can occure 'n' times in one hierarchy
+	unique: 'yes' Only allow one of the unique fields in each instance of a class
+	MDF: info about possible input SFM
+	autofield: can be either an entry or sense - not specified but is determined at run time
+-->
+<ImportFields>
+  <AbbreviationSignatures names="CmPossibility CmAnthroItem PartOfSpeech CmSemanticDomain CmLocation" />
+
+  <Class name="Entry" partOf="records">
+    <Field MDF="\a" id="allo" list="no" multi="yes" property="AlternateForms"
+           signature="MultiUnicode" type="string"
+           uiname="Alternate Form (Allomorph)">
+      <Help>
+        <Usage>When you have a marker that gives an allomorph for this
+        entry.</Usage>
+
+        <Settings>Set the Language Descriptor to the language of this
+        field.</Settings>
+
+        <Mapping>No</Mapping>
+
+        <Appends>Yes, creates an allomorph for each field.</Appends>
+
+        <List>No</List>
+
+        <Multilingual>Yes, for alternate vernacular writing
+        systems.</Multilingual>
+
+        <Examples>
+          <Example>\a -ed</Example>
+
+          <Example>\a -pped</Example>
+
+          <Example>\a ible +/ {ible} _ (allomorph with phonological
+          environment -- see limitations)</Example>
+        </Examples>
+
+        <Limitations>
+          <Limitation>The import process currently does not handle allomorph
+          environments. It simply imports the entire field content as a single
+          allomorph. If your field contains environment information as in the
+          last example, you'll either need to remove them prior to import,
+          manually fix them inside of Flex after import, or use an advanced
+          process to manipulate the final XML file prior to
+          import.</Limitation>
+
+          <Limitation>Flex currently does not interpret multiple allomorphs in
+          a single SFM field. You will either need to split these into
+          individual \a fields prior to import, or clean up the problem inside
+          of Flex.</Limitation>
+        </Limitations>
+
+        <Extras>
+          <Extra>Flex uses affix marks (e.g., the hyphens in the examples) to
+          create an affix or stem allomorph and fills in the form from the
+          field contents. The Morph Type for the allomorph is also determined
+          by the affix marks. The affix marks will then be stripped from the
+          form inside of Flex.</Extra>
+        </Extras>
+      </Help>
+    </Field>
+
+  </Class>
+
+</ImportFields>

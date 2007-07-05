@@ -114,7 +114,7 @@ namespace SolidEngine
             }
         }
 
-        public static string SettingsFilePath(string dataFilePath)
+        public static string GetSettingsFilePathFromDictionaryPath(string dataFilePath)
         {
             int lastDot = dataFilePath.LastIndexOf('.');
             string retval = dataFilePath.Substring(0, lastDot) + ".solid";

@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using SolidEngine;
 using SolidGui.Properties;
 
 namespace SolidGui
@@ -199,7 +200,7 @@ namespace SolidGui
         private string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)
         {
             TemplateChooser chooser = new TemplateChooser();
-            chooser.CustomizedSolidDestinationName = Path.GetFileName(_mainWindowPM.GetSettingsPathFromDictionaryPath(dictionaryPath));
+            chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
             chooser.WouldBeReplacingExistingSettings = wouldBeReplacingExistingSettings;
             chooser.ShowDialog();

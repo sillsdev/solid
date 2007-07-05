@@ -39,7 +39,7 @@ namespace SolidTests
         [Test]
         public void SolidSettings_SettingsFilePath_Correct()
         {
-            string result = SolidSettings.SettingsFilePath("mydatafile.txt");
+            string result = SolidSettings.GetSettingsFilePathFromDictionaryPath("mydatafile.txt");
             Assert.AreEqual("mydatafile.solid", result);
         }
 

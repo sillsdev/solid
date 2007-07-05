@@ -65,6 +65,13 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowPM.cs" />
+    <Compile Include="MappingPM.cs" />
+    <Compile Include="MappingView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MappingView.Designer.cs">
+      <DependentUpon>MappingView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MarkerSettingsPM.cs" />
     <Compile Include="MarkerSettingsView.cs">
       <SubType>UserControl</SubType>
@@ -95,6 +102,10 @@
     <EmbeddedResource Include="MainWindowView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MainWindowView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MappingView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>MappingView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MarkerSettingsView.resx">
       <SubType>Designer</SubType>
