@@ -1,4 +1,7 @@
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -27,16 +30,25 @@ namespace SolidGui
             else
             {
                 _currentRecord = e._record;
-                _contentsBox.Text = e._record.Value;
+             
+                for(int i = 0 ; i < _currentRecord.Count ; i++)
+                {
+                    string fieldText = _currentRecord.GetFieldStructured(i);
+                    _contentsBox.AppendText(fieldText);
+                    if(_currentRecord.GetFieldInferred(i))
+                    {
+                        _contentsBox.Find(fieldText);
+                        _contentsBox.SelectionColor = Color.Blue;
+                    }
+                }
             }
         }
 
         private void OnTextChanged(object sender, System.EventArgs e)
         {
-            if (_currentRecord!=null && _currentRecord.Value!=_contentsBox.Text)
+            if (_currentRecord!=null)
             {
-                MainWindowView.EnableSave();
-                _currentRecord.Value = _contentsBox.Text;
+                //somehow update the contents of the record
             }
         }
     }

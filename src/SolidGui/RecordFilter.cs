@@ -88,12 +88,12 @@ namespace SolidGui
     public class RecordFilter : RecordManagerDecorator
     {
         protected string _name;
-    //    protected List<string> _descriptions;
+      //  protected List<string> _descriptions;
       //  protected List<int> _indexesOfRecords;
 
         RecordManager _d;
 
-        protected RecordFilter(RecordManager d, string name) :
+        public RecordFilter(RecordManager d, string name) :
             base(d)
         {
             _d = d;

@@ -17,14 +17,18 @@ namespace SolidGui.Tests
             _navigator = new RecordNavigatorPM();
 
             List<Record> masterRecordList = new List<Record>();
-            masterRecordList.Add(new Record("something0"));
-            masterRecordList.Add(new Record("something1"));
-            masterRecordList.Add(new Record("something2 X"));
-            masterRecordList.Add(new Record("something3 X"));
+            //masterRecordList.Add(new Record("something0"));
+            //masterRecordList.Add(new Record("something1"));
+            //masterRecordList.Add(new Record("something2 X"));
+            //masterRecordList.Add(new Record("something3 X"));
 
             //!!!_navigator.MasterRecordList = masterRecordList;
 
+
+            //_navigator.ActiveFilter = new RegExRecordFilter("Has X", "X",masterRecordList);
+
             _navigator.ActiveFilter = new AllRecordFilter(null);
+
         }
 
         [TearDown]

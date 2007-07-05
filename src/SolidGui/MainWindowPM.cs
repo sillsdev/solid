@@ -62,7 +62,7 @@ namespace SolidGui
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
-            //!!!_navigatorModel.ActiveFilter = new NullRecordFilter();
+            _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
 
 

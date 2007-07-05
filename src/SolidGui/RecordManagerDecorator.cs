@@ -15,7 +15,10 @@ namespace SolidGui
 
         public override int Count
         {
-            get { return _d.Count; }
+            get { if(_d!=null)
+                    return _d.Count;
+                  return 0;
+                }
         }
 
         public override Record Current

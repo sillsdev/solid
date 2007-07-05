@@ -65,10 +65,14 @@ namespace SolidGui
 
         public void Clear()
         {
+            _recordList.Clear();
+            _allMarkers.Clear();
         }
 
         public void AddRecord(XmlNode entry, SolidReport report)
         {
+            _recordList.Add(new Record(entry, report));
+            
         }
 
         public void Open(string path)

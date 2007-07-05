@@ -56,7 +56,7 @@ namespace SolidGui.Tests
         {
             _dictionary.Open(_dictionaryPath);
 
-            Assert.AreEqual(2, _dictionary.AllRecords.Count);
+            Assert.AreEqual(2, _dictionary.Count);
         }
 
         [Test]

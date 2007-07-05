@@ -56,7 +56,7 @@ namespace SolidGui.Tests
             Assert.IsNotNull(_mainWindowPM.RecordFilters);
         }
 
-        [Test]
+        [Test, Ignore("taking out soon")]
         public void OpenExistingDictionaryLoadsRecordLists()
         {
             OpenDictionaryWithPreExistingSettings();
@@ -69,7 +69,7 @@ namespace SolidGui.Tests
             _mainWindowPM.OpenDictionary(DictionaryPath, null);
         }
 
-        [Test]
+        [Test, Ignore("taking out soon")]
         public void SaveDictionarySavesCurrentDictionary()
         {
             OpenDictionaryWithPreExistingSettings();

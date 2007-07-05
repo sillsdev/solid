@@ -171,12 +171,6 @@ namespace SolidGui
         {
             ActiveFilter = e._recordFilter;
         }
-
-        public void OnRecordEdited(object sender, SfmEditorPM.RecordEditedEventArgs e)
-        {
-            _recordFilter.Current.Value = e._record;
-       }
-    
     }
 }    
 

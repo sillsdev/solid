@@ -28,21 +28,18 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            this._contentsBox = new System.Windows.Forms.TextBox();
+            this._contentsBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // _contentsBox
             // 
             this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._contentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._contentsBox.HideSelection = false;
             this._contentsBox.Location = new System.Drawing.Point(0, 0);
-            this._contentsBox.Multiline = true;
             this._contentsBox.Name = "_contentsBox";
-            this._contentsBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this._contentsBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this._contentsBox.Size = new System.Drawing.Size(150, 150);
             this._contentsBox.TabIndex = 0;
-            this._contentsBox.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this._contentsBox.Text = "";
             // 
             // SfmEditorView
             // 
@@ -52,12 +49,12 @@ namespace SolidGui
             this.Controls.Add(this._contentsBox);
             this.Name = "SfmEditorView";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        public System.Windows.Forms.TextBox _contentsBox;
+        public System.Windows.Forms.RichTextBox _contentsBox;
+
     }
 }
