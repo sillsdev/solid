@@ -10,16 +10,12 @@ namespace SolidGui
     {
         SolidReport _report;
 
-        public SolidReportRecordFilter(SolidReport report) :
-            base("Solid Report")
+        public SolidReportRecordFilter(Dictionary d, SolidReport report) :
+            base(d, "Solid Report")
         {
             _report = report;
         }
 
-        public static SolidReportRecordFilter Create()
-        {
-            return new SolidReportRecordFilter(null);
-        }
     }
     /*
     public class RegExRecordFilter : RecordFilter
@@ -72,75 +68,46 @@ namespace SolidGui
 
     public class AllRecordFilter : RecordFilter
     {
-        Dictionary _dictionary;
-
-
         public AllRecordFilter(Dictionary dictionary) :
-            base("All")
+            base(dictionary, "All")
         {
-            _dictionary = dictionary;
         }
 
-        public override int RecordCount
-        {
-            get
-            {
-                return _dictionary.Count;
-            }
-        }
-        /*
-        protected override List<int> GetIndicesOfMatchingRecords(List<Record> records)
-        {
-            _indexesOfRecords.Clear();
-
-            for(int i = 0 ; i <records.Count ; i++)
-            {
-                _descriptions.Add("These are all the records in the dictionary");
-                _indexesOfRecords.Add(i);
-            }
-            return _indexesOfRecords;
-        }
-         */ 
     }
 
+    
     public class NullRecordFilter : RecordFilter
     {
         public NullRecordFilter()
-            : base("None")
+            : base(null, "None")
         {
         }
     }
+     
 
-    public class RecordFilter
+    public class RecordFilter : RecordManagerDecorator
     {
         protected string _name;
     //    protected List<string> _descriptions;
       //  protected List<int> _indexesOfRecords;
 
-        protected RecordFilter(string name)
+        RecordManager _d;
+
+        protected RecordFilter(RecordManager d, string name) :
+            base(d)
         {
+            _d = d;
             _name = name;
-        //    _descriptions = new List<string>();
-        //    _indexesOfRecords = new List<int>();
         }
 
         public override string ToString()
         {
-            return _name + " (" + RecordCount + ")";
+            return _name + " (" + Count + ")";
         }
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            /*
-            set
-            {
-                _name = value;
-            }
-            */
+            get { return _name; }
         }
         
         public virtual string Description(int index)
@@ -148,26 +115,6 @@ namespace SolidGui
             return "unknown description";
         }
 
-        public virtual List<int> IndexesOfRecords
-        {
-            get
-            {
-                return new List<int>();
-            }
-            /*
-            set
-            {
-                _indexesOfRecords = value;
-            }
-            */
-        }
-        
-        public virtual int RecordCount
-        {
-            get
-            {
-                return 0;
-            }
-        }
     }
+
 }

@@ -50,7 +50,7 @@ namespace SolidTests
 
             SolidReport.Entry reportEntry = r.Entries[0]; 
             Assert.AreEqual(22, reportEntry.RecordID);
-            Assert.AreEqual(0, reportEntry.FieldID);
+            Assert.AreEqual(1, reportEntry.FieldID);
             //Assert.AreEqual(33, reportEntry.RecordStartLine); 
             //Assert.AreEqual(44, reportEntry.RecordEndLine); 
             Assert.AreEqual("ge", reportEntry.Marker); 

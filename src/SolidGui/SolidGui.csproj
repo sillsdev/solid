@@ -73,6 +73,8 @@
       <DependentUpon>MarkerSettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="RecordFilterSet.cs" />
+    <Compile Include="RecordManager.cs" />
+    <Compile Include="RecordManagerDecorator.cs" />
     <Compile Include="StructurePropertiesPM.cs" />
     <Compile Include="StructurePropertiesView.cs">
       <SubType>UserControl</SubType>

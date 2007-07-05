@@ -11,12 +11,12 @@ namespace SolidGui
     public class RecordNavigatorPM
     {
         private int _currentIndexIntoFilteredRecords;
-        private IList<Record> _masterRecordList;
+        //!!!private IList<Record> _masterRecordList;
         private RecordFilter _recordFilter;
-        private IList<int> _indexesOfFilteredRecords;
-        private Record _currentRecord;
+        //!!!private IList<int> _indexesOfFilteredRecords;
+        //!!!private Record _currentRecord;
 
-        public class RecordChangedEventArgs:System.EventArgs 
+        public class RecordChangedEventArgs : System.EventArgs 
         {
             public Record _record;
 
@@ -32,9 +32,9 @@ namespace SolidGui
 
         public RecordNavigatorPM()
         {
-            _currentIndexIntoFilteredRecords = -1;
+            //!!!_currentIndexIntoFilteredRecords = -1;
         }
-
+        
         public RecordFilter ActiveFilter
         {
             get
@@ -44,16 +44,6 @@ namespace SolidGui
             set
             {
                 _recordFilter = value;
-                _indexesOfFilteredRecords = new List<int>(_recordFilter.IndexesOfRecords);
-
-                if (_indexesOfFilteredRecords.Count == 0)
-                {
-                    CurrentIndexIntoFilteredRecords = -1;
-                }
-                else
-                {
-                    CurrentIndexIntoFilteredRecords = 0;
-                }
                 if (FilterChanged != null)
                 {
                     FilterChanged.Invoke(this,
@@ -61,7 +51,9 @@ namespace SolidGui
                 }
             }
         }
-
+        
+ 
+        /*
         public IList<Record> MasterRecordList
         {
             get
@@ -73,7 +65,7 @@ namespace SolidGui
                 _masterRecordList = value;
             }
         }
-
+        */
         public string Description
         {
             get
@@ -119,7 +111,7 @@ namespace SolidGui
         {
             get
             {
-                return _indexesOfFilteredRecords.Count;
+                return _recordFilter.Count;
             }
         }
         
@@ -139,48 +131,37 @@ namespace SolidGui
             }
         }
 
-        public int CurrentRecordIndex
+        
+        public int CurrentRecordID
         {
             set
             {
-                if(_indexesOfFilteredRecords.Contains(value))
-                {
-                   CurrentIndexIntoFilteredRecords = _indexesOfFilteredRecords.IndexOf(value);
-                }
+                _recordFilter.MoveToByID(value);
             }
             get
             {
-                if(CurrentIndexIntoFilteredRecords!=-1)
-                {
-                        return _indexesOfFilteredRecords[CurrentIndexIntoFilteredRecords];
-                }
-                else
-                {
-                    return -1;
-                } 
-            }
+                return _recordFilter.Current.ID;
+           }
         }
-
+        
         public Record CurrentRecord
         {
             get
             {
-                if (_currentIndexIntoFilteredRecords <0)
-                {
-                    return null;
-                }
-                return _masterRecordList[CurrentRecordIndex];
+                return _recordFilter.Current;
             }
+            /*
             set
             {
                 _currentRecord = value;
             }
+             */ 
         }
 
 
         public void StartupOrReset()
         {
-            if (_indexesOfFilteredRecords.Count > 0)
+            if (Count > 0)
             {
                 CurrentIndexIntoFilteredRecords = 0;
             }
@@ -193,7 +174,7 @@ namespace SolidGui
 
         public void OnRecordEdited(object sender, SfmEditorPM.RecordEditedEventArgs e)
         {
-            _masterRecordList[CurrentRecordIndex].Value = e._record;
+            _recordFilter.Current.Value = e._record;
        }
     
     }

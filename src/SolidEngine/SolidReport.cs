@@ -20,8 +20,8 @@ namespace SolidEngine
         public class Entry
         {
             EntryType _type;
-            string _recordID;
-            string _fieldID;
+            int _recordID;
+            int _fieldID;
             //int _recordStartLine;
             //int _recordEndLine;
             string _entryName;
@@ -34,24 +34,24 @@ namespace SolidEngine
                 if (entry != null)
                 {
                     _entryName = entry.Name; //??? TODO what's a good name for this entry???
-                    _recordID = entry.Attributes["record"].Value;
+                    _recordID = Convert.ToInt32(entry.Attributes["record"].Value);
                     //_recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
                     //_recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
                 }
                 if (field != null)
                 {
-                    _fieldID = field.Attributes["field"].Value;
+                    _fieldID = Convert.ToInt32(field.Attributes["field"].Value);
                     _marker = field.Name;
                 }
                 _description = description;
             }
 
-            public string RecordID
+            public int RecordID
             {
                 get { return _recordID; }
             }
 
-            public string FieldID
+            public int FieldID
             {
                 get { return _fieldID; }
             }
@@ -123,7 +123,7 @@ namespace SolidEngine
             Add(new Entry(type, entry, field, description));
         }
 
-        public List<SolidReport.Entry> EntriesForRecord(string recordID)
+        public List<SolidReport.Entry> EntriesForRecord(int recordID)
         {
             return _entries.FindAll(
                 delegate(Entry rhs)

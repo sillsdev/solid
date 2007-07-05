@@ -16,9 +16,8 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
-        class SolidObserver : Solidifier.SolidifierObserver
+        class SolidObserver : Solidifier.Observer
         {
-            private MainWindowPM _pm;
             private Dictionary _dictionary;
 
             public SolidObserver(Dictionary dictionary)
@@ -26,7 +25,7 @@ namespace SolidGui
                 _dictionary = dictionary;
             }
 
-            public override void onRecord(XmlNode structure, SolidReport report)
+            public override void OnRecordProcess(XmlNode structure, SolidReport report)
             {
                 _dictionary.AddRecord(structure, report);
             }
@@ -62,8 +61,8 @@ namespace SolidGui
             _masterRecordList = _workingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = new NullRecordFilter();
+            //!!!_navigatorModel.MasterRecordList = MasterRecordList;
+            //!!!_navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
 
 

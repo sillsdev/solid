@@ -58,7 +58,7 @@ namespace SolidGui
 
         private void _findNextButton_Click(object sender, EventArgs e)
         {
-            RecordIndex = _navigatorView.Model.CurrentRecordIndex;
+            RecordIndex = _navigatorView.Model.CurrentRecordID;
             TextIndex = _sfmEditorView._contentsBox.SelectionStart;
 
             if(_forwardRadioButton.Checked)

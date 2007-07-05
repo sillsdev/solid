@@ -18,9 +18,16 @@ namespace SolidGui
         }
 
         private string _value;
+        private int _id = -1;
 
         public static event EventHandler RecordTextChanged;
 
+        public int ID
+        {
+
+            get { return _id; }
+        }
+	
 
         public Record(string value)
         {

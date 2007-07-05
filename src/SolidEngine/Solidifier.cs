@@ -8,20 +8,20 @@ namespace SolidEngine
     public class Solidifier
     {
 
-        public class SolidifierObserver
+        public class Observer
         {
-            public virtual void onRecord(XmlNode structure, SolidReport report)
+            public virtual void OnRecordProcess(XmlNode structure, SolidReport report)
             {
             }
         }
 
-        List<SolidifierObserver> _observers = new List<SolidifierObserver>();
+        List<Observer> _observers = new List<Observer>();
 
         public Solidifier()
         {        
         }
 
-        public void Attach(SolidifierObserver observer)
+        public void Attach(Observer observer)
         {
             _observers.Add(observer);
         }
@@ -54,9 +54,9 @@ namespace SolidEngine
 
         public void OnRecord(XmlNode structure, SolidReport report)
         {
-            foreach (SolidifierObserver observer in _observers)
+            foreach (Observer observer in _observers)
             {
-                observer.onRecord(structure, report);
+                observer.OnRecordProcess(structure, report);
             }
         }
 

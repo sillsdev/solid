@@ -27,7 +27,7 @@ namespace SolidGui
             }
             if (_currentReport != null)
             {
-                Add(new SolidReportRecordFilter(_currentReport));
+                //Add(new SolidReportRecordFilter(_currentReport));
             }
             //Add(new NullRecordFilter());
         }

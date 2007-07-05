@@ -170,7 +170,7 @@ namespace SolidGui
         private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
         {
             _mainWindowPM.FilterChooserModel.ActiveRecordFilter = _mainWindowPM.RecordFilters[0];
-            _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
+            _mainWindowPM.NavigatorModel.CurrentRecordID = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
         }

@@ -10,6 +10,20 @@ namespace SolidTests
     [TestFixture]
     public class SolidifierTest
     {
+        class Observer : Solidifier.Observer
+        {
+            SolidifierTest _o;
+            public Observer(SolidifierTest o)
+            {
+                _o = o;
+            }
+
+            public override void OnRecordProcess(XmlNode structure, SolidReport report)
+            {
+                _o.onRecord(structure, report);
+            }
+        }
+
         private SolidSettings InitSettings()
         {
             SolidSettings solidSettings = new SolidSettings();
@@ -25,6 +39,11 @@ namespace SolidTests
             solidSettings.MarkerSettings.Add(geSetting);
 
             return solidSettings;
+        }
+
+        public void onRecord(XmlNode structure, SolidReport report)
+        {
+            Assert.IsNotNull(structure);
         }
 
         private SfmXmlReader CreateSfmXmlReader(string sfm)
@@ -45,13 +64,14 @@ namespace SolidTests
             SolidSettings settings = InitSettings();
             Solidifier solid = new Solidifier();
 
-            SolidReport report = solid.Process(CreateSfmXmlReader(sfmIn), settings);
+            solid.Attach(new Observer(this));
+            solid.Process(CreateSfmXmlReader(sfmIn), settings);
 
 //            SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");
 //            Assert.IsNotNull(setting);
 //            setting.InferedParent = "sn";
 
-            Assert.IsNotNull(report);
+//            Assert.IsNotNull(report);
 
         }
 

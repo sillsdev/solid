@@ -28,9 +28,7 @@ namespace SolidTests
             _settings.MarkerSettings.Add(snSetting);
             _settings.MarkerSettings.Add(geSetting);
 
-            _report = new SolidReport();
-            
-            _p = new ProcessStructure(_report, _settings);
+            _p = new ProcessStructure(_settings);
         }
 
         [Test]
@@ -46,8 +44,8 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            XmlNode result = _p.Process(entry.DocumentElement);
-            string xmlOut = result.OuterXml;
+            _p.Process(entry.DocumentElement);
+            string xmlOut = _p.Document.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
             
         }
@@ -65,8 +63,8 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            XmlNode result = _p.Process(entry.DocumentElement);
-            string xmlOut = result.OuterXml;
+            _p.Process(entry.DocumentElement);
+            string xmlOut = _p.Document.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }
@@ -84,8 +82,8 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            XmlNode result = _p.Process(entry.DocumentElement);
-            string xmlOut = result.OuterXml;
+            _p.Process(entry.DocumentElement);
+            string xmlOut = _p.Document.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }
@@ -103,8 +101,8 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            XmlNode result = _p.Process(entry.DocumentElement);
-            string xmlOut = result.OuterXml;
+            _p.Process(entry.DocumentElement);
+            string xmlOut = _p.Document.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }

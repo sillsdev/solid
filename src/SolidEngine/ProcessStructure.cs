@@ -37,6 +37,7 @@ namespace SolidEngine
 
         private void InsertInTreeAnyway(XmlNode src, List<XmlNode> scope)
         {
+            /* //!!!
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindMarkerSetting(src.Name);
             // Insert src as sibling of the last element in scope.
@@ -66,7 +67,7 @@ namespace SolidEngine
             XmlNode n = scope[i].AppendChild(fieldNode);
             // Add this node to the scope
             scope.Add(n);
-
+            */
         }
 
         private bool InsertInTree(XmlNode src, List<XmlNode> scope)

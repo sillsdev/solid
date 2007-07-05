@@ -8,7 +8,7 @@ namespace SolidGui.Tests
     public class RecordNavigatorPresentationModelTests
     {
         private RecordNavigatorPM _navigator;
-        private Record _recordWeGotFromRecordChagnedChangedEvent;
+        private Record _recordWeGotFromRecordChangedChangedEvent;
 
 
         [SetUp]
@@ -22,9 +22,9 @@ namespace SolidGui.Tests
             masterRecordList.Add(new Record("something2 X"));
             masterRecordList.Add(new Record("something3 X"));
 
-            _navigator.MasterRecordList = masterRecordList;
+            //!!!_navigator.MasterRecordList = masterRecordList;
 
-            _navigator.ActiveFilter = new RegExRecordFilter("Has X", "X",masterRecordList);
+            _navigator.ActiveFilter = new AllRecordFilter(null);
         }
 
         [TearDown]
@@ -84,16 +84,16 @@ namespace SolidGui.Tests
         [Test]
         public void InitialCurrentRecordIsCorrectOne()
         {
-            Record correct=_navigator.MasterRecordList[2];
-            Assert.AreEqual(correct, _navigator.CurrentRecord);
+            //!!!Record correct=_navigator.  .MasterRecordList[2];
+            Assert.AreEqual(0, _navigator.CurrentRecord.ID);
         }
 
 
         [Test]
         public void WhenFilterChangesShowFirst()
         {
-            _navigator.ActiveFilter = new NullRecordFilter();
-            _navigator.ActiveFilter = new AllRecordFilter(new List<Record>(_navigator.MasterRecordList));
+            //_navigator.ActiveFilter = new NullRecordFilter();
+            _navigator.ActiveFilter = new AllRecordFilter(new Dictionary());
             Assert.AreEqual(4, _navigator.Count);
             Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
             Assert.IsNotNull(_navigator.CurrentRecord);
@@ -113,13 +113,13 @@ namespace SolidGui.Tests
         {
             _navigator.RecordChanged += OnNavigator_RecordChanged;
             _navigator.Next();
-            Assert.IsNotNull(_recordWeGotFromRecordChagnedChangedEvent);
-            Assert.AreEqual(_navigator.CurrentRecord, _recordWeGotFromRecordChagnedChangedEvent);
+            Assert.IsNotNull(_recordWeGotFromRecordChangedChangedEvent);
+            Assert.AreEqual(_navigator.CurrentRecord, _recordWeGotFromRecordChangedChangedEvent);
         }
 
         void OnNavigator_RecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
-            _recordWeGotFromRecordChagnedChangedEvent = e._record;
+            _recordWeGotFromRecordChangedChangedEvent = e._record;
         }
     }
 

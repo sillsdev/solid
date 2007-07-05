@@ -11,7 +11,7 @@ namespace SolidTests
         static void Main(string[] args)
         {
             SolidReportTest t = new SolidReportTest();
-            t.SolidReport_AddEntry_Correct();
+            t.SolidReport_SaveOpen_Correct();
 
             //SolidSettingsTest t = new SolidSettingsTest();
             //t.SolidSettings_Write1Read1_Correct();

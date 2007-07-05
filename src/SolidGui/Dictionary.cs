@@ -7,12 +7,14 @@ using SolidEngine;
 
 namespace SolidGui
 {
-    public class Dictionary
+    public class Dictionary : RecordManager
     {
         private List<Record> _recordList;
         private string _filePath;
         private List<string> _allMarkers;
         private DateTime _lastWrittenTo;
+
+        private int _currentIndex;
 
         public Dictionary()
         {
@@ -28,6 +30,27 @@ namespace SolidGui
             _allMarkers = new List<string>();
             
             Open(path);
+        }
+
+        public override int Count
+        {
+            get { return _recordList.Count; }
+        }
+
+        public virtual Record Current
+        {
+            get { return _recordList[_currentIndex]; }
+        }
+
+        public virtual bool MoveTo(int index)
+        {
+            bool retval = false;
+            if (index >= 0 && index < Count)
+            {
+                _currentIndex = index;
+                retval = true;
+            }
+            return retval;
         }
 
         public string GetDirectoryPath()
@@ -46,11 +69,6 @@ namespace SolidGui
 
         public void AddRecord(XmlNode entry, SolidReport report)
         {
-        }
-
-        public int Count
-        {
-            get { return _recordList.Count; }
         }
 
         public void Open(string path)
