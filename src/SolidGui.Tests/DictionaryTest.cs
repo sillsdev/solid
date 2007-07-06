@@ -12,6 +12,7 @@ namespace SolidGui.Tests
         private Dictionary _dictionary;
         private string _dictionaryPath;
         private string _projectFolder;
+        private string _tempDictionaryPath;
 
         [SetUp]
         public void SetUp()
@@ -21,6 +22,7 @@ namespace SolidGui.Tests
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
             _dictionaryPath = Path.Combine(_projectFolder, "Dictionary.db");
+            _tempDictionaryPath = Path.Combine(_projectFolder, "tempDictionary.db");
 
             StringBuilder builder = new StringBuilder();
             builder.AppendLine(@"\lx one");
@@ -73,10 +75,18 @@ namespace SolidGui.Tests
             Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
-        [Test, Ignore("TODO")]
-        public void SaveWritesDictionaryToFile()
+        [Test]
+        public void CopyToWritesDictionaryToFile()
         {
-            Assert.AreEqual("This Test Needs to Be Written","");
+            _dictionary.Open(_dictionaryPath);
+            _dictionary.CopyTo(_tempDictionaryPath);
+            Assert.AreEqual(File.ReadAllText(_dictionaryPath), File.ReadAllText(_tempDictionaryPath));
+        }
+
+        [Test, Ignore("TO DO")]
+        public void SaveSavesDictionaryBackToOriginalFile()
+        {
+            
         }
     }
 }

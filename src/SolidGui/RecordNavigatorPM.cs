@@ -86,6 +86,8 @@ namespace SolidGui
             if (CanGoPrev())
             {
                 CurrentIndexIntoFilteredRecords--;
+                if(RecordChanged != null)
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
             }
         }
 
@@ -94,6 +96,8 @@ namespace SolidGui
             if (CanGoNext())
             {
                 CurrentIndexIntoFilteredRecords++;
+                if(RecordChanged != null)
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));     
             }
         }
 
@@ -141,8 +145,9 @@ namespace SolidGui
             get
             {
                 return _recordFilter.Current.ID;
-           }
+            }
         }
+        
         
         public Record CurrentRecord
         {

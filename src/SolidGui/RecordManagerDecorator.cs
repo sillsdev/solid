@@ -23,7 +23,11 @@ namespace SolidGui
 
         public override Record Current
         {
-            get { return _d.Current; }
+            get
+            {   if(_d != null)
+                    return _d.Current;
+                return null;
+            }
         }
 
         public override bool MoveToFirst()

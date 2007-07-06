@@ -26,24 +26,24 @@ namespace SolidGui
                 _id = id;
             }
 
-            public Field(string value)
+            public Field(string field)
             {
-                _value = value;
+                _marker = field.Substring(0, field.IndexOf(" "));
+                _value = field.Substring(field.IndexOf(" ")+1);
             }
 
             public override string ToString()
             {
-                return Marker + " " + Value;
+                return Marker+ " " + Value;
             }
 
             public string ToStructuredString()
             {
-                string spacing = "";
-                for(int i = 0 ; i < Depth; i++)
-                {
-                    spacing += "    ";
-                }
-                return spacing + Marker + " " + Value;
+                int spacesInIndentation = 4;
+                
+                string indentation = new string(' ', Depth*spacesInIndentation);
+                
+                return indentation + Marker + " " + Value;
             }
 
             public int Id
@@ -63,8 +63,6 @@ namespace SolidGui
                 set { _value = value; }
             }
 
-            
-
             public int Depth
             {
                 get { return _depth; }
@@ -79,8 +77,7 @@ namespace SolidGui
                 
         private List<Field> _fields;
         private SolidReport _report;
-        private string _value;
-        private int _id = -1;
+        private static int _id = -1;
         public static event EventHandler RecordTextChanged;
 
         public int ID
@@ -88,26 +85,41 @@ namespace SolidGui
            get { return _id; }
         }
 
-        public Record(string value)
+        public Record(List<string> fieldValues)
         {
+            _id++;
             _fields = new List<Field>();
-            _fields.Add(new Field(value));
+            foreach (string value in fieldValues)
+            {
+                _fields.Add(new Field(value));
+            }
         }
 
         public Record(XmlNode entry, SolidReport report)
         {
+            _id++;
             _fields = new List<Field>();
             _report = report;
-            ReadEntry(entry,0);
+            //ReadEntry(entry.FirstChild,0);
+            _fields.Add(new Field("\\lx", "foo", 0, false, 0));
+            _fields.Add(new Field("\\sn", "", 1, true, 1));
+            _fields.Add(new Field("\\ge", "foo", 1, false, 2));
+            _fields.Add(new Field("\\ps", "foo", 2, true, 3));
+            _fields.Add(new Field("\\pe", "foo", 1, false, 4));
+            _fields.Add(new Field("\\sn", "foo", 1, false, 5));
         }
 
         private void ReadEntry(XmlNode entry, int depth)
         {
-            
-            bool infered = entry.Attributes["inferred"].Value == "true";
-            int id = Convert.ToInt32(entry.Attributes["record"].Value);
-            
-            _fields.Add(new Field(entry.Name, entry.InnerText, depth, infered, id));
+            int id = 0;
+            bool inferred = false;
+            if (entry.Attributes.Count > 0)
+            {
+                inferred = entry.Attributes["inferred"].Value == "true";
+                id = Convert.ToInt32(entry.Attributes["record"].Value);
+            }
+
+            _fields.Add(new Field(entry.Name, entry.InnerText, depth, inferred, id));
 
             if (entry.HasChildNodes)
                 ReadEntry(entry.FirstChild, depth + 1);

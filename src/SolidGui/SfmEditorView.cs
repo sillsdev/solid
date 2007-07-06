@@ -8,6 +8,8 @@ namespace SolidGui
     public partial class SfmEditorView : UserControl
     {
         private Record _currentRecord;
+        private Color _inferredTextColor = Color.Blue;
+        private Color _defaultTextColor = Color.Black;
         
         public SfmEditorView()
         {
@@ -25,22 +27,36 @@ namespace SolidGui
             if (e._record == null)
             {
                 _currentRecord = null;
-                _contentsBox.Text = "";
+                ClearContentsOfTextBox();
             }
             else
             {
                 _currentRecord = e._record;
-             
-                for(int i = 0 ; i < _currentRecord.Count ; i++)
+
+                ClearContentsOfTextBox();
+                DisplayEachFieldInRecord();
+            }
+        }
+
+        private void ClearContentsOfTextBox()
+        {
+            _contentsBox.Text = "";
+        }
+
+        private void DisplayEachFieldInRecord()
+        {
+            for (int i = 0; i < _currentRecord.Count; i++)
+            {
+                string fieldText = _currentRecord.GetFieldStructured(i);
+                if (_currentRecord.GetFieldInferred(i))
                 {
-                    string fieldText = _currentRecord.GetFieldStructured(i);
-                    _contentsBox.AppendText(fieldText);
-                    if(_currentRecord.GetFieldInferred(i))
-                    {
-                        _contentsBox.Find(fieldText);
-                        _contentsBox.SelectionColor = Color.Blue;
-                    }
+                    _contentsBox.SelectionColor = _inferredTextColor;
                 }
+                else
+                {
+                    _contentsBox.SelectionColor = _defaultTextColor;
+                }
+                _contentsBox.AppendText(fieldText + "\n");
             }
         }
 

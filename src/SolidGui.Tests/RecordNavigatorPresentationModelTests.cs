@@ -17,17 +17,26 @@ namespace SolidGui.Tests
             _navigator = new RecordNavigatorPM();
 
             List<Record> masterRecordList = new List<Record>();
-            //masterRecordList.Add(new Record("something0"));
-            //masterRecordList.Add(new Record("something1"));
-            //masterRecordList.Add(new Record("something2 X"));
-            //masterRecordList.Add(new Record("something3 X"));
+            Dictionary d = new Dictionary();
+            List<string> fields = new List<string>();
 
+            fields.Add(@"\lx mark");
+            fields.Add(@"\ge foo");
+            d.AddRecord(fields);
+            fields.Clear();
+
+            fields.Add(@"\lx foo");
+            fields.Add(@"\ge bar");
+            d.AddRecord(fields);
+            fields.Clear();
+
+            _navigator.ActiveFilter = new AllRecordFilter(d);
+                        
             //!!!_navigator.MasterRecordList = masterRecordList;
 
 
             //_navigator.ActiveFilter = new RegExRecordFilter("Has X", "X",masterRecordList);
-
-            _navigator.ActiveFilter = new AllRecordFilter(null);
+            //_navigator.ActiveFilter = new AllRecordFilter(null);
 
         }
 
@@ -44,7 +53,7 @@ namespace SolidGui.Tests
             _navigator.Next();
             int finishIndex = _navigator.CurrentIndexIntoFilteredRecords;
 
-            Assert.AreEqual(finishIndex - 1, startingIndex);
+            Assert.AreEqual(startingIndex, finishIndex - 1);
         }
 
         //can I go previous no at first
@@ -65,7 +74,6 @@ namespace SolidGui.Tests
         [Test]
         public void CanGoNext_IndexLast_False()
         {
-            _navigator.Next();
             _navigator.Next();
             _navigator.Next();
             
@@ -89,7 +97,7 @@ namespace SolidGui.Tests
         public void InitialCurrentRecordIsCorrectOne()
         {
             //!!!Record correct=_navigator.  .MasterRecordList[2];
-            Assert.AreEqual(0, _navigator.CurrentRecord.ID);
+            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
         }
 
 
@@ -98,9 +106,9 @@ namespace SolidGui.Tests
         {
             //_navigator.ActiveFilter = new NullRecordFilter();
             _navigator.ActiveFilter = new AllRecordFilter(new Dictionary());
-            Assert.AreEqual(4, _navigator.Count);
+            Assert.AreEqual(0, _navigator.Count);
             Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
-            Assert.IsNotNull(_navigator.CurrentRecord);
+            Assert.IsNull(_navigator.CurrentRecord);
         }
 
         [Test]
@@ -108,7 +116,7 @@ namespace SolidGui.Tests
         {
             _navigator.ActiveFilter = new NullRecordFilter();
             Assert.AreEqual(0, _navigator.Count);
-            Assert.AreEqual(-1, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
             Assert.IsNull (_navigator.CurrentRecord);
         }
         

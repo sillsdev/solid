@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Text;
 using System.Xml;
-using System.Xml.Serialization;
 using SolidEngine;
-using SolidGui.Properties;
 
 namespace SolidGui
 {
@@ -218,10 +215,8 @@ namespace SolidGui
             solid.Attach(observer);
             solid.Process(_tempDictionaryPath, _solidSettings);
             
-            //proccess temporary dictionary
-            //_tempDictionaryPath
             //!!!_recordFilters.OnSolidReportChange(report);
-            //!!!UpdateRecordFilters(report);
+            UpdateRecordFilters();
 
             if (DictionaryProcessed != null)
             {
@@ -229,11 +224,12 @@ namespace SolidGui
             }
         }
 
-        private void UpdateRecordFilters(SolidReport report)
+        private void UpdateRecordFilters()
         {
-            /*
+            
             _recordFilters.Clear();
-
+            _recordFilters.Add(new AllRecordFilter(_workingDictionary));
+            /*
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
             _recordFilters.Add(new SolidReportRecordFilter(report));
             _recordFilters.Add(new NullRecordFilter());

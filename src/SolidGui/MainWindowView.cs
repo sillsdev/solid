@@ -185,7 +185,8 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _mainWindowPM.SolidSettings.Save();
+            if(_mainWindowPM.SolidSettings != null)
+                _mainWindowPM.SolidSettings.Save();
         }
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)

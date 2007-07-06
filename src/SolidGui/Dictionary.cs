@@ -37,12 +37,16 @@ namespace SolidGui
             get { return _recordList.Count; }
         }
 
-        public virtual Record Current
+        public override Record Current
         {
-            get { return _recordList[_currentIndex]; }
+            get{ 
+                    if(_recordList.Count > 0)
+                        return _recordList[_currentIndex];
+                    return null;
+               }
         }
 
-        public virtual bool MoveTo(int index)
+        public override bool MoveTo(int index)
         {
             bool retval = false;
             if (index >= 0 && index < Count)
@@ -72,7 +76,11 @@ namespace SolidGui
         public void AddRecord(XmlNode entry, SolidReport report)
         {
             _recordList.Add(new Record(entry, report));
-            
+        }
+
+        public void AddRecord(List<string> fieldValues)
+        {
+            _recordList.Add(new Record(fieldValues));
         }
 
         public void Open(string path)
@@ -90,16 +98,16 @@ namespace SolidGui
                     if (reader.FieldCount == 0)
                         continue;
 
-                    StringBuilder recordContents = new StringBuilder();
+                    List<string> fieldValues = new List<string>();
                     for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        recordContents.AppendLine("\\" + reader.Key(i) + " " + reader.Value(i));
+                        fieldValues.Add("\\" + reader.Key(i) + " " + reader.Value(i));
                         if (!_allMarkers.Contains(reader.Key(i)))
                         {
                             _allMarkers.Add(reader.Key(i));
                         }
                     }
-                    _recordList.Add(new Record(recordContents.ToString()));
+                    _recordList.Add(new Record(fieldValues));
                 }
             }
         }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using SolidEngine;
 
 namespace SolidGui
@@ -114,7 +111,5 @@ namespace SolidGui
         {
             return "unknown description";
         }
-
     }
-
 }
