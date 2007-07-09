@@ -34,8 +34,10 @@ namespace SolidEngine
 
         public void Process(string filePath, SolidSettings solidSettings)
         {
-            SfmXmlReader reader = new SfmXmlReader(filePath);
-            Process(reader, solidSettings);
+            using (SfmXmlReader reader = new SfmXmlReader(filePath))
+            {
+                Process(reader, solidSettings);
+            }
         }
 
         public void Process(XmlReader xr, SolidSettings solidSettings)

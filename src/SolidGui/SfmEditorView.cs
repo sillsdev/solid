@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -7,12 +8,15 @@ namespace SolidGui
 {
     public partial class SfmEditorView : UserControl
     {
+        private SfmEditorPM _model;
         private Record _currentRecord;
         private Color _inferredTextColor = Color.Blue;
         private Color _defaultTextColor = Color.Black;
+        public event EventHandler RecordTextChanged;
         
         public SfmEditorView()
         {
+            _model = new SfmEditorPM();
             _currentRecord = null;
             InitializeComponent();
         }
@@ -45,10 +49,10 @@ namespace SolidGui
 
         private void DisplayEachFieldInRecord()
         {
-            for (int i = 0; i < _currentRecord.Count; i++)
+            for (int i = 0; i < _currentRecord.FieldCount; i++)
             {
                 string fieldText = _currentRecord.GetFieldStructured(i);
-                if (_currentRecord.GetFieldInferred(i))
+                if (_currentRecord.IsFieldInferred(i))
                 {
                     _contentsBox.SelectionColor = _inferredTextColor;
                 }
@@ -62,10 +66,31 @@ namespace SolidGui
 
         private void OnTextChanged(object sender, System.EventArgs e)
         {
-            if (_currentRecord!=null)
+            if (_currentRecord!=null && _currentRecord.ToStructuredString()!=_contentsBox.Text)
             {
-                //somehow update the contents of the record
+                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
+
+                if (RecordTextChanged != null)
+                    RecordTextChanged.Invoke(this, new EventArgs());
             }
+        }
+
+        private string ContentsBoxTextWithoutInferredFields()
+        {
+            string textWithoutInferred = "";
+            int initialCaratPosition = _contentsBox.SelectionStart;
+            _contentsBox.SelectionStart = 0;
+            for (int i = 0; i < _contentsBox.Text.Length; i++)
+            {
+                _contentsBox.SelectionStart = i;
+                if(_contentsBox.SelectionColor != _inferredTextColor)
+                {
+                    textWithoutInferred += _contentsBox.SelectedText;
+                }
+            }
+
+            _contentsBox.SelectionStart = initialCaratPosition;
+            return textWithoutInferred;
         }
     }
 }

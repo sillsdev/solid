@@ -11,7 +11,7 @@ namespace SolidGui.Tests
     {
         private MainWindowPM _mainWindowPM;
         private string _projectFolder;
-
+        private string _dictionaryPath;
 
         [SetUp]
         public void Setup()
@@ -19,6 +19,7 @@ namespace SolidGui.Tests
             Reporting.ErrorReporter.OkToInteractWithUser = false;
             _mainWindowPM = new MainWindowPM();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            _dictionaryPath = Path.Combine(_projectFolder, Path.GetRandomFileName());           
             Directory.CreateDirectory(_projectFolder);
 
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
@@ -33,7 +34,7 @@ namespace SolidGui.Tests
         {
             get
             {
-                return Path.Combine(_projectFolder, "dictionary.db");
+                return _dictionaryPath;
             }
         }
 
@@ -56,7 +57,7 @@ namespace SolidGui.Tests
             Assert.IsNotNull(_mainWindowPM.RecordFilters);
         }
 
-        [Test, Ignore("taking out soon")]
+        [Test, Ignore("temporarily hard coded wrong")]
         public void OpenExistingDictionaryLoadsRecordLists()
         {
             OpenDictionaryWithPreExistingSettings();
@@ -69,7 +70,7 @@ namespace SolidGui.Tests
             _mainWindowPM.OpenDictionary(DictionaryPath, null);
         }
 
-        [Test, Ignore("taking out soon")]
+        [Test, Ignore("temporarily hard coded wrong")]
         public void SaveDictionarySavesCurrentDictionary()
         {
             OpenDictionaryWithPreExistingSettings();

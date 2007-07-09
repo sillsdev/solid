@@ -50,7 +50,6 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Dictionary.cs" />
-    <Compile Include="DummyProcessor.cs" />
     <Compile Include="FilterChooserPM.cs" />
     <Compile Include="FilterChooserView.cs">
       <SubType>UserControl</SubType>

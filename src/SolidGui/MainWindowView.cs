@@ -120,7 +120,7 @@ namespace SolidGui
             _filterChooserView.Model.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
-            Record.RecordTextChanged += OnRecordTextChanged;
+            _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
 
             UpdateDisplay();
         }

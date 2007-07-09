@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 using SolidEngine;
@@ -78,7 +79,6 @@ namespace SolidGui
         private List<Field> _fields;
         private SolidReport _report;
         private static int _id = -1;
-        public static event EventHandler RecordTextChanged;
 
         public int ID
         {
@@ -99,8 +99,7 @@ namespace SolidGui
         {
             _id++;
             _fields = new List<Field>();
-            _report = report;
-            //ReadEntry(entry.FirstChild,0);
+            //SetRecord(entry, report);
             _fields.Add(new Field("\\lx", "foo", 0, false, 0));
             _fields.Add(new Field("\\sn", "", 1, true, 1));
             _fields.Add(new Field("\\ge", "foo", 1, false, 2));
@@ -128,7 +127,7 @@ namespace SolidGui
                 ReadEntry(entry.NextSibling, depth);
         }
 
-        public List<Field> Fields
+        private List<Field> Fields
         {
             get { return _fields; }
         }
@@ -143,19 +142,24 @@ namespace SolidGui
             ) != null;
         }
 
-        public string GetField(int id)
+        public string GetFieldNotStructured(int id)
         {
             Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });
             return field.ToString();
+        }
+
+        public void SetRecord(XmlNode entry, SolidReport report)
+        {
+            _fields.Clear();
+            _report = report;
+            ReadEntry(entry.FirstChild, 0);
         }
 
         public void SetField(int id, string value)
         {
             if(_fields[id].Value != value)
             {
-                _fields[id].Value = value;
-                if(RecordTextChanged != null)
-                    RecordTextChanged.Invoke(this, new EventArgs());
+                _fields[id] = new Field(value);
             }
         }
 
@@ -165,6 +169,19 @@ namespace SolidGui
             foreach(Field field in _fields)
             {
                 record.AppendLine(field.ToString());
+            }
+            return record.ToString();
+        }
+
+        public string ToStringWithoutInferred()
+        {
+            StringBuilder record = new StringBuilder();
+            foreach (Field field in _fields)
+            {
+                if (!field.Inferred)
+                {
+                    record.AppendLine(field.ToString());
+                }
             }
             return record.ToString();
         }
@@ -184,12 +201,12 @@ namespace SolidGui
             return record.ToString();
         }
 
-        public int Count
+        public int FieldCount
         {
             get { return _fields.Count; }
         }
 
-        public bool GetFieldInferred(int i)
+        public bool IsFieldInferred(int i)
         {
             return _fields[i].Inferred;
         }
@@ -197,6 +214,21 @@ namespace SolidGui
         public string GetFieldStructured(int i)
         {
             return _fields[i].ToStructuredString();
+        }
+
+        public void SetRecord(string setToText, SolidSettings _solidSettings)
+        {
+            SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
+            xr.ReadToFollowing("entry");
+            XmlReader entryReader = xr.ReadSubtree();
+            // Load the current record from xr into an XmlDocument
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.Load(entryReader);
+            SolidReport report = new SolidReport();
+            IProcess process = new ProcessStructure(_solidSettings);
+            XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
+
+            SetRecord(xmlResult, report);
         }
     }
 }

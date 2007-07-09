@@ -53,7 +53,6 @@ namespace SolidGui
             _sfmEditorModel = new SfmEditorPM();
             _searchModel = new SearchPM();
 
-
             _allMarkers = _workingDictionary.AllMarkers;
             _masterRecordList = _workingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
@@ -61,7 +60,7 @@ namespace SolidGui
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
-
+            _sfmEditorModel.Settings = _solidSettings;
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -214,8 +213,9 @@ namespace SolidGui
             Solidifier solid = new Solidifier();
             solid.Attach(observer);
             solid.Process(_tempDictionaryPath, _solidSettings);
-            
-            //!!!_recordFilters.OnSolidReportChange(report);
+        
+
+        //!!!_recordFilters.OnSolidReportChange(report);
             UpdateRecordFilters();
 
             if (DictionaryProcessed != null)

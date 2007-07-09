@@ -83,9 +83,24 @@ namespace SolidGui.Tests
             Assert.AreEqual(File.ReadAllText(_dictionaryPath), File.ReadAllText(_tempDictionaryPath));
         }
 
-        [Test, Ignore("TO DO")]
+        [Test]
         public void SaveSavesDictionaryBackToOriginalFile()
         {
+            _dictionary.Open(_dictionaryPath);
+            List<Record> data = _dictionary.AllRecords;
+            data[1].SetField(1,"\\ge threeGloss");
+            _dictionary.Save();
+
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine(@"\lx one");
+            builder.AppendLine(@"\ge oneGloss");
+            builder.AppendLine(@"\lx two");
+            builder.AppendLine(@"\ge threeGloss");
+            File.WriteAllText(_tempDictionaryPath, builder.ToString());
+
+            Assert.AreEqual(File.ReadAllText(_tempDictionaryPath),File.ReadAllText(_dictionaryPath));
+
+
             
         }
     }
