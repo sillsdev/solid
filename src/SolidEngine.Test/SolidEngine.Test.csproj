@@ -47,6 +47,7 @@
     <Compile Include="Solidifier_Test.cs" />
     <Compile Include="SolidReport_Test.cs" />
     <Compile Include="SolidSettings_Test.cs" />
+    <Compile Include="SolidXmlReader_Read_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">

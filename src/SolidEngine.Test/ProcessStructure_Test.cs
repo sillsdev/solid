@@ -18,7 +18,7 @@ namespace SolidTests
         {
             _settings = new SolidSettings();
             SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("root", SolidGui.MultiplicityAdjacency.Once));
+            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", SolidGui.MultiplicityAdjacency.Once));
             SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
             geSetting.StructureProperties.Add(new SolidStructureProperty("sn", SolidGui.MultiplicityAdjacency.MultipleApart));
             SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
@@ -34,8 +34,8 @@ namespace SolidTests
         [Test]
         public void ProcessStructure_InferNode_Correct()
         {
-            string xmlIn = @"<entry><lx>a</lx><ge>g</ge></entry>";
-            string xmlEx = "<root><lx><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></root>";
+            string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><ge>g</ge></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></entry>";
 
             Init();
             SolidMarkerSetting setting =  _settings.FindMarkerSetting("ge");
@@ -44,8 +44,9 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            _p.Process(entry.DocumentElement);
-            string xmlOut = _p.Document.OuterXml;
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
             
         }
@@ -53,8 +54,8 @@ namespace SolidTests
         [Test]
         public void ProcessStructure_NoInferReqd_Correct()
         {
-            string xmlIn = @"<entry><lx>a</lx><sn></sn><ge>g</ge></entry>";
-            string xmlEx = @"<root><lx><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></root>";
+            string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn></sn><ge>g</ge></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");
@@ -63,8 +64,29 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            _p.Process(entry.DocumentElement);
-            string xmlOut = _p.Document.OuterXml;
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
+            Assert.AreEqual(xmlEx, xmlOut);
+
+        }
+
+        [Test]
+        public void ProcessStructure_NoInferInsertAnyway_Correct()
+        {
+            string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data></ge><zz field=\"4\"><data>z</data></zz></sn></lx></entry>";
+
+            Init();
+            SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");
+            Assert.IsNotNull(setting);
+            setting.InferedParent = "";
+
+            XmlDocument entry = new XmlDocument();
+            entry.LoadXml(xmlIn);
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }
@@ -72,8 +94,8 @@ namespace SolidTests
         [Test]
         public void ProcessStructure_LiftMapping_Correct()
         {
-            string xmlIn = @"<entry><lx>b</lx></entry>";
-            string xmlEx = "<root><lx lift=\"a\"><data>b</data></lx></root>";
+            string xmlIn = "<entry record=\"4\"><lx field=\"1\">b</lx></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\"><data>b</data></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
@@ -82,8 +104,9 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            _p.Process(entry.DocumentElement);
-            string xmlOut = _p.Document.OuterXml;
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }
@@ -91,8 +114,8 @@ namespace SolidTests
         [Test]
         public void ProcessStructure_FlexMapping_Correct()
         {
-            string xmlIn = @"<entry><lx>b</lx></entry>";
-            string xmlEx = "<root><lx flex=\"a\"><data>b</data></lx></root>";
+            string xmlIn = "<entry record=\"5\"><lx field=\"1\">b</lx></entry>";
+            string xmlEx = "<entry record=\"5\"><lx field=\"1\" flex=\"a\"><data>b</data></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
@@ -101,8 +124,9 @@ namespace SolidTests
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            _p.Process(entry.DocumentElement);
-            string xmlOut = _p.Document.OuterXml;
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
             Assert.AreEqual(xmlEx, xmlOut);
 
         }

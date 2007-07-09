@@ -32,10 +32,21 @@ namespace SolidGui
             Open(path);
         }
 
+        public List<Record> Records
+        {
+            get { return _recordList; }
+        }
+
         public override int Count
         {
             get { return _recordList.Count; }
         }
+        /*
+        public override IEnumerator<Record> GetEnumerator()
+        {
+            return _recordList.GetEnumerator();
+        }
+        */
 
         public override Record Current
         {
@@ -44,6 +55,12 @@ namespace SolidGui
                         return _recordList[_currentIndex];
                     return null;
                }
+        }
+
+        
+        public Record Get(int index)
+        {
+            return _recordList[index];
         }
 
         public override bool MoveTo(int index)

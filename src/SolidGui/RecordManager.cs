@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
@@ -6,7 +7,7 @@ using SolidEngine;
 
 namespace SolidGui
 {
-    public class RecordManager
+    public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
     {
         class SolidObserver : Solidifier.Observer
         {
@@ -23,14 +24,32 @@ namespace SolidGui
             }
         }
 
-        public virtual int Count
+        // Enumerator Methods
+        public virtual void Reset()
         {
-            get { return 0; }
+        }
+
+        public virtual bool MoveNext()
+        {
+            return false;
+        }
+
+        public virtual IEnumerator < Record > GetEnumerator()
+        {
+            return null; // this; //!!! SHould return a dummy implementation.
         }
 
         public virtual Record Current
         {
-            get { return null; }
+            get
+            {
+                return new Record(null);
+            }
+        }
+
+        public virtual int Count
+        {
+            get { return 0; }
         }
 
         public virtual bool MoveToFirst()

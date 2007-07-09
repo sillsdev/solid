@@ -128,6 +128,21 @@ namespace SolidGui
                 ReadEntry(entry.NextSibling, depth);
         }
 
+        public List<Field> Fields
+        {
+            get { return _fields; }
+        }
+
+        public bool HasMarker(string marker)
+        {
+            return _fields.Find(
+                delegate(Field f)
+                {
+                    return f.Marker == marker;
+                }
+            ) != null;
+        }
+
         public string GetField(int id)
         {
             Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });

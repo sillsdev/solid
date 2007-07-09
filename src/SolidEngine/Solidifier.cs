@@ -47,8 +47,9 @@ namespace SolidEngine
                 // Load the current record from xr into an XmlDocument
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.Load(entryReader);
-                process.Process(xmldoc.DocumentElement);
-                OnRecord(process.Document, process.Report);
+                SolidReport report = new SolidReport();
+                process.Process(xmldoc.DocumentElement, report);
+                //!!!OnRecord(process.Document, process.Report);
             }
         }
 

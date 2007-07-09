@@ -10,31 +10,15 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
-            SolidReportTest t = new SolidReportTest();
-            t.SolidReport_SaveOpen_Correct();
+            //SolidReportTest t = new SolidReportTest();
+            //t.SolidReport_SaveOpen_Correct();
 
-            //SolidSettingsTest t = new SolidSettingsTest();
-            //t.SolidSettings_Write1Read1_Correct();
-
-            //ProcessStructureTest t = new ProcessStructureTest();
-            //t.ProcessStructure_InferNode_Correct();
-
-            //SolidifierTest t = new SolidifierTest();
-            //t.Solidifier_InferNode_Correct();
-            
-            //SfmReader_Header_Test t = new SfmReader_Header_Test();
-            //t.HeaderOnly_Header_Correct();
-
-            //SfmReader_Read_Test t = new SfmReader_Read_Test();
-            //t.EmptySFMRecordRead_False();
-            
-            //SfmXmlReader_XmlDoc_Test t = new SfmXmlReader_XmlDoc_Test();
-            //t.HeaderDoc_Correct();
-            //t.EmptyDoc1();
-            //t.EmptySfmDoc_Correct();
-
-            //SfmXmlReaderTests t = new SfmXmlReaderTests();
+            //SolidXmlReaderTests t = new SolidXmlReaderTests();
             //t.ReadSubtreeFromSfm_Correct();
+
+            ProcessStructureTest t = new ProcessStructureTest();
+            t.ProcessStructure_NoInferInsertAnyway_Correct();
+
         }
     }
 }

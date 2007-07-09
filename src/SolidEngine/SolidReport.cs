@@ -83,11 +83,11 @@ namespace SolidEngine
 
         }
 
-        public class SolidEntries : List<Entry>
+        public class SolidEntries : List<SolidReport.Entry>
         {
         }
 
-        private SolidEntries _entries;
+        public SolidEntries _entries;
 
         [XmlIgnore]
         private string _filePath;
@@ -97,6 +97,7 @@ namespace SolidEngine
             get { return _entries; }
         }
 
+        [XmlIgnore]
         public string FilePath
         {
             get { return _filePath; }
@@ -151,7 +152,7 @@ namespace SolidEngine
         public static SolidReport OpenSolidReport(string path)
         {
             SolidReport r;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport), new Type[] { typeof(Entry) });
             try
             {
                 using (StreamReader reader = new StreamReader(path))
@@ -175,10 +176,10 @@ namespace SolidEngine
         public void SaveAs(string filePath)
         {
             _filePath = filePath;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport), new Type[]{typeof(Entry)});
             using (StreamWriter writer = new StreamWriter(_filePath))
             {
-                xs.Serialize(writer, _entries);
+                xs.Serialize(writer, this);
             }
         }
 

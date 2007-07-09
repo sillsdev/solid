@@ -50,5 +50,11 @@ namespace SolidGui
             return _d.MoveToByID(id);
         }
 
+        public override IEnumerator<Record> GetEnumerator()
+        {
+            return _d.GetEnumerator();
+        }
+
+
     }
 }

@@ -1,10 +1,6 @@
 /*
 * 
 * An XmlReader implementation for loading SFM delimited files
-*
-* Copyright (c) 2001-2005 Microsoft Corporation. All rights reserved.
-*
-* Chris Lovett
 * 
 */
 
@@ -362,20 +358,6 @@ namespace SolidEngine
                         break;
                 }
                 return retval;
-            }
-        }
-
-        public override bool HasValue
-        {
-            // TODO: Move this to the base
-            get
-            {
-//                bool retval = false;
-//                if (_xmlState == XmlState.ElementValue || _xmlState == XmlState.AttributeValue)
-//                {
-                    return Value != String.Empty;
-//                }
-//                return retval;
             }
         }
 

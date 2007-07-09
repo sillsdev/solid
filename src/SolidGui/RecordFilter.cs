@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
 using SolidEngine;
 
 namespace SolidGui
@@ -65,11 +68,38 @@ namespace SolidGui
 
     public class AllRecordFilter : RecordFilter
     {
-        public AllRecordFilter(Dictionary dictionary) :
-            base(dictionary, "All")
+        public AllRecordFilter(RecordManager rm) :
+            base(rm, "All")
         {
         }
 
+    }
+
+    public class MarkerFilter : RecordFilter
+    {
+        private Dictionary _dictionary;
+        private string _marker;
+
+        List<int> _index = new List<int>();
+
+        public MarkerFilter(Dictionary dictionary, string marker) :
+            base(dictionary, String.Format("Marker {0}", marker))
+        {
+            _dictionary = dictionary;
+            _marker = marker;
+        }
+
+        public override void UpdateFilter()
+        {
+            _index.Clear();
+            for (int i = 0; i < _dictionary.Count; i++)
+            {
+                if (_dictionary.Records[i].HasMarker(_marker))
+                {
+                    _index.Add(i);
+                }
+            }
+        }
     }
 
     
@@ -111,5 +141,9 @@ namespace SolidGui
         {
             return "unknown description";
         }
+        public virtual void UpdateFilter()
+        {
+        }
+
     }
 }
