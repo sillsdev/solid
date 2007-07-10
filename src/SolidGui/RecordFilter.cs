@@ -71,35 +71,51 @@ namespace SolidGui
         public AllRecordFilter(RecordManager rm) :
             base(rm, "All")
         {
+            UpdateFilter();
+        }
+       
+        public override void UpdateFilter()
+        {
+            _indexesOfRecords.Clear();
+            for (int i = 0; i < _d.Count; i++)
+            {
+                _indexesOfRecords.Add(i);
+            }
         }
 
     }
 
     public class MarkerFilter : RecordFilter
     {
-        private Dictionary _dictionary;
         private string _marker;
 
-        List<int> _index = new List<int>();
-
-        public MarkerFilter(Dictionary dictionary, string marker) :
-            base(dictionary, String.Format("Marker {0}", marker))
+        public MarkerFilter(RecordManager recordManager, string marker) :
+            base(recordManager, String.Format("Marker {0}", marker))
         {
-            _dictionary = dictionary;
             _marker = marker;
+            UpdateFilter();
         }
 
         public override void UpdateFilter()
         {
-            _index.Clear();
-            for (int i = 0; i < _dictionary.Count; i++)
+            _indexesOfRecords.Clear();
+            for (int i = 0; i < _d.Count; i++)
             {
-                if (_dictionary.Records[i].HasMarker(_marker))
+                _d.MoveTo(i);
+                if (_d.Current.HasMarker(_marker))
                 {
-                    _index.Add(i);
+                    _indexesOfRecords.Add(i);
                 }
             }
         }
+
+        public override string Description(int index)
+        {
+            return string.Format("Records containing {0}", _marker);
+        }
+       
+
+    
     }
 
     
@@ -116,7 +132,8 @@ namespace SolidGui
     {
         protected string _name;
       //  protected List<string> _descriptions;
-      //  protected List<int> _indexesOfRecords;
+        protected List<int> _indexesOfRecords = new List<int>();
+        private int _currentIndex;
 
         RecordManager _d;
 
@@ -125,6 +142,69 @@ namespace SolidGui
         {
             _d = d;
             _name = name;
+            _currentIndex = 0;
+        }
+
+        public override int Count
+        {
+            get { return _indexesOfRecords.Count; }
+        }
+        /*
+        public override IEnumerator<Record> GetEnumerator()
+        {
+            return _indexesOfRecords.GetEnumerator();
+        }
+        */
+
+        public override Record Current
+        {
+            get
+            {
+                _d.MoveTo(_indexesOfRecords[_currentIndex]);
+                return _d.Current;
+            }
+        }
+
+        public override int CurrentIndex
+        {
+            get
+            {
+                return _currentIndex;
+            }
+            set
+            {
+                MoveTo(value);
+            }
+        }
+
+        public override bool HasPrevious()
+        {
+            return _currentIndex > 0;
+        }
+
+        public override bool HasNext()
+        {
+            return _currentIndex < _indexesOfRecords.Count - 1;
+        }
+
+        public override bool MoveToNext()
+        {
+            bool retval = HasNext();
+            if (retval)
+            {
+                _currentIndex++;
+            }
+            return retval;
+        }
+
+        public override bool MoveToPrevious()
+        {
+            bool retval = HasPrevious();
+            if (retval)
+            {
+                _currentIndex--;
+            }
+            return retval;
         }
 
         public override string ToString()
@@ -141,6 +221,7 @@ namespace SolidGui
         {
             return "unknown description";
         }
+       
         public virtual void UpdateFilter()
         {
         }

@@ -7,7 +7,7 @@ namespace SolidGui
 {
     public class MarkerSettingsPM
     {
-        private List<string> _allMarkers;
+        private IEnumerable<string> _allMarkers;
         private List<SolidMarkerSetting> _markerSettings;
         private StructurePropertiesPM _structurePropertiesModel;
         private MappingPM _mappingModel;
@@ -36,7 +36,7 @@ namespace SolidGui
             return ms;
         }
 
-        public List<string> AllMarkers
+        public IEnumerable<string> AllMarkers
         {
             get
             {

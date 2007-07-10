@@ -19,7 +19,6 @@ namespace SolidGui
 
         private SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
-        private List<string> _allMarkers;
         private RecordFilterSet _recordFilters;
         private List<Record> _masterRecordList;
         private RecordNavigatorPM _navigatorModel;
@@ -41,13 +40,12 @@ namespace SolidGui
             _searchModel = new SearchPM();
 
 
-            _allMarkers = _workingDictionary.AllMarkers;
             _masterRecordList = _workingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
-            _markerSettingsModel.AllMarkers = _allMarkers;
+            _markerSettingsModel.AllMarkers = _workingDictionary.AllMarkers;
 
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
@@ -220,10 +218,11 @@ namespace SolidGui
 
         private void UpdateRecordFilters()
         {
-            
-            _recordFilters.Clear();
-            //_recordFilters.BuildFilters();
-            _recordFilters.Add(new AllRecordFilter(_workingDictionary));
+            _recordFilters.Dictionary = _workingDictionary;
+            _recordFilters.BuildFilters();
+
+            //_recordFilters.Clear();
+            //_recordFilters.Add(new AllRecordFilter(_workingDictionary));
             /*
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
             _recordFilters.Add(new SolidReportRecordFilter(report));

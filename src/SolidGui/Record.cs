@@ -248,5 +248,19 @@ namespace SolidGui
             }
         }
 
+        public void AddMarkerStatistics(Dictionary<string, int> statistics)
+        {
+            foreach (Field field in _fields)
+            {
+                try
+                {
+                    statistics.Add(field.Marker, 0);
+                }
+                catch
+                {
+                }
+            }
+        }
+
     }
 }

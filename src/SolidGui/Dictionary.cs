@@ -11,7 +11,7 @@ namespace SolidGui
     {
         private List<Record> _recordList;
         private string _filePath;
-        private List<string> _allMarkers;
+        private Dictionary<string, int> _allMarkers;
         private DateTime _lastWrittenTo;
 
         private int _currentIndex;
@@ -20,7 +20,7 @@ namespace SolidGui
         {
             _currentIndex = 0;
             _recordList = new List<Record>();
-            _allMarkers = new List<string>();
+            _allMarkers = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
@@ -137,7 +137,9 @@ namespace SolidGui
         public void AddRecord(XmlNode entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
-            _recordList.Add(Record.CreateFromXml(entry, report));
+            Record record = Record.CreateFromXml(entry, report);
+            record.AddMarkerStatistics(_allMarkers);
+            _recordList.Add(record);
         }
 
         public void AddRecord(Record record)
@@ -210,10 +212,12 @@ namespace SolidGui
 
         }
 
-        public List<string> AllMarkers
+        public IEnumerable<string> AllMarkers
         {
-            get { return _allMarkers; }
-            set { _allMarkers = value; }
+            get
+            {
+                return _allMarkers.Keys;
+            }
         }
 
         public List<Record> AllRecords

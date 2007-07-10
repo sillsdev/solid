@@ -44,10 +44,20 @@ namespace SolidGui
             set
             {
                 _recordFilter = value;
+                _recordFilter.MoveToFirst();
                 if (FilterChanged != null)
                 {
-                    FilterChanged.Invoke(this,
-                                         new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter));
+                    FilterChanged.Invoke(
+                        this,
+                        new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter)
+                    );
+                }
+                if (RecordChanged != null)
+                {
+                    RecordChanged.Invoke(
+                        this,
+                        new RecordChangedEventArgs(_recordFilter.Current)
+                    );
                 }
             }
         }
