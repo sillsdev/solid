@@ -107,7 +107,6 @@ namespace SolidEngine
         public XmlNode Process(XmlNode source, SolidReport report)
         {
             XmlDocument destination = new XmlDocument();
-            report = new SolidReport();
             // Iterate through each (flat) node in the src d
             List<XmlNode> scope = new List<XmlNode>();
             scope.Add(destination.AppendChild(destination.ImportNode(source, false)));
