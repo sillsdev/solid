@@ -14,7 +14,7 @@ namespace SolidGui
         {
         }
 
-        void BuildFilters()
+        public void BuildFilters()
         {
             Clear();
 
@@ -32,16 +32,9 @@ namespace SolidGui
             //Add(new NullRecordFilter());
         }
 
-        public void OnSolidReportChange(SolidReport report)
+        public void AddRecord(SolidReport report)
         {
-            _currentReport = report;
-            BuildFilters();
-        }
-
-        public void OnDictionaryChange(Dictionary dictionary)
-        {
-            _currentDictionary = dictionary;
-            BuildFilters();
+            _currentReport.Entries.AddRange(report.Entries);
         }
     }
 }

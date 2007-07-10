@@ -28,7 +28,7 @@ namespace SolidTests
         {
             SolidSettings solidSettings = new SolidSettings();
             SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("root", SolidGui.MultiplicityAdjacency.Once));
+            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", SolidGui.MultiplicityAdjacency.Once));
             SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
             geSetting.StructureProperties.Add(new SolidStructureProperty("sn", SolidGui.MultiplicityAdjacency.MultipleApart));
             SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");

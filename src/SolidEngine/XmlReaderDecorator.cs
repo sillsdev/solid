@@ -33,7 +33,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.NodeType;
+                return (_d != null) ? _d.NodeType : base.NodeType;
             }
         }
 
@@ -41,7 +41,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.LocalName;
+                return (_d != null) ? _d.LocalName : base.LocalName;
             }
         }
 
@@ -49,7 +49,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.Value;
+                return (_d != null) ? _d.Value : base.Value;
             }
         }
 
@@ -57,7 +57,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.Depth;
+                return (_d != null) ? _d.Depth : base.Depth;
             }
         }
 
@@ -65,7 +65,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.IsEmptyElement;
+                return (_d != null) ? _d.IsEmptyElement : base.IsEmptyElement;
             }
         }
 
@@ -73,7 +73,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.IsDefault;
+                return (_d != null) ? _d.IsDefault : base.IsDefault;
             }
         }
 
@@ -81,7 +81,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.XmlSpace;
+                return (_d != null) ? _d.XmlSpace : base.XmlSpace;
             }
         }
 
@@ -89,7 +89,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.XmlLang;
+                return (_d != null) ? _d.XmlLang : base.XmlLang;
             }
         }
 
@@ -97,30 +97,30 @@ namespace SolidEngine
         {
             get
             {
-                return _d.AttributeCount;
+                return (_d != null) ? _d.AttributeCount : base.AttributeCount;
             }
         }
 
         public override string GetAttribute(string name)
         {
-            return _d.GetAttribute(name);
+            return (_d != null) ? _d.GetAttribute(name) : GetAttribute(name);
         }
 
         public override string GetAttribute(string name, string namespaceURI)
         {
-            return _d.GetAttribute(name, namespaceURI);
+            return (_d != null) ? _d.GetAttribute(name, namespaceURI) : base.GetAttribute(name, namespaceURI);
         }
 
         public override string GetAttribute(int i)
         {
-            return _d.GetAttribute(i);
+            return (_d != null) ? _d.GetAttribute(i) : base.GetAttribute(i);
         }
 
         public override string this[int i]
         {
             get
             {
-                return _d.GetAttribute(i);
+                return GetAttribute(i);
             }
         }
 
@@ -128,7 +128,7 @@ namespace SolidEngine
         {
             get
             {
-                return _d.GetAttribute(name);
+                return GetAttribute(name);
             }
         }
 
@@ -136,69 +136,83 @@ namespace SolidEngine
         {
             get
             {
-                return _d.GetAttribute(name, namespaceURI);
+                return GetAttribute(name, namespaceURI);
             }
         }
 
         public override bool MoveToAttribute(string name)
         {
-            return _d.MoveToAttribute(name);
+            return (_d != null) ? _d.MoveToAttribute(name) : base.MoveToAttribute(name);
         }
 
         public override void MoveToAttribute(int i)
         {
-            _d.MoveToAttribute(i);
+            if (_d != null)
+            {
+                _d.MoveToAttribute(i);
+            }
+            else
+            {
+                base.MoveToAttribute(i);
+            }
         }
 
         public override bool MoveToFirstAttribute()
         {
-            return _d.MoveToFirstAttribute();
+            return (_d != null) ? _d.MoveToFirstAttribute() : base.MoveToFirstAttribute();
         }
 
         public override bool MoveToNextAttribute()
         {
-            return _d.MoveToNextAttribute();
+            return (_d != null) ? _d.MoveToNextAttribute() : base.MoveToNextAttribute();
         }
 
         public override bool MoveToElement()
         {
-            return _d.MoveToElement();
+            return (_d != null) ? _d.MoveToElement() : base.MoveToElement();
         }
 
         public override bool Read()
         {
-            return _d.Read();
+            return (_d != null) ? _d.Read() : base.Read();
         }
 
         public override bool EOF
         {
             get
             {
-                return _d.EOF;
+                return (_d != null) ? _d.EOF : base.EOF;
             }
         }
 
         public override void Close()
         {
-            _d.Close();
+            if (_d != null)
+            {
+                _d.Close();
+            }
+            else
+            {
+                base.Close();
+            }
         }
 
         public override ReadState ReadState
         {
             get
             {
-                return _d.ReadState;
+                return (_d != null) ? _d.ReadState : base.ReadState;
             }
         }
 
         public override string ReadString()
         {
-            return _d.ReadString();
+            return (_d != null) ? _d.ReadString() : base.ReadString();
         }
 
         public override bool ReadAttributeValue()
         {
-            return _d.ReadAttributeValue();
+            return (_d != null) ? _d.ReadAttributeValue() : base.ReadAttributeValue();
         }
 
     }

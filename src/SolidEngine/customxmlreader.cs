@@ -407,7 +407,7 @@ namespace SolidEngine {
         { 
             get 
             {
-                return XmlNodeType.EndElement;
+                return XmlNodeType.None;
             }       
         }
 

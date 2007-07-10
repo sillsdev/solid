@@ -13,12 +13,11 @@ namespace SolidGui.Tests
         [SetUp]
         public void SetUp()
         {
-            List<String> fields = new List<string>();
-            fields.Add("\\lx foo");
-            fields.Add("\\ps noun");
-            fields.Add("\\ge bar");
-
-            _record = new Record(fields);
+            _record = new Record(1);
+            int fieldID = 0;
+            _record.Fields.Add(new Record.Field("\\lx", "foo", 0, false, fieldID++));
+            _record.Fields.Add(new Record.Field("\\ps", "noun", 0, false, fieldID++));
+            _record.Fields.Add(new Record.Field("\\ge", "bar", 0, false, fieldID++));
         }
 
         [TearDown]
@@ -33,7 +32,7 @@ namespace SolidGui.Tests
         [Test]
         public void FieldCountReturnsCorrectNumberOfFields()
         {
-            Assert.AreEqual(3, _record.FieldCount);
+            Assert.AreEqual(3, _record.Fields.Count);
             
         }
 

@@ -123,8 +123,9 @@ namespace SolidTests
         public void SFMEmptyDocument_Correct()
         {
             string sfm = @"";
-            XmlReader xmlReader =
-                new SolidXmlReader(new StringReader(sfm), CreateSettings());
+            XmlReader xmlReader = new SolidXmlReader(
+                new StringReader(sfm), CreateSettings()
+            );
 
             AssertStartDocument(xmlReader);
 
@@ -172,8 +173,9 @@ namespace SolidTests
         {
             string sfm = "\\_a a\n"
                 + "\\_b b";
-            XmlReader xmlReader =
-                new SolidXmlReader(new StringReader(sfm), CreateSettings());
+            XmlReader xmlReader = new SolidXmlReader(
+                new StringReader(sfm), CreateSettings()
+            );
 
             AssertStartDocument(xmlReader);
 

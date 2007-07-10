@@ -145,7 +145,11 @@ namespace SolidEngine
             {
                 case XmlState.Start:
                     _xmlState = XmlState.Record;
-                    ReadRecord();
+                    XmlNode xmlEntry = ReadRecord();
+                    if (xmlEntry == null)
+                    {
+                        _d = _sfmXmlReader;
+                    }
                     retval = base.Read();
                     break;
                 default:

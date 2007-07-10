@@ -10,34 +10,21 @@ namespace SolidGui.Tests
         private RecordNavigatorPM _navigator;
         private Record _recordWeGotFromRecordChangedChangedEvent;
 
-
         [SetUp]
         public void Setup()
         {
+            int recordID = 0;
+            Dictionary dictionary = new Dictionary();
+            Record record = new Record(recordID++);
+            dictionary.AddRecord(new Record(recordID++));
+            dictionary.AddRecord(new Record(recordID++));
+            dictionary.AddRecord(new Record(recordID++));
+            dictionary.AddRecord(new Record(recordID++));
+            RecordFilter recordFilter = new AllRecordFilter(dictionary);
             _navigator = new RecordNavigatorPM();
 
-            List<Record> masterRecordList = new List<Record>();
-            Dictionary d = new Dictionary();
-            List<string> fields = new List<string>();
-
-            fields.Add(@"\lx mark");
-            fields.Add(@"\ge foo");
-            d.AddRecord(fields);
-            fields.Clear();
-
-            fields.Add(@"\lx foo");
-            fields.Add(@"\ge bar");
-            d.AddRecord(fields);
-            fields.Clear();
-
-            _navigator.ActiveFilter = new AllRecordFilter(d);
+            _navigator.ActiveFilter = recordFilter;
                         
-            //!!!_navigator.MasterRecordList = masterRecordList;
-
-
-            //_navigator.ActiveFilter = new RegExRecordFilter("Has X", "X",masterRecordList);
-            //_navigator.ActiveFilter = new AllRecordFilter(null);
-
         }
 
         [TearDown]
@@ -74,9 +61,11 @@ namespace SolidGui.Tests
         [Test]
         public void CanGoNext_IndexLast_False()
         {
-            _navigator.Next();
-            _navigator.Next();
-            
+            for (int i = 0; i < _navigator.Count - 1; i++)
+            {
+                _navigator.Next();
+
+            }
             Assert.IsFalse(_navigator.CanGoNext());
         }
 

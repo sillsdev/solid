@@ -31,7 +31,11 @@ namespace SolidEngine
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
             // Insert source as sibling of the last element in scope.
-            int i = scope.Count - 2; //!!! Bit hacky. Want to insert under the second to last in scope.
+            int i = 0; 
+            if (scope.Count >= 2)
+            {
+                i = scope.Count - 2; //!!! Bit hacky. Want to insert under the second to last in scope.
+            }
             // Truncate the scope
             if (i < scope.Count - 1)
             {
@@ -165,7 +169,7 @@ namespace SolidEngine
                 }
                 field = field.NextSibling;
             }
-            return destination;
+            return destination.DocumentElement;
         }
     }
 }

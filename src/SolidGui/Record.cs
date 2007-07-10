@@ -26,12 +26,15 @@ namespace SolidGui
                 _inferred = inferred;
                 _id = id;
             }
-
+            /* not used ???
             public Field(string field)
             {
                 _marker = field.Substring(0, field.IndexOf(" "));
                 _value = field.Substring(field.IndexOf(" ")+1);
             }
+            */
+
+            
 
             public override string ToString()
             {
@@ -76,15 +79,16 @@ namespace SolidGui
             }
         }
                 
-        private List<Field> _fields;
+        private List<Field> _fields = new List<Field>();
         private SolidReport _report;
-        private static int _id = -1;
+        private static int _recordID = -1;
+        public static event EventHandler RecordTextChanged;
 
         public int ID
         {
-           get { return _id; }
+           get { return _recordID; }
         }
-
+        /*
         public Record(List<string> fieldValues)
         {
             _id++;
@@ -94,40 +98,64 @@ namespace SolidGui
                 _fields.Add(new Field(value));
             }
         }
+        */
 
+        public Record(int recordID)
+        {
+            _recordID = recordID;
+        }
+
+        /*
         public Record(XmlNode entry, SolidReport report)
         {
             _id++;
             _fields = new List<Field>();
-            //SetRecord(entry, report);
-            _fields.Add(new Field("\\lx", "foo", 0, false, 0));
-            _fields.Add(new Field("\\sn", "", 1, true, 1));
-            _fields.Add(new Field("\\ge", "foo", 1, false, 2));
-            _fields.Add(new Field("\\ps", "foo", 2, true, 3));
-            _fields.Add(new Field("\\pe", "foo", 1, false, 4));
-            _fields.Add(new Field("\\sn", "foo", 1, false, 5));
+            _report = report;
+            ReadEntry(entry.FirstChild, 0);
+            //_fields.Add(new Field("\\lx", "foo", 0, false, 0));
+            //_fields.Add(new Field("\\sn", "", 1, true, 1));
+            //_fields.Add(new Field("\\ge", "foo", 1, false, 2));
+            //_fields.Add(new Field("\\ps", "foo", 2, true, 3));
+            //_fields.Add(new Field("\\pe", "foo", 1, false, 4));
+            //_fields.Add(new Field("\\sn", "foo", 1, false, 5));
         }
+        */
 
-        private void ReadEntry(XmlNode entry, int depth)
+        static public Record CreateFromXml(XmlNode entry, SolidReport report)
         {
-            int id = 0;
-            bool inferred = false;
-            if (entry.Attributes.Count > 0)
+            XmlHelper xh = new XmlHelper(entry);
+            string s = xh.GetAttribute("record");
+            int recordID = (s != string.Empty) ? Convert.ToInt32(s) : -1;
+            Record record = new Record(recordID);
+            foreach (XmlNode xmlChild in entry.ChildNodes)
             {
-                inferred = entry.Attributes["inferred"].Value == "true";
-                id = Convert.ToInt32(entry.Attributes["record"].Value);
+                record.ReadField(xmlChild, 0);
             }
-
-            _fields.Add(new Field(entry.Name, entry.InnerText, depth, inferred, id));
-
-            if (entry.HasChildNodes)
-                ReadEntry(entry.FirstChild, depth + 1);
-                        
-            if (entry.NextSibling != null)
-                ReadEntry(entry.NextSibling, depth);
+            return record;
         }
 
-        private List<Field> Fields
+        private void ReadField(XmlNode entry, int depth)
+        {
+            XmlHelper x = new XmlHelper(entry);
+            string s;
+            //Field f = new Field(
+            bool isInferred = x.GetAttribute("inferred") == "true";
+            s = x.GetAttribute("record");
+            int fieldID = (s != string.Empty) ? Convert.ToInt32(s) : 0;
+            foreach (XmlNode xmlChild in entry.ChildNodes)
+            {
+                if (xmlChild.Name == "data")
+                {
+                    _fields.Add(new Field("\\" + entry.Name, xmlChild.InnerText, depth, isInferred, fieldID));
+                }
+                else
+                {
+                    ReadField(xmlChild, depth + 1);
+                }
+            }
+        }
+
+        public List<Field> Fields
         {
             get { return _fields; }
         }
@@ -142,24 +170,19 @@ namespace SolidGui
             ) != null;
         }
 
-        public string GetFieldNotStructured(int id)
+        public string GetField(int id)
         {
             Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });
             return field.ToString();
-        }
-
-        public void SetRecord(XmlNode entry, SolidReport report)
-        {
-            _fields.Clear();
-            _report = report;
-            ReadEntry(entry.FirstChild, 0);
         }
 
         public void SetField(int id, string value)
         {
             if(_fields[id].Value != value)
             {
-                _fields[id] = new Field(value);
+                _fields[id].Value = value;
+                if(RecordTextChanged != null)
+                    RecordTextChanged.Invoke(this, new EventArgs());
             }
         }
 
@@ -201,16 +224,6 @@ namespace SolidGui
             return record.ToString();
         }
 
-        public int FieldCount
-        {
-            get { return _fields.Count; }
-        }
-
-        public bool IsFieldInferred(int i)
-        {
-            return _fields[i].Inferred;
-        }
-
         public string GetFieldStructured(int i)
         {
             return _fields[i].ToStructuredString();
@@ -228,7 +241,12 @@ namespace SolidGui
             IProcess process = new ProcessStructure(_solidSettings);
             XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
 
-            SetRecord(xmlResult, report);
+            _fields.Clear();
+            foreach (XmlNode xmlChild in xmlResult.ChildNodes)
+            {
+                ReadField(xmlChild, 0);
+            }
         }
+
     }
 }

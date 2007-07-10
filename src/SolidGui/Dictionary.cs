@@ -18,12 +18,13 @@ namespace SolidGui
 
         public Dictionary()
         {
+            _currentIndex = 0;
             _recordList = new List<Record>();
             _allMarkers = new List<string>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
-
+        /*
         public Dictionary(string path)
         {
             _recordList = new List<Record>();
@@ -31,7 +32,7 @@ namespace SolidGui
             
             Open(path);
         }
-
+        */
         public List<Record> Records
         {
             get { return _recordList; }
@@ -57,11 +58,54 @@ namespace SolidGui
                }
         }
 
-        
+        public override int CurrentIndex
+        {
+            get
+            {
+                return _currentIndex;
+            }
+            set
+            {
+                MoveTo(value);
+            }
+        }
+
+        public override bool HasPrevious()
+        {
+            return _currentIndex > 0;
+        }
+
+        public override bool HasNext()
+        {
+            return _currentIndex < _recordList.Count - 1;
+        }
+
+        public override bool MoveToNext()
+        {
+            bool retval = HasNext();
+            if (retval)
+            {
+                _currentIndex++;
+            }
+            return retval;
+        }
+
+        public override bool MoveToPrevious()
+        {
+            bool retval = HasPrevious();
+            if (retval)
+            {
+                _currentIndex--;
+            }
+            return retval;
+        }
+
+        /*
         public Record Get(int index)
         {
             return _recordList[index];
         }
+        */
 
         public override bool MoveTo(int index)
         {
@@ -92,41 +136,44 @@ namespace SolidGui
 
         public void AddRecord(XmlNode entry, SolidReport report)
         {
-            _recordList.Add(new Record(entry, report));
+//            _recordList.Add(new Record(entry, report));
+            _recordList.Add(Record.CreateFromXml(entry, report));
         }
 
+        public void AddRecord(Record record)
+        {
+            _recordList.Add(record);
+        }
+
+        /* not used ???
         public void AddRecord(List<string> fieldValues)
         {
             _recordList.Add(new Record(fieldValues));
         }
+        */
 
-        public void Open(string path)
+        public void Open(string path, SolidSettings solidSettings)
         {
             _filePath = path;
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
 
             _recordList.Clear();
             _allMarkers.Clear();
-            using (TextReader dictReader = File.OpenText(_filePath))
-            {
-                SolidEngine.SfmRecordReader reader = new SolidEngine.SfmRecordReader(dictReader, 10000);
-                while (reader.Read())
-                {
-                    if (reader.FieldCount == 0)
-                        continue;
 
-                    List<string> fieldValues = new List<string>();
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        fieldValues.Add("\\" + reader.Key(i) + " " + reader.Value(i));
-                        if (!_allMarkers.Contains(reader.Key(i)))
-                        {
-                            _allMarkers.Add(reader.Key(i));
-                        }
-                    }
-                    _recordList.Add(new Record(fieldValues));
-                }
+            IProcess process = new ProcessStructure(solidSettings);
+            XmlReader xr = new SfmXmlReader(_filePath);
+            while (xr.ReadToFollowing("entry"))
+            {
+                XmlReader entryReader = xr.ReadSubtree();
+                // Load the current record from xr into an XmlDocument
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.Load(entryReader);
+                SolidReport report = new SolidReport();
+                XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
+                AddRecord(xmlResult, report);
+                //!!!_recordFilters.AddRecord(report);
             }
+
         }
 
         public bool Save()
@@ -150,17 +197,17 @@ namespace SolidGui
             return false;
         }
 
-        public Dictionary CopyTo(string path)
+        public void SaveAs(string path)
         {
+            _filePath = path;
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < _recordList.Count; i++)
             {
                 builder.Append(_recordList[i].Value);
             }
             File.WriteAllText(path, builder.ToString());
-            _lastWrittenTo = File.GetLastWriteTime(_filePath);
+//!!!            _lastWrittenTo = File.GetLastWriteTime(_filePath);
 
-            return new Dictionary(path);
         }
 
         public List<string> AllMarkers

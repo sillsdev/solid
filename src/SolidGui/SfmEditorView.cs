@@ -49,10 +49,10 @@ namespace SolidGui
 
         private void DisplayEachFieldInRecord()
         {
-            for (int i = 0; i < _currentRecord.FieldCount; i++)
+            for (int i = 0; i < _currentRecord.Fields.Count; i++)
             {
                 string fieldText = _currentRecord.GetFieldStructured(i);
-                if (_currentRecord.IsFieldInferred(i))
+                if (_currentRecord.Fields[i].Inferred)
                 {
                     _contentsBox.SelectionColor = _inferredTextColor;
                 }

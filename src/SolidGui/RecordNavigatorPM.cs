@@ -83,9 +83,8 @@ namespace SolidGui
 
         public void Previous()
         {
-            if (CanGoPrev())
+            if (_recordFilter.MoveToPrevious())
             {
-                CurrentIndexIntoFilteredRecords--;
                 if(RecordChanged != null)
                     RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
             }
@@ -93,9 +92,8 @@ namespace SolidGui
 
         public void Next()
         {
-            if (CanGoNext())
+            if (_recordFilter.MoveToNext())
             {
-                CurrentIndexIntoFilteredRecords++;
                 if(RecordChanged != null)
                     RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));     
             }
@@ -103,12 +101,12 @@ namespace SolidGui
 
         public bool CanGoPrev()
         {
-            return CurrentIndexIntoFilteredRecords > 0;
+            return _recordFilter.HasPrevious();
         }
 
         public bool CanGoNext()
         {
-            return CurrentIndexIntoFilteredRecords < Count - 1;
+            return _recordFilter.HasNext();
         }
 
         public int Count
@@ -123,18 +121,17 @@ namespace SolidGui
         {
             get
             {
-                return _currentIndexIntoFilteredRecords;
+                return _recordFilter.CurrentIndex;
             }
             set
             {
-                _currentIndexIntoFilteredRecords = value;
+                _recordFilter.MoveTo(value);
                 if (RecordChanged != null)
                 {
                     RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
                 }
             }
         }
-
         
         public int CurrentRecordID
         {
@@ -166,10 +163,7 @@ namespace SolidGui
 
         public void StartupOrReset()
         {
-            if (Count > 0)
-            {
-                CurrentIndexIntoFilteredRecords = 0;
-            }
+            _recordFilter.MoveToFirst();
         }
 
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)

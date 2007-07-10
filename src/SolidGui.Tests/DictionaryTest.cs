@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
+using SolidEngine;
 
 namespace SolidGui.Tests
 {
@@ -14,9 +15,23 @@ namespace SolidGui.Tests
         private string _projectFolder;
         private string _tempDictionaryPath;
 
+        private SolidSettings _settings;
+
         [SetUp]
         public void SetUp()
         {
+            _settings = new SolidSettings();
+            SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
+            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", SolidGui.MultiplicityAdjacency.Once));
+            SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
+            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", SolidGui.MultiplicityAdjacency.MultipleApart));
+            SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", SolidGui.MultiplicityAdjacency.MultipleApart));
+
+            _settings.MarkerSettings.Add(lxSetting);
+            _settings.MarkerSettings.Add(snSetting);
+            _settings.MarkerSettings.Add(geSetting);
+
             Reporting.ErrorReporter.OkToInteractWithUser = false;
             _dictionary = new Dictionary();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -45,7 +60,7 @@ namespace SolidGui.Tests
             _markers.Add("lx");
             _markers.Add("ge");
 
-            _dictionary.Open(_dictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
 
             foreach (string marker in _dictionary.AllMarkers)
             {
@@ -56,7 +71,7 @@ namespace SolidGui.Tests
         [Test]
         public void OpenReadsInAllRecords()
         {
-            _dictionary.Open(_dictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
 
             Assert.AreEqual(2, _dictionary.Count);
         }
@@ -64,29 +79,29 @@ namespace SolidGui.Tests
         [Test]
         public void GetDirectoryPathReturnsPathToDirectoryContainingDictionary()
         {
-            _dictionary.Open(_dictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
             Assert.AreEqual(_projectFolder,_dictionary.GetDirectoryPath());
         }
 
         [Test]
         public void GetFileNameReturnsNameOfDictionary()
         {
-            _dictionary.Open(_dictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
             Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
         [Test]
         public void CopyToWritesDictionaryToFile()
         {
-            _dictionary.Open(_dictionaryPath);
-            _dictionary.CopyTo(_tempDictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.SaveAs(_tempDictionaryPath);
             Assert.AreEqual(File.ReadAllText(_dictionaryPath), File.ReadAllText(_tempDictionaryPath));
         }
 
         [Test]
         public void SaveSavesDictionaryBackToOriginalFile()
         {
-            _dictionary.Open(_dictionaryPath);
+            _dictionary.Open(_dictionaryPath, _settings);
             List<Record> data = _dictionary.AllRecords;
             data[1].SetField(1,"\\ge threeGloss");
             _dictionary.Save();

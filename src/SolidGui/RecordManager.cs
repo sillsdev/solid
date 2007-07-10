@@ -9,21 +9,6 @@ namespace SolidGui
 {
     public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
     {
-        class SolidObserver : Solidifier.Observer
-        {
-            private RecordManager _o;
-
-            public SolidObserver(RecordManager o)
-            {
-                _o = o;
-            }
-
-            public override void OnRecordProcess(XmlNode structure, SolidReport report)
-            {
-                _o.OnRecordProcess(structure, report);
-            }
-        }
-
         // Enumerator Methods
         public virtual void Reset()
         {
@@ -43,13 +28,39 @@ namespace SolidGui
         {
             get
             {
-                return new Record(null);
+                return null; // new Record(); //!!! Perhaps a default record would be better CJP
             }
         }
 
         public virtual int Count
         {
             get { return 0; }
+        }
+
+        public virtual int CurrentIndex
+        {
+            get { return 0; }
+            set { MoveTo(value); }
+        }
+
+        public virtual bool HasPrevious()
+        {
+            return false;
+        }
+
+        public virtual bool HasNext()
+        {
+            return false;
+        }
+
+        public virtual bool MoveToNext()
+        {
+            return false;
+        }
+
+        public virtual bool MoveToPrevious()
+        {
+            return false;
         }
 
         public virtual bool MoveToFirst()
@@ -77,9 +88,9 @@ namespace SolidGui
             return false;
         }
 
-        public virtual void OnRecordProcess(XmlNode structure, SolidReport report)
-        {
-        }
+        //public virtual void OnRecordProcess(XmlNode structure, SolidReport report)
+        //{
+        //}
 
     }
 }

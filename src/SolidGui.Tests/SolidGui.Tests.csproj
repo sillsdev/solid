@@ -5,10 +5,12 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3DC3F32B-28DF-469D-B69C-46181292D2BE}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolidGui.Tests</RootNamespace>
     <AssemblyName>SolidGui.Tests</AssemblyName>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,7 +47,7 @@
     <Compile Include="DictionaryTest.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />
-    <Compile Include="MappingPMTests.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="RecordTests.cs" />
     <Compile Include="StructurePropertiesPMTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

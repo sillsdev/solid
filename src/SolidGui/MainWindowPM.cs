@@ -13,26 +13,13 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
-        class SolidObserver : Solidifier.Observer
-        {
-            private Dictionary _dictionary;
-
-            public SolidObserver(Dictionary dictionary)
-            {
-                _dictionary = dictionary;
-            }
-
-            public override void OnRecordProcess(XmlNode structure, SolidReport report)
-            {
-                _dictionary.AddRecord(structure, report);
-            }
-        }
-
         private Dictionary _workingDictionary;
+        private String _tempDictionaryPath;
+        private String _realDictionaryPath;
+
         private SolidSettings _solidSettings;
         private MarkerSettingsPM _markerSettingsModel;
         private List<string> _allMarkers;
-        private String _tempDictionaryPath;
         private RecordFilterSet _recordFilters;
         private List<Record> _masterRecordList;
         private RecordNavigatorPM _navigatorModel;
@@ -53,6 +40,7 @@ namespace SolidGui
             _sfmEditorModel = new SfmEditorPM();
             _searchModel = new SearchPM();
 
+
             _allMarkers = _workingDictionary.AllMarkers;
             _masterRecordList = _workingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
@@ -60,7 +48,7 @@ namespace SolidGui
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _allMarkers;
-            _sfmEditorModel.Settings = _solidSettings;
+
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -168,24 +156,34 @@ namespace SolidGui
                 return;
             }
 
-            _workingDictionary.Open(dictionaryPath);
-
-            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath)))
+            _realDictionaryPath = dictionaryPath;
+            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
             {
                 _solidSettings =
                     SolidSettings.OpenSolidFile(
                         Path.Combine(_workingDictionary.GetDirectoryPath(),
-                                     SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath)));
+                                     SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)));
             }
             else
             {
                 Debug.Assert(!string.IsNullOrEmpty(templatePath));
                 _solidSettings =
-                    SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_workingDictionary.FilePath));
+                    SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             }
+            _workingDictionary.Open(_realDictionaryPath, _solidSettings);
+
+
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
+
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
-            ProcessLexicon();
+            UpdateRecordFilters();
+
+            if (DictionaryProcessed != null)
+            {
+                DictionaryProcessed.Invoke(this, null);
+            }
+
+            //ProcessLexicon();
         }
 
         /// <summary>
@@ -206,16 +204,12 @@ namespace SolidGui
 
         public void ProcessLexicon()
         {
-            _workingDictionary.CopyTo(_tempDictionaryPath);
+            _workingDictionary.SaveAs(_tempDictionaryPath);
 
-            _workingDictionary.Clear();
-            SolidObserver observer = new SolidObserver(_workingDictionary);
-            Solidifier solid = new Solidifier();
-            solid.Attach(observer);
-            solid.Process(_tempDictionaryPath, _solidSettings);
-        
+//            _workingDictionary.Clear();
+            _workingDictionary.Open(_tempDictionaryPath, _solidSettings);
 
-        //!!!_recordFilters.OnSolidReportChange(report);
+
             UpdateRecordFilters();
 
             if (DictionaryProcessed != null)
@@ -228,6 +222,7 @@ namespace SolidGui
         {
             
             _recordFilters.Clear();
+            //_recordFilters.BuildFilters();
             _recordFilters.Add(new AllRecordFilter(_workingDictionary));
             /*
             _recordFilters.Add(new AllRecordFilter(_masterRecordList));
@@ -242,12 +237,8 @@ namespace SolidGui
         public bool SaveDictionary()
         {
             _solidSettings.Save();
-            return _workingDictionary.Save();
-        }
-
-        public Dictionary SaveDictionaryAs(string path)
-        {
-            return _workingDictionary.CopyTo(path);
+            _workingDictionary.SaveAs(_realDictionaryPath);
+            return true; // Todo: can't fail.
         }
 
         /// <summary>
@@ -266,7 +257,7 @@ namespace SolidGui
 
                 foreach (string path in Directory.GetFiles(_workingDictionary.GetDirectoryPath(), "*.solid"))
                 {
-                    if (path != _solidSettings.FilePath)
+                    if (_solidSettings != null && path != _solidSettings.FilePath)
                     {
                         paths.Add(path);
                     }
