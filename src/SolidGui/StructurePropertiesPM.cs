@@ -8,7 +8,7 @@ namespace SolidGui
     public class StructurePropertiesPM
     {
         private SolidMarkerSetting _markerSetting;
-        private IEnumerable<string> _allMarkers;
+        private List<string> _allMarkers;
 
         public SolidMarkerSetting MarkerSetting
         {
@@ -42,7 +42,7 @@ namespace SolidGui
         {
             set
             {
-                _allMarkers = value;
+                _allMarkers = (List<string>)value;
             }
         }
 
@@ -80,7 +80,7 @@ namespace SolidGui
         public bool ValidParent(string parent)
         {
             return (
-                /*_allMarkers.Contains(parent) &&*/
+                _allMarkers.Contains(parent) &&
                 !_markerSetting.ParentExists(parent) &&
                 _markerSetting.Marker != parent
             );

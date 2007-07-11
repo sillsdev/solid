@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using SolidEngine;
 
 namespace SolidGui
 {
     public class MarkerSettingsPM
     {
-        private IEnumerable<string> _allMarkers;
+        private IEnumerable<string> _allDictionaryMarkers;
         private List<SolidMarkerSetting> _markerSettings;
         private StructurePropertiesPM _structurePropertiesModel;
         private MappingPM _mappingModel;
@@ -16,8 +14,8 @@ namespace SolidGui
         public MarkerSettingsPM()
         {
             _root = "";
-            _allMarkers = new List<string>();
             _markerSettings = new List<SolidMarkerSetting>();
+            _allDictionaryMarkers = new List<string>();
             _structurePropertiesModel = new StructurePropertiesPM();
             MappingModel = new MappingPM();
         }
@@ -40,12 +38,11 @@ namespace SolidGui
         {
             get
             {
-                return _allMarkers;
+                return _allDictionaryMarkers;
             }
             set
             {
-                _allMarkers = value;
-                _structurePropertiesModel.AllMarkers = _allMarkers;
+                _allDictionaryMarkers = value;
             }
         }
         public List<SolidMarkerSetting>MarkerSettings
@@ -59,6 +56,23 @@ namespace SolidGui
                 _markerSettings = value;
             }
         }
+
+        public IList<string> GetValidMarkers()
+        {
+            List<string> allValidMarkers = new List<string>();
+
+            allValidMarkers.AddRange(_allDictionaryMarkers);
+            foreach (SolidMarkerSetting setting in _markerSettings)
+            {
+                if(!allValidMarkers.Contains(setting.Marker))
+                {
+                    allValidMarkers.Add(setting.Marker);
+                }
+            }
+
+            return allValidMarkers;
+        }
+
         public string Root
         {
             get
