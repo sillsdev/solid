@@ -167,8 +167,6 @@ namespace SolidGui
         protected List<int> _indexesOfRecords = new List<int>();
         private int _currentIndex;
 
-        RecordManager _d;
-
         public RecordFilter(RecordManager d, string name) :
             base(d)
         {
@@ -237,6 +235,32 @@ namespace SolidGui
                 _currentIndex--;
             }
             return retval;
+        }
+
+        public override bool MoveToFirst()
+        {
+            return MoveTo(0);
+        }
+
+        public override bool MoveToLast()
+        {
+            bool retval = false;
+            if (Count > 0)
+            {
+                retval = MoveTo(Count - 1);
+            }
+            return retval;
+        }
+
+        public override bool MoveTo(int index)
+        {
+            bool retval = false;
+            if (index >= 0 && index < Count)
+            {
+                retval = true;
+                _currentIndex = index;
+            }
+            return true;
         }
 
         public override string ToString()

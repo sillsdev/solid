@@ -227,6 +227,17 @@
   <ItemGroup>
     <None Include="Resources\WarningHS.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\414-rewind.ico" />
+    <Content Include="Resources\415-skip_backward.ico" />
+    <Content Include="Resources\419-skip_forward.ico" />
+    <Content Include="Resources\420-fast_forward.ico" />
+    <None Include="Resources\preview.ico" />
+    <None Include="Resources\fast_forward.ico" />
+    <None Include="Resources\rewind.ico" />
+    <None Include="Resources\skip_backward.ico" />
+    <None Include="Resources\skip_forward.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

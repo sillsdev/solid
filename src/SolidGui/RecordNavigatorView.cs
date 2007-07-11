@@ -33,7 +33,7 @@ namespace SolidGui
 
         private void _PreviousButton_Click(object sender, EventArgs e)
         {
-            _model.Previous();
+            _model.MoveToPrevious();
             UpdateDisplay();
         }
 
@@ -43,18 +43,32 @@ namespace SolidGui
                 return;
             _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
+            _lastButton.Enabled = _model.CanGoNext();
             _PreviousButton.Enabled = _model.CanGoPrev();
+            _firstButton.Enabled = _model.CanGoPrev();
             _recordNumber.Text = string.Format("{0}/{1}", _model.CurrentIndexIntoFilteredRecords+1, _model.Count);
         }
 
         private void _nextButton_Click(object sender, EventArgs e)
         {
-            _model.Next();
+            _model.MoveToNext();
             UpdateDisplay();
         }
 
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
+            UpdateDisplay();
+        }
+
+        private void _firstButton_Click(object sender, EventArgs e)
+        {
+            _model.MoveToFirst();
+            UpdateDisplay();
+        }
+
+        private void _lastButton_Click(object sender, EventArgs e)
+        {
+            _model.MoveToLast();
             UpdateDisplay();
         }
     }

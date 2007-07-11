@@ -220,5 +220,12 @@ namespace SolidGui
 
         }
 
+        private void _searchButton_Click(object sender, EventArgs e)
+        {
+            _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
+            _searchView.SearchModel = _mainWindowPM.SearchModel;
+            _searchView.Show();
+        }
+
      }
 }

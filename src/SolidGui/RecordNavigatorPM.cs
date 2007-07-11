@@ -63,20 +63,6 @@ namespace SolidGui
             }
         }
         
- 
-        /*
-        public IList<Record> MasterRecordList
-        {
-            get
-            {
-                return _masterRecordList;
-            }
-            set
-            {
-                _masterRecordList = value;
-            }
-        }
-        */
         public string Description
         {
             get
@@ -92,7 +78,25 @@ namespace SolidGui
             }
         }
 
-        public void Previous()
+        public void MoveToFirst()
+        {
+            if (_recordFilter.MoveToFirst())
+            {
+                if (RecordChanged != null)
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+            }
+        }
+
+        public void MoveToLast()
+        {
+            if (_recordFilter.MoveToLast())
+            {
+                if (RecordChanged != null)
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+            }
+        }
+
+        public void MoveToPrevious()
         {
             if (_recordFilter.MoveToPrevious())
             {
@@ -101,7 +105,7 @@ namespace SolidGui
             }
         }
 
-        public void Next()
+        public void MoveToNext()
         {
             if (_recordFilter.MoveToNext())
             {

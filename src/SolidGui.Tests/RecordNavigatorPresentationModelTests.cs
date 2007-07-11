@@ -37,7 +37,7 @@ namespace SolidGui.Tests
         public void NextIncreasesIndex()
         {
             int startingIndex = _navigator.CurrentIndexIntoFilteredRecords;
-            _navigator.Next();
+            _navigator.MoveToNext();
             int finishIndex = _navigator.CurrentIndexIntoFilteredRecords;
 
             Assert.AreEqual(startingIndex, finishIndex - 1);
@@ -54,7 +54,7 @@ namespace SolidGui.Tests
         [Test]
         public void CanGoPrevious_IndexNot0_True()
         {
-            _navigator.Next();
+            _navigator.MoveToNext();
             Assert.IsTrue(_navigator.CanGoPrev());
         }
 
@@ -63,7 +63,7 @@ namespace SolidGui.Tests
         {
             for (int i = 0; i < _navigator.Count - 1; i++)
             {
-                _navigator.Next();
+                _navigator.MoveToNext();
 
             }
             Assert.IsFalse(_navigator.CanGoNext());
@@ -113,7 +113,7 @@ namespace SolidGui.Tests
         public void NavigationTriggersCurrentChanged()
         {
             _navigator.RecordChanged += OnNavigator_RecordChanged;
-            _navigator.Next();
+            _navigator.MoveToNext();
             Assert.IsNotNull(_recordWeGotFromRecordChangedChangedEvent);
             Assert.AreEqual(_navigator.CurrentRecord, _recordWeGotFromRecordChangedChangedEvent);
         }
