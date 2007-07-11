@@ -206,7 +206,7 @@ namespace SolidGui
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < _recordList.Count; i++)
             {
-                builder.Append(_recordList[i].Value);
+                builder.Append(_recordList[i].ToStringWithoutInferred());
             }
             File.WriteAllText(path, builder.ToString());
             _lastWrittenTo = File.GetLastWriteTime(_filePath);

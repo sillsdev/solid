@@ -8,6 +8,7 @@ namespace SolidGui
 {
     public partial class SfmEditorView : UserControl
     {
+        private int _spacesInIndentation = 4;
         private SfmEditorPM _model;
         private Record _currentRecord;
         private Color _inferredTextColor = Color.Blue;
@@ -54,20 +55,23 @@ namespace SolidGui
 
         private void DisplayEachFieldInRecord()
         {
-            for (int i = 0; i < _currentRecord.Fields.Count; i++)
+            foreach (Record.Field field in _currentRecord.Fields)
             {
-                string fieldText = _currentRecord.GetFieldStructured(i);
-                if (_currentRecord.Fields[i].Inferred)
+                string indentation = new string(' ', field.Depth * _spacesInIndentation);
+                string fieldText;
+                if (field.Inferred)
                 {
                     _contentsBox.SelectionColor = _inferredTextColor;
-                    fieldText = "+" + fieldText;
+                    fieldText = indentation + "\\+" + field.Marker + " " + field.Value;
                 }
                 else
                 {
                     _contentsBox.SelectionColor = _defaultTextColor;
+                    fieldText = indentation + "\\" + field.Marker + " " + field.Value;
                 }
                 _contentsBox.AppendText(fieldText + "\r\n");
             }
+            _contentsBox.SelectionColor = _defaultTextColor;
         }
 
         private string ContentsBoxTextWithoutInferredFields()
@@ -76,30 +80,29 @@ namespace SolidGui
             _contentsBox.SelectionStart = 0;
             foreach (string line in _contentsBox.Lines)
             {
-                int startOfInference = line.IndexOf("+");
+                int startOfTextOnLine = line.IndexOf("\\");
+                if(startOfTextOnLine == -1)
+                {
+                    startOfTextOnLine = 0;
+                }
+                int startOfInference = line.IndexOf("\\+");
                 if(startOfInference == -1)
                 {
-                    textWithoutInferred += line + "\r\n";
+                    textWithoutInferred += line.Substring(startOfTextOnLine) + "\r\n";
                 }
-                else
-                {
-                    textWithoutInferred += line.Substring(0, startOfInference) + "\r\n";
-                }
+
             }
             return textWithoutInferred;
         }
 
+
+
         private void OnTextChanged (object sender, EventArgs e)
         {
-            
         }
 
         private void _contentsBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(true/*check to see if e is a character*/)
-            {
-                    _contentsBox.TextChanged += OnTextChanged;
-            }
         }
 
         private void _contentsBox_Leave(object sender, EventArgs e)
@@ -113,7 +116,10 @@ namespace SolidGui
                 if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
-            _contentsBox.TextChanged -= OnTextChanged;
+        }
+
+        private void _contentsBox_KeyDown(object sender, KeyEventArgs e)
+        {
         }
     }
 }

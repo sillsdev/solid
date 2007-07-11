@@ -87,7 +87,6 @@ namespace SolidGui
             // 
             // _saveButton
             // 
-            this._saveButton.Enabled = false;
             this._saveButton.Image = global::SolidGui.Properties.Resources.saveHS;
             this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._saveButton.Name = "_saveButton";

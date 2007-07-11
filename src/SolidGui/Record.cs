@@ -41,6 +41,17 @@ namespace SolidGui
                 return "\\" + Marker+ " " + Value;
             }
 
+
+            public string RenderFieldToString(Field f)
+            {
+                int spacesInIndentation = 4;
+
+                string indentation = new string(' ', f.Depth * spacesInIndentation);
+
+                return indentation + "\\" + Marker + " " + Value;
+
+            }
+
             public string ToStructuredString()
             {
                 int spacesInIndentation = 4;
@@ -231,6 +242,7 @@ namespace SolidGui
 
         public void SetRecord(string setToText, SolidSettings _solidSettings)
         {
+            setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
             SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
             if(!xr.ReadToFollowing("entry"))
             {
