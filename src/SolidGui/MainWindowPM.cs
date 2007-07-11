@@ -47,7 +47,6 @@ namespace SolidGui
             _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = _workingDictionary.AllMarkers;
 
-
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
 
@@ -172,8 +171,9 @@ namespace SolidGui
 
 
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
-
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
+            _sfmEditorModel.Settings = _solidSettings;
+
             UpdateRecordFilters();
 
             if (DictionaryProcessed != null)
@@ -218,19 +218,12 @@ namespace SolidGui
 
         private void UpdateRecordFilters()
         {
+
             _recordFilters.Dictionary = _workingDictionary;
             _recordFilters.BuildFilters();
 
             //_recordFilters.Clear();
             //_recordFilters.Add(new AllRecordFilter(_workingDictionary));
-            /*
-            _recordFilters.Add(new AllRecordFilter(_masterRecordList));
-            _recordFilters.Add(new SolidReportRecordFilter(report));
-            _recordFilters.Add(new NullRecordFilter());
-            _recordFilters.Add(new RegExRecordFilter("Has Note", @"\\nt\s\w",_masterRecordList));
-            _recordFilters.Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true,_masterRecordList));
-            _recordFilters.Add(new RegExRecordFilter("Missing ps", @"\\ps\s\w", true,_masterRecordList));
-            */
         }
 
         public bool SaveDictionary()

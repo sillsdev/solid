@@ -40,6 +40,8 @@ namespace SolidGui
             this._contentsBox.Size = new System.Drawing.Size(150, 150);
             this._contentsBox.TabIndex = 0;
             this._contentsBox.Text = "";
+            this._contentsBox.Leave += new System.EventHandler(this._contentsBox_Leave);
+            this._contentsBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._contentsBox_KeyPress);
             // 
             // SfmEditorView
             // 

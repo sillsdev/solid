@@ -163,19 +163,20 @@ namespace SolidGui
             _allMarkers.Clear();
 
             IProcess process = new ProcessStructure(solidSettings);
-            XmlReader xr = new SfmXmlReader(_filePath);
-            while (xr.ReadToFollowing("entry"))
+            using (XmlReader xr = new SfmXmlReader(_filePath))
             {
-                XmlReader entryReader = xr.ReadSubtree();
-                // Load the current record from xr into an XmlDocument
-                XmlDocument xmldoc = new XmlDocument();
-                xmldoc.Load(entryReader);
-                SolidReport report = new SolidReport();
-                XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
-                AddRecord(xmlResult, report);
-                //!!!_recordFilters.AddRecord(report);
+                while (xr.ReadToFollowing("entry"))
+                {
+                    XmlReader entryReader = xr.ReadSubtree();
+                    // Load the current record from xr into an XmlDocument
+                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.Load(entryReader);
+                    SolidReport report = new SolidReport();
+                    XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
+                    AddRecord(xmlResult, report);
+                    //!!!_recordFilters.AddRecord(report);
+                }
             }
-
         }
 
         public bool Save()

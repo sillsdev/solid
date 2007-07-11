@@ -24,6 +24,7 @@ namespace SolidGui
             }
 
             _mainWindowPM = mainWindowPM;
+            _sfmEditorView.Model = _mainWindowPM.SfmEditorModel;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
             _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;

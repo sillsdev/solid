@@ -219,7 +219,7 @@ namespace SolidGui
             StringBuilder record = new StringBuilder();
             foreach (Field field in _fields)
             {
-                record.AppendLine(field.ToStructuredString());
+                record.Append(field.ToStructuredString()+"\n");
             }
             return record.ToString();
         }
@@ -232,7 +232,10 @@ namespace SolidGui
         public void SetRecord(string setToText, SolidSettings _solidSettings)
         {
             SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
-            xr.ReadToFollowing("entry");
+            if(!xr.ReadToFollowing("entry"))
+            {
+                return;
+            }
             XmlReader entryReader = xr.ReadSubtree();
             // Load the current record from xr into an XmlDocument
             XmlDocument xmldoc = new XmlDocument();

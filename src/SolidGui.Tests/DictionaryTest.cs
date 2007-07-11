@@ -57,15 +57,20 @@ namespace SolidGui.Tests
         public void OpenReadsInAllDictionaryMarkers()
         {
             List<string> _markers = new List<string>();
-            _markers.Add("lx");
-            _markers.Add("ge");
+            _markers.Add("\\lx");
+            _markers.Add("\\ge");
 
             _dictionary.Open(_dictionaryPath, _settings);
 
-            foreach (string marker in _dictionary.AllMarkers)
+            int markerCount = 0;
+
+            foreach (string  storedMarker in _dictionary.AllMarkers)
             {
-                Assert.IsTrue(_markers.Contains(marker));
+                    markerCount++;
+                    Assert.IsTrue(_markers.Contains(storedMarker));
             }
+
+            Assert.AreEqual(2, markerCount);
         }
 
         [Test]

@@ -16,10 +16,15 @@ namespace SolidGui
         
         public SfmEditorView()
         {
-            _model = new SfmEditorPM();
             _currentRecord = null;
             InitializeComponent();
         }
+
+        public SfmEditorPM Model
+        {
+            set { _model = value; }
+        }
+
 
         public void Highlight(int startIndex, int length)
         {
@@ -60,18 +65,7 @@ namespace SolidGui
                 {
                     _contentsBox.SelectionColor = _defaultTextColor;
                 }
-                _contentsBox.AppendText(fieldText + "\n");
-            }
-        }
-
-        private void OnTextChanged(object sender, System.EventArgs e)
-        {
-            if (_currentRecord!=null && _currentRecord.ToStructuredString()!=_contentsBox.Text)
-            {
-                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
-
-                if (RecordTextChanged != null)
-                    RecordTextChanged.Invoke(this, new EventArgs());
+                _contentsBox.AppendText(fieldText + "\r\n");
             }
         }
 
@@ -82,7 +76,7 @@ namespace SolidGui
             _contentsBox.SelectionStart = 0;
             for (int i = 0; i < _contentsBox.Text.Length; i++)
             {
-                _contentsBox.SelectionStart = i;
+                _contentsBox.Select(i, 1);
                 if(_contentsBox.SelectionColor != _inferredTextColor)
                 {
                     textWithoutInferred += _contentsBox.SelectedText;
@@ -91,6 +85,32 @@ namespace SolidGui
 
             _contentsBox.SelectionStart = initialCaratPosition;
             return textWithoutInferred;
+        }
+
+        private void OnTextChanged (object sender, EventArgs e)
+        {
+            
+        }
+
+        private void _contentsBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(true/*check to see if e is a character*/)
+            {
+                    _contentsBox.TextChanged += OnTextChanged;
+            }
+        }
+
+        private void _contentsBox_Leave(object sender, EventArgs e)
+        {
+            string structuredStringWithInferred = _currentRecord.ToStructuredString();
+            if (_currentRecord != null && structuredStringWithInferred != _contentsBox.Text)
+            {
+                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
+
+                if (RecordTextChanged != null)
+                    RecordTextChanged.Invoke(this, new EventArgs());
+            }
+            _contentsBox.TextChanged -= OnTextChanged;
         }
     }
 }

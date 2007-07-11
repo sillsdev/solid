@@ -47,6 +47,7 @@ namespace SolidGui
                 _recordFilter.MoveToFirst();
                 if (FilterChanged != null)
                 {
+
                     FilterChanged.Invoke(
                         this,
                         new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter)
