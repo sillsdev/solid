@@ -39,10 +39,9 @@ namespace SolidGui
             // 
             // _descriptionLabel
             // 
-            this._descriptionLabel.AutoSize = true;
             this._descriptionLabel.Location = new System.Drawing.Point(41, 0);
             this._descriptionLabel.Name = "_descriptionLabel";
-            this._descriptionLabel.Size = new System.Drawing.Size(35, 13);
+            this._descriptionLabel.Size = new System.Drawing.Size(300, 26);
             this._descriptionLabel.TabIndex = 0;
             this._descriptionLabel.Text = "label1";
             // 
@@ -124,7 +123,7 @@ namespace SolidGui
             this.Controls.Add(this._PreviousButton);
             this.Controls.Add(this._descriptionLabel);
             this.Name = "RecordNavigatorView";
-            this.Size = new System.Drawing.Size(258, 78);
+            this.Size = new System.Drawing.Size(411, 78);
             this.ResumeLayout(false);
             this.PerformLayout();
 

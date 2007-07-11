@@ -40,13 +40,13 @@ namespace SolidGui
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this._markerDetails = new SolidGui.MarkerDetails();
             this.label1 = new System.Windows.Forms.Label();
+            this._searchButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._searchButton = new System.Windows.Forms.Button();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -173,14 +173,6 @@ namespace SolidGui
             this.splitContainer2.SplitterDistance = 265;
             this.splitContainer2.TabIndex = 2;
             // 
-            // _markerDetails
-            // 
-            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerDetails.Location = new System.Drawing.Point(0, 0);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(434, 265);
-            this._markerDetails.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -190,6 +182,27 @@ namespace SolidGui
             this.label1.Size = new System.Drawing.Size(90, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Messages";
+            // 
+            // _searchButton
+            // 
+            this._searchButton.FlatAppearance.BorderSize = 0;
+            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._searchButton.Image = global::SolidGui.Properties.Resources.preview;
+            this._searchButton.Location = new System.Drawing.Point(406, 32);
+            this._searchButton.Name = "_searchButton";
+            this._searchButton.Size = new System.Drawing.Size(34, 34);
+            this._searchButton.TabIndex = 7;
+            this._searchButton.Text = "<";
+            this._searchButton.UseVisualStyleBackColor = true;
+            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
+            // 
+            // _markerDetails
+            // 
+            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerDetails.Location = new System.Drawing.Point(0, 0);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(434, 265);
+            this._markerDetails.TabIndex = 0;
             // 
             // _filterChooserView
             // 
@@ -221,21 +234,8 @@ namespace SolidGui
             this._recordNavigatorView.Location = new System.Drawing.Point(3, 3);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(246, 74);
+            this._recordNavigatorView.Size = new System.Drawing.Size(397, 74);
             this._recordNavigatorView.TabIndex = 3;
-            // 
-            // _searchButton
-            // 
-            this._searchButton.FlatAppearance.BorderSize = 0;
-            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._searchButton.Image = global::SolidGui.Properties.Resources.preview;
-            this._searchButton.Location = new System.Drawing.Point(406, 32);
-            this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(34, 34);
-            this._searchButton.TabIndex = 7;
-            this._searchButton.Text = "<";
-            this._searchButton.UseVisualStyleBackColor = true;
-            this._searchButton.Click += new System.EventHandler(this._searchButton_Click);
             // 
             // MainWindowView
             // 
