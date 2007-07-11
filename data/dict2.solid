@@ -137,5 +137,120 @@
       <StructureProperties />
       <Marker>geto</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>ph</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>pn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>hm</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>xh</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lf</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>ln</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>le</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>bw</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>cn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>sd</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>st</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>so</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>zn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>zz</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>pc</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>ch</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>za</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>gp</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>phsj</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lh</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>sn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>sen</Marker>
+    </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

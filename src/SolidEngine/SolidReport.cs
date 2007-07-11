@@ -19,7 +19,7 @@ namespace SolidEngine
 
         public class Entry
         {
-            EntryType _type;
+            EntryType _entryType;
             int _recordID;
             int _fieldID;
             //int _recordStartLine;
@@ -30,7 +30,7 @@ namespace SolidEngine
 
             public Entry(EntryType type, XmlNode entry, XmlNode field, string description)
             {
-                _type = type;
+                _entryType = type;
                 if (entry != null)
                 {
                     _entryName = entry.Name; //??? TODO what's a good name for this entry???
@@ -45,6 +45,12 @@ namespace SolidEngine
                 }
                 _description = description;
             }
+
+            public EntryType EntryType
+            {
+                get { return _entryType; }
+            }
+
 
             public int RecordID
             {

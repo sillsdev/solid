@@ -60,7 +60,7 @@ namespace SolidGui.Tests
             _markers.Add("lx");
             _markers.Add("ge");
 
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
 
             int markerCount = 0;
 
@@ -76,7 +76,7 @@ namespace SolidGui.Tests
         [Test]
         public void OpenReadsInAllRecords()
         {
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
 
             Assert.AreEqual(2, _dictionary.Count);
         }
@@ -84,21 +84,21 @@ namespace SolidGui.Tests
         [Test]
         public void GetDirectoryPathReturnsPathToDirectoryContainingDictionary()
         {
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
             Assert.AreEqual(_projectFolder,_dictionary.GetDirectoryPath());
         }
 
         [Test]
         public void GetFileNameReturnsNameOfDictionary()
         {
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
             Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
         [Test]
         public void SaveAsWritesDictionaryToFile()
         {
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
             _dictionary.SaveAs(_tempDictionaryPath);
             Assert.AreEqual(File.ReadAllText(_dictionaryPath), File.ReadAllText(_tempDictionaryPath));
         }
@@ -106,7 +106,7 @@ namespace SolidGui.Tests
         [Test]
         public void SaveSavesDictionaryBackToOriginalFile()
         {
-            _dictionary.Open(_dictionaryPath, _settings);
+            _dictionary.Open(_dictionaryPath, _settings, null);
             List<Record> data = _dictionary.AllRecords;
             data[1].SetField(1,"threeGloss");
             _dictionary.Save();

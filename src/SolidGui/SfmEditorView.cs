@@ -12,6 +12,7 @@ namespace SolidGui
         private SfmEditorPM _model;
         private Record _currentRecord;
         private Color _inferredTextColor = Color.Blue;
+        private Color _errorTextColor = Color.Red;
         private Color _defaultTextColor = Color.Black;
         public event EventHandler RecordTextChanged;
         
@@ -58,16 +59,16 @@ namespace SolidGui
             foreach (Record.Field field in _currentRecord.Fields)
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
-                string fieldText;
+                string markerPrefix = (field.Inferred) ? "\\+" : "\\";
+                string fieldText = indentation + markerPrefix + field.Marker + " " + field.Value;
+                _contentsBox.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
                     _contentsBox.SelectionColor = _inferredTextColor;
-                    fieldText = indentation + "\\+" + field.Marker + " " + field.Value;
                 }
-                else
+                if (field.ErrorState > 0)
                 {
-                    _contentsBox.SelectionColor = _defaultTextColor;
-                    fieldText = indentation + "\\" + field.Marker + " " + field.Value;
+                    _contentsBox.SelectionColor = _errorTextColor;
                 }
                 _contentsBox.AppendText(fieldText + "\r\n");
             }

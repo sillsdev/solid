@@ -167,14 +167,12 @@ namespace SolidGui
                 _solidSettings =
                     SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             }
-            _workingDictionary.Open(_realDictionaryPath, _solidSettings);
+            _workingDictionary.Open(_realDictionaryPath, _solidSettings, _recordFilters);
 
 
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
             _sfmEditorModel.Settings = _solidSettings;
-
-            UpdateRecordFilters();
 
             if (DictionaryProcessed != null)
             {
@@ -204,26 +202,12 @@ namespace SolidGui
         {
             _workingDictionary.SaveAs(_tempDictionaryPath);
 
-//            _workingDictionary.Clear();
-            _workingDictionary.Open(_tempDictionaryPath, _solidSettings);
-
-
-            UpdateRecordFilters();
+            _workingDictionary.Open(_tempDictionaryPath, _solidSettings, _recordFilters);
 
             if (DictionaryProcessed != null)
             {
                 DictionaryProcessed.Invoke(this, null);
             }
-        }
-
-        private void UpdateRecordFilters()
-        {
-
-            _recordFilters.Dictionary = _workingDictionary;
-            _recordFilters.BuildFilters();
-
-            //_recordFilters.Clear();
-            //_recordFilters.Add(new AllRecordFilter(_workingDictionary));
         }
 
         public bool SaveDictionary()

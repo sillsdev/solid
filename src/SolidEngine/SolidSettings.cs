@@ -9,7 +9,7 @@ namespace SolidEngine
     {
         private  string _filePath;
         private List<SolidMarkerSetting> _markerSettings;
-        private string _recordMarker = "\\_lx";
+        private string _recordMarker = "lx";
 
         public SolidSettings()
         {
@@ -41,6 +41,7 @@ namespace SolidEngine
             if (result == null)
             {
                 result = new SolidMarkerSetting(marker);
+                _markerSettings.Add(result);
             }
             return result;
         }
@@ -102,6 +103,14 @@ namespace SolidEngine
             }
 
             settings.FilePath = path;
+            // Fix settings for the record marker.
+            SolidMarkerSetting markerSetting = settings.FindMarkerSetting(settings.RecordMarker);
+            //!!! Assert if null
+            // Check that it has 'entry' as the parent.
+            if (!markerSetting.ParentExists("entry"))
+            {
+                markerSetting.StructureProperties.Add(new SolidStructureProperty("entry"));
+            }
             return settings;
         }
 
