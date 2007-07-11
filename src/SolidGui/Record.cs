@@ -146,7 +146,7 @@ namespace SolidGui
             {
                 if (xmlChild.Name == "data")
                 {
-                    _fields.Add(new Field("\\" + entry.Name, xmlChild.InnerText, depth, isInferred, fieldID));
+                    _fields.Add(new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID));
                 }
                 else
                 {
@@ -255,12 +255,9 @@ namespace SolidGui
         {
             foreach (Field field in _fields)
             {
-                try
+                if (!statistics.ContainsKey(field.Marker))
                 {
                     statistics.Add(field.Marker, 0);
-                }
-                catch
-                {
                 }
             }
         }
