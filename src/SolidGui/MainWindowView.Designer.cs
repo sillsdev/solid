@@ -30,7 +30,6 @@ namespace SolidGui
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ToolStrip toolStrip1;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._saveButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -76,7 +75,7 @@ namespace SolidGui
             // 
             // _openButton
             // 
-            this._openButton.Image = ((System.Drawing.Image)(resources.GetObject("_openButton.Image")));
+            this._openButton.Image = global::SolidGui.Properties.Resources.folder_open;
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
             this._openButton.Size = new System.Drawing.Size(104, 22);
@@ -85,7 +84,7 @@ namespace SolidGui
             // 
             // _saveButton
             // 
-            this._saveButton.Image = global::SolidGui.Properties.Resources.saveHS;
+            this._saveButton.Image = global::SolidGui.Properties.Resources.save;
             this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._saveButton.Name = "_saveButton";
             this._saveButton.Size = new System.Drawing.Size(51, 22);
@@ -100,7 +99,7 @@ namespace SolidGui
             // _processButton
             // 
             this._processButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._processButton.Image = global::SolidGui.Properties.Resources.PlayHS;
+            this._processButton.Image = global::SolidGui.Properties.Resources.play;
             this._processButton.ImageTransparentColor = System.Drawing.Color.Black;
             this._processButton.Name = "_processButton";
             this._processButton.Size = new System.Drawing.Size(103, 22);
@@ -115,7 +114,7 @@ namespace SolidGui
             // 
             // _changeTemplate
             // 
-            this._changeTemplate.Image = ((System.Drawing.Image)(resources.GetObject("_changeTemplate.Image")));
+            this._changeTemplate.Image = global::SolidGui.Properties.Resources.template;
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
             this._changeTemplate.Size = new System.Drawing.Size(123, 22);
@@ -125,7 +124,7 @@ namespace SolidGui
             // _aboutBoxButton
             // 
             this._aboutBoxButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._aboutBoxButton.Image = global::SolidGui.Properties.Resources.INFO;
+            this._aboutBoxButton.Image = global::SolidGui.Properties.Resources.info2;
             this._aboutBoxButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._aboutBoxButton.Name = "_aboutBoxButton";
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
@@ -177,7 +176,7 @@ namespace SolidGui
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 8);
+            this.label1.Location = new System.Drawing.Point(-4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 20);
             this.label1.TabIndex = 3;
@@ -210,10 +209,10 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(-2, 31);
+            this._filterChooserView.Location = new System.Drawing.Point(-2, 23);
             this._filterChooserView.Model = null;
             this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(436, 119);
+            this._filterChooserView.Size = new System.Drawing.Size(436, 127);
             this._filterChooserView.TabIndex = 2;
             // 
             // _sfmEditorView

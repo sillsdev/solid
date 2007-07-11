@@ -232,6 +232,11 @@
     <Content Include="Resources\415-skip_backward.ico" />
     <Content Include="Resources\419-skip_forward.ico" />
     <Content Include="Resources\420-fast_forward.ico" />
+    <None Include="Resources\info2.ico" />
+    <None Include="Resources\template.ico" />
+    <None Include="Resources\play.ico" />
+    <None Include="Resources\save.ico" />
+    <None Include="Resources\folder_open.ico" />
     <None Include="Resources\preview.ico" />
     <None Include="Resources\fast_forward.ico" />
     <None Include="Resources\rewind.ico" />
