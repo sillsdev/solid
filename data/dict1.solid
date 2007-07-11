@@ -13,10 +13,10 @@
       <Marker>a</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent />
+      <InferedParent>sd</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>sd</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>

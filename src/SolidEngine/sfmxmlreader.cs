@@ -98,7 +98,7 @@ namespace SolidEngine
         public SfmXmlReader() :
             base()
         {
-            _encoding = Encoding.Default;
+            _encoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace SolidEngine
             :
             base(new Uri(uri))
         {
-            _encoding = Encoding.Default;
+            _encoding = Encoding.UTF8;
         }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace SolidEngine
             :
             base()
         {
-            _encoding = Encoding.Default;
+            _encoding = Encoding.UTF8;
             _sfmReader = new SfmRecordReader(input, 4096);
         }
 
@@ -158,7 +158,7 @@ namespace SolidEngine
         public SfmXmlReader(TextReader input, Uri baseUri, XmlNameTable nametable) :
             base(baseUri, nametable)
         {
-            _encoding = Encoding.Default;
+            _encoding = Encoding.UTF8;
             _sfmReader = new SfmRecordReader(input, 4096);
         }
         /*
@@ -187,7 +187,7 @@ namespace SolidEngine
         /// Specifies the encoding to use when loading the .csv file.
         /// </summary>
         public Encoding Encoding {
-            get { return _encoding == null ? System.Text.Encoding.Default : _encoding; }
+            get { return _encoding == null ? System.Text.Encoding.UTF8 : _encoding; }
             set { _encoding = value; }
         }
         */
@@ -650,7 +650,7 @@ namespace SolidEngine
                             throw new Exception("You must provide an input location via the Href property, or provide an input stream via the TextReader property.");
                         }
                         //!!! Change this sort of thing to fn InitDefaultReader or similar
-                        _sfmReader = new SfmRecordReader(_href, Encoding.Default/*!!!_encoding*/, _proxy, 4096);
+                        _sfmReader = new SfmRecordReader(_href, Encoding.UTF8/*!!!_encoding*/, _proxy, 4096);
                     }
                     _sfmReader.Read();
                     _sfmContext = SfmState.Root;

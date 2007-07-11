@@ -34,6 +34,7 @@ namespace SolidGui
             // _contentsBox
             // 
             this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._contentsBox.Font = new System.Drawing.Font("Doulos SIL", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._contentsBox.Location = new System.Drawing.Point(0, 0);
             this._contentsBox.Name = "_contentsBox";
             this._contentsBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
