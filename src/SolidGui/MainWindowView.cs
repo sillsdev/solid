@@ -215,5 +215,10 @@ namespace SolidGui
             return null;
         }
 
+        private void _filterChooserView_Load(object sender, EventArgs e)
+        {
+
+        }
+
      }
 }
