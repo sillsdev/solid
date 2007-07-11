@@ -38,7 +38,7 @@ namespace SolidGui
 
             public override string ToString()
             {
-                return Marker+ " " + Value;
+                return "\\" + Marker+ " " + Value;
             }
 
             public string ToStructuredString()
