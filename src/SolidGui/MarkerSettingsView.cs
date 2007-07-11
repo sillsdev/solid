@@ -34,7 +34,7 @@ namespace SolidGui
             {
                 _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
             }
-            _structurePropertiesView.Model.AllMarkers = Model.GetValidMarkers();
+            _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
             _structurePropertiesView.Model.MarkerSetting = new SolidMarkerSetting();
             _structurePropertiesView.UpdateDisplay();
             _structurePropertiesView.Enabled = false;

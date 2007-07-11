@@ -56,7 +56,7 @@ namespace SolidGui.Tests
             Assert.IsNotNull(_mainWindowPM.RecordFilters);
         }
 
-        [Test, Ignore("taking out soon")]
+        [Test]
         public void OpenExistingDictionaryLoadsRecordLists()
         {
             OpenDictionaryWithPreExistingSettings();
@@ -75,11 +75,11 @@ namespace SolidGui.Tests
             //passes when ran individually
 
             OpenDictionaryWithPreExistingSettings();
+            
+            File.WriteAllText(DictionaryPath, "This is a test");
 
             System.Threading.Thread.Sleep(2000);
-
-            File.WriteAllText(DictionaryPath,"This is a test");
-
+            
             Assert.IsFalse(_mainWindowPM.SaveDictionary());
         }
 

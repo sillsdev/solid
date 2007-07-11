@@ -209,8 +209,7 @@ namespace SolidGui
                 builder.Append(_recordList[i].Value);
             }
             File.WriteAllText(path, builder.ToString());
-//!!!            _lastWrittenTo = File.GetLastWriteTime(_filePath);
-
+            _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
 
         public IEnumerable<string> AllMarkers

@@ -60,6 +60,7 @@ namespace SolidGui
                 if (_currentRecord.Fields[i].Inferred)
                 {
                     _contentsBox.SelectionColor = _inferredTextColor;
+                    fieldText = "+" + fieldText;
                 }
                 else
                 {
@@ -71,19 +72,20 @@ namespace SolidGui
 
         private string ContentsBoxTextWithoutInferredFields()
         {
-            string textWithoutInferred = "";
-            int initialCaratPosition = _contentsBox.SelectionStart;
+            string textWithoutInferred = string.Empty;
             _contentsBox.SelectionStart = 0;
-            for (int i = 0; i < _contentsBox.Text.Length; i++)
+            foreach (string line in _contentsBox.Lines)
             {
-                _contentsBox.Select(i, 1);
-                if(_contentsBox.SelectionColor != _inferredTextColor)
+                int startOfInference = line.IndexOf("+");
+                if(startOfInference == -1)
                 {
-                    textWithoutInferred += _contentsBox.SelectedText;
+                    textWithoutInferred += line + "\r\n";
+                }
+                else
+                {
+                    textWithoutInferred += line.Substring(0, startOfInference) + "\r\n";
                 }
             }
-
-            _contentsBox.SelectionStart = initialCaratPosition;
             return textWithoutInferred;
         }
 
@@ -105,7 +107,8 @@ namespace SolidGui
             string structuredStringWithInferred = _currentRecord.ToStructuredString();
             if (_currentRecord != null && structuredStringWithInferred != _contentsBox.Text)
             {
-                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
+                string test = ContentsBoxTextWithoutInferredFields();
+                _model.UpdateCurrentRecord(_currentRecord, test);
 
                 if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());

@@ -10,7 +10,7 @@ namespace SolidGui.Tests
         {
             DictionaryTest t = new DictionaryTest();
             t.SetUp();
-            t.CopyToWritesDictionaryToFile();
+            t.SaveAsWritesDictionaryToFile();
         }
     }
 }

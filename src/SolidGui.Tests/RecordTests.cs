@@ -39,13 +39,13 @@ namespace SolidGui.Tests
         [Test]
         public void HasMarkerIndicateItHasCorrectMarker()
         {
-            Assert.IsTrue(_record.HasMarker(""));   
+            Assert.IsTrue(_record.HasMarker("\\lx"));   
         }
 
         [Test]
         public void HasMarkerIndicatesItDoesntHaveIncorrectMarker()
         {
-            
+            Assert.IsFalse(_record.HasMarker(string.Empty));   
         }
     }
 }

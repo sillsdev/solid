@@ -57,8 +57,8 @@ namespace SolidGui.Tests
         public void OpenReadsInAllDictionaryMarkers()
         {
             List<string> _markers = new List<string>();
-            _markers.Add("\\lx");
-            _markers.Add("\\ge");
+            _markers.Add("lx");
+            _markers.Add("ge");
 
             _dictionary.Open(_dictionaryPath, _settings);
 
@@ -96,7 +96,7 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void CopyToWritesDictionaryToFile()
+        public void SaveAsWritesDictionaryToFile()
         {
             _dictionary.Open(_dictionaryPath, _settings);
             _dictionary.SaveAs(_tempDictionaryPath);
@@ -108,7 +108,7 @@ namespace SolidGui.Tests
         {
             _dictionary.Open(_dictionaryPath, _settings);
             List<Record> data = _dictionary.AllRecords;
-            data[1].SetField(1,"\\ge threeGloss");
+            data[1].SetField(1,"threeGloss");
             _dictionary.Save();
 
             StringBuilder builder = new StringBuilder();
