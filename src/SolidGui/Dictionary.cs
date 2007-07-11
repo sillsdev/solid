@@ -154,8 +154,10 @@ namespace SolidGui
         }
         */
 
-        public void Open(string path, SolidSettings solidSettings)
+        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
+            filterSet.BeginBuild(this);
+
             _filePath = path;
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
 
@@ -174,9 +176,14 @@ namespace SolidGui
                     SolidReport report = new SolidReport();
                     XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
                     AddRecord(xmlResult, report);
+                    if (filterSet != null)
+                    {
+                        filterSet.AddRecord(Count - 1, report);
+                    }
                     //!!!_recordFilters.AddRecord(report);
                 }
             }
+            filterSet.EndBuild();
         }
 
         public bool Save()

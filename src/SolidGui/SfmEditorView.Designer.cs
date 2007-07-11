@@ -34,11 +34,12 @@ namespace SolidGui
             // _contentsBox
             // 
             this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._contentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._contentsBox.Font = new System.Drawing.Font("Doulos SIL", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._contentsBox.Location = new System.Drawing.Point(0, 0);
+            this._contentsBox.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._contentsBox.Name = "_contentsBox";
             this._contentsBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this._contentsBox.Size = new System.Drawing.Size(150, 150);
+            this._contentsBox.Size = new System.Drawing.Size(225, 277);
             this._contentsBox.TabIndex = 0;
             this._contentsBox.Text = "";
             this._contentsBox.Leave += new System.EventHandler(this._contentsBox_Leave);
@@ -47,11 +48,14 @@ namespace SolidGui
             // 
             // SfmEditorView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Controls.Add(this._contentsBox);
+            this.Font = new System.Drawing.Font("Doulos SIL", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "SfmEditorView";
+            this.Size = new System.Drawing.Size(225, 277);
             this.ResumeLayout(false);
 
         }

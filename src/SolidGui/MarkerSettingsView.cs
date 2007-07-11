@@ -58,7 +58,7 @@ namespace SolidGui
                 _structurePropertiesView.Model.MarkerSetting = (SolidMarkerSetting) _markerListBox.SelectedItem;
                 _structurePropertiesView.UpdateDisplay();
                 
-                if ( ("\\_" + _markerListBox.Text) != Model.Root)
+                if ( (_markerListBox.Text) != Model.Root)
                 {
                     _structurePropertiesView.Enabled = true;
                 }

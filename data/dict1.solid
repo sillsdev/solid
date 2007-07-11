@@ -9,14 +9,19 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>a</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent>sd</InferedParent>
+      <InferedParent>sn</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sd</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -26,7 +31,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -41,7 +46,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -166,7 +171,11 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -176,6 +185,16 @@
       <InferedParent />
       <StructureProperties />
       <Marker>lc</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>sn</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

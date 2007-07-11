@@ -32,15 +32,15 @@ namespace SolidGui
             this._closeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // markerSettingsView1
+            // _markerSettingsView
             // 
             this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsView.Location = new System.Drawing.Point(2, 3);
+            this._markerSettingsView.Location = new System.Drawing.Point(-3, -5);
             this._markerSettingsView.Model = null;
             this._markerSettingsView.Name = "_markerSettingsView";
-            this._markerSettingsView.Size = new System.Drawing.Size(432, 309);
+            this._markerSettingsView.Size = new System.Drawing.Size(437, 309);
             this._markerSettingsView.TabIndex = 0;
             this._markerSettingsView.Load += new System.EventHandler(this.OnMarkerSettings_Load);
             // 

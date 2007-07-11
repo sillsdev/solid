@@ -26,15 +26,6 @@ namespace SolidGui
                 _inferred = inferred;
                 _id = id;
             }
-            /* not used ???
-            public Field(string field)
-            {
-                _marker = field.Substring(0, field.IndexOf(" "));
-                _value = field.Substring(field.IndexOf(" ")+1);
-            }
-            */
-
-            
 
             public override string ToString()
             {
@@ -59,6 +50,12 @@ namespace SolidGui
                 string indentation = new string(' ', Depth*spacesInIndentation);
                 
                 return indentation + "\\" + Marker + " " + Value;
+            }
+            
+            public int ErrorState
+            {
+                get { return _errorState; }
+                set { _errorState = value; }
             }
 
             public int Id
@@ -116,22 +113,6 @@ namespace SolidGui
             _recordID = recordID;
         }
 
-        /*
-        public Record(XmlNode entry, SolidReport report)
-        {
-            _id++;
-            _fields = new List<Field>();
-            _report = report;
-            ReadEntry(entry.FirstChild, 0);
-            //_fields.Add(new Field("\\lx", "foo", 0, false, 0));
-            //_fields.Add(new Field("\\sn", "", 1, true, 1));
-            //_fields.Add(new Field("\\ge", "foo", 1, false, 2));
-            //_fields.Add(new Field("\\ps", "foo", 2, true, 3));
-            //_fields.Add(new Field("\\pe", "foo", 1, false, 4));
-            //_fields.Add(new Field("\\sn", "foo", 1, false, 5));
-        }
-        */
-
         static public Record CreateFromXml(XmlNode entry, SolidReport report)
         {
             XmlHelper xh = new XmlHelper(entry);
@@ -140,12 +121,12 @@ namespace SolidGui
             Record record = new Record(recordID);
             foreach (XmlNode xmlChild in entry.ChildNodes)
             {
-                record.ReadField(xmlChild, 0);
+                record.ReadField(xmlChild, 0, report);
             }
             return record;
         }
 
-        private void ReadField(XmlNode entry, int depth)
+        private void ReadField(XmlNode entry, int depth, SolidReport report)
         {
             XmlHelper x = new XmlHelper(entry);
             string s;
@@ -157,11 +138,14 @@ namespace SolidGui
             {
                 if (xmlChild.Name == "data")
                 {
-                    _fields.Add(new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID));
+                    Field field = new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
+                    List<SolidReport.Entry> reportEntries = report.EntriesForMarker(entry.Name);
+                    field.ErrorState = (reportEntries != null) ? reportEntries.Count : 0;
+                    _fields.Add(field);
                 }
                 else
                 {
-                    ReadField(xmlChild, depth + 1);
+                    ReadField(xmlChild, depth + 1, report);
                 }
             }
         }
@@ -259,7 +243,7 @@ namespace SolidGui
             _fields.Clear();
             foreach (XmlNode xmlChild in xmlResult.ChildNodes)
             {
-                ReadField(xmlChild, 0);
+                ReadField(xmlChild, 0, report);
             }
         }
 

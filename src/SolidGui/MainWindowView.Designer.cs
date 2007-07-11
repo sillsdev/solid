@@ -36,17 +36,17 @@ namespace SolidGui
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._processButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
+            this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this._searchButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
+            this._searchButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this._markerDetails = new SolidGui.MarkerDetails();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -113,6 +113,15 @@ namespace SolidGui
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // _changeTemplate
+            // 
+            this._changeTemplate.Image = ((System.Drawing.Image)(resources.GetObject("_changeTemplate.Image")));
+            this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._changeTemplate.Name = "_changeTemplate";
+            this._changeTemplate.Size = new System.Drawing.Size(123, 22);
+            this._changeTemplate.Text = "Change Template...";
+            this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
+            // 
             // _aboutBoxButton
             // 
             this._aboutBoxButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -122,15 +131,6 @@ namespace SolidGui
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
-            // 
-            // _changeTemplate
-            // 
-            this._changeTemplate.Image = ((System.Drawing.Image)(resources.GetObject("_changeTemplate.Image")));
-            this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._changeTemplate.Name = "_changeTemplate";
-            this._changeTemplate.Size = new System.Drawing.Size(123, 22);
-            this._changeTemplate.Text = "Change Template...";
-            this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
             // splitContainer1
             // 
@@ -154,24 +154,6 @@ namespace SolidGui
             this.splitContainer1.SplitterDistance = 434;
             this.splitContainer1.TabIndex = 2;
             // 
-            // _searchButton
-            // 
-            this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._searchButton.FlatAppearance.BorderSize = 0;
-            this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._searchButton.Image = global::SolidGui.Properties.Resources.search;
-            this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(387, 3);
-            this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(27, 27);
-            this._searchButton.TabIndex = 4;
-            this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip1.SetToolTip(this._searchButton, "Search/Replace text in lexicon");
-            this._searchButton.UseVisualStyleBackColor = true;
-            this._searchButton.Click += new System.EventHandler(this.OnSearchClick);
-            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -182,7 +164,6 @@ namespace SolidGui
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this._markerDetails);
-            this.splitContainer2.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel1_Paint);
             // 
             // splitContainer2.Panel2
             // 
@@ -202,6 +183,32 @@ namespace SolidGui
             this.label1.TabIndex = 3;
             this.label1.Text = "Messages";
             // 
+            // _searchButton
+            // 
+            this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._searchButton.FlatAppearance.BorderSize = 0;
+            this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._searchButton.Image = global::SolidGui.Properties.Resources.search;
+            this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._searchButton.Location = new System.Drawing.Point(413, 18);
+            this._searchButton.Name = "_searchButton";
+            this._searchButton.Size = new System.Drawing.Size(27, 27);
+            this._searchButton.TabIndex = 4;
+            this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.toolTip1.SetToolTip(this._searchButton, "Search/Replace text in lexicon");
+            this._searchButton.UseVisualStyleBackColor = true;
+            this._searchButton.Click += new System.EventHandler(this.OnSearchClick);
+            // 
+            // _markerDetails
+            // 
+            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerDetails.Location = new System.Drawing.Point(0, 0);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(434, 265);
+            this._markerDetails.TabIndex = 0;
+            // 
             // _filterChooserView
             // 
             this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -220,9 +227,11 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Font = new System.Drawing.Font("Doulos SIL", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._sfmEditorView.Location = new System.Drawing.Point(3, 67);
+            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(446, 353);
+            this._sfmEditorView.Size = new System.Drawing.Size(445, 353);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
@@ -232,14 +241,6 @@ namespace SolidGui
             this._recordNavigatorView.Name = "_recordNavigatorView";
             this._recordNavigatorView.Size = new System.Drawing.Size(348, 58);
             this._recordNavigatorView.TabIndex = 3;
-            // 
-            // _markerDetails
-            // 
-            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerDetails.Location = new System.Drawing.Point(0, 0);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(434, 265);
-            this._markerDetails.TabIndex = 0;
             // 
             // MainWindowView
             // 

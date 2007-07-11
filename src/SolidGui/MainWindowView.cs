@@ -215,9 +215,5 @@ namespace SolidGui
             return null;
         }
 
-        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-    }
+     }
 }
