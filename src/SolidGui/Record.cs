@@ -47,7 +47,7 @@ namespace SolidGui
                 
                 string indentation = new string(' ', Depth*spacesInIndentation);
                 
-                return indentation + Marker + " " + Value;
+                return indentation + "\\" + Marker + " " + Value;
             }
 
             public int Id

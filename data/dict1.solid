@@ -14,12 +14,22 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>ps</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>ge</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -29,7 +39,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -89,12 +104,22 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>dt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -139,7 +164,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>sd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
