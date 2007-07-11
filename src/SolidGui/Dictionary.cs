@@ -11,7 +11,7 @@ namespace SolidGui
     {
         private List<Record> _recordList;
         private string _filePath;
-        private Dictionary<string, int> _allMarkers;
+        private Dictionary<string, int> _markerFrequencies;
         private DateTime _lastWrittenTo;
 
         private int _currentIndex;
@@ -20,7 +20,7 @@ namespace SolidGui
         {
             _currentIndex = 0;
             _recordList = new List<Record>();
-            _allMarkers = new Dictionary<string, int>();
+            _markerFrequencies = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
@@ -131,14 +131,14 @@ namespace SolidGui
         public void Clear()
         {
             _recordList.Clear();
-            _allMarkers.Clear();
+            _markerFrequencies.Clear();
         }
 
         public void AddRecord(XmlNode entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
             Record record = Record.CreateFromXml(entry, report);
-            record.AddMarkerStatistics(_allMarkers);
+            record.AddMarkerStatistics(_markerFrequencies);
             _recordList.Add(record);
         }
 
@@ -160,7 +160,7 @@ namespace SolidGui
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
 
             _recordList.Clear();
-            _allMarkers.Clear();
+            _markerFrequencies.Clear();
 
             IProcess process = new ProcessStructure(solidSettings);
             using (XmlReader xr = new SfmXmlReader(_filePath))
@@ -216,7 +216,15 @@ namespace SolidGui
         {
             get
             {
-                return _allMarkers.Keys;
+                return _markerFrequencies.Keys;
+            }
+        }
+
+        public Dictionary<string,int> MarkerFrequencies
+        {
+            get
+            {
+                return _markerFrequencies;
             }
         }
 

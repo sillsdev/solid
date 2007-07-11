@@ -26,18 +26,29 @@ namespace SolidGui
             }
         }
 
-        public void UpdateDisplay()
+        public void UpdateDisplay(string selectedMarker)
         {
+            SolidMarkerSetting currentSettings = new SolidMarkerSetting();
             _markerListBox.Items.Clear();
 
             foreach (string marker in _model.GetValidMarkers())
             {
+
                 _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
+                if (marker == selectedMarker)
+                {
+                    _markerListBox.SelectedIndex = _markerListBox.Items.Count - 1;
+                    currentSettings = (SolidMarkerSetting)_markerListBox.SelectedItem;
+                }
             }
             _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
-            _structurePropertiesView.Model.MarkerSetting = new SolidMarkerSetting();
+            _structurePropertiesView.Model.MarkerSetting = currentSettings;
             _structurePropertiesView.UpdateDisplay();
-            _structurePropertiesView.Enabled = false;
+        }
+
+        public void UpdateDisplay()
+        {
+            UpdateDisplay(string.Empty);
         }
 
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)

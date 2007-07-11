@@ -30,7 +30,7 @@ namespace SolidGui
                 Add(new AllRecordFilter(_currentDictionary));
                 foreach (string marker in _currentDictionary.AllMarkers)
                 {
-                    Add(new MarkerFilter(_currentDictionary, marker));
+                    //Add(new MarkerFilter(_currentDictionary, marker));
                 }
                 //Add(new RegExRecordFilter("Has Note", @"\\nt\s\w", _currentDictionary));
                 //Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true, _currentDictionary));

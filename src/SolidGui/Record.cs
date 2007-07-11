@@ -269,7 +269,11 @@ namespace SolidGui
             {
                 if (!statistics.ContainsKey(field.Marker))
                 {
-                    statistics.Add(field.Marker, 0);
+                    statistics.Add(field.Marker, 1);
+                }
+                else
+                {
+                    statistics[field.Marker] += 1;
                 }
             }
         }

@@ -40,12 +40,12 @@ namespace SolidGui
             _searchModel = new SearchPM();
 
 
-            _masterRecordList = _workingDictionary.AllRecords;
+            _masterRecordList = WorkingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.MasterRecordList = MasterRecordList;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
-            _markerSettingsModel.AllMarkers = _workingDictionary.AllMarkers;
+            _markerSettingsModel.AllMarkers = WorkingDictionary.AllMarkers;
 
             DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
@@ -158,7 +158,7 @@ namespace SolidGui
             {
                 _solidSettings =
                     SolidSettings.OpenSolidFile(
-                        Path.Combine(_workingDictionary.GetDirectoryPath(),
+                        Path.Combine(WorkingDictionary.GetDirectoryPath(),
                                      SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)));
             }
             else
@@ -167,7 +167,7 @@ namespace SolidGui
                 _solidSettings =
                     SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             }
-            _workingDictionary.Open(_realDictionaryPath, _solidSettings);
+            WorkingDictionary.Open(_realDictionaryPath, _solidSettings);
 
 
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
@@ -202,10 +202,10 @@ namespace SolidGui
 
         public void ProcessLexicon()
         {
-            _workingDictionary.SaveAs(_tempDictionaryPath);
+            WorkingDictionary.SaveAs(_tempDictionaryPath);
 
 //            _workingDictionary.Clear();
-            _workingDictionary.Open(_tempDictionaryPath, _solidSettings);
+            WorkingDictionary.Open(_tempDictionaryPath, _solidSettings);
 
 
             UpdateRecordFilters();
@@ -219,7 +219,7 @@ namespace SolidGui
         private void UpdateRecordFilters()
         {
 
-            _recordFilters.Dictionary = _workingDictionary;
+            _recordFilters.Dictionary = WorkingDictionary;
             _recordFilters.BuildFilters();
 
             //_recordFilters.Clear();
@@ -229,7 +229,7 @@ namespace SolidGui
         public bool SaveDictionary()
         {
             _solidSettings.Save();
-            _workingDictionary.SaveAs(_realDictionaryPath);
+            WorkingDictionary.SaveAs(_realDictionaryPath);
             return true; // Todo: can't fail.
         }
 
@@ -247,7 +247,7 @@ namespace SolidGui
                     paths.Add(path);
                 }
 
-                foreach (string path in Directory.GetFiles(_workingDictionary.GetDirectoryPath(), "*.solid"))
+                foreach (string path in Directory.GetFiles(WorkingDictionary.GetDirectoryPath(), "*.solid"))
                 {
                     if (_solidSettings != null && path != _solidSettings.FilePath)
                     {
@@ -321,7 +321,15 @@ namespace SolidGui
         {
             get
             {
-                return _workingDictionary.FilePath;
+                return WorkingDictionary.FilePath;
+            }
+        }
+
+        public Dictionary WorkingDictionary
+        {
+            get
+            {
+                return _workingDictionary;
             }
         }
 

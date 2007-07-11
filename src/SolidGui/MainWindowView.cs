@@ -27,7 +27,7 @@ namespace SolidGui
             _sfmEditorView.Model = _mainWindowPM.SfmEditorModel;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
-            _markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
+            //_markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
             _searchButton.Image =
                 _searchButton.Image.GetThumbnailImage(_searchButton.Width-8, _searchButton.Height-8, ReturnFalse,
                                                       System.IntPtr.Zero);
@@ -44,7 +44,8 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
-            _markerSettingsView.UpdateDisplay();
+            //_markerSettingsView.UpdateDisplay();
+            _markerDetails.UpdateDisplay(_mainWindowPM.MarkerSettingsModel, _mainWindowPM.WorkingDictionary, _mainWindowPM.SolidSettings);
             UpdateDisplay();
          }
 
@@ -122,6 +123,7 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
+            _markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
 
             UpdateDisplay();
         }
@@ -211,6 +213,11 @@ namespace SolidGui
                return chooser.PathToChosenTemplate;
            }
             return null;
+        }
+
+        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

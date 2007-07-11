@@ -34,8 +34,8 @@ namespace SolidGui
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this._mappingView = new SolidGui.MappingView();
+            this.label1 = new System.Windows.Forms.Label();
             this._structureTabControl.SuspendLayout();
             this._structureTabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -50,6 +50,7 @@ namespace SolidGui
             this._markerListBox.Name = "_markerListBox";
             this._markerListBox.Size = new System.Drawing.Size(51, 264);
             this._markerListBox.TabIndex = 3;
+            this._markerListBox.Visible = false;
             this._markerListBox.SelectedIndexChanged += new System.EventHandler(this._markerListBox_SelectedIndexChanged);
             // 
             // _structureTabControl
@@ -105,6 +106,15 @@ namespace SolidGui
             this.tabPage2.Text = "Mapping";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // _mappingView
+            // 
+            this._mappingView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._mappingView.Location = new System.Drawing.Point(0, 0);
+            this._mappingView.Model = null;
+            this._mappingView.Name = "_mappingView";
+            this._mappingView.Size = new System.Drawing.Size(346, 239);
+            this._mappingView.TabIndex = 0;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -113,14 +123,6 @@ namespace SolidGui
             this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Marker";
-            // 
-            // mappingView1
-            // 
-            this._mappingView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._mappingView.Location = new System.Drawing.Point(0, 0);
-            this._mappingView.Name = "_mappingView";
-            this._mappingView.Size = new System.Drawing.Size(346, 239);
-            this._mappingView.TabIndex = 0;
             // 
             // MarkerSettingsView
             // 
