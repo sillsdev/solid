@@ -70,6 +70,9 @@ namespace SolidGui
             }
             else
             {
+                if(TextIndex > 0)
+                    TextIndex--;
+
                 _searchModel.FindPrevious(_findTextbox.Text,RecordIndex,TextIndex);
             }
         }

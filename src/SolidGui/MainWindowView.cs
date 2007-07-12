@@ -160,17 +160,6 @@ namespace SolidGui
             
         }
 
-        private void OnSearchClick(object sender, EventArgs e)
-        {
-            //_searchView hides itself when closed
-            //if (_searchView == null)
-            {
-                _searchView = new SearchView(_recordNavigatorView,_sfmEditorView);
-                _searchView.SearchModel = _mainWindowPM.SearchModel;
-            }
-            _searchView.Show();
-        }
-
         private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
         {
             _mainWindowPM.FilterChooserModel.ActiveRecordFilter = _mainWindowPM.RecordFilters[0];
@@ -215,16 +204,19 @@ namespace SolidGui
             return null;
         }
 
-        private void _filterChooserView_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void _searchButton_Click(object sender, EventArgs e)
         {
             _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
+        }
+        private void OnSearchClick(object sender, EventArgs e)
+        {
+            /*
+            _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
+            _searchView.SearchModel = _mainWindowPM.SearchModel;
+            _searchView.Show();
+             */
         }
 
      }

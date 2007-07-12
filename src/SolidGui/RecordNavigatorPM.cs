@@ -152,7 +152,10 @@ namespace SolidGui
         {
             set
             {
-                _recordFilter.MoveToByID(value);
+                if(_recordFilter.MoveToByID(value))
+                {
+                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                }
             }
             get
             {

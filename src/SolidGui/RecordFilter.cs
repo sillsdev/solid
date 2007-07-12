@@ -282,5 +282,15 @@ namespace SolidGui
         {
         }
 
+        public override bool MoveToByID(int id)
+        {
+            if(id >= 0 && id < Count)
+            {
+                _currentIndex = id;
+                return true;
+            }
+            return false;
+        }
+
     }
 }

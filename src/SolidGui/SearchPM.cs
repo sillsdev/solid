@@ -61,7 +61,7 @@ namespace SolidGui
         {
             for (; recordIndex < _masterRecordList.Count && recordIndex >= 0; recordIndex++)
             {
-                String currentRecord = _masterRecordList[recordIndex].Value;
+                String currentRecord = _masterRecordList[recordIndex].ToStructuredString();
 
                 textIndex = currentRecord.IndexOf(word, textIndex);
                 if (textIndex != -1)
@@ -77,7 +77,7 @@ namespace SolidGui
         {
             for (; recordIndex >= 0 && recordIndex < _masterRecordList.Count; recordIndex--)
             {
-                String currentRecord = _masterRecordList[recordIndex].Value;
+                string currentRecord = _masterRecordList[recordIndex].ToStructuredString();
                 
                 textIndex = currentRecord.LastIndexOf(word, textIndex);
                 
@@ -87,7 +87,7 @@ namespace SolidGui
                 }
                 if (recordIndex > 0)
                 {
-                    textIndex = _masterRecordList[recordIndex - 1].Value.Length;
+                    textIndex = (_masterRecordList[recordIndex - 1].ToStructuredString().Length)-1;
                 }
             }
             return null;

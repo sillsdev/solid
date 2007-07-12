@@ -18,6 +18,7 @@ namespace SolidGui
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
             model.DictionaryProcessed += form.OnDictionaryProcessed;
+            
             Application.Run(form);
             Settings.Default.Save();
         }

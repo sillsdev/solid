@@ -49,7 +49,11 @@ namespace SolidGui
                 
                 string indentation = new string(' ', Depth*spacesInIndentation);
                 
-                return indentation + "\\" + Marker + " " + Value;
+                if(!Inferred)
+                    return indentation + "\\" + Marker + " " + Value;
+                else
+                    return indentation + "\\+" + Marker + " " + Value;
+
             }
             
             public int ErrorState
@@ -89,7 +93,7 @@ namespace SolidGui
                 
         private List<Field> _fields = new List<Field>();
         private SolidReport _report;
-        private static int _recordID = -1;
+        private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
 
         public int ID

@@ -30,7 +30,11 @@ namespace SolidGui
 
         public void Highlight(int startIndex, int length)
         {
+            _contentsBox.SelectionStart = startIndex;
+            _contentsBox.SelectionLength = length;
             _contentsBox.Select(startIndex, length);
+            //_contentsBox.SelectionBackColor = Color.Blue;
+            //_contentsBox.SelectionColor = Color.White;
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -44,8 +48,10 @@ namespace SolidGui
             {
                 _currentRecord = e._record;
 
+                _contentsBox.TextChanged -= OnTextChanged;
                 ClearContentsOfTextBox();
                 DisplayEachFieldInRecord();
+                _contentsBox.TextChanged += OnTextChanged;
             }
         }
 
@@ -96,31 +102,27 @@ namespace SolidGui
             return textWithoutInferred;
         }
 
-
-
-        private void OnTextChanged (object sender, EventArgs e)
-        {
-        }
-
-        private void _contentsBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-
         private void _contentsBox_Leave(object sender, EventArgs e)
         {
+            
+        }
+
+        private void OnTextChanged(object sender, EventArgs e)
+        {
+            int currentIndex = _contentsBox.SelectionStart;
             string structuredStringWithInferred = _currentRecord.ToStructuredString();
             if (_currentRecord != null && structuredStringWithInferred != _contentsBox.Text)
             {
                 string test = ContentsBoxTextWithoutInferredFields();
                 _model.UpdateCurrentRecord(_currentRecord, test);
 
+
+
                 if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
-            }
-        }
 
-        private void _contentsBox_KeyDown(object sender, KeyEventArgs e)
-        {
+                _contentsBox.SelectionStart = currentIndex;
+            }
         }
     }
 }
