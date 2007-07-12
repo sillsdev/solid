@@ -53,6 +53,7 @@ namespace SolidGui
         {
             Cursor = Cursors.WaitCursor;
             ChooseProject();
+            _saveButton.Enabled = true;
             Cursor = Cursors.Default;
         }
 
@@ -153,7 +154,6 @@ namespace SolidGui
             _mainWindowPM.SaveDictionary();
             
             //_saveButton.Enabled = false;
-            
         }
 
         public static void EnableSave()
