@@ -37,17 +37,17 @@ namespace SolidGui
             this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsView.Location = new System.Drawing.Point(-3, -5);
+            this._markerSettingsView.Location = new System.Drawing.Point(6, 8);
             this._markerSettingsView.Model = null;
             this._markerSettingsView.Name = "_markerSettingsView";
-            this._markerSettingsView.Size = new System.Drawing.Size(437, 309);
+            this._markerSettingsView.Size = new System.Drawing.Size(428, 309);
             this._markerSettingsView.TabIndex = 0;
             this._markerSettingsView.Load += new System.EventHandler(this.OnMarkerSettings_Load);
             // 
             // _closeButton
             // 
             this._closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._closeButton.Location = new System.Drawing.Point(359, 310);
+            this._closeButton.Location = new System.Drawing.Point(359, 315);
             this._closeButton.Name = "_closeButton";
             this._closeButton.Size = new System.Drawing.Size(75, 23);
             this._closeButton.TabIndex = 1;
@@ -60,8 +60,11 @@ namespace SolidGui
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 345);
+            this.ControlBox = false;
             this.Controls.Add(this._closeButton);
             this.Controls.Add(this._markerSettingsView);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MarkerSettingsDialog";
             this.Text = "MarkerSettingsDialog";
             this.ResumeLayout(false);

@@ -36,6 +36,7 @@ namespace SolidGui
 
         private void OnMarkerSettings_Load(object sender, EventArgs e)
         {
+            this.Text = string.Format("{0} Settings", _selectedMarker);
             _markerSettingsView.UpdateDisplay(_initialArea, _selectedMarker);
         }
     }

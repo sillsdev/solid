@@ -36,6 +36,7 @@ namespace SolidGui
             this.panel1 = new System.Windows.Forms.Panel();
             this._htmlViewer = new System.Windows.Forms.WebBrowser();
             this.label3 = new System.Windows.Forms.Label();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -89,15 +90,20 @@ namespace SolidGui
             this._conceptList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this._conceptList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1});
+            this._conceptList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this._conceptList.HideSelection = false;
             this._conceptList.Location = new System.Drawing.Point(3, 18);
             this._conceptList.MultiSelect = false;
             this._conceptList.Name = "_conceptList";
             this._conceptList.Size = new System.Drawing.Size(134, 260);
+            this._conceptList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._conceptList.TabIndex = 3;
             this._conceptList.UseCompatibleStateImageBehavior = false;
-            this._conceptList.View = System.Windows.Forms.View.SmallIcon;
+            this._conceptList.View = System.Windows.Forms.View.Details;
             this._conceptList.SelectedIndexChanged += new System.EventHandler(this._conceptList_SelectedIndexChanged);
+            this._conceptList.SizeChanged += new System.EventHandler(this._conceptList_SizeChanged);
             // 
             // label2
             // 
@@ -174,5 +180,6 @@ namespace SolidGui
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.WebBrowser _htmlViewer;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
     }
 }

@@ -74,5 +74,10 @@ namespace SolidGui
             string html = _model.TransformInformationToHtml(_model.SelectedConcept.InformationAsXml);
             _htmlViewer.DocumentText = html;
         }
+
+        private void _conceptList_SizeChanged(object sender, EventArgs e)
+        {
+            columnHeader1.Width = _conceptList.Width-40;
+        }
     }
 }
