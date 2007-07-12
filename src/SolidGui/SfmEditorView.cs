@@ -46,12 +46,17 @@ namespace SolidGui
             }
             else
             {
-                _currentRecord = e._record;
+                if (_currentRecord != e._record)
+                {
+                    
 
-                _contentsBox.TextChanged -= OnTextChanged;
-                ClearContentsOfTextBox();
-                DisplayEachFieldInRecord();
-                _contentsBox.TextChanged += OnTextChanged;
+                    //_contentsBox.TextChanged -= OnTextChanged;
+                    SaveContentsOfTextBox();
+                    ClearContentsOfTextBox();
+                    _currentRecord = e._record;
+                    DisplayEachFieldInCurrentRecord();
+                    //_contentsBox.TextChanged += OnTextChanged;
+                }
             }
         }
 
@@ -60,7 +65,7 @@ namespace SolidGui
             _contentsBox.Text = "";
         }
 
-        private void DisplayEachFieldInRecord()
+        private void DisplayEachFieldInCurrentRecord()
         {
             foreach (Record.Field field in _currentRecord.Fields)
             {
@@ -109,20 +114,21 @@ namespace SolidGui
 
         private void OnTextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        public void SaveContentsOfTextBox()
+        {
             int currentIndex = _contentsBox.SelectionStart;
-            string structuredStringWithInferred = _currentRecord.ToStructuredString();
-            if (_currentRecord != null && structuredStringWithInferred != _contentsBox.Text)
+            if (_currentRecord != null && _currentRecord.ToStructuredString() != _contentsBox.Text)
             {
                 string test = ContentsBoxTextWithoutInferredFields();
                 _model.UpdateCurrentRecord(_currentRecord, test);
 
-
-
                 if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
-
-                _contentsBox.SelectionStart = currentIndex;
             }
+            _contentsBox.SelectionStart = currentIndex;
         }
     }
 }

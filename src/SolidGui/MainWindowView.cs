@@ -149,10 +149,11 @@ namespace SolidGui
 
         private void OnSaveClick(object sender, EventArgs e)
         {
-            if(_mainWindowPM.SaveDictionary())
-            {
-                _saveButton.Enabled = false;
-            }
+            _sfmEditorView.SaveContentsOfTextBox();
+            _mainWindowPM.SaveDictionary();
+            
+            //_saveButton.Enabled = false;
+            
         }
 
         public static void EnableSave()
