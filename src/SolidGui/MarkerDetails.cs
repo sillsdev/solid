@@ -51,8 +51,8 @@ namespace SolidGui
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
                 AddLinkSubItem(item, MakeStructureLinkLabel(settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
-                AddLinkSubItem(item, "???", OnWritingSystemLinkClicked );
-                AddLinkSubItem(item, "???", OnMappingLinkClicked);
+                AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
+                AddLinkSubItem(item, "??", OnMappingLinkClicked);
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
                 FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
                 
