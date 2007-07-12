@@ -30,15 +30,15 @@ namespace SolidGui
         {
             this._markerListBox = new System.Windows.Forms.ListBox();
             this._structureTabControl = new System.Windows.Forms.TabControl();
-            this._structureTabPage1 = new System.Windows.Forms.TabPage();
+            this._structurePage = new System.Windows.Forms.TabPage();
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this._writingSystemPage = new System.Windows.Forms.TabPage();
+            this._mappingPage = new System.Windows.Forms.TabPage();
             this._mappingView = new SolidGui.MappingView();
             this.label1 = new System.Windows.Forms.Label();
             this._structureTabControl.SuspendLayout();
-            this._structureTabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this._structurePage.SuspendLayout();
+            this._mappingPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // _markerListBox
@@ -58,26 +58,26 @@ namespace SolidGui
             this._structureTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._structureTabControl.Controls.Add(this._structureTabPage1);
-            this._structureTabControl.Controls.Add(this.tabPage1);
-            this._structureTabControl.Controls.Add(this.tabPage2);
+            this._structureTabControl.Controls.Add(this._structurePage);
+            this._structureTabControl.Controls.Add(this._writingSystemPage);
+            this._structureTabControl.Controls.Add(this._mappingPage);
             this._structureTabControl.Location = new System.Drawing.Point(9, 20);
             this._structureTabControl.Name = "_structureTabControl";
             this._structureTabControl.SelectedIndex = 0;
             this._structureTabControl.Size = new System.Drawing.Size(337, 265);
             this._structureTabControl.TabIndex = 2;
             // 
-            // _structureTabPage1
+            // _structurePage
             // 
-            this._structureTabPage1.Controls.Add(this._structurePropertiesView);
-            this._structureTabPage1.Controls.Add(this._markerListBox);
-            this._structureTabPage1.Location = new System.Drawing.Point(4, 22);
-            this._structureTabPage1.Name = "_structureTabPage1";
-            this._structureTabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this._structureTabPage1.Size = new System.Drawing.Size(329, 239);
-            this._structureTabPage1.TabIndex = 0;
-            this._structureTabPage1.Text = "Structure";
-            this._structureTabPage1.UseVisualStyleBackColor = true;
+            this._structurePage.Controls.Add(this._structurePropertiesView);
+            this._structurePage.Controls.Add(this._markerListBox);
+            this._structurePage.Location = new System.Drawing.Point(4, 22);
+            this._structurePage.Name = "_structurePage";
+            this._structurePage.Padding = new System.Windows.Forms.Padding(3);
+            this._structurePage.Size = new System.Drawing.Size(329, 239);
+            this._structurePage.TabIndex = 0;
+            this._structurePage.Text = "Structure";
+            this._structurePage.UseVisualStyleBackColor = true;
             // 
             // _structurePropertiesView
             // 
@@ -88,24 +88,24 @@ namespace SolidGui
             this._structurePropertiesView.Size = new System.Drawing.Size(323, 233);
             this._structurePropertiesView.TabIndex = 0;
             // 
-            // tabPage1
+            // _writingSystemPage
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(346, 239);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Writing Systems";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this._writingSystemPage.Location = new System.Drawing.Point(4, 22);
+            this._writingSystemPage.Name = "_writingSystemPage";
+            this._writingSystemPage.Size = new System.Drawing.Size(329, 239);
+            this._writingSystemPage.TabIndex = 1;
+            this._writingSystemPage.Text = "Writing Systems";
+            this._writingSystemPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // _mappingPage
             // 
-            this.tabPage2.Controls.Add(this._mappingView);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(346, 239);
-            this.tabPage2.TabIndex = 2;
-            this.tabPage2.Text = "Mapping";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this._mappingPage.Controls.Add(this._mappingView);
+            this._mappingPage.Location = new System.Drawing.Point(4, 22);
+            this._mappingPage.Name = "_mappingPage";
+            this._mappingPage.Size = new System.Drawing.Size(329, 239);
+            this._mappingPage.TabIndex = 2;
+            this._mappingPage.Text = "Mapping";
+            this._mappingPage.UseVisualStyleBackColor = true;
             // 
             // _mappingView
             // 
@@ -113,7 +113,7 @@ namespace SolidGui
             this._mappingView.Location = new System.Drawing.Point(0, 0);
             this._mappingView.Model = null;
             this._mappingView.Name = "_mappingView";
-            this._mappingView.Size = new System.Drawing.Size(346, 239);
+            this._mappingView.Size = new System.Drawing.Size(329, 239);
             this._mappingView.TabIndex = 0;
             // 
             // label1
@@ -135,8 +135,8 @@ namespace SolidGui
             this.Size = new System.Drawing.Size(346, 294);
             this.Load += new System.EventHandler(this.MarkerSettingsView_Load);
             this._structureTabControl.ResumeLayout(false);
-            this._structureTabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this._structurePage.ResumeLayout(false);
+            this._mappingPage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,11 +145,11 @@ namespace SolidGui
         #endregion
 
         private System.Windows.Forms.TabControl _structureTabControl;
-        private System.Windows.Forms.TabPage _structureTabPage1;
+        private System.Windows.Forms.TabPage _structurePage;
         private System.Windows.Forms.Label label1;
         private StructurePropertiesView _structurePropertiesView;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage _writingSystemPage;
+        private System.Windows.Forms.TabPage _mappingPage;
         private System.Windows.Forms.ListBox _markerListBox;
         private MappingView _mappingView;
     }

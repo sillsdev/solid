@@ -50,6 +50,9 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Dictionary.cs" />
+    <Compile Include="EXListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="FilterChooserPM.cs" />
     <Compile Include="FilterChooserView.cs">
       <SubType>UserControl</SubType>

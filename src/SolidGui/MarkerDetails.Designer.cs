@@ -28,7 +28,7 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            this._listView = new System.Windows.Forms.ListView();
+            this._listView = new EXControls.EXListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
@@ -50,13 +50,14 @@ namespace SolidGui
             this.columnHeader4,
             this.columnHeader6,
             this.columnHeader5});
+            this._listView.ControlPadding = 4;
             this._listView.FullRowSelect = true;
             this._listView.HideSelection = false;
-            this._listView.Location = new System.Drawing.Point(0, 0);
+            this._listView.Location = new System.Drawing.Point(3, 3);
             this._listView.MultiSelect = false;
             this._listView.Name = "_listView";
+            this._listView.OwnerDraw = true;
             this._listView.Size = new System.Drawing.Size(421, 162);
-            this._listView.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._listView.TabIndex = 0;
             this._listView.UseCompatibleStateImageBehavior = false;
             this._listView.View = System.Windows.Forms.View.Details;
@@ -77,17 +78,14 @@ namespace SolidGui
             // 
             // columnHeader4
             // 
-            this.columnHeader4.DisplayIndex = 4;
             this.columnHeader4.Text = "Writing System";
             // 
             // columnHeader6
             // 
-            this.columnHeader6.DisplayIndex = 5;
             this.columnHeader6.Text = "FLEx";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.DisplayIndex = 3;
             this.columnHeader5.Text = "Checked";
             // 
             // _editMarkerButton
@@ -115,7 +113,7 @@ namespace SolidGui
 
         #endregion
 
-        private System.Windows.Forms.ListView _listView;
+        private EXControls.EXListView _listView;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;

@@ -26,14 +26,14 @@ namespace SolidGui
             }
         }
 
-        public void UpdateDisplay(string selectedMarker)
+        public void UpdateDisplay(string initialArea, string selectedMarker)
         {
+            SelectInitialArea(initialArea);
             SolidMarkerSetting currentSettings = new SolidMarkerSetting();
             _markerListBox.Items.Clear();
 
             foreach (string marker in _model.GetValidMarkers())
             {
-
                 _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
                 if (marker == selectedMarker)
                 {
@@ -46,9 +46,24 @@ namespace SolidGui
             _structurePropertiesView.UpdateDisplay();
         }
 
+        private void SelectInitialArea(string initialArea)
+        {
+            if(!string.IsNullOrEmpty(initialArea))
+            {
+                foreach (TabPage  page in this._structureTabControl.TabPages )
+                {
+                    if(page.Name.Contains(initialArea))
+                    {
+                        _structureTabControl.SelectedTab = page;
+                        break;
+                    }
+                }
+            }
+        }
+
         public void UpdateDisplay()
         {
-            UpdateDisplay(string.Empty);
+            UpdateDisplay(null, string.Empty);
         }
 
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)
