@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using SolidEngine;
@@ -205,20 +204,11 @@ namespace SolidGui
             return null;
         }
 
-        private void _searchButton_Click(object sender, EventArgs e)
-        {
-            _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
-            _searchView.SearchModel = _mainWindowPM.SearchModel;
-            _searchView.Show();
-        }
         private void OnSearchClick(object sender, EventArgs e)
         {
-            /*
             _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
-             */
         }
-
      }
 }
