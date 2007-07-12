@@ -12,6 +12,7 @@ namespace SolidGui
         private List<Record> _recordList;
         private string _filePath;
         private Dictionary<string, int> _markerFrequencies;
+        private Dictionary<string, int> _markerErrors;
         private DateTime _lastWrittenTo;
 
         private int _currentIndex;
@@ -21,6 +22,7 @@ namespace SolidGui
             _currentIndex = 0;
             _recordList = new List<Record>();
             _markerFrequencies = new Dictionary<string, int>();
+            _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
             _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
@@ -33,6 +35,7 @@ namespace SolidGui
             Open(path);
         }
         */
+       
         public List<Record> Records
         {
             get { return _recordList; }
@@ -138,7 +141,7 @@ namespace SolidGui
         {
 //            _recordList.Add(new Record(entry, report));
             Record record = Record.CreateFromXml(entry, report);
-            record.AddMarkerStatistics(_markerFrequencies);
+            record.AddMarkerStatistics(_markerFrequencies, _markerErrors);
             _recordList.Add(record);
         }
 
@@ -163,6 +166,7 @@ namespace SolidGui
 
             _recordList.Clear();
             _markerFrequencies.Clear();
+            _markerErrors.Clear();
 
             IProcess process = new ProcessStructure(solidSettings);
             using (XmlReader xr = new SfmXmlReader(_filePath))
@@ -173,12 +177,12 @@ namespace SolidGui
                     // Load the current record from xr into an XmlDocument
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.Load(entryReader);
-                    SolidReport report = new SolidReport();
-                    XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
-                    AddRecord(xmlResult, report);
+                    SolidReport recordReport = new SolidReport();
+                    XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
+                    AddRecord(xmlResult, recordReport);
                     if (filterSet != null)
                     {
-                        filterSet.AddRecord(Count - 1, report);
+                        filterSet.AddRecord(Count - 1, recordReport);
                     }
                     //!!!_recordFilters.AddRecord(report);
                 }
@@ -232,6 +236,14 @@ namespace SolidGui
             get
             {
                 return _markerFrequencies;
+            }
+        }
+
+        public Dictionary<string, int> MarkerErrors
+        {
+            get
+            {
+                return _markerErrors;
             }
         }
 

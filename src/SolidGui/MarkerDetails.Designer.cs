@@ -77,15 +77,18 @@ namespace SolidGui
             // 
             // columnHeader4
             // 
+            this.columnHeader4.DisplayIndex = 4;
             this.columnHeader4.Text = "Writing System";
             // 
             // columnHeader6
             // 
+            this.columnHeader6.DisplayIndex = 5;
             this.columnHeader6.Text = "FLEx";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Status";
+            this.columnHeader5.DisplayIndex = 3;
+            this.columnHeader5.Text = "Checked";
             // 
             // _editMarkerButton
             // 

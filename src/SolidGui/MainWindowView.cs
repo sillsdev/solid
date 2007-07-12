@@ -44,7 +44,9 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
             //_markerSettingsView.UpdateDisplay();
-            _markerDetails.UpdateDisplay(_mainWindowPM.MarkerSettingsModel, _mainWindowPM.WorkingDictionary, _mainWindowPM.SolidSettings);
+            _markerDetails.UpdateDisplay(_mainWindowPM.MarkerSettingsModel, 
+                                         _mainWindowPM.WorkingDictionary, 
+                                         _mainWindowPM.SolidSettings);
             UpdateDisplay();
          }
 

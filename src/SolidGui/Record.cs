@@ -251,17 +251,21 @@ namespace SolidGui
             }
         }
 
-        public void AddMarkerStatistics(Dictionary<string, int> statistics)
+        public void AddMarkerStatistics(Dictionary<string, int> frequencies, Dictionary<string, int> errorCount)
         {
             foreach (Field field in _fields)
             {
-                if (!statistics.ContainsKey(field.Marker))
+                if (!frequencies.ContainsKey(field.Marker))
                 {
-                    statistics.Add(field.Marker, 1);
+                    frequencies.Add(field.Marker, 0);
+                    errorCount.Add(field.Marker, 0);
                 }
-                else
+                
+                frequencies[field.Marker] += 1;
+                
+                if(field.ErrorState > 0)
                 {
-                    statistics[field.Marker] += 1;
+                    errorCount[field.Marker] += 1;    
                 }
             }
         }
