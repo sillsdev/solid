@@ -190,8 +190,13 @@ namespace SolidGui
         {
             get
             {
-                _d.MoveTo(_indexesOfRecords[_currentIndex]);
-                return _d.Current;
+                if (_indexesOfRecords.Count > 0)
+                {
+                    _d.MoveTo(_indexesOfRecords[_currentIndex]);
+                    return _d.Current;
+                }
+                return null;
+
             }
         }
 

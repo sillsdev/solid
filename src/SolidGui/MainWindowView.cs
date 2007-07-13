@@ -54,7 +54,6 @@ namespace SolidGui
         {
             Cursor = Cursors.WaitCursor;
             ChooseProject();
-            _saveButton.Enabled = true;
             Cursor = Cursors.Default;
         }
 
@@ -153,13 +152,7 @@ namespace SolidGui
         {
             _sfmEditorView.SaveContentsOfTextBox();
             _mainWindowPM.SaveDictionary();
-            
-            //_saveButton.Enabled = false;
-        }
-
-        public static void EnableSave()
-        {
-            
+            _saveButton.Enabled = false;
         }
 
         private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
@@ -212,5 +205,5 @@ namespace SolidGui
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
         }
-     }
+    }
 }

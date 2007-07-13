@@ -60,7 +60,7 @@ namespace SolidGui.Tests
             _markers.Add("lx");
             _markers.Add("ge");
 
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             int markerCount = 0;
 
             foreach (string  storedMarker in _dictionary.AllMarkers)
@@ -75,7 +75,7 @@ namespace SolidGui.Tests
         [Test]
         public void OpenReadsInAllRecords()
         {
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
 
             Assert.AreEqual(2, _dictionary.Count);
         }
@@ -83,21 +83,21 @@ namespace SolidGui.Tests
         [Test]
         public void GetDirectoryPathReturnsPathToDirectoryContainingDictionary()
         {
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             Assert.AreEqual(_projectFolder,_dictionary.GetDirectoryPath());
         }
 
         [Test]
         public void GetFileNameReturnsNameOfDictionary()
         {
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
         }
 
         [Test]
         public void SaveAsWritesDictionaryToFile()
         {
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             _dictionary.SaveAs(_tempDictionaryPath);
             Assert.AreEqual(File.ReadAllText(_dictionaryPath), File.ReadAllText(_tempDictionaryPath));
         }
@@ -105,7 +105,7 @@ namespace SolidGui.Tests
         [Test]
         public void SaveSavesDictionaryBackToOriginalFile()
         {
-            _dictionary.Open(_dictionaryPath, _settings, null);
+            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             List<Record> data = _dictionary.AllRecords;
             data[1].SetField(1,"threeGloss");
             _dictionary.Save();

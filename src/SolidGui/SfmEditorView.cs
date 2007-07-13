@@ -30,11 +30,7 @@ namespace SolidGui
 
         public void Highlight(int startIndex, int length)
         {
-            _contentsBox.SelectionStart = startIndex;
-            _contentsBox.SelectionLength = length;
             _contentsBox.Select(startIndex, length);
-            //_contentsBox.SelectionBackColor = Color.Blue;
-            //_contentsBox.SelectionColor = Color.White;
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -44,20 +40,16 @@ namespace SolidGui
                 _currentRecord = null;
                 ClearContentsOfTextBox();
             }
-            else
+            else if (_currentRecord != e._record)
             {
-                if (_currentRecord != e._record)
-                {
-                    
-
-                    //_contentsBox.TextChanged -= OnTextChanged;
-                    SaveContentsOfTextBox();
-                    ClearContentsOfTextBox();
-                    _currentRecord = e._record;
-                    DisplayEachFieldInCurrentRecord();
-                    //_contentsBox.TextChanged += OnTextChanged;
-                }
+                _contentsBox.TextChanged -= OnTextChanged;
+                SaveContentsOfTextBox();
+                ClearContentsOfTextBox();
+                _currentRecord = e._record;
+                DisplayEachFieldInCurrentRecord();
+                _contentsBox.TextChanged += OnTextChanged;
             }
+            
         }
 
         private void ClearContentsOfTextBox()
@@ -84,6 +76,7 @@ namespace SolidGui
                 _contentsBox.AppendText(fieldText + "\r\n");
             }
             _contentsBox.SelectionColor = _defaultTextColor;
+            _contentsBox.SelectionStart = 0;
         }
 
         private string ContentsBoxTextWithoutInferredFields()
@@ -109,12 +102,11 @@ namespace SolidGui
 
         private void _contentsBox_Leave(object sender, EventArgs e)
         {
-            
         }
 
         private void OnTextChanged(object sender, EventArgs e)
         {
-
+            RecordTextChanged.Invoke(this,new EventArgs());
         }
 
         public void SaveContentsOfTextBox()
