@@ -27,9 +27,6 @@ namespace SolidGui
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
             //_markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
-            _searchButton.Image =
-                _searchButton.Image.GetThumbnailImage(_searchButton.Width-8, _searchButton.Height-8, ReturnFalse,
-                                                      System.IntPtr.Zero);
         }
 
         private bool ReturnFalse()
@@ -125,6 +122,7 @@ namespace SolidGui
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
             _markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _recordNavigatorView.SearchButtonClicked += OnSearchClick;
 
             UpdateDisplay();
         }

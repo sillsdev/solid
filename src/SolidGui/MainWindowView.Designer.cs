@@ -40,7 +40,6 @@ namespace SolidGui
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this._searchButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
@@ -147,7 +146,6 @@ namespace SolidGui
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this._searchButton);
             this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
             this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
             this.splitContainer1.Size = new System.Drawing.Size(890, 423);
@@ -183,25 +181,6 @@ namespace SolidGui
             this.label1.TabIndex = 3;
             this.label1.Text = "Messages";
             // 
-            // _searchButton
-            // 
-            this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._searchButton.FlatAppearance.BorderSize = 0;
-            this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._searchButton.Image = global::SolidGui.Properties.Resources.search;
-            this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(387, 3);
-            this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(27, 27);
-            this._searchButton.TabIndex = 4;
-            this._searchButton.Text = "<";
-            this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.toolTip1.SetToolTip(this._searchButton, "Search/Replace text in lexicon");
-            this._searchButton.UseVisualStyleBackColor = true;
-            this._searchButton.Click += new System.EventHandler(this.OnSearchClick);
-            // 
             // _markerDetails
             // 
             this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -229,18 +208,19 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
             this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._sfmEditorView.Location = new System.Drawing.Point(4, 75);
+            this._sfmEditorView.Location = new System.Drawing.Point(4, 42);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(445, 334);
+            this._sfmEditorView.Size = new System.Drawing.Size(445, 367);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
-            this._recordNavigatorView.Location = new System.Drawing.Point(3, 3);
+            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Location = new System.Drawing.Point(4, 0);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(397, 74);
+            this._recordNavigatorView.Size = new System.Drawing.Size(445, 42);
             this._recordNavigatorView.TabIndex = 3;
             // 
             // MainWindowView
@@ -286,7 +266,6 @@ namespace SolidGui
         private System.Windows.Forms.Label label1;
         private FilterChooserView _filterChooserView;
         private MarkerDetails _markerDetails;
-        private System.Windows.Forms.Button _searchButton;
     }
 }
 

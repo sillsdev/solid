@@ -112,7 +112,7 @@ namespace SolidGui
         
         public override string Description(int index)
         {
-            return "All records";
+            return "All " + _d.Count + " records";
         }
 
     }
