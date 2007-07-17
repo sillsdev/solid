@@ -28,6 +28,7 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordNavigatorView));
             this._descriptionLabel = new System.Windows.Forms.Label();
             this._PreviousButton = new System.Windows.Forms.Button();
             this._nextButton = new System.Windows.Forms.Button();
@@ -85,9 +86,9 @@ namespace SolidGui
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._firstButton.Image = global::SolidGui.Properties.Resources.rewind;
-            this._firstButton.Location = new System.Drawing.Point(305, 9);
+            this._firstButton.Location = new System.Drawing.Point(282, 3);
             this._firstButton.Name = "_firstButton";
-            this._firstButton.Size = new System.Drawing.Size(22, 21);
+            this._firstButton.Size = new System.Drawing.Size(46, 33);
             this._firstButton.TabIndex = 5;
             this._firstButton.UseVisualStyleBackColor = true;
             this._firstButton.Click += new System.EventHandler(this._firstButton_Click);
@@ -97,13 +98,12 @@ namespace SolidGui
             this._searchButton.FlatAppearance.BorderSize = 0;
             this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._searchButton.Image = global::SolidGui.Properties.Resources.search;
+            this._searchButton.Image = ((System.Drawing.Image)(resources.GetObject("_searchButton.Image")));
             this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(421, 7);
+            this._searchButton.Location = new System.Drawing.Point(416, 3);
             this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(27, 27);
+            this._searchButton.Size = new System.Drawing.Size(41, 35);
             this._searchButton.TabIndex = 6;
-            this._searchButton.Text = "<";
             this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this._searchButton.UseVisualStyleBackColor = true;

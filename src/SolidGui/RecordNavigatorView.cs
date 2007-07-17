@@ -16,9 +16,9 @@ namespace SolidGui
         public RecordNavigatorView()
         {
             InitializeComponent();
-            _searchButton.Image =
-                _searchButton.Image.GetThumbnailImage(_searchButton.Width - 8, _searchButton.Height - 8, ReturnFalse,
-                                                      System.IntPtr.Zero);
+//            _searchButton.Image =
+//                _searchButton.Image.GetThumbnailImage(_searchButton.Width - 8, _searchButton.Height - 8, ReturnFalse,
+//                                                      System.IntPtr.Zero);
         }
 
         private bool ReturnFalse()
