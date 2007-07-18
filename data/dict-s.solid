@@ -63,17 +63,8 @@
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent>sn</InferedParent>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <InferedParent />
+      <StructureProperties />
       <Marker>gn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>

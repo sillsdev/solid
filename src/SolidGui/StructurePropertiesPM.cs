@@ -122,19 +122,17 @@ namespace SolidGui
             return selected;
         }
 
-        public void RemoveStructureProperty(string selected)
+        public void RemoveStructureProperty(string marker)
         {
-            SolidStructureProperty removeThis = null;
-
             foreach (SolidStructureProperty property in StructureProperties)
             {
-                if(property.Parent == selected)
+                if(property.Parent == marker)
                 {
-                    removeThis = property;
+                    StructureProperties.Remove(property);
+                    break;
                 }
             }
 
-            StructureProperties.Remove(removeThis);
         }
     }
 }

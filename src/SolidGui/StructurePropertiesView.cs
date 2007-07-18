@@ -142,7 +142,12 @@ namespace SolidGui
         {
             if(e.KeyCode == Keys.Delete)
             {
-                _model.RemoveStructureProperty(_model.GetSelectedText(_parentListView));
+                string selectedMarker = _model.GetSelectedText(_parentListView);
+                _model.RemoveStructureProperty(selectedMarker);
+                if (_model.InferedParent == selectedMarker)
+                {
+                    _InferComboBox.SelectedIndex = 0;
+                }
                 UpdateDisplay();
             }
         }
