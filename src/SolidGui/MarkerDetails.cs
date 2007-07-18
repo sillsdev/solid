@@ -25,13 +25,17 @@ namespace SolidGui
             InitializeComponent();
         }
 
-
         public void UpdateDisplay(MarkerSettingsPM markerSettingsModel, Dictionary dictionary, SolidSettings settings)
         {
             _listView.SuspendLayout();
             _markerSettingsModel = markerSettingsModel;
             _settings = settings;
             _dictionary = dictionary;
+            UpdateDisplay();
+        }
+        
+        public void UpdateDisplay()
+        {
             _listView.Items.Clear();
             //_listView.MySortBrush  = null;
             _listView.MySortBrush = Brushes.Coral;
@@ -44,13 +48,13 @@ namespace SolidGui
             colimglst.ImageSize = new Size(20, 20); // this will affect the row height
             _listView.SmallImageList = colimglst;
 
-            foreach (KeyValuePair<string, int> pair in dictionary.MarkerFrequencies)
+            foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
             {
                 EXControls.EXListViewItem item = new EXListViewItem(pair.Key);
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                AddLinkSubItem(item, MakeStructureLinkLabel(settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
+                AddLinkSubItem(item, MakeStructureLinkLabel(_settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
                 AddLinkSubItem(item, "??", OnMappingLinkClicked);
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
@@ -165,6 +169,7 @@ namespace SolidGui
             MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsModel, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
+            UpdateDisplay();
         }
 
         private void _listView_DoubleClick(object sender, EventArgs e)
