@@ -34,16 +34,14 @@ namespace SolidGui
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._saveButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this._processButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this._recheckButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._recheckButton = new System.Windows.Forms.Button();
             this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
@@ -67,9 +65,7 @@ namespace SolidGui
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
             this._saveButton,
-            this.toolStripSeparator1,
             this.toolStripSeparator2,
-            this._processButton,
             this._changeTemplate,
             this._aboutBoxButton});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -101,23 +97,6 @@ namespace SolidGui
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // _processButton
-            // 
-            this._processButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this._processButton.Image = global::SolidGui.Properties.Resources.play;
-            this._processButton.ImageTransparentColor = System.Drawing.Color.Black;
-            this._processButton.Name = "_processButton";
-            this._processButton.Size = new System.Drawing.Size(103, 22);
-            this._processButton.Text = "Process Lexicon";
-            this._processButton.ToolTipText = "Reprocess the lexicon using the current settings.";
-            this._processButton.Visible = false;
-            this._processButton.Click += new System.EventHandler(this.OnProcessButtonClick);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // _changeTemplate
             // 
@@ -156,7 +135,7 @@ namespace SolidGui
             this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
             this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
             this.splitContainer1.Size = new System.Drawing.Size(889, 426);
-            this.splitContainer1.SplitterDistance = 436;
+            this.splitContainer1.SplitterDistance = 435;
             this.splitContainer1.TabIndex = 2;
             // 
             // splitContainer2
@@ -173,7 +152,7 @@ namespace SolidGui
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(436, 426);
+            this.splitContainer2.Size = new System.Drawing.Size(435, 426);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -196,9 +175,26 @@ namespace SolidGui
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this._filterChooserView);
-            this.splitContainer3.Size = new System.Drawing.Size(436, 154);
+            this.splitContainer3.Size = new System.Drawing.Size(435, 154);
             this.splitContainer3.SplitterDistance = 28;
             this.splitContainer3.TabIndex = 4;
+            // 
+            // _recheckButton
+            // 
+            this._recheckButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this._recheckButton.FlatAppearance.BorderSize = 0;
+            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._recheckButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._recheckButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._recheckButton.Image = ((System.Drawing.Image)(resources.GetObject("_recheckButton.Image")));
+            this._recheckButton.Location = new System.Drawing.Point(324, -3);
+            this._recheckButton.Name = "_recheckButton";
+            this._recheckButton.Size = new System.Drawing.Size(85, 31);
+            this._recheckButton.TabIndex = 4;
+            this._recheckButton.Text = "Recheck";
+            this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._recheckButton.UseVisualStyleBackColor = true;
+            this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
             // 
             // label1
             // 
@@ -211,29 +207,12 @@ namespace SolidGui
             this.label1.TabIndex = 3;
             this.label1.Text = "Results of Check";
             // 
-            // _recheckButton
-            // 
-            this._recheckButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this._recheckButton.FlatAppearance.BorderSize = 0;
-            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._recheckButton.Font = new System.Drawing.Font("Gulim", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._recheckButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._recheckButton.Image = ((System.Drawing.Image)(resources.GetObject("_recheckButton.Image")));
-            this._recheckButton.Location = new System.Drawing.Point(325, -3);
-            this._recheckButton.Name = "_recheckButton";
-            this._recheckButton.Size = new System.Drawing.Size(85, 31);
-            this._recheckButton.TabIndex = 4;
-            this._recheckButton.Text = "Recheck";
-            this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._recheckButton.UseVisualStyleBackColor = true;
-            this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
-            // 
             // _markerDetails
             // 
             this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this._markerDetails.Location = new System.Drawing.Point(0, 0);
             this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(436, 266);
+            this._markerDetails.Size = new System.Drawing.Size(435, 266);
             this._markerDetails.TabIndex = 0;
             // 
             // _filterChooserView
@@ -245,7 +224,7 @@ namespace SolidGui
             this._filterChooserView.Location = new System.Drawing.Point(7, 7);
             this._filterChooserView.Model = null;
             this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(422, 112);
+            this._filterChooserView.Size = new System.Drawing.Size(421, 112);
             this._filterChooserView.TabIndex = 2;
             // 
             // _sfmEditorView
@@ -258,7 +237,7 @@ namespace SolidGui
             this._sfmEditorView.Location = new System.Drawing.Point(0, 44);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(449, 382);
+            this._sfmEditorView.Size = new System.Drawing.Size(450, 382);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
@@ -269,7 +248,7 @@ namespace SolidGui
             this._recordNavigatorView.Location = new System.Drawing.Point(-2, 1);
             this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(450, 42);
+            this._recordNavigatorView.Size = new System.Drawing.Size(451, 42);
             this._recordNavigatorView.TabIndex = 3;
             // 
             // MainWindowView
@@ -308,10 +287,8 @@ namespace SolidGui
         private SearchView _searchView;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
-        private System.Windows.Forms.ToolStripButton _processButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton _aboutBoxButton;
         private System.Windows.Forms.ToolStripButton _changeTemplate;
         private System.Windows.Forms.SplitContainer splitContainer2;

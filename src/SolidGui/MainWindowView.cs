@@ -141,7 +141,6 @@ namespace SolidGui
 
         private void UpdateDisplay()
         {
-            _processButton.Enabled = _mainWindowPM.CanProcessLexicon;
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
             _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
         }

@@ -49,6 +49,7 @@ namespace SolidGui
             // 
             // _PreviousButton
             // 
+            this._PreviousButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._PreviousButton.FlatAppearance.BorderSize = 0;
             this._PreviousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("_PreviousButton.Image")));
@@ -61,6 +62,7 @@ namespace SolidGui
             // 
             // _nextButton
             // 
+            this._nextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._nextButton.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this._nextButton.FlatAppearance.BorderSize = 0;
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -74,6 +76,7 @@ namespace SolidGui
             // 
             // _recordNumber
             // 
+            this._recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNumber.AutoSize = true;
             this._recordNumber.ForeColor = System.Drawing.Color.Yellow;
             this._recordNumber.Location = new System.Drawing.Point(349, 13);
@@ -84,6 +87,7 @@ namespace SolidGui
             // 
             // _firstButton
             // 
+            this._firstButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._firstButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -97,6 +101,7 @@ namespace SolidGui
             // 
             // _searchButton
             // 
+            this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._searchButton.FlatAppearance.BorderSize = 0;
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._searchButton.Image = ((System.Drawing.Image)(resources.GetObject("_searchButton.Image")));

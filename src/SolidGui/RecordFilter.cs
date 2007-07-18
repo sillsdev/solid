@@ -15,7 +15,6 @@ namespace SolidGui
         public SolidReportErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name) :
             base(d, name)
         {
-            // switch here and set name. !!! CJP
             _errorType = errorType;
             _name = name;
         }
@@ -265,7 +264,7 @@ namespace SolidGui
                 retval = true;
                 _currentIndex = index;
             }
-            return true;
+            return retval;
         }
 
         public override string ToString()

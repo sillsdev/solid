@@ -14,7 +14,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>a</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -31,7 +36,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -41,7 +46,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -51,15 +56,19 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
@@ -81,7 +90,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -96,7 +105,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -104,7 +113,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -130,6 +144,10 @@
     <SolidMarkerSetting>
       <InferedParent />
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
@@ -210,7 +228,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -230,7 +248,7 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -238,7 +256,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>xet</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -250,6 +273,16 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>gg</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>qq</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

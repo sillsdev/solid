@@ -69,16 +69,30 @@ namespace SolidGui.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap fast_forward {
+        internal static System.Drawing.Bitmap BackwardAll {
             get {
-                object obj = ResourceManager.GetObject("fast_forward", resourceCulture);
+                object obj = ResourceManager.GetObject("BackwardAll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap find {
+        internal static System.Drawing.Bitmap BackwordOne {
             get {
-                object obj = ResourceManager.GetObject("find", resourceCulture);
+                object obj = ResourceManager.GetObject("BackwordOne", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap FindReplace {
+            get {
+                object obj = ResourceManager.GetObject("FindReplace", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap FindReplace1 {
+            get {
+                object obj = ResourceManager.GetObject("FindReplace1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -90,9 +104,9 @@ namespace SolidGui.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap INFO {
+        internal static System.Drawing.Bitmap ForwardOne {
             get {
-                object obj = ResourceManager.GetObject("INFO", resourceCulture);
+                object obj = ResourceManager.GetObject("ForwardOne", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -104,37 +118,9 @@ namespace SolidGui.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap play {
+        internal static System.Drawing.Bitmap Recheck {
             get {
-                object obj = ResourceManager.GetObject("play", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap PlayHS {
-            get {
-                object obj = ResourceManager.GetObject("PlayHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap preview {
-            get {
-                object obj = ResourceManager.GetObject("preview", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap PrintHS {
-            get {
-                object obj = ResourceManager.GetObject("PrintHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap rewind {
-            get {
-                object obj = ResourceManager.GetObject("rewind", resourceCulture);
+                object obj = ResourceManager.GetObject("Recheck", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,30 +132,9 @@ namespace SolidGui.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap saveHS {
+        internal static System.Drawing.Bitmap Search1 {
             get {
-                object obj = ResourceManager.GetObject("saveHS", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap search {
-            get {
-                object obj = ResourceManager.GetObject("search", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap skip_backward {
-            get {
-                object obj = ResourceManager.GetObject("skip_backward", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap skip_forward {
-            get {
-                object obj = ResourceManager.GetObject("skip_forward", resourceCulture);
+                object obj = ResourceManager.GetObject("Search1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

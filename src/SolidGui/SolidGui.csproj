@@ -213,40 +213,22 @@
     <None Include="Resources\PrintHS.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\PlayHS.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\saveHS.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\find.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\search.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\INFO.ICO" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\WarningHS.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\414-rewind.ico" />
-    <Content Include="Resources\415-skip_backward.ico" />
-    <Content Include="Resources\419-skip_forward.ico" />
-    <Content Include="Resources\420-fast_forward.ico" />
-    <None Include="Resources\FindReplace.png" />
-    <None Include="Resources\Search1.png" />
     <None Include="Resources\info2.ico" />
     <None Include="Resources\template.ico" />
-    <None Include="Resources\play.ico" />
     <None Include="Resources\save.ico" />
     <None Include="Resources\folder_open.ico" />
     <None Include="Resources\preview.ico" />
-    <None Include="Resources\fast_forward.ico" />
-    <None Include="Resources\rewind.ico" />
-    <None Include="Resources\skip_backward.ico" />
-    <None Include="Resources\skip_forward.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\BackwardAll.png" />
+    <Content Include="Resources\BackwordOne.png" />
+    <Content Include="Resources\FindReplace.png" />
+    <Content Include="Resources\ForwardOne.png" />
+    <Content Include="Resources\Recheck.png" />
+    <Content Include="Resources\Search1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
