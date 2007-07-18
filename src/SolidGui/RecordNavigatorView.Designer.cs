@@ -51,8 +51,8 @@ namespace SolidGui
             // 
             this._PreviousButton.FlatAppearance.BorderSize = 0;
             this._PreviousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._PreviousButton.Image = global::SolidGui.Properties.Resources.skip_backward;
-            this._PreviousButton.Location = new System.Drawing.Point(334, 9);
+            this._PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("_PreviousButton.Image")));
+            this._PreviousButton.Location = new System.Drawing.Point(328, 8);
             this._PreviousButton.Name = "_PreviousButton";
             this._PreviousButton.Size = new System.Drawing.Size(20, 21);
             this._PreviousButton.TabIndex = 1;
@@ -61,21 +61,22 @@ namespace SolidGui
             // 
             // _nextButton
             // 
+            this._nextButton.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this._nextButton.FlatAppearance.BorderSize = 0;
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._nextButton.Image = global::SolidGui.Properties.Resources.skip_forward;
-            this._nextButton.Location = new System.Drawing.Point(385, 10);
+            this._nextButton.Image = ((System.Drawing.Image)(resources.GetObject("_nextButton.Image")));
+            this._nextButton.Location = new System.Drawing.Point(368, -1);
             this._nextButton.Name = "_nextButton";
-            this._nextButton.Size = new System.Drawing.Size(25, 21);
+            this._nextButton.Size = new System.Drawing.Size(44, 41);
             this._nextButton.TabIndex = 2;
-            this._nextButton.UseVisualStyleBackColor = true;
+            this._nextButton.UseVisualStyleBackColor = false;
             this._nextButton.Click += new System.EventHandler(this._nextButton_Click);
             // 
             // _recordNumber
             // 
             this._recordNumber.AutoSize = true;
             this._recordNumber.ForeColor = System.Drawing.Color.Yellow;
-            this._recordNumber.Location = new System.Drawing.Point(360, 13);
+            this._recordNumber.Location = new System.Drawing.Point(349, 13);
             this._recordNumber.Name = "_recordNumber";
             this._recordNumber.Size = new System.Drawing.Size(19, 13);
             this._recordNumber.TabIndex = 3;
@@ -83,12 +84,13 @@ namespace SolidGui
             // 
             // _firstButton
             // 
+            this._firstButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._firstButton.Image = global::SolidGui.Properties.Resources.rewind;
-            this._firstButton.Location = new System.Drawing.Point(282, 3);
+            this._firstButton.Image = ((System.Drawing.Image)(resources.GetObject("_firstButton.Image")));
+            this._firstButton.Location = new System.Drawing.Point(299, 3);
             this._firstButton.Name = "_firstButton";
-            this._firstButton.Size = new System.Drawing.Size(46, 33);
+            this._firstButton.Size = new System.Drawing.Size(31, 33);
             this._firstButton.TabIndex = 5;
             this._firstButton.UseVisualStyleBackColor = true;
             this._firstButton.Click += new System.EventHandler(this._firstButton_Click);
@@ -96,13 +98,12 @@ namespace SolidGui
             // _searchButton
             // 
             this._searchButton.FlatAppearance.BorderSize = 0;
-            this._searchButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._searchButton.Image = ((System.Drawing.Image)(resources.GetObject("_searchButton.Image")));
             this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(416, 3);
+            this._searchButton.Location = new System.Drawing.Point(407, 2);
             this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(41, 35);
+            this._searchButton.Size = new System.Drawing.Size(39, 35);
             this._searchButton.TabIndex = 6;
             this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -133,7 +134,7 @@ namespace SolidGui
             this.Controls.Add(this._PreviousButton);
             this.Controls.Add(this._descriptionLabel);
             this.Name = "RecordNavigatorView";
-            this.Size = new System.Drawing.Size(460, 41);
+            this.Size = new System.Drawing.Size(447, 41);
             this.ResumeLayout(false);
             this.PerformLayout();
 

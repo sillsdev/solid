@@ -9,6 +9,7 @@ namespace SolidGui
     public partial class SfmEditorView : UserControl
     {
         private int _spacesInIndentation = 4;
+        private int _leftMarigin = 20;
         private SfmEditorPM _model;
         private Record _currentRecord;
         private Color _inferredTextColor = Color.Blue;
@@ -20,6 +21,7 @@ namespace SolidGui
         {
             _currentRecord = null;
             InitializeComponent();
+            _contentsBox.SelectionIndent = _leftMarigin;
         }
 
         public SfmEditorPM Model
@@ -63,7 +65,8 @@ namespace SolidGui
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
-                string fieldText = indentation + markerPrefix + field.Marker + " " + field.Value;
+                string fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
+
                 _contentsBox.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
@@ -106,7 +109,16 @@ namespace SolidGui
 
         private void OnTextChanged(object sender, EventArgs e)
         {
-            RecordTextChanged.Invoke(this,new EventArgs());
+
+            //allow changes until first space, tab, or return is hit after a "\" has been added
+            //reprocess the data
+            //set the selectionindentation to _tabStop
+            //allow for continued typing
+
+            if (RecordTextChanged != null)
+            {
+                RecordTextChanged.Invoke(this, new EventArgs());
+            }
         }
 
         public void SaveContentsOfTextBox()
