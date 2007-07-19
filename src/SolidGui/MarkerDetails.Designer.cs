@@ -34,7 +34,6 @@ namespace SolidGui
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this._editMarkerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -48,8 +47,7 @@ namespace SolidGui
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.columnHeader6,
-            this.columnHeader5});
+            this.columnHeader6});
             this._listView.ControlPadding = 4;
             this._listView.FullRowSelect = true;
             this._listView.HideSelection = false;
@@ -84,10 +82,6 @@ namespace SolidGui
             // 
             this.columnHeader6.Text = "FLEx";
             // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Checked";
-            // 
             // _editMarkerButton
             // 
             this._editMarkerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -118,7 +112,6 @@ namespace SolidGui
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button _editMarkerButton;
     }

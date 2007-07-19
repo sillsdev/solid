@@ -57,7 +57,7 @@ namespace SolidGui
                 AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
                 AddLinkSubItem(item, "??", OnMappingLinkClicked);
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
-                FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
+              //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
                 
                 _listView.Items.Add(item);
             }
