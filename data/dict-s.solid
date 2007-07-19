@@ -315,5 +315,10 @@
       <StructureProperties />
       <Marker>abc</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>dd</Marker>
+    </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

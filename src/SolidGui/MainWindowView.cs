@@ -102,6 +102,7 @@ namespace SolidGui
                 }
             }
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
+            Text = "SOLID " + dlg.FileName;
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
