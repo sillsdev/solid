@@ -33,24 +33,21 @@ namespace SolidGui
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
                         type,
-                        string.Format("Failed to insert {0} in inferred marker", marker),
-                        marker
+                        string.Format("Failed to insert {0} in inferred marker", marker)
                     );
                     break;
                 case SolidReport.EntryType.StructureParentNotFound:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
                         type,
-                        string.Format("Parent not found for {0}", marker),
-                        marker
+                        string.Format("Parent not found for {0}", marker)
                     );
                     break;
                 case SolidReport.EntryType.StructureParentNotFoundForInferred:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
                         type,
-                        string.Format("Parent not found for inferred marker {0}", marker),
-                        marker
+                        string.Format("Parent not found for inferred marker {0}", marker)
                     );
                     break;
             }

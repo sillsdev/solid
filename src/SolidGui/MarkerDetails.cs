@@ -15,8 +15,12 @@ namespace SolidGui
     {
         private Dictionary _dictionary;
         private SolidSettings _settings;
-        private MarkerSettingsPM _markerSettingsModel;
-        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
+        private MarkerSettingsPM _markerSettingsPM;
+        private FilterChooserPM _filterChooserPM;
+
+        private MarkerFilter _filter = null;
+
+        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
 
 
         public MarkerDetails()
@@ -24,13 +28,14 @@ namespace SolidGui
             InitializeComponent();
         }
 
-        public void UpdateDisplay(MarkerSettingsPM markerSettingsModel, Dictionary dictionary, SolidSettings settings)
+        public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, Dictionary dictionary, SolidSettings settings)
         {
             _listView.SuspendLayout();
-            _markerSettingsModel = markerSettingsModel;
+            _markerSettingsPM = markerSettingsPM;
+            _filterChooserPM = filterChooserPM;
             _settings = settings;
             _dictionary = dictionary;
-            UpdateDisplay();
+            //UpdateDisplay();
         }
         
         public void UpdateDisplay()
@@ -127,18 +132,21 @@ namespace SolidGui
             item.Selected = true;
             OpenSettingsDialog("structure");
         }
+
         private void OnWritingSystemLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
             OpenSettingsDialog("writingSystem");
         }
+
         private void OnMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
             OpenSettingsDialog("mapping");
         }
+
         private void _listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(_listView.SelectedItems.Count == 0)
@@ -147,10 +155,23 @@ namespace SolidGui
             }  
             string marker = _listView.SelectedItems[0].Text;
 
-            if (RecordFilterChanged != null)
-                RecordFilterChanged.Invoke(this,
-                                           new FilterChooserPM.RecordFilterChangedEventArgs(
-                                               new MarkerFilter(_dictionary, marker)));
+            _filter = new MarkerFilter(_dictionary, marker);
+            _filterChooserPM.ActiveRecordFilter = _filter;
+        }
+
+        // When someone changes the filter in the PM
+        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        {
+            //_changingFilter = true;
+            if (_filter != e._recordFilter)
+            {
+                // Remove the selection
+                for (int i = 0; i < _listView.Items.Count; i++)
+                {
+                    _listView.Items[i].Selected = false;
+                }
+            }
+            //_changingFilter = false;
         }
 
         private void OnEditSettingsClick(object sender, EventArgs e)
@@ -165,7 +186,7 @@ namespace SolidGui
                 return;
             }          
             string marker = _listView.SelectedItems[0].Text;
-            MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsModel, marker);
+            MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
             UpdateDisplay();

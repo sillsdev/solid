@@ -42,7 +42,7 @@ namespace SolidGui
             }
         }
 
-        public void OnDictionaryProcessed(object sender, EventArgs e)
+        public void OnDictionaryProcessed()
         {
             if (_recordFilters != null && _recordFilters.Count > 0)
             {

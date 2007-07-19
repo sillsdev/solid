@@ -46,8 +46,6 @@ namespace SolidGui
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = WorkingDictionary.AllMarkers;
-
-            DictionaryProcessed += _filterChooserModel.OnDictionaryProcessed;
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -172,6 +170,7 @@ namespace SolidGui
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
             _sfmEditorModel.Settings = _solidSettings;
+            _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
             {
@@ -201,6 +200,7 @@ namespace SolidGui
             WorkingDictionary.SaveAs(_tempDictionaryPath);
 
             _workingDictionary.Open(_tempDictionaryPath, _solidSettings, _recordFilters);
+            _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
             {

@@ -9,11 +9,10 @@ namespace SolidGui
     public class SolidErrorRecordFilter : RecordFilter
     {
         SolidReport.EntryType _errorType;
-        string _marker;
 
         List<string> _errorMessages = new List<string>();
 
-        public SolidErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name, string marker) :
+        public SolidErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name) :
             base(d, name)
         {
             _errorType = errorType;
@@ -26,7 +25,6 @@ namespace SolidGui
             {
                 _indexesOfRecords.Add(entry.RecordID);
             }
-
         }
 
         public override string Description(int index)

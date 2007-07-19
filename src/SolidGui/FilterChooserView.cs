@@ -12,21 +12,20 @@ namespace SolidGui
         private FilterChooserPM _model;
         private bool _changingFilter = false;
 
+        //??? Would be nice if we didn't need to expose this. CJP
+        public FilterChooserPM Model
+        {
+            get { return _model; }
+        }
+
         public FilterChooserView()
         {
             InitializeComponent();
         }
 
-        public FilterChooserPM Model
+        public void BindModel(FilterChooserPM model)
         {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                _model = value;
-            }
+            _model = model;
         }
 
         private void FilterChooserView_Load(object sender, EventArgs e)
@@ -38,13 +37,19 @@ namespace SolidGui
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             _changingFilter = true;
+            bool foundFilter = false;
             foreach (RecordFilter filter in _filterListBox.Items)
             {
                 if (filter == e._recordFilter)
                 {
+                    foundFilter = true;
                     _filterListBox.SelectedIndex = _filterListBox.Items.IndexOf(filter);
                     break;
                 }
+            }
+            if (!foundFilter)
+            {
+                _filterListBox.SelectedIndex = -1;
             }
             _changingFilter = false;
         }
@@ -65,7 +70,7 @@ namespace SolidGui
             }
             _filterListBox.Items.Clear();
 
-            foreach (RecordFilter filter in Model.RecordFilters)
+            foreach (RecordFilter filter in _model.RecordFilters)
             {
                 _filterListBox.Items.Add(filter);
             }

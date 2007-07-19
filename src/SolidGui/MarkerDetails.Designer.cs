@@ -50,7 +50,6 @@ namespace SolidGui
             this.columnHeader6});
             this._listView.ControlPadding = 4;
             this._listView.FullRowSelect = true;
-            this._listView.HideSelection = false;
             this._listView.Location = new System.Drawing.Point(3, 3);
             this._listView.MultiSelect = false;
             this._listView.Name = "_listView";

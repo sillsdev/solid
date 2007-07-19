@@ -26,19 +26,12 @@ namespace SolidGui
             return false;
         }
 
-        public RecordNavigatorPM Model
+        public void BindModel(RecordNavigatorPM model)
         {
-            get
-            {
-                return _model;
-            }
-            set
-            {
-                _model = value;
-                if (_model == null)//happens at design time
-                    return;
-                UpdateDisplay();
-            }
+                _model = model;
+                //if (_model == null)//happens at design time
+                //    return;
+                //UpdateDisplay();
         }
 
         private void _PreviousButton_Click(object sender, EventArgs e)

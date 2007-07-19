@@ -23,11 +23,26 @@ namespace SolidGui
             }
 
             _mainWindowPM = mainWindowPM;
-            _sfmEditorView.Model = _mainWindowPM.SfmEditorModel;
-            _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
-            _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
+            _sfmEditorView.BindModel(_mainWindowPM.SfmEditorModel);
+            _recordNavigatorView.BindModel(_mainWindowPM.NavigatorModel);
+            _filterChooserView.BindModel(_mainWindowPM.FilterChooserModel);
             this.KeyPreview = true;
             //_markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
+
+            _mainWindowPM.DictionaryProcessed += this.OnDictionaryProcessed;
+
+            _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
+            _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _filterChooserView.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
+            _mainWindowPM.SearchModel.wordFound += OnWordFound;
+
+            //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+
+            _sfmEditorView.RecordTextChanged += this.OnRecordTextChanged;
+            _recordNavigatorView.SearchButtonClicked += OnSearchClick;
+
         }
 
         private bool ReturnFalse()
@@ -37,16 +52,19 @@ namespace SolidGui
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
- 
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
             //_markerSettingsView.UpdateDisplay();
-            _markerDetails.UpdateDisplay(_mainWindowPM.MarkerSettingsModel, 
-                                         _mainWindowPM.WorkingDictionary, 
-                                         _mainWindowPM.SolidSettings);
+            _markerDetails.BindModel(
+                _mainWindowPM.MarkerSettingsModel, 
+                _mainWindowPM.FilterChooserModel,
+                _mainWindowPM.WorkingDictionary, 
+                _mainWindowPM.SolidSettings
+            );
+            _markerDetails.UpdateDisplay();
             UpdateDisplay();
-         }
+        }
 
         private void _openButton_Click(object sender, EventArgs e)
         {
@@ -116,15 +134,6 @@ namespace SolidGui
             {
                 return;
             }
-
-            _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
-            _filterChooserView.Model.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
-            _filterChooserView.Model.RecordFilterChanged += _filterChooserView.OnFilterChanged;
-            _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
-            _mainWindowPM.SearchModel.wordFound += OnWordFound;
-            _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
-            _markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
-            _recordNavigatorView.SearchButtonClicked += OnSearchClick;
 
             UpdateDisplay();
         }
@@ -200,7 +209,7 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
-            _searchView = SearchView.CreatSearchView(_recordNavigatorView.Model, _sfmEditorView);
+            _searchView = SearchView.CreatSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
             _searchView.Focus();

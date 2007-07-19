@@ -222,7 +222,6 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._filterChooserView.Enabled = false;
             this._filterChooserView.Location = new System.Drawing.Point(7, 7);
-            this._filterChooserView.Model = null;
             this._filterChooserView.Name = "_filterChooserView";
             this._filterChooserView.Size = new System.Drawing.Size(421, 112);
             this._filterChooserView.TabIndex = 2;
@@ -247,7 +246,6 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this._recordNavigatorView.Location = new System.Drawing.Point(-2, 1);
-            this._recordNavigatorView.Model = null;
             this._recordNavigatorView.Name = "_recordNavigatorView";
             this._recordNavigatorView.Size = new System.Drawing.Size(451, 42);
             this._recordNavigatorView.TabIndex = 3;

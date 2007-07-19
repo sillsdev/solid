@@ -74,11 +74,10 @@ namespace SolidGui
             _contentsBox.SelectionIndent = _leftMarigin;
         }
 
-        public SfmEditorPM Model
+        public void BindModel(SfmEditorPM model)
         {
-            set { _model = value; }
+            _model = model;
         }
-
 
         public void Highlight(int startIndex, int length)
         {
