@@ -59,6 +59,13 @@ namespace SolidGui
         public event EventHandler RecordTextChanged;
         private KeyScanner _keyScanner = new KeyScanner();
         private const string _processingMark = "\x01";
+        private int _indent = 130;
+
+        public int Indent
+        {
+            get { return _indent; }
+            set { _indent = value; }
+        }	
 
         public SfmEditorView()
         {
@@ -103,6 +110,9 @@ namespace SolidGui
 
         private void DisplayEachFieldInCurrentRecord()
         {
+            _contentsBox.SelectAll();
+            _contentsBox.SelectionTabs = new int[] { _indent };
+
             int currentPosition = 0;
             bool foundProcessingMark = false;
             foreach (Record.Field field in _currentRecord.Fields)
@@ -132,7 +142,8 @@ namespace SolidGui
                 _contentsBox.AppendText(fieldText + "\n");
             }
             _contentsBox.SelectionColor = _defaultTextColor;
-            _contentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
+            _contentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;            
+
         }
 
         private string ContentsBoxTextWithoutInferredFields()
@@ -156,10 +167,6 @@ namespace SolidGui
             return textWithoutInferred;
         }
 
-        private void _contentsBox_Leave(object sender, EventArgs e)
-        {
-        }
-
         public void SaveContentsOfTextBox()
         {
             int currentIndex = _contentsBox.SelectionStart;
@@ -178,12 +185,10 @@ namespace SolidGui
         {
             if (_keyScanner.ProcessKey(e.KeyValue))
             {
-                //int currentIndex = _contentsBox.SelectionStart;
                 _contentsBox.SelectedText = _processingMark;
                 SaveContentsOfTextBox();
                 ClearContentsOfTextBox();
                 DisplayEachFieldInCurrentRecord();
-                //_contentsBox.SelectionStart = currentIndex;
                 _keyScanner.Reset();
             }
             if (RecordTextChanged != null)
