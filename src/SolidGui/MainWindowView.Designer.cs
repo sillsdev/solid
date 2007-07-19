@@ -234,6 +234,7 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
             this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sfmEditorView.Indent = 130;
             this._sfmEditorView.Location = new System.Drawing.Point(0, 44);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";
@@ -261,6 +262,8 @@ namespace SolidGui
             this.Name = "MainWindowView";
             this.Text = "SOLID";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyDown);
             this.Load += new System.EventHandler(this.MainWindowView_Load);
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();

@@ -26,6 +26,7 @@ namespace SolidGui
             _sfmEditorView.Model = _mainWindowPM.SfmEditorModel;
             _recordNavigatorView.Model = _mainWindowPM.NavigatorModel;
             _filterChooserView.Model = _mainWindowPM.FilterChooserModel;
+            this.KeyPreview = true;
             //_markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
         }
 
@@ -203,6 +204,23 @@ namespace SolidGui
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
             _searchView.Focus();
+        }
+
+        private void MainWindowView_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void MainWindowView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Control == true && e.KeyCode == Keys.F)
+            {
+                OnSearchClick(this, new EventArgs());
+            }
+            if (e.Control == true && e.KeyCode == Keys.O)
+            {
+                _openButton_Click(this, new EventArgs());
+            }
         }
     }
 }
