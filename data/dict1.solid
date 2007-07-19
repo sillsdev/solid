@@ -21,6 +21,30 @@
       <InferedParent>sn</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>rr</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>sd</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>dt</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>nt</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ge</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>a</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
@@ -44,12 +68,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -134,7 +153,12 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>rr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -169,25 +193,21 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <InferedParent />
+      <StructureProperties />
+      <Marker>sd</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
       </StructureProperties>
-      <Marker>sd</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <InferedParent />
-      <StructureProperties />
       <Marker>lc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent />
+      <InferedParent>lx</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
@@ -195,6 +215,21 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>\_lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>b</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

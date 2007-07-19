@@ -77,6 +77,7 @@ namespace SolidGui
                 recordIndex++;
                 if (recordIndex >= filter.Count)
                 {
+                    Console.Beep();
                     recordIndex = 0;
                 }
                 textIndex = 0;

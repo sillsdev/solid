@@ -12,5 +12,15 @@
       <StructureProperties />
       <Marker>ph</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>\_lx</Marker>
+    </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

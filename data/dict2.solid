@@ -223,8 +223,13 @@
       <Marker>za</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent />
-      <StructureProperties />
+      <InferedParent>phsj</InferedParent>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>phsj</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>gp</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -251,6 +256,16 @@
       <InferedParent />
       <StructureProperties />
       <Marker>sen</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>\_lx</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
