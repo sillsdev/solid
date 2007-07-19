@@ -61,7 +61,7 @@ namespace SolidGui
             // _findNextButton
             // 
             this._findNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._findNextButton.Location = new System.Drawing.Point(244, 42);
+            this._findNextButton.Location = new System.Drawing.Point(244, 12);
             this._findNextButton.Name = "_findNextButton";
             this._findNextButton.Size = new System.Drawing.Size(81, 30);
             this._findNextButton.TabIndex = 3;
@@ -73,13 +73,12 @@ namespace SolidGui
             // 
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(244, 77);
+            this._cancelButton.Location = new System.Drawing.Point(244, 86);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(81, 30);
             this._cancelButton.TabIndex = 5;
-            this._cancelButton.Text = "&Cancel";
+            this._cancelButton.Text = "&Close";
             this._cancelButton.UseVisualStyleBackColor = true;
-            this._cancelButton.Visible = false;
             this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
             // 
             // _replaceTextBox
@@ -103,7 +102,7 @@ namespace SolidGui
             // _replaceButton
             // 
             this._replaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._replaceButton.Location = new System.Drawing.Point(244, 76);
+            this._replaceButton.Location = new System.Drawing.Point(244, 49);
             this._replaceButton.Name = "_replaceButton";
             this._replaceButton.Size = new System.Drawing.Size(81, 30);
             this._replaceButton.TabIndex = 4;
