@@ -20,7 +20,7 @@ namespace SolidGui.Tests
             dictionary.AddRecord(new Record(recordID++));
             dictionary.AddRecord(new Record(recordID++));
             dictionary.AddRecord(new Record(recordID++));
-            RecordFilter recordFilter = new AllRecordFilter(dictionary);
+            RecordFilter recordFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
             _navigator = new RecordNavigatorPM();
 
             _navigator.ActiveFilter = recordFilter;
@@ -36,9 +36,9 @@ namespace SolidGui.Tests
         [Test]
         public void NextIncreasesIndex()
         {
-            int startingIndex = _navigator.CurrentIndexIntoFilteredRecords;
+            int startingIndex = _navigator.CurrentRecordIndex;
             _navigator.MoveToNext();
-            int finishIndex = _navigator.CurrentIndexIntoFilteredRecords;
+            int finishIndex = _navigator.CurrentRecordIndex;
 
             Assert.AreEqual(startingIndex, finishIndex - 1);
         }
@@ -79,33 +79,33 @@ namespace SolidGui.Tests
         [Test]
         public void CurrentIndex_SameIndex()
         {
-            Assert.AreEqual(_navigator.CurrentIndexIntoFilteredRecords, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.AreEqual(_navigator.CurrentRecordIndex, _navigator.CurrentRecordIndex);
         }
 
         [Test]
         public void InitialCurrentRecordIsCorrectOne()
         {
             //!!!Record correct=_navigator.  .MasterRecordList[2];
-            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
         }
 
 
-        [Test]
+        [Test, Ignore("This functionality has been changed. Now current record remains")]
         public void WhenFilterChangesShowFirst()
         {
             //_navigator.ActiveFilter = new NullRecordFilter();
-            _navigator.ActiveFilter = new AllRecordFilter(new Dictionary());
+            _navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new Dictionary());
             Assert.AreEqual(0, _navigator.Count);
-            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
             Assert.IsNull(_navigator.CurrentRecord);
         }
 
-        [Test]
+        [Test, Ignore("This functionality has been changed. Now current record remains")]
         public void WhenEmptyFilterChangesShowFirst()
         {
             _navigator.ActiveFilter = new NullRecordFilter();
             Assert.AreEqual(0, _navigator.Count);
-            Assert.AreEqual(0, _navigator.CurrentIndexIntoFilteredRecords);
+            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
             Assert.IsNull (_navigator.CurrentRecord);
         }
         
