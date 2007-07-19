@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -18,6 +19,7 @@ namespace SolidGui
     {
         private List<MappingSystem> _systems;
         private MappingSystem _targetSystem;
+        private SolidMarkerSetting _markerSetting;
         private Concept _selectedConcept;
 
         public MappingPM()
@@ -32,6 +34,18 @@ namespace SolidGui
             if (TargetChoices.Count > 0)
             {
                 _targetSystem = TargetChoices[0];
+            }
+        }
+
+        public SolidMarkerSetting MarkerSetting
+        {
+            set
+            {
+                _markerSetting = value;
+            }
+            get
+            {
+                return _markerSetting;
             }
         }
 

@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -16,6 +17,7 @@ namespace SolidGui
     public partial class MappingView : UserControl
     {
         private MappingPM _model;
+        
         public MappingView()
         {
             InitializeComponent();
@@ -40,9 +42,25 @@ namespace SolidGui
                 return;
             }
 
-            _targetCombo.Text = _model.TargetSystem.ToString();
+            _targetCombo.SelectedIndex = 0;
             LoadConceptList();
             LoadInformationPane();
+        }
+        
+        public void InitializeDisplay()
+        {
+            foreach(ListViewItem item in _conceptList.Items)
+            {
+                if (item.Text == _model.MarkerSetting.GetMapping(CurrentMappingType()))
+                {
+                    item.Selected = true;
+                    //_conceptList_SelectedIndexChanged(this, new EventArgs());                        
+                }
+                else
+                {
+                    item.Selected = false;
+                }
+            }
         }
 
         private void LoadConceptList()
@@ -62,7 +80,16 @@ namespace SolidGui
                 return;
             }
             _model.SelectedConcept = (MappingPM.Concept) _conceptList.SelectedItems[0].Tag;
+            _model.MarkerSetting.SetMapping(CurrentMappingType(),_model.SelectedConcept.ToString());
             LoadInformationPane();
+        }
+
+        private SolidMarkerSetting.MappingType CurrentMappingType()
+        {
+            if (_targetCombo.SelectedIndex == 0) return SolidMarkerSetting.MappingType.Flex;
+            if (_targetCombo.SelectedIndex == 1) return SolidMarkerSetting.MappingType.Lift;
+
+            return new SolidMarkerSetting.MappingType();
         }
 
         private void LoadInformationPane()

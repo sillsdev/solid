@@ -32,11 +32,11 @@ namespace SolidGui
             this._targetCombo = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._conceptList = new System.Windows.Forms.ListView();
+            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this._htmlViewer = new System.Windows.Forms.WebBrowser();
             this.label3 = new System.Windows.Forms.Label();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -99,7 +99,7 @@ namespace SolidGui
             this._conceptList.Name = "_conceptList";
             this._conceptList.Size = new System.Drawing.Size(134, 260);
             this._conceptList.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this._conceptList.TabIndex = 3;
+            this._conceptList.TabIndex = 2;
             this._conceptList.UseCompatibleStateImageBehavior = false;
             this._conceptList.View = System.Windows.Forms.View.Details;
             this._conceptList.SelectedIndexChanged += new System.EventHandler(this._conceptList_SelectedIndexChanged);
@@ -137,6 +137,7 @@ namespace SolidGui
             this._htmlViewer.Name = "_htmlViewer";
             this._htmlViewer.Size = new System.Drawing.Size(222, 258);
             this._htmlViewer.TabIndex = 2;
+            this._htmlViewer.TabStop = false;
             this._htmlViewer.WebBrowserShortcutsEnabled = false;
             // 
             // label3

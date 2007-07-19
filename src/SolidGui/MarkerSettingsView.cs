@@ -41,9 +41,13 @@ namespace SolidGui
                     currentSettings = (SolidMarkerSetting)_markerListBox.SelectedItem;
                 }
             }
+            
             _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
             _structurePropertiesView.Model.MarkerSetting = currentSettings;
             _structurePropertiesView.UpdateDisplay();
+
+            _mappingView.Model.MarkerSetting = currentSettings;
+            _mappingView.InitializeDisplay();
         }
 
         private void SelectInitialArea(string initialArea)

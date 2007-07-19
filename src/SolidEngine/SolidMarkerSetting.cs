@@ -41,6 +41,16 @@ namespace SolidEngine
         {
             get { return _mappings; }
         }
+
+        public void SetMapping(SolidMarkerSetting.MappingType mappingType, string mapping)
+        {
+            _mappings[(int) mappingType] = mapping;
+        }
+
+        public string GetMapping(MappingType mappingType)
+        {
+            return _mappings[(int) mappingType];
+        }
 	
         public bool ParentExists(string marker)
         {
@@ -68,6 +78,12 @@ namespace SolidEngine
             {
                 _inferedParent = value;
             }
+        }
+
+        public string[] Mappings
+        {
+            get { return _mappings;}
+            set { _mappings = value; }
         }
 
         public List<SolidStructureProperty> StructureProperties

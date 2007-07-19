@@ -60,7 +60,7 @@ namespace SolidGui
                 FillInFrequencyColumn(item, pair.Value.ToString());
                 AddLinkSubItem(item, MakeStructureLinkLabel(_settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
-                AddLinkSubItem(item, "??", OnMappingLinkClicked);
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, _settings.FindMarkerSetting(pair.Key)), OnMappingLinkClicked);
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
                 
@@ -86,6 +86,13 @@ namespace SolidGui
             EXControlListViewSubItem x = new EXControlListViewSubItem();
             x.Text = frequency;
             item.SubItems.Add(x);
+        }
+
+        private string MakeMappingLinkLabel(SolidMarkerSetting.MappingType type, SolidMarkerSetting markerSetting)
+        {
+            string mapping = markerSetting.GetMapping(type);
+
+            return mapping ?? "??";
         }
 
         private string MakeStructureLinkLabel(IList<SolidStructureProperty> properties)

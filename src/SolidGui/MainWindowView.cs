@@ -55,7 +55,7 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _filterChooserView.UpdateDisplay();
-            //_markerSettingsView.UpdateDisplay();
+            //_markerSettingsView.InitializeDisplay();
             _markerDetails.BindModel(
                 _mainWindowPM.MarkerSettingsModel, 
                 _mainWindowPM.FilterChooserModel,
