@@ -9,7 +9,11 @@ namespace SolidGui
     {
         Dictionary _currentDictionary = null;
 
-        SolidReportErrorRecordFilter[] _solidErrors = null;
+        class ErrorFilterForType : Dictionary<string, SolidErrorRecordFilter>
+        {
+        }
+
+        ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.EntryType.Max];
 
         public RecordFilterSet()
         {
@@ -20,29 +24,47 @@ namespace SolidGui
             get { return _currentDictionary; }
         }
 
+        public SolidErrorRecordFilter CreateSolidErrorRecordFilter(SolidReport.EntryType type, string marker)
+        {
+            SolidErrorRecordFilter retval = null;
+            switch (type)
+            {
+                case SolidReport.EntryType.StructureInsertInInferredFailed:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        type,
+                        string.Format("Failed to insert {0} in inferred marker", marker),
+                        marker
+                    );
+                    break;
+                case SolidReport.EntryType.StructureParentNotFound:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        type,
+                        string.Format("Parent not found for {0}", marker),
+                        marker
+                    );
+                    break;
+                case SolidReport.EntryType.StructureParentNotFoundForInferred:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        type,
+                        string.Format("Parent not found for inferred marker {0}", marker),
+                        marker
+                    );
+                    break;
+            }
+            return retval;
+        }
+
         public void BeginBuild(Dictionary currentDictionary)
         {
             base.Clear();
             _currentDictionary = currentDictionary;
-            _solidErrors = new SolidReportErrorRecordFilter[(int)SolidReport.EntryType.Max];
-            _solidErrors[(int)SolidReport.EntryType.StructureInsertInInferredFailed] =
-                new SolidReportErrorRecordFilter(
-                    _currentDictionary,
-                    SolidReport.EntryType.StructureInsertInInferredFailed,
-                    "Failed to insert in inferred marker"
-            );
-            _solidErrors[(int)SolidReport.EntryType.StructureParentNotFound] =
-                new SolidReportErrorRecordFilter(
-                    _currentDictionary,
-                    SolidReport.EntryType.StructureParentNotFound,
-                    "Parent not found for marker"
-            );
-            _solidErrors[(int)SolidReport.EntryType.StructureParentNotFoundForInferred] =
-                new SolidReportErrorRecordFilter(
-                    _currentDictionary,
-                    SolidReport.EntryType.StructureParentNotFoundForInferred,
-                    "Parent not found for inferred marker"
-            );
+            for (int i = 0; i < (int)SolidReport.EntryType.Max; i++)
+            {
+                _solidErrors[i] = new ErrorFilterForType();
+            }
         }
 
         public void EndBuild()
@@ -57,11 +79,17 @@ namespace SolidGui
                     //Add(new MarkerFilter(_currentDictionary, marker));
                 }
                 // Error Filters
-                foreach (SolidReportErrorRecordFilter solidFilter in _solidErrors)
+                foreach (ErrorFilterForType filter in _solidErrors)
                 {
-                    if (solidFilter.Count > 0)
+                    if (filter != null)
                     {
-                        Add(solidFilter);
+                        foreach (KeyValuePair<string, SolidErrorRecordFilter> recordFilter in filter)
+                        {
+                            if (recordFilter.Value.Count > 0)
+                            {
+                                Add(recordFilter.Value);
+                            }
+                        }
                     }
                 }
 
@@ -75,9 +103,14 @@ namespace SolidGui
 
         public void AddRecord(int record, SolidReport report)
         {
-            foreach (SolidReportErrorRecordFilter filter in _solidErrors)
+            foreach (SolidReport.Entry entry in report.Entries)
             {
-                filter.AddReport(record, report);
+                ErrorFilterForType filter = _solidErrors[(int)entry.EntryType];
+                if (!filter.ContainsKey(entry.Marker))
+                {
+                    filter.Add(entry.Marker, CreateSolidErrorRecordFilter(entry.EntryType, entry.Marker));
+                }
+                filter[entry.Marker].AddEntry(entry);
             }
         }
     }

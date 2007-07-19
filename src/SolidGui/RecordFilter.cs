@@ -6,34 +6,27 @@ using SolidEngine;
 namespace SolidGui
 {
 
-    public class SolidReportErrorRecordFilter : RecordFilter
+    public class SolidErrorRecordFilter : RecordFilter
     {
         SolidReport.EntryType _errorType;
+        string _marker;
 
         List<string> _errorMessages = new List<string>();
 
-        public SolidReportErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name) :
+        public SolidErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name, string marker) :
             base(d, name)
         {
             _errorType = errorType;
             _name = name;
         }
 
-        public void AddReport(int record, SolidReport report)
+        public void AddEntry(SolidReport.Entry entry)
         {
-            string errorMessage = string.Empty;
-            foreach (SolidReport.Entry entry in report.Entries)
+            if (!_indexesOfRecords.Contains(entry.RecordID))
             {
-                if (entry.EntryType == _errorType)
-                {
-                    errorMessage += entry.Description + "\n";
-                }
+                _indexesOfRecords.Add(entry.RecordID);
             }
-            if (errorMessage != null && errorMessage != string.Empty)
-            {
-                _indexesOfRecords.Add(record);
-                _errorMessages.Add(errorMessage);
-            }
+
         }
 
         public override string Description(int index)

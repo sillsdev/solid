@@ -71,7 +71,7 @@ namespace SolidGui
             {
                 if (CurrentRecordIndex != -1)
                 {
-                    return _recordFilter.Description(CurrentRecordIndex);
+                    return _recordFilter.Name;
                 }
                 else 
                 {

@@ -149,7 +149,20 @@ namespace SolidEngine
                 }
             );
         }
-  
+
+        public List<string> Markers()
+        {
+            List<string> list = new List<string>();
+            foreach (Entry entry in _entries)
+            {
+                if (!list.Contains(entry.Marker))
+                {
+                    list.Add(entry.Marker);
+                }
+            }
+            return list;
+        }
+
         public int Count
         {
             get { return _entries.Count; }
