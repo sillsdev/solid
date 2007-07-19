@@ -9,12 +9,20 @@ namespace SolidGui
         private int _recordIndex;
         private int _textIndex;
         private int _resultLength;
+        private RecordFilter _filter;
 
-        public SearchResult(int recordIndex, int textIndex, int resultLength)
+        public SearchResult(int recordIndex, int textIndex, int resultLength, RecordFilter filter)
         {
             RecordIndex = recordIndex;
             TextIndex = textIndex;
             ResultLength = resultLength;
+            Filter = filter;
+        }
+
+        public RecordFilter Filter
+        {
+            get { return _filter; }
+            set { _filter = value; }
         }
 
         public int ResultLength

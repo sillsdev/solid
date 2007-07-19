@@ -28,7 +28,6 @@ namespace SolidGui
 
         public RecordNavigatorPM()
         {
-            //!!!_currentIndexIntoFilteredRecords = -1;
         }
         
         public RecordFilter ActiveFilter
@@ -39,8 +38,15 @@ namespace SolidGui
             }
             set
             {
+                int currentRecordId = (_recordFilter != null) ? _recordFilter.Current.ID : 0;
+
                 _recordFilter = value;
-                _recordFilter.MoveToFirst();
+                
+                if(currentRecordId == 0 ||!_recordFilter.MoveToByID(currentRecordId))
+                {
+                    _recordFilter.MoveToFirst();
+                }
+                
                 if (FilterChanged != null)
                 {
 
@@ -63,9 +69,9 @@ namespace SolidGui
         {
             get
             {
-                if (CurrentIndexIntoFilteredRecords != -1)
+                if (CurrentRecordIndex != -1)
                 {
-                    return _recordFilter.Description(CurrentIndexIntoFilteredRecords);
+                    return _recordFilter.Description(CurrentRecordIndex);
                 }
                 else 
                 {
@@ -128,7 +134,7 @@ namespace SolidGui
             }
         }
         
-        public int CurrentIndexIntoFilteredRecords
+        public int CurrentRecordIndex
         {
             get
             {

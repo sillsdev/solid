@@ -259,5 +259,9 @@ namespace SolidGui
             set { _filePath = value; }
         }
 
+        public override Record GetRecord(int index)
+        {
+            return _recordList[index];
+        }
     }
 }

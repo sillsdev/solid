@@ -50,7 +50,7 @@ namespace SolidGui
             if (_currentDictionary != null)
             {
                 // All Filter
-                Add(new AllRecordFilter(_currentDictionary));
+                Add(AllRecordFilter.CreateAllRecordFilter(_currentDictionary));
                 // Marker Filters
                 foreach (string marker in _currentDictionary.AllMarkers)
                 {

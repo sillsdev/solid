@@ -5,8 +5,9 @@ namespace SolidGui
 {
     public partial class SearchView : Form
     {
+        private static SearchView _searchView;
         private SearchPM _searchModel;
-        private RecordNavigatorView _navigatorView;
+        private RecordNavigatorPM _navigatorModel;
         private SfmEditorView _sfmEditorView;
         private int _recordIndex = 0;
         private int _textIndex = 0;
@@ -19,21 +20,28 @@ namespace SolidGui
             }
         }
 
-        public SearchView(RecordNavigatorView navigatorView, SfmEditorView sfmEditorView)
+        public static SearchView CreatSearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
+        {
+            if (_searchView == null || _searchView.IsDisposed)
+            {
+                    _searchView = new SearchView(navigatorModel, sfmEditorView);
+            }
+            return _searchView;
+        }
+
+        private SearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
         {
             InitializeComponent();
-            _navigatorView = navigatorView;
+            _navigatorModel = navigatorModel;
             _sfmEditorView = sfmEditorView;
+            _scopeComboBox.SelectedIndex = 0;
         }
 
         public int RecordIndex
         {
             set
             {
-                if (value < _searchModel.MasterRecordList.Count)
-                {
                     _recordIndex = value;
-                }
             }
             get
             {
@@ -58,22 +66,20 @@ namespace SolidGui
 
         private void _findNextButton_Click(object sender, EventArgs e)
         {
-            RecordIndex = _navigatorView.Model.CurrentRecordID;
-            TextIndex = _sfmEditorView._contentsBox.SelectionStart;
+            TextIndex = _sfmEditorView._contentsBox.SelectionStart + 1;
 
-            if(_forwardRadioButton.Checked)
+            if (_scopeComboBox.SelectedIndex == 0)
             {
-                //move past the currently highlighted word in case it was the one just found
-                TextIndex ++;
-
-                _searchModel.FindNext(_findTextbox.Text, RecordIndex, TextIndex);
+                RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
+                _searchModel.FindNext(_navigatorModel.ActiveFilter,
+                                      _findTextbox.Text,
+                                      RecordIndex,
+                                      TextIndex);
             }
             else
             {
-                if(TextIndex > 0)
-                    TextIndex--;
-
-                _searchModel.FindPrevious(_findTextbox.Text,RecordIndex,TextIndex);
+                RecordIndex = _navigatorModel.CurrentRecordID;
+                _searchModel.FindNext(_findTextbox.Text, RecordIndex, TextIndex);
             }
         }
 
@@ -91,6 +97,7 @@ namespace SolidGui
             else
             {
                 _sfmEditorView._contentsBox.SelectedText = _replaceTextBox.Text;
+                _sfmEditorView.SaveContentsOfTextBox();
             }
         }
     }

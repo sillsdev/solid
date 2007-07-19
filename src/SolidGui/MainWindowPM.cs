@@ -42,7 +42,7 @@ namespace SolidGui
 
             _masterRecordList = WorkingDictionary.AllRecords;
             FilterChooserModel.RecordFilters = _recordFilters;
-            _searchModel.MasterRecordList = MasterRecordList;
+            _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
             _markerSettingsModel.AllMarkers = WorkingDictionary.AllMarkers;

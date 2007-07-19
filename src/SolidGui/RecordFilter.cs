@@ -94,7 +94,18 @@ namespace SolidGui
 
     public class AllRecordFilter : RecordFilter
     {
-        public AllRecordFilter(RecordManager rm) :
+        private static AllRecordFilter _allRecordFilter;
+
+        public static AllRecordFilter CreateAllRecordFilter(RecordManager rm)
+        {
+            if(_allRecordFilter == null)
+            {
+                _allRecordFilter = new AllRecordFilter(rm);
+            }
+            return _allRecordFilter;
+        }
+
+        private AllRecordFilter(RecordManager rm) :
             base(rm, "All")
         {
             UpdateFilter();
@@ -194,7 +205,7 @@ namespace SolidGui
                     _d.MoveTo(_indexesOfRecords[_currentIndex]);
                     return _d.Current;
                 }
-                return null;
+                return new Record(0);
 
             }
         }
@@ -288,12 +299,20 @@ namespace SolidGui
 
         public override bool MoveToByID(int id)
         {
-            if(id >= 0 && id < Count)
+            if(_indexesOfRecords.Contains(id))
             {
-                _currentIndex = id;
+                _currentIndex = _indexesOfRecords.IndexOf(id);
                 return true;
             }
             return false;
+        }
+        
+        public override Record GetRecord(int index)
+        {
+            if(index >= 0 && index < _indexesOfRecords.Count)
+                return _d.GetRecord(_indexesOfRecords[index]);
+
+            return null;
         }
 
     }

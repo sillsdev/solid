@@ -8,6 +8,11 @@ namespace SolidGui
     {
         protected RecordManager _d;
 
+        public override Record GetRecord(int index)
+        {
+            return (_d != null) ? _d.GetRecord(index) : base.GetRecord(index);
+        }
+
         protected RecordManagerDecorator(RecordManager d)
         {
             _d = d;

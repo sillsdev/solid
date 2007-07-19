@@ -154,8 +154,8 @@ namespace SolidGui
 
         private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
         {
-            _mainWindowPM.FilterChooserModel.ActiveRecordFilter = _mainWindowPM.RecordFilters[0];
-            _mainWindowPM.NavigatorModel.CurrentRecordID = e.SearchResult.RecordIndex;
+            _mainWindowPM.FilterChooserModel.ActiveRecordFilter = e.SearchResult.Filter;
+            _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
         }
@@ -198,9 +198,10 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
-            _searchView = new SearchView(_recordNavigatorView, _sfmEditorView);
+            _searchView = SearchView.CreatSearchView(_recordNavigatorView.Model, _sfmEditorView);
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
+            _searchView.Focus();
         }
     }
 }

@@ -9,11 +9,15 @@ namespace SolidGui
 {
     public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
     {
-        // Enumerator Methods
         public virtual void Reset()
         {
         }
 
+        public virtual Record GetRecord(int index)
+        {
+            return null;
+        }
+             
         public virtual bool MoveNext()
         {
             return false;
