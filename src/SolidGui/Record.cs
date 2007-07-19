@@ -92,7 +92,6 @@ namespace SolidGui
         }
                 
         private List<Field> _fields = new List<Field>();
-        private SolidReport _report;
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
 
@@ -230,7 +229,7 @@ namespace SolidGui
 
         public void SetRecord(string setToText, SolidSettings _solidSettings)
         {
-            setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
+            //!!!setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
             SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
             if(!xr.ReadToFollowing("entry"))
             {

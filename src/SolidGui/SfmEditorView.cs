@@ -8,6 +8,47 @@ namespace SolidGui
 {
     public partial class SfmEditorView : UserControl
     {
+        class KeyScanner
+        {
+            enum State
+            {
+                ScanBackslash,
+                ScanWhite
+            }
+            State _state;
+
+            public KeyScanner()
+            {
+                Reset();
+            }
+
+            public void Reset()
+            {
+                _state = State.ScanBackslash;
+            }
+
+            public bool ProcessKey(int c)
+            {
+                bool retval = false;
+                switch (_state)
+                {
+                    case State.ScanBackslash:
+                        if (c == '\\' || c == 220)
+                        {
+                            _state = State.ScanWhite;
+                        }
+                        break;
+                    case State.ScanWhite:
+                        if (c == ' ' || c == 0x09)
+                        {
+                            retval = true;
+                        }
+                        break;
+                }
+                return retval;
+            }
+        }
+
         private int _spacesInIndentation = 4;
         private int _leftMarigin = 20;
         private SfmEditorPM _model;
@@ -16,7 +57,9 @@ namespace SolidGui
         private Color _errorTextColor = Color.Red;
         private Color _defaultTextColor = Color.Black;
         public event EventHandler RecordTextChanged;
-        
+        private KeyScanner _keyScanner = new KeyScanner();
+        private const string _processingMark = "\x01";
+
         public SfmEditorView()
         {
             _currentRecord = null;
@@ -44,12 +87,11 @@ namespace SolidGui
             }
             else if (_currentRecord != e._record)
             {
-                _contentsBox.TextChanged -= OnTextChanged;
                 SaveContentsOfTextBox();
                 ClearContentsOfTextBox();
                 _currentRecord = e._record;
                 DisplayEachFieldInCurrentRecord();
-                _contentsBox.TextChanged += OnTextChanged;
+                _keyScanner.Reset();
             }
             
         }
@@ -61,12 +103,23 @@ namespace SolidGui
 
         private void DisplayEachFieldInCurrentRecord()
         {
+            int currentPosition = 0;
+            bool foundProcessingMark = false;
             foreach (Record.Field field in _currentRecord.Fields)
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
                 string fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
-
+                if (!foundProcessingMark)
+                {
+                    if (field.Value == _processingMark)
+                    {
+                        foundProcessingMark = true;
+                        field.Value = "";
+                        fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
+                    }
+                    currentPosition += fieldText.Length + 1;
+                }
                 _contentsBox.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
@@ -76,10 +129,10 @@ namespace SolidGui
                 {
                     _contentsBox.SelectionColor = _errorTextColor;
                 }
-                _contentsBox.AppendText(fieldText + "\r\n");
+                _contentsBox.AppendText(fieldText + "\n");
             }
             _contentsBox.SelectionColor = _defaultTextColor;
-            _contentsBox.SelectionStart = 0;
+            _contentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
         }
 
         private string ContentsBoxTextWithoutInferredFields()
@@ -107,20 +160,6 @@ namespace SolidGui
         {
         }
 
-        private void OnTextChanged(object sender, EventArgs e)
-        {
-
-            //allow changes until first space, tab, or return is hit after a "\" has been added
-            //reprocess the data
-            //set the selectionindentation to _tabStop
-            //allow for continued typing
-
-            if (RecordTextChanged != null)
-            {
-                RecordTextChanged.Invoke(this, new EventArgs());
-            }
-        }
-
         public void SaveContentsOfTextBox()
         {
             int currentIndex = _contentsBox.SelectionStart;
@@ -133,6 +172,24 @@ namespace SolidGui
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
             _contentsBox.SelectionStart = currentIndex;
+        }
+
+        private void _contentsBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (_keyScanner.ProcessKey(e.KeyValue))
+            {
+                //int currentIndex = _contentsBox.SelectionStart;
+                _contentsBox.SelectedText = _processingMark;
+                SaveContentsOfTextBox();
+                ClearContentsOfTextBox();
+                DisplayEachFieldInCurrentRecord();
+                //_contentsBox.SelectionStart = currentIndex;
+                _keyScanner.Reset();
+            }
+            if (RecordTextChanged != null)
+            {
+                RecordTextChanged.Invoke(this, new EventArgs());
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ using SolidEngine;
 
 namespace SolidTests
 {
-    [TestFixture]
+    [TestFixture, Ignore]
     public class SolidXmlReaderTests : Assertion
     {
 

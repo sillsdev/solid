@@ -16,7 +16,6 @@ namespace SolidGui
         private Dictionary _dictionary;
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsModel;
-        private SolidReport _report;
         public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
 
 

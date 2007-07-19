@@ -54,8 +54,6 @@ namespace SolidEngine
         /// <returns></returns>
         public static SolidSettings CreateSolidFileFromTemplate(string templatePath, string outputPath)
         {
-            SolidSettings settings;
-
             try
             {
                 if (File.Exists(outputPath))

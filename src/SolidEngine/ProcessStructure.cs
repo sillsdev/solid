@@ -11,7 +11,6 @@ namespace SolidEngine
         SolidSettings _settings;
 
         private string[] _mapNames = new string[(int)SolidMarkerSetting.MappingType.Max];
-        private string _recordElementName;
 
         public ProcessStructure(SolidSettings settings)
         {
@@ -19,11 +18,6 @@ namespace SolidEngine
             _mapNames[(int)SolidMarkerSetting.MappingType.Lift] = "lift";
             _mapNames[(int)SolidMarkerSetting.MappingType.Flex] = "flex";
 
-        }
-
-        public string RecordElementName
-        {
-            get { return _recordElementName; }
         }
 
         private void InsertInTreeAnyway(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope)

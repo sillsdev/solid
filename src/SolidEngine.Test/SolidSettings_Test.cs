@@ -32,7 +32,7 @@ namespace SolidTests
             f.FilePath = "myfile.solid";
             f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
             f.Save();
-            f =  SolidSettings.OpenSolidFile("myfile.solid");
+            f = SolidSettings.OpenSolidFile("myfile.solid");
             Assert.AreEqual(1, f.MarkerSettings.Count);
         }
 

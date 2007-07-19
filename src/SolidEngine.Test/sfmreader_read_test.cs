@@ -16,6 +16,32 @@ namespace SolidTests
         }
 
         [Test]
+        public void EmptySFM_HeaderCount_0()
+        {
+            string sfm = @"";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(false, result);
+            Assert.AreEqual(0, r.Header.Count);
+        }
+
+        [Test]
+        public void HeaderOnly_Header_Correct()
+        {
+            string sfm =
+                "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
+                "\\_DateStampHasFourDigitYear\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.AreEqual(false, result);
+            Assert.AreEqual(2, r.Header.Count);
+            Assert.AreEqual("_sh", r.Header[0].key);
+            Assert.AreEqual("v3.0  269  MDF 4.0 (alternate hierarchy)", r.Header[0].value);
+            Assert.AreEqual("_DateStampHasFourDigitYear", r.Header[1].key);
+            Assert.AreEqual("", r.Header[1].value);
+        }
+
+        [Test]
         public void EmptySFMRecordRead_False()
         {
             string sfm = @"";
@@ -33,6 +59,67 @@ namespace SolidTests
             SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
             bool result = r.Read();
             Assert.AreEqual(false, result);
+        }
+
+        [Test]
+        public void ReadNoHeader_Correct()
+        {
+            string sfm =
+                "\\lx a\n" +
+                "\\ge b\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("b", r.Value("ge"));
+        }
+
+        [Test]
+        public void ReadNoHeaderTabDelimited_Correct()
+        {
+            string sfm =
+                "\\lx\ta\n" +
+                "\\ge\tb\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("b", r.Value("ge"));
+        }
+
+        [Test]
+        public void ReadEmptyValue_Correct()
+        {
+            string sfm =
+                "\\lx a\n" +
+                "\\ge\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("", r.Value("ge"));
+        }
+
+        [Test]
+        public void ReadEmptyKey_Correct()
+        {
+            string sfm =
+                "\\lx a\n" +
+                "\\\n" +
+                "\\ge b";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(3, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("b", r.Value("ge"));
         }
 
         private SfmRecordReader ReadOneRecordData()

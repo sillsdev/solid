@@ -10,11 +10,7 @@ namespace SolidGui
     /// </summary>
     public class RecordNavigatorPM
     {
-        private int _currentIndexIntoFilteredRecords;
-        //!!!private IList<Record> _masterRecordList;
         private RecordFilter _recordFilter;
-        //!!!private IList<int> _indexesOfFilteredRecords;
-        //!!!private Record _currentRecord;
 
         public class RecordChangedEventArgs : System.EventArgs 
         {

@@ -1077,7 +1077,7 @@ namespace SolidEngine
                     switch (_stateLex)
                     {
                         case StateLex.BuildKey:
-                            if (c0 == ' ' || isEOL(c0))
+                            if (c0 == ' ' || c0 == 0x09 || isEOL(c0))
                             {
                                 // push into sb and then store
                                 currentField.key = sb.ToString();

@@ -12,7 +12,6 @@ namespace SolidTests
     {
         ProcessStructure _p;
         SolidSettings _settings;
-        SolidReport _report;
 
         private void Init()
         {
