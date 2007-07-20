@@ -30,11 +30,11 @@
      gridtolerance="10000"
      guidetolerance="10"
      objecttolerance="10"
-     inkscape:pageopacity="0"
+     inkscape:pageopacity="0.94901961"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6568542"
-     inkscape:cx="50.771952"
-     inkscape:cy="18.370999"
+     inkscape:zoom="8"
+     inkscape:cx="22.015199"
+     inkscape:cy="15.102708"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      width="32px"
@@ -44,7 +44,7 @@
      inkscape:window-width="1196"
      inkscape:window-height="960"
      inkscape:window-x="76"
-     inkscape:window-y="0" />
+     inkscape:window-y="30" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -69,10 +69,14 @@
     <path
        sodipodi:nodetypes="cccc"
        id="path7489"
-       d="M 20.118552,22.210359 L 20.118552,10.648853 L 11.148398,16.690636 L 20.118552,22.210359 z "
+       d="M 22.118552,22.210359 L 22.118552,10.648853 L 13.148398,16.690636 L 22.118552,22.210359 z "
        style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.23357821;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:export-filename="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork\BackwordOne.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90" />
+    <path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.562;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 9.089953,11.207251 L 8.875406,22.563934"
+       id="path2408" />
   </g>
 </svg>

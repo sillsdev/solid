@@ -12,13 +12,14 @@
    height="32"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.44.1"
+   inkscape:version="0.45.1"
    version="1.0"
    inkscape:export-filename="C:\Solid\ArtWork\Search.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docbase="C:\Solid\ArtWork"
-   sodipodi:docname="Search.svg">
+   sodipodi:docbase="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork"
+   sodipodi:docname="Search.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -31,9 +32,9 @@
      objecttolerance="10"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="164.19254"
-     inkscape:cy="-299.60984"
+     inkscape:zoom="16"
+     inkscape:cx="20.229048"
+     inkscape:cy="10.720083"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      width="32px"
@@ -42,8 +43,8 @@
      inkscape:showpageshadow="false"
      inkscape:window-width="1196"
      inkscape:window-height="998"
-     inkscape:window-x="1276"
-     inkscape:window-y="-4" />
+     inkscape:window-x="76"
+     inkscape:window-y="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -59,16 +60,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="back"
-     style="opacity:1;display:inline">
-    <rect
-       style="fill:none;fill-opacity:1;stroke:white;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.96052629"
-       id="rect5420"
-       width="30.847536"
-       height="30.670759"
-       x="0.61871845"
-       y="0.62213653"
-       ry="6" />
-  </g>
+     style="opacity:1;display:inline" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"

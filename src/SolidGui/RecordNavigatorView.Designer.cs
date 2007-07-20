@@ -36,12 +36,13 @@ namespace SolidGui
             this._firstButton = new System.Windows.Forms.Button();
             this._searchButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this._recheckButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _descriptionLabel
             // 
             this._descriptionLabel.ForeColor = System.Drawing.Color.Yellow;
-            this._descriptionLabel.Location = new System.Drawing.Point(82, 14);
+            this._descriptionLabel.Location = new System.Drawing.Point(82, 10);
             this._descriptionLabel.Name = "_descriptionLabel";
             this._descriptionLabel.Size = new System.Drawing.Size(205, 16);
             this._descriptionLabel.TabIndex = 0;
@@ -53,7 +54,7 @@ namespace SolidGui
             this._PreviousButton.FlatAppearance.BorderSize = 0;
             this._PreviousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("_PreviousButton.Image")));
-            this._PreviousButton.Location = new System.Drawing.Point(322, 7);
+            this._PreviousButton.Location = new System.Drawing.Point(352, 5);
             this._PreviousButton.Name = "_PreviousButton";
             this._PreviousButton.Size = new System.Drawing.Size(20, 21);
             this._PreviousButton.TabIndex = 1;
@@ -66,10 +67,10 @@ namespace SolidGui
             this._nextButton.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this._nextButton.FlatAppearance.BorderSize = 0;
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._nextButton.Image = ((System.Drawing.Image)(resources.GetObject("_nextButton.Image")));
-            this._nextButton.Location = new System.Drawing.Point(391, -1);
+            this._nextButton.Image = global::SolidGui.Properties.Resources.ForwardOne;
+            this._nextButton.Location = new System.Drawing.Point(406, 3);
             this._nextButton.Name = "_nextButton";
-            this._nextButton.Size = new System.Drawing.Size(44, 41);
+            this._nextButton.Size = new System.Drawing.Size(24, 28);
             this._nextButton.TabIndex = 2;
             this._nextButton.UseVisualStyleBackColor = false;
             this._nextButton.Click += new System.EventHandler(this._nextButton_Click);
@@ -78,9 +79,9 @@ namespace SolidGui
             // 
             this._recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNumber.ForeColor = System.Drawing.Color.Yellow;
-            this._recordNumber.Location = new System.Drawing.Point(348, 13);
+            this._recordNumber.Location = new System.Drawing.Point(376, 9);
             this._recordNumber.Name = "_recordNumber";
-            this._recordNumber.Size = new System.Drawing.Size(40, 13);
+            this._recordNumber.Size = new System.Drawing.Size(31, 16);
             this._recordNumber.TabIndex = 3;
             this._recordNumber.Text = "17";
             // 
@@ -91,7 +92,7 @@ namespace SolidGui
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._firstButton.Image = ((System.Drawing.Image)(resources.GetObject("_firstButton.Image")));
-            this._firstButton.Location = new System.Drawing.Point(293, 2);
+            this._firstButton.Location = new System.Drawing.Point(323, 0);
             this._firstButton.Name = "_firstButton";
             this._firstButton.Size = new System.Drawing.Size(31, 33);
             this._firstButton.TabIndex = 5;
@@ -103,9 +104,9 @@ namespace SolidGui
             this._searchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._searchButton.FlatAppearance.BorderSize = 0;
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._searchButton.Image = ((System.Drawing.Image)(resources.GetObject("_searchButton.Image")));
+            this._searchButton.Image = global::SolidGui.Properties.Resources.Search;
             this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(430, 2);
+            this._searchButton.Location = new System.Drawing.Point(294, -1);
             this._searchButton.Name = "_searchButton";
             this._searchButton.Size = new System.Drawing.Size(39, 35);
             this._searchButton.TabIndex = 6;
@@ -119,17 +120,30 @@ namespace SolidGui
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(6, 10);
+            this.label2.Location = new System.Drawing.Point(6, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 7;
             this.label2.Text = "Lexicon";
+            // 
+            // _recheckButton
+            // 
+            this._recheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._recheckButton.FlatAppearance.BorderSize = 0;
+            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._recheckButton.Image = global::SolidGui.Properties.Resources.RecheckRecord;
+            this._recheckButton.Location = new System.Drawing.Point(435, 1);
+            this._recheckButton.Name = "_recheckButton";
+            this._recheckButton.Size = new System.Drawing.Size(21, 32);
+            this._recheckButton.TabIndex = 8;
+            this._recheckButton.UseVisualStyleBackColor = true;
             // 
             // RecordNavigatorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.Controls.Add(this._recheckButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._searchButton);
             this.Controls.Add(this._firstButton);
@@ -138,7 +152,7 @@ namespace SolidGui
             this.Controls.Add(this._PreviousButton);
             this.Controls.Add(this._descriptionLabel);
             this.Name = "RecordNavigatorView";
-            this.Size = new System.Drawing.Size(470, 41);
+            this.Size = new System.Drawing.Size(470, 34);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,5 +167,6 @@ namespace SolidGui
         private System.Windows.Forms.Button _firstButton;
         private System.Windows.Forms.Button _searchButton;
         private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Button _recheckButton;
     }
 }

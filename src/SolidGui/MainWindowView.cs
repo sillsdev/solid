@@ -37,6 +37,7 @@ namespace SolidGui
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
+            _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
 
             //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
 

@@ -8,17 +8,17 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="32"
-   height="32"
+   width="23"
+   height="23"
    id="svg2"
    sodipodi:version="0.32"
    inkscape:version="0.45.1"
    version="1.0"
-   inkscape:export-filename="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork\ForwardOne.png"
+   inkscape:export-filename="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork\RecheckRecord.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
    sodipodi:docbase="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork"
-   sodipodi:docname="BackwardOne.svg"
+   sodipodi:docname="RecheckRecord.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <defs
      id="defs4" />
@@ -30,15 +30,15 @@
      gridtolerance="10000"
      guidetolerance="10"
      objecttolerance="10"
-     inkscape:pageopacity="1"
+     inkscape:pageopacity="0.90980392"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568542"
      inkscape:cx="50.771952"
      inkscape:cy="18.370999"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     width="32px"
-     height="32px"
+     width="23px"
+     height="23px"
      showborder="true"
      inkscape:showpageshadow="false"
      inkscape:window-width="1196"
@@ -66,13 +66,29 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline">
-    <path
-       sodipodi:nodetypes="cccc"
-       id="path7489"
-       d="M 19.975562,22.092676 L 19.975562,10.53117 L 11.005408,16.572953 L 19.975562,22.092676 z "
-       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1.23357821;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
-       inkscape:export-filename="C:\Documents and Settings\WeSay\Desktop\Solid\trunk\ArtWork\BackwordOne.png"
-       inkscape:export-xdpi="90"
-       inkscape:export-ydpi="90" />
+    <g
+       id="g6513"
+       transform="matrix(1.3189346,0,0,1.3189346,-3.3110729,-4.1241514)">
+      <path
+         sodipodi:nodetypes="cc"
+         id="path2227"
+         d="M 7.3691645,12.337941 C 7.3691645,12.337941 6.1317275,6.9462526 11.700194,6.9462526"
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccc"
+         id="path2229"
+         d="M 10.688189,4.6968111 L 10.688189,9.5492475 L 15.010296,7.1965511 L 10.688189,4.6968111 z "
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.92053443px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1" />
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 16.03539,11.100505 C 16.03539,11.100505 17.272827,16.492193 11.704361,16.492193"
+         id="path4170"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.90644532px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         d="M 12.016303,18.748679 L 12.016303,14.058932 L 7.6801075,16.332748 L 12.016303,18.748679 z "
+         id="path4172"
+         sodipodi:nodetypes="cccc" />
+    </g>
   </g>
 </svg>

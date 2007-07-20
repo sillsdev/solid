@@ -228,7 +228,9 @@
     <Content Include="Resources\FindReplace.png" />
     <Content Include="Resources\ForwardOne.png" />
     <Content Include="Resources\Recheck.png" />
-    <Content Include="Resources\Search1.png" />
+    <Content Include="Resources\RecheckRecord.png" />
+    <Content Include="Resources\Search.png" />
+    <None Include="Resources\Search1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

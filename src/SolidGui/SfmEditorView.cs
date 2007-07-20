@@ -74,6 +74,11 @@ namespace SolidGui
             _contentsBox.SelectionIndent = _leftMarigin;
         }
 
+        public void OnRecheckClicked(object sender, EventArgs e)
+        {
+            UpdateContentsOfTextBox();
+        }
+
         public void BindModel(SfmEditorPM model)
         {
             _model = model;
@@ -99,7 +104,6 @@ namespace SolidGui
                 DisplayEachFieldInCurrentRecord();
                 _keyScanner.Reset();
             }
-            
         }
 
         private void ClearContentsOfTextBox()
@@ -171,8 +175,7 @@ namespace SolidGui
             int currentIndex = _contentsBox.SelectionStart;
             if (_currentRecord != null && _currentRecord.ToStructuredString() != _contentsBox.Text)
             {
-                string test = ContentsBoxTextWithoutInferredFields();
-                _model.UpdateCurrentRecord(_currentRecord, test);
+                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
 
                 if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
@@ -180,20 +183,27 @@ namespace SolidGui
             _contentsBox.SelectionStart = currentIndex;
         }
 
+/*        
         private void _contentsBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (_keyScanner.ProcessKey(e.KeyValue))
             {
                 _contentsBox.SelectedText = _processingMark;
-                SaveContentsOfTextBox();
-                ClearContentsOfTextBox();
-                DisplayEachFieldInCurrentRecord();
+                UpdateContentsOfTextBox();
                 _keyScanner.Reset();
             }
             if (RecordTextChanged != null)
             {
                 RecordTextChanged.Invoke(this, new EventArgs());
             }
+        }
+//*/
+
+        private void UpdateContentsOfTextBox()
+        {
+            SaveContentsOfTextBox();
+            ClearContentsOfTextBox();
+            DisplayEachFieldInCurrentRecord();
         }
     }
 }
