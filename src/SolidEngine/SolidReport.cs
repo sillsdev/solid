@@ -28,6 +28,9 @@ namespace SolidEngine
             string _marker;
             string _description;
 
+            public Entry()
+            {}
+
             public Entry(EntryType type, XmlNode entry, XmlNode field, string description)
             {
                 _entryType = type;
@@ -195,7 +198,7 @@ namespace SolidEngine
         public void SaveAs(string filePath)
         {
             _filePath = filePath;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidReport), new Type[]{typeof(Entry)});
+            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));//, new Type[]{typeof(Entry)});
             using (StreamWriter writer = new StreamWriter(_filePath))
             {
                 xs.Serialize(writer, this);

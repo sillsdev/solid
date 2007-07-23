@@ -62,40 +62,82 @@ namespace SolidEngine
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
             bool foundParent = false;
+            int i = scope.Count;
             // Check for record marker (assume is root)
-            for (int i = scope.Count - 1; !foundParent && i >= 0; i--)
+            while (i > 0 && !foundParent)
             {
-                if (setting.ParentExists(scope[i].Name))
+                i--;
+                SolidStructureProperty structureProperty = setting.getStructureProperty(scope[i].Name);
+                if (structureProperty != null)
                 {
-                    foundParent = true;
-                    // Truncate the scope
-                    if (i < scope.Count - 1)
+                    if (i == scope.Count - 1)
                     {
-                        scope.RemoveRange(i + 1, scope.Count - i - 1);
+                        foundParent = true;
                     }
-                    // Add the node under this parent
-                    XmlNode fieldNode = destination.ImportNode(source, true);
-                    for (int j = 0; j < setting.Mapping.Length; j++)
+                    else if (scope[i + 1].Name == setting.Marker &&
+                             structureProperty.MultipleAdjacent != SolidGui.MultiplicityAdjacency.Once)
                     {
-                        if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
+                        foundParent = true;
+                    }
+                    else if (structureProperty.MultipleAdjacent == SolidGui.MultiplicityAdjacency.Once)
+                    {
+                        foundParent = true;
+
+                        //make sure the parent doesn't allready contain the node we want to add
+                        foreach (XmlNode childNode in scope[i].ChildNodes)
                         {
-                            XmlAttribute attribute = destination.CreateAttribute(_mapNames[j]);
-                            attribute.Value = setting.Mapping[j];
-                            fieldNode.Attributes.Append(attribute);
+                            if (childNode.Name == source.Name)
+                                foundParent = false;
                         }
                     }
-                    XmlNode dataNode = destination.CreateElement("data");
-                    if (fieldNode.FirstChild != null)
+                    else if (structureProperty.MultipleAdjacent == SolidGui.MultiplicityAdjacency.MultipleApart)
                     {
-                        dataNode.AppendChild(fieldNode.FirstChild);
+                        foundParent = true;
                     }
-                    fieldNode.AppendChild(dataNode);
-                    XmlNode n = scope[i].AppendChild(fieldNode);
-                    // Add this node to the scope
-                    scope.Add(n);
                 }
             }
+
+            if(foundParent)
+            {
+                // Add the node under this parent
+                XmlNode fieldNode = CreateFieldNode(source, setting, destination);
+                XmlNode fieldNodeInTree = scope[i].AppendChild(fieldNode);
+                UpdateScope(scope, i, fieldNodeInTree);
+            }
+            
             return foundParent;
+        }
+
+        private void UpdateScope(List<XmlNode> scope, int i, XmlNode n)
+        {
+            // Truncate the scope
+            if (i < scope.Count - 1)
+            {
+                scope.RemoveRange(i + 1, scope.Count - i - 1);
+            }
+            // Add this node to the scope
+            scope.Add(n);
+        }
+
+        private XmlNode CreateFieldNode(XmlNode source, SolidMarkerSetting setting, XmlDocument destination)
+        {
+            XmlNode fieldNode = destination.ImportNode(source, true);
+            for (int j = 0; j < setting.Mapping.Length; j++)
+            {
+                if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
+                {
+                    XmlAttribute attribute = destination.CreateAttribute(_mapNames[j]);
+                    attribute.Value = setting.Mapping[j];
+                    fieldNode.Attributes.Append(attribute);
+                }
+            }
+            XmlNode dataNode = destination.CreateElement("data");
+            if (fieldNode.FirstChild != null)
+            {
+                dataNode.AppendChild(fieldNode.FirstChild);
+            }
+            fieldNode.AppendChild(dataNode);
+            return fieldNode;
         }
 
         public XmlNode Process(XmlNode source, SolidReport report)
@@ -111,7 +153,6 @@ namespace SolidEngine
                 if (!InsertInTree(field, destination, report, scope))
                 {
                     // Can we infer a node.
-                    //!!! TODO Add xpath here to check for conditions based on adjacency etc.
                     if (setting.InferedParent != String.Empty)
                     {
                         XmlNode inferredNode = destination.CreateElement(setting.InferedParent);

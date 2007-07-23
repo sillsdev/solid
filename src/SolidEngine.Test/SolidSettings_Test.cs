@@ -25,7 +25,7 @@ namespace SolidTests
         }
 
         [Test]
-        public void SolidSettings_Write1Read1_Correct()
+        public void SolidSettings_Write1Read2_Correct()
         {
             SolidSettings f;
             f = new SolidSettings();
@@ -33,7 +33,8 @@ namespace SolidTests
             f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
             f.Save();
             f = SolidSettings.OpenSolidFile("myfile.solid");
-            Assert.AreEqual(1, f.MarkerSettings.Count);
+            //2 returned instead of 1 because lx has been hardcoded in
+            Assert.AreEqual(2, f.MarkerSettings.Count);
         }
 
         [Test]

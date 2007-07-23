@@ -62,9 +62,7 @@ namespace SolidTests
         {
             SolidReport save = new SolidReport();
             Assert.AreEqual(0, save.Count);
-            save.AddEntry(
-                SolidReport.EntryType.StructureParentNotFound, null, null, "Test"
-            );
+            save.AddEntry(SolidReport.EntryType.StructureParentNotFound, null, null, "Test");
             Assert.AreEqual(1, save.Count);
             save.SaveAs("../../SolidReport_SaveOpen_Correct.xml");
             SolidReport open = SolidReport.OpenSolidReport("../../SolidReport_SaveOpen_Correct.xml");

@@ -114,7 +114,7 @@ namespace SolidGui
             // 
             this._scopeComboBox.FormattingEnabled = true;
             this._scopeComboBox.Items.AddRange(new object[] {
-            "Currently Selected Filter",
+            "Check Result",
             "Entire Dictionary"});
             this._scopeComboBox.Location = new System.Drawing.Point(59, 16);
             this._scopeComboBox.Name = "_scopeComboBox";

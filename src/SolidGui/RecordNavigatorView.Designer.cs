@@ -54,9 +54,9 @@ namespace SolidGui
             this._PreviousButton.FlatAppearance.BorderSize = 0;
             this._PreviousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._PreviousButton.Image = ((System.Drawing.Image)(resources.GetObject("_PreviousButton.Image")));
-            this._PreviousButton.Location = new System.Drawing.Point(352, 5);
+            this._PreviousButton.Location = new System.Drawing.Point(349, 4);
             this._PreviousButton.Name = "_PreviousButton";
-            this._PreviousButton.Size = new System.Drawing.Size(20, 21);
+            this._PreviousButton.Size = new System.Drawing.Size(25, 25);
             this._PreviousButton.TabIndex = 1;
             this._PreviousButton.UseVisualStyleBackColor = true;
             this._PreviousButton.Click += new System.EventHandler(this._PreviousButton_Click);
@@ -68,9 +68,9 @@ namespace SolidGui
             this._nextButton.FlatAppearance.BorderSize = 0;
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._nextButton.Image = global::SolidGui.Properties.Resources.ForwardOne;
-            this._nextButton.Location = new System.Drawing.Point(406, 3);
+            this._nextButton.Location = new System.Drawing.Point(406, 4);
             this._nextButton.Name = "_nextButton";
-            this._nextButton.Size = new System.Drawing.Size(24, 28);
+            this._nextButton.Size = new System.Drawing.Size(25, 25);
             this._nextButton.TabIndex = 2;
             this._nextButton.UseVisualStyleBackColor = false;
             this._nextButton.Click += new System.EventHandler(this._nextButton_Click);
@@ -92,9 +92,9 @@ namespace SolidGui
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._firstButton.Image = ((System.Drawing.Image)(resources.GetObject("_firstButton.Image")));
-            this._firstButton.Location = new System.Drawing.Point(323, 0);
+            this._firstButton.Location = new System.Drawing.Point(323, 4);
             this._firstButton.Name = "_firstButton";
-            this._firstButton.Size = new System.Drawing.Size(31, 33);
+            this._firstButton.Size = new System.Drawing.Size(25, 25);
             this._firstButton.TabIndex = 5;
             this._firstButton.UseVisualStyleBackColor = true;
             this._firstButton.Click += new System.EventHandler(this._firstButton_Click);
@@ -106,9 +106,9 @@ namespace SolidGui
             this._searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._searchButton.Image = global::SolidGui.Properties.Resources.Search;
             this._searchButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._searchButton.Location = new System.Drawing.Point(294, -1);
+            this._searchButton.Location = new System.Drawing.Point(294, 4);
             this._searchButton.Name = "_searchButton";
-            this._searchButton.Size = new System.Drawing.Size(39, 35);
+            this._searchButton.Size = new System.Drawing.Size(25, 25);
             this._searchButton.TabIndex = 6;
             this._searchButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this._searchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -132,9 +132,9 @@ namespace SolidGui
             this._recheckButton.FlatAppearance.BorderSize = 0;
             this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._recheckButton.Image = global::SolidGui.Properties.Resources.RecheckRecord;
-            this._recheckButton.Location = new System.Drawing.Point(435, 1);
+            this._recheckButton.Location = new System.Drawing.Point(435, 4);
             this._recheckButton.Name = "_recheckButton";
-            this._recheckButton.Size = new System.Drawing.Size(21, 32);
+            this._recheckButton.Size = new System.Drawing.Size(25, 25);
             this._recheckButton.TabIndex = 8;
             this._recheckButton.UseVisualStyleBackColor = true;
             // 

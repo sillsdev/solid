@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace SolidEngine
@@ -109,7 +110,16 @@ namespace SolidEngine
                 _marker = value;
             }
         }
-        
+
+        public SolidStructureProperty getStructureProperty(string name)
+        {
+            return _structureProperties.Find(
+                delegate (SolidStructureProperty property)
+                {
+                    return property.Parent == name;
+                }
+            );
+        }
     }
 
 }
