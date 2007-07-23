@@ -197,8 +197,8 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
-        <string>Anthro Note</string>
+        <string>Etymology Gloss</string>
+        <string>Lexical Function</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -325,8 +325,8 @@
     <SolidMarkerSetting>
       <InferedParent>lx</InferedParent>
       <Mappings>
-        <string>Bibliography (Subentry)</string>
-        <string>Anthro Note</string>
+        <string>Alternate Form (Allomorph)</string>
+        <string>Academic Domains</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>

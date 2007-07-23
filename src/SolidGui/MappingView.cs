@@ -49,12 +49,17 @@ namespace SolidGui
         
         public void InitializeDisplay()
         {
+            _targetCombo.SelectedIndex = (int)_model.Type;
+            _targetCombo_SelectedIndexChanged(this, new EventArgs());
+        }
+
+        private void HighlightPreviouslySelectedConcept()
+        {
             foreach(ListViewItem item in _conceptList.Items)
             {
                 if (item.Text == _model.MarkerSetting.GetMapping(CurrentMappingType()))
                 {
                     item.Selected = true;
-                    //_conceptList_SelectedIndexChanged(this, new EventArgs());                        
                 }
                 else
                 {
@@ -65,6 +70,7 @@ namespace SolidGui
 
         private void LoadConceptList()
         {
+            _conceptList.Items.Clear();
             foreach (object concept in _model.TargetSystem.Concepts)
             {
                 ListViewItem item = new ListViewItem(concept.ToString());
@@ -105,6 +111,14 @@ namespace SolidGui
         private void _conceptList_SizeChanged(object sender, EventArgs e)
         {
             columnHeader1.Width = _conceptList.Width-40;
+        }
+
+        private void _targetCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _model.TargetSystem = _model.TargetChoices[_targetCombo.SelectedIndex];
+            LoadConceptList();
+            LoadInformationPane();
+            HighlightPreviouslySelectedConcept();
         }
     }
 }

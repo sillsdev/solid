@@ -26,9 +26,10 @@ namespace SolidGui
             }
         }
 
-        public void UpdateDisplay(string initialArea, string selectedMarker)
+        public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
             SelectInitialArea(initialArea);
+            
             SolidMarkerSetting currentSettings = new SolidMarkerSetting();
             _markerListBox.Items.Clear();
 
@@ -47,6 +48,7 @@ namespace SolidGui
             _structurePropertiesView.UpdateDisplay();
 
             _mappingView.Model.MarkerSetting = currentSettings;
+            _mappingView.Model.Type = type;
             _mappingView.InitializeDisplay();
         }
 
@@ -67,7 +69,7 @@ namespace SolidGui
 
         public void UpdateDisplay()
         {
-            UpdateDisplay(null, string.Empty);
+            UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Flex);
         }
 
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)

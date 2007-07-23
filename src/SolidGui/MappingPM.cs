@@ -21,6 +21,7 @@ namespace SolidGui
         private MappingSystem _targetSystem;
         private SolidMarkerSetting _markerSetting;
         private Concept _selectedConcept;
+        private SolidMarkerSetting.MappingType _type;
 
         public MappingPM()
         {
@@ -29,11 +30,22 @@ namespace SolidGui
             foreach (string path in Directory.GetFiles(PathToMappingsDirectory, "*.mappingSystem"))   
             {
                 _systems.Add(new MappingSystem(path));
-               
             }
             if (TargetChoices.Count > 0)
             {
                 _targetSystem = TargetChoices[0];
+            }
+        }
+
+        public SolidMarkerSetting.MappingType Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
             }
         }
 
@@ -70,7 +82,6 @@ namespace SolidGui
             {
                 return _systems;
             }
-
         }
 
 

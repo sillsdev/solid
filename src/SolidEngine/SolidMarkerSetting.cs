@@ -7,8 +7,8 @@ namespace SolidEngine
     {
         public enum MappingType
         {
-            Lift,
             Flex,
+            Lift,
             Max
         }
 

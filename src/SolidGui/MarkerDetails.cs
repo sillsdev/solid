@@ -1,10 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using EXControls;
 using SolidEngine;
@@ -60,7 +56,8 @@ namespace SolidGui
                 FillInFrequencyColumn(item, pair.Value.ToString());
                 AddLinkSubItem(item, MakeStructureLinkLabel(_settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, _settings.FindMarkerSetting(pair.Key)), OnMappingLinkClicked);
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, _settings.FindMarkerSetting(pair.Key)), OnFlexMappingLinkClicked);
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, _settings.FindMarkerSetting(pair.Key)), OnLiftMappingLinkClicked);              
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
                 
@@ -147,11 +144,18 @@ namespace SolidGui
             OpenSettingsDialog("writingSystem");
         }
 
-        private void OnMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OnFlexMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("mapping");
+            OpenSettingsDialog("mapping", SolidMarkerSetting.MappingType.Flex);
+        }
+
+        private void OnLiftMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ListViewItem item = (ListViewItem)((LinkLabel)sender).Tag;
+            item.Selected = true;
+            OpenSettingsDialog("mapping", SolidMarkerSetting.MappingType.Lift);
         }
 
         private void _listView_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,6 +199,20 @@ namespace SolidGui
             string marker = _listView.SelectedItems[0].Text;
             MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
+            dialog.ShowDialog();
+            UpdateDisplay();
+        }
+
+        private void OpenSettingsDialog(string area, SolidMarkerSetting.MappingType mappingType)
+        {
+            if (_listView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            string marker = _listView.SelectedItems[0].Text;
+            MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
+            dialog.SelectedArea = area;
+            dialog.MappingType = mappingType;
             dialog.ShowDialog();
             UpdateDisplay();
         }

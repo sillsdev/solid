@@ -33,8 +33,9 @@ namespace SolidGui
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this._editMarkerButton = new System.Windows.Forms.Button();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // _listView
@@ -47,6 +48,7 @@ namespace SolidGui
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
+            this.columnHeader5,
             this.columnHeader6});
             this._listView.ControlPadding = 4;
             this._listView.FullRowSelect = true;
@@ -77,9 +79,9 @@ namespace SolidGui
             // 
             this.columnHeader4.Text = "Writing System";
             // 
-            // columnHeader6
+            // columnHeader5
             // 
-            this.columnHeader6.Text = "FLEx";
+            this.columnHeader5.Text = "FLEx";
             // 
             // _editMarkerButton
             // 
@@ -91,6 +93,10 @@ namespace SolidGui
             this._editMarkerButton.Text = "&Edit Settings...";
             this._editMarkerButton.UseVisualStyleBackColor = true;
             this._editMarkerButton.Click += new System.EventHandler(this.OnEditSettingsClick);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "LIFT";
             // 
             // MarkerDetails
             // 
@@ -111,7 +117,8 @@ namespace SolidGui
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Button _editMarkerButton;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }

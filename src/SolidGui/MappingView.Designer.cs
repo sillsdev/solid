@@ -63,6 +63,7 @@ namespace SolidGui
             this._targetCombo.Size = new System.Drawing.Size(240, 21);
             this._targetCombo.TabIndex = 1;
             this._targetCombo.Text = "FieldWorks Langauge Explorer (FLEX)";
+            this._targetCombo.SelectedIndexChanged += new System.EventHandler(this._targetCombo_SelectedIndexChanged);
             // 
             // splitContainer1
             // 
