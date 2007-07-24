@@ -68,14 +68,8 @@ namespace SolidGui
         {
             if (_currentDictionary != null)
             {
-                // All Filter
-                Add(AllRecordFilter.CreateAllRecordFilter(_currentDictionary));
-                // Marker Filters
-                foreach (string marker in _currentDictionary.AllMarkers)
-                {
-                    //Add(new MarkerFilter(_currentDictionary, marker));
-                }
                 // Error Filters
+                int filterCount = 0;
                 foreach (ErrorFilterForType filter in _solidErrors)
                 {
                     if (filter != null)
@@ -84,10 +78,16 @@ namespace SolidGui
                         {
                             if (recordFilter.Value.Count > 0)
                             {
+                                filterCount++;
                                 Add(recordFilter.Value);
                             }
                         }
                     }
+                }
+                // If no errors add the all filter.
+                if (filterCount == 0)
+                {
+                    Add(AllRecordFilter.CreateAllRecordFilter(_currentDictionary));
                 }
 
 
