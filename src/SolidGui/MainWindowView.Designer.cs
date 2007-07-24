@@ -39,14 +39,16 @@ namespace SolidGui
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this._markerDetails = new SolidGui.MarkerDetails();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -56,6 +58,7 @@ namespace SolidGui
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -157,6 +160,7 @@ namespace SolidGui
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.panel2);
             this.splitContainer2.Panel1.Controls.Add(this._markerDetails);
             // 
             // splitContainer2.Panel2
@@ -166,14 +170,6 @@ namespace SolidGui
             this.splitContainer2.Size = new System.Drawing.Size(435, 426);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
-            // 
-            // _markerDetails
-            // 
-            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerDetails.Location = new System.Drawing.Point(0, 0);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(435, 266);
-            this._markerDetails.TabIndex = 0;
             // 
             // panel1
             // 
@@ -214,6 +210,38 @@ namespace SolidGui
             this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(0, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(435, 34);
+            this.panel2.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(5, 7);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Marker Settings";
+            // 
+            // _markerDetails
+            // 
+            this._markerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._markerDetails.Location = new System.Drawing.Point(0, 35);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(435, 231);
+            this._markerDetails.TabIndex = 0;
             // 
             // _filterChooserView
             // 
@@ -274,6 +302,8 @@ namespace SolidGui
             this.splitContainer2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,6 +328,8 @@ namespace SolidGui
         private System.Windows.Forms.Button _recheckButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
     }
 }
 
