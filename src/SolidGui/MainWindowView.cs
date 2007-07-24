@@ -26,11 +26,10 @@ namespace SolidGui
             _sfmEditorView.BindModel(_mainWindowPM.SfmEditorModel);
             _recordNavigatorView.BindModel(_mainWindowPM.NavigatorModel);
             _filterChooserView.BindModel(_mainWindowPM.FilterChooserModel);
+
             this.KeyPreview = true;
-            //_markerSettingsView.Model = _mainWindowPM.MarkerSettingsModel;
-
+            
             _mainWindowPM.DictionaryProcessed += this.OnDictionaryProcessed;
-
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
@@ -54,15 +53,14 @@ namespace SolidGui
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
             //wire up the change of record event to our record display widget
-            _mainWindowPM.NavigatorModel.StartupOrReset();
-            _filterChooserView.UpdateDisplay();
-            //_markerSettingsView.InitializeDisplay();
+            _mainWindowPM.NavigatorModel.StartupOrReset();           
             _markerDetails.BindModel(
-                _mainWindowPM.MarkerSettingsModel, 
+                _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.FilterChooserModel,
-                _mainWindowPM.WorkingDictionary, 
+                _mainWindowPM.WorkingDictionary,
                 _mainWindowPM.SolidSettings
             );
+            _filterChooserView.UpdateDisplay();
             _markerDetails.UpdateDisplay();
             UpdateDisplay();
         }
@@ -155,6 +153,7 @@ namespace SolidGui
         {
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
             _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
+            _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
         }
 
         private void OnSaveClick(object sender, EventArgs e)

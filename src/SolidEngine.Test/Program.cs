@@ -13,8 +13,8 @@ namespace SolidTests
             //SolidReportTest t = new SolidReportTest();
             //t.SolidReport_SaveOpen_Correct();
 
-            SolidXmlReader_XmlDoc_Test t = new SolidXmlReader_XmlDoc_Test();
-            t.OneEntrySfmDoc_Correct();
+            //SolidXmlReader_XmlDoc_Test t = new SolidXmlReader_XmlDoc_Test();
+            //t.OneEntrySfmDoc_Correct();
 
             //SolidXmlReaderTests t = new SolidXmlReaderTests();
             //t.SFMEmptyDocument_Correct();

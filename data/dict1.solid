@@ -8,7 +8,12 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>lx</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>

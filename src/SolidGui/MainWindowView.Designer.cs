@@ -36,17 +36,17 @@ namespace SolidGui
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this._markerDetails = new SolidGui.MarkerDetails();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -117,6 +117,16 @@ namespace SolidGui
             this._aboutBoxButton.Text = "About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -156,14 +166,6 @@ namespace SolidGui
             this.splitContainer2.Size = new System.Drawing.Size(435, 426);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
-            // 
-            // _markerDetails
-            // 
-            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerDetails.Location = new System.Drawing.Point(0, 0);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(435, 266);
-            this._markerDetails.TabIndex = 0;
             // 
             // panel1
             // 
@@ -205,6 +207,14 @@ namespace SolidGui
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
             // 
+            // _markerDetails
+            // 
+            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerDetails.Location = new System.Drawing.Point(0, 0);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(435, 266);
+            this._markerDetails.TabIndex = 0;
+            // 
             // _filterChooserView
             // 
             this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -235,20 +245,11 @@ namespace SolidGui
             this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Enabled = false;
             this._recordNavigatorView.Location = new System.Drawing.Point(-2, 1);
             this._recordNavigatorView.Name = "_recordNavigatorView";
             this._recordNavigatorView.Size = new System.Drawing.Size(451, 34);
             this._recordNavigatorView.TabIndex = 3;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // MainWindowView
             // 

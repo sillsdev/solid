@@ -153,6 +153,7 @@ namespace SolidGui
             this.Controls.Add(this._descriptionLabel);
             this.Name = "RecordNavigatorView";
             this.Size = new System.Drawing.Size(470, 34);
+            this.Load += new System.EventHandler(this.RecordNavigatorView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

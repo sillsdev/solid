@@ -79,5 +79,10 @@ namespace SolidGui
         {
             SearchButtonClicked.Invoke(this, new EventArgs());
         }
+
+        private void RecordNavigatorView_Load(object sender, EventArgs e)
+        {
+            _descriptionLabel.Text = "";
+        }
     }
 }

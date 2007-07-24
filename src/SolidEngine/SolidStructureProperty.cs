@@ -10,7 +10,7 @@ namespace SolidEngine
         public SolidStructureProperty()
         {
             Parent = "";
-            _multipleAdjacent = MultiplicityAdjacency.Once;
+            _multipleAdjacent = MultiplicityAdjacency.MultipleApart;
         }
 
         public SolidStructureProperty(string parent,MultiplicityAdjacency ma)
@@ -22,7 +22,7 @@ namespace SolidEngine
         public SolidStructureProperty(string parent)
         {
             Parent = parent;
-            _multipleAdjacent = MultiplicityAdjacency.Once;
+            _multipleAdjacent = MultiplicityAdjacency.MultipleApart;
         }
 
         public override string ToString()
