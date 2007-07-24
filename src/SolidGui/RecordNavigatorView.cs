@@ -19,6 +19,7 @@ namespace SolidGui
 //            _searchButton.Image =
 //                _searchButton.Image.GetThumbnailImage(_searchButton.Width - 8, _searchButton.Height - 8, ReturnFalse,
 //                                                      System.IntPtr.Zero);
+            _descriptionLabel.Text = "";
         }
 
         private bool ReturnFalse()
