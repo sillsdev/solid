@@ -207,7 +207,7 @@ namespace SolidTests
         public void ProcessStructure_NoInferInsertAnyway_Correct()
         {
             string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
-            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data></ge><zz field=\"4\"><data>z</data></zz></sn></lx></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");

@@ -88,7 +88,7 @@ namespace SolidGui
 
         public string RemoveLeadingBackslash(string parent)
         {
-            if(parent[0].Equals('\\'))
+            if(parent != null && parent[0].Equals('\\'))
             {
                 parent = parent.Substring(1);
             }

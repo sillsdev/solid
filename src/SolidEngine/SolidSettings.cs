@@ -11,6 +11,7 @@ namespace SolidEngine
         private List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
         private string _version = "1.0";
+        private string _newestVersion = "1.0";
 
         public SolidSettings()
         {
@@ -125,6 +126,14 @@ namespace SolidEngine
             using (StreamWriter writer = new StreamWriter(_filePath))
             {
                 xs.Serialize(writer, this);
+            }
+        }
+
+        private void UpdateVersion()
+        {
+            if(_version != _newestVersion)
+            {
+                //do a transform from the old version to the new one
             }
         }
 

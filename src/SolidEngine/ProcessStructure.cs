@@ -20,38 +20,25 @@ namespace SolidEngine
 
         private void InsertInTreeAnyway(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope)
         {
-            // Get the marker settings for this node.
+            
             SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
-            // Insert source as sibling of the last element in scope.
-            int i = 0; 
-            if (scope.Count >= 2)
+           
+            int i = 0;
+            
+            XmlHelper xh = new XmlHelper(scope[scope.Count - 1]);
+            SolidReport.Entry e = (report.GetEntryById(Convert.ToInt32(xh.GetAttribute("field"))));
+            
+            int level = (e != null) ? 2 : 1;
+            
+            if (scope.Count >= level)
             {
-                i = scope.Count - 2; //!!! Bit hacky. Want to insert under the second to last in scope.
+                i = scope.Count - level; //!!! Bit hacky.
             }
-            // Truncate the scope
-            if (i < scope.Count - 1)
-            {
-                scope.RemoveRange(i + 1, scope.Count - i - 1);
-            }
-            // Add the node under this parent
-            XmlNode fieldNode = destination.ImportNode(source, true);
-            for (int j = 0; j < setting.Mapping.Length; j++)
-            {
-                if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
-                {
-                    XmlAttribute attribute = destination.CreateAttribute(_mapNames[j]);
-                    attribute.Value = setting.Mapping[j];
-                    fieldNode.Attributes.Append(attribute);
-                }
-            }
-            XmlNode dataNode = destination.CreateElement("data");
-            if (fieldNode.FirstChild != null)
-            {
-                dataNode.AppendChild(fieldNode.FirstChild);
-            }
-            fieldNode.AppendChild(dataNode);
+
+            TruncateScope(i, scope);
+            // Add the node under scope[i]
+            XmlNode fieldNode = CreateFieldNode(source, setting, destination);
             XmlNode n = scope[i].AppendChild(fieldNode);
-            // Add this node to the scope
             scope.Add(n);
         }
 
@@ -108,13 +95,16 @@ namespace SolidEngine
 
         private void UpdateScope(List<XmlNode> scope, int i, XmlNode n)
         {
-            // Truncate the scope
+            TruncateScope(i, scope);
+            scope.Add(n);
+        }
+
+        private void TruncateScope(int i, List<XmlNode> scope)
+        {
             if (i < scope.Count - 1)
             {
                 scope.RemoveRange(i + 1, scope.Count - i - 1);
             }
-            // Add this node to the scope
-            scope.Add(n);
         }
 
         private XmlNode CreateFieldNode(XmlNode source, SolidMarkerSetting setting, XmlDocument destination)

@@ -89,7 +89,6 @@ namespace SolidEngine
             {
                 get { return _entryName; }
             }
-
         }
 
         public class SolidEntries : List<SolidReport.Entry>
@@ -97,7 +96,7 @@ namespace SolidEngine
         }
 
         public SolidEntries _entries;
-
+                
         [XmlIgnore]
         private string _filePath;
 
@@ -126,6 +125,18 @@ namespace SolidEngine
         public void Add(Entry e)
         {
             _entries.Add(e);
+        }
+
+        public Entry GetEntryById(int id)
+        {
+            Entry retVal =_entries.Find(
+                delegate(Entry entry)
+                    {
+                        return entry.FieldID == id;
+                    }
+            );
+
+            return retVal;
         }
 
         public void AddEntry(EntryType type, XmlNode entry, XmlNode field, string description)
