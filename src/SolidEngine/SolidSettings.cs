@@ -10,6 +10,7 @@ namespace SolidEngine
         private  string _filePath;
         private List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
+        private string _version = "1.0";
 
         public SolidSettings()
         {
@@ -20,6 +21,12 @@ namespace SolidEngine
         {
             get { return _recordMarker; }
             set { _recordMarker = value; }
+        }
+
+        public string Version
+        {
+            get { return _version; }
+            set { _version = value; }
         }
 
         public List<SolidMarkerSetting> MarkerSettings
