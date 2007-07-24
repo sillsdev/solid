@@ -22,50 +22,16 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>a</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
-        <string>Cross Reference (Subentry)</string>
+        <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>rr</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>sd</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>dt</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>nt</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ge</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>a</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>ps</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -74,12 +40,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>ge</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -202,15 +163,10 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>Etymology Gloss</string>
-        <string>Lexical Function</string>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -219,12 +175,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>dt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -242,12 +193,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>rr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -307,7 +253,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>Bibliography (Sense)</string>
+        <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties />
@@ -319,26 +265,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>lc</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <InferedParent>lx</InferedParent>
-      <Mappings>
-        <string>Alternate Form (Allomorph)</string>
-        <string>Academic Domains</string>
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>sn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -347,40 +274,8 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>entry</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>\_lx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
       <StructureProperties />
-      <Marker>b</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>xx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>sdfiso</Marker>
+      <Marker>lc</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

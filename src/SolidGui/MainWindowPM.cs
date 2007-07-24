@@ -152,24 +152,8 @@ namespace SolidGui
             }
 
             _realDictionaryPath = dictionaryPath;
-            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
-            {
-                _solidSettings =
-                    SolidSettings.OpenSolidFile(
-                        Path.Combine(WorkingDictionary.GetDirectoryPath(),
-                                     SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)));
-            }
-            else
-            {
-                Debug.Assert(!string.IsNullOrEmpty(templatePath));
-                _solidSettings =
-                    SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
-            }
+            _solidSettings = CreateSolidSettings(templatePath);
             _workingDictionary.Open(_realDictionaryPath, _solidSettings, _recordFilters);
-
-            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
-            _markerSettingsModel.Root = _solidSettings.RecordMarker;
-            _sfmEditorModel.Settings = _solidSettings;
             _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
@@ -177,6 +161,43 @@ namespace SolidGui
                 DictionaryProcessed.Invoke(this, null);
             }
 
+        }
+
+        private SolidSettings CreateSolidSettings(string templatePath)
+        {
+            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
+            {
+                LoadSettingsFromExistingFile();
+            }
+            else
+            {
+                LoadSettingsFromTemplate(templatePath);
+            }            
+            GiveSolidSettingsToModels();
+
+            return _solidSettings;
+        }
+
+        private void GiveSolidSettingsToModels()
+        {
+            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
+            _markerSettingsModel.Root = _solidSettings.RecordMarker;
+            _sfmEditorModel.Settings = _solidSettings;
+        }
+
+        private void LoadSettingsFromTemplate(string templatePath)
+        {
+            Debug.Assert(!string.IsNullOrEmpty(templatePath));
+            _solidSettings =
+                SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+        }
+
+        private void LoadSettingsFromExistingFile()
+        {
+            _solidSettings =
+                SolidSettings.OpenSolidFile(
+                    Path.Combine(WorkingDictionary.GetDirectoryPath(),
+                                 SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)));
         }
 
         /// <summary>
@@ -318,7 +339,10 @@ namespace SolidGui
         public void UseSolidSettingsTemplate(string path)
         {
             _solidSettings.Save();
-           
+            LoadSettingsFromTemplate(path);
+            GiveSolidSettingsToModels();
+            ProcessLexicon();
+
             //???? do we replace these settings, or ask the settings to do the switch?
             //todo: copy over this set of settings
             //todo: reload settings UI
