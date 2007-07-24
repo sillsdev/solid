@@ -152,14 +152,26 @@ namespace SolidGui
                     return _concepts;
                 }
             }
+
+            public Concept GetConceptById(string id)
+            {
+                return _concepts.Find(
+                    delegate(Concept concept)
+                        {
+                            return concept.GetId() == id;
+                        }
+                );
+            }
         }
 
         public class Concept
         {
             private readonly XmlNode _node;
+            private XmlHelper _helper;
             public Concept(XmlNode node)
             {
                 _node = node;
+                _helper = new XmlHelper(_node);
             }
 
 
@@ -173,7 +185,12 @@ namespace SolidGui
 
             public override string ToString()
             {
-                return _node.Attributes["uiname"].Value;
+                return _helper.GetAttribute("uiname");
+            }
+            
+            public string GetId()
+            {
+                return _helper.GetAttribute("id");
             }
         }
     }

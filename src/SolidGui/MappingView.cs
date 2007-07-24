@@ -57,7 +57,8 @@ namespace SolidGui
         {
             foreach(ListViewItem item in _conceptList.Items)
             {
-                if (item.Text == _model.MarkerSetting.GetMapping(CurrentMappingType()))
+                MappingPM.Concept concept = (MappingPM.Concept) item.Tag;
+                if (concept.GetId() == _model.MarkerSetting.GetMapping(CurrentMappingType()))
                 {
                     item.Selected = true;
                 }
@@ -86,7 +87,7 @@ namespace SolidGui
                 return;
             }
             _model.SelectedConcept = (MappingPM.Concept) _conceptList.SelectedItems[0].Tag;
-            _model.MarkerSetting.SetMapping(CurrentMappingType(),_model.SelectedConcept.ToString());
+            _model.MarkerSetting.SetMapping(CurrentMappingType(),_model.SelectedConcept.GetId());
             LoadInformationPane();
         }
 

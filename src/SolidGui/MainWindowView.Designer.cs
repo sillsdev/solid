@@ -39,14 +39,14 @@ namespace SolidGui
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this._markerDetails = new SolidGui.MarkerDetails();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -167,6 +167,14 @@ namespace SolidGui
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
             // 
+            // _markerDetails
+            // 
+            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerDetails.Location = new System.Drawing.Point(0, 0);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(435, 266);
+            this._markerDetails.TabIndex = 0;
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -206,14 +214,6 @@ namespace SolidGui
             this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
-            // 
-            // _markerDetails
-            // 
-            this._markerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerDetails.Location = new System.Drawing.Point(0, 0);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(435, 266);
-            this._markerDetails.TabIndex = 0;
             // 
             // _filterChooserView
             // 
