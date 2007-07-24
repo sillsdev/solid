@@ -19,14 +19,16 @@ namespace SolidEngine
     {
         enum XmlState
         {
-            Start,
-            ReadingRecord,
-            Record,
-            //Element,
-            //Attribute,
-            //AttributeValue,
-            //ElementValue,
-            //EndElement,
+            //Start,
+            FromSFMXmlReader,
+            FromNodeReader,
+            //ReadingRecord,
+            //Record,
+            ////Element,
+            ////Attribute,
+            ////AttributeValue,
+            ////ElementValue,
+            ////EndElement,
             Eof,
             Closed
         }
@@ -39,7 +41,7 @@ namespace SolidEngine
 
         private ProcessStore _processes;
 
-        private XmlState _xmlState = XmlState.Start;
+        private XmlState _xmlState = XmlState.FromSFMXmlReader;
 
         private SolidSettings _settings;
 
@@ -53,6 +55,7 @@ namespace SolidEngine
             : base(null)
         {
             _sfmXmlReader = new SfmXmlReader();
+            _d = _sfmXmlReader;
         }
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace SolidEngine
             : base(null)
         {
             _sfmXmlReader = new SfmXmlReader(uri);
+            _d = _sfmXmlReader;
             _settings = settings;
         }
 
@@ -74,6 +78,7 @@ namespace SolidEngine
             : base(null)
         {
             _sfmXmlReader = new SfmXmlReader(input);
+            _d = _sfmXmlReader;
             _settings = settings;
         }
 
@@ -96,15 +101,19 @@ namespace SolidEngine
 
         public XmlNode ReadRecord()
         {
-            _sfmXmlReader.ReadToFollowing(RecordName);
-            XmlReader entryReader = _sfmXmlReader.ReadSubtree();
-            // Load the current record from xr into an XmlDocument
-            XmlDocument xmlSource = new XmlDocument();
-            xmlSource.Load(entryReader);
-            IProcess process = new ProcessStructure(_settings);
-            XmlNode xmlDestination = process.Process(xmlSource.DocumentElement, _report);
-            _d = new XmlNodeReader(xmlDestination);
-            return xmlDestination;
+            XmlNode retval = null;
+            if (_sfmXmlReader.ReadToFollowing(RecordName))
+            {
+                XmlReader entryReader = _sfmXmlReader.ReadSubtree();
+                // Load the current record from xr into an XmlDocument
+                XmlDocument xmlSource = new XmlDocument();
+                xmlSource.Load(entryReader);
+                IProcess process = new ProcessStructure(_settings);
+                XmlNode xmlDestination = process.Process(xmlSource.DocumentElement, _report);
+                _d = new XmlNodeReader(xmlDestination);
+                retval = xmlDestination;
+            }
+            return retval;
         }
 
         /// <summary>
@@ -141,24 +150,57 @@ namespace SolidEngine
         public override bool Read()
         {
             bool retval = false;
+
             switch (_xmlState)
             {
-                case XmlState.Start:
-                    _xmlState = XmlState.Record;
-                    XmlNode xmlEntry = ReadRecord();
-                    if (xmlEntry == null)
+                case XmlState.FromSFMXmlReader:
+                    retval = _sfmXmlReader.Read();
+                    if (_sfmXmlReader.Name == "entry" && _sfmXmlReader.NodeType == XmlNodeType.Element)
                     {
-                        _d = _sfmXmlReader;
+                        XmlReader entryReader = _sfmXmlReader.ReadSubtree();
+                        // Load the current record from xr into an XmlDocument
+                        XmlDocument xmlSource = new XmlDocument();
+                        xmlSource.Load(entryReader);
+                        IProcess process = new ProcessStructure(_settings);
+                        XmlNode xmlDestination = process.Process(xmlSource.DocumentElement, _report);
+                        _d = new XmlNodeReader(xmlDestination);
+                        _xmlState = XmlState.FromNodeReader;
+                        retval = _d.Read();
                     }
-                    retval = base.Read();
                     break;
-                default:
-                    retval = base.Read();
+                case XmlState.FromNodeReader:
+                    retval = _d.Read();
+                    if (!retval)
+                    {
+                        _xmlState = XmlState.FromSFMXmlReader;
+                        _d = _sfmXmlReader;
+                        goto case XmlState.FromSFMXmlReader;
+                    }
                     break;
             }
+
             return retval;
         }
 
+        public override int Depth
+        {
+            get
+            {
+                int retval = 0;
+                switch (_xmlState)
+                {
+                    case XmlState.FromSFMXmlReader:
+                        retval = _sfmXmlReader.Depth;
+                        break;
+                    case XmlState.FromNodeReader:
+                        retval = _d.Depth + 1;
+                        break;
+                }
+                return retval;
+            }
+        }
+        
+        /*
         public override ReadState ReadState
         {
             get
@@ -166,7 +208,7 @@ namespace SolidEngine
                 return (_d != null) ? _d.ReadState : _sfmXmlReader.ReadState;
             }
         }
-
+        */
     }
 
 }

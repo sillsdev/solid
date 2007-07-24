@@ -134,16 +134,6 @@ namespace SolidTests
                 String.Empty, // value
                 0 // attributeCount
             );
-            /*
-            AssertAttribute(
-                xmlReader, // xmlReader
-                "bar", // name
-                String.Empty, // prefix
-                "bar", // localName
-                String.Empty, // namespaceURI
-                "baz" // value
-            );
-            */
 
             AssertNode(
                 xmlReader, // xmlReader
