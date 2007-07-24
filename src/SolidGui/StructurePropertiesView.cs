@@ -129,7 +129,7 @@ namespace SolidGui
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            if (_model.ValidParent(e.Label))
+            if (_model.ValidParent(_model.RemoveLeadingBackslash(e.Label)))
             {
                 _parentListView.Items[e.Item].Text = e.Label;
                 _model.UpdateParentMarkers(_parentListView.Items);

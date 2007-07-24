@@ -68,7 +68,7 @@ namespace SolidGui
             foreach (ListViewItem item in items)
             {
                 SolidStructureProperty property = (SolidStructureProperty) item.Tag;
-                property.Parent = item.Text;
+                property.Parent = RemoveLeadingBackslash(item.Text);
                 
                 if (ValidParent(property.Parent))
                 {
@@ -84,6 +84,15 @@ namespace SolidGui
                 !_markerSetting.ParentExists(parent) &&
                 _markerSetting.Marker != parent
             );
+        }
+
+        public string RemoveLeadingBackslash(string parent)
+        {
+            if(parent[0].Equals('\\'))
+            {
+                parent = parent.Substring(1);
+            }
+            return parent;
         }
 
 
