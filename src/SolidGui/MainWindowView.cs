@@ -232,5 +232,37 @@ namespace SolidGui
                 _openButton_Click(this, new EventArgs());
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = Export.Types.FilterString();
+            saveDialog.FileName = _mainWindowPM.WorkingDictionary.GetFileNameNoExtension();
+            if (DialogResult.OK != saveDialog.ShowDialog(this))
+            {
+                return;
+            }
+
+            string sourceFile = Path.Combine(Path.GetTempPath(), "TempDict.dic");
+            
+            _mainWindowPM.WorkingDictionary.SaveAs(sourceFile);
+
+            if(saveDialog.FilterIndex == Export.Types.FlatXml())
+            {
+                Export.FlatXml(sourceFile,saveDialog.FileName);
+            }
+            else if(saveDialog.FilterIndex == Export.Types.StructuredXml())
+            {
+                Export.StructuredXml(sourceFile, saveDialog.FileName);
+            }
+            else if(saveDialog.FilterIndex == Export.Types.Flex())
+            {
+                Export.Flex(sourceFile, saveDialog.FileName);
+            }
+            else if(saveDialog.FilterIndex == Export.Types.Lift())
+            {
+                Export.Lift(sourceFile, saveDialog.FileName);
+            }
+        }
     }
 }

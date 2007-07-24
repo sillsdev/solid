@@ -46,6 +46,7 @@ namespace SolidGui
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -65,7 +66,8 @@ namespace SolidGui
             this._saveButton,
             this.toolStripSeparator2,
             this._changeTemplate,
-            this._aboutBoxButton});
+            this._aboutBoxButton,
+            this.toolStripButton1});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(891, 25);
@@ -238,6 +240,16 @@ namespace SolidGui
             this._recordNavigatorView.Size = new System.Drawing.Size(451, 34);
             this._recordNavigatorView.TabIndex = 3;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -284,6 +296,7 @@ namespace SolidGui
         private MarkerDetails _markerDetails;
         private System.Windows.Forms.Button _recheckButton;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

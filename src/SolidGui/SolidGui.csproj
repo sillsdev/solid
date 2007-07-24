@@ -53,6 +53,7 @@
     <Compile Include="EXListView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ExportFactory.cs" />
     <Compile Include="FilterChooserPM.cs" />
     <Compile Include="FilterChooserView.cs">
       <SubType>UserControl</SubType>
