@@ -228,7 +228,8 @@ namespace SolidGui
             dialog.SelectedArea = area;
             dialog.MappingType = mappingType;
             dialog.ShowDialog();
-            UpdateDisplay();
+            //UpdateDisplay();
+            UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
         }
 
         private void _listView_DoubleClick(object sender, EventArgs e)
