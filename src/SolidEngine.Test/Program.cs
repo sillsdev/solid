@@ -16,6 +16,9 @@ namespace SolidTests
             //SolidXmlReader_XmlDoc_Test t = new SolidXmlReader_XmlDoc_Test();
             //t.OneEntrySfmDoc_Correct();
 
+            ExportLift_Test t = new ExportLift_Test();
+            t.Export_Correct();
+
             //SolidXmlReaderTests t = new SolidXmlReaderTests();
             //t.SFMEmptyDocument_Correct();
 

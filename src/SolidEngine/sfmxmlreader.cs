@@ -282,7 +282,7 @@ namespace SolidEngine
         {
             get
             {
-                Console.Error.WriteLine("Node " + String.Format("{0:D}", _xmlState));
+                //Console.Error.WriteLine("Node " + String.Format("{0:D}", _xmlState));
                 XmlNodeType retval = XmlNodeType.None;
                 switch (_xmlState)
                 {
@@ -308,7 +308,7 @@ namespace SolidEngine
                         Debug.Assert(false);
                         break;
                 }
-                Console.Error.WriteLine("XNT: " + String.Format("{0:D}", retval));
+                //Console.Error.WriteLine("XNT: " + String.Format("{0:D}", retval));
                 return retval;
             }
         }
@@ -742,7 +742,7 @@ namespace SolidEngine
                         case SfmState.Field:
                             if (_fieldIndex < _sfmReader    .FieldCount - 1)
                             {
-                                Console.Error.WriteLine(String.Format("Done field {0:D}", _fieldIndex));
+                                //Console.Error.WriteLine(String.Format("Done field {0:D}", _fieldIndex));
                                 _fieldIndex++;
                                 
                             }
@@ -771,16 +771,15 @@ namespace SolidEngine
                             retval = false;
                             break;
                         default:
-                            Console.Error.WriteLine("boo!!!");
                             break;
                     }
                     break;
             }
-            Console.Error.WriteLine(
-                String.Format("Read c {0:D}", _sfmContext)
-                + String.Format(" x {0:D} ", _xmlState)
-                + LocalName
-            );
+            //Console.Error.WriteLine(
+            //    String.Format("Read c {0:D}", _sfmContext)
+            //    + String.Format(" x {0:D} ", _xmlState)
+            //    + LocalName
+            //);
             return retval;
         }
 

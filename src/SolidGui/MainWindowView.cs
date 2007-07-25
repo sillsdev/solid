@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Text;
 using SolidEngine;
 using SolidGui.Properties;
 
@@ -232,10 +233,22 @@ namespace SolidGui
             }
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        public string ExportFilterString()
+        {
+            StringBuilder builder = new StringBuilder();
+
+            builder.Append("StructuredXml (*.xml)|*.xml");
+            builder.Append("|Lift (*.Lift)|*.lift");
+            builder.Append("|Flex (*.Flex)|*.flex");
+            builder.Append("|FlatXml (*.xml)|*.xml");
+
+            return builder.ToString();
+        }
+
+        private void ExportButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = Export.Types.FilterString();
+            saveDialog.Filter = ExportFilterString();
             saveDialog.FileName = _mainWindowPM.WorkingDictionary.GetFileNameNoExtension();
             if (DialogResult.OK != saveDialog.ShowDialog(this))
             {
@@ -246,22 +259,22 @@ namespace SolidGui
             
             _mainWindowPM.WorkingDictionary.SaveAs(sourceFile);
 
-            if(saveDialog.FilterIndex == Export.Types.FlatXml())
-            {
-                Export.FlatXml(sourceFile,saveDialog.FileName);
-            }
-            else if(saveDialog.FilterIndex == Export.Types.StructuredXml())
-            {
-                Export.StructuredXml(sourceFile, saveDialog.FileName);
-            }
-            else if(saveDialog.FilterIndex == Export.Types.Flex())
-            {
-                Export.Flex(sourceFile, saveDialog.FileName);
-            }
-            else if(saveDialog.FilterIndex == Export.Types.Lift())
-            {
-                Export.Lift(sourceFile, saveDialog.FileName);
-            }
+            //if(saveDialog.FilterIndex == Export.Types.FlatXml())
+            //{
+            //    Export.FlatXml(sourceFile,saveDialog.FileName);
+            //}
+            //else if(saveDialog.FilterIndex == Export.Types.StructuredXml())
+            //{
+            //    Export.StructuredXml(sourceFile, saveDialog.FileName);
+            //}
+            //else if(saveDialog.FilterIndex == Export.Types.Flex())
+            //{
+            //    Export.Flex(sourceFile, saveDialog.FileName);
+            //}
+            //else if(saveDialog.FilterIndex == Export.Types.Lift())
+            //{
+            //    Export.Lift(sourceFile, saveDialog.FileName);
+            //}
         }
     }
 }

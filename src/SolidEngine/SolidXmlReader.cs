@@ -19,27 +19,19 @@ namespace SolidEngine
     {
         enum XmlState
         {
-            //Start,
             FromSFMXmlReader,
             FromNodeReader,
-            //ReadingRecord,
-            //Record,
-            ////Element,
-            ////Attribute,
-            ////AttributeValue,
-            ////ElementValue,
-            ////EndElement,
             Eof,
             Closed
         }
 
-        public class ProcessStore : List<IProcess>
-        {
-        }
+        //public class ProcessStore : List<IProcess>
+        //{
+        //}
 
         private SfmXmlReader _sfmXmlReader;
 
-        private ProcessStore _processes;
+        //private ProcessStore _processes;
 
         private XmlState _xmlState = XmlState.FromSFMXmlReader;
 
@@ -70,6 +62,14 @@ namespace SolidEngine
             _settings = settings;
         }
 
+        public SolidXmlReader(string fileName)
+            : base(null)
+        {
+            _sfmXmlReader = new SfmXmlReader(new StreamReader(fileName));
+            _d = _sfmXmlReader;
+            _settings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(fileName));
+        }
+
         /// <summary>
         /// Construct an SolidXmlReader.
         /// </summary>
@@ -88,12 +88,12 @@ namespace SolidEngine
             set { _report = value; }
         }
 
-        public ProcessStore Processes
-        {
-            get { return _processes; }
-        }
+        //public ProcessStore Processes
+        //{
+        //    get { return _processes; }
+        //}
 
-        public SolidSettings Settings
+        public SolidSettings SolidSettings
         {
             get { return _settings; }
             set { _settings = value; }

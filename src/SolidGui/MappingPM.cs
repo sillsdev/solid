@@ -96,7 +96,7 @@ namespace SolidGui
 
         public string TransformInformationToHtml(XmlNode informationNode)
         {
-             XslTransform transform = new XslTransform();
+            XslCompiledTransform transform = new XslCompiledTransform();
             transform.Load(Path.Combine(this.PathToMappingsDirectory, "MappingXmlToHtml.xsl"));
             StringBuilder builder = new StringBuilder();
             StringWriter st = new StringWriter(builder);

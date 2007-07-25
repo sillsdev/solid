@@ -39,6 +39,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="customxmlreader.cs" />
+    <Compile Include="Exporter.cs" />
+    <Compile Include="ExportFactory.cs" />
+    <Compile Include="ExportLift.cs" />
+    <Compile Include="ExportStructuredXml.cs" />
     <Compile Include="MultiplicityAdjacency.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="ProcessStructure.cs" />
@@ -52,6 +56,9 @@
     <Compile Include="SolidXmlReader.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="XmlReaderDecorator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExportLift.xsl" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
