@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace SolidEngine
@@ -43,12 +42,12 @@ namespace SolidEngine
             get { return _mappings; }
         }
 
-        public void SetMapping(SolidMarkerSetting.MappingType mappingType, string mapping)
+        public void SetMappingConcept(MappingType mappingType, string id)
         {
-            _mappings[(int) mappingType] = mapping;
+            _mappings[(int) mappingType] = id;
         }
 
-        public string GetMapping(MappingType mappingType)
+        public string GetMappingConceptId(MappingType mappingType)
         {
             return _mappings[(int) mappingType];
         }

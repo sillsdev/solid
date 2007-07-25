@@ -43,7 +43,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>sires</string>
+        <string>erest</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
@@ -206,7 +206,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>dom</string>
+        <string>veires</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties />

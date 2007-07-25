@@ -87,7 +87,7 @@ namespace SolidGui
 
         private string MakeMappingLinkLabel(SolidMarkerSetting.MappingType type, SolidMarkerSetting markerSetting)
         {
-            string conceptId = markerSetting.GetMapping(type);
+            string conceptId = markerSetting.GetMappingConceptId(type);
             MappingPM.MappingSystem mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
             
             MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId);

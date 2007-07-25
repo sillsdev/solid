@@ -43,28 +43,35 @@ namespace SolidGui
             }
 
             _targetCombo.SelectedIndex = 0;
-            LoadConceptList();
-            LoadInformationPane();
+            //LoadConceptList();
+            //LoadInformationPane();
         }
         
         public void InitializeDisplay()
         {
-            _targetCombo.SelectedIndex = (int)_model.Type;
-            _targetCombo_SelectedIndexChanged(this, new EventArgs());
+            if(_targetCombo.SelectedIndex != (int)_model.Type)
+                _targetCombo.SelectedIndex = (int)_model.Type;
+            else 
+                _targetCombo_SelectedIndexChanged(this, new EventArgs());
         }
 
         private void HighlightPreviouslySelectedConcept()
         {
+           // _model.SelectedConcept = (MappingPM.Concept)_conceptList.Items[0].Tag;
+           // _conceptList.Items[0].Selected = true;
+
             foreach(ListViewItem item in _conceptList.Items)
             {
                 MappingPM.Concept concept = (MappingPM.Concept) item.Tag;
-                if (concept.GetId() == _model.MarkerSetting.GetMapping(CurrentMappingType()))
+                string conceptId = concept.GetId();
+                string storedConceptId = _model.MarkerSetting.GetMappingConceptId(CurrentMappingType());
+                if (conceptId == storedConceptId)
                 {
+                    _conceptList.SelectedIndexChanged -= _conceptList_SelectedIndexChanged;
                     item.Selected = true;
-                }
-                else
-                {
-                    item.Selected = false;
+                    _conceptList.TopItem = item;
+                    _model.SelectedConcept = concept;
+                    _conceptList.SelectedIndexChanged += _conceptList_SelectedIndexChanged;
                 }
             }
         }
@@ -72,7 +79,7 @@ namespace SolidGui
         private void LoadConceptList()
         {
             _conceptList.Items.Clear();
-            foreach (object concept in _model.TargetSystem.Concepts)
+            foreach (MappingPM.Concept concept in _model.TargetSystem.Concepts)
             {
                 ListViewItem item = new ListViewItem(concept.ToString());
                 item.Tag = concept;
@@ -87,7 +94,7 @@ namespace SolidGui
                 return;
             }
             _model.SelectedConcept = (MappingPM.Concept) _conceptList.SelectedItems[0].Tag;
-            _model.MarkerSetting.SetMapping(CurrentMappingType(),_model.SelectedConcept.GetId());
+            _model.MarkerSetting.SetMappingConcept(CurrentMappingType(),_model.SelectedConcept.GetId());
             LoadInformationPane();
         }
 
@@ -106,7 +113,7 @@ namespace SolidGui
                 return;
             }
             string html = _model.TransformInformationToHtml(_model.SelectedConcept.InformationAsXml);
-            _htmlViewer.DocumentText = html;
+             _htmlViewer.DocumentText = html;
         }
 
         private void _conceptList_SizeChanged(object sender, EventArgs e)
@@ -117,9 +124,10 @@ namespace SolidGui
         private void _targetCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             _model.TargetSystem = _model.TargetChoices[_targetCombo.SelectedIndex];
+            
             LoadConceptList();
+            HighlightPreviouslySelectedConcept(); 
             LoadInformationPane();
-            HighlightPreviouslySelectedConcept();
         }
     }
 }
