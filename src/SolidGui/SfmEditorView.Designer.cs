@@ -28,7 +28,9 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._contentsBox = new System.Windows.Forms.RichTextBox();
+            this._timer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // _contentsBox
@@ -39,10 +41,14 @@ namespace SolidGui
             this._contentsBox.Location = new System.Drawing.Point(0, 0);
             this._contentsBox.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._contentsBox.Name = "_contentsBox";
-            this._contentsBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this._contentsBox.Size = new System.Drawing.Size(225, 277);
             this._contentsBox.TabIndex = 0;
             this._contentsBox.Text = "";
+            this._contentsBox.WordWrap = false;
+            this._contentsBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseClick);
+            this._contentsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseMove);
+            this._contentsBox.MouseLeave += new System.EventHandler(this._contentsBox_MouseLeave);
+            this._contentsBox.TextChanged += new System.EventHandler(this._contentsBox_TextChanged);
             // 
             // SfmEditorView
             // 
@@ -61,6 +67,7 @@ namespace SolidGui
         #endregion
 
         public System.Windows.Forms.RichTextBox _contentsBox;
+        private System.Windows.Forms.Timer _timer;
 
     }
 }
