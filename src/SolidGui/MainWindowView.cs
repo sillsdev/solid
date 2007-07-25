@@ -154,6 +154,7 @@ namespace SolidGui
         {
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
             _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
+            _exportButton.Enabled = _mainWindowPM.CanProcessLexicon;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
         }
 
@@ -248,6 +249,7 @@ namespace SolidGui
         private void ExportButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Title = "Export As";
             saveDialog.Filter = ExportFilterString();
             saveDialog.FileName = _mainWindowPM.WorkingDictionary.GetFileNameNoExtension();
             if (DialogResult.OK != saveDialog.ShowDialog(this))

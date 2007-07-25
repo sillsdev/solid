@@ -133,6 +133,9 @@
   <data name="FindReplace" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FindReplace.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RecheckRecord1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RecheckRecord2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="WarningHS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WarningHS.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -149,6 +152,9 @@
   <data name="Search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Search1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="folder_export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_export.ico;System.Drawing.Icon, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FindReplace1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FindReplace.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -161,7 +167,7 @@
   <data name="ForwardOne" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ForwardOne.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="RecheckRecord1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\RecheckRecord2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="folder_export" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder_export.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

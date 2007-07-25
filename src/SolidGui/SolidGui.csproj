@@ -236,6 +236,7 @@
     <Content Include="Resources\BackwardAll.png" />
     <Content Include="Resources\BackwordOne.png" />
     <Content Include="Resources\FindReplace.png" />
+    <None Include="Resources\folder_export.ico" />
     <Content Include="Resources\ForwardOne.png" />
     <Content Include="Resources\Recheck.png" />
     <Content Include="Resources\RecheckRecord.png" />

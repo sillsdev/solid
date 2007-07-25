@@ -67,10 +67,10 @@ namespace SolidGui
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
             this._saveButton,
+            this._exportButton,
             this.toolStripSeparator2,
             this._changeTemplate,
-            this._aboutBoxButton,
-            this._exportButton});
+            this._aboutBoxButton});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(891, 25);
@@ -122,12 +122,11 @@ namespace SolidGui
             // 
             // _exportButton
             // 
-            this._exportButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._exportButton.Image = ((System.Drawing.Image)(resources.GetObject("_exportButton.Image")));
+            this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
-            this._exportButton.Size = new System.Drawing.Size(23, 22);
-            this._exportButton.Text = "Export";
+            this._exportButton.Size = new System.Drawing.Size(71, 22);
+            this._exportButton.Text = "Export...";
             this._exportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 
             // splitContainer1
