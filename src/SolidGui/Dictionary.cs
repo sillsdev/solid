@@ -188,6 +188,10 @@ namespace SolidGui
                 }
             }
             filterSet.EndBuild();
+            if (_currentIndex > _recordList.Count - 1)
+            {
+                _currentIndex = 0;
+            }
         }
 
         public bool Save()
