@@ -132,6 +132,7 @@ namespace SolidGui
             label.LinkClicked += clickHandler;
             _listView.AddControlToSubItem(label, subItem);
 
+            subItem.Tag = label;
             item.SubItems.Add(subItem);
         }
 
@@ -195,6 +196,13 @@ namespace SolidGui
             OpenSettingsDialog(null);
         }
 
+        private void UpdateSelectedItems(SolidMarkerSetting setting)
+        {
+            ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
+            ((LinkLabel)_listView.SelectedItems[0].SubItems[4].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, setting);
+            ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+        }
+
         private void OpenSettingsDialog(string area)
         {
             if(_listView.SelectedItems.Count == 0)
@@ -205,7 +213,8 @@ namespace SolidGui
             MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
-            UpdateDisplay();
+            //UpdateDisplay();
+            UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
         }
 
         private void OpenSettingsDialog(string area, SolidMarkerSetting.MappingType mappingType)

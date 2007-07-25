@@ -25,7 +25,8 @@ namespace SolidEngine
 
         public void Export(string srcFile, string desFile)
         {
-            SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
+            //SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
+            XmlReader xmlReader = new XmlTextReader(new StreamReader("../../../../data/dict-s.xml"));
             XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
 
             XslCompiledTransform transform = new XslCompiledTransform();
