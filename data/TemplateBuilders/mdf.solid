@@ -6,7 +6,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>lex</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
@@ -20,7 +20,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>allo</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
@@ -439,7 +439,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>hom</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
@@ -453,7 +453,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>cit</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
