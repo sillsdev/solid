@@ -82,8 +82,8 @@ namespace SolidGui
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Size = new System.Drawing.Size(381, 278);
-            this.splitContainer1.SplitterDistance = 144;
+            this.splitContainer1.Size = new System.Drawing.Size(467, 323);
+            this.splitContainer1.SplitterDistance = 176;
             this.splitContainer1.TabIndex = 3;
             // 
             // _conceptList
@@ -98,7 +98,7 @@ namespace SolidGui
             this._conceptList.Location = new System.Drawing.Point(3, 18);
             this._conceptList.MultiSelect = false;
             this._conceptList.Name = "_conceptList";
-            this._conceptList.Size = new System.Drawing.Size(134, 260);
+            this._conceptList.Size = new System.Drawing.Size(166, 305);
             this._conceptList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._conceptList.TabIndex = 2;
             this._conceptList.UseCompatibleStateImageBehavior = false;
@@ -125,7 +125,7 @@ namespace SolidGui
             this.panel1.Controls.Add(this._htmlViewer);
             this.panel1.Location = new System.Drawing.Point(6, 18);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(224, 260);
+            this.panel1.Size = new System.Drawing.Size(278, 305);
             this.panel1.TabIndex = 2;
             // 
             // _htmlViewer
@@ -136,7 +136,7 @@ namespace SolidGui
             this._htmlViewer.Location = new System.Drawing.Point(0, 0);
             this._htmlViewer.MinimumSize = new System.Drawing.Size(20, 20);
             this._htmlViewer.Name = "_htmlViewer";
-            this._htmlViewer.Size = new System.Drawing.Size(222, 258);
+            this._htmlViewer.Size = new System.Drawing.Size(276, 303);
             this._htmlViewer.TabIndex = 2;
             this._htmlViewer.TabStop = false;
             this._htmlViewer.WebBrowserShortcutsEnabled = false;
@@ -159,7 +159,7 @@ namespace SolidGui
             this.Controls.Add(this._targetCombo);
             this.Controls.Add(this.label1);
             this.Name = "MappingView";
-            this.Size = new System.Drawing.Size(390, 314);
+            this.Size = new System.Drawing.Size(476, 359);
             this.Load += new System.EventHandler(this.OnLoad);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

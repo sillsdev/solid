@@ -41,7 +41,7 @@ namespace SolidGui
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 43);
+            this.label1.Location = new System.Drawing.Point(17, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
             this.label1.TabIndex = 0;
@@ -50,7 +50,7 @@ namespace SolidGui
             // _explanationLabel
             // 
             this._explanationLabel.AutoSize = true;
-            this._explanationLabel.Location = new System.Drawing.Point(84, 59);
+            this._explanationLabel.Location = new System.Drawing.Point(122, 46);
             this._explanationLabel.Name = "_explanationLabel";
             this._explanationLabel.Size = new System.Drawing.Size(121, 13);
             this._explanationLabel.TabIndex = 3;
@@ -59,7 +59,7 @@ namespace SolidGui
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 185);
+            this.label2.Location = new System.Drawing.Point(17, 185);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(163, 13);
             this.label2.TabIndex = 6;
@@ -72,14 +72,14 @@ namespace SolidGui
             "Report Error"});
             this._InferComboBox.Location = new System.Drawing.Point(192, 182);
             this._InferComboBox.Name = "_InferComboBox";
-            this._InferComboBox.Size = new System.Drawing.Size(81, 21);
+            this._InferComboBox.Size = new System.Drawing.Size(149, 21);
             this._InferComboBox.TabIndex = 7;
             this._InferComboBox.SelectedIndexChanged += new System.EventHandler(this._InferComboBox_SelectedIndexChanged);
             // 
             // _onceRadioButton
             // 
             this._onceRadioButton.AutoSize = true;
-            this._onceRadioButton.Location = new System.Drawing.Point(87, 89);
+            this._onceRadioButton.Location = new System.Drawing.Point(125, 76);
             this._onceRadioButton.Name = "_onceRadioButton";
             this._onceRadioButton.Size = new System.Drawing.Size(51, 17);
             this._onceRadioButton.TabIndex = 2;
@@ -91,7 +91,7 @@ namespace SolidGui
             // _multipleTogetherRadioButton
             // 
             this._multipleTogetherRadioButton.AutoSize = true;
-            this._multipleTogetherRadioButton.Location = new System.Drawing.Point(87, 112);
+            this._multipleTogetherRadioButton.Location = new System.Drawing.Point(125, 98);
             this._multipleTogetherRadioButton.Name = "_multipleTogetherRadioButton";
             this._multipleTogetherRadioButton.Size = new System.Drawing.Size(152, 17);
             this._multipleTogetherRadioButton.TabIndex = 4;
@@ -103,7 +103,7 @@ namespace SolidGui
             // _multipleApartRadioButton
             // 
             this._multipleApartRadioButton.AutoSize = true;
-            this._multipleApartRadioButton.Location = new System.Drawing.Point(87, 135);
+            this._multipleApartRadioButton.Location = new System.Drawing.Point(125, 121);
             this._multipleApartRadioButton.Name = "_multipleApartRadioButton";
             this._multipleApartRadioButton.Size = new System.Drawing.Size(227, 17);
             this._multipleApartRadioButton.TabIndex = 5;
@@ -140,7 +140,7 @@ namespace SolidGui
             this.Controls.Add(this._onceRadioButton);
             this.Controls.Add(this.label1);
             this.Name = "StructurePropertiesView";
-            this.Size = new System.Drawing.Size(320, 223);
+            this.Size = new System.Drawing.Size(356, 229);
             this.Load += new System.EventHandler(this.StructurePropertiesView_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
