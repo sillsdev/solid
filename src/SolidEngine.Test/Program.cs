@@ -16,8 +16,15 @@ namespace SolidTests
             //SolidXmlReader_XmlDoc_Test t = new SolidXmlReader_XmlDoc_Test();
             //t.OneEntrySfmDoc_Correct();
 
-            ExportLift_Test t = new ExportLift_Test();
-            t.Export_Correct();
+            //EngineEnvironment_Test t = new EngineEnvironment_Test();
+            //t.PathOfBase_Correct();
+
+            ExportFactory_Test t = new ExportFactory_Test();
+            t.Init();
+            t.ExportSettings_Has2Files();
+
+            //ExportXsl_Test t = new ExportXsl_Test();
+            //t.Export_Correct();
 
             //SolidXmlReaderTests t = new SolidXmlReaderTests();
             //t.SFMEmptyDocument_Correct();

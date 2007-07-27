@@ -7,15 +7,15 @@ using SolidEngine;
 namespace SolidTests
 {
     [TestFixture, Ignore]
-    public class ExportStructuredXml_Test
+    public class ExportXsl_Test
     {
 
         [Test]
         public void Export_Correct()
         {
-            IExporter exporter = ExportStructuredXml.Create();
-            exporter.Export("../../../../data/dict-s.db", "../../../../data/dict-s.xml");
-            Assert.IsTrue(true);
+            //IExporter exporter = ExportFactory.Create(ExportFactory.ExportType.Lift);
+            //exporter.Export("../../../../data/dict-s.db", "../../../../data/dict-s.lift");
+            //Assert.IsTrue(true);
         }
 
     }

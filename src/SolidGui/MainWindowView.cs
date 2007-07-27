@@ -237,12 +237,15 @@ namespace SolidGui
         public string ExportFilterString()
         {
             StringBuilder builder = new StringBuilder();
-
-            builder.Append("StructuredXml (*.xml)|*.xml");
-            builder.Append("|Lift (*.Lift)|*.lift");
-            builder.Append("|Flex (*.Flex)|*.flex");
-            builder.Append("|FlatXml (*.xml)|*.xml");
-
+            ExportFactory f = ExportFactory.Singleton();
+            foreach (ExportHeader header in f.ExportSettings)
+            {
+                if (builder.Length > 0)
+                {
+                    builder.Append("|");
+                }
+                builder.Append(header.FileNameFilter);
+            }
             return builder.ToString();
         }
 
@@ -250,6 +253,7 @@ namespace SolidGui
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Title = "Export As";
+            saveDialog.AddExtension = true;
             saveDialog.Filter = ExportFilterString();
             saveDialog.FileName = _mainWindowPM.WorkingDictionary.GetFileNameNoExtension();
             if (DialogResult.OK != saveDialog.ShowDialog(this))
@@ -257,26 +261,17 @@ namespace SolidGui
                 return;
             }
 
-            string sourceFile = Path.Combine(Path.GetTempPath(), "TempDict.dic");
-            
-            _mainWindowPM.WorkingDictionary.SaveAs(sourceFile);
+            //string sourceFilePath = Path.Combine(Path.GetTempPath(), "TempDict.dic");           
+            //_mainWindowPM.WorkingDictionary.SaveAs(sourceFilePath);
+            _mainWindowPM.WorkingDictionary.Save();
+            string sourceFilePath = _mainWindowPM.WorkingDictionary.FilePath;
 
-            //if(saveDialog.FilterIndex == Export.Types.FlatXml())
-            //{
-            //    Export.FlatXml(sourceFile,saveDialog.FileName);
-            //}
-            //else if(saveDialog.FilterIndex == Export.Types.StructuredXml())
-            //{
-            //    Export.StructuredXml(sourceFile, saveDialog.FileName);
-            //}
-            //else if(saveDialog.FilterIndex == Export.Types.Flex())
-            //{
-            //    Export.Flex(sourceFile, saveDialog.FileName);
-            //}
-            //else if(saveDialog.FilterIndex == Export.Types.Lift())
-            //{
-            //    Export.Lift(sourceFile, saveDialog.FileName);
-            //}
+            string destinationFilePath = saveDialog.FileName;
+
+            ExportFactory f = ExportFactory.Singleton();
+            IExporter exporter = f.CreateFromSettings(f.ExportSettings[saveDialog.FilterIndex - 1]);
+            exporter.Export(sourceFilePath, destinationFilePath);
+
         }
     }
 }

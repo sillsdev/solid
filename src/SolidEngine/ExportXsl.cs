@@ -3,19 +3,39 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.XPath;
 using System.Xml.Xsl;
 
 namespace SolidEngine
 {
-    public class ExportLift : IExporter
+    public class ExportXsl : IExporter
     {
-        public ExportLift()
+
+        private string _xslFilePath;
+        private ExportHeader _header;
+
+        public string XslFilePath
         {
+            get { return _xslFilePath; }
+            set { _xslFilePath = value; }
+        }
+
+        public static ExportXsl Create(ExportHeader header)
+        {
+            ExportXsl retval = new ExportXsl(header);
+            retval.OpenSettings();
+            return retval;
+        }
+
+        private ExportXsl(ExportHeader header)
+        {
+            _header = header;
         }
 
         private XmlReader CreateXslReader()
         {
-            string filePath = "../../../SolidEngine/ExportLift.xsl";
+            //string filePath = "../../../SolidEngine/ExportLift.xsl";
+            string filePath = _xslFilePath;
             //all this just to allow a DTD statement in the source xslt
             XmlReaderSettings readerSettings = new XmlReaderSettings();
             readerSettings.ProhibitDtd = false;
@@ -23,11 +43,69 @@ namespace SolidEngine
             return xslReader;
         }
 
+        private void OpenSettings()
+        {
+            using (StreamReader reader = new StreamReader(_header.FilePath))
+            {
+                XPathDocument xmlDoc = new XPathDocument(reader);
+                XPathNavigator navDoc = xmlDoc.CreateNavigator();
+                XPathNodeIterator iterator = navDoc.Select("/exporter/xsl/node()");
+                while (iterator.MoveNext())
+                {
+                    string name = iterator.Current.Name;
+                    string value = iterator.Current.Value;
+                    switch (name)
+                    {
+                        case "stylesheet":
+                            _xslFilePath = Path.Combine(EngineEnvironment.PathOfExporters, value);
+                            break;
+                    }
+                }
+                reader.Close();
+            }
+        }
+
+        public void SaveSettings()
+        {
+            using (StreamWriter writer = new StreamWriter(_header.FilePath))
+            {
+                XmlWriter xmlWriter = new XmlTextWriter(writer);
+                xmlWriter.WriteStartElement("exporter");
+                _header.Write(xmlWriter);
+                xmlWriter.WriteStartElement("xsl");
+                xmlWriter.WriteElementString("stylesheet", _xslFilePath);
+                xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndElement();
+                writer.Close();
+            }
+
+        }
+
+        private void ExportToTemp(string srcFile, string desFile)
+        {
+            SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
+            XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
+            xmlWriter.Formatting = Formatting.Indented;
+            xmlWriter.WriteStartDocument();
+            try
+            {
+                xmlReader.Read();
+                xmlWriter.WriteNode(xmlReader, true);
+                xmlWriter.Flush();
+                xmlWriter.Close();
+            }
+            catch
+            {
+                xmlWriter.Flush();
+            }
+        }
+
         public void Export(string srcFile, string desFile)
         {
-            //SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
-            XmlReader xmlReader = new XmlTextReader(new StreamReader("../../../../data/dict-s.xml"));
-            XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
+            string tempFilePath = Path.GetTempFileName();
+            ExportToTemp(srcFile, tempFilePath);
+
+            XmlReader xmlReader = new XmlTextReader(new StreamReader(tempFilePath));
 
             XslCompiledTransform transform = new XslCompiledTransform();
             using (XmlReader xslReader = CreateXslReader())
@@ -35,6 +113,8 @@ namespace SolidEngine
                 transform.Load(xslReader);
                 xslReader.Close();
             }
+
+            XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteStartDocument();
             transform.Transform(xmlReader, xmlWriter);

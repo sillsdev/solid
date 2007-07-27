@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exporter>
+<exportheader>
+<name>LIFT</name>
+<driver>Xsl</driver>
+<filter>LIFT (*.lift)|*.lift</filter>
+</exportheader>
+<xsl>
+<stylesheet>lift.xsl</stylesheet>
+</xsl>
+</exporter>

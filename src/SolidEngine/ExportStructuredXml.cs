@@ -5,10 +5,15 @@ using System.Xml;
 
 namespace SolidEngine
 {
-    class ExportStructuredXml : IExporter
+    public class ExportStructuredXml : IExporter
     {
 
-        public ExportStructuredXml()
+        public static ExportStructuredXml Create()
+        {
+            return new ExportStructuredXml();
+        }
+
+        private ExportStructuredXml()
         {
         }
 

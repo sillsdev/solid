@@ -6,6 +6,7 @@ namespace SolidEngine
 {
     public interface IExporter
     {
+        //ExportSetting ExportSettings;
         void Export(string srcFile, string desFile);
     }
 }

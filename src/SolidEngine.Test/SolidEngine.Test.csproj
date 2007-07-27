@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EngineEnvironment_Test.cs" />
     <Compile Include="ExportFactory_Test.cs" />
-    <Compile Include="ExportLift_Test.cs" />
+    <Compile Include="ExportXsl_Test.cs" />
     <Compile Include="ExportStructuredXml_Test.cs" />
     <Compile Include="ProcessStructure_Test.cs" />
     <Compile Include="Program.cs" />
