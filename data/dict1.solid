@@ -301,7 +301,7 @@
       <Marker>gr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>EN-Latn-South</WritingSystem>
+      <WritingSystem>Foo-Lana</WritingSystem>
       <InferedParent />
       <Mappings>
         <string>dom</string>

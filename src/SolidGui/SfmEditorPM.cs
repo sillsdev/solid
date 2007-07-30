@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Xml;
+using Palaso.WritingSystems;
 using SolidEngine;
 
 namespace SolidGui
@@ -32,6 +34,16 @@ namespace SolidGui
         public void UpdateCurrentRecord(Record record, string update)
         {
             record.SetRecord(update, _solidSettings);
+        }
+
+        public Font CorrectFont(string marker)
+        {
+            Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
+                new LdmlInFolderWritingSystemRepository();
+            string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystem;
+            Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
+
+            return new Font(definition.DefaultFontName, 10);
         }
     }
 }

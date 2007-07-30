@@ -4,6 +4,7 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
+      <WritingSystem>Foo-Lana</WritingSystem>
       <InferedParent />
       <Mappings>
         <string>lex</string>

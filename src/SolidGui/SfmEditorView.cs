@@ -238,6 +238,8 @@ namespace SolidGui
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
                 string fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
+                _contentsBox.Font = _model.CorrectFont(field.Marker);
+
                 if (!foundProcessingMark)
                 {
                     if (field.Value == _processingMark)
