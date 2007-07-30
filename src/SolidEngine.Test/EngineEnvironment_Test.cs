@@ -12,7 +12,7 @@ namespace SolidTests
         [Test]
         public void PathOfBase_Correct()
         {
-            Assert.AreEqual("C:\\src\\sil\\solid\\trunk", EngineEnvironment.PathOfBase);
+            Assert.IsTrue(EngineEnvironment.PathOfBase.EndsWith("trunk"));
         }
     }
 }
