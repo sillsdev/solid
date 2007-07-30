@@ -41,9 +41,32 @@ namespace SolidGui
             Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
                 new LdmlInFolderWritingSystemRepository();
             string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystem;
-            Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
 
-            return new Font(definition.DefaultFontName, 13);
+            if (!string.IsNullOrEmpty(writingSystemId))
+            {
+                Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
+                if (null != definition)
+                {
+                    return new Font(definition.DefaultFontName, 12);
+                }
+            }
+            if (FontIsInstalled("Doulos SIL"))
+            {
+                return new Font("Doulos SIL", 12);
+            }
+
+            return new Font(FontFamily.GenericSansSerif, 12);
         }
+
+        private bool FontIsInstalled(string name)
+        {
+            foreach (FontFamily family in System.Drawing.FontFamily.Families)
+            {
+                if (family.Name == name)
+                    return true;
+            }
+            return false;
+        }
+
     }
 }

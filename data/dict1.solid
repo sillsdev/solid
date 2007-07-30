@@ -4,7 +4,7 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>EN-Latn-South</WritingSystem>
+      <WritingSystem>th</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
@@ -47,6 +47,7 @@
       <Marker>ps</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
@@ -75,6 +76,7 @@
       <Marker>re</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
@@ -595,6 +597,7 @@
       <Marker>se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
