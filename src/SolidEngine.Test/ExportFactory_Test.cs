@@ -30,14 +30,14 @@ namespace SolidTests
         [Test]
         public void ExportSettings_Has2Files()
         {
-            Assert.AreEqual(2, _f.ExportSettings.Count);
+            Assert.AreEqual(3, _f.ExportSettings.Count);
         }
 
         [Test]
         public void ExportStructuredXmlSetting_Correct()
         {
             Assert.Greater(_f.ExportSettings.Count, 0);
-            ExportHeader h = _f.ExportSettings[1];
+            ExportHeader h = _f.ExportSettings[2];
             Assert.AreEqual("Structured XML", h.Name);
             Assert.AreEqual("StructuredXml", h.Driver);
             Assert.AreEqual("Structured XML (*.xml)|*.xml", h.FileNameFilter);

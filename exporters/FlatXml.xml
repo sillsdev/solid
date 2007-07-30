@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exporter>
+<exportheader>
+<name>Flat XML</name>
+<driver>FlatXml</driver>
+<filter>Flat XML (*.xml)|*.xml</filter>
+</exportheader>
+</exporter>

@@ -73,9 +73,9 @@ namespace SolidEngine
             IExporter retval = null;
             switch (header.Driver)
             {
-                //case "FlatXml":
-                //    retval = new ExportFlatXml(
-                //    break;
+                case "FlatXml":
+                    retval = ExportFlatXml.Create();
+                    break;
                 case "StructuredXml":
                     retval = ExportStructuredXml.Create();
                     break;

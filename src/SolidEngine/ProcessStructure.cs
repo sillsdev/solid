@@ -176,7 +176,7 @@ namespace SolidEngine
                                 SolidReport.EntryType.StructureParentNotFoundForInferred,
                                 source,
                                 field,
-                                "No parent found for inferred marker " + String.Format("'{0}'", inferredNode.Name)
+                                "Inferred marker {0} could not be placed in structure." + String.Format("'{0}'", inferredNode.Name)
                             );
                             InsertInTreeAnyway(field, destination, report, scope);
                         }
@@ -188,7 +188,7 @@ namespace SolidEngine
                             SolidReport.EntryType.StructureParentNotFound,
                             source,
                             field,
-                            "No parent for this field and none could be inferred"
+                            string.Format("Marker {0} could not be placed in structure, and nothing could be inferred.", field.Name)
                         );
                         InsertInTreeAnyway(field, destination, report, scope);
                     }

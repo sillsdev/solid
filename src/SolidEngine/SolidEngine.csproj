@@ -42,6 +42,7 @@
     <Compile Include="EngineEnvironment.cs" />
     <Compile Include="Exporter.cs" />
     <Compile Include="ExportFactory.cs" />
+    <Compile Include="ExportFlatXml.cs" />
     <Compile Include="ExportXsl.cs" />
     <Compile Include="ExportHeader.cs" />
     <Compile Include="ExportStructuredXml.cs" />
