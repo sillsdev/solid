@@ -43,7 +43,7 @@ namespace SolidGui
             string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystem;
             Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
 
-            return new Font(definition.DefaultFontName, 10);
+            return new Font(definition.DefaultFontName, 13);
         }
     }
 }
