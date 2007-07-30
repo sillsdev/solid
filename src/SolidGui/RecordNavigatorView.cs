@@ -83,6 +83,7 @@ namespace SolidGui
         private void RecordNavigatorView_Load(object sender, EventArgs e)
         {
             _descriptionLabel.Text = "";
+            _recordNumber.Text = "0";
         }
     }
 }

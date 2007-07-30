@@ -96,19 +96,22 @@ namespace SolidGui
 
         public string TransformInformationToHtml(XmlNode informationNode)
         {
-            XslCompiledTransform transform = new XslCompiledTransform();
-            transform.Load(Path.Combine(this.PathToMappingsDirectory, "MappingXmlToHtml.xsl"));
-            StringBuilder builder = new StringBuilder();
-            StringWriter st = new StringWriter(builder);
-//            string temp = Path.GetTempFileName();
-//            File.WriteAllText(temp, informationNode.OuterXml);
-            //this transformed whole document, ignoring the fact that we gave it one node
-            //      transform.Transform(informationNode,new XsltArgumentList(), st);
-             XPathDocument doc = new XPathDocument(new XmlTextReader(new StringReader(informationNode.OuterXml)));
-            
-            transform.Transform(doc,new XsltArgumentList(), st);
-            return builder.ToString();
+            if (informationNode != null)
+            {
+                XslCompiledTransform transform = new XslCompiledTransform();
+                transform.Load(Path.Combine(this.PathToMappingsDirectory, "MappingXmlToHtml.xsl"));
+                StringBuilder builder = new StringBuilder();
+                StringWriter st = new StringWriter(builder);
+                //            string temp = Path.GetTempFileName();
+                //            File.WriteAllText(temp, informationNode.OuterXml);
+                //this transformed whole document, ignoring the fact that we gave it one node
+                //      transform.Transform(informationNode,new XsltArgumentList(), st);
+                XPathDocument doc = new XPathDocument(new XmlTextReader(new StringReader(informationNode.OuterXml)));
 
+                transform.Transform(doc, new XsltArgumentList(), st);
+                return builder.ToString();
+            }
+            return "";
         }
 
         public Concept SelectedConcept
@@ -170,10 +173,12 @@ namespace SolidGui
             private XmlHelper _helper;
             public Concept(XmlNode node)
             {
-                _node = node;
-                _helper = new XmlHelper(_node);
+                if (node != null)
+                {
+                    _node = node;
+                    _helper = new XmlHelper(_node);
+                }
             }
-
 
             public XmlNode InformationAsXml
             {
@@ -185,12 +190,12 @@ namespace SolidGui
 
             public override string ToString()
             {
-                return _helper.GetAttribute("uiname");
+                return (_helper != null) ? _helper.GetAttribute("uiname") : null;
             }
             
             public string GetId()
             {
-                return _helper.GetAttribute("id");
+                    return (_helper != null) ? _helper.GetAttribute("id") : null;
             }
         }
     }

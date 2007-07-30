@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 using SolidEngine;
 
 namespace SolidGui
@@ -79,6 +80,10 @@ namespace SolidGui
         private void LoadConceptList()
         {
             _conceptList.Items.Clear();
+            ListViewItem none = new ListViewItem("(None)");
+            none.Tag = new MappingPM.Concept(null);
+            _conceptList.Items.Add(none);
+
             foreach (MappingPM.Concept concept in _model.TargetSystem.Concepts)
             {
                 ListViewItem item = new ListViewItem(concept.ToString());

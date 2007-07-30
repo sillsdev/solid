@@ -6,7 +6,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>ebib</string>
+        <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
