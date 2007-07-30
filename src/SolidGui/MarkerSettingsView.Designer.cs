@@ -33,9 +33,9 @@ namespace SolidGui
             this._structurePage = new System.Windows.Forms.TabPage();
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this._writingSystemPage = new System.Windows.Forms.TabPage();
+            this._writingSystemPicker = new Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView();
             this._mappingPage = new System.Windows.Forms.TabPage();
             this._mappingView = new SolidGui.MappingView();
-            this.pickerUsingListView1 = new Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView();
             this._structureTabControl.SuspendLayout();
             this._structurePage.SuspendLayout();
             this._writingSystemPage.SuspendLayout();
@@ -67,6 +67,7 @@ namespace SolidGui
             this._structureTabControl.SelectedIndex = 0;
             this._structureTabControl.Size = new System.Drawing.Size(343, 282);
             this._structureTabControl.TabIndex = 2;
+            this._structureTabControl.Leave += new System.EventHandler(this._structureTabControl_Leave);
             // 
             // _structurePage
             // 
@@ -91,13 +92,21 @@ namespace SolidGui
             // 
             // _writingSystemPage
             // 
-            this._writingSystemPage.Controls.Add(this.pickerUsingListView1);
+            this._writingSystemPage.Controls.Add(this._writingSystemPicker);
             this._writingSystemPage.Location = new System.Drawing.Point(4, 22);
             this._writingSystemPage.Name = "_writingSystemPage";
             this._writingSystemPage.Size = new System.Drawing.Size(335, 256);
             this._writingSystemPage.TabIndex = 1;
             this._writingSystemPage.Text = "Writing Systems";
             this._writingSystemPage.UseVisualStyleBackColor = true;
+            // 
+            // _writingSystemPicker
+            // 
+            this._writingSystemPicker.IdentifierOfSelectedWritingSystem = null;
+            this._writingSystemPicker.Location = new System.Drawing.Point(3, 11);
+            this._writingSystemPicker.Name = "_writingSystemPicker";
+            this._writingSystemPicker.Size = new System.Drawing.Size(324, 231);
+            this._writingSystemPicker.TabIndex = 0;
             // 
             // _mappingPage
             // 
@@ -117,14 +126,6 @@ namespace SolidGui
             this._mappingView.Name = "_mappingView";
             this._mappingView.Size = new System.Drawing.Size(335, 256);
             this._mappingView.TabIndex = 0;
-            // 
-            // pickerUsingListView1
-            // 
-            this.pickerUsingListView1.IdentifierOfSelectedWritingSystem = null;
-            this.pickerUsingListView1.Location = new System.Drawing.Point(3, 11);
-            this.pickerUsingListView1.Name = "pickerUsingListView1";
-            this.pickerUsingListView1.Size = new System.Drawing.Size(324, 231);
-            this.pickerUsingListView1.TabIndex = 0;
             // 
             // MarkerSettingsView
             // 
@@ -151,6 +152,6 @@ namespace SolidGui
         private System.Windows.Forms.TabPage _mappingPage;
         private System.Windows.Forms.ListBox _markerListBox;
         private MappingView _mappingView;
-        private Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView pickerUsingListView1;
+        private Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView _writingSystemPicker;
     }
 }

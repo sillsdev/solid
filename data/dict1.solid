@@ -4,6 +4,7 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
+      <WritingSystem>EN-Latn-South</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
@@ -300,9 +301,10 @@
       <Marker>gr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>EN-Latn-South</WritingSystem>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>dom</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>

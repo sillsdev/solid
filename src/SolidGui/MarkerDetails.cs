@@ -54,10 +54,11 @@ namespace SolidGui
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                AddLinkSubItem(item, MakeStructureLinkLabel(_settings.FindMarkerSetting(pair.Key).StructureProperties), OnStructureLinkClicked);
-                AddLinkSubItem(item, "??", OnWritingSystemLinkClicked );
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, _settings.FindMarkerSetting(pair.Key)), OnFlexMappingLinkClicked);
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, _settings.FindMarkerSetting(pair.Key)), OnLiftMappingLinkClicked);              
+                SolidMarkerSetting markerSetting = _settings.FindMarkerSetting(pair.Key);
+                AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
+                AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystem), OnWritingSystemLinkClicked);
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, markerSetting), OnFlexMappingLinkClicked);
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
                 
@@ -83,6 +84,21 @@ namespace SolidGui
             EXControlListViewSubItem x = new EXControlListViewSubItem();
             x.Text = frequency;
             item.SubItems.Add(x);
+        }
+
+        private string MakeWritingSystemLinkLabel(string writingSystemId)
+        {
+            if (string.IsNullOrEmpty(writingSystemId))
+            {
+                return "??";
+            }
+            
+            Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
+                    new Palaso.WritingSystems.LdmlInFolderWritingSystemRepository();
+
+            Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
+
+            return (definition != null) ? definition.DisplayLabel : "??";
         }
 
         private string MakeMappingLinkLabel(SolidMarkerSetting.MappingType type, SolidMarkerSetting markerSetting)
@@ -199,6 +215,7 @@ namespace SolidGui
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
             ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
+            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystem);
             ((LinkLabel)_listView.SelectedItems[0].SubItems[4].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, setting);
             ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
         }

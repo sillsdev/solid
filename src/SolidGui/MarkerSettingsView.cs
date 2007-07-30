@@ -6,7 +6,7 @@ namespace SolidGui
 {
     public partial class MarkerSettingsView : UserControl
     {
-
+        private SolidMarkerSetting _currentMarkerSetting;
         private MarkerSettingsPM _model;
 
         public MarkerSettingsView()
@@ -30,26 +30,25 @@ namespace SolidGui
         {
             SelectInitialArea(initialArea);
             
-            SolidMarkerSetting currentSettings = new SolidMarkerSetting();
-            _markerListBox.Items.Clear();
-
             foreach (string marker in _model.GetValidMarkers())
             {
                 _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
                 if (marker == selectedMarker)
                 {
                     _markerListBox.SelectedIndex = _markerListBox.Items.Count - 1;
-                    currentSettings = (SolidMarkerSetting)_markerListBox.SelectedItem;
+                    _currentMarkerSetting = (SolidMarkerSetting)_markerListBox.SelectedItem;
                 }
             }
             
             _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
-            _structurePropertiesView.Model.MarkerSetting = currentSettings;
+            _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
             _structurePropertiesView.UpdateDisplay();
 
-            _mappingView.Model.MarkerSetting = currentSettings;
+            _mappingView.Model.MarkerSetting = _currentMarkerSetting;
             _mappingView.Model.Type = type;
             _mappingView.InitializeDisplay();
+
+            _writingSystemPicker.IdentifierOfSelectedWritingSystem = _currentMarkerSetting.WritingSystem;
         }
 
         private void SelectInitialArea(string initialArea)
@@ -99,6 +98,11 @@ namespace SolidGui
             }
             _structurePropertiesView.Model = Model.StructurePropertiesModel;
             _mappingView.Model = Model.MappingModel;
+        }
+
+        private void _structureTabControl_Leave(object sender, EventArgs e)
+        {
+            _currentMarkerSetting.WritingSystem = _writingSystemPicker.IdentifierOfSelectedWritingSystem;
         }
     }
 }
