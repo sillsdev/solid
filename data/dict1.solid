@@ -6,7 +6,7 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
+        <string>ebib</string>
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
@@ -25,7 +25,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>

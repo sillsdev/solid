@@ -259,4 +259,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PreBuildEvent>rem copy "c:\palaso\output\debug\*.dll" "$(ProjectPath)\..\..\..\lib\"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

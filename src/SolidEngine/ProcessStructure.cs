@@ -110,6 +110,7 @@ namespace SolidEngine
         private XmlNode CreateFieldNode(XmlNode source, SolidMarkerSetting setting, XmlDocument destination)
         {
             XmlNode fieldNode = destination.ImportNode(source, true);
+            
             for (int j = 0; j < setting.Mapping.Length; j++)
             {
                 if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
@@ -119,6 +120,8 @@ namespace SolidEngine
                     fieldNode.Attributes.Append(attribute);
                 }
             }
+
+
             XmlNode dataNode = destination.CreateElement("data");
             if (fieldNode.FirstChild != null)
             {
@@ -135,6 +138,7 @@ namespace SolidEngine
             List<XmlNode> scope = new List<XmlNode>();
             scope.Add(destination.AppendChild(destination.ImportNode(source, false)));
             XmlNode field = source.FirstChild;
+            int fieldId = 0;
             while (field != null)
             {
                 SolidMarkerSetting setting = _settings.FindMarkerSetting(field.Name);
@@ -189,6 +193,8 @@ namespace SolidEngine
                         InsertInTreeAnyway(field, destination, report, scope);
                     }
                 }
+
+                fieldId++;
                 field = field.NextSibling;
             }
             return destination.DocumentElement;

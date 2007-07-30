@@ -93,6 +93,13 @@ namespace SolidEngine
 
         public class SolidEntries : List<SolidReport.Entry>
         {
+            public SolidEntries() : base()
+            {
+            }
+
+            public SolidEntries(SolidEntries rhs) : base(rhs)
+            {
+            }
         }
 
         public SolidEntries _entries;
@@ -115,6 +122,11 @@ namespace SolidEngine
         public SolidReport()
         {
             _entries = new SolidEntries();
+        }
+
+        public SolidReport(SolidReport report)
+        {
+            _entries = new SolidEntries(report.Entries);
         }
 
         public void Reset()

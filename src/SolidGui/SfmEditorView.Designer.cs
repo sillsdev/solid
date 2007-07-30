@@ -31,6 +31,7 @@ namespace SolidGui
             this.components = new System.ComponentModel.Container();
             this._contentsBox = new System.Windows.Forms.RichTextBox();
             this._timer = new System.Windows.Forms.Timer(this.components);
+            this.superToolTip1 = new Elsehemy.SuperToolTip(this.components);
             this.SuspendLayout();
             // 
             // _contentsBox
@@ -45,10 +46,14 @@ namespace SolidGui
             this._contentsBox.TabIndex = 0;
             this._contentsBox.Text = "";
             this._contentsBox.WordWrap = false;
-            this._contentsBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseClick);
             this._contentsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseMove);
             this._contentsBox.MouseLeave += new System.EventHandler(this._contentsBox_MouseLeave);
             this._contentsBox.TextChanged += new System.EventHandler(this._contentsBox_TextChanged);
+            this._contentsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseDown);
+            // 
+            // superToolTip1
+            // 
+            this.superToolTip1.FadingInterval = 10;
             // 
             // SfmEditorView
             // 
@@ -68,6 +73,7 @@ namespace SolidGui
 
         public System.Windows.Forms.RichTextBox _contentsBox;
         private System.Windows.Forms.Timer _timer;
+        private Elsehemy.SuperToolTip superToolTip1;
 
     }
 }

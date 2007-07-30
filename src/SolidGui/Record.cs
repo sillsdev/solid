@@ -94,6 +94,7 @@ namespace SolidGui
         private List<Field> _fields = new List<Field>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
+        private SolidReport _report;
 
         public int ID
         {
@@ -126,24 +127,32 @@ namespace SolidGui
             {
                 record.ReadField(xmlChild, 0, report);
             }
+
+            record.Report = new SolidReport(report);
+
             return record;
+        }
+
+        public SolidReport Report
+        {
+            set{ _report = value; }
+            get { return _report; }
         }
 
         private void ReadField(XmlNode entry, int depth, SolidReport report)
         {
             XmlHelper x = new XmlHelper(entry);
             string s;
-            //Field f = new Field(
             bool isInferred = x.GetAttribute("inferred") == "true";
-            s = x.GetAttribute("record");
+            s = x.GetAttribute("field");
             int fieldID = (s != string.Empty) ? Convert.ToInt32(s) : 0;
             foreach (XmlNode xmlChild in entry.ChildNodes)
             {
                 if (xmlChild.Name == "data")
                 {
                     Field field = new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
-                    List<SolidReport.Entry> reportEntries = report.EntriesForMarker(entry.Name);
-                    field.ErrorState = (reportEntries != null) ? reportEntries.Count : 0;
+                    SolidReport.Entry reportEntry = report.GetEntryById(field.Id);
+                    field.ErrorState = (reportEntry != null) ? 1 : 0;
                     _fields.Add(field);
                 }
                 else
