@@ -43,17 +43,21 @@ namespace SolidGui
                 return;
             }
 
-            _targetCombo.SelectedIndex = 0;
+            //_targetCombo.SelectedIndex = 0;
             //LoadConceptList();
             //LoadInformationPane();
         }
         
         public void InitializeDisplay()
         {
-            if(_targetCombo.SelectedIndex != (int)_model.Type)
+            if (_targetCombo.SelectedIndex != (int)_model.Type)
+            {
                 _targetCombo.SelectedIndex = (int)_model.Type;
-            else 
+            }
+            else
+            {
                 _targetCombo_SelectedIndexChanged(this, new EventArgs());
+            }
         }
 
         private void HighlightPreviouslySelectedConcept()

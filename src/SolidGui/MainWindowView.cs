@@ -270,7 +270,14 @@ namespace SolidGui
 
             ExportFactory f = ExportFactory.Singleton();
             IExporter exporter = f.CreateFromSettings(f.ExportSettings[saveDialog.FilterIndex - 1]);
-            exporter.Export(sourceFilePath, destinationFilePath);
+            try
+            {
+                exporter.Export(sourceFilePath, destinationFilePath);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(this, exception.InnerException.Message, "Solid Export Error");
+            }
 
         }
     }
