@@ -38,6 +38,7 @@ namespace SolidGui
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
             _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
+            _markerDetails.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
 
             //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
 
@@ -143,9 +144,15 @@ namespace SolidGui
             _saveButton.Enabled = true;
         }
 
+        private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
+        {
+            _saveButton.Enabled = true;
+        }
+
         private void OnProcessButtonClick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            _sfmEditorView.SaveContentsOfTextBox();
             _mainWindowPM.ProcessLexicon();
             Cursor = Cursors.Default;
         }
@@ -212,6 +219,7 @@ namespace SolidGui
         private void OnSearchClick(object sender, EventArgs e)
         {
             _searchView = SearchView.CreatSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
+            _searchView.TopMost = true;
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
             _searchView.Focus();

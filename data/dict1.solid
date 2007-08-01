@@ -7,8 +7,8 @@
       <WritingSystem>th</WritingSystem>
       <InferedParent />
       <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>dom</string>
+        <string>allo</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1605,6 +1605,7 @@
       <Marker>is</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>Foo-Lana</WritingSystem>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
@@ -1659,6 +1660,168 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lv</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x003F__x003F__x003F_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x005F_x003F__x005F_x003F__x005F_x003F_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>asd</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>a_x003F_d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>a3d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>a5d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x0035_a5d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x005F_x0035_a5d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_3</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_3x</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x3x</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x3x_x003F_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x3x_x005F_x003F_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x3x_x005F_x005F_x005F_x003F_</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x005F</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>_x003F</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>gent</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

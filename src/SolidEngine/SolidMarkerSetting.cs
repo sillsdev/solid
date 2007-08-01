@@ -16,7 +16,7 @@ namespace SolidEngine
         private string _writingSystem;
         private List<SolidStructureProperty> _structureProperties;
         private string[] _mappings = new string[(int)MappingType.Max];
-
+        
         public SolidMarkerSetting()
         {
             _marker = "";
@@ -34,7 +34,10 @@ namespace SolidEngine
         public string WritingSystem
         {
             get { return _writingSystem; }
-            set { _writingSystem = value; }
+            set
+            {
+                    _writingSystem = value;
+            }
         }
 
         public string[] Mapping
@@ -44,7 +47,7 @@ namespace SolidEngine
 
         public void SetMappingConcept(MappingType mappingType, string id)
         {
-            _mappings[(int) mappingType] = id;
+                _mappings[(int) mappingType] = id;
         }
 
         public string GetMappingConceptId(MappingType mappingType)
@@ -76,7 +79,7 @@ namespace SolidEngine
             }
             set
             {
-                _inferedParent = value;
+                    _inferedParent = value;
             }
         }
 

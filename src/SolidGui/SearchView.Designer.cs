@@ -57,6 +57,7 @@ namespace SolidGui
             this._findTextbox.Name = "_findTextbox";
             this._findTextbox.Size = new System.Drawing.Size(175, 20);
             this._findTextbox.TabIndex = 0;
+            this._findTextbox.TextChanged += new System.EventHandler(this._findTextbox_TextChanged);
             // 
             // _findNextButton
             // 
@@ -120,6 +121,7 @@ namespace SolidGui
             this._scopeComboBox.Name = "_scopeComboBox";
             this._scopeComboBox.Size = new System.Drawing.Size(175, 21);
             this._scopeComboBox.TabIndex = 9;
+            this._scopeComboBox.SelectedIndexChanged += new System.EventHandler(this._scopeComboBox_SelectedIndexChanged);
             // 
             // label3
             // 

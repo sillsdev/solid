@@ -6,7 +6,7 @@ namespace SolidEngine
     {
         private string _parent;
         private MultiplicityAdjacency _multipleAdjacent;
-
+        
         public SolidStructureProperty()
         {
             Parent = "";
@@ -38,7 +38,7 @@ namespace SolidEngine
             }
             set
             {
-                _parent = value;
+                    _parent = value;
             }
         }
 
@@ -50,7 +50,7 @@ namespace SolidEngine
             }
             set
             {
-                _multipleAdjacent = value;
+                    _multipleAdjacent = value;
             }
         }
     }

@@ -28,16 +28,8 @@ namespace SolidGui
 
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
-            
-            foreach (string marker in _model.GetValidMarkers())
-            {
-                _markerListBox.Items.Add(_model.GetMarkerSetting(marker));
-                if (marker == selectedMarker)
-                {
-                    _markerListBox.SelectedIndex = _markerListBox.Items.Count - 1;
-                    _currentMarkerSetting = (SolidMarkerSetting)_markerListBox.SelectedItem;
-                }
-            }
+            _currentMarkerSetting = _model.GetMarkerSetting(selectedMarker);
+
             _writingSystemPicker.IdentifierOfSelectedWritingSystem = _currentMarkerSetting.WritingSystem;
             
             _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
@@ -49,7 +41,6 @@ namespace SolidGui
             _mappingView.InitializeDisplay();
 
             SelectInitialArea(initialArea);
-
         }
 
         private void SelectInitialArea(string initialArea)

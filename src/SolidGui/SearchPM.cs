@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace SolidGui
 {
     public class SearchPM
     {
         private  Dictionary _dictionary;
+        private int _startRecordOfWholeSearch;
+        private int _startIndexOfWholeSearch;
         
         public class SearchResultEventArgs : EventArgs
         {
@@ -43,9 +46,11 @@ namespace SolidGui
             System.Windows.Forms.MessageBox.Show("Can't Find \"" + word + "\"");
         }
 
-        public void FindNext( RecordFilter filter, string word, int recordIndex, int textIndex)
+        public void FindNext( RecordFilter filter, string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
         {
             SearchResult result = NextResult(filter, word, recordIndex, textIndex);
+            _startRecordOfWholeSearch = startingRecord;
+            _startIndexOfWholeSearch = startingIndex;
 
             if (result != null)
             {
@@ -56,42 +61,73 @@ namespace SolidGui
                 CantFindWordErrorMessage(word);
             }
         }
-        public void FindNext(string word, int recordIndex, int textIndex)
+        public void FindNext(string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
         {
-            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary), word, recordIndex, textIndex);
+            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary), word, recordIndex, textIndex, startingRecord, startingIndex);
         }
 
-        private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int textIndex)
+        private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int searchStartIndex)
         {
             int startingRecordIndex = recordIndex;
-            string recordText;
+            int searchResultIndex;
             do
             {
-                recordText = filter.GetRecord(recordIndex).ToStructuredString();
-                textIndex = recordText.IndexOf(word, textIndex);
-                if(textIndex != -1)
+                searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
+                BeepWhenStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex);
+
+                if(searchResultIndex != -1)
                 {
-                    return new SearchResult(recordIndex, textIndex, word.Length, filter);
+                    return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
                 }
 
+                searchStartIndex = 0;
                 recordIndex++;
-                if (recordIndex >= filter.Count)
-                {
-                    Console.Beep();
-                    recordIndex = 0;
-                }
-                textIndex = 0;
+                recordIndex = WrapRecordIndex(recordIndex, filter);
             } while (recordIndex != startingRecordIndex);
 
-            recordText = filter.GetRecord(recordIndex).ToStructuredString();
-            textIndex = recordText.IndexOf(word, textIndex);
-            if (textIndex != -1)
+            searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
+            BeepWhenStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex);
+            
+            if (searchResultIndex != -1)
             {
-                return new SearchResult(recordIndex, textIndex, word.Length, filter);
+                return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
             }
             
             return null;
         }
+
+        private int WrapRecordIndex(int recordIndex, RecordFilter filter)
+        {
+            if (recordIndex >= filter.Count)
+            {recordIndex = 0;}
+            return recordIndex;
+        }
+
+        private int FindIndexOfWordInRecord(int recordIndex, RecordFilter filter, string word, int startTextIndex)
+        {
+            string recordText;
+            int finalTextIndex;
+            recordText = filter.GetRecord(recordIndex).ToStructuredString();
+            finalTextIndex = recordText.IndexOf(word, startTextIndex);
+            return finalTextIndex;
+        }
+
+        private void BeepWhenStartingPointPassed(int recordIndex, int startTextIndex, int finalTextIndex)
+        {
+            if(SearchStartingPointPassed(recordIndex, startTextIndex, finalTextIndex))
+            {
+                Console.Beep();
+                Debug.WriteLine("BEEP!");
+            }
+        }
+
+        private bool SearchStartingPointPassed(int recordIndex, int startTextIndex, int textIndex)
+        {
+            return recordIndex == _startRecordOfWholeSearch && 
+                   startTextIndex <= _startIndexOfWholeSearch &&
+                   (textIndex >= _startIndexOfWholeSearch || textIndex == -1);
+        }
+
         /*
                 private SearchResult NextForwardResult(string word, int recordIndex, int textIndex)
                 {

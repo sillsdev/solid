@@ -13,8 +13,8 @@ namespace SolidGui
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
         private FilterChooserPM _filterChooserPM;
-
         private MarkerFilter _filter = null;
+        public event EventHandler MarkerSettingPossiblyChanged;
 
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
 
@@ -230,7 +230,8 @@ namespace SolidGui
             MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
-            //UpdateDisplay();
+            if (MarkerSettingPossiblyChanged != null)
+                MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
             UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
         }
 
@@ -245,7 +246,8 @@ namespace SolidGui
             dialog.SelectedArea = area;
             dialog.MappingType = mappingType;
             dialog.ShowDialog();
-            //UpdateDisplay();
+            if (MarkerSettingPossiblyChanged != null)
+                MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
             UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
         }
 

@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using SolidEngine;
 
@@ -24,6 +19,11 @@ namespace SolidGui
             _initialArea = "structure";
         }
 
+        public Button CloseButton
+        {
+            get { return _closeButton; }
+        }
+
         //what group of settings to show, initially
         public string SelectedArea
         {
@@ -40,12 +40,12 @@ namespace SolidGui
 
         private void _closeButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void OnMarkerSettings_Load(object sender, EventArgs e)
         {
-            this.Text = string.Format("{0} Settings", _selectedMarker);
+            Text = string.Format("{0} Settings", _selectedMarker);
             _markerSettingsView.UpdateDisplay(_initialArea, _selectedMarker, _mappingType);
         }
     }

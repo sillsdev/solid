@@ -1,10 +1,6 @@
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
-using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using Elsehemy;
 using SolidEngine;
@@ -69,7 +65,7 @@ namespace SolidGui
                 superToolTipInfo.BodyFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 superToolTipInfo.BodyText = "";
                 superToolTipInfo.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-                superToolTipInfo.HeaderText = "Error Description";
+                superToolTipInfo.HeaderText = "Problem Description";
                 superToolTipInfo.OffsetForWhereToDisplay = new System.Drawing.Point(0, 0);
 
                 return superToolTipInfo;
@@ -149,21 +145,28 @@ namespace SolidGui
             }
         }
 
+        private SfmEditorPM _model;
+        private Record _currentRecord;
+
         private int _spacesInIndentation = 4;
         private int _leftMarigin = 20;
-        private int _lineNumber = -1;
         private Color _inferredTextColor = Color.Blue;
         private Color _errorTextColor = Color.Red;
         private Color _defaultTextColor = Color.Black;
-        private KeyScanner _keyScanner = new KeyScanner();
-        private ToolTip tip = new ToolTip();
-        private MarkerTip _markerTip; 
-        private SfmEditorPM _model;
-        private Record _currentRecord;
-        public event EventHandler RecordTextChanged;
-        private const string _processingMark = "\x01";
         private int _indent = 130;
-        private int _delay = 10;
+        private Font _defaultFont = new Font("Arial", 13);
+
+        private KeyScanner _keyScanner = new KeyScanner();
+        private const string _processingMark = "\x01";
+        
+        private MarkerTip _markerTip;
+        private int _lineNumber = -1;
+        private int _markerTipDisplayDelay = 10;
+                
+        public event EventHandler RecordTextChanged;
+        
+ 
+        
 
         public int Indent
         {
@@ -238,8 +241,8 @@ namespace SolidGui
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
                 string fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
-                _contentsBox.Font = _model.CorrectFont(field.Marker);
-
+                //_contentsBox.Font = _model.DisplayFont(field.Marker);
+/*
                 if (!foundProcessingMark)
                 {
                     if (field.Value == _processingMark)
@@ -250,6 +253,7 @@ namespace SolidGui
                     }
                     currentPosition += fieldText.Length + 1;
                 }
+*/
                 _contentsBox.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
@@ -260,16 +264,25 @@ namespace SolidGui
                 {
                     _markerTip.AddLineMessage(lineNumber, GetErrorForField(_currentRecord.Report, field));
                     _contentsBox.SelectionColor = _errorTextColor;
-                }
-                _contentsBox.AppendText(fieldText + "\n");
+                };
+
+                _contentsBox.AppendText(indentation);
+
+                _contentsBox.SelectionFont = _defaultFont;
+                _contentsBox.AppendText(markerPrefix + field.Marker + "\t");
+
+                _contentsBox.SelectionColor = _defaultTextColor;
+                _contentsBox.SelectionFont = _model.DisplayFont(field.Marker) ?? _defaultFont;
+                _contentsBox.AppendText(field.Value + "\n");
+
                 lineNumber++;
             }
-            
+
+            _contentsBox.SelectionFont = _defaultFont;
             _contentsBox.SelectionColor = _defaultTextColor;
             _contentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
 
             _contentsBox.TextChanged += _contentsBox_TextChanged;
-
         }
 
         private string GetErrorForField(SolidReport report, Record.Field field)
@@ -353,7 +366,7 @@ namespace SolidGui
                 Point positionOfNearestCharacter = _contentsBox.GetPositionFromCharIndex(indexOfNearestCharacter);
                 int xCursorDistanceFromNearestCharacter = Math.Abs(positionOfCursor.X - positionOfNearestCharacter.X);
                 int yCursorDistanceFromNearestCharacter = Math.Abs(positionOfCursor.Y - positionOfNearestCharacter.Y);
-                return (xCursorDistanceFromNearestCharacter < 5);
+                return xCursorDistanceFromNearestCharacter < 5;
             }
 
             return false;
@@ -364,7 +377,7 @@ namespace SolidGui
         {
             if (_markerTip != null)
             {
-                _delay = 5;
+                _markerTipDisplayDelay = 5;
                 _lineNumber = -1;
                 _markerTip.Hide();
             }
@@ -381,7 +394,7 @@ namespace SolidGui
                 if (_lineNumber != newLineNumber)
                 {
                     _lineNumber = newLineNumber;
-                    _delay = (_markerTip.Showing) ? 0 : 5;
+                    _markerTipDisplayDelay = (_markerTip.Showing) ? 0 : 5;
                     _markerTip.Hide();
                 }
             }
@@ -394,8 +407,8 @@ namespace SolidGui
 
         public void OnTick(object sender, EventArgs e)
         {
-            _delay--;
-            if (_delay < 0 && !_markerTip.Showing)
+            _markerTipDisplayDelay--;
+            if (_markerTipDisplayDelay < 0 && !_markerTip.Showing)
             {
                 _markerTip.ShowMessageForLine(_lineNumber);
             }
@@ -422,7 +435,7 @@ namespace SolidGui
         {
             if (_markerTip != null)
             {
-                _delay = 5;
+                _markerTipDisplayDelay = 5;
                 _lineNumber = -1;
                 _markerTip.Hide();
             }

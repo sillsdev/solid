@@ -43,7 +43,7 @@ namespace SolidGui
                 return;
             }
 
-            //_targetCombo.SelectedIndex = 0;
+            _targetCombo.SelectedIndex = (int)_model.Type;
             //LoadConceptList();
             //LoadInformationPane();
         }

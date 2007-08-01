@@ -36,7 +36,7 @@ namespace SolidGui
             record.SetRecord(update, _solidSettings);
         }
 
-        public Font CorrectFont(string marker)
+        public Font DisplayFont(string marker)
         {
             Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
                 new LdmlInFolderWritingSystemRepository();

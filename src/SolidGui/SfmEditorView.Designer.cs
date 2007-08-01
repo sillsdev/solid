@@ -37,6 +37,7 @@ namespace SolidGui
             // _contentsBox
             // 
             this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._contentsBox.EnableAutoDragDrop = true;
             this._contentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._contentsBox.HideSelection = false;
             this._contentsBox.Location = new System.Drawing.Point(0, 0);

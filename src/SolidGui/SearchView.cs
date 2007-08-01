@@ -11,6 +11,8 @@ namespace SolidGui
         private SfmEditorView _sfmEditorView;
         private int _recordIndex = 0;
         private int _textIndex = 0;
+        private int _startingTextIndex = -1;
+        private int _startingRecordIndex = -1;
 
         public SearchPM SearchModel
         {
@@ -67,19 +69,28 @@ namespace SolidGui
         private void _findNextButton_Click(object sender, EventArgs e)
         {
             TextIndex = _sfmEditorView._contentsBox.SelectionStart + 1;
+            _startingTextIndex = (_startingTextIndex == -1) ? TextIndex-1 : _startingTextIndex;
 
             if (_scopeComboBox.SelectedIndex == 0)
             {
                 RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
+                _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
                 _searchModel.FindNext(_navigatorModel.ActiveFilter,
                                       _findTextbox.Text,
                                       RecordIndex,
-                                      TextIndex);
+                                      TextIndex,
+                                      _startingRecordIndex,
+                                      _startingTextIndex);
             }
             else
             {
                 RecordIndex = _navigatorModel.CurrentRecordID;
-                _searchModel.FindNext(_findTextbox.Text, RecordIndex, TextIndex);
+                _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
+                _searchModel.FindNext(_findTextbox.Text, 
+                                      RecordIndex, 
+                                      TextIndex,
+                                      _startingRecordIndex,
+                                      _startingTextIndex);
             }
         }
 
@@ -99,6 +110,22 @@ namespace SolidGui
                 _sfmEditorView._contentsBox.SelectedText = _replaceTextBox.Text;
                 _sfmEditorView.SaveContentsOfTextBox();
             }
+        }
+
+        private void _findTextbox_TextChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+        }
+
+        private void _scopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+        }
+        
+        private void ResetStartingPoint()
+        {
+            _startingRecordIndex = -1;
+            _startingTextIndex = -1;
         }
     }
 }

@@ -252,6 +252,7 @@ namespace SolidGui
             IProcess process = new ProcessStructure(_solidSettings);
             XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
 
+            Report = report;
             _fields.Clear();
             foreach (XmlNode xmlChild in xmlResult.ChildNodes)
             {
