@@ -50,6 +50,8 @@
     <Compile Include="Process.cs" />
     <Compile Include="ProcessStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SfmRecord.cs" />
+    <Compile Include="SfmRecordReader.cs" />
     <Compile Include="sfmxmlreader.cs" />
     <Compile Include="Solidifier.cs" />
     <Compile Include="SolidMarkerSetting.cs" />

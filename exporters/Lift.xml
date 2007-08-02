@@ -7,5 +7,6 @@
 </exportheader>
 <xsl>
 <stylesheet>lift.xsl</stylesheet>
+<file>lift.rng</file>
 </xsl>
 </exporter>

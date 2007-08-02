@@ -4,10 +4,11 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
+      <WritingSystem>en-Latn</WritingSystem>
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string xsi:nil="true" />
+        <string>lu</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -18,6 +19,7 @@
       <Marker>lx</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <WritingSystem>en-Latn</WritingSystem>
       <InferedParent />
       <Mappings>
         <string>allo</string>
@@ -35,7 +37,7 @@
       <InferedParent>sn</InferedParent>
       <Mappings>
         <string>pos</string>
-        <string xsi:nil="true" />
+        <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -49,7 +51,7 @@
       <InferedParent />
       <Mappings>
         <string>glos</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -77,7 +79,7 @@
       <InferedParent />
       <Mappings>
         <string>def</string>
-        <string xsi:nil="true" />
+        <string>definition</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -91,7 +93,7 @@
       <InferedParent />
       <Mappings>
         <string>glos</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -119,7 +121,7 @@
       <InferedParent />
       <Mappings>
         <string>def</string>
-        <string xsi:nil="true" />
+        <string>definition</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -147,7 +149,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string xsi:nil="true" />
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -161,7 +163,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string xsi:nil="true" />
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -175,7 +177,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string xsi:nil="true" />
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -275,7 +277,7 @@
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string xsi:nil="true" />
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -289,7 +291,7 @@
       <InferedParent />
       <Mappings>
         <string>glos</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -317,7 +319,7 @@
       <InferedParent />
       <Mappings>
         <string>def</string>
-        <string xsi:nil="true" />
+        <string>definition</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -331,7 +333,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string xsi:nil="true" />
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -504,7 +506,7 @@
       <InferedParent />
       <Mappings>
         <string>prnf</string>
-        <string xsi:nil="true" />
+        <string>phonetic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -522,7 +524,7 @@
       <InferedParent />
       <Mappings>
         <string>vars</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -540,7 +542,7 @@
       <InferedParent />
       <Mappings>
         <string>vars</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -554,7 +556,7 @@
       <InferedParent />
       <Mappings>
         <string>vars</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -568,7 +570,7 @@
       <InferedParent />
       <Mappings>
         <string>vars</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -595,8 +597,8 @@
     <SolidMarkerSetting>
       <InferedParent />
       <Mappings>
-        <string>subc</string>
-        <string xsi:nil="true" />
+        <string>sn</string>
+        <string>sense</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -614,7 +616,7 @@
       <InferedParent />
       <Mappings>
         <string>etf</string>
-        <string xsi:nil="true" />
+        <string>etymology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -632,7 +634,7 @@
       <InferedParent />
       <Mappings>
         <string>etc</string>
-        <string xsi:nil="true" />
+        <string>etymology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -819,7 +821,7 @@
       <InferedParent />
       <Mappings>
         <string>def</string>
-        <string xsi:nil="true" />
+        <string>definition</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -884,7 +886,7 @@
       <InferedParent />
       <Mappings>
         <string>glos</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1654,6 +1656,33 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lv</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>lxt</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>gt</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>dat</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

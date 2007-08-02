@@ -22,11 +22,11 @@ namespace SolidGui.Tests
         {
             _settings = new SolidSettings();
             SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", SolidGui.MultiplicityAdjacency.Once));
+            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
             SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
-            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", SolidGui.MultiplicityAdjacency.MultipleApart));
+            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
             SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", SolidGui.MultiplicityAdjacency.MultipleApart));
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
             _settings.MarkerSettings.Add(lxSetting);
             _settings.MarkerSettings.Add(snSetting);

@@ -60,11 +60,11 @@ namespace SolidEngine
                         foundParent = true;
                     }
                     else if (scope[i + 1].Name == setting.Marker &&
-                             structureProperty.MultipleAdjacent != SolidGui.MultiplicityAdjacency.Once)
+                             structureProperty.MultipleAdjacent != MultiplicityAdjacency.Once)
                     {
                         foundParent = true;
                     }
-                    else if (structureProperty.MultipleAdjacent == SolidGui.MultiplicityAdjacency.Once)
+                    else if (structureProperty.MultipleAdjacent == MultiplicityAdjacency.Once)
                     {
                         foundParent = true;
 
@@ -75,7 +75,7 @@ namespace SolidEngine
                                 foundParent = false;
                         }
                     }
-                    else if (structureProperty.MultipleAdjacent == SolidGui.MultiplicityAdjacency.MultipleApart)
+                    else if (structureProperty.MultipleAdjacent == MultiplicityAdjacency.MultipleApart)
                     {
                         foundParent = true;
                     }

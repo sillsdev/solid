@@ -19,9 +19,13 @@ namespace SolidTests
             //EngineEnvironment_Test t = new EngineEnvironment_Test();
             //t.PathOfBase_Correct();
 
-            ExportFactory_Test t = new ExportFactory_Test();
+            SfmReader_Read_Test t = new SfmReader_Read_Test();
             t.Init();
-            t.ExportSettings_Has2Files();
+            t.ReadIndentedMarker_Correct();
+
+            //ExportFactory_Test t = new ExportFactory_Test();
+            //t.Init();
+            //t.ExportSettings_Has2Files();
 
             //ExportXsl_Test t = new ExportXsl_Test();
             //t.Export_Correct();

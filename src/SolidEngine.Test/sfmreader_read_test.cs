@@ -19,7 +19,7 @@ namespace SolidTests
         public void EmptySFM_HeaderCount_0()
         {
             string sfm = @"";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(false, result);
             Assert.AreEqual(0, r.Header.Count);
@@ -31,7 +31,7 @@ namespace SolidTests
             string sfm =
                 "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                 "\\_DateStampHasFourDigitYear\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(false, result);
             Assert.AreEqual(2, r.Header.Count);
@@ -45,7 +45,7 @@ namespace SolidTests
         public void EmptySFMRecordRead_False()
         {
             string sfm = @"";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(false, result);
         }
@@ -56,7 +56,7 @@ namespace SolidTests
             string sfm = 
                 "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                 "\\_DateStampHasFourDigitYear\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(false, result);
         }
@@ -67,7 +67,7 @@ namespace SolidTests
             string sfm =
                 "\\lx a\n" +
                 "\\ge b\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -82,7 +82,7 @@ namespace SolidTests
             string sfm =
                 "\\lx\ta\n" +
                 "\\ge\tb\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -97,7 +97,7 @@ namespace SolidTests
             string sfm =
                 "\\lx a\n" +
                 "\\ge\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -113,13 +113,44 @@ namespace SolidTests
                 "\\lx a\n" +
                 "\\\n" +
                 "\\ge b";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
             Assert.AreEqual(3, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
+            Assert.AreEqual("", r.Key(1));
+        }
+
+        [Test]
+        public void ReadIndentedMarker_Correct()
+        {
+            string sfm =
+                "\\lx a\n" +
+                "  \\ge b\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("b", r.Value("ge"));
+        }
+
+        [Test]
+        public void ReadBackslashInValue_Correct()
+        {
+            string sfm =
+                "\\lx a\n" +
+                "\\ge \\b\n";
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
+            bool result = r.Read();
+            Assert.IsTrue(result);
+            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("a", r.Value("lx"));
+            Assert.AreEqual("\\b", r.Value("ge"));
         }
 
         private SfmRecordReader ReadOneRecordData()
@@ -129,7 +160,7 @@ namespace SolidTests
                 "\\_DateStampHasFourDigitYear\n" +
                 "\\lx a\n" +
                 "\\ge b\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(true, result);
             return r;
@@ -144,7 +175,7 @@ namespace SolidTests
                 "\\ge b\n" +
                 "\\lx c\n" +
                 "\\gn d\n";
-            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm), 4096);
+            SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
             bool result = r.Read();
             Assert.AreEqual(true, result);
             return r;

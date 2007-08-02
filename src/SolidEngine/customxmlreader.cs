@@ -542,7 +542,6 @@ namespace SolidEngine {
 */
         public override string GetAttribute(string name, string namespaceURI) 
         {
-            //!!! CJP This seems broken to me. Shouldn't this be checking for equivalence of the namespaceURI
             if (namespaceURI != string.Empty && namespaceURI != null)
             {
                 return null;
@@ -586,7 +585,6 @@ namespace SolidEngine {
 
         public override bool MoveToAttribute(string name, string ns) 
         {
-            //!!! CJP This seems broken to me. Shouldn't this be checking for equivalence of the namespaceURI
             if (ns != string.Empty && ns != null)
             {
                 return false;

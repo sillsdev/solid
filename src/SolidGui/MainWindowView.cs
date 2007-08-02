@@ -153,7 +153,7 @@ namespace SolidGui
         private void OnProcessButtonClick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _sfmEditorView.SaveContentsOfTextBox();
+            _sfmEditorView.UpdateModel();
             _mainWindowPM.ProcessLexicon();
             _sfmEditorView.ClearContentsOfTextBox();
             _sfmEditorView.DisplayEachFieldInCurrentRecord();
@@ -170,7 +170,7 @@ namespace SolidGui
 
         private void OnSaveClick(object sender, EventArgs e)
         {
-            _sfmEditorView.SaveContentsOfTextBox();
+            _sfmEditorView.UpdateModel();
             _mainWindowPM.SaveDictionary();
             _saveButton.Enabled = false;
         }

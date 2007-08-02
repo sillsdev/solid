@@ -13,6 +13,7 @@ namespace SolidEngine
 
         private string _xslFilePath;
         private ExportHeader _header;
+        private List<string> _files = new List<string>();
 
         public string XslFilePath
         {
@@ -58,6 +59,9 @@ namespace SolidEngine
                     {
                         case "stylesheet":
                             _xslFilePath = Path.Combine(EngineEnvironment.PathOfExporters, value);
+                            break;
+                        case "file":
+                            _files.Add(Path.Combine(EngineEnvironment.PathOfExporters, value));
                             break;
                     }
                 }
@@ -110,14 +114,22 @@ namespace SolidEngine
             XslCompiledTransform transform = new XslCompiledTransform();
             using (XmlReader xslReader = CreateXslReader())
             {
-                transform.Load(xslReader);
+                XsltSettings settings = new XsltSettings();
+                settings.EnableDocumentFunction = true;
+                transform.Load(xslReader, settings, new XmlUrlResolver());
                 xslReader.Close();
             }
 
             XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteStartDocument();
-            transform.Transform(xmlReader, xmlWriter);
+            XsltArgumentList arguments = new XsltArgumentList();
+            for (int i = 0; i < _files.Count; i++)
+            {
+                arguments.AddParam(string.Format("file{0:D}", i), "", _files[i]);
+            }
+            transform.Transform(xmlReader, arguments, xmlWriter);
+            xmlWriter.WriteEndDocument();
             xmlWriter.Flush();
             xmlWriter.Close();
         }

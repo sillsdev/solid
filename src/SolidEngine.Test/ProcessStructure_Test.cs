@@ -17,13 +17,13 @@ namespace SolidTests
         {
             _settings = new SolidSettings();
             SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", SolidGui.MultiplicityAdjacency.Once));
+            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
             SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
-            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", SolidGui.MultiplicityAdjacency.MultipleApart));
+            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
             SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", SolidGui.MultiplicityAdjacency.MultipleApart));
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
             SolidMarkerSetting bbSetting = new SolidMarkerSetting("bb");
-            bbSetting.StructureProperties.Add(new SolidStructureProperty("lx",SolidGui.MultiplicityAdjacency.MultipleApart));
+            bbSetting.StructureProperties.Add(new SolidStructureProperty("lx",MultiplicityAdjacency.MultipleApart));
 
             _settings.MarkerSettings.Add(lxSetting);
             _settings.MarkerSettings.Add(snSetting);
@@ -41,7 +41,7 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.Once));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
             _settings.MarkerSettings.Add(ccSetting);
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
@@ -62,7 +62,7 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.Once));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
             _settings.MarkerSettings.Add(ccSetting);
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
@@ -83,7 +83,7 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.MultipleTogether));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
             _settings.MarkerSettings.Add(ccSetting);
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
@@ -104,7 +104,7 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.MultipleTogether));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
             _settings.MarkerSettings.Add(ccSetting);
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
@@ -125,10 +125,10 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.MultipleApart));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
             _settings.MarkerSettings.Add(ccSetting);
             SolidMarkerSetting snSetting = _settings.FindMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("bb",SolidGui.MultiplicityAdjacency.MultipleApart));
+            snSetting.StructureProperties.Add(new SolidStructureProperty("bb",MultiplicityAdjacency.MultipleApart));
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
 
@@ -148,10 +148,10 @@ namespace SolidTests
 
             Init();
             SolidMarkerSetting ccSetting = new SolidMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.MultipleApart));
+            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
             _settings.MarkerSettings.Add(ccSetting);
             SolidMarkerSetting snSetting = _settings.FindMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("bb", SolidGui.MultiplicityAdjacency.MultipleApart));
+            snSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
             Assert.IsNotNull(_settings.FindMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
 

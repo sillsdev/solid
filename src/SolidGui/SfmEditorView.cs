@@ -157,7 +157,7 @@ namespace SolidGui
         private Font _defaultFont = new Font("Arial", 13);
 
         private KeyScanner _keyScanner = new KeyScanner();
-        private const string _processingMark = "\x01";
+        //private const string _processingMark = "\x01";
         
         private MarkerTip _markerTip;
         private int _lineNumber = -1;
@@ -207,7 +207,7 @@ namespace SolidGui
 
         public void OnRecheckClicked(object sender, EventArgs e)
         {
-            UpdateContentsOfTextBox();
+            UpdateView();
         }
 
         public void BindModel(SfmEditorPM model)
@@ -229,7 +229,7 @@ namespace SolidGui
             }
             else if (_currentRecord != e._record)
             {
-                SaveContentsOfTextBox();
+                UpdateModel();
                 ClearContentsOfTextBox();
                 _currentRecord = e._record;
                 DisplayEachFieldInCurrentRecord();
@@ -237,14 +237,14 @@ namespace SolidGui
             }
         }
        
-        public void SaveContentsOfTextBox()
+        public void UpdateModel()
         {
-            int currentIndex = _contentsBox.SelectionStart;
-            if (_currentRecord != null && _currentRecord.ToStructuredString() != _contentsBox.Text)
+            //int currentIndex = _contentsBox.SelectionStart;
+            if (_currentRecord != null /*&& _currentRecord.ToStructuredString() != _contentsBox.Text*/)
             {
-                _model.UpdateCurrentRecord(_currentRecord, GetContentsBoxTextWithoutInferredFields());
+                _model.UpdateCurrentRecord(_currentRecord, _contentsBox.Text);
             }
-            _contentsBox.SelectionStart = currentIndex;
+            //_contentsBox.SelectionStart = currentIndex;
         }
 
         public void ClearContentsOfTextBox()
@@ -296,14 +296,18 @@ namespace SolidGui
                     _contentsBox.SelectionColor = _errorTextColor;
                 };
 
+                // 1) Indentation
                 _contentsBox.AppendText(indentation);
 
+                // 2) Marker
                 _contentsBox.SelectionFont = _defaultFont;
                 _contentsBox.AppendText(markerPrefix + field.Marker + "\t");
 
+                // 3) Value
                 _contentsBox.SelectionColor = _defaultTextColor;
-                _contentsBox.SelectionFont = _model.DisplayFont(field.Marker) ?? _defaultFont;
-                _contentsBox.AppendText(field.Value + "\n");
+                _contentsBox.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
+                string displayValue = _model.ValueToUnicode(field.Marker, field.Value);
+                _contentsBox.AppendText(displayValue + "\n");
 
                 lineNumber++;
             }
@@ -325,27 +329,6 @@ namespace SolidGui
             return "This isn't really an error";
         }
 
-        private string GetContentsBoxTextWithoutInferredFields()
-        {
-            string textWithoutInferred = string.Empty;
-            _contentsBox.SelectionStart = 0;
-            foreach (string line in _contentsBox.Lines)
-            {
-                int startOfTextOnLine = line.IndexOf("\\");
-                if(startOfTextOnLine == -1)
-                {
-                    startOfTextOnLine = 0;
-                }
-                int startOfInference = line.IndexOf("\\+");
-                if(startOfInference == -1)
-                {
-                    textWithoutInferred += line.Substring(startOfTextOnLine) + "\r\n";
-                }
-
-            }
-            return textWithoutInferred;
-        }
-
 
 /*        
         private void _contentsBox_KeyUp(object sender, KeyEventArgs e)
@@ -363,9 +346,9 @@ namespace SolidGui
         }
 */
 
-        private void UpdateContentsOfTextBox()
+        private void UpdateView()
         {
-            SaveContentsOfTextBox();
+            UpdateModel(); //!!! This should be redundant ???
             ClearContentsOfTextBox();
             DisplayEachFieldInCurrentRecord();
         }

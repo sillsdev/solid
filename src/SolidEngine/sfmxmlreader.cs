@@ -98,7 +98,7 @@ namespace SolidEngine
         public SfmXmlReader() :
             base()
         {
-            _encoding = Encoding.UTF8;
+            _encoding = Encoding.GetEncoding("iso-8859-1");
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace SolidEngine
             base(baseUri, nametable)
         {
             _encoding = encoding;
-            _sfmReader = new SfmRecordReader(input, _encoding, 4096);
+            _sfmReader = new SfmRecordReader(input);
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace SolidEngine
             :
             base(new Uri(uri))
         {
-            _encoding = Encoding.UTF8;
+            _encoding = Encoding.GetEncoding("iso-8859-1");
         }
 
         /// <summary>
@@ -145,8 +145,8 @@ namespace SolidEngine
             :
             base()
         {
-            _encoding = Encoding.UTF8;
-            _sfmReader = new SfmRecordReader(input, 4096);
+            _encoding = Encoding.GetEncoding("iso-8859-1");
+            _sfmReader = new SfmRecordReader(input);
         }
 
         /// <summary>
@@ -158,8 +158,8 @@ namespace SolidEngine
         public SfmXmlReader(TextReader input, Uri baseUri, XmlNameTable nametable) :
             base(baseUri, nametable)
         {
-            _encoding = Encoding.UTF8;
-            _sfmReader = new SfmRecordReader(input, 4096);
+            _encoding = Encoding.GetEncoding("iso-8859-1");
+            _sfmReader = new SfmRecordReader(input);
         }
         /*
                 /// <summary>
@@ -240,7 +240,7 @@ namespace SolidEngine
             }
             set
             {
-                _sfmReader = new SfmRecordReader(value, 4096);
+                _sfmReader = new SfmRecordReader(value);
                 Init();
             }
         }
@@ -650,7 +650,7 @@ namespace SolidEngine
                             throw new Exception("You must provide an input location via the Href property, or provide an input stream via the TextReader property.");
                         }
                         //!!! Change this sort of thing to fn InitDefaultReader or similar
-                        _sfmReader = new SfmRecordReader(_href, Encoding.UTF8/*!!!_encoding*/, _proxy, 4096);
+                        _sfmReader = new SfmRecordReader(_href, _proxy);
                     }
                     _sfmReader.Read();
                     _sfmContext = SfmState.Root;
@@ -852,358 +852,6 @@ namespace SolidEngine
                      * */
             }
             return retval;
-        }
-
-    }
-    //TODO Make SFMLexer (which does onKey, onValue) Make SFMParser which does onHeader onRecord
-    public class SfmRecordReader
-    {
-        public class SfmField
-        {
-            public string key;
-            public string value;
-            public int sourceLine;
-            public int endLine;
-
-            public SfmField()
-            {
-                key = String.Empty;
-                value = String.Empty;
-                sourceLine = 0;
-                endLine = 0;
-            }
-        }
-
-        public class SfmRecord : List<SfmField>
-        {
-            public SfmRecord() 
-                :
-                base()
-            {
-            }
-
-            public SfmRecord(SfmRecord rhs)
-                :
-                base(rhs)
-            {
-            }
-
-        }
-
-        enum StateLex
-        {
-            StartFile,
-            StartOfRecord, // Holding startkey from previous scan.
-            //ScanStartKey,
-            //HaveStart,
-            //HaveRecord,
-            BuildKey,
-            BuildValue,
-            //EndOfRecord, //!!! This may well be redundant
-            EOF
-        }
-
-        enum StateParse
-        {
-            Header,
-            Records
-        }
-
-        SfmRecord _record = new SfmRecord();
-        SfmRecord _header = new SfmRecord();
-
-        string _startKey = "lx";
-
-        TextReader _r;
-        StateLex _stateLex = StateLex.StartFile;
-        StateParse _stateParse = StateParse.Header;
-
-        private int _recordStartLine;
-        private int _recordEndLine;
-        private int _recordID = 0;
-
-        // Internal buffer state
-        char[] _buffer;
-        int _pos;
-        int _used;
-
-        // Reading state
-        public int _line = 1; //!!! These should be private
-        public int _col = 1;
-
-        public SfmRecordReader(Uri location, Encoding encoding, string proxy, int bufsize)
-        {  // the location of the file
-            if (location.IsFile)
-            {
-                _r = new StreamReader(location.LocalPath, encoding, true);
-            }
-            else
-            {
-                WebRequest wr = WebRequest.Create(location);
-                if (proxy != null && proxy != "")
-                {
-                    wr.Proxy = new WebProxy(proxy);
-                }
-                wr.Credentials = CredentialCache.DefaultCredentials;
-                Stream stm = wr.GetResponse().GetResponseStream();
-                _r = new StreamReader(stm, encoding, true);
-            }
-            _buffer = new char[bufsize];
-//            _fields = new SfmRecord();
-            _record = new SfmRecord();
-        }
-
-        public SfmRecordReader(Stream stm, Encoding encoding, int bufsize)
-        {  // the location of the file
-            _r = new StreamReader(stm, encoding, true);
-            _buffer = new char[bufsize];
-            _record = new SfmRecord();
-        }
-
-        public SfmRecordReader(TextReader stm, int bufsize)
-        {  // the location of the file
-            _r = stm;
-            _buffer = new char[bufsize];
-            _record = new SfmRecord();
-        }
-
-        public SfmRecordReader(string fileName, int bufsize)
-        {  // the location of the file
-            _r = new StreamReader(fileName);
-            _buffer = new char[bufsize];
-            _record = new SfmRecord();
-        }
-
-        public int RecordID
-        {
-            get { return _recordID; }
-        }
-
-        public int RecordStartLine
-        {
-            get { return _recordStartLine; }
-        }
-
-        public int RecordEndLine
-        {
-            get { return _recordEndLine; }
-        }
-
-        public TextReader Reader
-        {
-            get
-            {
-                return _r;
-            }
-        }
-
-        public void Close()
-        {
-            _r.Close();
-        }
-
-        // Read a record.
-        public bool Read()
-        {
-            bool retval = false;
-            // Check parse state
-            switch (_stateParse)
-            {
-                case StateParse.Header:
-                    _stateParse = StateParse.Records;
-                    retval = ReadRecord();
-                    // Store the header regardless of what is returned. May only be a header in the file.
-                    _header = new SfmRecord(_record); 
-                    if (retval)
-                    {
-                        retval = ReadRecord();
-                    }
-                    break;
-                case StateParse.Records:
-                    retval = ReadRecord();
-                    _recordID++;
-                    break;
-            }
-            return retval;
-        }
-
-        private bool ReadRecord()
-        { 
-            _record.Clear();
-
-            bool retval = false;
-//!!!            int startMatch = 0;
-//            int startLimit = _startKey.Length;
-            SfmField currentField = new SfmField();
-            if (_stateLex == StateLex.StartOfRecord)
-            {
-                currentField.key = _startKey;
-                _stateLex = StateLex.BuildValue;
-            }
-            StringBuilder sb = new StringBuilder(1024);
-            char c1 = '\0';
-            char c0 = '\0';
-            _recordStartLine = _line;
-            while (_stateLex != StateLex.StartOfRecord && _stateLex != StateLex.EOF)
-            {
-                c1 = c0;
-                c0 = ReadChar();
-
-                // Update the line and column statistics
-                if (isEOL(c0) && !isEOL(c1))
-                {
-                    _line++;
-                    _col = 1;
-                }
-                if (c0 == '\\' && _col == 1) //!!! This constrains it to lex style sfm with \\ in col 0.
-                {
-                    if (_stateLex == StateLex.BuildValue)
-                    {
-                        // Store the key and value.
-                        currentField.value = sb.ToString();
-                        onField(currentField);
-                        currentField = new SfmField();
-                    }
-                    _stateLex = StateLex.BuildKey;
-                    sb.Length = 0;
-//                    currentField.key = "";
-  //                  currentField.value = "";
-                    currentField.sourceLine = _line;
-                }
-                // Scan for the start of record and update state if found
-                else
-                {
-                    switch (_stateLex)
-                    {
-                        case StateLex.BuildKey:
-                            if (c0 == ' ' || c0 == 0x09 || isEOL(c0))
-                            {
-                                // push into sb and then store
-                                currentField.key = sb.ToString();
-                                _stateLex = StateLex.BuildValue;
-                                sb.Length = 0;
-                                if (currentField.key == _startKey) 
-                                {
-                                    _stateLex = StateLex.StartOfRecord;
-                                    _recordEndLine = _line - 1; //??? -2?
-                                    retval = true;
-                                }
-                            }
-                            else
-                            {
-                                sb.Append(c0);
-                            }
-                            break;
-                        case StateLex.BuildValue:
-                            //??? Should we strip cr/lf
-                            if (!isEOL(c0))
-                            {
-                                sb.Append(c0);
-                            }
-                            break;
-                        case StateLex.EOF:
-                            if (currentField.key != String.Empty)
-                            {
-                                currentField.value = sb.ToString();
-                                onField(currentField);
-                                currentField = new SfmField();
-                                _recordEndLine = _line - 1; //??? -2?
-                                retval = true;
-                            }
-                            break;
-                    }
-                    if (!isEOL(c0))
-                    {
-                        _col++;
-                    }
-                }
-                // If there are two consequtive EOL then 'reset' c0 so that subsequent EOL are counted correctly.
-                if (isEOL(c0) && isEOL(c1))
-                {
-                    c0 = '\0';
-                }
-
-            }
-
-            return retval;
-        }
-
-        bool isEOL(char c)
-        {
-            if (c == 0x0d || c == 0x0a)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        void onField(SfmField field)
-        {
-            _record.Add(field);
-        }
-
-        public int FieldCount 
-        {
-            get 
-            {
-                return _record.Count; 
-            }
-        }
-
-        public string this[int i] 
-        { 
-            get 
-            {
-                return Value(i); 
-            }
-        }
-
-        public SfmRecord Header
-        {
-            get
-            {
-                return _header;
-            }
-        }
-
-        public SfmField Field(int i)
-        {
-            return _record[i];
-        }
-
-        public string Key(int i)
-        {
-            return _record[i].key;
-        }
-
-        public string Value(int i)
-        {
-            return _record[i].value;
-        }
-
-        public string Value(string key)
-        {
-            SfmField result = _record.Find(delegate(SfmField item) { return item.key == key; });
-            if (result == null)
-            {
-                throw new ArgumentOutOfRangeException("key");
-            }
-            return result.value;
-        }
-
-        char ReadChar()
-        {
-            if (_pos == _used)
-            {
-                _pos = 0;
-                _used = _r.Read(_buffer, 0, _buffer.Length);
-            }
-            if (_pos == _used) //??? Is their a better test for effectively EOF here?
-            {
-                _buffer[_pos] = '\0';
-                _stateLex = StateLex.EOF;
-            }
-            return _buffer[_pos++];
         }
 
     }

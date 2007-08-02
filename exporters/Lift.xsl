@@ -1,49 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!-- The Identity Transformation -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:rng="http://relaxng.org/ns/structure/1.0">
+	<xsl:param name="file1" select="'../exporters/lift.rng'" />
 	<xsl:template match="/">
-		<!--Copy the current node-->
-		<lift>
-			<xsl:apply-templates select="node()"/>
-		</lift> 
+		<xsl:apply-templates select="document($file1)/rng:grammar/rng:start" />
 	</xsl:template>
+
+	<xsl:template match="rng:element">
+		<xsl:apply-templates />
+	</xsl:template>
+
+	<xsl:template match="rng:ref">
+		<xsl:variable name="refTarget" select="@name" />
+		<xsl:apply-templates select="rng:grammar/rng:define[@name='$refTarget']" />
+	</xsl:template>
+
+	<xsl:template match="rng:attribute">
+		<xsl:attribute name="xx">
+			<xsl:value-of select="//value" />
+		</xsl:attribute>
+	</xsl:template>
+
+	<xsl:template match="rng:element[@name='entry']">
+		<xsl:for-each select="/root/entry">
+			<xsl:apply-templates />
+		</xsl:for-each>
+	</xsl:template>
+
 	<xsl:template match="entry">
-		<entry>
-			<xsl:attribute name="id">
-				<xsl:value-of select="lx/data" />
-			</xsl:attribute>
-			<xsl:attribute name="dateModified">
-				<xsl:value-of select="lx/dat/data" />
-			</xsl:attribute>
-			<xsl:apply-templates select="node()" />
-		</entry>
+		<xsl:apply-templates select="document($file1)/rng:grammar/rng:define[@name='entry-content']" />
 	</xsl:template>
-	<xsl:template match="lx">
-		<lexical-unit>
-			<form lang="">
-				<text>
-					<xsl:value-of select="child::data" />
-				</text>
-			</form>
-			<xsl:for-each select="child::lx">
-				<form lang="">
-					<text>
-						<xsl:value-of select="./data" />
-					</text>
-				</form>
-			</xsl:for-each>
-		</lexical-unit>
-		<xsl:apply-templates select="node()"/>
-	</xsl:template>
-	<xsl:template match="sn">
-		<sense id="">
-			<xsl:apply-templates select="node()"/>
-		</sense>
-	</xsl:template>
-	<xsl:template match="root">
-		<xsl:apply-templates select="node()"/>
-	</xsl:template>
-	<xsl:template match="node()">
-		<xsl:copy />
-	</xsl:template>
+	
 </xsl:stylesheet>

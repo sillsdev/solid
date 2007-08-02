@@ -108,7 +108,7 @@ namespace SolidGui
             else
             {
                 _sfmEditorView._contentsBox.SelectedText = _replaceTextBox.Text;
-                _sfmEditorView.SaveContentsOfTextBox();
+                _sfmEditorView.UpdateModel();
             }
         }
 

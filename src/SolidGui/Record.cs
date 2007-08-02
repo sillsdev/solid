@@ -27,22 +27,6 @@ namespace SolidGui
                 _id = id;
             }
 
-            public override string ToString()
-            {
-                return "\\" + Marker+ " " + Value;
-            }
-
-
-            public string RenderFieldToString(Field f)
-            {
-                int spacesInIndentation = 4;
-
-                string indentation = new string(' ', f.Depth * spacesInIndentation);
-
-                return indentation + "\\" + Marker + " " + Value;
-
-            }
-
             public string ToStructuredString()
             {
                 int spacesInIndentation = 4;
@@ -221,20 +205,22 @@ namespace SolidGui
             get { return ToString(); }
         }
 
+        //!!! Shouldn't be used ???
         public string ToStructuredString()
         {
             StringBuilder record = new StringBuilder();
             foreach (Field field in _fields)
             {
-                record.Append(field.ToStructuredString()+"\n");
+                record.Append(field.ToStructuredString() + "\n");
             }
             return record.ToString();
         }
 
-        public string GetFieldStructured(int i)
-        {
-            return _fields[i].ToStructuredString();
-        }
+        //!!! Not used ???
+        //public string GetFieldStructured(int i)
+        //{
+        //    return _fields[i].ToStructuredString();
+        //}
 
         public void SetRecord(string setToText, SolidSettings _solidSettings)
         {

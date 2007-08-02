@@ -196,35 +196,47 @@ namespace SolidGui
 
         public bool Save()
         {
-            if (_lastWrittenTo == File.GetLastWriteTime(_filePath) ||
-                !File.Exists(_filePath))
-            {
-                if (_recordList != null)
-                {
-                    StringBuilder builder = new System.Text.StringBuilder();
-                    for (int i = 0; i < _recordList.Count; i++)
-                    {
-                        builder.Append(_recordList[i].ToStringWithoutInferred());
-                    }
-                    File.WriteAllText(_filePath, builder.ToString());
-                    _lastWrittenTo = File.GetLastWriteTime(_filePath);
-                    return true;
-                }
-            }
-            Reporting.ErrorReporter.ReportNonFatalMessage("The file has been altered outside of Solid");
+            SaveAs(_filePath);
+            //if (_lastWrittenTo == File.GetLastWriteTime(_filePath) ||
+            //    !File.Exists(_filePath))
+            //{
+            //    if (_recordList != null)
+            //    {
+            //        StringBuilder builder = new System.Text.StringBuilder();
+            //        for (int i = 0; i < _recordList.Count; i++)
+            //        {
+            //            builder.Append(_recordList[i].ToStringWithoutInferred());
+            //        }
+            //        File.WriteAllText(_filePath, builder.ToString());
+            //        _lastWrittenTo = File.GetLastWriteTime(_filePath);
+            //        return true;
+            //    }
+            //}
+            //Reporting.ErrorReporter.ReportNonFatalMessage("The file has been altered outside of Solid");
             return false;
         }
 
         public void SaveAs(string path)
         {
             _filePath = path;
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < _recordList.Count; i++)
+            using (StreamWriter writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
             {
-                builder.Append(_recordList[i].ToStringWithoutInferred());
+                foreach (Record record in _recordList)
+                {
+                    foreach (Record.Field field in record.Fields)
+                    {
+                        if (!field.Inferred)
+                        {
+                            writer.Write("\\");
+                            writer.Write(field.Marker);
+                            writer.Write(" ");
+                            writer.Write(field.Value);
+                            writer.Write("\r\n");
+                        }
+                    }
+                }
+                writer.Close();
             }
-            File.WriteAllText(path, builder.ToString());
-            _lastWrittenTo = File.GetLastWriteTime(_filePath);
         }
 
         public IEnumerable<string> AllMarkers
