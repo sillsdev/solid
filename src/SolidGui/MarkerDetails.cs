@@ -36,6 +36,13 @@ namespace SolidGui
         
         public void UpdateDisplay()
         {
+            string previouslySelectedMarker = string.Empty;
+            
+            if(_listView.SelectedItems.Count > 0)
+            {
+                previouslySelectedMarker = _listView.SelectedItems[0].Text;
+            }
+
             _listView.Items.Clear();
             //_listView.MySortBrush  = null;
             _listView.MySortBrush = Brushes.Coral;
@@ -64,6 +71,8 @@ namespace SolidGui
                 
                 _listView.Items.Add(item);
             }
+
+            SelectMarker(previouslySelectedMarker);
         }
 
 
@@ -254,6 +263,21 @@ namespace SolidGui
         private void _listView_DoubleClick(object sender, EventArgs e)
         {
             OpenSettingsDialog(null);
+        }
+
+        public void SelectMarker(string marker)
+        {
+            foreach(ListViewItem a in _listView.Items)
+            {
+                if(a.Text == marker)
+                {
+                    a.Selected = true;
+                }
+                else
+                {
+                    a.Selected = false;
+                }
+            }
         }
     }
 }

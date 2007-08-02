@@ -1823,5 +1823,23 @@
       <StructureProperties />
       <Marker>gent</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>asdf</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>dfg</Marker>
+    </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

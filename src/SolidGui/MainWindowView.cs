@@ -55,7 +55,6 @@ namespace SolidGui
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
             //wire up the change of record event to our record display widget
-            _mainWindowPM.NavigatorModel.StartupOrReset();           
             _markerDetails.BindModel(
                 _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.FilterChooserModel,
@@ -71,6 +70,11 @@ namespace SolidGui
         {
             Cursor = Cursors.WaitCursor;
             ChooseProject();
+            splitContainer1.Panel1.Enabled = true;
+            splitContainer2.Panel1.Enabled = true;
+            splitContainer2.Panel2.Enabled = true;
+            _markerDetails.SelectMarker("lx");
+            _mainWindowPM.NavigatorModel.StartupOrReset();
             Cursor = Cursors.Default;
         }
 
@@ -123,9 +127,6 @@ namespace SolidGui
             }
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
             Text = "SOLID " + dlg.FileName;
-            splitContainer1.Panel1.Enabled = true;
-            splitContainer2.Panel1.Enabled = true;
-            splitContainer2.Panel2.Enabled = true;
             Cursor = Cursors.WaitCursor;
         }
 
@@ -154,6 +155,8 @@ namespace SolidGui
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.SaveContentsOfTextBox();
             _mainWindowPM.ProcessLexicon();
+            _sfmEditorView.ClearContentsOfTextBox();
+            _sfmEditorView.DisplayEachFieldInCurrentRecord();
             Cursor = Cursors.Default;
         }
 

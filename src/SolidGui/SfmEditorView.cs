@@ -59,14 +59,14 @@ namespace SolidGui
             {
                 SuperToolTipInfo superToolTipInfo = new SuperToolTipInfo();
 
-                superToolTipInfo.BackgroundGradientBegin = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-                superToolTipInfo.BackgroundGradientEnd = System.Drawing.Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(218)))), ((int)(((byte)(239)))));
-                superToolTipInfo.BackgroundGradientMiddle = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(251)))));
-                superToolTipInfo.BodyFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                superToolTipInfo.BackgroundGradientBegin = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+                superToolTipInfo.BackgroundGradientEnd = Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(218)))), ((int)(((byte)(239)))));
+                superToolTipInfo.BackgroundGradientMiddle = Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(251)))));
+                superToolTipInfo.BodyFont = new Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 superToolTipInfo.BodyText = "";
-                superToolTipInfo.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+                superToolTipInfo.HeaderFont = new Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
                 superToolTipInfo.HeaderText = "Problem Description";
-                superToolTipInfo.OffsetForWhereToDisplay = new System.Drawing.Point(0, 0);
+                superToolTipInfo.OffsetForWhereToDisplay = new Point(0, 0);
 
                 return superToolTipInfo;
             }
@@ -182,7 +182,27 @@ namespace SolidGui
             _markerTip = new MarkerTip(_contentsBox, components);
             _timer.Tick += OnTick;
             _timer.Start();
+            _contentsBox.DragEnter += new DragEventHandler(_contentsBox_DragEnter);
             
+        }
+
+        void _contentsBox_DragEnter(object sender, DragEventArgs e)
+        {
+            if(e.Data.GetDataPresent(DataFormats.Text))
+            {
+                if((e.KeyState & 8) == 8)
+                {   //what to do if the control key is held down on drag drop
+                    e.Effect = DragDropEffects.Copy;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.Move;
+                }
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         public void OnRecheckClicked(object sender, EventArgs e)
@@ -216,15 +236,25 @@ namespace SolidGui
                 _keyScanner.Reset();
             }
         }
+       
+        public void SaveContentsOfTextBox()
+        {
+            int currentIndex = _contentsBox.SelectionStart;
+            if (_currentRecord != null && _currentRecord.ToStructuredString() != _contentsBox.Text)
+            {
+                _model.UpdateCurrentRecord(_currentRecord, GetContentsBoxTextWithoutInferredFields());
+            }
+            _contentsBox.SelectionStart = currentIndex;
+        }
 
-        private void ClearContentsOfTextBox()
+        public void ClearContentsOfTextBox()
         {
             _contentsBox.TextChanged -= _contentsBox_TextChanged;
             _contentsBox.Clear();
             _contentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        private void DisplayEachFieldInCurrentRecord()
+        public void DisplayEachFieldInCurrentRecord()
         {
             _contentsBox.TextChanged -= _contentsBox_TextChanged;
 
@@ -295,7 +325,7 @@ namespace SolidGui
             return "This isn't really an error";
         }
 
-        private string ContentsBoxTextWithoutInferredFields()
+        private string GetContentsBoxTextWithoutInferredFields()
         {
             string textWithoutInferred = string.Empty;
             _contentsBox.SelectionStart = 0;
@@ -316,15 +346,6 @@ namespace SolidGui
             return textWithoutInferred;
         }
 
-        public void SaveContentsOfTextBox()
-        {
-            int currentIndex = _contentsBox.SelectionStart;
-            if (_currentRecord != null && _currentRecord.ToStructuredString() != _contentsBox.Text)
-            {
-                _model.UpdateCurrentRecord(_currentRecord, ContentsBoxTextWithoutInferredFields());
-            }
-            _contentsBox.SelectionStart = currentIndex;
-        }
 
 /*        
         private void _contentsBox_KeyUp(object sender, KeyEventArgs e)

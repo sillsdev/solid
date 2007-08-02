@@ -43,12 +43,7 @@ namespace SolidGui
         }
 
         public void OnDictionaryProcessed()
-        {
-            if (_recordFilters != null && _recordFilters.Count > 0)
-            {
-                ActiveRecordFilter = _recordFilters[0];
-            }
-        }
+        {}
 
         public RecordFilter ActiveRecordFilter
         {

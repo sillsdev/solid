@@ -68,6 +68,7 @@ namespace SolidGui
             {
                 return;
             }
+
             _filterListBox.Items.Clear();
 
             foreach (RecordFilter filter in _model.RecordFilters)
