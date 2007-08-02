@@ -216,11 +216,6 @@ namespace SolidGui
             //_changingFilter = false;
         }
 
-        private void OnEditSettingsClick(object sender, EventArgs e)
-        {
-            OpenSettingsDialog(null);
-        }
-
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
             ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
@@ -278,6 +273,11 @@ namespace SolidGui
                     a.Selected = false;
                 }
             }
+        }
+
+        private void OnEditSettingsClick(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenSettingsDialog(null);
         }
     }
 }

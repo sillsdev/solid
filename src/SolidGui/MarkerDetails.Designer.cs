@@ -34,8 +34,8 @@ namespace SolidGui
             this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this._editMarkerButton = new System.Windows.Forms.Button();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // _listView
@@ -83,30 +83,32 @@ namespace SolidGui
             // 
             this.columnHeader5.Text = "FLEx";
             // 
-            // _editMarkerButton
-            // 
-            this._editMarkerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._editMarkerButton.Location = new System.Drawing.Point(343, 165);
-            this._editMarkerButton.Name = "_editMarkerButton";
-            this._editMarkerButton.Size = new System.Drawing.Size(75, 23);
-            this._editMarkerButton.TabIndex = 1;
-            this._editMarkerButton.Text = "&Edit Settings...";
-            this._editMarkerButton.UseVisualStyleBackColor = true;
-            this._editMarkerButton.Click += new System.EventHandler(this.OnEditSettingsClick);
-            // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "LIFT";
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(341, 169);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(75, 13);
+            this.linkLabel1.TabIndex = 2;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "&Edit Settings...";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnEditSettingsClick);
             // 
             // MarkerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._editMarkerButton);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this._listView);
             this.Name = "MarkerDetails";
             this.Size = new System.Drawing.Size(421, 188);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -118,7 +120,7 @@ namespace SolidGui
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Button _editMarkerButton;
         private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
