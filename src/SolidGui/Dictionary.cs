@@ -159,6 +159,8 @@ namespace SolidGui
 
         public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
+            Palaso.Reporting.Logger.WriteEvent("Openning {0}",path);
+
             filterSet.BeginBuild(this);
 
             _filePath = path;
@@ -192,6 +194,7 @@ namespace SolidGui
             {
                 _currentIndex = 0;
             }
+            Palaso.Reporting.Logger.WriteEvent("Done Openning.");
         }
 
         public bool Save()
@@ -218,6 +221,7 @@ namespace SolidGui
 
         public void SaveAs(string path)
         {
+            Palaso.Reporting.Logger.WriteEvent("Saving {0}", path);
             _filePath = path;
             using (StreamWriter writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
             {
@@ -237,6 +241,7 @@ namespace SolidGui
                 }
                 writer.Close();
             }
+            Palaso.Reporting.Logger.WriteEvent("Done Saving.");
         }
 
         public IEnumerable<string> AllMarkers

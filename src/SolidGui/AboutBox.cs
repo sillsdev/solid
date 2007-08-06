@@ -46,8 +46,7 @@ namespace SolidGui
         {
             get
             {
-                return Reporting.ErrorReporter.UserFriendlyVersionString;
-                //return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return Palaso.Reporting.ErrorReport.UserFriendlyVersionString;
             }
         }
 

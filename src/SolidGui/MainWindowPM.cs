@@ -187,6 +187,7 @@ namespace SolidGui
 
         private void LoadSettingsFromTemplate(string templatePath)
         {
+            Palaso.Reporting.Logger.WriteEvent("Loading Template from {0}", templatePath);
             Debug.Assert(!string.IsNullOrEmpty(templatePath));
             _solidSettings =
                 SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
@@ -210,6 +211,7 @@ namespace SolidGui
 
             if(_solidSettings!=null)
             {
+                Palaso.Reporting.Logger.WriteEvent("Saving settings");
                 _solidSettings.Save();
             }
 
