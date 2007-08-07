@@ -162,12 +162,11 @@ namespace SolidGui
         private MarkerTip _markerTip;
         private int _lineNumber = -1;
         private int _markerTipDisplayDelay = 10;
-                
+
+        private bool _isDirty = false;
+
         public event EventHandler RecordTextChanged;
         
- 
-        
-
         public int Indent
         {
             get { return _indent; }
@@ -178,12 +177,13 @@ namespace SolidGui
         {
             _currentRecord = null;
             InitializeComponent();
+            _contentsBox.TextChanged -= _contentsBox_TextChanged;
             _contentsBox.SelectionIndent = _leftMarigin;
             _markerTip = new MarkerTip(_contentsBox, components);
             _timer.Tick += OnTick;
             _timer.Start();
             _contentsBox.DragEnter += new DragEventHandler(_contentsBox_DragEnter);
-            
+            _contentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
         void _contentsBox_DragEnter(object sender, DragEventArgs e)
@@ -217,7 +217,9 @@ namespace SolidGui
 
         public void Highlight(int startIndex, int length)
         {
+            _contentsBox.TextChanged -= _contentsBox_TextChanged;
             _contentsBox.Select(startIndex, length);
+            _contentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -230,9 +232,8 @@ namespace SolidGui
             else if (_currentRecord != e._record)
             {
                 UpdateModel();
-                ClearContentsOfTextBox();
                 _currentRecord = e._record;
-                DisplayEachFieldInCurrentRecord();
+                UpdateView();
                 _keyScanner.Reset();
             }
         }
@@ -240,9 +241,10 @@ namespace SolidGui
         public void UpdateModel()
         {
             //int currentIndex = _contentsBox.SelectionStart;
-            if (_currentRecord != null /*&& _currentRecord.ToStructuredString() != _contentsBox.Text*/)
+            if (_currentRecord != null && _isDirty /*&& _currentRecord.ToStructuredString() != _contentsBox.Text*/)
             {
                 _model.UpdateCurrentRecord(_currentRecord, _contentsBox.Text);
+                _isDirty = false;
             }
             //_contentsBox.SelectionStart = currentIndex;
         }
@@ -348,7 +350,6 @@ namespace SolidGui
 
         private void UpdateView()
         {
-            UpdateModel(); //!!! This should be redundant ???
             ClearContentsOfTextBox();
             DisplayEachFieldInCurrentRecord();
         }
@@ -431,8 +432,11 @@ namespace SolidGui
 
         private void _contentsBox_TextChanged(object sender, EventArgs e)
         {
+            _isDirty = true;
             if (RecordTextChanged != null)
+            {
                 RecordTextChanged.Invoke(this, new EventArgs());
+            }
         }
 
         private void _contentsBox_MouseDown(object sender, MouseEventArgs e)
@@ -444,5 +448,6 @@ namespace SolidGui
                 _markerTip.Hide();
             }
         }
+
     }
 }

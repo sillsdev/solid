@@ -91,11 +91,19 @@ namespace SolidGui
             SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
-                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-                //Encoding byteEncoding = Encoding.Unicode;
-                byte[] valueAsBytes = byteEncoding.GetBytes(value);
-                Encoding stringEncoding = Encoding.UTF8;
-                retval = stringEncoding.GetString(valueAsBytes);
+                retval = string.Empty;
+                if (value.Length > 0)
+                {
+                    Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                    //Encoding byteEncoding = Encoding.Unicode;
+                    byte[] valueAsBytes = byteEncoding.GetBytes(value);
+                    Encoding stringEncoding = Encoding.UTF8;
+                    retval = stringEncoding.GetString(valueAsBytes);
+                    if (retval.Length == 0)
+                    {
+                        retval = "Non Unicode Data Found";
+                    }
+                }
             }
             else
             {

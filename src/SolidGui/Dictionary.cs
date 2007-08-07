@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
 using SolidEngine;
 
@@ -223,23 +224,30 @@ namespace SolidGui
         {
             Palaso.Reporting.Logger.WriteEvent("Saving {0}", path);
             _filePath = path;
-            using (StreamWriter writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
+            try
             {
-                foreach (Record record in _recordList)
+                using (StreamWriter writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
                 {
-                    foreach (Record.Field field in record.Fields)
+                    foreach (Record record in _recordList)
                     {
-                        if (!field.Inferred)
+                        foreach (Record.Field field in record.Fields)
                         {
-                            writer.Write("\\");
-                            writer.Write(field.Marker);
-                            writer.Write(" ");
-                            writer.Write(field.Value);
-                            writer.Write("\r\n");
+                            if (!field.Inferred)
+                            {
+                                writer.Write("\\");
+                                writer.Write(field.Marker);
+                                writer.Write(" ");
+                                writer.Write(field.Value);
+                                writer.Write("\r\n");
+                            }
                         }
                     }
+                    writer.Close();
                 }
-                writer.Close();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(null, exception.Message, "Solid Save Error");
             }
             Palaso.Reporting.Logger.WriteEvent("Done Saving.");
         }
