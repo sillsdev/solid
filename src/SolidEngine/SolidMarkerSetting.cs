@@ -14,6 +14,7 @@ namespace SolidEngine
         private string _marker;
         private string _inferedParent;
         private string _writingSystem;
+        private bool _isUnicode = false;
         private List<SolidStructureProperty> _structureProperties;
         private string[] _mappings = new string[(int)MappingType.Max];
         
@@ -34,10 +35,13 @@ namespace SolidEngine
         public string WritingSystem
         {
             get { return _writingSystem; }
-            set
-            {
-                    _writingSystem = value;
-            }
+            set { _writingSystem = value; }
+        }
+
+        public bool Unicode
+        {
+            get { return _isUnicode; }
+            set { _isUnicode = value; }
         }
 
         public string[] Mapping

@@ -40,6 +40,8 @@ namespace SolidGui
             _mappingView.Model.Type = type;
             _mappingView.InitializeDisplay();
 
+            _cbUnicode.Checked = _currentMarkerSetting.Unicode;
+
             SelectInitialArea(initialArea);
         }
 
@@ -95,6 +97,11 @@ namespace SolidGui
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
             _currentMarkerSetting.WritingSystem = _writingSystemPicker.IdentifierOfSelectedWritingSystem;
+        }
+
+        private void _cbUnicode_CheckedChanged(object sender, EventArgs e)
+        {
+            _currentMarkerSetting.Unicode = _cbUnicode.Checked;
         }
     }
 }
