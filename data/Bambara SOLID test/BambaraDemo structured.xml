@@ -1,0 +1,2426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <entry record="0" startline="1" endline="13">
+    <lx field="0" flex="lex">
+      <data>ayi</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>inter</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>no</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>non</data>
+        </gn>
+        <gr field="4" flex="glos">
+          <data>regional</data>
+        </gr>
+        <gg field="5" flex="glos">
+          <data>nein</data>
+        </gg>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="6" flex="sent">
+            <data>Ayi, f�l�.</data>
+          </xv>
+          <xe field="7" flex="sent">
+            <data>No, not yet.</data>
+          </xe>
+          <xn field="8" flex="sent">
+            <data>Non, pas encore.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="9" flex="cref">
+        <data>�w�</data>
+      </cf>
+      <ce field="10" flex="cref">
+        <data>yes</data>
+      </ce>
+      <cn field="11" flex="cref">
+        <data>oui</data>
+      </cn>
+      <dt field="12" flex="mod">
+        <data>21/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="1" startline="14" endline="15">
+    <lx field="0" flex="lex">
+      <data>-biki</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+      </sn>
+    </lx>
+  </entry>
+  <entry record="2" startline="16" endline="17">
+    <lx field="0" flex="lex">
+      <data>biki-</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+      </sn>
+    </lx>
+  </entry>
+  <entry record="3" startline="18" endline="19">
+    <lx field="0" flex="lex">
+      <data>-biki-</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+      </sn>
+    </lx>
+  </entry>
+  <entry record="4" startline="20" endline="30">
+    <lx field="0" flex="lex">
+      <data>biriki</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>brick</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>brique</data>
+        </gn>
+      </sn>
+      <bw field="4" flex="eires">
+        <data>fran�ais</data>
+        <sy field="5" flex="eires">
+          <data>tufa</data>
+        </sy>
+        <xv field="6" flex="sent">
+          <data>biriki g�si</data>
+        </xv>
+        <xe field="7" flex="sent">
+          <data>make bricks</data>
+        </xe>
+        <xn field="8" flex="sent">
+          <data>fabriquer des briques</data>
+        </xn>
+        <pc field="9" flex="picf">
+          <data>images\brickmaking.jpg</data>
+        </pc>
+      </bw>
+      <dt field="10" flex="mod">
+        <data>18/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="5" startline="31" endline="38">
+    <lx field="0" flex="lex">
+      <data>bunte</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>pound</data>
+        </ge>
+        <de field="3" flex="def">
+          <data>pound into flour</data>
+        </de>
+        <gn field="4" flex="glos">
+          <data>piler</data>
+        </gn>
+        <dn field="5" flex="def">
+          <data>piler pour r�duire en farine</data>
+        </dn>
+        <sd field="6" flex="seme">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <dt field="7" flex="mod">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="6" startline="39" endline="45">
+    <lx field="0" flex="lex">
+      <data>d�n</data>
+      <hm field="1" flex="hom">
+        <data>3</data>
+      </hm>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="3" flex="glos">
+          <data>sow</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>semer</data>
+          <sd field="5" flex="seme">
+            <data>Agriculture-Verb</data>
+          </sd>
+        </gn>
+      </sn>
+      <dt field="6" flex="mod">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="7" startline="46" endline="53">
+    <lx field="0" flex="lex">
+      <data>folon</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>pound</data>
+        </ge>
+        <de field="3" flex="def">
+          <data>pound to remove the chaff</data>
+        </de>
+        <gn field="4" flex="glos">
+          <data>piler </data>
+        </gn>
+        <dn field="5" flex="def">
+          <data>piler pour enlever le son</data>
+        </dn>
+        <sd field="6" flex="seme">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <dt field="7" flex="mod">
+        <data>10/Jun/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="8" startline="54" endline="69">
+    <lx field="0" flex="lex">
+      <data>fy�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>blow</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>souffler</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>file fy�</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>whistle</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>siffler</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="8" flex="subc">
+        <data>2</data>
+        <ge field="9" flex="glos">
+          <data>winnow</data>
+        </ge>
+        <gn field="10" flex="glos">
+          <data>vanner</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="11" flex="sent">
+            <data>� fy�</data>
+          </xv>
+          <xe field="12" flex="sent">
+            <data>winnow the millet</data>
+          </xe>
+          <xn field="13" flex="sent">
+            <data>vanner le mil</data>
+            <sd field="14" flex="seme">
+              <data>Agriculture-Verb</data>
+            </sd>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="15" flex="mod">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="9" startline="70" endline="97">
+    <lx field="0" flex="lex">
+      <data>gan</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>gombo</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>gombo</data>
+          <sd field="4" flex="seme">
+            <data>Ncrop</data>
+          </sd>
+          <sd field="5" flex="seme">
+            <data>Nfood-sauce-item</data>
+          </sd>
+        </gn>
+        <ee field="6" flex="enc">
+          <data>Used for preparing sauce for "to".</data>
+        </ee>
+        <en field="7" flex="enc">
+          <data>On l'utilise dans la pr�paration d'une sauce pour le � to �.</data>
+        </en>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>gan jalan</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>dried gombo (sold in the market)</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>gombo sech� (vendu au march�)</data>
+          </xn>
+        </rf>
+        <lf field="11" flex="func">
+          <data>VAssoc</data>
+          <lv field="12" flex="lex">
+            <data>dan</data>
+            <le field="13">
+              <data>sow</data>
+            </le>
+            <ln field="14">
+              <data>semer</data>
+            </ln>
+          </lv>
+        </lf>
+        <lf field="15" flex="func">
+          <data>VAssoc</data>
+          <lv field="16" flex="lex">
+            <data>kari</data>
+            <le field="17">
+              <data>pick</data>
+            </le>
+            <ln field="18">
+              <data>cueillir</data>
+            </ln>
+          </lv>
+        </lf>
+        <lf field="19" flex="func">
+          <data>VAssoc</data>
+          <lv field="20" flex="lex">
+            <data>tig�</data>
+            <le field="21">
+              <data>cut up</data>
+            </le>
+            <ln field="22">
+              <data>couper</data>
+            </ln>
+          </lv>
+        </lf>
+        <lf field="23" flex="func">
+          <data>VAssoc</data>
+          <lv field="24" flex="lex">
+            <data>ja</data>
+            <le field="25">
+              <data>dry</data>
+            </le>
+            <ln field="26">
+              <data>s�cher</data>
+            </ln>
+          </lv>
+        </lf>
+      </sn>
+      <dt field="27" flex="mod">
+        <data>16/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="10" startline="98" endline="118">
+    <lx field="0" flex="lex">
+      <data>g�l�n</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>adj.pred</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>hard ; firm</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>dur</data>
+        </gn>
+      </sn>
+      <sn field="5" flex="subc">
+        <data>2</data>
+        <ge field="6" flex="glos">
+          <data>difficult</data>
+        </ge>
+        <gn field="7" flex="glos">
+          <data>difficile</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>Angil�kan ka g�l�n n ma.</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>English is difficult for me.</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>L'anglais est difficile pour moi.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="11" flex="cref">
+        <data>n�g�n</data>
+      </cf>
+      <ce field="12" flex="cref">
+        <data>easy</data>
+      </ce>
+      <cn field="13" flex="cref">
+        <data>facile</data>
+      </cn>
+      <sn field="14" flex="subc">
+        <data>3</data>
+        <ge field="15" flex="glos">
+          <data>expensive</data>
+        </ge>
+        <gn field="16" flex="glos">
+          <data>cher</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="17" flex="sent">
+            <data>A da ka g�l�n.</data>
+          </xv>
+          <xe field="18" flex="sent">
+            <data>It's expensive.</data>
+          </xe>
+          <xn field="19" flex="sent">
+            <data>C'est cher.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="20" flex="mod">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="11" startline="119" endline="136">
+    <lx field="0" flex="lex">
+      <data>g�l�ya</data>
+      <hm field="1" flex="hom">
+        <data>1</data>
+      </hm>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="3" flex="glos">
+          <data>difficulty</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>difficult�</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>g�l�ya la / ni g�l�ya ye</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>with difficulty</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>difficilement, avec difficult�</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>ni g�l�ya t�</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>without difficulty</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>sans difficult�</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="11" flex="sent">
+            <data>G�l�ya ye ne min�.</data>
+          </xv>
+          <xe field="12" flex="sent">
+            <data>I have come into difficulties.</data>
+          </xe>
+          <xn field="13" flex="sent">
+            <data>Je suis dans la difficult�.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="14" flex="cref">
+        <data>n�g�ya1</data>
+      </cf>
+      <ce field="15" flex="cref">
+        <data>ease</data>
+      </ce>
+      <cn field="16" flex="cref">
+        <data>facilit�</data>
+      </cn>
+      <dt field="17" flex="mod">
+        <data>05/Jun/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="12" startline="137" endline="151">
+    <lx field="0" flex="lex">
+      <data>g��si</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>beat ; thresh</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>battre</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>� g�si</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>thresh the millet</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>battre le mil</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>biriki g�si</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>make bricks</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>fabriquer des briques</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="10" flex="sent">
+            <data>nbuuru g�si</data>
+          </xv>
+          <xe field="11" flex="sent">
+            <data>make bread</data>
+          </xe>
+          <xn field="12" flex="sent">
+            <data>faire du pain</data>
+          </xn>
+        </rf>
+      </sn>
+      <va field="13" flex="vars">
+        <data>gosi</data>
+      </va>
+      <dt field="14" flex="mod">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="13" startline="152" endline="166">
+    <lx field="0" flex="lex">
+      <data>j�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>dry</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>s�cher ; dess�cher</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>X ja tile la</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>to dry X in the sun</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>faire s�cher X au soleil</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>Kini b� k�n� ja.</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>Rice dries up the stomach.</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>Le riz s�che le ventre.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="subc">
+        <data>2</data>
+        <ge field="12" flex="glos">
+          <data>paralyse</data>
+        </ge>
+        <gn field="13" flex="glos">
+          <data>paralyser</data>
+        </gn>
+      </sn>
+      <dt field="14" flex="mod">
+        <data>16/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="14" startline="167" endline="192">
+    <lx field="0" flex="lex">
+      <data>j�g�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>fish</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>poisson</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>j�g� k�n�</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>fresh fish</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>poisson frais</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>j�g� jalan</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>dried fish</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>poisson sec</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="10" flex="sent">
+            <data>j�g� wusu</data>
+          </xv>
+          <xe field="11" flex="sent">
+            <data>smoked fish</data>
+          </xe>
+          <xn field="12" flex="sent">
+            <data>poisson fum�</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="13" flex="sent">
+            <data>j�g� jirannen</data>
+          </xv>
+          <xe field="14" flex="sent">
+            <data>fried fish</data>
+          </xe>
+          <xn field="15" flex="sent">
+            <data>poisson frit</data>
+            <sd field="16" flex="seme">
+              <data>Nfood-sauce-item</data>
+            </sd>
+          </xn>
+        </rf>
+        <lf field="17" flex="func">
+          <data>VAssoc</data>
+          <lv field="18" flex="lex">
+            <data>min�</data>
+          </lv>
+          <le field="19">
+            <data>to catch</data>
+          </le>
+          <ln field="20">
+            <data>attraper</data>
+          </ln>
+        </lf>
+        <lf field="21" flex="func">
+          <data>VAssoc</data>
+          <lv field="22" flex="lex">
+            <data>jiran</data>
+          </lv>
+          <le field="23">
+            <data>to fry</data>
+          </le>
+          <ln field="24">
+            <data>frire</data>
+          </ln>
+        </lf>
+      </sn>
+      <dt field="25" flex="mod">
+        <data>28/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="15" startline="193" endline="197">
+    <lx field="0" flex="lex">
+      <data>jiran</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>fry</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>faire frire</data>
+        </gn>
+      </sn>
+      <dt field="4" flex="mod">
+        <data>14/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="16" startline="198" endline="214">
+    <lx field="0" flex="lex">
+      <data>kari</data>
+      <hm field="1" flex="hom">
+        <data>1</data>
+      </hm>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="3" flex="subc">
+        <data>1</data>
+        <ge field="4" flex="glos">
+          <data>break</data>
+        </ge>
+        <gn field="5" flex="glos">
+          <data>casser ; briser</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="6" flex="sent">
+            <data>N'i binna ka b� jiri sanf�, i bolo b� se ka kari.</data>
+          </xv>
+          <xe field="7" flex="sent">
+            <data>If you fall from a tree, you can break your arm.</data>
+          </xe>
+          <xn field="8" flex="sent">
+            <data>Si tu tombais d'un arbre, tu pourrais se casser le bras.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="9" flex="sent">
+            <data>A b� �ini ka kari.</data>
+          </xv>
+          <xe field="10" flex="sent">
+            <data>It's about to break.</data>
+          </xe>
+          <xn field="11" flex="sent">
+            <data>Il est sur le point de se casser.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="12" flex="subc">
+        <data>2</data>
+        <ge field="13" flex="glos">
+          <data>pick</data>
+        </ge>
+        <gn field="14" flex="glos">
+          <data>cueillir</data>
+        </gn>
+        <sd field="15" flex="seme">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="16" flex="mod">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="17" startline="215" endline="228">
+    <lx field="0" flex="lex">
+      <data>keninge</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>variety of sorghum</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>variet� de sorgho</data>
+        </gn>
+        <re field="4" flex="rev">
+          <data>*</data>
+        </re>
+        <rn field="5" flex="rev">
+          <data>*</data>
+        </rn>
+        <sd field="6" flex="seme">
+          <data>Ncrop</data>
+        </sd>
+        <pc field="7" flex="picf">
+          <data>images\millet1.jpg</data>
+        </pc>
+        <pc field="8" flex="picf">
+          <data>images\millet2.jpg</data>
+        </pc>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="9" flex="sent">
+            <data>Keninge danni n'a tig�li c� b� taa kalo saba �g�n na.</data>
+          </xv>
+          <xe field="10" flex="sent">
+            <data>There are three months between sowing and reaping of 'keninge'.</data>
+          </xe>
+          <xn field="11" flex="sent">
+            <data>Il y a trois mois entre les semailles et le r�colte de 'keninge'.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="12" flex="cref">
+        <data>�</data>
+      </cf>
+      <dt field="13" flex="mod">
+        <data>05/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="18" startline="229" endline="238">
+    <lx field="0" flex="lex">
+      <data>k��g�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>salt</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>sel</data>
+        </gn>
+        <gg field="4" flex="glos">
+          <data>Salz</data>
+        </gg>
+        <sd field="5" flex="seme">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="6" flex="sent">
+            <data>K�g� m'a b�.</data>
+          </xv>
+          <xe field="7" flex="sent">
+            <data>There isn't enough salt in it.</data>
+          </xe>
+          <xn field="8" flex="sent">
+            <data>Il n'y a pas assez de sel.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="9" flex="mod">
+        <data>18/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="19" startline="239" endline="277">
+    <lx field="0" flex="lex">
+      <data>min�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>catch ; capture ; arrest ; seize ; grab ; take</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>attrapper ; saisir ; prendre</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>U b� j�g� min�.</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>They catch fish.</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>Ils attrappent des poissons.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>Wari min� !</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>Take the money!</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>Prends l'argent !</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="subc">
+        <data>2</data>
+        <ge field="12" flex="glos">
+          <data>accept</data>
+        </ge>
+        <gn field="13" flex="glos">
+          <data>accepter ; exaucer</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="14" flex="sent">
+            <data>X kan min�</data>
+          </xv>
+          <xe field="15" flex="sent">
+            <data>obey X</data>
+          </xe>
+          <xn field="16" flex="sent">
+            <data>ob�ir � X</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="17" flex="subc">
+        <data>3</data>
+        <ge field="18" flex="glos">
+          <data>treat</data>
+        </ge>
+        <gn field="19" flex="glos">
+          <data>traiter</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="20" flex="sent">
+            <data>min� ko�uman</data>
+          </xv>
+          <xe field="21" flex="sent">
+            <data>treat well, receive well, welcome</data>
+          </xe>
+          <xn field="22" flex="sent">
+            <data>traiter bien, recevoir bien, accueillir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="23" flex="sent">
+            <data>Nin c� b� jurumut�w min� ko�uman !</data>
+          </xv>
+          <xe field="24" flex="sent">
+            <data>This man treats sinners well!</data>
+          </xe>
+          <xn field="25" flex="sent">
+            <data>Cet homme traite bien les p�cheurs !</data>
+          </xn>
+        </rf>
+        <rf field="26" flex="ref">
+          <data>Bible: Luka 15.2</data>
+          <xv field="27" flex="sent">
+            <data>N'i t� seli, u b'i min� kafiri ye.</data>
+          </xv>
+          <xe field="28" flex="sent">
+            <data>If you don't pray, they will take you as a pagan.</data>
+          </xe>
+          <xn field="29" flex="sent">
+            <data>Si tu ne pries pas, ils penseront que tu es un pa�en.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="30" flex="subc">
+        <data>4</data>
+        <ge field="31" flex="glos">
+          <data>suit</data>
+        </ge>
+        <de field="32" flex="def">
+          <data>suit, go well with</data>
+        </de>
+        <gn field="33" flex="glos">
+          <data>aller bien</data>
+        </gn>
+        <rn field="34" flex="rev">
+          <data>*</data>
+        </rn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="35" flex="sent">
+            <data>Nin dul�ki b� i min� kos�b�.</data>
+          </xv>
+          <xe field="36" flex="sent">
+            <data>This shirt suits you well.</data>
+          </xe>
+          <xn field="37" flex="sent">
+            <data>Cette chemise te va bien.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="38" flex="mod">
+        <data>18/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="20" startline="278" endline="288">
+    <lx field="0" flex="lex">
+      <data>nis�n</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>mood</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>humeur</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>A nis�n ka di.</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>He is happy, cheerful, in a good mood.</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>Il est content, gai, de bonne humeur.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>I nis�n man di bi. Mun b'i la ?</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>You're not in a good mood today. What's wrong?</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>Tu es de mauvaise humeur aujourd'hui. Qu'est-ce qu'il y a ?</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="10" flex="mod">
+        <data>24/Nov/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="21" startline="289" endline="300">
+    <lx field="0" flex="lex">
+      <data>nis�ndiya</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>joy ; happiness</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>joie ; all�gresse</data>
+        </gn>
+      </sn>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="4" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="5" flex="glos">
+          <data>make joyful</data>
+        </ge>
+        <gn field="6" flex="glos">
+          <data>r�jouir</data>
+        </gn>
+      </sn>
+      <mr field="7" flex="eires">
+        <data>nis�n-diya</data>
+      </mr>
+      <xv field="8" flex="sent">
+        <data>Ne nis�ndiyalen don.</data>
+      </xv>
+      <xe field="9" flex="sent">
+        <data>I'm happy.</data>
+      </xe>
+      <xn field="10" flex="sent">
+        <data>Je suis content. Je suis dans la joie.</data>
+      </xn>
+      <dt field="11" flex="mod">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="22" startline="301" endline="308">
+    <lx field="0" flex="lex">
+      <data>nk�y�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>bitter tomato</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>tomate am�re</data>
+          <sd field="4" flex="seme">
+            <data>Nfood-sauce-item</data>
+          </sd>
+          <sd field="5" flex="seme">
+            <data>Nveg</data>
+          </sd>
+        </gn>
+        <pc field="6" flex="picf">
+          <data>images\bitter-tomato.jpg</data>
+        </pc>
+      </sn>
+      <dt field="7" flex="mod">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="23" startline="309" endline="325">
+    <lx field="0" flex="lex">
+      <data>n�g�n</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>adj.pred</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>easy</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>facile</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>O ka n�g�n !</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>That's easy!</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>�a c'est facile !</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>A tun man n�g�n.</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>It was not easy.</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>Ce n'�tait pas facile.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="10" flex="sent">
+            <data>ҡs�n� ka n�g�n ni malo ye.</data>
+          </xv>
+          <xe field="11" flex="sent">
+            <data>Cultivating millet is easier than rice.</data>
+          </xe>
+          <xn field="12" flex="sent">
+            <data>Cultiver le mil est plus facile que de cultiver le riz.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="13" flex="cref">
+        <data>g�l�n</data>
+      </cf>
+      <ce field="14" flex="cref">
+        <data>difficult</data>
+      </ce>
+      <cn field="15" flex="cref">
+        <data>difficile</data>
+      </cn>
+      <dt field="16" flex="mod">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="24" startline="326" endline="347">
+    <lx field="0" flex="lex">
+      <data>n�g�ya</data>
+      <hm field="1" flex="hom">
+        <data>1</data>
+      </hm>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>n</data>
+        </ps>
+      </sn>
+      <sn field="3" flex="subc">
+        <data>1</data>
+        <ge field="4" flex="glos">
+          <data>ease</data>
+        </ge>
+        <gn field="5" flex="glos">
+          <data>facilit�</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="6" flex="sent">
+            <data>n�g�ya la / ni n�g�ya ye</data>
+          </xv>
+          <xe field="7" flex="sent">
+            <data>easily</data>
+          </xe>
+          <xn field="8" flex="sent">
+            <data>facilement</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="9" flex="sent">
+            <data>Ala k'i se n�g�ya la !</data>
+          </xv>
+          <xe field="10" flex="sent">
+            <data>May God enable you to arrive easily/safely!</data>
+          </xe>
+          <xn field="11" flex="sent">
+            <data>Que Dieu fasse que tu arrives facilement !</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="12" flex="subc">
+        <data>2</data>
+        <ge field="13" flex="glos">
+          <data>good price</data>
+        </ge>
+        <gn field="14" flex="glos">
+          <data>bon march�</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="15" flex="sent">
+            <data>Awa b� namasa feere n�g�ya la.</data>
+          </xv>
+          <xe field="16" flex="sent">
+            <data>Awa sells banana cheaply.</data>
+          </xe>
+          <xn field="17" flex="sent">
+            <data>Awa vend des bananes � bon prix.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="18" flex="cref">
+        <data>g�l�ya1</data>
+      </cf>
+      <ce field="19" flex="cref">
+        <data>difficulty</data>
+      </ce>
+      <cn field="20" flex="cref">
+        <data>difficult�</data>
+      </cn>
+      <dt field="21" flex="mod">
+        <data>24/Nov/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="25" startline="348" endline="361">
+    <lx field="0" flex="lex">
+      <data>�inan</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>this year</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>cette ann�e</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>a san naani ye �inan ye</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>four years ago</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>il y a quatre ans</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="7" flex="cref">
+        <data>san</data>
+      </cf>
+      <ce field="8" flex="cref">
+        <data>year</data>
+      </ce>
+      <cn field="9" flex="cref">
+        <data>an, ann�e</data>
+      </cn>
+      <cf field="10" flex="cref">
+        <data>salon</data>
+      </cf>
+      <ce field="11" flex="cref">
+        <data>last year</data>
+      </ce>
+      <cn field="12" flex="cref">
+        <data>l'ann�e pass�e</data>
+      </cn>
+      <dt field="13" flex="mod">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="26" startline="362" endline="381">
+    <lx field="0" flex="lex">
+      <data>�ininka</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>ask ; question</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>demander ; interroger</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>X �ininka Y la</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>ask X for Y</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>demander Y � X</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>Polisik� y'a wele k'a �ininka a ka s�b�nw na.</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>The policeman called him and asked for his papers.</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>L'agent de police l'a appel� et lui a demand� ses papiers.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="10" flex="sent">
+            <data>A y'u �ininka ko: Aw b� taa min ?</data>
+          </xv>
+          <xe field="11" flex="sent">
+            <data>He asked them, "Where are you going?"</data>
+          </xe>
+          <xn field="12" flex="sent">
+            <data>Il leur a demand� : "Vous allez o� ?"</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="13" flex="sent">
+            <data>A �ininka !</data>
+          </xv>
+          <xe field="14" flex="sent">
+            <data>Ask him!</data>
+          </xe>
+          <xn field="15" flex="sent">
+            <data>Demande-lui !</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="16" flex="sent">
+            <data>A �ininka yala ni a b� taa sugu la bi.</data>
+          </xv>
+          <xe field="17" flex="sent">
+            <data>Ask him if he's going to the market today.</data>
+          </xe>
+          <xn field="18" flex="sent">
+            <data>Demande-lui s'il va au march� aujourd'hui.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="19" flex="mod">
+        <data>30/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="27" startline="382" endline="423">
+    <lx field="0" flex="lex">
+      <data>�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>millet ; sorghum</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>mil ; sorgho</data>
+          <sd field="4" flex="seme">
+            <data>Ncrop</data>
+          </sd>
+        </gn>
+        <lf field="5" flex="func">
+          <data>VAssoc</data>
+          <lv field="6" flex="lex">
+            <data>dan3</data>
+          </lv>
+          <le field="7">
+            <data>to sow</data>
+          </le>
+          <ln field="8">
+            <data>semer</data>
+          </ln>
+        </lf>
+        <lf field="9" flex="func">
+          <data>VAssoc</data>
+          <lv field="10" flex="lex">
+            <data>tig�</data>
+          </lv>
+          <le field="11">
+            <data>to harvest, cut</data>
+          </le>
+          <ln field="12">
+            <data>r�colter, couper</data>
+          </ln>
+        </lf>
+        <lf field="13" flex="func">
+          <data>VAssoc</data>
+          <lv field="14" flex="lex">
+            <data>g�si</data>
+          </lv>
+          <le field="15">
+            <data>to thresh</data>
+          </le>
+          <ln field="16">
+            <data>battre</data>
+          </ln>
+        </lf>
+        <lf field="17" flex="func">
+          <data>VAssoc</data>
+          <lv field="18" flex="lex">
+            <data>fy�</data>
+          </lv>
+          <le field="19">
+            <data>to winnow</data>
+          </le>
+          <ln field="20">
+            <data>vanner</data>
+          </ln>
+        </lf>
+        <lf field="21" flex="func">
+          <data>VAssoc</data>
+          <lv field="22" flex="lex">
+            <data>susu</data>
+          </lv>
+          <le field="23">
+            <data>to pound</data>
+          </le>
+          <ln field="24">
+            <data>piler</data>
+          </ln>
+        </lf>
+        <lf field="25" flex="func">
+          <data>VAssoc</data>
+          <lv field="26" flex="lex">
+            <data>folon</data>
+          </lv>
+          <le field="27">
+            <data>to pound to remove the chaff</data>
+          </le>
+          <ln field="28">
+            <data>piler pour enlever le son</data>
+          </ln>
+        </lf>
+        <lf field="29" flex="func">
+          <data>VAssoc</data>
+          <lv field="30" flex="lex">
+            <data>bunte</data>
+            <le field="31">
+              <data>to pound into flour</data>
+            </le>
+            <ln field="32">
+              <data>piler pour r�duire en farine</data>
+            </ln>
+          </lv>
+        </lf>
+        <lf field="33" flex="func">
+          <data>VAssoc</data>
+          <lv field="34" flex="lex">
+            <data>si6</data>
+            <le field="35">
+              <data>to grind</data>
+            </le>
+            <ln field="36">
+              <data>moudre</data>
+            </ln>
+          </lv>
+        </lf>
+        <pc field="37" flex="picf">
+          <data>images\millet1.jpg</data>
+        </pc>
+        <pc field="38" flex="picf">
+          <data>images\millet2.jpg</data>
+        </pc>
+      </sn>
+      <cf field="39" flex="cref">
+        <data>sa�</data>
+      </cf>
+      <cf field="40" flex="cref">
+        <data>keninge</data>
+      </cf>
+      <dt field="41" flex="mod">
+        <data>28/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="28" startline="424" endline="432">
+    <lx field="0" flex="lex">
+      <data>��w�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>inter</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>yes</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>oui</data>
+        </gn>
+        <gg field="4" flex="glos">
+          <data>ja</data>
+        </gg>
+      </sn>
+      <cf field="5" flex="cref">
+        <data>ayi</data>
+      </cf>
+      <ce field="6" flex="cref">
+        <data>no</data>
+      </ce>
+      <cn field="7" flex="cref">
+        <data>non</data>
+      </cn>
+      <dt field="8" flex="mod">
+        <data>21/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="29" startline="433" endline="474">
+    <lx field="0" flex="lex">
+      <data>san</data>
+      <lc field="1" flex="cit">
+        <data>s�an</data>
+      </lc>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="3" flex="glos">
+          <data>year</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>an</data>
+        </gn>
+        <dn field="5" flex="def">
+          <data>an, ann�e</data>
+        </dn>
+        <rn field="6" flex="rev">
+          <data>an ; ann�e</data>
+        </rn>
+        <gg field="7" flex="glos">
+          <data>Jahr</data>
+        </gg>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>I si ye san joli ye ?</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>How old are you?</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>Quel �ge as-tu ? </data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="11" flex="sent">
+            <data>Ne si ye san bisaba ni fila ye.</data>
+          </xv>
+          <xe field="12" flex="sent">
+            <data>I am 32 years old.</data>
+          </xe>
+          <xn field="13" flex="sent">
+            <data>J'ai 32 ans.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="14" flex="sent">
+            <data>san nata / san w�r�</data>
+          </xv>
+          <xe field="15" flex="sent">
+            <data>next year</data>
+          </xe>
+          <xn field="16" flex="sent">
+            <data>l'ann�e prochaine</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="17" flex="sent">
+            <data>san o san</data>
+          </xv>
+          <xe field="18" flex="sent">
+            <data>each year, every year</data>
+          </xe>
+          <xn field="19" flex="sent">
+            <data>chaque ann�e</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="20" flex="sent">
+            <data>a san saba ye �inan ye</data>
+          </xv>
+          <xe field="21" flex="sent">
+            <data>three years ago</data>
+          </xe>
+          <xn field="22" flex="sent">
+            <data>il y a trois ans</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="23" flex="sent">
+            <data>Ne b'a f� ka san saba k� yan.</data>
+          </xv>
+          <xe field="24" flex="sent">
+            <data>I'd like to spend three years here.</data>
+          </xe>
+          <xn field="25" flex="sent">
+            <data>Je voudrais passer trois ans ici.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="26" flex="sent">
+            <data>san kuuru b��</data>
+          </xv>
+          <xe field="27" flex="sent">
+            <data>during the whole year</data>
+          </xe>
+          <xn field="28" flex="sent">
+            <data>pendant toute l'ann�e</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="29" flex="sent">
+            <data>san 200 sani Yesu ka bange</data>
+          </xv>
+          <xe field="30" flex="sent">
+            <data>200 BC</data>
+          </xe>
+          <xn field="31" flex="sent">
+            <data>200 av. J.-C</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="32" flex="sent">
+            <data>Ala ka san w�r� jira an na !</data>
+          </xv>
+          <xe field="33" flex="sent">
+            <data>May God show us another year!</data>
+          </xe>
+          <xn field="34" flex="sent">
+            <data>Que Dieu nous montre encore une ann�e !</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="35" flex="cref">
+        <data>salon</data>
+      </cf>
+      <ce field="36" flex="cref">
+        <data>last year</data>
+      </ce>
+      <cn field="37" flex="cref">
+        <data>l'ann�e pass�e</data>
+      </cn>
+      <cf field="38" flex="cref">
+        <data>�inan</data>
+      </cf>
+      <ce field="39" flex="cref">
+        <data>this year</data>
+      </ce>
+      <cn field="40" flex="cref">
+        <data>cette ann�e</data>
+      </cn>
+      <dt field="41" flex="mod">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="30" startline="475" endline="486">
+    <lx field="0" flex="lex">
+      <data>salon</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>last year</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>l'an dernier</data>
+        </gn>
+        <rn field="4" flex="rev">
+          <data>an dernier</data>
+        </rn>
+      </sn>
+      <cf field="5" flex="cref">
+        <data>san</data>
+      </cf>
+      <ce field="6" flex="cref">
+        <data>year</data>
+      </ce>
+      <cn field="7" flex="cref">
+        <data>an, ann�e</data>
+      </cn>
+      <cf field="8" flex="cref">
+        <data>�inan</data>
+      </cf>
+      <ce field="9" flex="cref">
+        <data>this year</data>
+      </ce>
+      <cn field="10" flex="cref">
+        <data>cette ann�e</data>
+      </cn>
+      <dt field="11" flex="mod">
+        <data>24/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="31" startline="487" endline="495">
+    <lx field="0" flex="lex">
+      <data>sa�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>variety of millet</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>petit mil</data>
+        </gn>
+        <re field="4" flex="rev">
+          <data>*</data>
+        </re>
+        <rn field="5" flex="rev">
+          <data>*</data>
+        </rn>
+        <sd field="6" flex="seme">
+          <data>Ncrop</data>
+        </sd>
+      </sn>
+      <cf field="7" flex="cref">
+        <data>�</data>
+      </cf>
+      <dt field="8" flex="mod">
+        <data>05/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="32" startline="496" endline="520">
+    <lx field="0" flex="lex">
+      <data>s�n</data>
+      <hm field="1" flex="hom">
+        <data>1</data>
+      </hm>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="2" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="3" flex="subc">
+        <data>1</data>
+        <ge field="4" flex="glos">
+          <data>offer ; give</data>
+        </ge>
+        <gn field="5" flex="glos">
+          <data>offrir ; gratifier</data>
+        </gn>
+      </sn>
+      <sn field="6" flex="subc">
+        <data>2</data>
+        <ge field="7" flex="glos">
+          <data>offer a sacrifice to</data>
+        </ge>
+        <gn field="8" flex="glos">
+          <data>offrir un sacrifice �</data>
+        </gn>
+        <re field="9" flex="rev">
+          <data>*</data>
+        </re>
+        <rn field="10" flex="rev">
+          <data>*</data>
+        </rn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="11" flex="sent">
+            <data>boli s�n</data>
+          </xv>
+          <xe field="12" flex="sent">
+            <data>make a sacrifice to a fetish/idol</data>
+          </xe>
+          <xn field="13" flex="sent">
+            <data>offrir un sacrifice � un f�tiche</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="14" flex="sent">
+            <data>jiri s�n</data>
+          </xv>
+          <xe field="15" flex="sent">
+            <data>make a sacrifice at a tree</data>
+          </xe>
+          <xn field="16" flex="sent">
+            <data>offrir un sacrifice � un arbre</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="17" flex="sent">
+            <data>suw s�n</data>
+          </xv>
+          <xe field="18" flex="sent">
+            <data>make a sacrifice to the dead</data>
+          </xe>
+          <xn field="19" flex="sent">
+            <data>offrir un sacrifice aux morts</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="20" flex="subc">
+        <data>3</data>
+        <ge field="21" flex="glos">
+          <data>water</data>
+        </ge>
+        <gn field="22" flex="glos">
+          <data>arroser</data>
+        </gn>
+        <sd field="23" flex="seme">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="24" flex="mod">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="33" startline="521" endline="538">
+    <lx field="0" flex="lex">
+      <data>s�su</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>pound</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>piler</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>Ne b� � susu.</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>I am pounding millet.</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>Je pile le mil.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>X da susu</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>to kiss X</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>donner un baiser � X</data>
+          </xn>
+          <sd field="10" flex="seme">
+            <data>Cooking-Verb</data>
+          </sd>
+        </rf>
+      </sn>
+      <cf field="11" flex="cref">
+        <data>folon</data>
+      </cf>
+      <ce field="12" flex="cref">
+        <data>to pound to remove the chaff</data>
+      </ce>
+      <cn field="13" flex="cref">
+        <data>piler pour enlever le son</data>
+      </cn>
+      <cf field="14" flex="cref">
+        <data>bunte</data>
+      </cf>
+      <ce field="15" flex="cref">
+        <data>to pound into flour</data>
+      </ce>
+      <cn field="16" flex="cref">
+        <data>piler pour r�duire en farine</data>
+      </cn>
+      <dt field="17" flex="mod">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="34" startline="539" endline="559">
+    <lx field="0" flex="lex">
+      <data>tamati</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>tomato</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>tomate</data>
+        </gn>
+        <gg field="4" flex="glos">
+          <data>Tomate</data>
+        </gg>
+      </sn>
+      <bw field="5" flex="eires">
+        <data>fran�ais</data>
+      </bw>
+      <lf field="6" flex="func">
+        <data>VAssoc</data>
+        <lv field="7" flex="lex">
+          <data>turu</data>
+        </lv>
+        <le field="8">
+          <data>to transplant</data>
+        </le>
+        <ln field="9">
+          <data>transplanter</data>
+        </ln>
+        <lf field="10" flex="func">
+          <data>VAssoc</data>
+          <lv field="11" flex="lex">
+            <data>s�n</data>
+          </lv>
+          <le field="12">
+            <data>to water</data>
+          </le>
+          <ln field="13">
+            <data>arroser</data>
+          </ln>
+          <lf field="14" flex="func">
+            <data>VAssoc</data>
+            <lv field="15" flex="lex">
+              <data>kari</data>
+            </lv>
+            <le field="16">
+              <data>to pick</data>
+            </le>
+            <ln field="17">
+              <data>cueillir</data>
+            </ln>
+            <sd field="18" flex="seme">
+              <data>Nfood-sauce-item</data>
+            </sd>
+            <sd field="19" flex="seme">
+              <data>Nveg</data>
+            </sd>
+          </lf>
+        </lf>
+      </lf>
+      <dt field="20" flex="mod">
+        <data>20/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="35" startline="560" endline="591">
+    <lx field="0" flex="lex">
+      <data>tig�</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>break ; cut</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>rompre ; couper</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>kiri tig�</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>judge</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>juger</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="8" flex="sent">
+            <data>nkalon tig�</data>
+          </xv>
+          <xe field="9" flex="sent">
+            <data>tell a lie</data>
+          </xe>
+          <xn field="10" flex="sent">
+            <data>mentir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="11" flex="sent">
+            <data>sun tig�</data>
+          </xv>
+          <xe field="12" flex="sent">
+            <data>break the fast</data>
+          </xe>
+          <xn field="13" flex="sent">
+            <data>rompre le je�ne</data>
+          </xn>
+          <sd field="14" flex="seme">
+            <data>Cooking-Verb</data>
+          </sd>
+        </rf>
+      </sn>
+      <sn field="15" flex="subc">
+        <data>2</data>
+        <ge field="16" flex="glos">
+          <data>harvest</data>
+        </ge>
+        <gn field="17" flex="glos">
+          <data>r�colter</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="18" flex="sent">
+            <data>ҡ, gan ni b�n� b� tig�.</data>
+          </xv>
+          <xe field="19" flex="sent">
+            <data>Millet, gombo and sesame are harvested by cutting.</data>
+          </xe>
+          <xn field="20" flex="sent">
+            <data>On coupe le mil, le gombo et le s�same (quand on les r�colte).</data>
+          </xn>
+          <sd field="21" flex="seme">
+            <data>Agriculture-Verb</data>
+          </sd>
+        </rf>
+      </sn>
+      <sn field="22" flex="subc">
+        <data>3</data>
+        <ge field="23" flex="glos">
+          <data>cross</data>
+        </ge>
+        <gn field="24" flex="glos">
+          <data>traverser</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="25" flex="sent">
+            <data>sira tig�</data>
+          </xv>
+          <xe field="26" flex="sent">
+            <data>cross the road</data>
+          </xe>
+          <xn field="27" flex="sent">
+            <data>traverser la route</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="28" flex="sent">
+            <data>ba tig�</data>
+          </xv>
+          <xe field="29" flex="sent">
+            <data>cross the river</data>
+          </xe>
+          <xn field="30" flex="sent">
+            <data>traverser le fleuve</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="31" flex="mod">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="36" startline="592" endline="601">
+    <lx field="0" flex="lex">
+      <data>t�fa</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>brick</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>brique</data>
+        </gn>
+        <sy field="4" flex="eires">
+          <data>biriki</data>
+        </sy>
+        <pc field="5" flex="picf">
+          <data>images\brickmaking.jpg</data>
+        </pc>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="6" flex="sent">
+            <data>tufa g�si/b�</data>
+          </xv>
+          <xe field="7" flex="sent">
+            <data>make bricks</data>
+          </xe>
+          <xn field="8" flex="sent">
+            <data>fabriquer des briques</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="9" flex="mod">
+        <data>20/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="37" startline="602" endline="615">
+    <lx field="0" flex="lex">
+      <data>turu</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>vt</data>
+        </ps>
+      </sn>
+      <sn field="2" flex="subc">
+        <data>1</data>
+        <ge field="3" flex="glos">
+          <data>plant</data>
+        </ge>
+        <gn field="4" flex="glos">
+          <data>planter</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="5" flex="sent">
+            <data>jiri turu</data>
+          </xv>
+          <xe field="6" flex="sent">
+            <data>plant a tree</data>
+          </xe>
+          <xn field="7" flex="sent">
+            <data>planter un arbre</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="8" flex="subc">
+        <data>2</data>
+        <ge field="9" flex="glos">
+          <data>transplant</data>
+        </ge>
+        <gn field="10" flex="glos">
+          <data>replanter ; transplanter</data>
+        </gn>
+        <pc field="11" flex="picf">
+          <data>images\planting.jpg</data>
+        </pc>
+        <sd field="12" flex="seme">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="13" flex="mod">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="38" startline="616" endline="651">
+    <lx field="0" flex="lex">
+      <data>waati</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>time</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>moment ; temps</data>
+        </gn>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="4" flex="sent">
+            <data>waati ni waati</data>
+          </xv>
+          <xe field="5" flex="sent">
+            <data>from time to time</data>
+          </xe>
+          <xn field="6" flex="sent">
+            <data>de temps en temps</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="7" flex="sent">
+            <data>waati d� la</data>
+          </xv>
+          <xe field="8" flex="sent">
+            <data>sometimes</data>
+          </xe>
+          <xn field="9" flex="sent">
+            <data>quelquefois, parfois</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="10" flex="sent">
+            <data>waati caman</data>
+          </xv>
+          <xe field="11" flex="sent">
+            <data>often</data>
+          </xe>
+          <xn field="12" flex="sent">
+            <data>souvent</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="13" flex="sent">
+            <data>waati jum�n ?</data>
+          </xv>
+          <xe field="14" flex="sent">
+            <data>when? at what time?</data>
+          </xe>
+          <xn field="15" flex="sent">
+            <data>quand ? � quelle heure ?</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="16" flex="sent">
+            <data>Waati sera.</data>
+          </xv>
+          <xe field="17" flex="sent">
+            <data>The time has arrived (e.g. to leave).</data>
+          </xe>
+          <xn field="18" flex="sent">
+            <data>L'heure est arriv�e (ex. pour partir).</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="19" flex="sent">
+            <data>Waati jum�n b'i bolo ?</data>
+          </xv>
+          <xe field="20" flex="sent">
+            <data>What time is it?</data>
+          </xe>
+          <xn field="21" flex="sent">
+            <data>Quelle heure est-il ?</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="22" flex="sent">
+            <data>waati t�m�nnen, sisan, waati nata</data>
+          </xv>
+          <xe field="23" flex="sent">
+            <data>the past, the present, the future</data>
+          </xe>
+          <xn field="24" flex="sent">
+            <data>le pass�, le pr�sent, l'avenir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="25" flex="sent">
+            <data>Waati t� n bolo.</data>
+          </xv>
+          <xe field="26" flex="sent">
+            <data>I don't have the time.</data>
+          </xe>
+          <xn field="27" flex="sent">
+            <data>Je n'ai pas le temps.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="28" flex="sent">
+            <data>A tora Segu ka waati jan k�.</data>
+          </xv>
+          <xe field="29" flex="sent">
+            <data>He stayed in Segou a long time.</data>
+          </xe>
+          <xn field="30" flex="sent">
+            <data>Il a dur� longtemps � S�gou.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref">
+          <data />
+          <xv field="31" flex="sent">
+            <data>o waati k�n�</data>
+          </xv>
+          <xe field="32" flex="sent">
+            <data>during that time</data>
+          </xe>
+          <xn field="33" flex="sent">
+            <data>pendant ce temps-l�</data>
+          </xn>
+        </rf>
+      </sn>
+      <va field="34" flex="vars">
+        <data>wagati</data>
+      </va>
+      <dt field="35" flex="mod">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="39" startline="652" endline="666">
+    <lx field="0" flex="lex">
+      <data>wagati</data>
+      <sn inferred="true" flex="subc">
+        <data />
+        <ps field="1" flex="pos">
+          <data>n</data>
+        </ps>
+        <ge field="2" flex="glos">
+          <data>time</data>
+        </ge>
+        <gn field="3" flex="glos">
+          <data>moment ; temps</data>
+        </gn>
+      </sn>
+      <mn field="4" flex="eires">
+        <data>waati</data>
+      </mn>
+      <xv field="5" flex="sent">
+        <data>wagati ni wagati</data>
+      </xv>
+      <xe field="6" flex="sent">
+        <data>from time to time</data>
+      </xe>
+      <xn field="7" flex="sent">
+        <data>de temps en temps</data>
+      </xn>
+      <xv field="8" flex="sent">
+        <data>wagati d� la</data>
+      </xv>
+      <xe field="9" flex="sent">
+        <data>sometimes</data>
+      </xe>
+      <xn field="10" flex="sent">
+        <data>quelquefois, parfois</data>
+      </xn>
+      <xv field="11" flex="sent">
+        <data>nin wagati la</data>
+      </xv>
+      <xe field="12" flex="sent">
+        <data>now, at this time</data>
+      </xe>
+      <xn field="13" flex="sent">
+        <data>maintenant, en ce moment</data>
+      </xn>
+      <dt field="14" flex="mod">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+</root>

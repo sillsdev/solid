@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift>
+  <entry id="ayi" dateModified="">
+    <lexical-unit><form lang=""><text>ayi</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <gr />
+        <gg />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="-biki" dateModified="">
+    <lexical-unit><form lang=""><text>-biki</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+    
+  </entry>
+  <entry id="biki-" dateModified="">
+    <lexical-unit><form lang=""><text>biki-</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+    
+  </entry>
+  <entry id="-biki-" dateModified="">
+    <lexical-unit><form lang=""><text>-biki-</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+    
+  </entry>
+  <entry id="biriki" dateModified="">
+    <lexical-unit><form lang=""><text>biriki</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <bw />
+      <dt />
+    
+  </entry>
+  <entry id="bunte" dateModified="">
+    <lexical-unit><form lang=""><text>bunte</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <de />
+        <gn />
+        <dn />
+        <sd />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="d�n" dateModified="">
+    <lexical-unit><form lang=""><text>d�n</text></form></lexical-unit>
+      <data />
+      <hm />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="folon" dateModified="">
+    <lexical-unit><form lang=""><text>folon</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <de />
+        <gn />
+        <dn />
+        <sd />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="fy�" dateModified="">
+    <lexical-unit><form lang=""><text>fy�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="gan" dateModified="">
+    <lexical-unit><form lang=""><text>gan</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <ee />
+        <en />
+        <rf />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="g�l�n" dateModified="">
+    <lexical-unit><form lang=""><text>g�l�n</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="g�l�ya" dateModified="">
+    <lexical-unit><form lang=""><text>g�l�ya</text></form></lexical-unit>
+      <data />
+      <hm />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="g��si" dateModified="">
+    <lexical-unit><form lang=""><text>g��si</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <va />
+      <dt />
+    
+  </entry>
+  <entry id="j�" dateModified="">
+    <lexical-unit><form lang=""><text>j�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="j�g�" dateModified="">
+    <lexical-unit><form lang=""><text>j�g�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <lf />
+        <lf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="jiran" dateModified="">
+    <lexical-unit><form lang=""><text>jiran</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="kari" dateModified="">
+    <lexical-unit><form lang=""><text>kari</text></form></lexical-unit>
+      <data />
+      <hm />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <sd />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="keninge" dateModified="">
+    <lexical-unit><form lang=""><text>keninge</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <re />
+        <rn />
+        <sd />
+        <pc />
+        <pc />
+        <rf />
+      </sense>
+      <cf />
+      <dt />
+    
+  </entry>
+  <entry id="k��g�" dateModified="">
+    <lexical-unit><form lang=""><text>k��g�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <gg />
+        <sd />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="min�" dateModified="">
+    <lexical-unit><form lang=""><text>min�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <de />
+        <gn />
+        <rn />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="nis�n" dateModified="">
+    <lexical-unit><form lang=""><text>nis�n</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="nis�ndiya" dateModified="">
+    <lexical-unit><form lang=""><text>nis�ndiya</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <mr />
+      <xv />
+      <xe />
+      <xn />
+      <dt />
+    
+  </entry>
+  <entry id="nk�y�" dateModified="">
+    <lexical-unit><form lang=""><text>nk�y�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <pc />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="n�g�n" dateModified="">
+    <lexical-unit><form lang=""><text>n�g�n</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="n�g�ya" dateModified="">
+    <lexical-unit><form lang=""><text>n�g�ya</text></form></lexical-unit>
+      <data />
+      <hm />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="�inan" dateModified="">
+    <lexical-unit><form lang=""><text>�inan</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="�ininka" dateModified="">
+    <lexical-unit><form lang=""><text>�ininka</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="�" dateModified="">
+    <lexical-unit><form lang=""><text>�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+        <lf />
+        <pc />
+        <pc />
+      </sense>
+      <cf />
+      <cf />
+      <dt />
+    
+  </entry>
+  <entry id="��w�" dateModified="">
+    <lexical-unit><form lang=""><text>��w�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <gg />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="san" dateModified="">
+    <lexical-unit><form lang=""><text>san</text></form></lexical-unit>
+      <data />
+      <lc />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <dn />
+        <rn />
+        <gg />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="salon" dateModified="">
+    <lexical-unit><form lang=""><text>salon</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rn />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="sa�" dateModified="">
+    <lexical-unit><form lang=""><text>sa�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <re />
+        <rn />
+        <sd />
+      </sense>
+      <cf />
+      <dt />
+    
+  </entry>
+  <entry id="s�n" dateModified="">
+    <lexical-unit><form lang=""><text>s�n</text></form></lexical-unit>
+      <data />
+      <hm />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <re />
+        <rn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <sd />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="s�su" dateModified="">
+    <lexical-unit><form lang=""><text>s�su</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <cf />
+      <ce />
+      <cn />
+      <cf />
+      <ce />
+      <cn />
+      <dt />
+    
+  </entry>
+  <entry id="tamati" dateModified="">
+    <lexical-unit><form lang=""><text>tamati</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <gg />
+      </sense>
+      <bw />
+      <lf />
+      <dt />
+    
+  </entry>
+  <entry id="tig�" dateModified="">
+    <lexical-unit><form lang=""><text>tig�</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="t�fa" dateModified="">
+    <lexical-unit><form lang=""><text>t�fa</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <sy />
+        <pc />
+        <rf />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="turu" dateModified="">
+    <lexical-unit><form lang=""><text>turu</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <rf />
+      </sense>
+      <sense id="">
+        <data />
+        <ge />
+        <gn />
+        <pc />
+        <sd />
+      </sense>
+      <dt />
+    
+  </entry>
+  <entry id="waati" dateModified="">
+    <lexical-unit><form lang=""><text>waati</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+        <rf />
+      </sense>
+      <va />
+      <dt />
+    
+  </entry>
+  <entry id="wagati" dateModified="">
+    <lexical-unit><form lang=""><text>wagati</text></form></lexical-unit>
+      <data />
+      <sense id="">
+        <data />
+        <ps />
+        <ge />
+        <gn />
+      </sense>
+      <mn />
+      <xv />
+      <xe />
+      <xn />
+      <xv />
+      <xe />
+      <xn />
+      <xv />
+      <xe />
+      <xn />
+      <dt />
+    
+  </entry>
+</lift>

@@ -15,10 +15,10 @@ namespace SolidGui
         static void Main()
         {
             SetupErrorHandling();
-            SetupUsageTracking();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SetupUsageTracking();
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
             

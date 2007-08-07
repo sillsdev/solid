@@ -10,6 +10,10 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
+            Encoding_Test t = new Encoding_Test();
+            t.Store0x00To0xFFInString_Correct();
+
+
             //SolidReportTest t = new SolidReportTest();
             //t.SolidReport_SaveOpen_Correct();
 
@@ -19,9 +23,9 @@ namespace SolidTests
             //EngineEnvironment_Test t = new EngineEnvironment_Test();
             //t.PathOfBase_Correct();
 
-            SfmReader_Read_Test t = new SfmReader_Read_Test();
-            t.Init();
-            t.ReadIndentedMarker_Correct();
+            //SfmReader_Read_Test t = new SfmReader_Read_Test();
+            //t.Init();
+            //t.ReadIndentedMarker_Correct();
 
             //ExportFactory_Test t = new ExportFactory_Test();
             //t.Init();

@@ -1,0 +1,1299 @@
+﻿<!--
+ ================================================================
+ 7/29/2007 11:29:24 PM
+ Created by Sfm2Xml, Version=1.0.2748.24613, Culture=neutral, PublicKeyToken=null
+
+ The command line parameters were :
+  sfmFileName : C:\FW\DistFiles\LexText\Import\BambaraDemo.db
+  mappingFile : C:\FW\DistFiles\LexText\Import\BambaraDemo-import-settings.map
+  xmlOutput   : C:\Documents and Settings\zook\Local Settings\Temp\LexText\Phase1Output.xml
+ ================================================================
+-->
+<!-- database is the root element for this file -->
+<database>
+  <setting affixMarker="-" />
+  <!--
+ ================================================================
+ Element: records
+  This element contains the inputfile in an XML format.
+ ================================================================
+-->
+  <records>
+    <Entry>
+      <lx srcLine="1">ayi</lx>
+      <cf srcLine="10">ïŊ½wïŊ½</cf>
+      <ce srcLine="11">yes</ce>
+      <cn srcLine="12">oui</cn>
+      <dt srcLine="13">2003-10-21 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="2">inter</ps>
+        <ge srcLine="3">no</ge>
+        <gn srcLine="4">non</gn>
+        <gr srcLine="5">regional</gr>
+        <gg srcLine="6">nein</gg>
+        <Example>
+          <xv srcLine="7">Ayi, fïŊ½lïŊ½.</xv>
+          <xe srcLine="8">No, not yet.</xe>
+          <xn srcLine="9">Non, pas encore.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="14">-biki</lx>
+      <Sense>
+        <ps srcLine="15">n</ps>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="16">biki-</lx>
+      <Sense>
+        <ps srcLine="17">n</ps>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="18">-biki-</lx>
+      <Sense>
+        <ps srcLine="19">n</ps>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="20">biriki</lx>
+      <dt srcLine="30">2004-02-18 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="21">n</ps>
+        <ge srcLine="22">brick</ge>
+        <gn srcLine="23">brique</gn>
+        <bw srcLine="24">franï¿½ais</bw>
+        <sy srcLine="25">tufa</sy>
+        <Example>
+          <xv srcLine="26">biriki gïŊ½si</xv>
+          <xe srcLine="27">make bricks</xe>
+          <xn srcLine="28">fabriquer des briques</xn>
+        </Example>
+        <Picture>
+          <pc srcLine="29">images\brickmaking.jpg</pc>
+        </Picture>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="31">bunte</lx>
+      <dt srcLine="38">2004-02-27 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="32">vt</ps>
+        <ge srcLine="33">pound</ge>
+        <de srcLine="34">pound into flour</de>
+        <gn srcLine="35">piler</gn>
+        <dn srcLine="36">piler pour rï¿½duire en farine</dn>
+        <SemanticDomain>
+          <sd srcLine="37">Cooking-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="39">dïŊ½n</lx>
+      <hm srcLine="40">3</hm>
+      <dt srcLine="45">2004-02-27 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="41">vt</ps>
+        <ge srcLine="42">sow</ge>
+        <gn srcLine="43">semer</gn>
+        <SemanticDomain>
+          <sd srcLine="44">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="46">folon</lx>
+      <dt srcLine="53">2004-06-10 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="47">vt</ps>
+        <ge srcLine="48">pound</ge>
+        <de srcLine="49">pound to remove the chaff</de>
+        <gn srcLine="50">piler</gn>
+        <dn srcLine="51">piler pour enlever le son</dn>
+        <SemanticDomain>
+          <sd srcLine="52">Cooking-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="54">fyïŊ½</lx>
+      <dt srcLine="69">2004-02-19 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="55">vt</ps>
+        <sn srcLine="56">1</sn>
+        <ge srcLine="57">blow</ge>
+        <gn srcLine="58">souffler</gn>
+        <Example>
+          <xv srcLine="59">file fyïŊ½</xv>
+          <xe srcLine="60">whistle</xe>
+          <xn srcLine="61">siffler</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="62">2</sn>
+        <ge srcLine="63">winnow</ge>
+        <gn srcLine="64">vanner</gn>
+        <Example>
+          <xv srcLine="65">ïŊ½ fyïŊ½</xv>
+          <xe srcLine="66">winnow the millet</xe>
+          <xn srcLine="67">vanner le mil</xn>
+        </Example>
+        <SemanticDomain>
+          <sd srcLine="68">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="70">gan</lx>
+      <dt srcLine="97">2004-04-16 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="71">n</ps>
+        <ge srcLine="72">gombo</ge>
+        <gn srcLine="73">gombo</gn>
+        <ee srcLine="76">Used for preparing sauce for "to".</ee>
+        <en srcLine="77">On l'utilise dans la prï¿½paration d'une sauce pour le ï¿½ to ï¿½.</en>
+        <le srcLine="83">sow</le>
+        <ln srcLine="84">semer</ln>
+        <le srcLine="87">pick</le>
+        <ln srcLine="88">cueillir</ln>
+        <le srcLine="91">cut up</le>
+        <ln srcLine="92">couper</ln>
+        <le srcLine="95">dry</le>
+        <ln srcLine="96">sï¿½cher</ln>
+        <SemanticDomain>
+          <sd srcLine="74">Ncrop</sd>
+        </SemanticDomain>
+        <SemanticDomain>
+          <sd srcLine="75">Nfood-sauce-item</sd>
+        </SemanticDomain>
+        <Example>
+          <xv srcLine="78">gan jalan</xv>
+          <xe srcLine="79">dried gombo (sold in the market)</xe>
+          <xn srcLine="80">gombo sechï¿½ (vendu au marchï¿½)</xn>
+        </Example>
+        <Function>
+          <lf srcLine="81">VAssoc</lf>
+          <lv srcLine="82">dan</lv>
+        </Function>
+        <Function>
+          <lf srcLine="85">VAssoc</lf>
+          <lv srcLine="86">kari</lv>
+        </Function>
+        <Function>
+          <lf srcLine="89">VAssoc</lf>
+          <lv srcLine="90">tigïŊ½</lv>
+        </Function>
+        <Function>
+          <lf srcLine="93">VAssoc</lf>
+          <lv srcLine="94">ja</lv>
+        </Function>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="98">gïŊ½lïŊ½n</lx>
+      <cf srcLine="109">nïŊ½gïŊ½n</cf>
+      <ce srcLine="110">easy</ce>
+      <cn srcLine="111">facile</cn>
+      <dt srcLine="118">2004-02-19 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="99">adj.pred</ps>
+        <sn srcLine="100">1</sn>
+        <ge srcLine="101">hard ; firm</ge>
+        <gn srcLine="102">dur</gn>
+      </Sense>
+      <Sense>
+        <sn srcLine="103">2</sn>
+        <ge srcLine="104">difficult</ge>
+        <gn srcLine="105">difficile</gn>
+        <Example>
+          <xv srcLine="106">AngilïŊ½kan ka gïŊ½lïŊ½n n ma.</xv>
+          <xe srcLine="107">English is difficult for me.</xe>
+          <xn srcLine="108">L'anglais est difficile pour moi.</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="112">3</sn>
+        <ge srcLine="113">expensive</ge>
+        <gn srcLine="114">cher</gn>
+        <Example>
+          <xv srcLine="115">A da ka gïŊ½lïŊ½n.</xv>
+          <xe srcLine="116">It's expensive.</xe>
+          <xn srcLine="117">C'est cher.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="119">gïŊ½lïŊ½ya</lx>
+      <hm srcLine="120">1</hm>
+      <cf srcLine="133">nïŊ½gïŊ½ya1</cf>
+      <ce srcLine="134">ease</ce>
+      <cn srcLine="135">facilitï¿½</cn>
+      <dt srcLine="136">2004-06-05 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="121">n</ps>
+        <ge srcLine="122">difficulty</ge>
+        <gn srcLine="123">difficultï¿½</gn>
+        <Example>
+          <xv srcLine="124">gïŊ½lïŊ½ya la / ni gïŊ½lïŊ½ya ye</xv>
+          <xe srcLine="125">with difficulty</xe>
+          <xn srcLine="126">difficilement, avec difficultï¿½</xn>
+        </Example>
+        <Example>
+          <xv srcLine="127">ni gïŊ½lïŊ½ya tïŊ½</xv>
+          <xe srcLine="128">without difficulty</xe>
+          <xn srcLine="129">sans difficultï¿½</xn>
+        </Example>
+        <Example>
+          <xv srcLine="130">GïŊ½lïŊ½ya ye ne minïŊ½.</xv>
+          <xe srcLine="131">I have come into difficulties.</xe>
+          <xn srcLine="132">Je suis dans la difficultï¿½.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="137">gïŊ½ïŊ½si</lx>
+      <dt srcLine="151">2004-05-30 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="138">vt</ps>
+        <ge srcLine="139">beat ; thresh</ge>
+        <gn srcLine="140">battre</gn>
+        <Example>
+          <xv srcLine="141">ïŊ½ gïŊ½si</xv>
+          <xe srcLine="142">thresh the millet</xe>
+          <xn srcLine="143">battre le mil</xn>
+        </Example>
+        <Example>
+          <xv srcLine="144">biriki gïŊ½si</xv>
+          <xe srcLine="145">make bricks</xe>
+          <xn srcLine="146">fabriquer des briques</xn>
+        </Example>
+        <Example>
+          <xv srcLine="147">nbuuru gïŊ½si</xv>
+          <xe srcLine="148">make bread</xe>
+          <xn srcLine="149">faire du pain</xn>
+        </Example>
+        <Variant>
+          <va srcLine="150">gosi</va>
+        </Variant>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="152">jïŊ½</lx>
+      <dt srcLine="166">2004-04-16 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="153">vt</ps>
+        <sn srcLine="154">1</sn>
+        <ge srcLine="155">dry</ge>
+        <gn srcLine="156">sï¿½cher ; dessï¿½cher</gn>
+        <Example>
+          <xv srcLine="157">X ja tile la</xv>
+          <xe srcLine="158">to dry X in the sun</xe>
+          <xn srcLine="159">faire sï¿½cher X au soleil</xn>
+        </Example>
+        <Example>
+          <xv srcLine="160">Kini bïŊ½ kïŊ½nïŊ½ ja.</xv>
+          <xe srcLine="161">Rice dries up the stomach.</xe>
+          <xn srcLine="162">Le riz sï¿½che le ventre.</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="163">2</sn>
+        <ge srcLine="164">paralyse</ge>
+        <gn srcLine="165">paralyser</gn>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="167">jïŊ½gïŊ½</lx>
+      <dt srcLine="192">2004-04-28 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="168">n</ps>
+        <ge srcLine="169">fish</ge>
+        <gn srcLine="170">poisson</gn>
+        <le srcLine="186">to catch</le>
+        <ln srcLine="187">attraper</ln>
+        <le srcLine="190">to fry</le>
+        <ln srcLine="191">frire</ln>
+        <Example>
+          <xv srcLine="171">jïŊ½gïŊ½ kïŊ½nïŊ½</xv>
+          <xe srcLine="172">fresh fish</xe>
+          <xn srcLine="173">poisson frais</xn>
+        </Example>
+        <Example>
+          <xv srcLine="174">jïŊ½gïŊ½ jalan</xv>
+          <xe srcLine="175">dried fish</xe>
+          <xn srcLine="176">poisson sec</xn>
+        </Example>
+        <Example>
+          <xv srcLine="177">jïŊ½gïŊ½ wusu</xv>
+          <xe srcLine="178">smoked fish</xe>
+          <xn srcLine="179">poisson fumï¿½</xn>
+        </Example>
+        <Example>
+          <xv srcLine="180">jïŊ½gïŊ½ jirannen</xv>
+          <xe srcLine="181">fried fish</xe>
+          <xn srcLine="182">poisson frit</xn>
+        </Example>
+        <SemanticDomain>
+          <sd srcLine="183">Nfood-sauce-item</sd>
+        </SemanticDomain>
+        <Function>
+          <lf srcLine="184">VAssoc</lf>
+          <lv srcLine="185">minïŊ½</lv>
+        </Function>
+        <Function>
+          <lf srcLine="188">VAssoc</lf>
+          <lv srcLine="189">jiran</lv>
+        </Function>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="193">jiran</lx>
+      <dt srcLine="197">2003-10-14 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="194">vt</ps>
+        <ge srcLine="195">fry</ge>
+        <gn srcLine="196">faire frire</gn>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="198">kari</lx>
+      <hm srcLine="199">1</hm>
+      <dt srcLine="214">2004-04-17 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="200">vt</ps>
+        <sn srcLine="201">1</sn>
+        <ge srcLine="202">break</ge>
+        <gn srcLine="203">casser ; briser</gn>
+        <Example>
+          <xv srcLine="204">N'i binna ka bïŊ½ jiri sanfïŊ½, i bolo bïŊ½ se ka kari.</xv>
+          <xe srcLine="205">If you fall from a tree, you can break your arm.</xe>
+          <xn srcLine="206">Si tu tombais d'un arbre, tu pourrais se casser le bras.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="207">A bïŊ½ ïŊ½ini ka kari.</xv>
+          <xe srcLine="208">It's about to break.</xe>
+          <xn srcLine="209">Il est sur le point de se casser.</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="210">2</sn>
+        <ge srcLine="211">pick</ge>
+        <gn srcLine="212">cueillir</gn>
+        <SemanticDomain>
+          <sd srcLine="213">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="215">keninge</lx>
+      <cf srcLine="227">ïŊ½</cf>
+      <dt srcLine="228">2004-04-05 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="216">n</ps>
+        <ge srcLine="217">variety of sorghum</ge>
+        <gn srcLine="218">varietï¿½ de sorgho</gn>
+        <re srcLine="219">*</re>
+        <rn srcLine="220">*</rn>
+        <SemanticDomain>
+          <sd srcLine="221">Ncrop</sd>
+        </SemanticDomain>
+        <Picture>
+          <pc srcLine="222">images\millet1.jpg</pc>
+        </Picture>
+        <Picture>
+          <pc srcLine="223">images\millet2.jpg</pc>
+        </Picture>
+        <Example>
+          <xv srcLine="224">Keninge danni n'a tigïŊ½li cïŊ½ bïŊ½ taa kalo saba ïŊ½gïŊ½n na.</xv>
+          <xe srcLine="225">There are three months between sowing and reaping of 'keninge'.</xe>
+          <xn srcLine="226">Il y a trois mois entre les semailles et le rï¿½colte de 'keninge'.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="229">kïŊ½ïŊ½gïŊ½</lx>
+      <dt srcLine="238">2004-05-18 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="230">n</ps>
+        <ge srcLine="231">salt</ge>
+        <gn srcLine="232">sel</gn>
+        <gg srcLine="233">Salz</gg>
+        <SemanticDomain>
+          <sd srcLine="234">Nfood-sauce-item</sd>
+        </SemanticDomain>
+        <Example>
+          <xv srcLine="235">KïŊ½gïŊ½ m'a bïŊ½.</xv>
+          <xe srcLine="236">There isn't enough salt in it.</xe>
+          <xn srcLine="237">Il n'y a pas assez de sel.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="239">minïŊ½</lx>
+      <dt srcLine="277">2004-05-18 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="240">vt</ps>
+        <sn srcLine="241">1</sn>
+        <ge srcLine="242">catch ; capture ; arrest ; seize ; grab ; take</ge>
+        <gn srcLine="243">attrapper ; saisir ; prendre</gn>
+        <Example>
+          <xv srcLine="244">U bïŊ½ jïŊ½gïŊ½ minïŊ½.</xv>
+          <xe srcLine="245">They catch fish.</xe>
+          <xn srcLine="246">Ils attrappent des poissons.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="247">Wari minïŊ½ !</xv>
+          <xe srcLine="248">Take the money!</xe>
+          <xn srcLine="249">Prends l'argent !</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="250">2</sn>
+        <ge srcLine="251">accept</ge>
+        <gn srcLine="252">accepter ; exaucer</gn>
+        <Example>
+          <xv srcLine="253">X kan minïŊ½</xv>
+          <xe srcLine="254">obey X</xe>
+          <xn srcLine="255">obï¿½ir ï¿½ X</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="256">3</sn>
+        <ge srcLine="257">treat</ge>
+        <gn srcLine="258">traiter</gn>
+        <Example>
+          <xv srcLine="259">minïŊ½ koïŊ½uman</xv>
+          <xe srcLine="260">treat well, receive well, welcome</xe>
+          <xn srcLine="261">traiter bien, recevoir bien, accueillir</xn>
+        </Example>
+        <Example>
+          <xv srcLine="262">Nin cïŊ½ bïŊ½ jurumutïŊ½w minïŊ½ koïŊ½uman !</xv>
+          <xe srcLine="263">This man treats sinners well!</xe>
+          <xn srcLine="264">Cet homme traite bien les pï¿½cheurs !</xn>
+          <rf srcLine="265">Bible: Luka 15.2</rf>
+        </Example>
+        <Example>
+          <xv srcLine="266">N'i tïŊ½ seli, u b'i minïŊ½ kafiri ye.</xv>
+          <xe srcLine="267">If you don't pray, they will take you as a pagan.</xe>
+          <xn srcLine="268">Si tu ne pries pas, ils penseront que tu es un paï¿½en.</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="269">4</sn>
+        <ge srcLine="270">suit</ge>
+        <de srcLine="271">suit, go well with</de>
+        <gn srcLine="272">aller bien</gn>
+        <rn srcLine="273">*</rn>
+        <Example>
+          <xv srcLine="274">Nin dulïŊ½ki bïŊ½ i minïŊ½ kosïŊ½bïŊ½.</xv>
+          <xe srcLine="275">This shirt suits you well.</xe>
+          <xn srcLine="276">Cette chemise te va bien.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="278">nisïŊ½n</lx>
+      <dt srcLine="288">2003-11-24 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="279">n</ps>
+        <ge srcLine="280">mood</ge>
+        <gn srcLine="281">humeur</gn>
+        <Example>
+          <xv srcLine="282">A nisïŊ½n ka di.</xv>
+          <xe srcLine="283">He is happy, cheerful, in a good mood.</xe>
+          <xn srcLine="284">Il est content, gai, de bonne humeur.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="285">I nisïŊ½n man di bi. Mun b'i la ?</xv>
+          <xe srcLine="286">You're not in a good mood today. What's wrong?</xe>
+          <xn srcLine="287">Tu es de mauvaise humeur aujourd'hui. Qu'est-ce qu'il y a ?</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="289">nisïŊ½ndiya</lx>
+      <mr srcLine="296">nisïŊ½n-diya</mr>
+      <dt srcLine="300">2004-02-19 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="290">n</ps>
+        <ge srcLine="291">joy ; happiness</ge>
+        <gn srcLine="292">joie ; allï¿½gresse</gn>
+      </Sense>
+      <Sense>
+        <ps srcLine="293">vt</ps>
+        <ge srcLine="294">make joyful</ge>
+        <gn srcLine="295">rï¿½jouir</gn>
+        <Example>
+          <xv srcLine="297">Ne nisïŊ½ndiyalen don.</xv>
+          <xe srcLine="298">I'm happy.</xe>
+          <xn srcLine="299">Je suis content. Je suis dans la joie.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="301">nkïŊ½yïŊ½</lx>
+      <dt srcLine="308">2004-04-17 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="302">n</ps>
+        <ge srcLine="303">bitter tomato</ge>
+        <gn srcLine="304">tomate amï¿½re</gn>
+        <SemanticDomain>
+          <sd srcLine="305">Nfood-sauce-item</sd>
+        </SemanticDomain>
+        <SemanticDomain>
+          <sd srcLine="306">Nveg</sd>
+        </SemanticDomain>
+        <Picture>
+          <pc srcLine="307">images\bitter-tomato.jpg</pc>
+        </Picture>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="309">nïŊ½gïŊ½n</lx>
+      <cf srcLine="322">gïŊ½lïŊ½n</cf>
+      <ce srcLine="323">difficult</ce>
+      <cn srcLine="324">difficile</cn>
+      <dt srcLine="325">2004-02-19 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="310">adj.pred</ps>
+        <ge srcLine="311">easy</ge>
+        <gn srcLine="312">facile</gn>
+        <Example>
+          <xv srcLine="313">O ka nïŊ½gïŊ½n !</xv>
+          <xe srcLine="314">That's easy!</xe>
+          <xn srcLine="315">ï¿½a c'est facile !</xn>
+        </Example>
+        <Example>
+          <xv srcLine="316">A tun man nïŊ½gïŊ½n.</xv>
+          <xe srcLine="317">It was not easy.</xe>
+          <xn srcLine="318">Ce n'ï¿½tait pas facile.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="319">ƝɔsïŊ½nïŊ½ ka nïŊ½gïŊ½n ni malo ye.</xv>
+          <xe srcLine="320">Cultivating millet is easier than rice.</xe>
+          <xn srcLine="321">Cultiver le mil est plus facile que de cultiver le riz.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="326">nïŊ½gïŊ½ya</lx>
+      <hm srcLine="327">1</hm>
+      <cf srcLine="344">gïŊ½lïŊ½ya1</cf>
+      <ce srcLine="345">difficulty</ce>
+      <cn srcLine="346">difficultï¿½</cn>
+      <dt srcLine="347">2003-11-24 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="328">n</ps>
+        <sn srcLine="329">1</sn>
+        <ge srcLine="330">ease</ge>
+        <gn srcLine="331">facilitï¿½</gn>
+        <Example>
+          <xv srcLine="332">nïŊ½gïŊ½ya la / ni nïŊ½gïŊ½ya ye</xv>
+          <xe srcLine="333">easily</xe>
+          <xn srcLine="334">facilement</xn>
+        </Example>
+        <Example>
+          <xv srcLine="335">Ala k'i se nïŊ½gïŊ½ya la !</xv>
+          <xe srcLine="336">May God enable you to arrive easily/safely!</xe>
+          <xn srcLine="337">Que Dieu fasse que tu arrives facilement !</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="338">2</sn>
+        <ge srcLine="339">good price</ge>
+        <gn srcLine="340">bon marchï¿½</gn>
+        <Example>
+          <xv srcLine="341">Awa bïŊ½ namasa feere nïŊ½gïŊ½ya la.</xv>
+          <xe srcLine="342">Awa sells banana cheaply.</xe>
+          <xn srcLine="343">Awa vend des bananes ï¿½ bon prix.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="348">ïŊ½inan</lx>
+      <cf srcLine="355">san</cf>
+      <ce srcLine="356">year</ce>
+      <cn srcLine="357">an, annï¿½e</cn>
+      <cf srcLine="358">salon</cf>
+      <ce srcLine="359">last year</ce>
+      <cn srcLine="360">l'annï¿½e passï¿½e</cn>
+      <dt srcLine="361">2004-04-17 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="349">n</ps>
+        <ge srcLine="350">this year</ge>
+        <gn srcLine="351">cette annï¿½e</gn>
+        <Example>
+          <xv srcLine="352">a san naani ye ïŊ½inan ye</xv>
+          <xe srcLine="353">four years ago</xe>
+          <xn srcLine="354">il y a quatre ans</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="362">ïŊ½ininka</lx>
+      <dt srcLine="381">2004-04-30 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="363">vt</ps>
+        <ge srcLine="364">ask ; question</ge>
+        <gn srcLine="365">demander ; interroger</gn>
+        <Example>
+          <xv srcLine="366">X ïŊ½ininka Y la</xv>
+          <xe srcLine="367">ask X for Y</xe>
+          <xn srcLine="368">demander Y ï¿½ X</xn>
+        </Example>
+        <Example>
+          <xv srcLine="369">PolisikïŊ½ y'a wele k'a ïŊ½ininka a ka sïŊ½bïŊ½nw na.</xv>
+          <xe srcLine="370">The policeman called him and asked for his papers.</xe>
+          <xn srcLine="371">L'agent de police l'a appelï¿½ et lui a demandï¿½ ses papiers.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="372">A y'u ïŊ½ininka ko: Aw bïŊ½ taa min ?</xv>
+          <xe srcLine="373">He asked them, "Where are you going?"</xe>
+          <xn srcLine="374">Il leur a demandï¿½ : "Vous allez oï¿½ ?"</xn>
+        </Example>
+        <Example>
+          <xv srcLine="375">A ïŊ½ininka !</xv>
+          <xe srcLine="376">Ask him!</xe>
+          <xn srcLine="377">Demande-lui !</xn>
+        </Example>
+        <Example>
+          <xv srcLine="378">A ïŊ½ininka yala ni a bïŊ½ taa sugu la bi.</xv>
+          <xe srcLine="379">Ask him if he's going to the market today.</xe>
+          <xn srcLine="380">Demande-lui s'il va au marchï¿½ aujourd'hui.</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="382">ïŊ½</lx>
+      <cf srcLine="421">saïŊ½</cf>
+      <cf srcLine="422">keninge</cf>
+      <dt srcLine="423">2004-04-28 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="383">n</ps>
+        <ge srcLine="384">millet ; sorghum</ge>
+        <gn srcLine="385">mil ; sorgho</gn>
+        <le srcLine="389">to sow</le>
+        <ln srcLine="390">semer</ln>
+        <le srcLine="393">to harvest, cut</le>
+        <ln srcLine="394">rï¿½colter, couper</ln>
+        <le srcLine="397">to thresh</le>
+        <ln srcLine="398">battre</ln>
+        <le srcLine="401">to winnow</le>
+        <ln srcLine="402">vanner</ln>
+        <le srcLine="405">to pound</le>
+        <ln srcLine="406">piler</ln>
+        <le srcLine="409">to pound to remove the chaff</le>
+        <ln srcLine="410">piler pour enlever le son</ln>
+        <le srcLine="413">to pound into flour</le>
+        <ln srcLine="414">piler pour rï¿½duire en farine</ln>
+        <le srcLine="417">to grind</le>
+        <ln srcLine="418">moudre</ln>
+        <SemanticDomain>
+          <sd srcLine="386">Ncrop</sd>
+        </SemanticDomain>
+        <Function>
+          <lf srcLine="387">VAssoc</lf>
+          <lv srcLine="388">dan3</lv>
+        </Function>
+        <Function>
+          <lf srcLine="391">VAssoc</lf>
+          <lv srcLine="392">tigïŊ½</lv>
+        </Function>
+        <Function>
+          <lf srcLine="395">VAssoc</lf>
+          <lv srcLine="396">gïŊ½si</lv>
+        </Function>
+        <Function>
+          <lf srcLine="399">VAssoc</lf>
+          <lv srcLine="400">fyïŊ½</lv>
+        </Function>
+        <Function>
+          <lf srcLine="403">VAssoc</lf>
+          <lv srcLine="404">susu</lv>
+        </Function>
+        <Function>
+          <lf srcLine="407">VAssoc</lf>
+          <lv srcLine="408">folon</lv>
+        </Function>
+        <Function>
+          <lf srcLine="411">VAssoc</lf>
+          <lv srcLine="412">bunte</lv>
+        </Function>
+        <Function>
+          <lf srcLine="415">VAssoc</lf>
+          <lv srcLine="416">si6</lv>
+        </Function>
+        <Picture>
+          <pc srcLine="419">images\millet1.jpg</pc>
+        </Picture>
+        <Picture>
+          <pc srcLine="420">images\millet2.jpg</pc>
+        </Picture>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="424">ïŊ½ïŊ½wïŊ½</lx>
+      <cf srcLine="429">ayi</cf>
+      <ce srcLine="430">no</ce>
+      <cn srcLine="431">non</cn>
+      <dt srcLine="432">2003-10-21 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="425">inter</ps>
+        <ge srcLine="426">yes</ge>
+        <gn srcLine="427">oui</gn>
+        <gg srcLine="428">ja</gg>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="433">san</lx>
+      <lc srcLine="434">sïŊ½an</lc>
+      <cf srcLine="468">salon</cf>
+      <ce srcLine="469">last year</ce>
+      <cn srcLine="470">l'annï¿½e passï¿½e</cn>
+      <cf srcLine="471">ïŊ½inan</cf>
+      <ce srcLine="472">this year</ce>
+      <cn srcLine="473">cette annï¿½e</cn>
+      <dt srcLine="474">2004-04-17 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="435">n</ps>
+        <ge srcLine="436">year</ge>
+        <gn srcLine="437">an</gn>
+        <dn srcLine="438">an, annï¿½e</dn>
+        <rn srcLine="439">an ; annï¿½e</rn>
+        <gg srcLine="440">Jahr</gg>
+        <Example>
+          <xv srcLine="441">I si ye san joli ye ?</xv>
+          <xe srcLine="442">How old are you?</xe>
+          <xn srcLine="443">Quel ï¿½ge as-tu ?</xn>
+        </Example>
+        <Example>
+          <xv srcLine="444">Ne si ye san bisaba ni fila ye.</xv>
+          <xe srcLine="445">I am 32 years old.</xe>
+          <xn srcLine="446">J'ai 32 ans.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="447">san nata / san wïŊ½rïŊ½</xv>
+          <xe srcLine="448">next year</xe>
+          <xn srcLine="449">l'annï¿½e prochaine</xn>
+        </Example>
+        <Example>
+          <xv srcLine="450">san o san</xv>
+          <xe srcLine="451">each year, every year</xe>
+          <xn srcLine="452">chaque annï¿½e</xn>
+        </Example>
+        <Example>
+          <xv srcLine="453">a san saba ye ïŊ½inan ye</xv>
+          <xe srcLine="454">three years ago</xe>
+          <xn srcLine="455">il y a trois ans</xn>
+        </Example>
+        <Example>
+          <xv srcLine="456">Ne b'a fïŊ½ ka san saba kïŊ½ yan.</xv>
+          <xe srcLine="457">I'd like to spend three years here.</xe>
+          <xn srcLine="458">Je voudrais passer trois ans ici.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="459">san kuuru bïŊ½ïŊ½</xv>
+          <xe srcLine="460">during the whole year</xe>
+          <xn srcLine="461">pendant toute l'annï¿½e</xn>
+        </Example>
+        <Example>
+          <xv srcLine="462">san 200 sani Yesu ka bange</xv>
+          <xe srcLine="463">200 BC</xe>
+          <xn srcLine="464">200 av. J.-C</xn>
+        </Example>
+        <Example>
+          <xv srcLine="465">Ala ka san wïŊ½rïŊ½ jira an na !</xv>
+          <xe srcLine="466">May God show us another year!</xe>
+          <xn srcLine="467">Que Dieu nous montre encore une annï¿½e !</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="475">salon</lx>
+      <cf srcLine="480">san</cf>
+      <ce srcLine="481">year</ce>
+      <cn srcLine="482">an, annï¿½e</cn>
+      <cf srcLine="483">ïŊ½inan</cf>
+      <ce srcLine="484">this year</ce>
+      <cn srcLine="485">cette annï¿½e</cn>
+      <dt srcLine="486">2003-10-24 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="476">n</ps>
+        <ge srcLine="477">last year</ge>
+        <gn srcLine="478">l'an dernier</gn>
+        <rn srcLine="479">an dernier</rn>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="487">saïŊ½</lx>
+      <cf srcLine="494">ïŊ½</cf>
+      <dt srcLine="495">2004-04-05 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="488">n</ps>
+        <ge srcLine="489">variety of millet</ge>
+        <gn srcLine="490">petit mil</gn>
+        <re srcLine="491">*</re>
+        <rn srcLine="492">*</rn>
+        <SemanticDomain>
+          <sd srcLine="493">Ncrop</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="496">sïŊ½n</lx>
+      <hm srcLine="497">1</hm>
+      <dt srcLine="520">2004-02-27 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="498">vt</ps>
+        <sn srcLine="499">1</sn>
+        <ge srcLine="500">offer ; give</ge>
+        <gn srcLine="501">offrir ; gratifier</gn>
+      </Sense>
+      <Sense>
+        <sn srcLine="502">2</sn>
+        <ge srcLine="503">offer a sacrifice to</ge>
+        <gn srcLine="504">offrir un sacrifice ï¿½</gn>
+        <re srcLine="505">*</re>
+        <rn srcLine="506">*</rn>
+        <Example>
+          <xv srcLine="507">boli sïŊ½n</xv>
+          <xe srcLine="508">make a sacrifice to a fetish/idol</xe>
+          <xn srcLine="509">offrir un sacrifice ï¿½ un fï¿½tiche</xn>
+        </Example>
+        <Example>
+          <xv srcLine="510">jiri sïŊ½n</xv>
+          <xe srcLine="511">make a sacrifice at a tree</xe>
+          <xn srcLine="512">offrir un sacrifice ï¿½ un arbre</xn>
+        </Example>
+        <Example>
+          <xv srcLine="513">suw sïŊ½n</xv>
+          <xe srcLine="514">make a sacrifice to the dead</xe>
+          <xn srcLine="515">offrir un sacrifice aux morts</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="516">3</sn>
+        <ge srcLine="517">water</ge>
+        <gn srcLine="518">arroser</gn>
+        <SemanticDomain>
+          <sd srcLine="519">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="521">sïŊ½su</lx>
+      <cf srcLine="532">folon</cf>
+      <ce srcLine="533">to pound to remove the chaff</ce>
+      <cn srcLine="534">piler pour enlever le son</cn>
+      <cf srcLine="535">bunte</cf>
+      <ce srcLine="536">to pound into flour</ce>
+      <cn srcLine="537">piler pour rï¿½duire en farine</cn>
+      <dt srcLine="538">2004-05-30 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="522">vt</ps>
+        <ge srcLine="523">pound</ge>
+        <gn srcLine="524">piler</gn>
+        <Example>
+          <xv srcLine="525">Ne bïŊ½ ïŊ½ susu.</xv>
+          <xe srcLine="526">I am pounding millet.</xe>
+          <xn srcLine="527">Je pile le mil.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="528">X da susu</xv>
+          <xe srcLine="529">to kiss X</xe>
+          <xn srcLine="530">donner un baiser ï¿½ X</xn>
+        </Example>
+        <SemanticDomain>
+          <sd srcLine="531">Cooking-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="539">tamati</lx>
+      <dt srcLine="559">2004-04-20 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="540">n</ps>
+        <ge srcLine="541">tomato</ge>
+        <gn srcLine="542">tomate</gn>
+        <gg srcLine="543">Tomate</gg>
+        <bw srcLine="544">franï¿½ais</bw>
+        <le srcLine="547">to transplant</le>
+        <ln srcLine="548">transplanter</ln>
+        <le srcLine="551">to water</le>
+        <ln srcLine="552">arroser</ln>
+        <le srcLine="555">to pick</le>
+        <ln srcLine="556">cueillir</ln>
+        <Function>
+          <lf srcLine="545">VAssoc</lf>
+          <lv srcLine="546">turu</lv>
+        </Function>
+        <Function>
+          <lf srcLine="549">VAssoc</lf>
+          <lv srcLine="550">sïŊ½n</lv>
+        </Function>
+        <Function>
+          <lf srcLine="553">VAssoc</lf>
+          <lv srcLine="554">kari</lv>
+        </Function>
+        <SemanticDomain>
+          <sd srcLine="557">Nfood-sauce-item</sd>
+        </SemanticDomain>
+        <SemanticDomain>
+          <sd srcLine="558">Nveg</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="560">tigïŊ½</lx>
+      <dt srcLine="591">2004-02-27 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="561">vt</ps>
+        <sn srcLine="562">1</sn>
+        <ge srcLine="563">break ; cut</ge>
+        <gn srcLine="564">rompre ; couper</gn>
+        <Example>
+          <xv srcLine="565">kiri tigïŊ½</xv>
+          <xe srcLine="566">judge</xe>
+          <xn srcLine="567">juger</xn>
+        </Example>
+        <Example>
+          <xv srcLine="568">nkalon tigïŊ½</xv>
+          <xe srcLine="569">tell a lie</xe>
+          <xn srcLine="570">mentir</xn>
+        </Example>
+        <Example>
+          <xv srcLine="571">sun tigïŊ½</xv>
+          <xe srcLine="572">break the fast</xe>
+          <xn srcLine="573">rompre le jeï¿½ne</xn>
+        </Example>
+        <SemanticDomain>
+          <sd srcLine="574">Cooking-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+      <Sense>
+        <sn srcLine="575">2</sn>
+        <ge srcLine="576">harvest</ge>
+        <gn srcLine="577">rï¿½colter</gn>
+        <Example>
+          <xv srcLine="578">Ɲɔ, gan ni bïŊ½nïŊ½ bïŊ½ tigïŊ½.</xv>
+          <xe srcLine="579">Millet, gombo and sesame are harvested by cutting.</xe>
+          <xn srcLine="580">On coupe le mil, le gombo et le sï¿½same (quand on les rï¿½colte).</xn>
+        </Example>
+        <SemanticDomain>
+          <sd srcLine="581">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+      <Sense>
+        <sn srcLine="582">3</sn>
+        <ge srcLine="583">cross</ge>
+        <gn srcLine="584">traverser</gn>
+        <Example>
+          <xv srcLine="585">sira tigïŊ½</xv>
+          <xe srcLine="586">cross the road</xe>
+          <xn srcLine="587">traverser la route</xn>
+        </Example>
+        <Example>
+          <xv srcLine="588">ba tigïŊ½</xv>
+          <xe srcLine="589">cross the river</xe>
+          <xn srcLine="590">traverser le fleuve</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="592">tïŊ½fa</lx>
+      <dt srcLine="601">2004-02-20 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="593">n</ps>
+        <ge srcLine="594">brick</ge>
+        <gn srcLine="595">brique</gn>
+        <sy srcLine="596">biriki</sy>
+        <Picture>
+          <pc srcLine="597">images\brickmaking.jpg</pc>
+        </Picture>
+        <Example>
+          <xv srcLine="598">tufa gïŊ½si/bïŊ½</xv>
+          <xe srcLine="599">make bricks</xe>
+          <xn srcLine="600">fabriquer des briques</xn>
+        </Example>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="602">turu</lx>
+      <dt srcLine="615">2004-02-27 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="603">vt</ps>
+        <sn srcLine="604">1</sn>
+        <ge srcLine="605">plant</ge>
+        <gn srcLine="606">planter</gn>
+        <Example>
+          <xv srcLine="607">jiri turu</xv>
+          <xe srcLine="608">plant a tree</xe>
+          <xn srcLine="609">planter un arbre</xn>
+        </Example>
+      </Sense>
+      <Sense>
+        <sn srcLine="610">2</sn>
+        <ge srcLine="611">transplant</ge>
+        <gn srcLine="612">replanter ; transplanter</gn>
+        <Picture>
+          <pc srcLine="613">images\planting.jpg</pc>
+        </Picture>
+        <SemanticDomain>
+          <sd srcLine="614">Agriculture-Verb</sd>
+        </SemanticDomain>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="616">waati</lx>
+      <dt srcLine="651">2004-05-30 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="617">n</ps>
+        <ge srcLine="618">time</ge>
+        <gn srcLine="619">moment ; temps</gn>
+        <Example>
+          <xv srcLine="620">waati ni waati</xv>
+          <xe srcLine="621">from time to time</xe>
+          <xn srcLine="622">de temps en temps</xn>
+        </Example>
+        <Example>
+          <xv srcLine="623">waati dïŊ½ la</xv>
+          <xe srcLine="624">sometimes</xe>
+          <xn srcLine="625">quelquefois, parfois</xn>
+        </Example>
+        <Example>
+          <xv srcLine="626">waati caman</xv>
+          <xe srcLine="627">often</xe>
+          <xn srcLine="628">souvent</xn>
+        </Example>
+        <Example>
+          <xv srcLine="629">waati jumïŊ½n ?</xv>
+          <xe srcLine="630">when? at what time?</xe>
+          <xn srcLine="631">quand ? ï¿½ quelle heure ?</xn>
+        </Example>
+        <Example>
+          <xv srcLine="632">Waati sera.</xv>
+          <xe srcLine="633">The time has arrived (e.g. to leave).</xe>
+          <xn srcLine="634">L'heure est arrivï¿½e (ex. pour partir).</xn>
+        </Example>
+        <Example>
+          <xv srcLine="635">Waati jumïŊ½n b'i bolo ?</xv>
+          <xe srcLine="636">What time is it?</xe>
+          <xn srcLine="637">Quelle heure est-il ?</xn>
+        </Example>
+        <Example>
+          <xv srcLine="638">waati tïŊ½mïŊ½nnen, sisan, waati nata</xv>
+          <xe srcLine="639">the past, the present, the future</xe>
+          <xn srcLine="640">le passï¿½, le prï¿½sent, l'avenir</xn>
+        </Example>
+        <Example>
+          <xv srcLine="641">Waati tïŊ½ n bolo.</xv>
+          <xe srcLine="642">I don't have the time.</xe>
+          <xn srcLine="643">Je n'ai pas le temps.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="644">A tora Segu ka waati jan kïŊ½.</xv>
+          <xe srcLine="645">He stayed in Segou a long time.</xe>
+          <xn srcLine="646">Il a durï¿½ longtemps ï¿½ Sï¿½gou.</xn>
+        </Example>
+        <Example>
+          <xv srcLine="647">o waati kïŊ½nïŊ½</xv>
+          <xe srcLine="648">during that time</xe>
+          <xn srcLine="649">pendant ce temps-lï¿½</xn>
+        </Example>
+        <Variant>
+          <va srcLine="650">wagati</va>
+        </Variant>
+      </Sense>
+    </Entry>
+    <Entry>
+      <lx srcLine="652">wagati</lx>
+      <mn srcLine="656">waati</mn>
+      <dt srcLine="666">2004-05-30 12:00:00.000</dt>
+      <Sense>
+        <ps srcLine="653">n</ps>
+        <ge srcLine="654">time</ge>
+        <gn srcLine="655">moment ; temps</gn>
+        <Example>
+          <xv srcLine="657">wagati ni wagati</xv>
+          <xe srcLine="658">from time to time</xe>
+          <xn srcLine="659">de temps en temps</xn>
+        </Example>
+        <Example>
+          <xv srcLine="660">wagati dïŊ½ la</xv>
+          <xe srcLine="661">sometimes</xe>
+          <xn srcLine="662">quelquefois, parfois</xn>
+        </Example>
+        <Example>
+          <xv srcLine="663">nin wagati la</xv>
+          <xe srcLine="664">now, at this time</xe>
+          <xn srcLine="665">maintenant, en ce moment</xn>
+        </Example>
+      </Sense>
+    </Entry>
+  </records>
+  <!--
+ ================================================================
+ Element: fieldDescriptions
+  This element is put out after the data so that auto fields can be
+  added here.  Otherwise, we'd have to make two passes over the data.
+  The additional information related to auto fields is used in the
+  XSLT processing for building the phase2 output file.
+ ================================================================
+-->
+  <fieldDescriptions>
+    <field sfm="cn" name="Import Residue (Entry)" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="eires" />
+    </field>
+    <field sfm="dn" name="Definition" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="def" />
+    </field>
+    <field sfm="en" name="Encyclopedic Info" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="enc" />
+    </field>
+    <field sfm="gn" name="Gloss" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="glos" />
+    </field>
+    <field sfm="lv" name="Lexical Function Lexeme" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="funlex" />
+    </field>
+    <field sfm="xe" name="Translation" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="trans" />
+    </field>
+    <field sfm="mr" name="Import Residue (Entry)" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="eires" />
+    </field>
+    <field sfm="dt" name="Date Modified" type="date" xml:lang="en">
+      <meaning app="fw.sil.org" id="mod" />
+    </field>
+    <field sfm="cf" name="Cross Reference" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="cref" func="cf" />
+    </field>
+    <field sfm="gr" name="Gloss" type="string" xml:lang="swh">
+      <meaning app="fw.sil.org" id="glos" />
+    </field>
+    <field sfm="re" name="Reversal Entries" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="rev" />
+    </field>
+    <field sfm="pc" name="Picture File" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="picf" />
+    </field>
+    <field sfm="le" name="Import Residue (Sense)" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="sires" />
+    </field>
+    <field sfm="va" name="Variant (Inflectional)" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="vari" />
+    </field>
+    <field sfm="de" name="Definition" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="def" />
+    </field>
+    <field sfm="ce" name="Import Residue (Entry)" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="eires" />
+    </field>
+    <field sfm="hm" name="Homograph Number" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="hom" />
+    </field>
+    <field sfm="ee" name="Encyclopedic Info" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="enc" />
+    </field>
+    <field sfm="ge" name="Gloss" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="glos" />
+    </field>
+    <field sfm="ps" name="Category (Part Of Speech)" type="string" xml:lang="en" abbr="True">
+      <meaning app="fw.sil.org" id="pos" />
+    </field>
+    <field sfm="bw" name="Import Residue (Sense)" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="sires" />
+    </field>
+    <field sfm="gg" name="Gloss" type="string" xml:lang="de">
+      <meaning app="fw.sil.org" id="glos" />
+    </field>
+    <field sfm="sy" name="Lexical Relation" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="lxrel" func="syn" />
+    </field>
+    <field sfm="lc" name="Citation Form (Entry)" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="cit" />
+    </field>
+    <field sfm="rf" name="Reference" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="ref" />
+    </field>
+    <field sfm="xn" name="Translation" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="trans" />
+    </field>
+    <field sfm="sd" name="Semantic Domain English Name" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="seme" />
+    </field>
+    <field sfm="lf" name="Lexical Function" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="func" />
+    </field>
+    <field sfm="rn" name="Reversal Entries" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="rev" />
+    </field>
+    <field sfm="sn" name="Sense Number" type="string" xml:lang="en">
+      <meaning app="fw.sil.org" id="sn" />
+    </field>
+    <field sfm="xv" name="Example" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="sent" />
+    </field>
+    <field sfm="lx" name="Lexeme Form" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="lex" />
+    </field>
+    <field sfm="ln" name="Import Residue (Sense)" type="string" xml:lang="fr">
+      <meaning app="fw.sil.org" id="sires" />
+    </field>
+    <field sfm="mn" name="Main Entry/Sense Reference" type="string" xml:lang="bm">
+      <meaning app="fw.sil.org" id="meref" />
+    </field>
+  </fieldDescriptions>
+  <!--
+ ================================================================
+ Element: inFieldMarkers
+  This is where the infield / inline markers are put out.
+ ================================================================
+-->
+  <inFieldMarkers />
+  <!-- This element contains error, warning and sfm data related information -->
+  <ErrorLog>
+    <Errors count="0" />
+    <Warnings count="1">
+      <Warning File="" Line="-1">Warning: dt date changed from: [21/Oct/2003] to [2003-10-21 12:00:00.000]</Warning>
+    </Warnings>
+    <OutOfOrder count="0" />
+    <SfmInfoList>
+      <SfmInfo sfm="cn" ttlCount="14" usagePercent="100" withDataCount="14" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="dn" ttlCount="3" usagePercent="100" withDataCount="3" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="en" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="gn" ttlCount="52" usagePercent="100" withDataCount="52" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="lv" ttlCount="17" usagePercent="100" withDataCount="17" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="xe" ttlCount="80" usagePercent="100" withDataCount="80" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="mr" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="dt" ttlCount="37" usagePercent="100" withDataCount="37" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="cf" ttlCount="18" usagePercent="100" withDataCount="18" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="gr" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="re" ttlCount="3" usagePercent="100" withDataCount="3" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="pc" ttlCount="8" usagePercent="100" withDataCount="8" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="le" ttlCount="17" usagePercent="100" withDataCount="17" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="va" ttlCount="2" usagePercent="100" withDataCount="2" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="de" ttlCount="3" usagePercent="100" withDataCount="3" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="ce" ttlCount="14" usagePercent="100" withDataCount="14" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="hm" ttlCount="5" usagePercent="100" withDataCount="5" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="ee" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="ge" ttlCount="52" usagePercent="100" withDataCount="52" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="ps" ttlCount="41" usagePercent="100" withDataCount="41" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="bw" ttlCount="2" usagePercent="100" withDataCount="2" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="gg" ttlCount="5" usagePercent="100" withDataCount="5" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="sy" ttlCount="2" usagePercent="100" withDataCount="2" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="lc" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="rf" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="xn" ttlCount="80" usagePercent="100" withDataCount="80" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="sd" ttlCount="21" usagePercent="100" withDataCount="21" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="lf" ttlCount="17" usagePercent="100" withDataCount="17" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="rn" ttlCount="6" usagePercent="100" withDataCount="6" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="sn" ttlCount="23" usagePercent="100" withDataCount="23" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="xv" ttlCount="80" usagePercent="100" withDataCount="80" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="lx" ttlCount="40" usagePercent="100" withDataCount="40" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="ln" ttlCount="17" usagePercent="100" withDataCount="17" withoutDataCount="0" notDefinedCount="0" />
+      <SfmInfo sfm="mn" ttlCount="1" usagePercent="100" withDataCount="1" withoutDataCount="0" notDefinedCount="0" />
+    </SfmInfoList>
+  </ErrorLog>
+</database>

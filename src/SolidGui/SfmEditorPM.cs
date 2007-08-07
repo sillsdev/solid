@@ -89,27 +89,36 @@ namespace SolidGui
         {
             string retval;
             SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
-            //if (setting != null)
-            //{
-            //}
-            //else
-            //{
-            Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-            //Encoding byteEncoding = Encoding.Unicode;
-            byte[] valueAsBytes = byteEncoding.GetBytes(value);
-            Encoding stringEncoding = Encoding.UTF8;
-            retval = stringEncoding.GetString(valueAsBytes);
-            //}
+            if (setting != null && setting.Unicode)
+            {
+                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                //Encoding byteEncoding = Encoding.Unicode;
+                byte[] valueAsBytes = byteEncoding.GetBytes(value);
+                Encoding stringEncoding = Encoding.UTF8;
+                retval = stringEncoding.GetString(valueAsBytes);
+            }
+            else
+            {
+                retval = value;
+            }
             return retval;
         }
 
         public string ValueToMdf(string marker, string value)
         {
             string retval;
-            Encoding stringEncoding = Encoding.UTF8;
-            byte[] valueAsBytes = stringEncoding.GetBytes(value);
-            Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-            retval = byteEncoding.GetString(valueAsBytes);
+            SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
+            if (setting != null && setting.Unicode)
+            {
+                Encoding stringEncoding = Encoding.UTF8;
+                byte[] valueAsBytes = stringEncoding.GetBytes(value);
+                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                retval = byteEncoding.GetString(valueAsBytes);
+            }
+            else
+            {
+                retval = value;
+            }
             return retval;
         }
 
