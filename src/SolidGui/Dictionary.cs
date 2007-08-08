@@ -171,7 +171,10 @@ namespace SolidGui
             _markerFrequencies.Clear();
             _markerErrors.Clear();
 
-            IProcess process = new ProcessStructure(solidSettings);
+            List<IProcess> processes = new List<IProcess>();
+            processes.Add(new ProcessEncoding(solidSettings));
+            processes.Add(new ProcessStructure(solidSettings));
+            
             using (XmlReader xr = new SfmXmlReader(_filePath))
             {
                 while (xr.ReadToFollowing("entry"))
@@ -181,7 +184,12 @@ namespace SolidGui
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.Load(entryReader);
                     SolidReport recordReport = new SolidReport();
-                    XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
+                    XmlNode xmlResult = xmldoc.DocumentElement;
+                    foreach (IProcess process in processes)
+                    {
+                        xmlResult = process.Process(xmlResult, recordReport);
+                    }
+                    //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
                     AddRecord(xmlResult, recordReport);
                     if (filterSet != null)
                     {

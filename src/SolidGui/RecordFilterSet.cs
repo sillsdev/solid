@@ -50,6 +50,20 @@ namespace SolidGui
                         string.Format("Inferred marker {0} could not be placed in structure", marker)
                     );
                     break;
+                case SolidReport.EntryType.EncodingUpperAscii:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        type,
+                        string.Format("Marker {0} contains upper ascii data", marker)
+                    );
+                    break;
+                case SolidReport.EntryType.EncodingBadUnicode:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        type,
+                        string.Format("Marker {0} contains bad unicode data", marker)
+                    );
+                    break;
             }
             return retval;
         }

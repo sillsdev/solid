@@ -38,17 +38,16 @@ namespace SolidEngine
 
         public string GetAttribute(string attribute)
         {
-            string retval = string.Empty;
-            try
+            return GetAttribute(attribute, string.Empty);
+        }
+
+        public string GetAttribute(string attribute, string def)
+        {
+            string retval = def;
+            XmlNode xmlAttribute = _node.Attributes.GetNamedItem(attribute);
+            if (xmlAttribute != null)
             {
-                XmlNode xmlAttribute = _node.Attributes.GetNamedItem(attribute);
-                if (xmlAttribute != null)
-                {
-                    retval = xmlAttribute.Value;
-                }
-            }
-            catch
-            {
+                retval = xmlAttribute.Value;
             }
             return retval;
         }

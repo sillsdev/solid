@@ -164,7 +164,7 @@ namespace SolidEngine
                                     SolidReport.EntryType.StructureInsertInInferredFailed,
                                     source,
                                     field,
-                                    String.Format("Inferred marker \\'{0}' is not a valid parent of \\'{1}'", setting.InferedParent, field.Name)
+                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, field.Name)
                                 );
                                 InsertInTreeAnyway(field, destination, report, scope);
                             }
@@ -176,7 +176,7 @@ namespace SolidEngine
                                 SolidReport.EntryType.StructureParentNotFoundForInferred,
                                 source,
                                 field,
-                                "Inferred marker \\{0} could not be placed in structure." + String.Format("'{0}'", inferredNode.Name)
+                                String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
                             );
                             InsertInTreeAnyway(field, destination, report, scope);
                         }

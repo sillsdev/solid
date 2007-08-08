@@ -13,7 +13,9 @@ namespace SolidEngine
         {
             StructureInsertInInferredFailed, 
  	        StructureParentNotFound, 
- 	        StructureParentNotFoundForInferred, 
+ 	        StructureParentNotFoundForInferred,
+            EncodingBadUnicode,
+            EncodingUpperAscii,
  	        Max 
         }
 
@@ -36,14 +38,16 @@ namespace SolidEngine
                 _entryType = type;
                 if (entry != null)
                 {
+                    XmlHelper xhEntry = new XmlHelper(entry);
                     _entryName = entry.Name; //??? TODO what's a good name for this entry???
-                    _recordID = Convert.ToInt32(entry.Attributes["record"].Value);
+                    _recordID = Convert.ToInt32(xhEntry.GetAttribute("record", "-1"));
                     //_recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
                     //_recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
                 }
                 if (field != null)
                 {
-                    _fieldID = Convert.ToInt32(field.Attributes["field"].Value);
+                    XmlHelper xhField = new XmlHelper(field);
+                    _fieldID = Convert.ToInt32(xhField.GetAttribute("field", "-1"));
                     _marker = field.Name;
                 }
                 _description = description;

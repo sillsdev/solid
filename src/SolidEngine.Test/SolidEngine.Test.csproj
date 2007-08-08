@@ -46,6 +46,7 @@
     <Compile Include="ExportFactory_Test.cs" />
     <Compile Include="ExportXsl_Test.cs" />
     <Compile Include="ExportStructuredXml_Test.cs" />
+    <Compile Include="ProcessEncoding_Test.cs" />
     <Compile Include="ProcessStructure_Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
