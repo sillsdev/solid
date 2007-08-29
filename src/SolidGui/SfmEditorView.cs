@@ -273,7 +273,6 @@ namespace SolidGui
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
-                string fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
                 //_contentsBox.Font = _model.DisplayFont(field.Marker);
 /*
                 if (!foundProcessingMark)
@@ -304,7 +303,8 @@ namespace SolidGui
 
                 // 2) Marker
                 _contentsBox.SelectionFont = _defaultFont;
-                _contentsBox.AppendText(markerPrefix + field.Marker + "\t");
+                string marker = field.Marker.Trim(new char[] { '_' });
+                _contentsBox.AppendText(markerPrefix + marker + "\t");
 
                 // 3) Value
                 _contentsBox.SelectionColor = _defaultTextColor;

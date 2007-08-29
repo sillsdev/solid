@@ -12,6 +12,7 @@ using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Net;
 
 namespace SolidEngine
@@ -90,6 +91,8 @@ namespace SolidEngine
         int _attributeIndex = 0;
 
         Encoding _encoding;
+
+        private static Regex _startWithNumber = new Regex(@"^\d");
 
         /// <summary>
         /// Construct XmlSfmReader.  You must specify an HRef
@@ -182,53 +185,6 @@ namespace SolidEngine
             _attributeIndex = 0;
         }
 
-        /*!!!
-        /// <summary>
-        /// Specifies the encoding to use when loading the .csv file.
-        /// </summary>
-        public Encoding Encoding {
-            get { return _encoding == null ? System.Text.Encoding.UTF8 : _encoding; }
-            set { _encoding = value; }
-        }
-        */
-        /*
-                /// <summary>
-                /// Specifies the URI location of the .csv file to parse.
-                /// This can also be a local file name.
-                /// This can be a relative URI if a BaseUri has been provided.
-                /// You must specify either this property or a TextReader as input
-                /// before calling Read.
-                /// </summary>
-                public string Href {
-                    get { return _href == null ? "" : _href.AbsoluteUri; }
-                    set { 
-                        if (_baseUri != null) {
-                            _href = new Uri(_baseUri, value); 
-                        } else {
-                            try {
-                                _href = new Uri(value); 
-                            } 
-                            catch (Exception) {
-                                string file = Path.GetFullPath(value);
-                                _href = new Uri(file);
-                            } 
-                            _baseUri = _href;
-                        }
-                        _sfmReader = null;
-                        Init();
-                    }
-                }
-        */
-        /* !!!
-                /// <summary>
-                /// Specifies the proxy server.  This is only needed for internet HTTP requests
-                /// where the caller is behind a proxy server internet gateway. 
-                /// </summary>
-                public string Proxy {
-                    get { return _proxy; }
-                    set { _proxy = value; }
-                }
-        */
         /// <summary>
         /// Returns the TextReader that contains the SFM file contents.
         /// </summary>
@@ -274,7 +230,6 @@ namespace SolidEngine
             set
             {
                 _sfmStateInfo[(int)SfmState.Record].name = value;
-                //!!!_recordName = _nt.Add(value);
             }
         }
 
@@ -339,8 +294,18 @@ namespace SolidEngine
                                 retval = XmlConvert.EncodeLocalName(_sfmStateInfo[(int)_sfmContext].name);
                                 break;
                             case SfmState.Field:
-                                // The local name of a field is it's sfm key.
-                                retval = XmlConvert.EncodeLocalName(_sfmReader.Key(_fieldIndex));
+                                // The local name of a field is it's sfm key with the leading \.
+                                string tagName = _sfmReader.Key(_fieldIndex);
+                                tagName.Trim();
+                                if (tagName == string.Empty)
+                                {
+                                    tagName = "_";
+                                }
+                                else if (_startWithNumber.IsMatch(tagName))
+                                {
+                                    tagName = "_" + tagName;
+                                }
+                                retval = XmlConvert.EncodeLocalName(tagName);
                                 break;
                         }
                         break;
