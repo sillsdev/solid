@@ -97,7 +97,7 @@ namespace SolidGui
         }
 
         private AllRecordFilter(RecordManager rm) :
-            base(rm, "All")
+            base(rm, "No issues found - All Records")
         {
             UpdateFilter();
         }
