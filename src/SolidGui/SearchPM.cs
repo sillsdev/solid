@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Media;
+using System.Windows.Forms;
 
 namespace SolidGui
 {
@@ -43,7 +45,7 @@ namespace SolidGui
         }
         private static void CantFindWordErrorMessage(string word)
         {
-            System.Windows.Forms.MessageBox.Show("Can't Find \"" + word + "\"");
+            MessageBox.Show("Cannot find\n'" + word + "'", "SOLID", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void FindNext( RecordFilter filter, string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
@@ -116,8 +118,7 @@ namespace SolidGui
         {
             if(SearchStartingPointPassed(recordIndex, startTextIndex, finalTextIndex))
             {
-                Console.Beep();
-                Debug.WriteLine("BEEP!");
+                SystemSounds.Asterisk.Play();
             }
         }
 
