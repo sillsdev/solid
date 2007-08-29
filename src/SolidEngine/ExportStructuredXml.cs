@@ -29,10 +29,12 @@ namespace SolidEngine
                 xmlWriter.WriteNode(xmlReader, true);
                 xmlWriter.Flush();
                 xmlWriter.Close();
+                xmlReader.Close();
             }
             catch
             {
                 xmlWriter.Flush();
+                xmlReader.Close();
             }
         }
         
