@@ -207,6 +207,7 @@ namespace SolidGui
 
         public void OnRecheckClicked(object sender, EventArgs e)
         {
+            UpdateModel();
             UpdateView();
         }
 

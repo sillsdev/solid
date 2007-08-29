@@ -39,7 +39,7 @@ namespace SolidGui
             UsageReporter.AppNameToUseInDialogs = "SOLID";
             UsageReporter.AppNameToUseInReporting = "SOLID";
             UsageReporter.RecordLaunch();
-            UsageReporter.DoTrivialUsageReport("cambell_prince@sil.org" /*CHANGE THIS*/, "", new int[] { 1, 5, 20, 40, 60, 80, 100 });
+            //UsageReporter.DoTrivialUsageReport("cambell_prince@sil.org" /*CHANGE THIS*/, "", new int[] { 1, 5, 20, 40, 60, 80, 100 });
         }
     
     }
