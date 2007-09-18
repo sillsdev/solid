@@ -34,6 +34,7 @@ DisableReadyPage=true
 Name: {app}\mappings
 Name: {app}\exporters
 Name: {app}\templates
+Name: {userdocs}\Solid Examples
 
 [Files]
 Source: ..\..\..\..\..\Program Files\ISTool\isxdl.dll; Flags: dontcopy
@@ -43,7 +44,7 @@ Source: ..\output\debug\KeymanLink.dll; DestDir: {app}; Flags: replacesameversio
 Source: ..\output\debug\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\debug\PalasoReporting.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\debug\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\Reporting.dll; DestDir: {app}
+Source: ..\output\debug\Reporting.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
@@ -53,6 +54,7 @@ Source: ..\templates\MDF Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Unicode.solid; DestDir: {app}\templates
+Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 
 [Messages]
 WinVersionTooLowError=Solid requires Windows NT4, Windows 98 or later.
@@ -159,4 +161,4 @@ begin
   Result := s
 end;
 [Run]
-Filename: {app}\Solid.exe; WorkingDir: {userdocs}; Flags: nowait postinstall
+Filename: {app}\Solid.exe; WorkingDir: {userdocs}\Solid Examples; Flags: nowait postinstall
