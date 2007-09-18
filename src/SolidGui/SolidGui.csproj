@@ -119,6 +119,7 @@
     <Compile Include="RecordFilterSet.cs" />
     <Compile Include="RecordManager.cs" />
     <Compile Include="RecordManagerDecorator.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="StructurePropertiesPM.cs" />
     <Compile Include="StructurePropertiesView.cs">
       <SubType>UserControl</SubType>
@@ -250,6 +251,7 @@
     <Content Include="Resources\FindReplace.png" />
     <None Include="Resources\folder_export.ico" />
     <Content Include="Resources\ForwardOne.png" />
+    <None Include="Resources\logo2.jpg" />
     <Content Include="Resources\Recheck.png" />
     <Content Include="Resources\RecheckRecord.png" />
     <Content Include="Resources\Search.png" />

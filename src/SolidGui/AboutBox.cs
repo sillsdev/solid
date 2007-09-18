@@ -46,7 +46,9 @@ namespace SolidGui
         {
             get
             {
-                return Palaso.Reporting.ErrorReport.UserFriendlyVersionString;
+                //string retval = Palaso.Reporting.ErrorReport.UserFriendlyVersionString;
+                string retval = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return retval;
             }
         }
 
@@ -107,10 +109,9 @@ namespace SolidGui
         }
         #endregion
 
-        private void goWeSayOrg_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void goWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.wesay.org");
-        
+            System.Diagnostics.Process.Start("http://palaso.org/solid");   
         }
     }
 }
