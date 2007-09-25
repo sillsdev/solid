@@ -115,9 +115,19 @@ namespace SolidEngine
             {
                 if (setting.Mapping[j] != null && setting.Mapping[j] != String.Empty)
                 {
-                    XmlAttribute attribute = destination.CreateAttribute(_mapNames[j]);
-                    attribute.Value = setting.Mapping[j];
-                    fieldNode.Attributes.Append(attribute);
+                    XmlAttribute mapAttribute = destination.CreateAttribute(_mapNames[j]);
+                    mapAttribute.Value = setting.Mapping[j];
+                    fieldNode.Attributes.Append(mapAttribute);
+                    XmlAttribute writingSystemAttribute = destination.CreateAttribute("writingsystem");
+                    if (setting.WritingSystem == "")
+                    {
+                        writingSystemAttribute.Value = "unknown";
+                    }
+                    else
+                    {
+                        writingSystemAttribute.Value = setting.WritingSystem;
+                    }
+                    fieldNode.Attributes.Append(writingSystemAttribute);
                 }
             }
 

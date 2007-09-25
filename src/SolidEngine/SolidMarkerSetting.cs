@@ -22,6 +22,7 @@ namespace SolidEngine
         {
             _marker = "";
             _inferedParent = "";
+            _writingSystem = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 
@@ -29,6 +30,7 @@ namespace SolidEngine
         {
             _marker = marker;
             _inferedParent = "";
+            _writingSystem = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 
