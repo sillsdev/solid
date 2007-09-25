@@ -178,8 +178,8 @@
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
-        <string>sent</string>
-        <string>example</string>
+        <string>trans</string>
+        <string>translation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -193,8 +193,8 @@
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
-        <string>sent</string>
-        <string>example</string>
+        <string>trans</string>
+        <string>translation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
