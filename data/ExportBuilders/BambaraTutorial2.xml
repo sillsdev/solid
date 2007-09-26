@@ -1,0 +1,2363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <entry record="0" startline="1" endline="12">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>ayi</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>inter</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>no</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>non</data>
+          <gg field="4">
+            <data>nein</data>
+          </gg>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ayi, fɔlɔ.</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>No, not yet.</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Non, pas encore.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="8" flex="cref" writingsystem="unknown">
+        <data>ɔwɔ</data>
+      </cf>
+      <ce field="9" flex="cref" writingsystem="unknown">
+        <data>yes</data>
+      </ce>
+      <cn field="10" flex="cref" writingsystem="unknown">
+        <data>oui</data>
+      </cn>
+      <dt field="11" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>21/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="1" startline="13" endline="23">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>biriki</data>
+      <bw field="1" flex="eires" writingsystem="unknown">
+        <data>français</data>
+      </bw>
+      <ps field="2" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>brick</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>brique</data>
+        </gn>
+        <sy field="5" flex="eires" writingsystem="unknown">
+          <data>tufa</data>
+        </sy>
+        <pc field="6" flex="picf" writingsystem="unknown">
+          <data>images\brickmaking.jpg</data>
+        </pc>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>biriki gɔsi</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make bricks</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>fabriquer des briques</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="10" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="2" startline="24" endline="31">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>bunte</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>pound</data>
+        </ge>
+        <de field="3" flex="def" lift="definition" writingsystem="unknown">
+          <data>pound into flour</data>
+        </de>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>piler</data>
+        </gn>
+        <dn field="5" flex="def" lift="definition" writingsystem="unknown">
+          <data>piler pour réduire en farine</data>
+        </dn>
+        <sd field="6" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <dt field="7" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="3" startline="32" endline="37">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>dàn</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>sow</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>semer</data>
+        </gn>
+        <sd field="4" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="5" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="4" startline="38" endline="45">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>folon</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>pound</data>
+        </ge>
+        <de field="3" flex="def" lift="definition" writingsystem="unknown">
+          <data>pound to remove the chaff</data>
+        </de>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>piler</data>
+        </gn>
+        <dn field="5" flex="def" lift="definition" writingsystem="unknown">
+          <data>piler pour enlever le son</data>
+        </dn>
+        <sd field="6" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <dt field="7" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>10/Jun/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="5" startline="46" endline="61">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>fyɛ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>blow</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>souffler</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>file fyɛ</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>whistle</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>siffler</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="8" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="9" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>winnow</data>
+        </ge>
+        <gn field="10" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>vanner</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="11" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>ɲɔ fyɛ</data>
+          </xv>
+          <xe field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>winnow the millet</data>
+          </xe>
+          <xn field="13" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>vanner le mil</data>
+          </xn>
+        </rf>
+        <sd field="14" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="15" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="6" startline="62" endline="89">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>gan</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>gombo</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>gombo</data>
+        </gn>
+        <sd field="4" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Ncrop</data>
+        </sd>
+        <sd field="5" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <ee field="6" flex="enc" writingsystem="unknown">
+          <data>Used for preparing sauce for "to".</data>
+        </ee>
+        <en field="7" flex="enc" writingsystem="unknown">
+          <data>On l'utilise dans la préparation d'une sauce pour le « to ».</data>
+        </en>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>gan jalan</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>dried gombo (sold in the market)</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>gombo seché (vendu au marché)</data>
+          </xn>
+        </rf>
+        <lf field="11" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="12" flex="lex" writingsystem="unknown">
+            <data>dan</data>
+          </lv>
+          <le field="13">
+            <data>sow</data>
+          </le>
+          <ln field="14">
+            <data>semer</data>
+          </ln>
+        </lf>
+        <lf field="15" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="16" flex="lex" writingsystem="unknown">
+            <data>kari</data>
+          </lv>
+          <le field="17">
+            <data>pick</data>
+          </le>
+          <ln field="18">
+            <data>cueillir</data>
+          </ln>
+        </lf>
+        <lf field="19" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="20" flex="lex" writingsystem="unknown">
+            <data>tigɛ</data>
+          </lv>
+          <le field="21">
+            <data>cut up</data>
+          </le>
+          <ln field="22">
+            <data>couper</data>
+          </ln>
+        </lf>
+        <lf field="23" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="24" flex="lex" writingsystem="unknown">
+            <data>ja</data>
+          </lv>
+          <le field="25">
+            <data>dry</data>
+          </le>
+          <ln field="26">
+            <data>sécher</data>
+          </ln>
+        </lf>
+      </sn>
+      <dt field="27" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>16/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="7" startline="90" endline="110">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>gɛlɛn</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>adj.pred</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>hard ; firm</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>dur</data>
+        </gn>
+      </sn>
+      <sn field="5" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="6" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>difficult</data>
+        </ge>
+        <gn field="7" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>difficile</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Angilɛkan ka gɛlɛn n ma.</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>English is difficult for me.</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>L'anglais est difficile pour moi.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="11" flex="cref" writingsystem="unknown">
+        <data>nɔgɔn</data>
+      </cf>
+      <ce field="12" flex="cref" writingsystem="unknown">
+        <data>easy</data>
+      </ce>
+      <cn field="13" flex="cref" writingsystem="unknown">
+        <data>facile</data>
+      </cn>
+      <sn field="14" flex="sn" lift="sense" writingsystem="unknown">
+        <data>3</data>
+        <ge field="15" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>expensive</data>
+        </ge>
+        <gn field="16" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>cher</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="17" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A da ka gɛlɛn.</data>
+          </xv>
+          <xe field="18" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>It's expensive.</data>
+          </xe>
+          <xn field="19" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>C'est cher.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="20" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="8" startline="111" endline="127">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>gɛlɛya</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>difficulty</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>difficulté</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>gɛlɛya la / ni gɛlɛya ye</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>with difficulty</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>difficilement, avec difficulté</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>ni gɛlɛya tɛ</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>without difficulty</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>sans difficulté</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Gɛlɛya ye ne minɛ.</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I have come into difficulties.</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Je suis dans la difficulté.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="13" flex="cref" writingsystem="unknown">
+        <data>nɔgɔya1</data>
+      </cf>
+      <ce field="14" flex="cref" writingsystem="unknown">
+        <data>ease</data>
+      </ce>
+      <cn field="15" flex="cref" writingsystem="unknown">
+        <data>facilité</data>
+      </cn>
+      <dt field="16" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="9" startline="128" endline="142">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>gɔ̀si</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>beat ; thresh</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>battre</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>ɲɔ gɔsi</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>thresh the millet</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>battre le mil</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>biriki gɔsi</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make bricks</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>fabriquer des briques</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>nbuuru gɔsi</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make bread</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>faire du pain</data>
+          </xn>
+        </rf>
+      </sn>
+      <va field="13" flex="vars" lift="variant" writingsystem="unknown">
+        <data>gosi</data>
+      </va>
+      <dt field="14" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="10" startline="143" endline="157">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>jà</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>dry</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>sécher ; dessécher</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>X ja tile la</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>to dry X in the sun</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>faire sécher X au soleil</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Kini bɛ kɔnɔ ja.</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Rice dries up the stomach.</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Le riz sèche le ventre.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="12" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>paralyse</data>
+        </ge>
+        <gn field="13" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>paralyser</data>
+        </gn>
+      </sn>
+      <dt field="14" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>16/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="11" startline="158" endline="183">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>jɛgɛ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>fish</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>poisson</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jɛgɛ kɛnɛ</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>fresh fish</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>poisson frais</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jɛgɛ jalan</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>dried fish</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>poisson sec</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jɛgɛ wusu</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>smoked fish</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>poisson fumé</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="13" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jɛgɛ jirannen</data>
+          </xv>
+          <xe field="14" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>fried fish</data>
+          </xe>
+          <xn field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>poisson frit</data>
+          </xn>
+        </rf>
+        <sd field="16" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <lf field="17" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="18" flex="lex" writingsystem="unknown">
+            <data>minɛ</data>
+          </lv>
+          <le field="19">
+            <data>to catch</data>
+          </le>
+          <ln field="20">
+            <data>attraper</data>
+          </ln>
+        </lf>
+        <lf field="21" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="22" flex="lex" writingsystem="unknown">
+            <data>jiran</data>
+          </lv>
+          <le field="23">
+            <data>to fry</data>
+          </le>
+          <ln field="24">
+            <data>frire</data>
+          </ln>
+        </lf>
+      </sn>
+      <dt field="25" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>28/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="12" startline="184" endline="188">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>jiran</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>fry</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>faire frire</data>
+        </gn>
+      </sn>
+      <dt field="4" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>14/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="13" startline="189" endline="204">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>kari</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>break</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>casser ; briser</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>N'i binna ka bɔ jiri sanfɛ, i bolo bɛ se ka kari.</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>If you fall from a tree, you can break your arm.</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Si tu tombais d'un arbre, tu pourrais se casser le bras.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A bɛ ɲini ka kari.</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>It's about to break.</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il est sur le point de se casser.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="12" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>pick</data>
+        </ge>
+        <gn field="13" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>cueillir</data>
+        </gn>
+        <sd field="14" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="15" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="14" startline="205" endline="218">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>keninge</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>variety of sorghum</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>varieté de sorgho</data>
+        </gn>
+        <re field="4" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </re>
+        <rn field="5" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </rn>
+        <sd field="6" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Ncrop</data>
+        </sd>
+        <pc field="7" flex="picf" writingsystem="unknown">
+          <data>images\millet1.jpg</data>
+        </pc>
+        <pc field="8" flex="picf" writingsystem="unknown">
+          <data>images\millet2.jpg</data>
+        </pc>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="9" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Keninge danni n'a tigɛli cɛ bɛ taa kalo saba ɲɔgɔn na.</data>
+          </xv>
+          <xe field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>There are three months between sowing and reaping of 'keninge'.</data>
+          </xe>
+          <xn field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il y a trois mois entre les semailles et le récolte de 'keninge'.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="12" flex="cref" writingsystem="unknown">
+        <data>ɲɔ</data>
+      </cf>
+      <dt field="13" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>05/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="15" startline="219" endline="228">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>kɔ̀gɔ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>salt</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>sel</data>
+          <gg field="4">
+            <data>Salz</data>
+          </gg>
+        </gn>
+        <sd field="5" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="6" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Kɔgɔ m'a bɔ.</data>
+          </xv>
+          <xe field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>There isn't enough salt in it.</data>
+          </xe>
+          <xn field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il n'y a pas assez de sel.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="9" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>18/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="16" startline="229" endline="267">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>minɛ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>catch ; capture ; arrest ; seize ; grab ; take</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>attrapper ; saisir ; prendre</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>U bɛ jɛgɛ minɛ.</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>They catch fish.</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Ils attrappent des poissons.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Wari minɛ !</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Take the money!</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Prends l'argent !</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="12" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>accept</data>
+        </ge>
+        <gn field="13" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>accepter ; exaucer</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="14" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>X kan minɛ</data>
+          </xv>
+          <xe field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>obey X</data>
+          </xe>
+          <xn field="16" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>obéir à X</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="17" flex="sn" lift="sense" writingsystem="unknown">
+        <data>3</data>
+        <ge field="18" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>treat</data>
+        </ge>
+        <gn field="19" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>traiter</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="20" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>minɛ koɲuman</data>
+          </xv>
+          <xe field="21" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>treat well, receive well, welcome</data>
+          </xe>
+          <xn field="22" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>traiter bien, recevoir bien, accueillir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="23" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Nin cɛ bɛ jurumutɔw minɛ koɲuman !</data>
+          </xv>
+          <xe field="24" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>This man treats sinners well!</data>
+          </xe>
+          <xn field="25" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Cet homme traite bien les pécheurs !</data>
+          </xn>
+        </rf>
+        <rf field="26" flex="ref" lift="example" writingsystem="unknown">
+          <data>Bible: Luka 15.2</data>
+          <xv field="27" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>N'i tɛ seli, u b'i minɛ kafiri ye.</data>
+          </xv>
+          <xe field="28" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>If you don't pray, they will take you as a pagan.</data>
+          </xe>
+          <xn field="29" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Si tu ne pries pas, ils penseront que tu es un païen.</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="30" flex="sn" lift="sense" writingsystem="unknown">
+        <data>4</data>
+        <ge field="31" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>suit</data>
+        </ge>
+        <de field="32" flex="def" lift="definition" writingsystem="unknown">
+          <data>suit, go well with</data>
+        </de>
+        <gn field="33" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>aller bien</data>
+        </gn>
+        <rn field="34" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </rn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="35" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Nin dulɔki bɛ i minɛ kosɛbɛ.</data>
+          </xv>
+          <xe field="36" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>This shirt suits you well.</data>
+          </xe>
+          <xn field="37" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Cette chemise te va bien.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="38" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>18/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="17" startline="268" endline="278">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>nisɔn</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>mood</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>humeur</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A nisɔn ka di.</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>He is happy, cheerful, in a good mood.</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il est content, gai, de bonne humeur.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>I nisɔn man di bi. Mun b'i la ?</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>You're not in a good mood today. What's wrong?</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Tu es de mauvaise humeur aujourd'hui. Qu'est-ce qu'il y a ?</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="10" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>24/Nov/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="18" startline="279" endline="290">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>nisɔndiya</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>joy ; happiness</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>joie ; allégresse</data>
+        </gn>
+      </sn>
+      <ps field="4" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="5" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>make joyful</data>
+        </ge>
+        <gn field="6" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>réjouir</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ne nisɔndiyalen don.</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I'm happy.</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Je suis content. Je suis dans la joie.</data>
+          </xn>
+        </rf>
+      </sn>
+      <mr field="10" flex="eires" writingsystem="unknown">
+        <data>nisɔn-diya</data>
+      </mr>
+      <dt field="11" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="19" startline="291" endline="298">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>nkɔyɔ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>bitter tomato</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>tomate amère</data>
+        </gn>
+        <sd field="4" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <sd field="5" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nveg</data>
+        </sd>
+        <pc field="6" flex="picf" writingsystem="unknown">
+          <data>images\bitter-tomato.jpg</data>
+        </pc>
+      </sn>
+      <dt field="7" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="20" startline="299" endline="315">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>nɔgɔn</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>adj.pred</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>easy</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>facile</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>O ka nɔgɔn !</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>That's easy!</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Ça c'est facile !</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A tun man nɔgɔn.</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>It was not easy.</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Ce n'était pas facile.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ɲɔsɛnɛ ka nɔgɔn ni malo ye.</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Cultivating millet is easier than rice.</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Cultiver le mil est plus facile que de cultiver le riz.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="13" flex="cref" writingsystem="unknown">
+        <data>gɛlɛn</data>
+      </cf>
+      <ce field="14" flex="cref" writingsystem="unknown">
+        <data>difficult</data>
+      </ce>
+      <cn field="15" flex="cref" writingsystem="unknown">
+        <data>difficile</data>
+      </cn>
+      <dt field="16" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>19/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="21" startline="316" endline="336">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>nɔgɔya</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>ease</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>facilité</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>nɔgɔya la / ni nɔgɔya ye</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>easily</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>facilement</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ala k'i se nɔgɔya la !</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>May God enable you to arrive easily/safely!</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Que Dieu fasse que tu arrives facilement !</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="11" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="12" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>good price</data>
+        </ge>
+        <gn field="13" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>bon marché</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="14" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Awa bɛ namasa feere nɔgɔya la.</data>
+          </xv>
+          <xe field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Awa sells banana cheaply.</data>
+          </xe>
+          <xn field="16" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Awa vend des bananes à bon prix.</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="17" flex="cref" writingsystem="unknown">
+        <data>gɛlɛya1</data>
+      </cf>
+      <ce field="18" flex="cref" writingsystem="unknown">
+        <data>difficulty</data>
+      </ce>
+      <cn field="19" flex="cref" writingsystem="unknown">
+        <data>difficulté</data>
+      </cn>
+      <dt field="20" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="22" startline="337" endline="350">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>ɲinan</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>this year</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>cette année</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>a san naani ye ɲinan ye</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>four years ago</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>il y a quatre ans</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="7" flex="cref" writingsystem="unknown">
+        <data>san</data>
+      </cf>
+      <ce field="8" flex="cref" writingsystem="unknown">
+        <data>year</data>
+      </ce>
+      <cn field="9" flex="cref" writingsystem="unknown">
+        <data>an, année</data>
+      </cn>
+      <cf field="10" flex="cref" writingsystem="unknown">
+        <data>salon</data>
+      </cf>
+      <ce field="11" flex="cref" writingsystem="unknown">
+        <data>last year</data>
+      </ce>
+      <cn field="12" flex="cref" writingsystem="unknown">
+        <data>l'année passée</data>
+      </cn>
+      <dt field="13" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="23" startline="351" endline="370">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>ɲininka</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>ask ; question</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>demander ; interroger</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>X ɲininka Y la</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>ask X for Y</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>demander Y à X</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Polisikɛ y'a wele k'a ɲininka a ka sɛbɛnw na.</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>The policeman called him and asked for his papers.</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>L'agent de police l'a appelé et lui a demandé ses papiers.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A y'u ɲininka ko: Aw bɛ taa min ?</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>He asked them, "Where are you going?"</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il leur a demandé : "Vous allez où ?"</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="13" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A ɲininka !</data>
+          </xv>
+          <xe field="14" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Ask him!</data>
+          </xe>
+          <xn field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Demande-lui !</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="16" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A ɲininka yala ni a bɛ taa sugu la bi.</data>
+          </xv>
+          <xe field="17" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Ask him if he's going to the market today.</data>
+          </xe>
+          <xn field="18" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Demande-lui s'il va au marché aujourd'hui.</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="19" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>30/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="24" startline="371" endline="412">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>ɲɔ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>millet ; sorghum</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>mil ; sorgho</data>
+        </gn>
+        <sd field="4" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Ncrop</data>
+        </sd>
+        <pc field="5" flex="picf" writingsystem="unknown">
+          <data>images\millet1.jpg</data>
+        </pc>
+        <pc field="6" flex="picf" writingsystem="unknown">
+          <data>images\millet2.jpg</data>
+        </pc>
+        <lf field="7" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="8" flex="lex" writingsystem="unknown">
+            <data>dan</data>
+          </lv>
+          <le field="9">
+            <data>to sow</data>
+          </le>
+          <ln field="10">
+            <data>semer</data>
+          </ln>
+        </lf>
+        <lf field="11" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="12" flex="lex" writingsystem="unknown">
+            <data>tigɛ</data>
+          </lv>
+          <le field="13">
+            <data>to harvest, cut</data>
+          </le>
+          <ln field="14">
+            <data>récolter, couper</data>
+          </ln>
+        </lf>
+        <lf field="15" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="16" flex="lex" writingsystem="unknown">
+            <data>gɔsi</data>
+          </lv>
+          <le field="17">
+            <data>to thresh</data>
+          </le>
+          <ln field="18">
+            <data>battre</data>
+          </ln>
+        </lf>
+        <lf field="19" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="20" flex="lex" writingsystem="unknown">
+            <data>fyɛ</data>
+          </lv>
+          <le field="21">
+            <data>to winnow</data>
+          </le>
+          <ln field="22">
+            <data>vanner</data>
+          </ln>
+        </lf>
+        <lf field="23" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="24" flex="lex" writingsystem="unknown">
+            <data>susu</data>
+          </lv>
+          <le field="25">
+            <data>to pound</data>
+          </le>
+          <ln field="26">
+            <data>piler</data>
+          </ln>
+        </lf>
+        <lf field="27" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="28" flex="lex" writingsystem="unknown">
+            <data>folon</data>
+          </lv>
+          <le field="29">
+            <data>to pound to remove the chaff</data>
+          </le>
+          <ln field="30">
+            <data>piler pour enlever le son</data>
+          </ln>
+        </lf>
+        <lf field="31" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="32" flex="lex" writingsystem="unknown">
+            <data>bunte</data>
+          </lv>
+          <le field="33">
+            <data>to pound into flour</data>
+          </le>
+          <ln field="34">
+            <data>piler pour réduire en farine</data>
+          </ln>
+        </lf>
+        <lf field="35" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="36" flex="lex" writingsystem="unknown">
+            <data>si6</data>
+          </lv>
+          <le field="37">
+            <data>to grind</data>
+          </le>
+          <ln field="38">
+            <data>moudre</data>
+          </ln>
+        </lf>
+      </sn>
+      <cf field="39" flex="cref" writingsystem="unknown">
+        <data>saɲɔ</data>
+      </cf>
+      <cf field="40" flex="cref" writingsystem="unknown">
+        <data>keninge</data>
+      </cf>
+      <dt field="41" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="25" startline="413" endline="421">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>ɔ̀wɔ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>inter</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>yes</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>oui</data>
+          <gg field="4">
+            <data>ja</data>
+          </gg>
+        </gn>
+      </sn>
+      <cf field="5" flex="cref" writingsystem="unknown">
+        <data>ayi</data>
+      </cf>
+      <ce field="6" flex="cref" writingsystem="unknown">
+        <data>no</data>
+      </ce>
+      <cn field="7" flex="cref" writingsystem="unknown">
+        <data>non</data>
+      </cn>
+      <dt field="8" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>21/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="26" startline="422" endline="463">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>san</data>
+      <lc field="1" flex="cit" writingsystem="unknown">
+        <data>sǎn</data>
+      </lc>
+      <ps field="2" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>year</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>an</data>
+        </gn>
+        <dn field="5" flex="def" lift="definition" writingsystem="unknown">
+          <data>an, année</data>
+        </dn>
+        <rn field="6" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>an ; année</data>
+          <gg field="7">
+            <data>Jahr</data>
+          </gg>
+        </rn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>I si ye san joli ye ?</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>How old are you?</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Quel âge as-tu ?</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="11" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ne si ye san bisaba ni fila ye.</data>
+          </xv>
+          <xe field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I am 32 years old.</data>
+          </xe>
+          <xn field="13" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>J'ai 32 ans.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="14" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>san nata / san wɛrɛ</data>
+          </xv>
+          <xe field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>next year</data>
+          </xe>
+          <xn field="16" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>l'année prochaine</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="17" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>san o san</data>
+          </xv>
+          <xe field="18" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>each year, every year</data>
+          </xe>
+          <xn field="19" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>chaque année</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="20" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>a san saba ye ɲinan ye</data>
+          </xv>
+          <xe field="21" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>three years ago</data>
+          </xe>
+          <xn field="22" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>il y a trois ans</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="23" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ne b'a fɛ ka san saba kɛ yan.</data>
+          </xv>
+          <xe field="24" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I'd like to spend three years here.</data>
+          </xe>
+          <xn field="25" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Je voudrais passer trois ans ici.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="26" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>san kuuru bɛɛ</data>
+          </xv>
+          <xe field="27" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>during the whole year</data>
+          </xe>
+          <xn field="28" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>pendant toute l'année</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="29" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>san 200 sani Yesu ka bange</data>
+          </xv>
+          <xe field="30" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>200 BC</data>
+          </xe>
+          <xn field="31" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>200 av. J.-C</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="32" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ala ka san wɛrɛ jira an na !</data>
+          </xv>
+          <xe field="33" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>May God show us another year!</data>
+          </xe>
+          <xn field="34" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Que Dieu nous montre encore une année !</data>
+          </xn>
+        </rf>
+      </sn>
+      <cf field="35" flex="cref" writingsystem="unknown">
+        <data>salon</data>
+      </cf>
+      <ce field="36" flex="cref" writingsystem="unknown">
+        <data>last year</data>
+      </ce>
+      <cn field="37" flex="cref" writingsystem="unknown">
+        <data>l'année passée</data>
+      </cn>
+      <cf field="38" flex="cref" writingsystem="unknown">
+        <data>ɲinan</data>
+      </cf>
+      <ce field="39" flex="cref" writingsystem="unknown">
+        <data>this year</data>
+      </ce>
+      <cn field="40" flex="cref" writingsystem="unknown">
+        <data>cette année</data>
+      </cn>
+      <dt field="41" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>17/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="27" startline="464" endline="475">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>salon</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>last year</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>l'an dernier</data>
+        </gn>
+        <rn field="4" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>an dernier</data>
+        </rn>
+      </sn>
+      <cf field="5" flex="cref" writingsystem="unknown">
+        <data>san</data>
+      </cf>
+      <ce field="6" flex="cref" writingsystem="unknown">
+        <data>year</data>
+      </ce>
+      <cn field="7" flex="cref" writingsystem="unknown">
+        <data>an, année</data>
+      </cn>
+      <cf field="8" flex="cref" writingsystem="unknown">
+        <data>ɲinan</data>
+      </cf>
+      <ce field="9" flex="cref" writingsystem="unknown">
+        <data>this year</data>
+      </ce>
+      <cn field="10" flex="cref" writingsystem="unknown">
+        <data>cette année</data>
+      </cn>
+      <dt field="11" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>24/Oct/2003</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="28" startline="476" endline="484">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>saɲɔ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>variety of millet</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>petit mil</data>
+        </gn>
+        <re field="4" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </re>
+        <rn field="5" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </rn>
+        <sd field="6" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Ncrop</data>
+        </sd>
+      </sn>
+      <cf field="7" flex="cref" writingsystem="unknown">
+        <data>ɲɔ</data>
+      </cf>
+      <dt field="8" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>05/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="29" startline="485" endline="508">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>sɔn</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>offer ; give</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>offrir ; gratifier</data>
+        </gn>
+      </sn>
+      <sn field="5" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="6" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>offer a sacrifice to</data>
+        </ge>
+        <gn field="7" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>offrir un sacrifice à</data>
+        </gn>
+        <re field="8" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </re>
+        <rn field="9" flex="rev" lift="reversal" writingsystem="unknown">
+          <data>*</data>
+        </rn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>boli sɔn</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make a sacrifice to a fetish/idol</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>offrir un sacrifice à un fétiche</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="13" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jiri sɔn</data>
+          </xv>
+          <xe field="14" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make a sacrifice at a tree</data>
+          </xe>
+          <xn field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>offrir un sacrifice à un arbre</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="16" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>suw sɔn</data>
+          </xv>
+          <xe field="17" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make a sacrifice to the dead</data>
+          </xe>
+          <xn field="18" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>offrir un sacrifice aux morts</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="19" flex="sn" lift="sense" writingsystem="unknown">
+        <data>3</data>
+        <ge field="20" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>water</data>
+        </ge>
+        <gn field="21" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>arroser</data>
+        </gn>
+        <sd field="22" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="23" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>15/Apr/2005</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="30" startline="509" endline="526">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>sùsu</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>pound</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>piler</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ne bɛ ɲɔ susu.</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I am pounding millet.</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Je pile le mil.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>X da susu</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>to kiss X</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>donner un baiser à X</data>
+          </xn>
+        </rf>
+        <sd field="10" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <cf field="11" flex="cref" writingsystem="unknown">
+        <data>folon</data>
+      </cf>
+      <ce field="12" flex="cref" writingsystem="unknown">
+        <data>to pound to remove the chaff</data>
+      </ce>
+      <cn field="13" flex="cref" writingsystem="unknown">
+        <data>piler pour enlever le son</data>
+      </cn>
+      <cf field="14" flex="cref" writingsystem="unknown">
+        <data>bunte</data>
+      </cf>
+      <ce field="15" flex="cref" writingsystem="unknown">
+        <data>to pound into flour</data>
+      </ce>
+      <cn field="16" flex="cref" writingsystem="unknown">
+        <data>piler pour réduire en farine</data>
+      </cn>
+      <dt field="17" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="31" startline="527" endline="547">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>tamati</data>
+      <bw field="1" flex="eires" writingsystem="unknown">
+        <data>français</data>
+      </bw>
+      <ps field="2" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>tomato</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>tomate</data>
+        </gn>
+        <gg field="5">
+          <data>Tomate</data>
+        </gg>
+        <lf field="6" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="7" flex="lex" writingsystem="unknown">
+            <data>turu</data>
+          </lv>
+          <le field="8">
+            <data>to transplant</data>
+          </le>
+          <ln field="9">
+            <data>transplanter</data>
+          </ln>
+        </lf>
+        <lf field="10" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="11" flex="lex" writingsystem="unknown">
+            <data>sɔn</data>
+          </lv>
+          <le field="12">
+            <data>to water</data>
+          </le>
+          <ln field="13">
+            <data>arroser</data>
+          </ln>
+        </lf>
+        <lf field="14" flex="func" writingsystem="unknown">
+          <data>VAssoc</data>
+          <lv field="15" flex="lex" writingsystem="unknown">
+            <data>kari</data>
+          </lv>
+          <le field="16">
+            <data>to pick</data>
+          </le>
+          <ln field="17">
+            <data>cueillir</data>
+          </ln>
+        </lf>
+        <sd field="18" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nfood-sauce-item</data>
+        </sd>
+        <sd field="19" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Nveg</data>
+        </sd>
+      </sn>
+      <dt field="20" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>20/Apr/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="32" startline="548" endline="579">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>tigɛ</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>break ; cut</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>rompre ; couper</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>kiri tigɛ</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>judge</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>juger</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="8" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>nkalon tigɛ</data>
+          </xv>
+          <xe field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>tell a lie</data>
+          </xe>
+          <xn field="10" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>mentir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="11" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>sun tigɛ</data>
+          </xv>
+          <xe field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>break the fast</data>
+          </xe>
+          <xn field="13" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>rompre le jeûne</data>
+          </xn>
+        </rf>
+        <sd field="14" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Cooking-Verb</data>
+        </sd>
+      </sn>
+      <sn field="15" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="16" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>harvest</data>
+        </ge>
+        <gn field="17" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>récolter</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="18" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Ɲɔ, gan ni bɛnɛ bɛ tigɛ.</data>
+          </xv>
+          <xe field="19" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Millet, gombo and sesame are harvested by cutting.</data>
+          </xe>
+          <xn field="20" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>On coupe le mil, le gombo et le sésame (quand on les récolte).</data>
+          </xn>
+        </rf>
+        <sd field="21" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <sn field="22" flex="sn" lift="sense" writingsystem="unknown">
+        <data>3</data>
+        <ge field="23" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>cross</data>
+        </ge>
+        <gn field="24" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>traverser</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="25" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>sira tigɛ</data>
+          </xv>
+          <xe field="26" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>cross the road</data>
+          </xe>
+          <xn field="27" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>traverser la route</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="28" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>ba tigɛ</data>
+          </xv>
+          <xe field="29" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>cross the river</data>
+          </xe>
+          <xn field="30" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>traverser le fleuve</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="31" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="33" startline="580" endline="589">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>tùfa</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>brick</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>brique</data>
+        </gn>
+        <sy field="4" flex="eires" writingsystem="unknown">
+          <data>biriki</data>
+        </sy>
+        <pc field="5" flex="picf" writingsystem="unknown">
+          <data>images\brickmaking.jpg</data>
+        </pc>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="6" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>tufa gɔsi/bɔ</data>
+          </xv>
+          <xe field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>make bricks</data>
+          </xe>
+          <xn field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>fabriquer des briques</data>
+          </xn>
+        </rf>
+      </sn>
+      <dt field="9" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>20/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="34" startline="590" endline="603">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>turu</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>vt</data>
+      </ps>
+      <sn field="2" flex="sn" lift="sense" writingsystem="unknown">
+        <data>1</data>
+        <ge field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>plant</data>
+        </ge>
+        <gn field="4" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>planter</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="5" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>jiri turu</data>
+          </xv>
+          <xe field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>plant a tree</data>
+          </xe>
+          <xn field="7" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>planter un arbre</data>
+          </xn>
+        </rf>
+      </sn>
+      <sn field="8" flex="sn" lift="sense" writingsystem="unknown">
+        <data>2</data>
+        <ge field="9" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>transplant</data>
+        </ge>
+        <gn field="10" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>replanter ; transplanter</data>
+        </gn>
+        <pc field="11" flex="picf" writingsystem="unknown">
+          <data>images\planting.jpg</data>
+        </pc>
+        <sd field="12" flex="seme" lift="semanticDomain" writingsystem="unknown">
+          <data>Agriculture-Verb</data>
+        </sd>
+      </sn>
+      <dt field="13" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>27/Feb/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="35" startline="604" endline="639">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>waati</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>time</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>moment ; temps</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>waati ni waati</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>from time to time</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>de temps en temps</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>waati dɔ la</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>sometimes</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>quelquefois, parfois</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>waati caman</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>often</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>souvent</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="13" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>waati jumɛn ?</data>
+          </xv>
+          <xe field="14" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>when? at what time?</data>
+          </xe>
+          <xn field="15" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>quand ? à quelle heure ?</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="16" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Waati sera.</data>
+          </xv>
+          <xe field="17" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>The time has arrived (e.g. to leave).</data>
+          </xe>
+          <xn field="18" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>L'heure est arrivée (ex. pour partir).</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="19" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Waati jumɛn b'i bolo ?</data>
+          </xv>
+          <xe field="20" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>What time is it?</data>
+          </xe>
+          <xn field="21" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Quelle heure est-il ?</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="22" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>waati tɛmɛnnen, sisan, waati nata</data>
+          </xv>
+          <xe field="23" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>the past, the present, the future</data>
+          </xe>
+          <xn field="24" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>le passé, le présent, l'avenir</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="25" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>Waati tɛ n bolo.</data>
+          </xv>
+          <xe field="26" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>I don't have the time.</data>
+          </xe>
+          <xn field="27" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Je n'ai pas le temps.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="28" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>A tora Segu ka waati jan kɛ.</data>
+          </xv>
+          <xe field="29" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>He stayed in Segou a long time.</data>
+          </xe>
+          <xn field="30" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>Il a duré longtemps à Ségou.</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="31" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>o waati kɔnɔ</data>
+          </xv>
+          <xe field="32" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>during that time</data>
+          </xe>
+          <xn field="33" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>pendant ce temps-là</data>
+          </xn>
+        </rf>
+      </sn>
+      <va field="34" flex="vars" lift="variant" writingsystem="unknown">
+        <data>wagati</data>
+      </va>
+      <dt field="35" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+  <entry record="36" startline="640" endline="654">
+    <lx field="0" flex="lex" lift="lexicalUnit" writingsystem="en-Latn">
+      <data>wagati</data>
+      <ps field="1" flex="pos" lift="grammi" writingsystem="unknown">
+        <data>n</data>
+      </ps>
+      <sn inferred="true" flex="sn" lift="sense" writingsystem="unknown">
+        <data />
+        <ge field="2" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>time</data>
+        </ge>
+        <gn field="3" flex="glos" lift="gloss" writingsystem="unknown">
+          <data>moment ; temps</data>
+        </gn>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="4" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>wagati ni wagati</data>
+          </xv>
+          <xe field="5" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>from time to time</data>
+          </xe>
+          <xn field="6" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>de temps en temps</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="7" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>wagati dɔ la</data>
+          </xv>
+          <xe field="8" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>sometimes</data>
+          </xe>
+          <xn field="9" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>quelquefois, parfois</data>
+          </xn>
+        </rf>
+        <rf inferred="true" flex="ref" lift="example" writingsystem="unknown">
+          <data />
+          <xv field="10" flex="sent" lift="exampleSentence" writingsystem="unknown">
+            <data>nin wagati la</data>
+          </xv>
+          <xe field="11" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>now, at this time</data>
+          </xe>
+          <xn field="12" flex="trans" lift="exampleSentenceTranslation" writingsystem="unknown">
+            <data>maintenant, en ce moment</data>
+          </xn>
+        </rf>
+      </sn>
+      <mn field="13" flex="eires" writingsystem="unknown">
+        <data>waati</data>
+      </mn>
+      <dt field="14" flex="mod" lift="dateModified" writingsystem="unknown">
+        <data>30/May/2004</data>
+      </dt>
+    </lx>
+  </entry>
+</root>
