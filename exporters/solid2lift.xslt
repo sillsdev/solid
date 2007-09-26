@@ -3,15 +3,15 @@
   <xsl:output method="xml" indent="yes" encoding="utf-8"/>
   <xsl:variable name="vernacular-writing-system" select="'sza'"/>
   <xsl:variable name="national-writing-system" select="'ms-my'"/>
-
+  
   <xsl:variable name="alternate-hierarchy" select="true()"/>
-
+  
   <xsl:template match="/">
     <lift version="0.10">
       <xsl:apply-templates select="//entry"/>
     </lift>
   </xsl:template>
-
+  
   <xsl:template match="entry">
     <entry>
       <xsl:if test="//cf/data[not(.='')] = descendant::*[@lift='lexicalUnit']/data">
@@ -30,7 +30,7 @@
       <xsl:apply-templates select="descendant::*[@lift='variant']"/>
     </entry>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='variant']">
     <xsl:if test="not(data = '')">
       <variant>
@@ -45,7 +45,7 @@
       </variant>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='confer']">
     <xsl:if test="not(data = '')">
       <relation name="confer">
@@ -55,7 +55,7 @@
       </relation>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='lexicalUnit']">
     <xsl:if test="not(data = '')">
       <lexical-unit>
@@ -70,7 +70,7 @@
       </lexical-unit>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='sense']">
     <sense>
       <xsl:choose>
@@ -87,20 +87,36 @@
           <xsl:apply-templates select="descendant::*[@lift='definition']"/>
         </definition>
       </xsl:if>
-      <xsl:apply-templates select="descendant::*[@lift='example'][1]/parent::*"/>
+      <xsl:apply-templates select="descendant::*[@lift='example']"/>
       <xsl:apply-templates select="descendant::*[@lift='reversal']"/>
       <xsl:apply-templates select="descendant::*[@lift='semanticDomain']"/>
       <xsl:apply-templates select="descendant::*[@lift='semanticDomainID']"/>
       <xsl:apply-templates select="descendant::*[@lift='note']"/>
     </sense>
   </xsl:template>
-
+  
+  <xsl:template match="*[@lift='example']">
+    <example>
+      <xsl:if test="not(data='')">
+        <xsl:attribute name="source">
+          <xsl:value-of select="data" />
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:apply-templates select="descendant::*[@lift='exampleSentence']"/>
+      <xsl:if test="descendant::*[@lift='exampleSentenceTranslation'][not(data='')]">
+        <translation>
+          <xsl:apply-templates select="descendant::*[@lift='exampleSentenceTranslation']"/>
+        </translation>
+      </xsl:if>
+    </example>
+  </xsl:template>
+  
   <xsl:template match="*[@lift='grammi']">
     <xsl:if test="not(data = '')">
       <grammatical-info value="{data}"/>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='gloss']">
     <xsl:if test="not(data = '')">
       <gloss>
@@ -113,8 +129,10 @@
       </gloss>
     </xsl:if>
   </xsl:template>
-
-  <xsl:template match="*[@lift='definition']">
+  
+  <xsl:template match="*[@lift='definition'] | 
+    *[@lift='exampleSentence'] | 
+    *[@lift='exampleSentenceTranslation']">
     <xsl:if test="not(data = '')">
       <form>
         <xsl:attribute name="lang">
@@ -126,55 +144,10 @@
       </form>
     </xsl:if>
   </xsl:template>
-
-  <!-- this is a reference but they are all inferred in this data and the 
-  mapping for lift hasn't been defined yet
   
-  also both xn and xv have been labeled as example and not one example 
-  and the other translation
-  
-  this can be generalized once that is fixed-->
-  <xsl:template match="*[child::*[@lift='example']]">
-    <xsl:if test="xv[not(data='')] or xn[not(data='')] or xe[not(data='')]">
-      <example>
-        <xsl:if test="xv[not(data='')]">
-          <form>
-			  <xsl:attribute name="lang">
-				  <xsl:value-of select="@writingsystem"/>
-			  </xsl:attribute>
-			  <text>
-              <xsl:value-of select="xv/data"/>
-            </text>
-          </form>
-        </xsl:if>
-        <xsl:if test="xn[not(data='')] or xe[not(data='')]">
-          <translation>
-            <xsl:if test="xn[not(data='')]">
-              <form>
-				  <xsl:attribute name="lang">
-					  <xsl:value-of select="@writingsystem"/>
-				  </xsl:attribute>
-				<text>
-                  <xsl:value-of select="xn/data"/>
-                </text>
-              </form>
-            </xsl:if>
-            <xsl:if test="xe[not(data='')]">
-              <form lang="en">
-                <text>
-                  <xsl:value-of select="xe/data"/>
-                </text>
-              </form>
-            </xsl:if>
-          </translation>
-        </xsl:if>
-      </example>
-    </xsl:if>
-  </xsl:template>
-
   <xsl:template match="*[@lift='dateModified']">
     <!-- shoebox dates are in form: DD/MMM/YYYY-->
-
+    
     <xsl:variable name="year" select="substring(data, 8)"/>
     <xsl:variable name="monthAsAbbrev" select="substring(data, 4, 3)"/>
     <xsl:variable name="day" select="substring(data, 1, 2)"/>
@@ -223,7 +196,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-
+    
     <!-- output as YYYY-MM-DD -->
     <xsl:value-of select="$year"/>
     <xsl:text>-</xsl:text>
@@ -231,22 +204,22 @@
     <xsl:text>-</xsl:text>
     <xsl:value-of select="$day"/>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='reversal']">
     <xsl:if test="not(data='')">
       <reversal>
-            <form>
-				<xsl:attribute name="lang">
-					<xsl:value-of select="@writingsystem"/>
-				</xsl:attribute>
-				<text>
-                <xsl:value-of select="descendant::data"/>
-              </text>
-            </form>
+        <form>
+          <xsl:attribute name="lang">
+            <xsl:value-of select="@writingsystem"/>
+          </xsl:attribute>
+          <text>
+            <xsl:value-of select="descendant::data"/>
+          </text>
+        </form>
       </reversal>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='semanticDomain']">
     <xsl:if test="not(data = '')">
       <trait name="SemanticDomain">
@@ -256,7 +229,7 @@
       </trait>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='semanticDomainID']">
     <xsl:if test="not(data = '')">
       <field tag="ids">
@@ -268,20 +241,20 @@
       </field>
     </xsl:if>
   </xsl:template>
-
+  
   <xsl:template match="*[@lift='note']">
     <xsl:if test="not(data = '')">
       <note>
         <form>
-			<xsl:attribute name="lang">
-				<xsl:value-of select="@writingsystem"/>
-			</xsl:attribute>
-			<text>
+          <xsl:attribute name="lang">
+            <xsl:value-of select="@writingsystem"/>
+          </xsl:attribute>
+          <text>
             <xsl:value-of select="data"/>
           </text>
         </form>
       </note>
     </xsl:if>
   </xsl:template>
-
+  
 </xsl:transform>

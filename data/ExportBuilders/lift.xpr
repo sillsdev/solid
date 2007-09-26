@@ -7,6 +7,7 @@
     </meta>
     <projectTree name="lift.xpr">
         <file name="BambaraTutorial2.xml"/>
+        <file name="lift.rng"/>
         <file name="../../exporters/solid2lift.xslt"/>
     </projectTree>
 </project>
