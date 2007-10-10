@@ -24,7 +24,9 @@
           <xsl:apply-templates select="descendant::*[@lift='dateModified']"/>
         </xsl:attribute>
       </xsl:if>
+      <lexical-unit>
       <xsl:apply-templates select="descendant::*[@lift='lexicalUnit']"/>
+      </lexical-unit>
       <xsl:apply-templates select="descendant::*[@lift='sense']"/>
       <xsl:apply-templates select="descendant::*[@lift='confer']"/>
       <xsl:apply-templates select="descendant::*[@lift='variant']"/>
@@ -58,16 +60,14 @@
   
   <xsl:template match="*[@lift='lexicalUnit']">
     <xsl:if test="not(data = '')">
-      <lexical-unit>
-        <form>
-          <xsl:attribute name="lang">
-            <xsl:value-of select="@writingsystem"/>
-          </xsl:attribute>
-          <text>
-            <xsl:value-of select="data"/>
-          </text>
-        </form>
-      </lexical-unit>
+	<form>
+	  <xsl:attribute name="lang">
+	    <xsl:value-of select="@writingsystem"/>
+	  </xsl:attribute>
+	  <text>
+	    <xsl:value-of select="data"/>
+	  </text>
+	</form>
     </xsl:if>
   </xsl:template>
   

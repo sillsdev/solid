@@ -176,7 +176,7 @@ namespace SolidGui
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
         }
-
+        /*
         public override string ToString()
         {
             StringBuilder record = new StringBuilder();
@@ -186,7 +186,8 @@ namespace SolidGui
             }
             return record.ToString();
         }
-
+        */
+        /*
         public string ToStringWithoutInferred()
         {
             StringBuilder record = new StringBuilder();
@@ -199,7 +200,7 @@ namespace SolidGui
             }
             return record.ToString();
         }
-
+        */
         public string Value
         {
             get { return ToString(); }
