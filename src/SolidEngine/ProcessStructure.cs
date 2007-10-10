@@ -121,7 +121,7 @@ namespace SolidEngine
                     XmlAttribute writingSystemAttribute = destination.CreateAttribute("writingsystem");
                     if (setting.WritingSystem == "")
                     {
-                        writingSystemAttribute.Value = "unknown";
+                        writingSystemAttribute.Value = "zxx";
                     }
                     else
                     {
