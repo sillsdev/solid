@@ -1,10 +1,6 @@
 \lx Entry
 \a 
 \bw 
-\ce 
-\cf 
-\cn 
-\cr 
 \dt 
 \hm 
 \lc 
@@ -17,21 +13,21 @@
 \vr 
 \se SubEntry
 \bw 
-\ce 
-\cf 
-\cn 
-\cr 
 \mn 
 \mr 
-\ps 
 \ph Pronunciation
 \va Variant
 \ve 
 \vn 
 \vr 
+\ps 
 \sn Sense
 \an 
 \bb 
+\cf 
+\ce 
+\cn 
+\cr 
 \de 
 \dn 
 \dr 

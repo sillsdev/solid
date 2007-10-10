@@ -9,7 +9,7 @@
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>lexicalUnit</string>
+        <string>lu</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -46,11 +46,11 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -77,7 +77,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string>reversal</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -125,7 +125,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string>reversal</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -157,7 +157,7 @@
       <InferedParent />
       <Mappings>
         <string>ref</string>
-        <string>example</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -173,7 +173,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string>exampleSentence</string>
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -189,7 +189,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
-        <string>exampleSentenceTranslation</string>
+        <string>translation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -205,7 +205,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
-        <string>exampleSentenceTranslation</string>
+        <string>translation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -257,11 +257,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -277,12 +273,8 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>cf</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ce</Marker>
@@ -317,7 +309,7 @@
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -470,12 +462,8 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>cf</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>cn</Marker>
@@ -490,12 +478,8 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>cf</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>cr</Marker>
@@ -686,11 +670,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>ps</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1861,7 +1841,7 @@
       <InferedParent />
       <Mappings>
         <string>seme</string>
-        <string>semanticDomain</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
