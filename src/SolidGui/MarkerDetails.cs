@@ -68,10 +68,11 @@ namespace SolidGui
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
-                
+
                 _listView.Items.Add(item);
             }
-
+            _listView.Sorting = SortOrder.Ascending;
+            _listView.Sort();
             SelectMarker(previouslySelectedMarker);
         }
 
