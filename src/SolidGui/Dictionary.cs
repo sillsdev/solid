@@ -127,10 +127,12 @@ namespace SolidGui
             return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));
         }
  
+        /*
         public string GetFileNameNoExtension()
         {
             return Path.GetFileNameWithoutExtension(_filePath);
         }
+        */
 
         public void Clear()
         {

@@ -37,12 +37,15 @@ namespace SolidGui
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
             _mainWindowPM.SearchModel.wordFound += OnWordFound;
-            _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
-            _markerDetails.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
 
             //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
 
-            _sfmEditorView.RecordTextChanged += this.OnRecordTextChanged;
+            // Event wiring for child views.
+            _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
+
+            // Event wiring for the main view.
+            _markerDetails.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
+            _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
 
         }
@@ -148,6 +151,7 @@ namespace SolidGui
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
             _saveButton.Enabled = true;
+            _sfmEditorView.OnSolidSettingsChange();
         }
 
         private void OnProcessButtonClick(object sender, EventArgs e)
@@ -266,30 +270,20 @@ namespace SolidGui
             saveDialog.Title = "Export As";
             saveDialog.AddExtension = true;
             saveDialog.Filter = ExportFilterString();
-            saveDialog.FileName = _mainWindowPM.WorkingDictionary.GetFileNameNoExtension();
+            saveDialog.FileName = Path.GetFileNameWithoutExtension(_mainWindowPM.DictionaryRealFilePath);
             if (DialogResult.OK != saveDialog.ShowDialog(this))
             {
                 return;
             }
 
-            //string sourceFilePath = Path.Combine(Path.GetTempPath(), "TempDict.dic");           
-            //_mainWindowPM.WorkingDictionary.SaveAs(sourceFilePath);
-            _mainWindowPM.WorkingDictionary.Save();
-            string sourceFilePath = _mainWindowPM.WorkingDictionary.FilePath;
-
-            string destinationFilePath = saveDialog.FileName;
-
-            ExportFactory f = ExportFactory.Singleton();
-            IExporter exporter = f.CreateFromSettings(f.ExportSettings[saveDialog.FilterIndex - 1]);
             try
             {
-                exporter.Export(sourceFilePath, destinationFilePath);
+                _mainWindowPM.Export(saveDialog.FilterIndex - 1, saveDialog.FileName);
             }
             catch (Exception exception)
             {
                 MessageBox.Show(this, exception.InnerException.Message, "Solid Export Error");
             }
-
         }
     }
 }

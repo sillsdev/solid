@@ -230,7 +230,11 @@ namespace SolidGui
             if(_listView.SelectedItems.Count == 0)
             {
                 return;
-            }          
+            }
+            if (area == null || area == "")
+            {
+                area = "structure";
+            }
             string marker = _listView.SelectedItems[0].Text;
             MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;

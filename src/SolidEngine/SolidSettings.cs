@@ -122,8 +122,13 @@ namespace SolidEngine
 
         public void Save()
         {
+            SaveAs(_filePath);
+        }
+
+        public void SaveAs(string filePath)
+        {
             XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
-            using (StreamWriter writer = new StreamWriter(_filePath))
+            using (StreamWriter writer = new StreamWriter(filePath))
             {
                 xs.Serialize(writer, this);
             }

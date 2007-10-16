@@ -163,6 +163,12 @@ namespace SolidGui
 
         }
 
+        public string DictionaryRealFilePath
+        {
+            get { return _realDictionaryPath; }
+        }
+
+
         private SolidSettings CreateSolidSettings(string templatePath)
         {
             if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
@@ -233,8 +239,8 @@ namespace SolidGui
 
         public bool SaveDictionary()
         {
-            _solidSettings.Save();
-            WorkingDictionary.SaveAs(_realDictionaryPath);
+            _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+            _workingDictionary.SaveAs(_realDictionaryPath);
             return true; // Todo: can't fail.
         }
 
@@ -349,6 +355,17 @@ namespace SolidGui
             //todo: copy over this set of settings
             //todo: reload settings UI
             //todo: clear out the report
+        }
+
+        public void Export(int filterIndex, string destinationFilePath)
+        {
+            _workingDictionary.SaveAs(_tempDictionaryPath);
+            _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
+            string sourceFilePath = _tempDictionaryPath;
+
+            ExportFactory f = ExportFactory.Singleton();
+            IExporter exporter = f.CreateFromSettings(f.ExportSettings[filterIndex]);
+            exporter.Export(sourceFilePath, destinationFilePath);
         }
     }
 }

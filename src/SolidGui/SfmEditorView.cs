@@ -348,6 +348,12 @@ namespace SolidGui
             }
         }
 */
+        public void OnSolidSettingsChange()
+        {
+            _isDirty = true;
+            UpdateModel();
+            UpdateView();
+        }
 
         private void UpdateView()
         {
