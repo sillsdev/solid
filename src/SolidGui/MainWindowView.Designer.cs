@@ -33,10 +33,10 @@ namespace SolidGui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindowView));
             this._openButton = new System.Windows.Forms.ToolStripButton();
             this._saveButton = new System.Windows.Forms.ToolStripButton();
+            this._exportButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
-            this._exportButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -96,6 +96,15 @@ namespace SolidGui
             this._saveButton.Text = "Save";
             this._saveButton.Click += new System.EventHandler(this.OnSaveClick);
             // 
+            // _exportButton
+            // 
+            this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
+            this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._exportButton.Name = "_exportButton";
+            this._exportButton.Size = new System.Drawing.Size(71, 22);
+            this._exportButton.Text = "Export...";
+            this._exportButton.Click += new System.EventHandler(this.ExportButton_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -119,15 +128,6 @@ namespace SolidGui
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
-            // 
-            // _exportButton
-            // 
-            this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
-            this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._exportButton.Name = "_exportButton";
-            this._exportButton.Size = new System.Drawing.Size(71, 22);
-            this._exportButton.Text = "Export...";
-            this._exportButton.Click += new System.EventHandler(this.ExportButton_Click);
             // 
             // splitContainer1
             // 
@@ -285,6 +285,7 @@ namespace SolidGui
             this.ClientSize = new System.Drawing.Size(891, 452);
             this.Controls.Add(toolStrip1);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindowView";
             this.Text = "SOLID";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);

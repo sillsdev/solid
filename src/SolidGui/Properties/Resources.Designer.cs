@@ -167,6 +167,13 @@ namespace SolidGui.Properties {
             }
         }
         
+        internal static System.Drawing.Icon solid {
+            get {
+                object obj = ResourceManager.GetObject("solid", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap template {
             get {
                 object obj = ResourceManager.GetObject("template", resourceCulture);
