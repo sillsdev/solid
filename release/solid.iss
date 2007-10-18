@@ -3,7 +3,7 @@ EnableISX=true
 
 [Setup]
 AppName=Solid
-AppVerName=Solid 0.8.1.0
+AppVerName=Solid 0.8.2.0
 MinVersion=4.1,4.0
 DefaultDirName={pf}\Solid
 DefaultGroupName=Solid
@@ -12,7 +12,7 @@ Compression=lzma
 SolidCompression=true
 OutputBaseFilename=SolidSetup
 AppCopyright=2007 SIL International and Payap University
-VersionInfoVersion=0.8.1.0
+VersionInfoVersion=0.8.2.0
 VersionInfoCompany=palaso.org Payap Language Software Group
 VersionInfoDescription=Solid MDF Lexicon Checker
 DisableDirPage=true
@@ -52,6 +52,8 @@ Source: ..\exporters\StructuredXml.xml; DestDir: {app}\exporters
 Source: ..\exporters\FlatXml.xml; DestDir: {app}\exporters
 Source: ..\exporters\solid2lift.xslt; DestDir: {app}\exporters
 Source: ..\exporters\Lift.xml; DestDir: {app}\exporters
+Source: ..\exporters\Solid2LiftAlt.xslt; DestDir: {app}\exporters
+Source: ..\exporters\LiftAlt.xml; DestDir: {app}\exporters
 Source: ..\templates\MDF Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates

@@ -12,7 +12,7 @@ namespace SolidGui
     /// </summary>
     public partial class MainWindowView : Form
     {
-        private MainWindowPM _mainWindowPM;
+        private readonly MainWindowPM _mainWindowPM;
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
@@ -282,7 +282,12 @@ namespace SolidGui
             }
             catch (Exception exception)
             {
-                MessageBox.Show(this, exception.InnerException.Message, "Solid Export Error");
+                string message = exception.Message;
+                if (exception.InnerException != null)
+                {
+                    message += exception.InnerException.Message;
+                }
+                MessageBox.Show(this, message, "Solid Export Error");
             }
         }
     }

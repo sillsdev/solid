@@ -4,7 +4,7 @@
   <xsl:variable name="vernacular-writing-system" select="'sza'"/>
   <xsl:variable name="national-writing-system" select="'ms-my'"/>
   
-  <xsl:variable name="alternate-hierarchy" select="false()"/>
+  <xsl:variable name="alternate-hierarchy" select="true()"/>
   
   <xsl:template match="/">
     <lift version="0.10">

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<exporter>
+<exportheader>
+<name>LIFT Alternate Hierarchy</name>
+<driver>Xsl</driver>
+<filter>LIFT Alternate Hierarchy (*.lift)|*.lift</filter>
+</exportheader>
+<xsl>
+<stylesheet>Solid2LiftAlt.xslt</stylesheet>
+</xsl>
+</exporter>
