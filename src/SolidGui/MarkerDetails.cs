@@ -149,6 +149,7 @@ namespace SolidGui
             EXControlListViewSubItem subItem = new EXControlListViewSubItem();
             LinkLabel label = new LinkLabel();
             label.Text = text;
+            label.AutoEllipsis = true;
             if (text == "???")
             {
                 label.LinkColor = System.Drawing.Color.Red;
