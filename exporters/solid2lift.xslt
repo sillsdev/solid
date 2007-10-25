@@ -14,9 +14,9 @@
   
   <xsl:template match="entry">
     <entry>
-      <xsl:if test="//cf/data[not(.='')] = descendant::*[@lift='lexicalUnit']/data">
+      <xsl:if test="descendant::cf/data[not(.='')] = descendant::*[@lift='lexicalUnit']/data">
         <xsl:attribute name="id">
-          <xsl:value-of select="//cf[data[not(.='')] = current()/descendant::*[@lift='lexicalUnit']/data]/data"/>
+          <xsl:value-of select="descendant::cf[data[not(.='')] = current()/descendant::*[@lift='lexicalUnit']/data]/data"/>
         </xsl:attribute>
       </xsl:if>
       <xsl:if test="descendant::*[@lift='dateModified'][not(data = '')]">
