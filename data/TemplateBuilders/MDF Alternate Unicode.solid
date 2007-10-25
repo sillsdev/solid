@@ -157,7 +157,7 @@
       <InferedParent />
       <Mappings>
         <string>ref</string>
-        <string xsi:nil="true" />
+        <string>example</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -173,7 +173,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string>example</string>
+        <string>exampleSentence</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -189,7 +189,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
-        <string>translation</string>
+        <string>exampleSentenceTranslation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -205,7 +205,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
-        <string>translation</string>
+        <string>exampleSentenceTranslation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -373,7 +373,7 @@
       <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
-        <string>example</string>
+        <string>exampleSentenceTranslation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
