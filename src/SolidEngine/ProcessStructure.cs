@@ -185,8 +185,15 @@ namespace SolidEngine
                             report.AddEntry(
                                 SolidReport.EntryType.StructureParentNotFoundForInferred,
                                 source,
-                                field,
+                                inferredNode,
                                 String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
+                            );
+                            // Error
+                            report.AddEntry(
+                                SolidReport.EntryType.StructureParentNotFound,
+                                source,
+                                field,
+                                string.Format("Marker \\{0} could not be placed in structure", field.Name)
                             );
                             InsertInTreeAnyway(field, destination, report, scope);
                         }
