@@ -48,6 +48,11 @@ namespace SolidGui
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
 
+            splitContainer1.Panel1.Enabled = false;
+            splitContainer2.Panel1.Enabled = false;
+            splitContainer2.Panel2.Enabled = false;
+            _sfmEditorView.Enabled = false;
+
         }
 
         private bool ReturnFalse()
@@ -76,6 +81,7 @@ namespace SolidGui
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
+            _sfmEditorView.Enabled = true;
             _markerDetails.SelectMarker("lx");
             _mainWindowPM.NavigatorModel.StartupOrReset();
             Cursor = Cursors.Default;
