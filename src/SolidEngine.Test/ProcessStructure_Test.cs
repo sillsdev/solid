@@ -227,7 +227,7 @@ namespace SolidTests
         public void ProcessStructure_LiftMapping_Correct()
         {
             string xmlIn = "<entry record=\"4\"><lx field=\"1\">b</lx></entry>";
-            string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\"><data>b</data></lx></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
@@ -247,7 +247,7 @@ namespace SolidTests
         public void ProcessStructure_FlexMapping_Correct()
         {
             string xmlIn = "<entry record=\"5\"><lx field=\"1\">b</lx></entry>";
-            string xmlEx = "<entry record=\"5\"><lx field=\"1\" flex=\"a\"><data>b</data></lx></entry>";
+            string xmlEx = "<entry record=\"5\"><lx field=\"1\" flex=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
