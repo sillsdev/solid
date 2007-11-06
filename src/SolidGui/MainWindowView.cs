@@ -85,6 +85,7 @@ namespace SolidGui
             _markerDetails.SelectMarker("lx");
             _mainWindowPM.NavigatorModel.StartupOrReset();
             Cursor = Cursors.Default;
+            _sfmEditorView.Focus();
         }
 
         private void ChooseProject()
