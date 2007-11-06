@@ -135,7 +135,7 @@ namespace SolidGui
             for (int i = 0; i < _d.Count; i++)
             {
                 _d.MoveTo(i);
-                if (_d.Current.HasMarker(_marker))
+                if (_d.Current.IsMarkerNotEmpty(_marker))
                 {
                     _indexesOfRecords.Add(i);
                 }

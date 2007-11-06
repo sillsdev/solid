@@ -161,6 +161,16 @@ namespace SolidGui
             ) != null;
         }
 
+        public bool IsMarkerNotEmpty(string marker)
+        {
+            return _fields.Find(
+                delegate(Field f)
+                {
+                    return f.Marker == marker && f.Value != string.Empty;
+                }
+            ) != null;
+        }
+
         public string GetField(int id)
         {
             Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });
