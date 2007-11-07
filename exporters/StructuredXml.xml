@@ -2,6 +2,7 @@
 <exporter>
 <exportheader>
 <name>Structured XML</name>
+<position>30</position>
 <driver>StructuredXml</driver>
 <filter>Structured XML (*.xml)|*.xml</filter>
 </exportheader>

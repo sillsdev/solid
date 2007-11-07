@@ -103,7 +103,7 @@ namespace SolidGui
             this._exportButton.Name = "_exportButton";
             this._exportButton.Size = new System.Drawing.Size(71, 22);
             this._exportButton.Text = "Export...";
-            this._exportButton.Click += new System.EventHandler(this.ExportButton_Click);
+            this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // toolStripSeparator2
             // 

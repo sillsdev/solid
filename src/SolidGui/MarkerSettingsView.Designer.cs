@@ -37,6 +37,7 @@ namespace SolidGui
             this._writingSystemPicker = new Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView();
             this._mappingPage = new System.Windows.Forms.TabPage();
             this._mappingView = new SolidGui.MappingView();
+            this._validationPage = new System.Windows.Forms.TabPage();
             this._structureTabControl.SuspendLayout();
             this._structurePage.SuspendLayout();
             this._writingSystemPage.SuspendLayout();
@@ -61,6 +62,7 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._structureTabControl.Controls.Add(this._structurePage);
+            this._structureTabControl.Controls.Add(this._validationPage);
             this._structureTabControl.Controls.Add(this._writingSystemPage);
             this._structureTabControl.Controls.Add(this._mappingPage);
             this._structureTabControl.Location = new System.Drawing.Point(3, 3);
@@ -140,6 +142,15 @@ namespace SolidGui
             this._mappingView.Size = new System.Drawing.Size(445, 364);
             this._mappingView.TabIndex = 0;
             // 
+            // _validationPage
+            // 
+            this._validationPage.Location = new System.Drawing.Point(4, 22);
+            this._validationPage.Name = "_validationPage";
+            this._validationPage.Size = new System.Drawing.Size(445, 364);
+            this._validationPage.TabIndex = 3;
+            this._validationPage.Text = "Data Validation";
+            this._validationPage.UseVisualStyleBackColor = true;
+            // 
             // MarkerSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,5 +179,6 @@ namespace SolidGui
         private MappingView _mappingView;
         private Palaso.UI.WindowsForms.WritingSystems.PickerUsingListView _writingSystemPicker;
         private System.Windows.Forms.CheckBox _cbUnicode;
+        private System.Windows.Forms.TabPage _validationPage;
     }
 }

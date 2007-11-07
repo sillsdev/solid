@@ -2,6 +2,7 @@
 <exporter>
 <exportheader>
 <name>LIFT</name>
+<position>10</position>
 <driver>Xsl</driver>
 <filter>LIFT (*.lift)|*.lift</filter>
 </exportheader>

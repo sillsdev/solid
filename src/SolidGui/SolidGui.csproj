@@ -44,8 +44,8 @@
       <HintPath>..\..\lib\PalasoReporting.dll</HintPath>
     </Reference>
     <Reference Include="PalasoUIWindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\PalasoUIWindowsForms.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -187,6 +187,10 @@
       <SubType>Designer</SubType>
       <DependentUpon>TemplateChooser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ValidateView.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ValidateView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -226,6 +230,12 @@
     <Compile Include="TemplateChooser.Designer.cs">
       <DependentUpon>TemplateChooser.cs</DependentUpon>
     </Compile>
+    <Compile Include="ValidateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ValidateView.Designer.cs">
+      <DependentUpon>ValidateView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
@@ -249,6 +259,7 @@
   <ItemGroup>
     <Content Include="Resources\BackwardAll.png" />
     <Content Include="Resources\BackwordOne.png" />
+    <None Include="Resources\cog.png" />
     <Content Include="Resources\FindReplace.png" />
     <None Include="Resources\folder_export.ico" />
     <Content Include="Resources\ForwardOne.png" />

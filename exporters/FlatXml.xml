@@ -2,6 +2,7 @@
 <exporter>
 <exportheader>
 <name>Flat XML</name>
+<position>40</position>
 <driver>FlatXml</driver>
 <filter>Flat XML (*.xml)|*.xml</filter>
 </exportheader>

@@ -13,6 +13,7 @@ namespace SolidGui
     public partial class MainWindowView : Form
     {
         private readonly MainWindowPM _mainWindowPM;
+        private int _filterIndex;
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
@@ -24,6 +25,7 @@ namespace SolidGui
             }
 
             _mainWindowPM = mainWindowPM;
+            _filterIndex = 0;
             _sfmEditorView.BindModel(_mainWindowPM.SfmEditorModel);
             _recordNavigatorView.BindModel(_mainWindowPM.NavigatorModel);
             _filterChooserView.BindModel(_mainWindowPM.FilterChooserModel);
@@ -271,17 +273,19 @@ namespace SolidGui
             return builder.ToString();
         }
 
-        private void ExportButton_Click(object sender, EventArgs e)
+        private void OnExportButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Title = "Export As";
             saveDialog.AddExtension = true;
             saveDialog.Filter = ExportFilterString();
             saveDialog.FileName = Path.GetFileNameWithoutExtension(_mainWindowPM.DictionaryRealFilePath);
+            saveDialog.FilterIndex = _filterIndex;
             if (DialogResult.OK != saveDialog.ShowDialog(this))
             {
                 return;
             }
+            _filterIndex = saveDialog.FilterIndex;
 
             try
             {

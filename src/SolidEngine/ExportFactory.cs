@@ -50,6 +50,17 @@ namespace SolidEngine
                     _exportSettings.Add(header);
                 }
             }
+            // Sort the list based on the Priority
+            _exportSettings.Sort(
+                delegate(ExportHeader lhs, ExportHeader rhs)
+                {
+                    if (lhs.Position < rhs.Position)
+                        return -1;
+                    if (lhs.Position > rhs.Position)
+                        return 1;
+                    return 0;
+                }
+            );
         }
 
         public IExporter CreateFromFileFilter(string fileFilter)

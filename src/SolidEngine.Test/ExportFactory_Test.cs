@@ -28,19 +28,49 @@ namespace SolidTests
         }
 
         [Test]
-        public void ExportSettings_Has2Files()
+        public void ExportSettingsFileCount_4()
         {
-            Assert.AreEqual(3, _f.ExportSettings.Count);
+            Assert.AreEqual(4, _f.ExportSettings.Count);
         }
 
         [Test]
-        public void ExportStructuredXmlSetting_Correct()
+        public void ExportSetting0_LiftCorrect()
         {
-            Assert.Greater(_f.ExportSettings.Count, 0);
+            Assert.Greater(_f.ExportSettings.Count, 3);
+            ExportHeader h = _f.ExportSettings[0];
+            Assert.AreEqual("LIFT", h.Name);
+            Assert.AreEqual("Xsl", h.Driver);
+            Assert.AreEqual("LIFT (*.lift)|*.lift", h.FileNameFilter);
+        }
+
+        [Test]
+        public void ExportSetting1_LiftAltCorrect()
+        {
+            Assert.Greater(_f.ExportSettings.Count, 3);
+            ExportHeader h = _f.ExportSettings[1];
+            Assert.AreEqual("LIFT from Alternate Hierarchy SFM", h.Name);
+            Assert.AreEqual("Xsl", h.Driver);
+            Assert.AreEqual("LIFT from Alternate Hierarchy SFM (*.lift)|*.lift", h.FileNameFilter);
+        }
+
+        [Test]
+        public void ExportSetting2_StructureXMLCorrect()
+        {
+            Assert.Greater(_f.ExportSettings.Count, 3);
             ExportHeader h = _f.ExportSettings[2];
             Assert.AreEqual("Structured XML", h.Name);
             Assert.AreEqual("StructuredXml", h.Driver);
             Assert.AreEqual("Structured XML (*.xml)|*.xml", h.FileNameFilter);
+        }
+
+        [Test]
+        public void ExportSetting3_FlatXMLCorrect()
+        {
+            Assert.Greater(_f.ExportSettings.Count, 3);
+            ExportHeader h = _f.ExportSettings[3];
+            Assert.AreEqual("Flat XML", h.Name);
+            Assert.AreEqual("FlatXml", h.Driver);
+            Assert.AreEqual("Flat XML (*.xml)|*.xml", h.FileNameFilter);
         }
 
         [Test]

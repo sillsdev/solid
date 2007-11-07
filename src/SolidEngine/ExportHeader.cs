@@ -13,6 +13,7 @@ namespace SolidEngine
         private string _fileNameFilter;
         private string _driver;
         private string _filePath;
+        private int _position;
 
         public string FilePath
         {
@@ -36,6 +37,12 @@ namespace SolidEngine
         {
             get { return _driver; }
             set { _driver = value; }
+        }
+
+        public int Position
+        {
+            get { return _position; }
+            set { _position = value; }
         }
 
         public static ExportHeader CreateFromFilePath(string filePath)
@@ -74,6 +81,9 @@ namespace SolidEngine
                         break;
                     case "filter":
                         _fileNameFilter = value;
+                        break;
+                    case "position":
+                        _position = Convert.ToInt32(value);
                         break;
                 }
             }
