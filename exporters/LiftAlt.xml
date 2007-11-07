@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <exporter>
 <exportheader>
-<name>LIFT Alternate Hierarchy</name>
+<name>LIFT from Alternate Hierarchy SFM</name>
 <driver>Xsl</driver>
-<filter>LIFT Alternate Hierarchy (*.lift)|*.lift</filter>
+<filter>LIFT from Alternate Hierarchy SFM (*.lift)|*.lift</filter>
 </exportheader>
 <xsl>
 <stylesheet>Solid2LiftAlt.xslt</stylesheet>
