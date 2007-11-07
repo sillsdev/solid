@@ -9,7 +9,7 @@
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>lu</string>
+        <string>lexicalUnit</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -46,11 +46,11 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -1978,6 +1978,22 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ln</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>a</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>u</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
