@@ -141,6 +141,93 @@ namespace SolidEngine
             return fieldNode;
         }
 
+        private bool InferNode(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope, ref int recurseCount)
+        {
+            // Can we infer a node.
+            bool retval = false;
+            SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
+            if (setting.InferedParent != String.Empty)
+            {
+                XmlNode inferredNode = destination.CreateElement(setting.InferedParent);
+                XmlNode attribute = inferredNode.Attributes.Append(destination.CreateAttribute("inferred"));
+                attribute.Value = "true";
+                // Attempt to insert the inferred node in the tree.
+                // The inferred node needs to find a valid parent
+                if (InsertInTree(inferredNode, destination, report, scope))
+                {
+                    // Now try and add the current node under the inferred node.
+                    if (InsertInTree(source, destination, report, scope))
+                    {
+                        retval = true;
+                    }
+                    else
+                    {
+                        //??? This is bordering on an exception. It indicates that there is an inconsistency with the seutp.
+                        // Error.
+                        report.AddEntry(
+                            SolidReport.EntryType.StructureInsertInInferredFailed,
+                            source,
+                            source,
+                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, source.Name)
+                        );
+                        InsertInTreeAnyway(source, destination, report, scope);
+                    }
+                }
+                else
+                {
+                    if (recurseCount < 10)
+                    {
+                        if (InferNode(inferredNode, destination, report, scope, ref recurseCount))
+                        {
+                            // Now try and add the current node under the inferred node.
+                            if (InsertInTree(source, destination, report, scope))
+                            {
+                                retval = true;
+                            }
+                            else
+                            {
+                                //??? This is bordering on an exception. It indicates that there is an inconsistency with the seutp.
+                                // Error.
+                                report.AddEntry(
+                                    SolidReport.EntryType.StructureInsertInInferredFailed,
+                                    source,
+                                    source,
+                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, source.Name)
+                                );
+                                InsertInTreeAnyway(source, destination, report, scope);
+                            }
+                        }
+                        else
+                        {
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Circular inference rules detected");
+                    }
+                    if (!retval)
+                    {
+                        // Error.
+                        report.AddEntry(
+                            SolidReport.EntryType.StructureParentNotFoundForInferred,
+                            source,
+                            inferredNode,
+                            String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
+                        );
+                        // Error
+                        report.AddEntry(
+                            SolidReport.EntryType.StructureParentNotFound,
+                            source,
+                            source,
+                            string.Format("Marker \\{0} could not be placed in structure", source.Name)
+                        );
+                        InsertInTreeAnyway(source, destination, report, scope);
+                    }
+                }
+            }
+            return retval;
+        }
+
         public XmlNode Process(XmlNode source, SolidReport report)
         {
             XmlDocument destination = new XmlDocument();
@@ -151,54 +238,10 @@ namespace SolidEngine
             int fieldId = 0;
             while (field != null)
             {
-                SolidMarkerSetting setting = _settings.FindMarkerSetting(field.Name);
                 if (!InsertInTree(field, destination, report, scope))
                 {
-                    // Can we infer a node.
-                    if (setting.InferedParent != String.Empty)
-                    {
-                        XmlNode inferredNode = destination.CreateElement(setting.InferedParent);
-                        XmlNode attribute = inferredNode.Attributes.Append(destination.CreateAttribute("inferred"));
-                        attribute.Value = "true";
-                        // Attempt to insert the inferred node in the tree.
-                        // The inferred node needs to find a valid parent
-                        if (InsertInTree(inferredNode, destination, report, scope))
-                        {
-                            //inferredNode.Attributes["inferred"].Value = "true";
-                            // Now try and add the current node under the inferred node.
-                            if (!InsertInTree(field, destination, report, scope))
-                            {
-                                //??? This is bordering on an exception. It indicates that there is an inconsistency with the seutp.
-                                // Error.
-                                report.AddEntry(
-                                    SolidReport.EntryType.StructureInsertInInferredFailed,
-                                    source,
-                                    field,
-                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, field.Name)
-                                );
-                                InsertInTreeAnyway(field, destination, report, scope);
-                            }
-                        }
-                        else
-                        {
-                            // Error.
-                            report.AddEntry(
-                                SolidReport.EntryType.StructureParentNotFoundForInferred,
-                                source,
-                                inferredNode,
-                                String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
-                            );
-                            // Error
-                            report.AddEntry(
-                                SolidReport.EntryType.StructureParentNotFound,
-                                source,
-                                field,
-                                string.Format("Marker \\{0} could not be placed in structure", field.Name)
-                            );
-                            InsertInTreeAnyway(field, destination, report, scope);
-                        }
-                    } 
-                    else
+                    int recurseCount = 0;
+                    if (!InferNode(field, destination, report, scope, ref recurseCount))
                     {
                         // Error
                         report.AddEntry(

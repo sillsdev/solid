@@ -25,10 +25,19 @@ namespace SolidTests
             SolidMarkerSetting bbSetting = new SolidMarkerSetting("bb");
             bbSetting.StructureProperties.Add(new SolidStructureProperty("lx",MultiplicityAdjacency.MultipleApart));
 
+            SolidMarkerSetting rfSetting = new SolidMarkerSetting("rf");
+            rfSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleTogether));
+            rfSetting.InferedParent = "sn";
+            SolidMarkerSetting xeSetting = new SolidMarkerSetting("xe");
+            xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
+            xeSetting.InferedParent = "rf";
+
             _settings.MarkerSettings.Add(lxSetting);
             _settings.MarkerSettings.Add(snSetting);
             _settings.MarkerSettings.Add(geSetting);
             _settings.MarkerSettings.Add(bbSetting);
+            _settings.MarkerSettings.Add(rfSetting);
+            _settings.MarkerSettings.Add(xeSetting);
 
             _p = new ProcessStructure(_settings);
         }
@@ -188,6 +197,26 @@ namespace SolidTests
         {
             string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn></sn><ge>g</ge></entry>";
             string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></entry>";
+
+            Init();
+            SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");
+            Assert.IsNotNull(setting);
+            setting.InferedParent = "";
+
+            XmlDocument entry = new XmlDocument();
+            entry.LoadXml(xmlIn);
+            SolidReport report = new SolidReport();
+            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+            string xmlOut = xmlResult.OuterXml;
+            Assert.AreEqual(xmlEx, xmlOut);
+
+        }
+
+        [Test]
+        public void ProcessStructure_RecursiveInfer_Correct()
+        {
+            string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
 
             Init();
             SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");

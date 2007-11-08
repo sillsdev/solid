@@ -88,7 +88,7 @@ namespace SolidTests
         [Test]
         public void BadUnicode_ReportError()
         {
-            string xmlIn = "<entry><lx>1</lx><gu>\xA9\xA9</gu></entry>";
+            string xmlIn = "<entry><lx>1</lx><gu>\xA9\xA9\xA9</gu></entry>";
             Init();
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);

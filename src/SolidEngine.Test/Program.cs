@@ -10,9 +10,11 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
-            Encoding_Test t = new Encoding_Test();
-            t.Store0x00To0xFFInString_Correct();
+            ProcessStructureTest t = new ProcessStructureTest();
+            t.ProcessStructure_RecursiveInfer_Correct();
 
+            //Encoding_Test t = new Encoding_Test();
+            //t.Store0x00To0xFFInString_Correct();
 
             //SolidReportTest t = new SolidReportTest();
             //t.SolidReport_SaveOpen_Correct();
