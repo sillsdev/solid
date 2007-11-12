@@ -154,7 +154,7 @@ namespace SolidGui
         private Color _errorTextColor = Color.Red;
         private Color _defaultTextColor = Color.Black;
         private int _indent = 130;
-        private Font _defaultFont = new Font("Arial", 13);
+        private Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
 
         private KeyScanner _keyScanner = new KeyScanner();
         //private const string _processingMark = "\x01";
