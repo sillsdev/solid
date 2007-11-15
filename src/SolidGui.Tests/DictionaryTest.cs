@@ -32,7 +32,7 @@ namespace SolidGui.Tests
             _settings.MarkerSettings.Add(snSetting);
             _settings.MarkerSettings.Add(geSetting);
 
-            Reporting.ErrorReporter.OkToInteractWithUser = false;
+            Palaso.Reporting.ErrorReport.OkToInteractWithUser = false;
             _dictionary = new Dictionary();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);

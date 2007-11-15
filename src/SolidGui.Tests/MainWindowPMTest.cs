@@ -16,7 +16,7 @@ namespace SolidGui.Tests
         [SetUp]
         public void Setup()
         {
-            Reporting.ErrorReporter.OkToInteractWithUser = false;
+            Palaso.Reporting.ErrorReport.OkToInteractWithUser = false;
             _mainWindowPM = new MainWindowPM();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
@@ -69,7 +69,7 @@ namespace SolidGui.Tests
             _mainWindowPM.OpenDictionary(DictionaryPath, null);
         }
 
-        [Test, Ignore("Needs redoing in Dictionary"), ExpectedException(typeof(Reporting.ErrorReporter.NonFatalMessageSentToUserException))]
+        [Test, Ignore("Needs redoing in Dictionary"), ExpectedException(typeof(Palaso.Reporting.ErrorReport.NonFatalMessageSentToUserException))]
         public void SaveDictionaryFailsWhenDictionaryEditedOutsideOfSolid()
         {
             //passes when ran individually

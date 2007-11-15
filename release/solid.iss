@@ -3,7 +3,7 @@ EnableISX=true
 
 [Setup]
 AppName=Solid
-AppVerName=Solid 0.8.2.0
+AppVerName=Solid 0.8.3.0
 MinVersion=4.1,4.0
 DefaultDirName={pf}\Solid
 DefaultGroupName=Solid
@@ -12,7 +12,7 @@ Compression=lzma
 SolidCompression=true
 OutputBaseFilename=SolidSetup
 AppCopyright=2007 SIL International and Payap University
-VersionInfoVersion=0.8.2.0
+VersionInfoVersion=0.8.3.0
 VersionInfoCompany=palaso.org Payap Language Software Group
 VersionInfoDescription=Solid MDF Lexicon Checker
 DisableDirPage=true
@@ -44,7 +44,6 @@ Source: ..\output\debug\KeymanLink.dll; DestDir: {app}; Flags: replacesameversio
 Source: ..\output\debug\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\debug\PalasoReporting.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\debug\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\Reporting.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
