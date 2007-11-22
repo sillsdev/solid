@@ -61,14 +61,6 @@
     <Compile Include="XmlHelper.cs" />
     <Compile Include="XmlReaderDecorator.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="LiftExport\dict-s.xml" />
-    <Content Include="LiftExport\lift.xsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LiftExport\dict-s.lift" />
-    <None Include="LiftExport\lift.rng" />
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
