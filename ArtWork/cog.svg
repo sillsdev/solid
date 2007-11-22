@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32"
+   height="32"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   version="1.0"
+   inkscape:export-filename="c:\src\sil\solid\trunk\ArtWork\cog.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   sodipodi:docbase="C:\src\sil\solid\trunk\ArtWork"
+   sodipodi:docname="cog.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#0000ff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8"
+     inkscape:cx="22.015199"
+     inkscape:cy="0.102708"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer2"
+     width="32px"
+     height="32px"
+     showborder="true"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="874"
+     inkscape:window-x="1020"
+     inkscape:window-y="-4" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="back"
+     style="opacity:1;display:inline">
+    <rect
+       style="fill:#2632a6;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3136"
+       width="56.375"
+       height="49.375"
+       x="-9"
+       y="-5.25" />
+  </g>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path2160"
+       sodipodi:sides="12"
+       sodipodi:cx="12.125"
+       sodipodi:cy="8.875"
+       sodipodi:r1="9.4729261"
+       sodipodi:r2="12.630568"
+       sodipodi:arg1="0.89760098"
+       sodipodi:arg2="1.1594004"
+       inkscape:flatsided="false"
+       inkscape:rounded="0.65"
+       inkscape:randomized="0"
+       d="M 18.03125,16.28125 C 15.867729,18.00659 19.712179,19.345128 17.175827,20.451717 C 14.639476,21.558307 16.273171,17.829698 13.536838,18.242126 C 10.800504,18.654553 13.460626,21.735986 10.710786,21.426145 C 7.9609467,21.116304 11.240072,18.704082 8.6641243,17.693088 C 6.0881759,16.682093 6.8511929,20.680753 4.6246824,19.037503 C 2.3981722,17.394253 6.4440892,16.944771 4.7187499,14.78125 C 2.9934104,12.617729 1.6548724,16.462179 0.5482828,13.925827 C -0.55830667,11.389476 3.1703015,13.023171 2.7578743,10.286838 C 2.345447,7.5505035 -0.73598589,10.210626 -0.42614479,7.4607861 C -0.11630373,4.7109467 2.295918,7.9900724 3.3069124,5.4141243 C 4.3179069,2.8381759 0.31924661,3.6011929 1.9624967,1.3746824 C 3.6057467,-0.85182784 4.0552291,3.1940892 6.21875,1.4687499 C 8.3822711,-0.25658957 4.5378212,-1.5951276 7.0741728,-2.7017172 C 9.6105241,-3.8083067 7.9768288,-0.079698493 10.713162,-0.49212573 C 13.449496,-0.90455301 10.789374,-3.9859859 13.539214,-3.6761448 C 16.289053,-3.3663037 13.009928,-0.95408199 15.585876,0.056912389 C 18.161824,1.0679069 17.398807,-2.9307534 19.625318,-1.2875033 C 21.851828,0.35574667 17.805911,0.80522909 19.53125,2.96875 C 21.25659,5.1322711 22.595128,1.2878212 23.701717,3.8241728 C 24.808307,6.3605241 21.079698,4.7268288 21.492126,7.4631625 C 21.904553,10.199496 24.985986,7.5393742 24.676145,10.289214 C 24.366304,13.039053 21.954082,9.7599276 20.943088,12.335876 C 19.932093,14.911824 23.930753,14.148807 22.287503,16.375318 C 20.644253,18.601828 20.194771,14.555911 18.03125,16.28125 z "
+       transform="translate(4.125,7.125)"
+       inkscape:export-filename="c:\src\sil\solid\trunk\ArtWork\path2160.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+</svg>
