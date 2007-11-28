@@ -44,6 +44,7 @@
     <Compile Include="Encoding_Test.cs" />
     <Compile Include="EngineEnvironment_Test.cs" />
     <Compile Include="ExportFactory_Test.cs" />
+    <Compile Include="ExportLift_Test.cs" />
     <Compile Include="ExportXsl_Test.cs" />
     <Compile Include="ExportStructuredXml_Test.cs" />
     <Compile Include="ProcessEncoding_Test.cs" />
