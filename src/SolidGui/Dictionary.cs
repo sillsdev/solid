@@ -179,11 +179,12 @@ namespace SolidGui
             
             using (XmlReader xr = new SfmXmlReader(_filePath))
             {
+                XmlDocument xmldoc = new XmlDocument();
                 while (xr.ReadToFollowing("entry"))
                 {
                     XmlReader entryReader = xr.ReadSubtree();
                     // Load the current record from xr into an XmlDocument
-                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.RemoveAll();
                     xmldoc.Load(entryReader);
                     SolidReport recordReport = new SolidReport();
                     XmlNode xmlResult = xmldoc.DocumentElement;
