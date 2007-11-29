@@ -25,7 +25,7 @@
       <InferedParent />
       <Mappings>
         <string>allo</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -77,7 +77,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string xsi:nil="true" />
+        <string>reversal</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -125,7 +125,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string xsi:nil="true" />
+        <string>reversal</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -285,7 +285,7 @@
       <InferedParent />
       <Mappings>
         <string>com</string>
-        <string xsi:nil="true" />
+        <string>note</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -309,7 +309,7 @@
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dtm</string>
+        <string>dateModified</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -341,7 +341,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string xsi:nil="true" />
+        <string>reversal</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -438,7 +438,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string xsi:nil="true" />
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -490,7 +490,7 @@
       <InferedParent />
       <Mappings>
         <string>hom</string>
-        <string xsi:nil="true" />
+        <string>homonym</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -506,7 +506,7 @@
       <InferedParent />
       <Mappings>
         <string>cit</string>
-        <string xsi:nil="true" />
+        <string>citation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -562,7 +562,7 @@
       <InferedParent />
       <Mappings>
         <string>prnf</string>
-        <string>phonetic</string>
+        <string>pronunciation</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -702,7 +702,7 @@
       <InferedParent />
       <Mappings>
         <string>etc</string>
-        <string>etymology</string>
+        <string>comment</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -718,7 +718,7 @@
       <InferedParent />
       <Mappings>
         <string>etg</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -734,7 +734,7 @@
       <InferedParent />
       <Mappings>
         <string>ets</string>
-        <string xsi:nil="true" />
+        <string>etymologySource</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -909,7 +909,7 @@
       <InferedParent />
       <Mappings>
         <string>ebib</string>
-        <string xsi:nil="true" />
+        <string>noteBibliographic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -941,7 +941,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -957,7 +957,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -973,7 +973,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1032,7 +1032,7 @@
       <InferedParent />
       <Mappings>
         <string>anote</string>
-        <string xsi:nil="true" />
+        <string>noteAnthropology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1048,7 +1048,7 @@
       <InferedParent />
       <Mappings>
         <string>dnote</string>
-        <string xsi:nil="true" />
+        <string>noteDiscourse</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1064,7 +1064,7 @@
       <InferedParent />
       <Mappings>
         <string>grnote</string>
-        <string xsi:nil="true" />
+        <string>noteGrammar</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1080,7 +1080,7 @@
       <InferedParent />
       <Mappings>
         <string>pnote</string>
-        <string xsi:nil="true" />
+        <string>notePhonology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1096,7 +1096,7 @@
       <InferedParent />
       <Mappings>
         <string>com</string>
-        <string xsi:nil="true" />
+        <string>noteQuestion</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1112,7 +1112,7 @@
       <InferedParent />
       <Mappings>
         <string>slnote</string>
-        <string xsi:nil="true" />
+        <string>noteSociolinguistic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1128,7 +1128,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string xsi:nil="true" />
+        <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1144,7 +1144,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string xsi:nil="true" />
+        <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1160,7 +1160,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string xsi:nil="true" />
+        <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1176,7 +1176,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string xsi:nil="true" />
+        <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1320,7 +1320,7 @@
       <InferedParent />
       <Mappings>
         <string>pos</string>
-        <string xsi:nil="true" />
+        <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1809,7 +1809,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1825,7 +1825,7 @@
       <InferedParent />
       <Mappings>
         <string>sem</string>
-        <string xsi:nil="true" />
+        <string>semanticDomain</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
