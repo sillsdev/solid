@@ -4,12 +4,12 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>comment</string>
+        <string>lexicalUnit</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -164,7 +164,7 @@
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -180,7 +180,7 @@
       <Marker>xv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -300,12 +300,12 @@
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -429,12 +429,12 @@
       <Marker>geto</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string xsi:nil="true" />
+        <string>borrowedWord</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -677,7 +677,7 @@
       <Marker>sn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -697,12 +697,12 @@
       <Marker>et</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>etc</string>
-        <string>etymology</string>
+        <string>comment</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -713,12 +713,12 @@
       <Marker>ec</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>etg</string>
-        <string xsi:nil="true" />
+        <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -729,12 +729,12 @@
       <Marker>eg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>ets</string>
-        <string xsi:nil="true" />
+        <string>etymologySource</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1994,6 +1994,17 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>u</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>egn</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

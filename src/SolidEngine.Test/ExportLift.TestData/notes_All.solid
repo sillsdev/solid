@@ -4,12 +4,12 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>comment</string>
+        <string>lexicalUnit</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -164,7 +164,7 @@
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -180,7 +180,7 @@
       <Marker>xv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -276,12 +276,12 @@
       <Marker>ce</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>com</string>
-        <string xsi:nil="true" />
+        <string>note</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -300,12 +300,12 @@
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -657,7 +657,7 @@
       <Marker>se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -904,12 +904,12 @@
       <Marker>an</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>ebib</string>
-        <string xsi:nil="true" />
+        <string>noteBibliographic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -952,12 +952,12 @@
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1027,12 +1027,12 @@
       <Marker>lt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>anote</string>
-        <string xsi:nil="true" />
+        <string>noteAnthropology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1043,12 +1043,12 @@
       <Marker>na</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>dnote</string>
-        <string xsi:nil="true" />
+        <string>noteDiscourse</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1059,12 +1059,12 @@
       <Marker>nd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>grnote</string>
-        <string xsi:nil="true" />
+        <string>noteGrammar</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1075,12 +1075,12 @@
       <Marker>ng</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>pnote</string>
-        <string xsi:nil="true" />
+        <string>notePhonology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1091,12 +1091,12 @@
       <Marker>np</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>com</string>
-        <string xsi:nil="true" />
+        <string>noteQuestion</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1107,12 +1107,12 @@
       <Marker>nq</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>slnote</string>
-        <string xsi:nil="true" />
+        <string>noteSociolinguistic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1123,12 +1123,12 @@
       <Marker>ns</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string xsi:nil="true" />
+        <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>

@@ -4,12 +4,12 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>comment</string>
+        <string>lexicalUnit</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -52,7 +52,7 @@
       <Marker>ps</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -68,12 +68,12 @@
       <Marker>ge</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string xsi:nil="true" />
+        <string>reversal</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -164,7 +164,7 @@
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -180,7 +180,7 @@
       <Marker>xv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -300,12 +300,12 @@
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>

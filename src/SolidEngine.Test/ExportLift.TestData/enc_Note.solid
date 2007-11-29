@@ -4,12 +4,12 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string>comment</string>
+        <string>lexicalUnit</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -164,7 +164,7 @@
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tha</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -180,7 +180,7 @@
       <Marker>xv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -300,12 +300,12 @@
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>eng</WritingSystem>
+      <WritingSystem />
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -657,7 +657,7 @@
       <Marker>se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -952,12 +952,12 @@
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string xsi:nil="true" />
+        <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1994,6 +1994,17 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>u</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>enc</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
