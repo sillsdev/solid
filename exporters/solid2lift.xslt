@@ -8,7 +8,13 @@
   
   <xsl:template match="/">
     <lift version="0.10">
-      <xsl:apply-templates select="//entry"/>
+    	<header>
+    	    <fields>
+    	        <field tag="custom"><form lang="en"><text>For storing markers that are otherwise not defined</text></form></field>
+    	    </fields>
+    	</header>
+    
+    	<xsl:apply-templates select="//entry"/>
     </lift>
   </xsl:template>
   
@@ -40,6 +46,7 @@
 		<!-- etymology is *only* in sense according to Lift 10.0 but many mdf sources have it at the entry level. -->
 		<xsl:apply-templates select="descendant::*[@lift='etymology']"/>
 		<xsl:apply-templates select="descendant::*[@lift='borrowedWord']"/>
+		<xsl:apply-templates select="descendant::*[@lift='custom']"/>
 	</entry>
   </xsl:template>
   
@@ -103,6 +110,7 @@
 		<xsl:apply-templates select="descendant::*[@lift='reversal']"/>
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomain']"/>
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomainID']"/>
+		<xsl:apply-templates select="descendant::*[@lift='custom']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteBibliographic']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteEncyclopedic']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteAnthropology']"/>
@@ -291,6 +299,26 @@
     </xsl:if>
   </xsl:template>
   
+  <xsl:template match="*[@lift='custom']">
+    <xsl:if test="not(data = '')">
+      <field type="custom">
+      	<trait name="marker">
+          <xsl:attribute name="value">
+            <xsl:value-of select="name(.)"/>
+          </xsl:attribute>
+        </trait>
+        <form>
+          <xsl:attribute name="lang">
+            <xsl:value-of select="@writingsystem"/>
+          </xsl:attribute>
+          <text>
+            <xsl:value-of select="data"/>
+          </text>
+        </form>
+      </field>
+    </xsl:if>
+  </xsl:template>
+
   <xsl:template match="*[@lift='note']">
     <xsl:if test="not(data = '')">
       <note>
