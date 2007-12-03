@@ -199,7 +199,7 @@ namespace SolidGui
             this._editMarkerProperties.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._editMarkerProperties.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this._editMarkerProperties.UseVisualStyleBackColor = true;
-            this._editMarkerProperties.Click += new System.EventHandler(this._editMarkerProperties_Click);
+            this._editMarkerProperties.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
             // 
             // label2
             // 

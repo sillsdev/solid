@@ -318,7 +318,7 @@ namespace SolidGui
             }
         }
 
-        private void _editMarkerProperties_Click(object sender, EventArgs e)
+        private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
             _markerDetails.OpenSettingsDialog(null);
         }
