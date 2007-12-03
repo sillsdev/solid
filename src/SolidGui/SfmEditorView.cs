@@ -265,9 +265,9 @@ namespace SolidGui
             // Note: This uses a non visible control to render in, and then copies the RTF to the visible control.
             // This prevents undesirable visual effects caused by moving the selection point in the visible control.
             _contentsBox.TextChanged -= _contentsBox_TextChanged;
-            _contentsBoxDB.LanguageOption = RichTextBoxLanguageOptions.DualFont;
 
             _markerTip.ClearLineMessages();
+            _contentsBoxDB.Clear();
             _contentsBoxDB.SelectAll();
             _contentsBoxDB.SelectionTabs = new int[] { _indent };
 
