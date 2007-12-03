@@ -76,9 +76,20 @@ namespace SolidGui
             UpdateDisplay();
         }
 
-        private void _openButton_Click(object sender, EventArgs e)
+        private void OnOpenClick(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
+            if (NeedsSave())
+            {
+                DialogResult result = MessageBox.Show(this, "Changes may have been made to your current work. Before opening a new file would you like to save your work?", "Solid", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else if (result == DialogResult.Yes)
+                {
+                    OnSaveClick(sender, e);
+                }
+            }
             ChooseProject();
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
@@ -86,7 +97,6 @@ namespace SolidGui
             _sfmEditorView.Enabled = true;
             _markerDetails.SelectMarker("lx");
             _mainWindowPM.NavigatorModel.StartupOrReset();
-            Cursor = Cursors.Default;
             _sfmEditorView.Focus();
         }
 
@@ -137,9 +147,15 @@ namespace SolidGui
                     return; //they cancelled
                 }
             }
+            Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
             Text = "SOLID " + dlg.FileName;
-            Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.Default;
+        }
+
+        public bool NeedsSave()
+        {
+            return _saveButton.Enabled;
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -254,7 +270,7 @@ namespace SolidGui
             }
             if (e.Control == true && e.KeyCode == Keys.O)
             {
-                _openButton_Click(this, new EventArgs());
+                OnOpenClick(this, new EventArgs());
             }
         }
 

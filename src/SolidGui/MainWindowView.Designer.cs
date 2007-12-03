@@ -84,7 +84,7 @@ namespace SolidGui
             this._openButton.Name = "_openButton";
             this._openButton.Size = new System.Drawing.Size(104, 22);
             this._openButton.Text = "Open Lexicon...";
-            this._openButton.Click += new System.EventHandler(this._openButton_Click);
+            this._openButton.Click += new System.EventHandler(this.OnOpenClick);
             // 
             // _saveButton
             // 
