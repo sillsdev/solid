@@ -317,5 +317,10 @@ namespace SolidGui
                 MessageBox.Show(this, message, "Solid Export Error");
             }
         }
+
+        private void _editMarkerProperties_Click(object sender, EventArgs e)
+        {
+            _markerDetails.OpenSettingsDialog(null);
+        }
     }
 }

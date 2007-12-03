@@ -226,7 +226,7 @@ namespace SolidGui
             ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
         }
 
-        private void OpenSettingsDialog(string area)
+        public void OpenSettingsDialog(string area)
         {
             if(_listView.SelectedItems.Count == 0)
             {

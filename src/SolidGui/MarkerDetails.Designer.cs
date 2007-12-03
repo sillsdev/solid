@@ -28,7 +28,6 @@ namespace SolidGui
         /// </summary>
         private void InitializeComponent()
         {
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this._listView = new EXControls.EXListView();
             this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -37,18 +36,6 @@ namespace SolidGui
             this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(341, 169);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(75, 13);
-            this.linkLabel1.TabIndex = 2;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "&Edit Settings...";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnEditSettingsClick);
             // 
             // _listView
             // 
@@ -64,11 +51,11 @@ namespace SolidGui
             this.columnHeader6});
             this._listView.ControlPadding = 4;
             this._listView.FullRowSelect = true;
-            this._listView.Location = new System.Drawing.Point(3, 3);
+            this._listView.Location = new System.Drawing.Point(0, 0);
             this._listView.MultiSelect = false;
             this._listView.Name = "_listView";
             this._listView.OwnerDraw = true;
-            this._listView.Size = new System.Drawing.Size(421, 162);
+            this._listView.Size = new System.Drawing.Size(421, 213);
             this._listView.TabIndex = 0;
             this._listView.UseCompatibleStateImageBehavior = false;
             this._listView.View = System.Windows.Forms.View.Details;
@@ -105,12 +92,10 @@ namespace SolidGui
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this._listView);
             this.Name = "MarkerDetails";
-            this.Size = new System.Drawing.Size(421, 188);
+            this.Size = new System.Drawing.Size(421, 213);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -123,6 +108,5 @@ namespace SolidGui
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
