@@ -245,11 +245,11 @@ namespace SolidGui
         public void UpdateModel()
         {
             //int currentIndex = _contentsBox.SelectionStart;
-            if (_currentRecord != null && _isDirty /*&& _currentRecord.ToStructuredString() != _contentsBox.Text*/)
+            if (_currentRecord != null && _isDirty && _contentsBox.Text.Length > 0)
             {
                 _model.UpdateCurrentRecord(_currentRecord, _contentsBox.Text);
-                _isDirty = false;
             }
+            _isDirty = false;
             //_contentsBox.SelectionStart = currentIndex;
         }
 
@@ -359,6 +359,8 @@ namespace SolidGui
 */
         public void OnSolidSettingsChange()
         {
+            /* See http://projects.mseag.org/solid/ticket/139
+             */
             _isDirty = true;
             UpdateModel();
             UpdateView();
