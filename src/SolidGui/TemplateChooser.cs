@@ -7,18 +7,23 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
+using SolidEngine;
+
 namespace SolidGui
 {
     public partial class TemplateChooser : Form
     {
         private List<string> _templatePaths;
         private string _pathToChosenTemplate="";
-        private bool _wouldBeReplacingExistingSettings=false;
+        private bool _wouldBeReplacingExistingSettings = false;
 
-        public TemplateChooser()
+        private SolidSettings _solidSettings;
+
+        public TemplateChooser(SolidSettings solidSettings)
         {
             InitializeComponent();
             _instructionsLabelForReplacement.Location = _instructionsLabel.Location;
+            _solidSettings = solidSettings;
         }
 
 
@@ -105,13 +110,13 @@ namespace SolidGui
             this.Close();
         }
 
-        private void _cancelButton_Click(object sender, EventArgs e)
+        private void OnCancelButtonClick(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void _templateChooser_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             if (_templateChooser.SelectedItems.Count == 1)
             {
@@ -119,5 +124,27 @@ namespace SolidGui
             }
             UpdateDisplay();
         }
+
+        private void OnMouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void OnSaveCurrentSettingsLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.DefaultExt = ".solid";
+            dlg.AddExtension = true;
+            dlg.Filter = "Solid Settings File (*.solid)|*.solid";
+            dlg.OverwritePrompt = true;
+            dlg.Title = "Save Solid Settings File";
+            DialogResult result = dlg.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _solidSettings.SaveAs(dlg.FileName);
+            }
+        }
+
     }
 }

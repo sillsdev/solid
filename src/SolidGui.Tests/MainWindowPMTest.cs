@@ -80,7 +80,7 @@ namespace SolidGui.Tests
 
             System.Threading.Thread.Sleep(2000);
             
-            Assert.IsFalse(_mainWindowPM.SaveDictionary());
+            Assert.IsFalse(_mainWindowPM.DictionarySave());
         }
 
         [Test, Ignore("Needs redoing in Dictionary")]
@@ -88,14 +88,14 @@ namespace SolidGui.Tests
         {
             MainWindowPM temp = new MainWindowPM();
             OpenDictionaryWithPreExistingSettings();
-            Assert.IsTrue(_mainWindowPM.SaveDictionary());
+            Assert.IsTrue(_mainWindowPM.DictionarySave());
         }
 
         [Test, Ignore("Needs redoing in Dictionary")]
         public void SaveDictionaryWritesWhenThePathDoesNotExist()
         {
             OpenDictionaryWithPreExistingSettings();
-            Assert.IsTrue(_mainWindowPM.SaveDictionary());
+            Assert.IsTrue(_mainWindowPM.DictionarySave());
         }
 
         [Test]

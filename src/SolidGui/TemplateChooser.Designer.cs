@@ -52,7 +52,7 @@ namespace SolidGui
             this._cancelButton.TabIndex = 2;
             this._cancelButton.Text = "&Cancel";
             this._cancelButton.UseVisualStyleBackColor = true;
-            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
+            this._cancelButton.Click += new System.EventHandler(this.OnCancelButtonClick);
             // 
             // _okButton
             // 
@@ -80,7 +80,8 @@ namespace SolidGui
             this._templateChooser.TabIndex = 0;
             this._templateChooser.UseCompatibleStateImageBehavior = false;
             this._templateChooser.View = System.Windows.Forms.View.Details;
-            this._templateChooser.SelectedIndexChanged += new System.EventHandler(this._templateChooser_SelectedIndexChanged);
+            this._templateChooser.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnMouseDoubleClick);
+            this._templateChooser.SelectedIndexChanged += new System.EventHandler(this.OnSelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -91,13 +92,13 @@ namespace SolidGui
             // 
             this._saveCurrentFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._saveCurrentFirst.AutoSize = true;
-            this._saveCurrentFirst.Enabled = false;
             this._saveCurrentFirst.Location = new System.Drawing.Point(61, 294);
             this._saveCurrentFirst.Name = "_saveCurrentFirst";
             this._saveCurrentFirst.Size = new System.Drawing.Size(28, 13);
             this._saveCurrentFirst.TabIndex = 3;
             this._saveCurrentFirst.TabStop = true;
             this._saveCurrentFirst.Text = "here";
+            this._saveCurrentFirst.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnSaveCurrentSettingsLinkClicked);
             // 
             // _labelSaveFirst1
             // 
@@ -115,9 +116,10 @@ namespace SolidGui
             this._labelSaveFirst2.AutoSize = true;
             this._labelSaveFirst2.Location = new System.Drawing.Point(89, 294);
             this._labelSaveFirst2.Name = "_labelSaveFirst2";
-            this._labelSaveFirst2.Size = new System.Drawing.Size(330, 13);
+            this._labelSaveFirst2.Size = new System.Drawing.Size(412, 13);
             this._labelSaveFirst2.TabIndex = 3;
-            this._labelSaveFirst2.Text = "to preserve the current settings  under a new name before switching.";
+            this._labelSaveFirst2.Text = "to preserve the current Solid settings  under a new name before using a new templ" +
+                "ate.";
             // 
             // _instructionsLabelForReplacement
             // 

@@ -168,7 +168,6 @@ namespace SolidGui
             get { return _realDictionaryPath; }
         }
 
-
         private SolidSettings CreateSolidSettings(string templatePath)
         {
             if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
@@ -237,7 +236,12 @@ namespace SolidGui
             }
         }
 
-        public bool SaveDictionary()
+        public void SolidSettingsSaveAs(string filePath)
+        {
+            _solidSettings.SaveAs(filePath);
+        }
+
+        public bool DictionarySave()
         {
             _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             _workingDictionary.SaveAs(_realDictionaryPath);
@@ -258,7 +262,7 @@ namespace SolidGui
                     paths.Add(path);
                 }
 
-                foreach (string path in Directory.GetFiles(WorkingDictionary.GetDirectoryPath(), "*.solid"))
+                foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
                 {
                     if (_solidSettings != null && path != _solidSettings.FilePath)
                     {

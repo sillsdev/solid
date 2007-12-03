@@ -200,7 +200,7 @@ namespace SolidGui
         private void OnSaveClick(object sender, EventArgs e)
         {
             _sfmEditorView.UpdateModel();
-            _mainWindowPM.SaveDictionary();
+            _mainWindowPM.DictionarySave();
             _saveButton.Enabled = false;
         }
 
@@ -227,7 +227,7 @@ namespace SolidGui
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
         {
-            string path =RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
+            string path = RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
             if(!String.IsNullOrEmpty(path))
             {
                 _mainWindowPM.UseSolidSettingsTemplate(path);
@@ -236,15 +236,15 @@ namespace SolidGui
 
         private string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)
         {
-            TemplateChooser chooser = new TemplateChooser();
+            TemplateChooser chooser = new TemplateChooser(_mainWindowPM.SolidSettings);
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
             chooser.WouldBeReplacingExistingSettings = wouldBeReplacingExistingSettings;
             chooser.ShowDialog();
-           if (chooser.DialogResult == DialogResult.OK && chooser.PathToChosenTemplate != _mainWindowPM.PathToCurrentSolidSettingsFile)
-           {
+            if (chooser.DialogResult == DialogResult.OK && chooser.PathToChosenTemplate != _mainWindowPM.PathToCurrentSolidSettingsFile)
+            {
                return chooser.PathToChosenTemplate;
-           }
+            }
             return null;
         }
 
