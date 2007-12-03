@@ -164,6 +164,7 @@ namespace SolidGui
         private int _markerTipDisplayDelay = 10;
 
         private bool _isDirty = false;
+        private System.Windows.Forms.RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
 
         public event EventHandler RecordTextChanged;
         
@@ -177,6 +178,8 @@ namespace SolidGui
         {
             _currentRecord = null;
             InitializeComponent();
+            _contentsBoxDB = new RichTextBox();
+            _contentsBoxDB.Visible = false;
             _contentsBox.TextChanged -= _contentsBox_TextChanged;
             _contentsBox.SelectionIndent = _leftMarigin;
             _markerTip = new MarkerTip(_contentsBox, components);
@@ -259,11 +262,14 @@ namespace SolidGui
 
         public void DisplayEachFieldInCurrentRecord()
         {
+            // Note: This uses a non visible control to render in, and then copies the RTF to the visible control.
+            // This prevents undesirable visual effects caused by moving the selection point in the visible control.
             _contentsBox.TextChanged -= _contentsBox_TextChanged;
+            _contentsBoxDB.LanguageOption = RichTextBoxLanguageOptions.DualFont;
 
             _markerTip.ClearLineMessages();
-            _contentsBox.SelectAll();
-            _contentsBox.SelectionTabs = new int[] { _indent };
+            _contentsBoxDB.SelectAll();
+            _contentsBoxDB.SelectionTabs = new int[] { _indent };
 
             int currentPosition = 0;
             bool foundProcessingMark = false;
@@ -273,7 +279,7 @@ namespace SolidGui
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
-                //_contentsBox.Font = _model.DisplayFont(field.Marker);
+                //_contentsBoxDB.Font = _model.DisplayFont(field.Marker);
 /*
                 if (!foundProcessingMark)
                 {
@@ -286,38 +292,41 @@ namespace SolidGui
                     currentPosition += fieldText.Length + 1;
                 }
 */
-                _contentsBox.SelectionColor = _defaultTextColor;
+                _contentsBoxDB.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
                     _markerTip.AddLineMessage(lineNumber, "Inferred");
-                    _contentsBox.SelectionColor = _inferredTextColor;
+                    _contentsBoxDB.SelectionColor = _inferredTextColor;
                 }
                 else if (field.ErrorState > 0)
                 {
                     _markerTip.AddLineMessage(lineNumber, GetErrorForField(_currentRecord.Report, field));
-                    _contentsBox.SelectionColor = _errorTextColor;
+                    _contentsBoxDB.SelectionColor = _errorTextColor;
                 };
 
                 // 1) Indentation
-                _contentsBox.AppendText(indentation);
+                _contentsBoxDB.AppendText(indentation);
 
                 // 2) Marker
-                _contentsBox.SelectionFont = _defaultFont;
+                _contentsBoxDB.SelectionFont = _defaultFont;
                 string marker = field.Marker.Trim(new char[] { '_' });
-                _contentsBox.AppendText(markerPrefix + marker + "\t");
+                _contentsBoxDB.AppendText(markerPrefix + marker + "\t");
 
                 // 3) Value
-                _contentsBox.SelectionColor = _defaultTextColor;
-                _contentsBox.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
+                _contentsBoxDB.SelectionColor = _defaultTextColor;
+                _contentsBoxDB.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
                 string displayValue = _model.ValueToUnicode(field.Marker, field.Value);
-                _contentsBox.AppendText(displayValue + "\n");
+                _contentsBoxDB.AppendText(displayValue + "\n");
 
                 lineNumber++;
             }
 
-            _contentsBox.SelectionFont = _defaultFont;
-            _contentsBox.SelectionColor = _defaultTextColor;
-            _contentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
+            _contentsBoxDB.SelectionFont = _defaultFont;
+            _contentsBoxDB.SelectionColor = _defaultTextColor;
+            _contentsBoxDB.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
+
+            // Copy the buffer to the real control.
+            _contentsBox.Rtf = _contentsBoxDB.Rtf;
 
             _contentsBox.TextChanged += _contentsBox_TextChanged;
         }
