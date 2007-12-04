@@ -217,7 +217,6 @@ namespace SolidGui
             this._markerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerDetails.AutoSize = true;
             this._markerDetails.Location = new System.Drawing.Point(0, 38);
             this._markerDetails.Name = "_markerDetails";
             this._markerDetails.Size = new System.Drawing.Size(435, 228);
@@ -319,7 +318,6 @@ namespace SolidGui
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
