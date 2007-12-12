@@ -434,7 +434,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>variant</string>
+        <string>borrowedWord</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
