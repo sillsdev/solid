@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using SolidEngine;
+using Palaso.Progress;
+using Palaso.UI.WindowsForms.Progress;
 
 namespace SolidGui
 {
+    public struct DictionaryOpenArguments
+    {
+        public SolidSettings solidSettings;
+        public RecordFilterSet filterSet;
+    }
+
     public class Dictionary : RecordManager
     {
         private List<Record> _recordList;
@@ -160,28 +169,32 @@ namespace SolidGui
         }
         */
 
-        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
+        private void OnDoOpenWork(Object sender, DoWorkEventArgs args)
         {
-            Palaso.Reporting.Logger.WriteEvent("Openning {0}",path);
-
-            filterSet.BeginBuild(this);
-
-            _filePath = path;
-            _lastWrittenTo = File.GetLastWriteTime(_filePath);
-
-            _recordList.Clear();
-            _markerFrequencies.Clear();
-            _markerErrors.Clear();
+            ProgressState progressState = (ProgressState)args.Argument;
+            DictionaryOpenArguments openArguments = (DictionaryOpenArguments)progressState.Arguments;
+            openArguments.filterSet.BeginBuild(this);
+            int entryCount = 0;
+            using (XmlReader xt = new SfmXmlReader(_filePath))
+            {
+                while (xt.ReadToFollowing("entry"))
+                {
+                    entryCount++;
+                }
+                progressState.TotalNumberOfSteps = entryCount;
+                progressState.NumberOfStepsCompleted = 1;
+            }
 
             List<IProcess> processes = new List<IProcess>();
-            processes.Add(new ProcessEncoding(solidSettings));
-            processes.Add(new ProcessStructure(solidSettings));
-            
+            processes.Add(new ProcessEncoding(openArguments.solidSettings));
+            processes.Add(new ProcessStructure(openArguments.solidSettings));
+
             using (XmlReader xr = new SfmXmlReader(_filePath))
             {
                 XmlDocument xmldoc = new XmlDocument();
                 while (xr.ReadToFollowing("entry"))
                 {
+                    progressState.NumberOfStepsCompleted += 1;
                     XmlReader entryReader = xr.ReadSubtree();
                     // Load the current record from xr into an XmlDocument
                     xmldoc.RemoveAll();
@@ -194,14 +207,50 @@ namespace SolidGui
                     }
                     //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
                     AddRecord(xmlResult, recordReport);
-                    if (filterSet != null)
+                    if (openArguments.filterSet != null)
                     {
-                        filterSet.AddRecord(Count - 1, recordReport);
+                        openArguments.filterSet.AddRecord(Count - 1, recordReport);
                     }
                     //!!!_recordFilters.AddRecord(report);
                 }
             }
-            filterSet.EndBuild();
+            openArguments.filterSet.EndBuild();
+        }
+
+        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
+        {
+            Palaso.Reporting.Logger.WriteEvent("Openning {0}",path);
+
+
+            _filePath = path;
+            _lastWrittenTo = File.GetLastWriteTime(_filePath);
+
+            _recordList.Clear();
+            _markerFrequencies.Clear();
+            _markerErrors.Clear();
+
+            using (ProgressDialog dlg = new ProgressDialog())
+            {
+                dlg.Overview = "Opening file...";
+
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += OnDoOpenWork;
+                dlg.BackgroundWorker = worker;
+                dlg.CanCancel = true;
+
+                DictionaryOpenArguments openArguments = new DictionaryOpenArguments();
+                openArguments.filterSet = filterSet;
+                openArguments.solidSettings = solidSettings;
+
+                dlg.ProgressState.Arguments = openArguments;
+                dlg.ShowDialog();
+                if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
+                {
+                    Palaso.Reporting.ErrorNotificationDialog.ReportException(dlg.ProgressStateResult.ExceptionThatWasEncountered, null, false);
+                    return;
+                }
+            }
+
             if (_currentIndex > _recordList.Count - 1)
             {
                 _currentIndex = 0;

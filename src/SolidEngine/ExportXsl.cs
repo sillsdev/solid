@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
+using Palaso.Progress;
 
 namespace SolidEngine
 {
@@ -15,6 +17,7 @@ namespace SolidEngine
         private string _processMethod;
         private ExportHeader _header;
         private List<string> _files = new List<string>();
+        private ProgressState _progressState = null;
 
         public string XslFilePath
         {
@@ -108,8 +111,14 @@ namespace SolidEngine
             }
         }
 
-        public void Export(string srcFile, string desFile)
+        public void Export(string inputFilePath, string outputFilePath)
         {
+        }
+
+        public void OnDoWork(object sender, DoWorkEventArgs args)
+        {
+            _progressState = (ProgressState)args.Argument;
+            ExportArguments exportArguments = (ExportArguments)_progressState.Arguments;
             // Load the XSL
             XslCompiledTransform transform = new XslCompiledTransform();
             using (XmlReader xslReader = CreateXslReader())
@@ -121,7 +130,7 @@ namespace SolidEngine
             }
 
             // Prepare the output XML
-            XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
+            XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteStartDocument();
 
@@ -134,11 +143,20 @@ namespace SolidEngine
             }
             //TODO Setup the OnXslMessage handler used to feed a progress bar.
             //arguments.XsltMessageEncountered += OnXslMessage;
-            if (_processMethod == "file") 
+            if (_processMethod == "file")
             {
+                arguments.XsltMessageEncountered += OnXsltMessageEncountered;
+                _progressState.TotalNumberOfSteps = (int)(exportArguments.countHint * 1.66);
+                _progressState.NumberOfStepsCompleted = 0;
+                
+                _progressState.StatusLabel = "Preparing...";
                 // Prepare the input XML
                 string tempFilePath = Path.GetTempFileName();
-                ExportToTemp(srcFile, tempFilePath);
+                ExportToTemp(exportArguments.inputFilePath, tempFilePath);
+                _progressState.NumberOfStepsCompleted = (int)(exportArguments.countHint * 0.66);
+                //_progressState.StatusLabel = "Counting...";
+
+                _progressState.StatusLabel = "Exporting...";
                 XmlReader xmlReader = new XmlTextReader(new StreamReader(tempFilePath));
                 transform.Transform(xmlReader, arguments, xmlWriter);
                 xmlReader.Close();
@@ -147,13 +165,13 @@ namespace SolidEngine
             {
                 xmlWriter.WriteStartElement("lift_test");
                 // Loop through the input transforming and writing entry by entry.
-                using (XmlReader xmlReader = new SolidXmlReader(srcFile))
+                using (XmlReader xmlReader = new SolidXmlReader(exportArguments.inputFilePath))
                 {
                     while (xmlReader.ReadToFollowing("entry"))
                     {
                         XmlReader entryReader = xmlReader.ReadSubtree();
                         // There maybe a few holes in the states of the 
-                        // SolidXmlReader maing the load into the XmlDocument necessary.
+                        // SolidXmlReader making the load into the XmlDocument necessary.
                         // If this is fixed the entryReader could be used directly in the transform.
                         XmlDocument xmldoc = new XmlDocument();
                         xmldoc.Load(entryReader);
@@ -172,6 +190,11 @@ namespace SolidEngine
             xmlWriter.WriteEndDocument();
             xmlWriter.Flush();
             xmlWriter.Close();
+        }
+
+        private void OnXsltMessageEncountered(Object sender, XsltMessageEncounteredEventArgs e)
+        {
+            _progressState.NumberOfStepsCompleted += 1;
         }
 
 /*

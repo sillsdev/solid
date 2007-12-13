@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Xml;
 using SolidEngine;
+using Palaso.Progress;
+using Palaso.UI.WindowsForms.Progress;
 
 namespace SolidGui
 {
@@ -262,11 +265,14 @@ namespace SolidGui
                     paths.Add(path);
                 }
 
-                foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
+                if (DictionaryRealFilePath != null)
                 {
-                    if (_solidSettings != null && path != _solidSettings.FilePath)
+                    foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
                     {
-                        paths.Add(path);
+                        if (_solidSettings != null && path != _solidSettings.FilePath)
+                        {
+                            paths.Add(path);
+                        }
                     }
                 }
                 return paths;
@@ -363,13 +369,36 @@ namespace SolidGui
 
         public void Export(int filterIndex, string destinationFilePath)
         {
-            _workingDictionary.SaveAs(_tempDictionaryPath);
-            _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
-            string sourceFilePath = _tempDictionaryPath;
+            using (ProgressDialog dlg = new ProgressDialog())
+            {
+                ExportFactory f = ExportFactory.Singleton();
+                IExporter exporter = f.CreateFromSettings(f.ExportSettings[filterIndex]);
 
-            ExportFactory f = ExportFactory.Singleton();
-            IExporter exporter = f.CreateFromSettings(f.ExportSettings[filterIndex]);
-            exporter.Export(sourceFilePath, destinationFilePath);
+                dlg.Overview = "Please wait...";
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += exporter.OnDoWork;
+                dlg.BackgroundWorker = worker;
+                dlg.CanCancel = true;
+
+                _workingDictionary.SaveAs(_tempDictionaryPath);
+                _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
+                string sourceFilePath = _tempDictionaryPath;
+
+                ExportArguments exportArguments = new ExportArguments();
+                exportArguments.inputFilePath = sourceFilePath;
+                exportArguments.outputFilePath = destinationFilePath;
+                exportArguments.countHint = _workingDictionary.Count;
+
+                dlg.ProgressState.Arguments = exportArguments;
+                dlg.ShowDialog();
+                if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
+                {
+                    Palaso.Reporting.ErrorNotificationDialog.ReportException(dlg.ProgressStateResult.ExceptionThatWasEncountered, null, false);
+                    return;
+                }
+
+                //exporter.Export(sourceFilePath, destinationFilePath);
+            }
         }
     }
 }

@@ -19,6 +19,7 @@
   </xsl:template>
   
   <xsl:template match="entry">
+  	<xsl:message />
     <entry>
       <xsl:if test="descendant::*[@lift='citation'][not(data = '')]">
         <xsl:attribute name="id">

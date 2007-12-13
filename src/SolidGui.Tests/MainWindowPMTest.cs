@@ -44,6 +44,7 @@ namespace SolidGui.Tests
                 return Path.Combine(_projectFolder, "save.db");
             }
         }
+        
         [TearDown]
         public void TearDown()
         {
@@ -143,8 +144,14 @@ namespace SolidGui.Tests
         {
             get
             {
-                return Path.Combine(_mainWindowPM.PathToFactoryTemplatesDirectory, "mdf.solid");
+                return Path.Combine(_mainWindowPM.PathToFactoryTemplatesDirectory, "MDF Unicode.solid");
             }
+        }
+
+        [Test]
+        public void TemplatePathWithEmptyDictionaryFilePath_HasSomeTemplates()
+        {
+            Assert.Greater(_mainWindowPM.TemplatePaths.Count, 0);
         }
 
         [Test]
