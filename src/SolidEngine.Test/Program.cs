@@ -10,11 +10,12 @@ namespace SolidTests
     {
         static void Main(string[] args)
         {
-            ExportLift_Test t = new ExportLift_Test();
-            t.ExportSamples_Correct();
+            //ExportLift_Test t = new ExportLift_Test();
+            //t.ExportSamples_Correct();
 
-            //ProcessStructureTest t = new ProcessStructureTest();
-            //t.ProcessStructure_RecursiveInfer_Correct();
+            ProcessStructureTest t = new ProcessStructureTest();
+            t.Setup();
+            t.MultpleErrorMarkers_AreSiblings();
 
             //Encoding_Test t = new Encoding_Test();
             //t.Store0x00To0xFFInString_Correct();

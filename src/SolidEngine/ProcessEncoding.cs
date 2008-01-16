@@ -14,17 +14,17 @@ namespace SolidEngine
             _settings = settings;
         }
 
-        public XmlNode Process(XmlNode source, SolidReport report)
+        public XmlNode Process(XmlNode xmlEntry, SolidReport report)
         {
             // Iterate through each (flat) node in the src d
-            XmlNode field = source.FirstChild;
-            while (field != null)
+            XmlNode xmlField = xmlEntry.FirstChild;
+            while (xmlField != null)
             {
-                string marker = field.Name;
-                if (field.FirstChild != null)
+                string marker = xmlField.Name;
+                if (xmlField.FirstChild != null)
                 {
-                    SolidMarkerSetting setting = _settings.FindMarkerSetting(field.Name);
-                    string value = field.FirstChild.Value;
+                    SolidMarkerSetting setting = _settings.FindMarkerSetting(xmlField.Name);
+                    string value = xmlField.FirstChild.Value;
                     if (setting.Unicode)
                     {
                         // Confirm that the value is in valid unicode
@@ -38,9 +38,9 @@ namespace SolidEngine
                             {
                                 report.AddEntry(
                                     SolidReport.EntryType.EncodingBadUnicode,
-                                    source,
-                                    field,
-                                    String.Format("Marker \\{0} contains bad unicode data", field.Name)
+                                    xmlEntry,
+                                    xmlField,
+                                    String.Format("Marker \\{0} contains bad unicode data", xmlField.Name)
                                 );
                             }
                         }
@@ -54,18 +54,18 @@ namespace SolidEngine
                             {
                                 report.AddEntry(
                                     SolidReport.EntryType.EncodingUpperAscii,
-                                    source,
-                                    field,
-                                    String.Format("Marker \\{0} may use a hacked font", field.Name)
+                                    xmlEntry,
+                                    xmlField,
+                                    String.Format("Marker \\{0} may use a hacked font", xmlField.Name)
                                 );
                                 break;
                             }
                         }
                     }
                 }
-                field = field.NextSibling;
+                xmlField = xmlField.NextSibling;
             }
-            return source;
+            return xmlEntry;
         }
     }
 }

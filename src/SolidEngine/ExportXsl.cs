@@ -129,11 +129,6 @@ namespace SolidEngine
                 xslReader.Close();
             }
 
-            // Prepare the output XML
-            XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
-            xmlWriter.Formatting = Formatting.Indented;
-            xmlWriter.WriteStartDocument();
-
             // Setup the parameters to be passed into the XSL
             XsltArgumentList arguments = new XsltArgumentList();
             arguments.AddParam("processmethod", "", _processMethod);
@@ -145,6 +140,11 @@ namespace SolidEngine
             //arguments.XsltMessageEncountered += OnXslMessage;
             if (_processMethod == "file")
             {
+                // Prepare the output XML
+                XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
+                xmlWriter.Formatting = Formatting.Indented;
+                xmlWriter.WriteStartDocument();
+
                 arguments.XsltMessageEncountered += OnXsltMessageEncountered;
                 _progressState.TotalNumberOfSteps = (int)(exportArguments.countHint * 1.66);
                 _progressState.NumberOfStepsCompleted = 0;
@@ -160,9 +160,17 @@ namespace SolidEngine
                 XmlReader xmlReader = new XmlTextReader(new StreamReader(tempFilePath));
                 transform.Transform(xmlReader, arguments, xmlWriter);
                 xmlReader.Close();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                xmlWriter.Close();
             }
             else if (_processMethod == "record")
             {
+                // Prepare the output XML
+                XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
+                xmlWriter.Formatting = Formatting.Indented;
+                xmlWriter.WriteStartDocument();
+
                 xmlWriter.WriteStartElement("lift_test");
                 // Loop through the input transforming and writing entry by entry.
                 using (XmlReader xmlReader = new SolidXmlReader(exportArguments.inputFilePath))
@@ -181,15 +189,38 @@ namespace SolidEngine
 
                 }
                 xmlWriter.WriteEndElement();
+                xmlWriter.WriteEndDocument();
+                xmlWriter.Flush();
+                xmlWriter.Close();
+            }
+            else if (_processMethod == "textFile")
+            {
+                /*
+                // Setup the text writer
+                //TODO
+
+                arguments.XsltMessageEncountered += OnXsltMessageEncountered;
+                _progressState.TotalNumberOfSteps = (int)(exportArguments.countHint * 1.66);
+                _progressState.NumberOfStepsCompleted = 0;
+
+                _progressState.StatusLabel = "Preparing...";
+                // Prepare the input XML
+                string tempFilePath = Path.GetTempFileName();
+                ExportToTemp(exportArguments.inputFilePath, tempFilePath);
+                _progressState.NumberOfStepsCompleted = (int)(exportArguments.countHint * 0.66);
+                //_progressState.StatusLabel = "Counting...";
+
+                _progressState.StatusLabel = "Exporting...";
+                XmlReader xmlReader = new XmlTextReader(new StreamReader(tempFilePath));
+                transform.Transform(xmlReader, arguments, xmlWriter);
+                xmlReader.Close();
+                */
             }
             else
             {
                 throw new Exception(string.Format("XSL unknown process method '{0:s}'", _processMethod));
             }
 
-            xmlWriter.WriteEndDocument();
-            xmlWriter.Flush();
-            xmlWriter.Close();
         }
 
         private void OnXsltMessageEncountered(Object sender, XsltMessageEncounteredEventArgs e)

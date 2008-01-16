@@ -23,16 +23,20 @@ namespace SolidEngine
             
             SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
            
-            int i = 0;
+            int level = 1;
+            int i = scope.Count - level;
             
             XmlHelper xh = new XmlHelper(scope[scope.Count - 1]);
-            SolidReport.Entry e = (report.GetEntryById(Convert.ToInt32(xh.GetAttribute("field"))));
-            
-            int level = (e != null) ? 2 : 1;
-            
-            if (scope.Count >= level)
+            string inferred = xh.GetAttribute("inferred");
+            string field = xh.GetAttribute("field");
+            if (inferred != "true" && field != string.Empty)
             {
-                i = scope.Count - level; //!!! Bit hacky.
+                SolidReport.Entry e = (report.GetEntryById(Convert.ToInt32(field)));
+                level = (e != null) ? 2 : 1;
+                if (scope.Count >= level)
+                {
+                    i = scope.Count - level; //!!! Bit hacky.
+                }
             }
 
             TruncateScope(i, scope);
@@ -141,11 +145,11 @@ namespace SolidEngine
             return fieldNode;
         }
 
-        private bool InferNode(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope, ref int recurseCount)
+        private bool InferNode(XmlNode xmlEntry, XmlNode xmlSourceField, XmlDocument destination, SolidReport report, List<XmlNode> scope, ref int recurseCount)
         {
             // Can we infer a node.
             bool retval = false;
-            SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
+            SolidMarkerSetting setting = _settings.FindMarkerSetting(xmlSourceField.Name);
             if (setting.InferedParent != String.Empty)
             {
                 XmlNode inferredNode = destination.CreateElement(setting.InferedParent);
@@ -156,7 +160,7 @@ namespace SolidEngine
                 if (InsertInTree(inferredNode, destination, report, scope))
                 {
                     // Now try and add the current node under the inferred node.
-                    if (InsertInTree(source, destination, report, scope))
+                    if (InsertInTree(xmlSourceField, destination, report, scope))
                     {
                         retval = true;
                     }
@@ -166,21 +170,21 @@ namespace SolidEngine
                         // Error.
                         report.AddEntry(
                             SolidReport.EntryType.StructureInsertInInferredFailed,
-                            source,
-                            source,
-                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, source.Name)
+                            xmlEntry,
+                            xmlSourceField,
+                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
                         );
-                        InsertInTreeAnyway(source, destination, report, scope);
+                        InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                     }
                 }
                 else
                 {
                     if (recurseCount < 10)
                     {
-                        if (InferNode(inferredNode, destination, report, scope, ref recurseCount))
+                        if (InferNode(xmlEntry, inferredNode, destination, report, scope, ref recurseCount))
                         {
                             // Now try and add the current node under the inferred node.
-                            if (InsertInTree(source, destination, report, scope))
+                            if (InsertInTree(xmlSourceField, destination, report, scope))
                             {
                                 retval = true;
                             }
@@ -190,16 +194,14 @@ namespace SolidEngine
                                 // Error.
                                 report.AddEntry(
                                     SolidReport.EntryType.StructureInsertInInferredFailed,
-                                    source,
-                                    source,
-                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, source.Name)
+                                    xmlEntry,
+                                    xmlSourceField,
+                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
                                 );
-                                InsertInTreeAnyway(source, destination, report, scope);
+                                InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                             }
                         }
-                        else
-                        {
-                        }
+                        // No else required, the InferNode puts the entries in the tree.
                     }
                     else
                     {
@@ -210,52 +212,53 @@ namespace SolidEngine
                         // Error.
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFoundForInferred,
-                            source,
+                            xmlEntry,
                             inferredNode,
                             String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
                         );
                         // Error
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFound,
-                            source,
-                            source,
-                            string.Format("Marker \\{0} could not be placed in structure", source.Name)
+                            xmlEntry,
+                            xmlSourceField,
+                            string.Format("Marker \\{0} could not be placed in structure", xmlSourceField.Name)
                         );
-                        InsertInTreeAnyway(source, destination, report, scope);
+                        InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                     }
                 }
+            }
+            else
+            {
+                // Error
+                report.AddEntry(
+                    SolidReport.EntryType.StructureParentNotFound,
+                    xmlEntry,
+                    xmlSourceField,
+                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", xmlSourceField.Name)
+                );
+                InsertInTreeAnyway(xmlSourceField, destination, report, scope);
             }
             return retval;
         }
 
-        public XmlNode Process(XmlNode source, SolidReport report)
+        public XmlNode Process(XmlNode xmlEntry, SolidReport report)
         {
             XmlDocument destination = new XmlDocument();
             // Iterate through each (flat) node in the src d
             List<XmlNode> scope = new List<XmlNode>();
-            scope.Add(destination.AppendChild(destination.ImportNode(source, false)));
-            XmlNode field = source.FirstChild;
+            scope.Add(destination.AppendChild(destination.ImportNode(xmlEntry, false)));
+            XmlNode xmlField = xmlEntry.FirstChild;
             int fieldId = 0;
-            while (field != null)
+            while (xmlField != null)
             {
-                if (!InsertInTree(field, destination, report, scope))
+                if (!InsertInTree(xmlField, destination, report, scope))
                 {
                     int recurseCount = 0;
-                    if (!InferNode(field, destination, report, scope, ref recurseCount))
-                    {
-                        // Error
-                        report.AddEntry(
-                            SolidReport.EntryType.StructureParentNotFound,
-                            source,
-                            field,
-                            string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", field.Name)
-                        );
-                        InsertInTreeAnyway(field, destination, report, scope);
-                    }
+                    InferNode(xmlEntry, xmlField, destination, report, scope, ref recurseCount);
                 }
 
                 fieldId++;
-                field = field.NextSibling;
+                xmlField = xmlField.NextSibling;
             }
             return destination.DocumentElement;
         }
