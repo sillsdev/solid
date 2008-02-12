@@ -9,10 +9,11 @@ namespace SolidTests
     [TestFixture]
     public class EngineEnvironment_Test
     {
-        [Test]
+        [Ignore]
         public void PathOfBase_Correct()
         {
-            Assert.IsTrue(EngineEnvironment.PathOfBase.EndsWith("trunk"));
+        	// This test is environment specific.
+        	Assert.IsTrue(EngineEnvironment.PathOfBase.EndsWith("trunk"));
         }
     }
 }
