@@ -87,15 +87,6 @@ namespace SolidGui.Tests
             Assert.AreEqual(_projectFolder,_dictionary.GetDirectoryPath());
         }
 
-        [Test, Ignore]
-        public void GetFileNameReturnsNameOfDictionary()
-        {
-            /* Method removed 2007-10-16 CJP
-            _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
-            Assert.AreEqual("Dictionary",_dictionary.GetFileNameNoExtension());
-            */
-        }
-
         [Test]
         public void SaveAsWritesDictionaryToFile()
         {

@@ -13,7 +13,8 @@ namespace SolidTests
         ProcessEncoding _p;
         SolidSettings _settings;
 
-        private void Init()
+        [SetUp]
+        public void Setup()
         {
             _settings = new SolidSettings();
             SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
@@ -32,11 +33,15 @@ namespace SolidTests
             _p = new ProcessEncoding(_settings);
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+        }
+
         [Test]
         public void AsciiDataAsNonUnicode_Correct()
         {
             string xmlIn = "<entry><lx>1</lx><ge>english</ge></entry>";
-            Init();
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
             SolidReport report = new SolidReport();
@@ -49,7 +54,6 @@ namespace SolidTests
         public void AsciiDataAsUnicode_Correct()
         {
             string xmlIn = "<entry><lx>1</lx><gu>english</gu></entry>";
-            Init();
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
             SolidReport report = new SolidReport();
@@ -62,7 +66,6 @@ namespace SolidTests
         public void UpperAsciiDataAsNonUnicode_ReportError()
         {
             string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
-            Init();
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
             SolidReport report = new SolidReport();
@@ -76,7 +79,6 @@ namespace SolidTests
         public void UpperAsciiDataAsUnicode_Correct()
         {
             string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
-            Init();
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
             SolidReport report = new SolidReport();
@@ -88,8 +90,7 @@ namespace SolidTests
         [Test]
         public void BadUnicode_ReportError()
         {
-            string xmlIn = "<entry><lx>1</lx><gu>\xA9\xA9\xA9</gu></entry>";
-            Init();
+            string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
             SolidReport report = new SolidReport();

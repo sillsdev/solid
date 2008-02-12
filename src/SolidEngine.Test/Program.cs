@@ -13,9 +13,9 @@ namespace SolidTests
             //ExportLift_Test t = new ExportLift_Test();
             //t.ExportSamples_Correct();
 
-            ProcessStructureTest t = new ProcessStructureTest();
+            ProcessEncodingTest t = new ProcessEncodingTest();
             t.Setup();
-            t.MultpleErrorMarkers_AreSiblings();
+            t.UpperAsciiDataAsUnicode_Correct();
 
             //Encoding_Test t = new Encoding_Test();
             //t.Store0x00To0xFFInString_Correct();

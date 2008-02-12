@@ -27,14 +27,44 @@ namespace SolidEngine
                     string value = xmlField.FirstChild.Value;
                     if (setting.Unicode)
                     {
-                        // Confirm that the value is in valid unicode
+                        // Confirm that the value is in valid unicode encoded as UTF-8
                         if (value.Length > 0)
                         {
-                            Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-                            byte[] valueAsBytes = byteEncoding.GetBytes(value);
-                            Encoding stringEncoding = Encoding.UTF8;
-                            string valueAsUnicode = stringEncoding.GetString(valueAsBytes);
-                            if (valueAsUnicode.Length == 0)
+                            bool isValid = true;
+                            int remaining = 0;
+                            for (int i = 0; i < value.Length && isValid; ++i)
+                            {
+                                if (remaining > 0) 
+                                {
+                                    isValid = (value[i] & 0xC0) == 0x80;
+                                    --remaining;
+                                }
+                                else 
+                                {
+                                    if ((value[i] & 0xF8) == 0xF0) 
+                                    {
+                                        remaining = 3;
+                                    }
+                                    else if ((value[i] & 0xF0) == 0xE0)
+                                    {
+                                        remaining = 2;
+                                    }
+                                    else if ((value[i] & 0xE0) == 0xC0)
+                                    {
+                                        remaining = 1;
+                                    }
+                                    else if ((value[i] & 0x80) == 0x00)
+                                    {
+                                        remaining = 0;
+                                    }
+                                    else
+                                    {
+                                        isValid = false;
+                                    }
+                                }
+                            }
+
+                            if (!isValid)
                             {
                                 report.AddEntry(
                                     SolidReport.EntryType.EncodingBadUnicode,
