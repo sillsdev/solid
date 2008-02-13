@@ -3,7 +3,7 @@ EnableISX=true
 
 [Setup]
 AppName=Solid
-AppVerName=Solid 0.8.4.3
+AppVerName=Solid ${version}
 MinVersion=4.1,4.0
 DefaultDirName={pf}\Solid
 DefaultGroupName=Solid
@@ -12,7 +12,7 @@ Compression=lzma
 SolidCompression=true
 OutputBaseFilename=SolidSetup
 AppCopyright=2007 SIL International and Payap University
-VersionInfoVersion=0.8.4.3
+VersionInfoVersion=${version}
 VersionInfoCompany=palaso.org Payap Language Software Group
 VersionInfoDescription=Solid MDF Lexicon Checker
 DisableDirPage=true
