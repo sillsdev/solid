@@ -113,6 +113,14 @@ namespace SolidEngine
 
         public void Export(string inputFilePath, string outputFilePath)
         {
+            ExportArguments e = new ExportArguments();
+            e.inputFilePath = inputFilePath;
+            e.outputFilePath = outputFilePath;
+            e.countHint = 10;
+            ProgressState s = new ProgressState();
+            s.Arguments = e;
+            DoWorkEventArgs eventArgument = new DoWorkEventArgs(s);
+            OnDoWork(null, eventArgument);
         }
 
         public void OnDoWork(object sender, DoWorkEventArgs args)

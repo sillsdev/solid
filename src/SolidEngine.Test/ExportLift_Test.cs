@@ -10,6 +10,7 @@ namespace SolidTests
     public class TestFileAsserter : IAsserter
     {
         private readonly string _srcFilePath;
+        private readonly string _desFilePath;
 
         private string _message;
 
@@ -18,9 +19,10 @@ namespace SolidTests
             get { return _message; }
         }
 
-        public TestFileAsserter(string srcFilePath)
+        public TestFileAsserter(string srcFilePath, string desFilePath)
         {
             _srcFilePath = srcFilePath;
+            _desFilePath = desFilePath;
             _message = string.Empty;
         }
 
@@ -28,7 +30,7 @@ namespace SolidTests
         {
             Console.WriteLine("Testing {0:s}", _srcFilePath);
             bool retval = true;
-            TextReader exportFile = new StreamReader(_srcFilePath);
+            TextReader exportFile = new StreamReader(_desFilePath);
             string masterFilePath = Path.ChangeExtension(_srcFilePath, ".tmpl");
             try
             {
@@ -47,7 +49,8 @@ namespace SolidTests
                     }
                     if (line != srcLine)
                     {
-                        _message = string.Format("\n{0:s}\n\tFile compare fail in line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
+                        _message = string.Format(
+                            "\n{0:s}\n\tFile compare fail in line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
                             _srcFilePath, line, srcLine, lineCount
                         );
                         retval = false;
@@ -75,13 +78,19 @@ namespace SolidTests
         public void ExportSamples_Correct()
         {
             ExportFactory factory = ExportFactory.Singleton();
-            string path = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
-            foreach (string srcFile in Directory.GetFiles(path, "*.db"))
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+            string tempPath = Path.GetTempPath() + "SolidTest\\";
+            if (Directory.Exists(tempPath))
+            {
+                Directory.Delete(tempPath, true);
+            }
+            Directory.CreateDirectory(tempPath);
+            foreach (string srcFile in Directory.GetFiles(srcDataPath, "*.db"))
             {
                 IExporter exporter = factory.CreateFromFileFilter("LIFT (*.lift)|*.lift");
-                string desFile = Path.ChangeExtension(srcFile, ".lift");
+                string desFile = String.Format("{0}{1}.lift", tempPath, Path.GetFileNameWithoutExtension(srcFile));
                 exporter.Export(srcFile, desFile);
-                Assert.DoAssert(new TestFileAsserter(desFile));
+                Assert.DoAssert(new TestFileAsserter(srcFile, desFile));
             }
         }
 
