@@ -38,12 +38,12 @@ Name: {userdocs}\Solid Examples
 
 [Files]
 Source: ..\..\..\..\..\Program Files\ISTool\isxdl.dll; Flags: dontcopy
-Source: ..\output\debug\Solid.exe; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\Palaso.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\PalasoReporting.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\debug\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\PalasoReporting.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
