@@ -1,0 +1,5 @@
+connect palaso.org
+user bob@palaso.org bob23
+type binary
+put ../release/Output/SolidSetup.exe htdocs/install/solid/SolidSetup_Test.exe
+quit

@@ -37,7 +37,7 @@ Name: {app}\templates
 Name: {userdocs}\Solid Examples
 
 [Files]
-Source: ..\..\..\..\..\Program Files\ISTool\isxdl.dll; Flags: dontcopy
+Source: c:\Program Files\ISTool\isxdl.dll; Flags: dontcopy
 Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
