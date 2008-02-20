@@ -16,7 +16,7 @@ namespace SolidGui.Tests
         [SetUp]
         public void Setup()
         {
-            Palaso.Reporting.ErrorReport.OkToInteractWithUser = false;
+            Palaso.Reporting.ErrorReport.IsOkToInteractWithUser = false;
             _mainWindowPM = new MainWindowPM();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
