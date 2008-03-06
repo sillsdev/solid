@@ -108,6 +108,7 @@
 		<xsl:apply-templates select="descendant::*[@lift='example']"/>
 		<xsl:apply-templates select="descendant::*[@lift='etymology']"/>
 		<xsl:apply-templates select="descendant::*[@lift='borrowedWord']"/>
+		<xsl:apply-templates select="descendant::*[@lift='illustration']"/>
 		<xsl:apply-templates select="descendant::*[@lift='reversal']"/>
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomain']"/>
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomainID']"/>
@@ -361,6 +362,16 @@
 					<xsl:value-of select="data"/>
 				</xsl:attribute>
 			</etymology>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[@lift='illustration']">
+		<xsl:if test="not(data = '')">
+			<illustration>
+				<xsl:attribute name="href">
+					<xsl:value-of select="data"/>
+				</xsl:attribute>
+			</illustration>
 		</xsl:if>
 	</xsl:template>
 
