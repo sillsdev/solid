@@ -121,6 +121,7 @@
 		<xsl:apply-templates select="descendant::*[@lift='notePhonology']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteQuestion']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteSociolinguistic']"/>
+		<xsl:apply-templates select="descendant::*[@lift='noteSource']"/>
 		<xsl:apply-templates select="descendant::*[@lift='noteRestriction']"/>
 		<xsl:apply-templates select="descendant::*[@lift='note']"/>
 	</sense>
@@ -483,6 +484,21 @@
 	<xsl:template match="*[@lift='noteSociolinguistic']">
 		<xsl:if test="not(data = '')">
 			<note type="sociolinguistic">
+				<form>
+					<xsl:attribute name="lang">
+						<xsl:value-of select="@writingsystem"/>
+					</xsl:attribute>
+					<text>
+						<xsl:value-of select="data"/>
+					</text>
+				</form>
+			</note>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="*[@lift='noteSource']">
+		<xsl:if test="not(data = '')">
+			<note type="source">
 				<form>
 					<xsl:attribute name="lang">
 						<xsl:value-of select="@writingsystem"/>

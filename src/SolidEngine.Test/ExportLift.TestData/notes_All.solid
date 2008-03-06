@@ -1379,12 +1379,12 @@
       <Marker>sg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
         <string>src</string>
-        <string xsi:nil="true" />
+        <string>noteSource</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
