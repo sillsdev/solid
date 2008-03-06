@@ -1192,7 +1192,7 @@
       <InferedParent />
       <Mappings>
         <string>picf</string>
-        <string xsi:nil="true" />
+        <string>illustration</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>

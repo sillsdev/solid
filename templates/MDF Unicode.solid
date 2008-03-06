@@ -434,7 +434,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>variant</string>
+        <string>borrowedWord</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1192,7 +1192,7 @@
       <InferedParent />
       <Mappings>
         <string>picf</string>
-        <string xsi:nil="true" />
+        <string>illustration</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
