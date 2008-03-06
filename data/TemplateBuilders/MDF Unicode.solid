@@ -1036,6 +1036,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1051,6 +1059,14 @@
         <string>noteDiscourse</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1084,6 +1100,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1100,6 +1124,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1115,6 +1147,14 @@
         <string>noteSociolinguistic</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>

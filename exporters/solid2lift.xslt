@@ -36,19 +36,8 @@
           <xsl:apply-templates select="descendant::*[@lift='dateModified']"/>
         </xsl:attribute>
       </xsl:if>
-      <lexical-unit>
-      <xsl:apply-templates select="descendant::*[@lift='lexicalUnit']"/>
-      </lexical-unit>
-		<xsl:apply-templates select="descendant::*[@lift='citation']"/>
-		<xsl:apply-templates select="descendant::*[@lift='pronunciation']"/>
-		<xsl:apply-templates select="descendant::*[@lift='variant']"/>
-		<xsl:apply-templates select="descendant::*[@lift='sense']"/>
-		<xsl:apply-templates select="descendant::*[@lift='confer']"/>
-		<!-- etymology is *only* in sense according to Lift 10.0 but many mdf sources have it at the entry level. -->
-		<xsl:apply-templates select="descendant::*[@lift='etymology']"/>
-		<xsl:apply-templates select="descendant::*[@lift='borrowedWord']"/>
-		<xsl:apply-templates select="descendant::*[@lift='custom']"/>
-	</entry>
+      <xsl:apply-templates select="child::*[@lift='lexicalUnit']"/>
+    </entry>
   </xsl:template>
   
   <xsl:template match="*[@lift='variant']">
@@ -77,6 +66,7 @@
   </xsl:template>
   
   <xsl:template match="*[@lift='lexicalUnit']">
+    <lexical-unit>
     <xsl:if test="not(data = '')">
 	<form>
 	  <xsl:attribute name="lang">
@@ -87,6 +77,17 @@
 	  </text>
 	</form>
     </xsl:if>
+    </lexical-unit>
+	<xsl:apply-templates select="child::*[@lift='citation']"/>
+	<xsl:apply-templates select="child::*[@lift='pronunciation']"/>
+	<xsl:apply-templates select="child::*[@lift='variant']"/>
+	<xsl:apply-templates select="child::*[@lift='sense']"/>
+	<xsl:apply-templates select="child::*[@lift='confer']"/>
+	<!-- etymology is *only* in sense according to Lift 10.0 but many mdf sources have it at the entry level. -->
+	<xsl:apply-templates select="child::*[@lift='etymology']"/>
+	<xsl:apply-templates select="child::*[@lift='borrowedWord']"/>
+	<xsl:apply-templates select="child::*[@lift='custom']"/>
+	<xsl:call-template name="notes" />
   </xsl:template>
   
   <xsl:template match="*[@lift='sense']">
@@ -113,18 +114,22 @@
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomain']"/>
 		<xsl:apply-templates select="descendant::*[@lift='semanticDomainID']"/>
 		<xsl:apply-templates select="descendant::*[@lift='custom']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteBibliographic']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteEncyclopedic']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteAnthropology']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteDiscourse']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteGrammar']"/>
-		<xsl:apply-templates select="descendant::*[@lift='notePhonology']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteQuestion']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteSociolinguistic']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteSource']"/>
-		<xsl:apply-templates select="descendant::*[@lift='noteRestriction']"/>
-		<xsl:apply-templates select="descendant::*[@lift='note']"/>
+		<xsl:call-template name="notes" />
 	</sense>
+  </xsl:template>
+  
+  <xsl:template name="notes">
+	<xsl:apply-templates select="child::*[@lift='noteBibliographic']"/>
+	<xsl:apply-templates select="child::*[@lift='noteEncyclopedic']"/>
+	<xsl:apply-templates select="child::*[@lift='noteAnthropology']"/>
+	<xsl:apply-templates select="child::*[@lift='noteDiscourse']"/>
+	<xsl:apply-templates select="child::*[@lift='noteGrammar']"/>
+	<xsl:apply-templates select="child::*[@lift='notePhonology']"/>
+	<xsl:apply-templates select="child::*[@lift='noteQuestion']"/>
+	<xsl:apply-templates select="child::*[@lift='noteSociolinguistic']"/>
+	<xsl:apply-templates select="child::*[@lift='noteSource']"/>
+	<xsl:apply-templates select="child::*[@lift='noteRestriction']"/>
+	<xsl:apply-templates select="child::*[@lift='note']"/>
   </xsl:template>
   
   <xsl:template match="*[@lift='example']">

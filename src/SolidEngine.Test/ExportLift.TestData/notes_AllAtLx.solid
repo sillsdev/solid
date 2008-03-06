@@ -4,7 +4,7 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>en-Latn</WritingSystem>
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -25,7 +25,7 @@
       <InferedParent />
       <Mappings>
         <string>allo</string>
-        <string>variant</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -38,19 +38,15 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -58,7 +54,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -77,7 +73,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string>reversal</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -106,7 +102,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -125,7 +121,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string>reversal</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -280,7 +276,7 @@
       <Marker>ce</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -309,7 +305,7 @@
       <InferedParent />
       <Mappings>
         <string>mod</string>
-        <string>dateModified</string>
+        <string>dtm</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -322,7 +318,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -341,7 +337,7 @@
       <InferedParent />
       <Mappings>
         <string>rev</string>
-        <string>reversal</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -438,7 +434,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>variant</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -490,7 +486,7 @@
       <InferedParent />
       <Mappings>
         <string>hom</string>
-        <string>homonym</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -506,7 +502,7 @@
       <InferedParent />
       <Mappings>
         <string>cit</string>
-        <string>citation</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -562,7 +558,7 @@
       <InferedParent />
       <Mappings>
         <string>prnf</string>
-        <string>pronunciation</string>
+        <string>phonetic</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -661,7 +657,7 @@
       <Marker>se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -670,7 +666,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -702,7 +702,7 @@
       <InferedParent />
       <Mappings>
         <string>etc</string>
-        <string>comment</string>
+        <string>etymology</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -718,7 +718,7 @@
       <InferedParent />
       <Mappings>
         <string>etg</string>
-        <string>gloss</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -734,7 +734,7 @@
       <InferedParent />
       <Mappings>
         <string>ets</string>
-        <string>etymologySource</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -904,7 +904,7 @@
       <Marker>an</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -912,6 +912,10 @@
         <string>noteBibliographic</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -941,7 +945,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string>noteEncyclopedic</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -952,7 +956,7 @@
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -960,6 +964,10 @@
         <string>noteEncyclopedic</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -973,7 +981,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string>noteEncyclopedic</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -997,7 +1005,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -1027,7 +1035,7 @@
       <Marker>lt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1035,10 +1043,6 @@
         <string>noteAnthropology</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1051,7 +1055,7 @@
       <Marker>na</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1059,10 +1063,6 @@
         <string>noteDiscourse</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1075,7 +1075,7 @@
       <Marker>nd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1084,6 +1084,10 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1091,7 +1095,7 @@
       <Marker>ng</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1099,10 +1103,6 @@
         <string>notePhonology</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1115,7 +1115,7 @@
       <Marker>np</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1123,10 +1123,6 @@
         <string>noteQuestion</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1139,7 +1135,7 @@
       <Marker>nq</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1147,10 +1143,6 @@
         <string>noteSociolinguistic</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1163,7 +1155,7 @@
       <Marker>ns</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1171,6 +1163,10 @@
         <string>noteRestriction</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1184,7 +1180,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string>noteRestriction</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1200,7 +1196,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string>noteRestriction</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1216,7 +1212,7 @@
       <InferedParent />
       <Mappings>
         <string>erest</string>
-        <string>noteRestriction</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1232,7 +1228,7 @@
       <InferedParent />
       <Mappings>
         <string>picf</string>
-        <string>illustration</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1360,7 +1356,7 @@
       <InferedParent />
       <Mappings>
         <string>pos</string>
-        <string>grammi</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1419,7 +1415,7 @@
       <Marker>sg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>eng</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1427,6 +1423,10 @@
         <string>noteSource</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -1849,7 +1849,7 @@
       <InferedParent />
       <Mappings>
         <string>enc</string>
-        <string>noteEncyclopedic</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1865,7 +1865,7 @@
       <InferedParent />
       <Mappings>
         <string>sem</string>
-        <string>semanticDomain</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
