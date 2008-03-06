@@ -1348,7 +1348,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1380,7 +1384,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1412,7 +1420,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -2034,6 +2046,440 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>u</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>1s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>2s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>3s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>4s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>1d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>2d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>3d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>4d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>1p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>1e</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>1i</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>2p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>3p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>4p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_1s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_2s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_3s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_4s</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_1d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_2d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_3d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_4d</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_1p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_1e</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_1i</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_2p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_3p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>_4p</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

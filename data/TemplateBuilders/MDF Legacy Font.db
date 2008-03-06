@@ -12,7 +12,41 @@
 \ve x
 \vn x
 \vr x
+\sg singular
+\pl plural form
+\rd reduplication
+\_1s 1st person singular
+\_2s 2nd person singular
+\_3s 3rd person singular
+\_4s singular non-human non-animate
+\_1d 1st person dual
+\_2d 2nd person dual
+\_3d 3rd person dual
+\_4d dual non-human non-animate
+\_1p 1st person plural-general
+\_1e 1st person plural-exclusive
+\_1i 1st person plural-inclusive
+\_2p 2nd person plural
+\_3p 3rd person plural
+\_4p plural non-human non-animate
 \se SubEntry
+\sg singular
+\pl plural form
+\rd reduplication
+\_1s 1st person singular
+\_2s 2nd person singular
+\_3s 3rd person singular
+\_4s singular non-human non-animate
+\_1d 1st person dual
+\_2d 2nd person dual
+\_3d 3rd person dual
+\_4d dual non-human non-animate
+\_1p 1st person plural-general
+\_1e 1st person plural-exclusive
+\_1i 1st person plural-inclusive
+\_2p 2nd person plural
+\_3p 3rd person plural
+\_4p plural non-human non-animate
 \bw x
 \mn x
 \mr x
@@ -60,14 +94,11 @@
 \pdn x
 \pdr x
 \pdv x
-\pl x
 \pn x
-\rd x
 \re x
 \rn x
 \rr x
 \sc x
-\sg x
 \so x
 \st x
 \sy x
