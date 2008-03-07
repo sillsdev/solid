@@ -71,24 +71,33 @@ namespace SolidGui
         private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int searchStartIndex)
         {
             int startingRecordIndex = recordIndex;
-            int searchResultIndex;
-            do
+            int searchResultIndex = -1;
+            if (filter.Count > 0)
             {
-                searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
-                BeepWhenStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex);
-
-                if(searchResultIndex != -1)
+                do
                 {
-                    return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
+                    searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
+                    if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
+                    {
+                        MakeBing();
+                    }
+
+                    if (searchResultIndex != -1)
+                    {
+                        return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
+                    }
+
+                    searchStartIndex = 0;
+                    recordIndex++;
+                    recordIndex = WrapRecordIndex(recordIndex, filter);
+                } while (recordIndex != startingRecordIndex);
+
+                searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
+                if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
+                {
+                    MakeBing();
                 }
-
-                searchStartIndex = 0;
-                recordIndex++;
-                recordIndex = WrapRecordIndex(recordIndex, filter);
-            } while (recordIndex != startingRecordIndex);
-
-            searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
-            BeepWhenStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex);
+            }
             
             if (searchResultIndex != -1)
             {
@@ -114,12 +123,9 @@ namespace SolidGui
             return finalTextIndex;
         }
 
-        private void BeepWhenStartingPointPassed(int recordIndex, int startTextIndex, int finalTextIndex)
+        private void MakeBing()
         {
-            if(SearchStartingPointPassed(recordIndex, startTextIndex, finalTextIndex))
-            {
-                SystemSounds.Asterisk.Play();
-            }
+            SystemSounds.Asterisk.Play();
         }
 
         private bool SearchStartingPointPassed(int recordIndex, int startTextIndex, int textIndex)

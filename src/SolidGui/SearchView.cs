@@ -22,7 +22,7 @@ namespace SolidGui
             }
         }
 
-        public static SearchView CreatSearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
+        public static SearchView CreateSearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
         {
             if (_searchView == null || _searchView.IsDisposed)
             {

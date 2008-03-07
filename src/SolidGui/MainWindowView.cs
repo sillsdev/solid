@@ -250,7 +250,7 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
-            _searchView = SearchView.CreatSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
+            _searchView = SearchView.CreateSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
             _searchView.TopMost = true;
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
