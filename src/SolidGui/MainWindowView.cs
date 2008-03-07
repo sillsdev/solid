@@ -127,7 +127,7 @@ namespace SolidGui
             dlg.Title = "Open Dictionary File...";
             dlg.DefaultExt = ".db";
             dlg.FileName = Settings.Default.PreviousPathToDictionary;
-            dlg.Filter = "Toolbox Database (.db .txt)|*.db;*.txt|All Files (*.*)|*.*";
+            dlg.Filter = "Toolbox Database (.db .txt .lex)|*.db;*.txt;*.lex|All Files (*.*)|*.*";
             dlg.Multiselect = false;
             dlg.InitialDirectory = initialDirectory;
             if (DialogResult.OK != dlg.ShowDialog(this))
