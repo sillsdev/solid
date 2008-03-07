@@ -92,8 +92,7 @@
     		<formatter type="Plain" usefile="true" />
     		<test>
     			<assemblies>
-    				<include name="../output/${configuration}/*Tests.exe" />
-    				<include name="../output/${configuration}/*Test.exe" />
+    				<include name="../output/${configuration}/*Tests.dll" />
     			</assemblies>
     		</test>    	
     	</nunit2>
