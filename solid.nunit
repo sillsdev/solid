@@ -1,11 +1,11 @@
-﻿<NUnitProject>
+<NUnitProject>
   <Settings activeconfig="Release" />
   <Config name="Debug" binpathtype="Auto">
-    <assembly path="src\SolidEngine.Test\..\..\output\debug\SolidEngineTest.exe" />
-    <assembly path="output\debug\SolidGui.Tests.exe" />
+    <assembly path="output\debug\SolidEngine.Tests.dll" />
+    <assembly path="output\debug\SolidGui.Tests.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto">
-    <assembly path="output\release\SolidEngineTest.exe" />
-    <assembly path="output\release\SolidGui.Tests.exe" />
+    <assembly path="output\release\SolidEngine.Tests.dll" />
+    <assembly path="output\release\SolidGui.Tests.dll" />
   </Config>
 </NUnitProject>

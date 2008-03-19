@@ -123,7 +123,7 @@ namespace SolidTests
             Assert.AreEqual("", r.Key(1));
         }
 
-        [Test]
+        [Test, Ignore("No longer supported")]
         public void ReadIndentedMarker_Correct()
         {
             string sfm =
