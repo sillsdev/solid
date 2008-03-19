@@ -123,13 +123,14 @@ namespace SolidTests
             Assert.AreEqual("", r.Key(1));
         }
 
-        [Test, Ignore("No longer supported")]
+        [Test]
         public void ReadIndentedMarker_Correct()
         {
             string sfm =
                 "\\lx a\n" +
                 "  \\ge b\n";
             SfmRecordReader r = new SfmRecordReader(new StringReader(sfm));
+            r.AllowLeadingWhiteSpace = true;
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);

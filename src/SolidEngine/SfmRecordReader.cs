@@ -51,6 +51,14 @@ namespace SolidEngine
         Encoding _encoding = Encoding.GetEncoding("iso-8859-1");
 
         #region Properties
+        private bool _allowLeadingWhiteSpace;
+
+        public bool AllowLeadingWhiteSpace
+        {
+            get { return _allowLeadingWhiteSpace; }
+            set { _allowLeadingWhiteSpace = value; }
+        }
+
         public int BufferSize
         {
             get 
@@ -177,6 +185,7 @@ namespace SolidEngine
             char c1 = '\0';
             char c0 = '\0';
             _recordStartLine = _line;
+            bool stillWhite = true;
             while (_stateLex != StateLex.StartOfRecord && _stateLex != StateLex.EOF)
             {
                 c1 = c0;
@@ -188,11 +197,12 @@ namespace SolidEngine
                     _line++;
                     _col = 1;
                     _backslashCount = 0;
+                    stillWhite = true;
                 }
-                if (c0 == '\\')
+                else if (c0 == '\\')
                 {
                     // This allows \ in the value - but constrains the sfm to toolbox lexicon format.
-                    if (_col == 1)
+                    if (_col == 1 || (_allowLeadingWhiteSpace && stillWhite))
                     {
                         if (_stateLex == StateLex.BuildValue)
                         {
@@ -208,6 +218,10 @@ namespace SolidEngine
                         currentField.sourceLine = _line;
                     }
                     _backslashCount++;
+                }
+                else if (stillWhite && c0 != ' ' && c0 != 0x09)
+                {
+                    stillWhite = false;
                 }
                 // Scan for the start of record and update state if found
                 switch (_stateLex)
