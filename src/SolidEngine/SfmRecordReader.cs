@@ -192,7 +192,7 @@ namespace SolidEngine
                 if (c0 == '\\')
                 {
                     // This allows \ in the value - but constrains the sfm to toolbox lexicon format.
-                    if (_backslashCount == 0)
+                    if (_col == 1)
                     {
                         if (_stateLex == StateLex.BuildValue)
                         {
