@@ -15,20 +15,19 @@
     	</header>
     
     	<xsl:apply-templates select="//entry"/>
+      <xsl:apply-templates select="//*[@lift='subentry']"/>
     </lift>
   </xsl:template>
   
   <xsl:template match="entry">
   	<xsl:message />
     <entry>
-      <xsl:if test="descendant::*[@lift='citation'][not(data = '')]">
-        <xsl:attribute name="id">
-          <xsl:value-of select="descendant::*[@lift='citation']/data"/>
-        </xsl:attribute>
-      </xsl:if>
-		<xsl:if test="descendant::*[@lift='homonym']/data[not(.='')]">
-			<xsl:attribute name="order">
-				<xsl:value-of select="descendant::*[@lift='homonym']/data"/>
+      <xsl:attribute name="id">
+        <xsl:call-template name="generate-id"/>
+      </xsl:attribute>
+      <xsl:if test="descendant::*[@lift='homonym']/data[not(.='')]">
+        <xsl:attribute name="order">
+          <xsl:value-of select="descendant::*[@lift='homonym']/data"/>
 			</xsl:attribute>
 		</xsl:if>
       <xsl:if test="descendant::*[@lift='dateModified'][not(data = '')]">
@@ -39,7 +38,65 @@
       <xsl:apply-templates select="child::*[@lift='lexicalUnit']"/>
     </entry>
   </xsl:template>
+
   
+  <xsl:template name="generate-id">
+    <!-- it should be stable and always give the same result for an entry or
+    subentry-->
+    <xsl:choose>
+      <xsl:when test="descendant::*[@lift='lexicalUnit']/data[not(. = '')]">
+        <xsl:value-of select="descendant::*[@lift='lexicalUnit']/data"/>
+
+        <xsl:if test="descendant::*[@lift='homonym']/data[not(.='')]">
+          <xsl:text>-</xsl:text>
+          <xsl:value-of select="descendant::*[@lift='homonym']/data"/>
+        </xsl:if>
+        <xsl:text>-</xsl:text>
+      </xsl:when>
+
+      <xsl:when test="descendant-or-self::*[@lift='subentry']/data[not(. = '')]">
+        <xsl:value-of select="descendant-or-self::*[@lift='subentry']/data"/>
+
+        <xsl:if test="descendant::*[@lift='homonym']/data[not(.='')]">
+          <xsl:text>-</xsl:text>
+          <xsl:value-of select="descendant::*[@lift='homonym']/data"/>
+        </xsl:if>
+        <xsl:text>-</xsl:text>
+      </xsl:when>
+    </xsl:choose>
+    
+    <xsl:value-of select="generate-id()"/>
+
+  </xsl:template>
+  
+  
+  <xsl:template match="*[@lift='subentry']">
+    <xsl:message />
+    <entry>
+        <xsl:attribute name="id">
+          <xsl:call-template name="generate-id"/>
+        </xsl:attribute>
+      <xsl:if test="descendant::*[@lift='homonym']/data[not(.='')]">
+        <xsl:attribute name="order">
+          <xsl:value-of select="descendant::*[@lift='homonym']/data"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="descendant::*[@lift='dateModified'][not(data = '')]">
+        <xsl:attribute name="dateModified">
+          <xsl:apply-templates select="descendant::*[@lift='dateModified']"/>
+        </xsl:attribute>
+      </xsl:if>
+      <xsl:call-template name="lexicalUnit"/>
+      <relation name="BaseForm">
+        <xsl:attribute name="ref">
+          <xsl:for-each select="ancestor::entry">
+            <xsl:call-template name="generate-id"/>
+          </xsl:for-each>
+        </xsl:attribute>
+      </relation>
+    </entry>
+  </xsl:template>
+
   <xsl:template match="*[@lift='variant']">
     <xsl:if test="not(data = '')">
       <variant>
@@ -51,6 +108,7 @@
             <xsl:value-of select="data"/>
           </text>
         </form>
+        <xsl:apply-templates select="descendant::*[@lift='lexicalRelationType']"/>
       </variant>
     </xsl:if>
   </xsl:template>
@@ -65,7 +123,7 @@
     </xsl:if>
   </xsl:template>
   
-  <xsl:template match="*[@lift='lexicalUnit']">
+  <xsl:template match="*[@lift='lexicalUnit']" name="lexicalUnit">
     <lexical-unit>
     <xsl:if test="not(data = '')">
 	<form>
@@ -83,7 +141,8 @@
 	<xsl:apply-templates select="child::*[@lift='variant']"/>
 	<xsl:apply-templates select="child::*[@lift='sense']"/>
 	<xsl:apply-templates select="child::*[@lift='confer']"/>
-	<!-- etymology is *only* in sense according to Lift 10.0 but many mdf sources have it at the entry level. -->
+  <xsl:apply-templates select="descendant::*[@lift='lexicalRelationType'][not(ancestor::*[@lift='sense' or @lift='variant'])]"/>
+  <!-- etymology is *only* in sense according to Lift 10.0 but many mdf sources have it at the entry level. -->
 	<xsl:apply-templates select="child::*[@lift='etymology']"/>
 	<xsl:apply-templates select="child::*[@lift='borrowedWord']"/>
 	<xsl:apply-templates select="child::*[@lift='custom']"/>
@@ -106,7 +165,8 @@
           <xsl:apply-templates select="descendant::*[@lift='definition']"/>
         </definition>
       </xsl:if>
-		<xsl:apply-templates select="descendant::*[@lift='example']"/>
+      <xsl:apply-templates select="descendant::*[@lift='lexicalRelationType'][1]"/>
+      <xsl:apply-templates select="descendant::*[@lift='example']"/>
 		<xsl:apply-templates select="descendant::*[@lift='etymology']"/>
 		<xsl:apply-templates select="descendant::*[@lift='borrowedWord']"/>
 		<xsl:apply-templates select="descendant::*[@lift='illustration']"/>
@@ -117,7 +177,21 @@
 		<xsl:call-template name="notes" />
 	</sense>
   </xsl:template>
-  
+
+  <xsl:template match="*[@lift='lexicalRelationType']">
+    <xsl:variable name="lexicalRelationType">
+      <xsl:value-of select="data"/>
+    </xsl:variable>
+    <!-- one type may bind to many lexemes -->
+    <xsl:for-each select="descendant::*[@lift='lexicalRelationLexeme']">
+      <relation name="{$lexicalRelationType}">
+        <xsl:attribute name="ref">
+          <xsl:value-of select="data"/>
+        </xsl:attribute>
+      </relation>
+    </xsl:for-each>
+  </xsl:template>
+
   <xsl:template name="notes">
 	<xsl:apply-templates select="child::*[@lift='noteBibliographic']"/>
 	<xsl:apply-templates select="child::*[@lift='noteEncyclopedic']"/>
