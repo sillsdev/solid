@@ -144,10 +144,40 @@
     	<call target="installerpost" />
     </target>
 
-	<target name="publish" depends="installer">
-		<exec program="ftp.exe">
-			<arg line="-n -s:ftp.txt" />
-		</exec>
+	<target name="publish.ftp" depends="installer">
+		<foreach item="File" property="filename">
+			<in>
+				<items>
+					<include name="ftp.txt" />
+				</items>
+			</in>
+			<do>
+				<property name="backupname" value="${string::replace(filename, 'txt', 'run')}" />
+				<copy file="${filename}" tofile="${backupname}" overwrite="true">
+					<filterchain>
+						<expandproperties />
+					</filterchain>
+				</copy>
+				<exec program="ftp.exe">
+					<arg line="-n -s:${backupname}" />
+				</exec>
+				<delete file="${backupname}" />
+    		</do>
+		</foreach>
+	</target>
+
+	<target name="publish" depends="">
+		<property name="publish.host" value="palaso.org" />
+		<property name="publish.src" value="../release/Output/SolidSetup.exe" />
+		<property name="publish.dst" value="htdocs/install/solid/SolidSetup.exe" />
+    	<call target="publish.ftp" />
+	</target>
+
+	<target name="publish_latest" depends="">
+		<property name="publish.host" value="palaso.org" />
+		<property name="publish.src" value="../release/Output/SolidSetup.exe" />
+		<property name="publish.dst" value="htdocs/install/solid/SolidSetupLatest.exe" />
+    	<call target="publish.ftp" />
 	</target>
 
 </project>

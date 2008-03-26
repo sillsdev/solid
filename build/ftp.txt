@@ -1,5 +1,5 @@
-open palaso.org
-user bob@palaso.org bob23
+open ${publish.host}
+user ${publish.usr} ${publish.pwd}
 type binary
-put ../release/Output/SolidSetup.exe htdocs/install/solid/SolidSetup.exe
+put ${publish.src} ${publish.dst}
 quit
