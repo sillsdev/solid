@@ -169,14 +169,14 @@
 	<target name="publish" depends="">
 		<property name="publish.host" value="palaso.org" />
 		<property name="publish.src" value="../release/Output/SolidSetup.exe" />
-		<property name="publish.dst" value="htdocs/install/solid/SolidSetup.exe" />
+		<property name="publish.dst" value="software/SolidSetup.exe" />
     	<call target="publish.ftp" />
 	</target>
 
 	<target name="publish_latest" depends="">
 		<property name="publish.host" value="palaso.org" />
 		<property name="publish.src" value="../release/Output/SolidSetup.exe" />
-		<property name="publish.dst" value="htdocs/install/solid/SolidSetupLatest.exe" />
+		<property name="publish.dst" value="software/SolidSetupLatest.exe" />
     	<call target="publish.ftp" />
 	</target>
 
