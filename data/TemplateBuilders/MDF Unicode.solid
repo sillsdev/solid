@@ -249,7 +249,7 @@
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string xsi:nil="true" />
+        <string>confer</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -265,7 +265,7 @@
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string xsi:nil="true" />
+        <string>confer</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -434,7 +434,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>borrowedWord</string>
+        <string>variant</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -454,7 +454,7 @@
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string xsi:nil="true" />
+        <string>confer</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -470,7 +470,7 @@
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string xsi:nil="true" />
+        <string>confer</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1929,7 +1929,7 @@
       <InferedParent />
       <Mappings>
         <string>func</string>
-        <string xsi:nil="true" />
+        <string>lexicalRelationType</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1953,7 +1953,7 @@
       <InferedParent />
       <Mappings>
         <string>lex</string>
-        <string xsi:nil="true" />
+        <string>lexicalRelationLexeme</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -2013,7 +2013,7 @@
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>lexicalRelationLexeme</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -2029,7 +2029,7 @@
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>lexicalRelationLexeme</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
