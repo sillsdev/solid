@@ -393,7 +393,7 @@
 
   <xsl:template match="*[@lift='custom']">
     <xsl:if test="not(data = '')">
-      <field type="custom">
+      <field tag="custom">
         <trait name="marker">
           <xsl:attribute name="value">
             <xsl:value-of select="name(.)"/>
