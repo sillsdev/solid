@@ -257,9 +257,6 @@
   <xsl:template match="*[@lift='pronunciation']">
     <xsl:if test="not(data = '')">
       <pronunciation>
-        <xsl:attribute name="lang">
-          <xsl:value-of select="@writingsystem"/>
-        </xsl:attribute>
         <text>
           <xsl:value-of select="data"/>
         </text>
