@@ -50,6 +50,7 @@ namespace SolidGui
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._quickFixButton = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -71,7 +72,8 @@ namespace SolidGui
             this._exportButton,
             this.toolStripSeparator2,
             this._changeTemplate,
-            this._aboutBoxButton});
+            this._aboutBoxButton,
+            this._quickFixButton});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(891, 25);
@@ -83,7 +85,7 @@ namespace SolidGui
             this._openButton.Image = global::SolidGui.Properties.Resources.folder_open;
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
-            this._openButton.Size = new System.Drawing.Size(104, 22);
+            this._openButton.Size = new System.Drawing.Size(108, 22);
             this._openButton.Text = "Open Lexicon...";
             this._openButton.Click += new System.EventHandler(this.OnOpenClick);
             // 
@@ -102,7 +104,7 @@ namespace SolidGui
             this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
-            this._exportButton.Size = new System.Drawing.Size(71, 22);
+            this._exportButton.Size = new System.Drawing.Size(69, 22);
             this._exportButton.Text = "Export...";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
@@ -116,7 +118,7 @@ namespace SolidGui
             this._changeTemplate.Image = global::SolidGui.Properties.Resources.template;
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
-            this._changeTemplate.Size = new System.Drawing.Size(123, 22);
+            this._changeTemplate.Size = new System.Drawing.Size(130, 22);
             this._changeTemplate.Text = "Change Template...";
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
@@ -298,6 +300,16 @@ namespace SolidGui
             this._recordNavigatorView.Size = new System.Drawing.Size(451, 34);
             this._recordNavigatorView.TabIndex = 3;
             // 
+            // _quickFixButton
+            // 
+            this._quickFixButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
+            this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._quickFixButton.Name = "_quickFixButton";
+            this._quickFixButton.Size = new System.Drawing.Size(79, 22);
+            this._quickFixButton.Text = "Quick Fixes...";
+            this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,10 +320,10 @@ namespace SolidGui
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindowView";
             this.Text = "SOLID";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyDown);
             this.Load += new System.EventHandler(this.MainWindowView_Load);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyDown);
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -351,6 +363,7 @@ namespace SolidGui
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button _editMarkerProperties;
+        private System.Windows.Forms.ToolStripButton _quickFixButton;
     }
 }
 

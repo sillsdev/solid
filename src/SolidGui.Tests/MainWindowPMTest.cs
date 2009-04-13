@@ -48,7 +48,7 @@ namespace SolidGui.Tests
         [TearDown]
         public void TearDown()
         {
-            TestUtilities.DeleteFolderThatMayBeInUse(_projectFolder);
+            Palaso.TestUtilities.TestUtilities.DeleteFolderThatMayBeInUse(_projectFolder);
         }
 
         [Test]

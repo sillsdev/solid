@@ -9,7 +9,7 @@ namespace SolidGui
 {
     public partial class MarkerDetails : UserControl
     {
-        private Dictionary _dictionary;
+        private SfmDictionary _dictionary;
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
         private FilterChooserPM _filterChooserPM;
@@ -24,7 +24,7 @@ namespace SolidGui
             InitializeComponent();
         }
 
-        public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, Dictionary dictionary, SolidSettings settings)
+        public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, SfmDictionary dictionary, SolidSettings settings)
         {
             _listView.SuspendLayout();
             _markerSettingsPM = markerSettingsPM;

@@ -25,7 +25,12 @@ namespace SolidGui
         void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
         {
             //review: this is a  bit weird
-            _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
+            if(_wsModel.HasCurrentSelection)
+                _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
+            else
+            {
+                _currentMarkerSetting.WritingSystemRfc4646 = string.Empty;
+            }
         }
 
         public MarkerSettingsPM MarkerModel{get;set;}
@@ -100,7 +105,8 @@ namespace SolidGui
 
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
-            _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
+            if(_wsModel.HasCurrentSelection)
+                _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
         }
 
         private void _cbUnicode_CheckedChanged(object sender, EventArgs e)
@@ -114,6 +120,7 @@ namespace SolidGui
             {
                 if (_wsModel.HasCurrentSelection)
                 {
+                    System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
                     d.ShowDialog(_wsModel.CurrentRFC4646);
                 }
                 else

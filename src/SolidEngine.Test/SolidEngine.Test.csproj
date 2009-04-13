@@ -69,11 +69,11 @@
     <Compile Include="ExportLift_Test.cs" />
     <Compile Include="ExportXsl_Test.cs" />
     <Compile Include="ExportStructuredXml_Test.cs" />
+    <Compile Include="ExportTestAsserter.cs" />
     <Compile Include="ProcessEncoding_Test.cs" />
     <Compile Include="ProcessStructure_Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuickFix_Tests.cs" />
     <Compile Include="sfmreader_read_test.cs" />
     <Compile Include="sfmxmlreader_read_test.cs" />
     <Compile Include="sfmxmlreader_xmldoc_test.cs" />

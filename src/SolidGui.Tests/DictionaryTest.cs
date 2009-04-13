@@ -10,7 +10,7 @@ namespace SolidGui.Tests
     [TestFixture]
     public class DictionaryTest
     {
-        private Dictionary _dictionary;
+        private SfmDictionary _dictionary;
         private string _dictionaryPath;
         private string _projectFolder;
         private string _tempDictionaryPath;
@@ -33,7 +33,7 @@ namespace SolidGui.Tests
             _settings.MarkerSettings.Add(geSetting);
 
             Palaso.Reporting.ErrorReport.IsOkToInteractWithUser = false;
-            _dictionary = new Dictionary();
+            _dictionary = new SfmDictionary();
             _projectFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             Directory.CreateDirectory(_projectFolder);
             _dictionaryPath = Path.Combine(_projectFolder, "Dictionary.db");
@@ -50,7 +50,7 @@ namespace SolidGui.Tests
         [TearDown]
         public void TearDown()
         {
-            TestUtilities.DeleteFolderThatMayBeInUse(_projectFolder);
+            Palaso.TestUtilities.TestUtilities.DeleteFolderThatMayBeInUse(_projectFolder);
         }
 
         [Test]

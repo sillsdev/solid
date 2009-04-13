@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace SolidEngine
 {
@@ -34,6 +35,7 @@ namespace SolidEngine
             _structureProperties = new List<SolidStructureProperty>();
         }
 
+        [XmlElement(ElementName = "WritingSystem")]
         public string WritingSystemRfc4646
         {
             get { return _writingSystemRfc4646; }

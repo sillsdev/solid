@@ -4,77 +4,12 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using SolidEngine;
+using System.Linq;
 
 namespace SolidGui
 {
     public class Record
     {
-        public class Field
-        {
-            private int _id;
-            private string _marker;
-            private string _value;
-            private int _depth;
-            private int _errorState;
-            private bool _inferred;
-
-            public Field(string marker, string value, int depth, bool inferred, int id)
-            {
-                _marker = marker;
-                _value = value;
-                _depth = depth;
-                _inferred = inferred;
-                _id = id;
-            }
-
-            public string ToStructuredString()
-            {
-                int spacesInIndentation = 4;
-                
-                string indentation = new string(' ', Depth*spacesInIndentation);
-                
-                if(!Inferred)
-                    return indentation + "\\" + Marker + " " + Value;
-                else
-                    return indentation + "\\+" + Marker + " " + Value;
-
-            }
-            
-            public int ErrorState
-            {
-                get { return _errorState; }
-                set { _errorState = value; }
-            }
-
-            public int Id
-            {
-                get { return _id; }
-            }
-
-            public string Marker
-            {
-                get { return _marker; }
-            }
-
-
-            public string Value
-            {
-                get { return _value; }
-                set { _value = value; }
-            }
-
-            public int Depth
-            {
-                get { return _depth; }
-            }
-
-
-            public bool Inferred
-            {
-                get { return _inferred; }
-            }
-        }
-                
         private List<Field> _fields = new List<Field>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
@@ -276,5 +211,18 @@ namespace SolidGui
             }
         }
 
+        public void MoveField(Field field, int after)
+        {
+            int from = _fields.IndexOf(field);
+            _fields.RemoveAt(from);
+            if (from > after)
+            {
+                _fields.Insert(after + 1, field);               
+            }
+            else
+            {
+                _fields.Insert(after, field);               
+            }
+        }
     }
 }

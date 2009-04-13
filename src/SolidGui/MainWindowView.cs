@@ -195,6 +195,7 @@ namespace SolidGui
             _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
             _exportButton.Enabled = _mainWindowPM.CanProcessLexicon;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
+            _quickFixButton.Enabled = _mainWindowPM.CanProcessLexicon;
         }
 
         private void OnSaveClick(object sender, EventArgs e)
@@ -321,6 +322,19 @@ namespace SolidGui
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
             _markerDetails.OpenSettingsDialog(null);
+        }
+
+        private void OnQuickFix(object sender, EventArgs e)
+        {
+            QuickFixer fixer = new QuickFixer(_mainWindowPM.WorkingDictionary);
+            var dlg = new QuickFixForm(fixer);
+            if (dlg.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            _mainWindowPM.ProcessLexicon();
+            _saveButton.Enabled = true;
+            
         }
     }
 }

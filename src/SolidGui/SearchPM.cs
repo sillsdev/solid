@@ -8,7 +8,7 @@ namespace SolidGui
 {
     public class SearchPM
     {
-        private  Dictionary _dictionary;
+        private  SfmDictionary _dictionary;
         private int _startRecordOfWholeSearch;
         private int _startIndexOfWholeSearch;
         
@@ -32,7 +32,7 @@ namespace SolidGui
 
         public event EventHandler<SearchResultEventArgs> wordFound;
 
-        public Dictionary Dictionary
+        public SfmDictionary Dictionary
         {
             get
             {

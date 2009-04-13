@@ -15,9 +15,9 @@ namespace SolidGui.Tests
         {
             _record = new Record(1);
             int fieldID = 0;
-            _record.Fields.Add(new Record.Field("\\lx", "foo", 0, false, fieldID++));
-            _record.Fields.Add(new Record.Field("\\ps", "noun", 0, false, fieldID++));
-            _record.Fields.Add(new Record.Field("\\ge", "bar", 0, false, fieldID++));
+            _record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            _record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            _record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
         }
 
         [TearDown]
@@ -26,9 +26,56 @@ namespace SolidGui.Tests
  
  
         }
- 
 
-        
+
+        [Test]
+        public void MoveField_FieldIsBelowTarget_MovesAfterGivenIndex()
+        {
+            var r = new Record(1);
+            int fieldID = 0;
+            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.MoveField(r.Fields[2], 0);
+            Assert.AreEqual("lx",r.Fields[0].Marker);
+            Assert.AreEqual("bw", r.Fields[1].Marker);
+            Assert.AreEqual("ps", r.Fields[2].Marker);
+            Assert.AreEqual("ge", r.Fields[3].Marker);
+        }
+
+        [Test]
+        public void MoveField_FieldIsAlreadyInPosition_DoesNotMove()
+        {
+            var r = new Record(1);
+            int fieldID = 0;
+            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.MoveField(r.Fields[2], 1);
+            Assert.AreEqual("lx", r.Fields[0].Marker);
+            Assert.AreEqual("ps", r.Fields[1].Marker);
+            Assert.AreEqual("bw", r.Fields[2].Marker);
+            Assert.AreEqual("ge", r.Fields[3].Marker);
+        }
+
+        [Test]
+        public void MoveField_FieldHigherThanTarget_MovesAfterGivenIndex()
+        {
+            var r = new Record(1);
+            int fieldID = 0;
+            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.MoveField(r.Fields[1], 2);//move ps below bw
+            Assert.AreEqual("lx", r.Fields[0].Marker);
+            Assert.AreEqual("bw", r.Fields[1].Marker);
+            Assert.AreEqual("ps", r.Fields[2].Marker);
+            Assert.AreEqual("ge", r.Fields[3].Marker);
+        }
+
         [Test]
         public void FieldCountReturnsCorrectNumberOfFields()
         {
@@ -39,7 +86,7 @@ namespace SolidGui.Tests
         [Test]
         public void HasMarkerIndicateItHasCorrectMarker()
         {
-            Assert.IsTrue(_record.HasMarker("\\lx"));   
+            Assert.IsTrue(_record.HasMarker("lx"));   
         }
 
         [Test]

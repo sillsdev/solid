@@ -17,7 +17,7 @@ namespace SolidGui
         public RecordFilterSet filterSet;
     }
 
-    public class Dictionary : RecordManager
+    public class SfmDictionary : RecordManager
     {
         private List<Record> _recordList;
         private string _filePath;
@@ -27,7 +27,7 @@ namespace SolidGui
 
         private int _currentIndex;
 
-        public Dictionary()
+        public SfmDictionary()
         {
             _currentIndex = 0;
             _recordList = new List<Record>();
@@ -290,7 +290,7 @@ namespace SolidGui
                 {
                     foreach (Record record in _recordList)
                     {
-                        foreach (Record.Field field in record.Fields)
+                        foreach (Field field in record.Fields)
                         {
                             if (!field.Inferred)
                             {

@@ -7,7 +7,7 @@ namespace SolidGui
 {
     public class RecordFilterSet : List<RecordFilter>
     {
-        Dictionary _currentDictionary = null;
+        SfmDictionary _currentDictionary = null;
 
         class ErrorFilterForType : Dictionary<string, SolidErrorRecordFilter>
         {
@@ -19,7 +19,7 @@ namespace SolidGui
         {
         }
 
-        public Dictionary Dictionary
+        public SfmDictionary Dictionary
         {
             get { return _currentDictionary; }
         }
@@ -68,7 +68,7 @@ namespace SolidGui
             return retval;
         }
 
-        public void BeginBuild(Dictionary currentDictionary)
+        public void BeginBuild(SfmDictionary currentDictionary)
         {
             base.Clear();
             _currentDictionary = currentDictionary;

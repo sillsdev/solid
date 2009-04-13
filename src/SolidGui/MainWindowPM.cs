@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using System.Xml;
 using SolidEngine;
 using Palaso.Progress;
@@ -16,7 +17,7 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
-        private Dictionary _workingDictionary;
+        private SfmDictionary _workingDictionary;
         private String _tempDictionaryPath;
         private String _realDictionaryPath;
 
@@ -31,10 +32,11 @@ namespace SolidGui
 
         public event EventHandler DictionaryProcessed;
 
+
         public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
-            _workingDictionary = new Dictionary();
+            _workingDictionary = new SfmDictionary();
             _markerSettingsModel = new MarkerSettingsPM();
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
@@ -346,7 +348,7 @@ namespace SolidGui
             }
         }
 
-        public Dictionary WorkingDictionary
+        public SfmDictionary WorkingDictionary
         {
             get
             {
@@ -400,5 +402,9 @@ namespace SolidGui
                 //exporter.Export(sourceFilePath, destinationFilePath);
             }
         }
+
+
     }
+
+
 }

@@ -14,7 +14,7 @@ namespace SolidGui.Tests
         public void Setup()
         {
             int recordID = 0;
-            Dictionary dictionary = new Dictionary();
+            SfmDictionary dictionary = new SfmDictionary();
             Record record = new Record(recordID++);
             dictionary.AddRecord(new Record(recordID++));
             dictionary.AddRecord(new Record(recordID++));
@@ -94,7 +94,7 @@ namespace SolidGui.Tests
         public void WhenFilterChangesShowFirst()
         {
             //_navigator.ActiveFilter = new NullRecordFilter();
-            _navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new Dictionary());
+            _navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new SfmDictionary());
             Assert.AreEqual(0, _navigator.Count);
             Assert.AreEqual(0, _navigator.CurrentRecordIndex);
             Assert.IsNull(_navigator.CurrentRecord);

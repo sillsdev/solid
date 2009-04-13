@@ -12,7 +12,7 @@ namespace SolidGui
 
         List<string> _errorMessages = new List<string>();
 
-        public SolidErrorRecordFilter(Dictionary d, SolidReport.EntryType errorType, string name) :
+        public SolidErrorRecordFilter(SfmDictionary d, SolidReport.EntryType errorType, string name) :
             base(d, name)
         {
             _errorType = errorType;
