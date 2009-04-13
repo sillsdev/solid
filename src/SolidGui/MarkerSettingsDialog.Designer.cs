@@ -49,7 +49,7 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._markerSettingsView.Location = new System.Drawing.Point(6, 8);
-            this._markerSettingsView.Model = null;
+            this._markerSettingsView.MarkerModel = null;
             this._markerSettingsView.Name = "_markerSettingsView";
             this._markerSettingsView.Size = new System.Drawing.Size(604, 339);
             this._markerSettingsView.TabIndex = 0;

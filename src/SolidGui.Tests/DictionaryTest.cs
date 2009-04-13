@@ -100,7 +100,7 @@ namespace SolidGui.Tests
         {
             _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             List<Record> data = _dictionary.AllRecords;
-            data[1].SetField(1,"threeGloss");
+            data[1].SetFieldValue(1,"threeGloss");
             _dictionary.Save();
 
             StringBuilder builder = new StringBuilder();

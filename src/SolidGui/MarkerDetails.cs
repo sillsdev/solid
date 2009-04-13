@@ -63,7 +63,7 @@ namespace SolidGui
                 FillInFrequencyColumn(item, pair.Value.ToString());
                 SolidMarkerSetting markerSetting = _settings.FindMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
-                AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystem), OnWritingSystemLinkClicked);
+                AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, markerSetting), OnFlexMappingLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
@@ -103,8 +103,8 @@ namespace SolidGui
                 return "??";
             }
             
-            Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
-                    new Palaso.WritingSystems.LdmlInFolderWritingSystemRepository();
+            Palaso.WritingSystems.LdmlInFolderWritingSystemStore repository =
+                    new Palaso.WritingSystems.LdmlInFolderWritingSystemStore();
 
             Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
 
@@ -221,7 +221,7 @@ namespace SolidGui
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
             ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
-            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystem);
+            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
             ((LinkLabel)_listView.SelectedItems[0].SubItems[4].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, setting);
             ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
         }

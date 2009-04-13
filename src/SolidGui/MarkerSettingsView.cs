@@ -1,5 +1,7 @@
 using System;
 using System.Windows.Forms;
+using Palaso.UI.WindowsForms.WritingSystems;
+using Palaso.WritingSystems;
 using SolidEngine;
 
 namespace SolidGui
@@ -7,32 +9,34 @@ namespace SolidGui
     public partial class MarkerSettingsView : UserControl
     {
         private SolidMarkerSetting _currentMarkerSetting;
-        private MarkerSettingsPM _model;
+        private WritingSystemSetupPM _wsModel;
+        private LdmlInFolderWritingSystemStore _store;
 
         public MarkerSettingsView()
         {
             InitializeComponent();
+            _store = new LdmlInFolderWritingSystemStore();
+            _wsModel = new WritingSystemSetupPM(_store);
+           // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
+            this.wsPickerUsingComboBox1.BindToModel(_wsModel);
+            wsPickerUsingComboBox1.SelectedComboIndexChanged += new EventHandler(wsPickerUsingComboBox1_SelectedComboIndexChanged);
         }
 
-        public MarkerSettingsPM Model
+        void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
         {
-            get
-            {
-                return _model; 
-            }
-            set
-            {
-                _model = value;
-            }
+            //review: this is a  bit weird
+            _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
         }
+
+        public MarkerSettingsPM MarkerModel{get;set;}
 
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
-            _currentMarkerSetting = _model.GetMarkerSetting(selectedMarker);
+            _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker);
 
-            _writingSystemPicker.IdentifierOfSelectedWritingSystem = _currentMarkerSetting.WritingSystem;
+            _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646);
             
-            _structurePropertiesView.Model.AllValidMarkers = Model.GetValidMarkers();
+            _structurePropertiesView.Model.AllValidMarkers = MarkerModel.GetValidMarkers();
             _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
             _structurePropertiesView.UpdateDisplay();
 
@@ -72,7 +76,7 @@ namespace SolidGui
                 _structurePropertiesView.Model.MarkerSetting = (SolidMarkerSetting) _markerListBox.SelectedItem;
                 _structurePropertiesView.UpdateDisplay();
                 
-                if ( (_markerListBox.Text) != Model.Root)
+                if ( (_markerListBox.Text) != MarkerModel.Root)
                 {
                     _structurePropertiesView.Enabled = true;
                 }
@@ -90,18 +94,33 @@ namespace SolidGui
             {
                 return;
             }
-            _structurePropertiesView.Model = Model.StructurePropertiesModel;
-            _mappingView.Model = Model.MappingModel;
+            _structurePropertiesView.Model = MarkerModel.StructurePropertiesModel;
+            _mappingView.Model = MarkerModel.MappingModel;
         }
 
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
-            _currentMarkerSetting.WritingSystem = _writingSystemPicker.IdentifierOfSelectedWritingSystem;
+            _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
         }
 
         private void _cbUnicode_CheckedChanged(object sender, EventArgs e)
         {
             _currentMarkerSetting.Unicode = _cbUnicode.Checked;
+        }
+
+        private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            using (var d = new WSPropertiesDialog())
+            {
+                if (_wsModel.HasCurrentSelection)
+                {
+                    d.ShowDialog(_wsModel.CurrentRFC4646);
+                }
+                else
+                {
+                    d.ShowDialog();
+                }
+            }
         }
     }
 }

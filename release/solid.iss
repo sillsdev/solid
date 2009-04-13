@@ -41,8 +41,8 @@ Source: c:\Program Files\ISTool\isxdl.dll; Flags: dontcopy
 Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\LinqBridge.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\PalasoReporting.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings

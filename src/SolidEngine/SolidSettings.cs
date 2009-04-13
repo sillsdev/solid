@@ -72,7 +72,7 @@ namespace SolidEngine
             }
             catch (Exception e)
             {
-                Palaso.Reporting.ErrorReport.ReportNonFatalMessage(
+                Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
                     "There was a problem opening that settings file.  The error was\r\n" + e.Message);
                 return null;
             }
@@ -103,7 +103,7 @@ namespace SolidEngine
             }
             catch(Exception e)
             {
-                Palaso.Reporting.ErrorReport.ReportNonFatalMessage(
+                Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
                     "There was a problem opening that settings file.  The error was\r\n" + e.Message);
                 return null              ;
             }

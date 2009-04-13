@@ -13,7 +13,7 @@ namespace SolidEngine
 
         private string _marker;
         private string _inferedParent;
-        private string _writingSystem;
+        private string _writingSystemRfc4646;
         private bool _isUnicode = false;
         private List<SolidStructureProperty> _structureProperties;
         private string[] _mappings = new string[(int)MappingType.Max];
@@ -22,7 +22,7 @@ namespace SolidEngine
         {
             _marker = "";
             _inferedParent = "";
-            _writingSystem = "";
+            _writingSystemRfc4646 = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 
@@ -30,14 +30,14 @@ namespace SolidEngine
         {
             _marker = marker;
             _inferedParent = "";
-            _writingSystem = "";
+            _writingSystemRfc4646 = "";
             _structureProperties = new List<SolidStructureProperty>();
         }
 
-        public string WritingSystem
+        public string WritingSystemRfc4646
         {
-            get { return _writingSystem; }
-            set { _writingSystem = value; }
+            get { return _writingSystemRfc4646; }
+            set { _writingSystemRfc4646 = value; }
         }
 
         public bool Unicode

@@ -13,7 +13,7 @@ namespace SolidGui
         public MarkerSettingsDialog(MarkerSettingsPM markerSettingsModel, string marker)
         {
             InitializeComponent();
-            _markerSettingsView.Model = markerSettingsModel;
+            _markerSettingsView.MarkerModel = markerSettingsModel;
             _selectedMarker = marker;
             _mappingType = SolidMarkerSetting.MappingType.Flex;
             _initialArea = "structure";

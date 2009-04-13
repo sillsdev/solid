@@ -315,7 +315,7 @@ namespace SolidGui
                 // 3) Value
                 _contentsBoxDB.SelectionColor = _defaultTextColor;
                 _contentsBoxDB.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
-                string displayValue = _model.ValueToUnicode(field.Marker, field.Value);
+                string displayValue = _model.GetUnicodeValueFromLatin1(field.Marker, field.Value);
                 _contentsBoxDB.AppendText(displayValue + "\n");
 
                 lineNumber++;

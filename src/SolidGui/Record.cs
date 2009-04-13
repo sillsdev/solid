@@ -177,7 +177,7 @@ namespace SolidGui
             return field.ToString();
         }
 
-        public void SetField(int id, string value)
+        public void SetFieldValue(int id, string value)
         {
             if(_fields[id].Value != value)
             {
@@ -233,7 +233,7 @@ namespace SolidGui
         //    return _fields[i].ToStructuredString();
         //}
 
-        public void SetRecord(string setToText, SolidSettings _solidSettings)
+        public void SetRecordContents(string setToText, SolidSettings _solidSettings)
         {
             //!!!setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
             SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));

@@ -31,32 +31,27 @@ namespace SolidGui
             }
         }
 
-        public void UpdateCurrentRecord(Record record, string update)
+        public void UpdateCurrentRecord(Record record, string newContents)
         {
             // Remove the inferred markers from the text
             // Encode the value correctly as per the solid marker settings (either utf-8 or iso-8859-1)
-            SfmRecordReader reader = new SfmRecordReader(new StringReader(update));
+            SfmRecordReader reader = new SfmRecordReader(new StringReader(newContents));
             reader.AllowLeadingWhiteSpace = true;
             if (reader.Read())
             {
                 SfmRecord sfmRecord = reader.Record;
-                sfmRecord.RemoveAll(
-                    delegate(SfmField rhs)
-                    {
-                        return rhs.key.StartsWith("+");
-                    }
-                );
+                RemoveVirualFields(sfmRecord);
                 StringBuilder sb = new StringBuilder();
                 foreach (SfmField field in sfmRecord)
                 {
-                    field.value = ValueToMdf(field.key, field.value);
+                    field.value = GetLatin1ValueFromUnicode(field.key, field.value);
                     sb.Append("\\");
                     sb.Append(field.key);
                     sb.Append(" ");
                     sb.Append(field.value);
                     sb.Append("\n");
                 }
-                record.SetRecord(sb.ToString(), _solidSettings);
+                record.SetRecordContents(sb.ToString(), _solidSettings);
             }
             else
             {
@@ -64,11 +59,21 @@ namespace SolidGui
             }
         }
 
+        private void RemoveVirualFields(SfmRecord sfmRecord)
+        {
+            sfmRecord.RemoveAll(
+                delegate(SfmField rhs)
+                    {
+                        return rhs.key.StartsWith("+");
+                    }
+                );
+        }
+
         public Font FontForMarker(string marker)
         {
-            Palaso.WritingSystems.LdmlInFolderWritingSystemRepository repository =
-                new LdmlInFolderWritingSystemRepository();
-            string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystem;
+            LdmlInFolderWritingSystemStore repository =
+                new LdmlInFolderWritingSystemStore();
+            string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystemRfc4646;
 
             if (!string.IsNullOrEmpty(writingSystemId))
             {
@@ -86,7 +91,7 @@ namespace SolidGui
             return new Font(FontFamily.GenericSansSerif, 12);
         }
 
-        public string ValueToUnicode(string marker, string value)
+        public string GetUnicodeValueFromLatin1(string marker, string value)
         {
             string retval;
             SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
@@ -113,22 +118,19 @@ namespace SolidGui
             return retval;
         }
 
-        public string ValueToMdf(string marker, string value)
+
+        public string GetLatin1ValueFromUnicode(string marker, string value)
         {
-            string retval;
             SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
                 Encoding stringEncoding = Encoding.UTF8;
                 byte[] valueAsBytes = stringEncoding.GetBytes(value);
                 Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-                retval = byteEncoding.GetString(valueAsBytes);
+                return byteEncoding.GetString(valueAsBytes);
             }
-            else
-            {
-                retval = value;
-            }
-            return retval;
+
+            return value;
         }
 
         private bool FontIsInstalled(string name)

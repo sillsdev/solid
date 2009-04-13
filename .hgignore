@@ -1,0 +1,8 @@
+glob:lib/Palaso.BuildTasks.*
+glob:output/
+glob:obj/
+glob:bin/
+glob:*.user
+glob:*.suo
+glob:*.pdb
+glob:*.Tests.dll

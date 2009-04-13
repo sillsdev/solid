@@ -123,13 +123,13 @@ namespace SolidEngine
                     mapAttribute.Value = setting.Mapping[j];
                     fieldNode.Attributes.Append(mapAttribute);
                     XmlAttribute writingSystemAttribute = destination.CreateAttribute("writingsystem");
-                    if (setting.WritingSystem == "")
+                    if (setting.WritingSystemRfc4646 == "")
                     {
                         writingSystemAttribute.Value = "zxx";
                     }
                     else
                     {
-                        writingSystemAttribute.Value = setting.WritingSystem;
+                        writingSystemAttribute.Value = setting.WritingSystemRfc4646;
                     }
                     fieldNode.Attributes.Append(writingSystemAttribute);
                 }
