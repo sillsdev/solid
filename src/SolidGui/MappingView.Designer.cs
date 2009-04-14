@@ -56,13 +56,13 @@ namespace SolidGui
             // 
             this._targetCombo.FormattingEnabled = true;
             this._targetCombo.Items.AddRange(new object[] {
-            "FieldWorks Langauge Explorer (FLEX)",
+            "FLEX (Use LIFT instead)",
             "Lexical Interchange Format (LIFT)"});
             this._targetCombo.Location = new System.Drawing.Point(47, 6);
             this._targetCombo.Name = "_targetCombo";
             this._targetCombo.Size = new System.Drawing.Size(240, 21);
             this._targetCombo.TabIndex = 1;
-            this._targetCombo.Text = "FieldWorks Langauge Explorer (FLEX)";
+            this._targetCombo.Text = "Lexical Interchange Format (LIFT)";
             this._targetCombo.SelectedIndexChanged += new System.EventHandler(this._targetCombo_SelectedIndexChanged);
             // 
             // splitContainer1

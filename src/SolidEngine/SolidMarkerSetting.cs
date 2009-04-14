@@ -7,7 +7,7 @@ namespace SolidEngine
     {
         public enum MappingType
         {
-            Flex,
+            FlexDefunct,//don't remove, this messes up old solid files
             Lift,
             Max
         }

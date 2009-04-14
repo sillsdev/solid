@@ -37,6 +37,7 @@ namespace SolidGui
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
+            this._quickFixButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -50,7 +51,6 @@ namespace SolidGui
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._quickFixButton = new System.Windows.Forms.ToolStripButton();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,8 +72,8 @@ namespace SolidGui
             this._exportButton,
             this.toolStripSeparator2,
             this._changeTemplate,
-            this._aboutBoxButton,
-            this._quickFixButton});
+            this._quickFixButton,
+            this._aboutBoxButton});
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(891, 25);
@@ -131,6 +131,16 @@ namespace SolidGui
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
+            // 
+            // _quickFixButton
+            // 
+            this._quickFixButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
+            this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._quickFixButton.Name = "_quickFixButton";
+            this._quickFixButton.Size = new System.Drawing.Size(79, 22);
+            this._quickFixButton.Text = "Quick Fixes...";
+            this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // splitContainer1
             // 
@@ -299,16 +309,6 @@ namespace SolidGui
             this._recordNavigatorView.Name = "_recordNavigatorView";
             this._recordNavigatorView.Size = new System.Drawing.Size(451, 34);
             this._recordNavigatorView.TabIndex = 3;
-            // 
-            // _quickFixButton
-            // 
-            this._quickFixButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
-            this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._quickFixButton.Name = "_quickFixButton";
-            this._quickFixButton.Size = new System.Drawing.Size(79, 22);
-            this._quickFixButton.Text = "Quick Fixes...";
-            this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // MainWindowView
             // 
