@@ -334,24 +334,24 @@ namespace SolidTests
             Assert.AreEqual(xmlEx, xmlOut);
         }
 
-        [Test]
-        public void ProcessStructure_FlexMapping_Correct()
-        {
-            string xmlIn = "<entry record=\"5\"><lx field=\"1\">b</lx></entry>";
-            string xmlEx = "<entry record=\"5\"><lx field=\"1\" flex=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
-
-            SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
-            Assert.IsNotNull(setting);
-            setting.Mapping[(int)SolidMarkerSetting.MappingType.Flex] = "a";
-
-            XmlDocument entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
-            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
-
-        }
+//        [Test]
+//        public void ProcessStructure_FlexMapping_Correct()
+//        {
+//            string xmlIn = "<entry record=\"5\"><lx field=\"1\">b</lx></entry>";
+//            string xmlEx = "<entry record=\"5\"><lx field=\"1\" flex=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
+//
+//            SolidMarkerSetting setting = _settings.FindMarkerSetting("lx");
+//            Assert.IsNotNull(setting);
+//            setting.Mapping[(int)SolidMarkerSetting.MappingType.Flex] = "a";
+//
+//            XmlDocument entry = new XmlDocument();
+//            entry.LoadXml(xmlIn);
+//            SolidReport report = new SolidReport();
+//            XmlNode xmlResult = _p.Process(entry.DocumentElement, report);
+//            string xmlOut = xmlResult.OuterXml;
+//            Assert.AreEqual(xmlEx, xmlOut);
+//
+//        }
 
         [Test]
         public void MultpleErrorMarkers_AreSiblings()

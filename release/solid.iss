@@ -42,6 +42,7 @@ Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\LinqBridge.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings

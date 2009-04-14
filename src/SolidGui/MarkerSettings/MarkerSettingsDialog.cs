@@ -15,7 +15,7 @@ namespace SolidGui
             InitializeComponent();
             _markerSettingsView.MarkerModel = markerSettingsModel;
             _selectedMarker = marker;
-            _mappingType = SolidMarkerSetting.MappingType.Flex;
+            _mappingType = SolidMarkerSetting.MappingType.Lift;
             _initialArea = "structure";
         }
 

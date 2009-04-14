@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
-using EXControls;
+
+using GlacialComponents.Controls;
 using SolidEngine;
 
 namespace SolidGui
@@ -22,6 +24,12 @@ namespace SolidGui
         public MarkerDetails()
         {
             InitializeComponent();
+
+            var frequencyCount = (from GLColumn c in _listView.Columns where c.Text == "Count" select c).First();
+            frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));
+            this._listView.GridLineStyle = GLGridLineStyles.gridNone;
+            _listView.SelectionColor = Color.LightYellow;
+            _listView.SelectedTextColor = Color.Black;
         }
 
         public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, SfmDictionary dictionary, SolidSettings settings)
@@ -45,34 +53,31 @@ namespace SolidGui
 
             _listView.Items.Clear();
             //_listView.MySortBrush  = null;
-            _listView.MySortBrush = Brushes.Coral;
-            _listView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
+           // _listView.MySortBrush = Brushes.Coral;
+           // _listView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
 
-            ImageList colimglst = new ImageList();
-           // colimglst.Images.Add("down", Image.FromFile("down.png"));
-           // colimglst.Images.Add("up", Image.FromFile("up.png"));
-           // colimglst.ColorDepth = ColorDepth.Depth32Bit;
-            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
-            _listView.SmallImageList = colimglst;
+//            ImageList colimglst = new ImageList();
+//            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
+//            _listView.SmallImageList = colimglst;
 
             foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
             {
-                EXControls.EXListViewItem item = new EXListViewItem(pair.Key);
+                var item = new GLItem();// (pair.Key);
+                item.SubItems.Add(pair.Key);
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
                 SolidMarkerSetting markerSetting = _settings.FindMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, markerSetting), OnFlexMappingLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
               //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
                 _listView.Items.Add(item);
             }
-            _listView.Sorting = SortOrder.Ascending;
-            _listView.Sort();
+ //           _listView.Sorting = SortOrder.Ascending;
+  //          _listView.Sort();
             SelectMarker(previouslySelectedMarker);
         }
 
@@ -89,9 +94,9 @@ namespace SolidGui
             }
         }
 
-        private void FillInFrequencyColumn(ListViewItem item, string  frequency)
+        private void FillInFrequencyColumn(GLItem item, string frequency)
         {
-            EXControlListViewSubItem x = new EXControlListViewSubItem();
+            GLSubItem x = new GLSubItem();
             x.Text = frequency;
             item.SubItems.Add(x);
         }
@@ -144,63 +149,49 @@ namespace SolidGui
             return parents;
         }
 
-        private void AddLinkSubItem(EXListViewItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
+        private void AddLinkSubItem(GLItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
         {
-            EXControlListViewSubItem subItem = new EXControlListViewSubItem();
             LinkLabel label = new LinkLabel();
             label.Text = text;
             label.AutoEllipsis = true;
+            label.LinkColor = System.Drawing.Color.Black;
             if (text == "???")
             {
                 label.LinkColor = System.Drawing.Color.Red;
             }
 
             label.Tag = item;
+            label.BackColor = Color.Transparent;
             label.LinkClicked += clickHandler;
-            _listView.AddControlToSubItem(label, subItem);
+            label.LinkBehavior = LinkBehavior.HoverUnderline;
 
-            subItem.Tag = label;
-            item.SubItems.Add(subItem);
+            var link = new GLSubItem();
+            //label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            link.Control = label;
+            item.SubItems.Add(link);
+          //  item.SubItems.Add(text);
         }
 
         private void OnStructureLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
+            var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
             OpenSettingsDialog("structure");
         }
 
         private void OnWritingSystemLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
+            var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
             OpenSettingsDialog("writingSystem");
         }
 
-        private void OnFlexMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ListViewItem item = (ListViewItem) ((LinkLabel)sender).Tag;
-            item.Selected = true;
-            OpenSettingsDialog("mapping", SolidMarkerSetting.MappingType.Flex);
-        }
 
         private void OnLiftMappingLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ListViewItem item = (ListViewItem)((LinkLabel)sender).Tag;
+            var item = (GLItem)((LinkLabel)sender).Tag;
             item.Selected = true;
             OpenSettingsDialog("mapping", SolidMarkerSetting.MappingType.Lift);
-        }
-
-        private void _listView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(_listView.SelectedItems.Count == 0)
-            {
-                return;
-            }  
-            string marker = _listView.SelectedItems[0].Text;
-
-            _filter = new MarkerFilter(_dictionary, marker);
-            _filterChooserPM.ActiveRecordFilter = _filter;
         }
 
         // When someone changes the filter in the PM
@@ -220,11 +211,10 @@ namespace SolidGui
 
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
-            ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
-            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
-            ((LinkLabel)_listView.SelectedItems[0].SubItems[4].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Flex, setting);
-            ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
-        }
+//            ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
+//            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
+//            ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+          }
 
         public void OpenSettingsDialog(string area)
         {
@@ -261,14 +251,11 @@ namespace SolidGui
             UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
         }
 
-        private void _listView_DoubleClick(object sender, EventArgs e)
-        {
-            OpenSettingsDialog(null);
-        }
+
 
         public void SelectMarker(string marker)
         {
-            foreach(ListViewItem a in _listView.Items)
+            foreach(GLItem a in _listView.Items)
             {
                 if(a.Text == marker)
                 {
@@ -279,9 +266,32 @@ namespace SolidGui
                     a.Selected = false;
                 }
             }
+            if(string.IsNullOrEmpty(marker) && _listView.Items.Count >0)
+            {
+                _listView.Items[0].Selected = true;
+                //hack for a bug in Glacial List
+                _listView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
+            }
         }
 
         private void OnEditSettingsClick(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OpenSettingsDialog(null);
+        }
+
+        private void _listView_SelectedIndexChanged(object source, ClickEventArgs e)
+        {
+            if (_listView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            string marker = _listView.Items[e.ItemIndex].Text;
+
+            _filter = new MarkerFilter(_dictionary, marker);
+            _filterChooserPM.ActiveRecordFilter = _filter;
+        }
+
+        private void _listView_DoubleClick(object sender, EventArgs e)
         {
             OpenSettingsDialog(null);
         }

@@ -109,7 +109,7 @@ namespace SolidGui
 
         private SolidMarkerSetting.MappingType CurrentMappingType()
         {
-            if (_targetCombo.SelectedIndex == 0) return SolidMarkerSetting.MappingType.Flex;
+            if (_targetCombo.SelectedIndex == 0) return SolidMarkerSetting.MappingType.FlexDefunct;
             if (_targetCombo.SelectedIndex == 1) return SolidMarkerSetting.MappingType.Lift;
 
             return new SolidMarkerSetting.MappingType();

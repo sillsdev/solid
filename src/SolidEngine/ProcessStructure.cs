@@ -13,8 +13,8 @@ namespace SolidEngine
         public ProcessStructure(SolidSettings settings)
         {
             _settings = settings;
+            _mapNames[(int)SolidMarkerSetting.MappingType.FlexDefunct] = "flex";
             _mapNames[(int)SolidMarkerSetting.MappingType.Lift] = "lift";
-            _mapNames[(int)SolidMarkerSetting.MappingType.Flex] = "flex";
 
         }
 

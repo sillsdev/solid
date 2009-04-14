@@ -71,7 +71,7 @@ namespace SolidGui
 
         public void UpdateDisplay()
         {
-            UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Flex);
+            UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Lift);
         }
 
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)
