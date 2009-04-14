@@ -8,6 +8,7 @@
                 <include name="**/obj/**" />
                 <include name="../output/**" />
                 <include name="../release/output/*" />
+                <exclude name=".hg" />
             </fileset>
         </delete>
     </target>
