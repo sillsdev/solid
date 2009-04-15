@@ -281,11 +281,13 @@
   </xsl:template>
 
   <xsl:template match="*[@lift='dateModified']">
-    <!-- shoebox dates are in form: DD/MMM/YYYY-->
+    <!-- shoebox dates are in form: DD/MMM/YYYY or D/MMM/YYYY -->
 
-    <xsl:variable name="year" select="substring(data, 8)"/>
-    <xsl:variable name="monthAsAbbrev" select="substring(data, 4, 3)"/>
-    <xsl:variable name="day" select="substring(data, 1, 2)"/>
+    <xsl:variable name="day" select="substring-before(data, '/')"/>
+    <xsl:variable name="monthAndYear" select="substring-after(data, '/')"/>
+    <xsl:variable name="monthAsAbbrev" select="substring-before($monthAndYear, '/')"/>
+    <xsl:variable name="year" select="substring-after($monthAndYear, '/')"/>
+
     <xsl:variable name="month">
       <xsl:choose>
         <xsl:when test="$monthAsAbbrev='Jan'">
@@ -336,7 +338,7 @@
     <xsl:text>-</xsl:text>
     <xsl:value-of select="$month"/>
     <xsl:text>-</xsl:text>
-    <xsl:value-of select="$day"/>
+    <xsl:value-of select="format-number($day, '00')"/>
   </xsl:template>
 
   <xsl:template match="*[@lift='reversal']">

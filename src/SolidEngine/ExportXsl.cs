@@ -15,9 +15,9 @@ namespace SolidEngine
 
         private string _xslFilePath;
         private string _processMethod;
-        private ExportHeader _header;
-        private List<string> _files = new List<string>();
-        private ProgressState _progressState = null;
+        private readonly ExportHeader _header;
+        private readonly List<string> _files = new List<string>();
+        private ProgressState _progressState;
 
         public string XslFilePath
         {
@@ -94,22 +94,24 @@ namespace SolidEngine
 
         private void ExportToTemp(string srcFile, string desFile)
         {
-            SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
-            XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8);
-            xmlWriter.Formatting = Formatting.Indented;
-            xmlWriter.WriteStartDocument();
-            try
-            {
-                xmlReader.Read();
-                xmlWriter.WriteNode(xmlReader, true);
-                xmlWriter.Flush();
-                xmlWriter.Close();
-            }
-            catch
-            {
-                xmlWriter.Flush();
-            }
-        }
+        	SolidXmlReader xmlReader = new SolidXmlReader(srcFile);
+        	using (XmlTextWriter xmlWriter = new XmlTextWriter(desFile, Encoding.UTF8))
+        	{
+        		xmlWriter.Formatting = Formatting.Indented;
+        		xmlWriter.WriteStartDocument();
+        		try
+        		{
+        			xmlReader.Read();
+        			xmlWriter.WriteNode(xmlReader, true);
+        			xmlWriter.Flush();
+        			xmlWriter.Close();
+        		}
+        		catch
+        		{
+        			xmlWriter.Flush();
+        		}
+	        }
+		}
 
         public void Export(string inputFilePath, string outputFilePath)
         {
