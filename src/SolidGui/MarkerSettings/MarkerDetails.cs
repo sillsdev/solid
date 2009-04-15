@@ -211,9 +211,9 @@ namespace SolidGui
 
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
-//            ((LinkLabel)_listView.SelectedItems[0].SubItems[2].Tag).Text = MakeStructureLinkLabel(setting.StructureProperties);
-//            ((LinkLabel)_listView.SelectedItems[0].SubItems[3].Tag).Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
-//            ((LinkLabel)_listView.SelectedItems[0].SubItems[5].Tag).Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+            _listView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
+            _listView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
+            _listView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
           }
 
         public void OpenSettingsDialog(string area)

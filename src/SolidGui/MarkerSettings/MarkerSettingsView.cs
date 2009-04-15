@@ -116,7 +116,7 @@ namespace SolidGui
 
         private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (var d = new WSPropertiesDialog())
+            using (var d = new WSPropertiesDialog(_wsModel))
             {
                 if (_wsModel.HasCurrentSelection)
                 {

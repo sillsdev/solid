@@ -185,6 +185,7 @@ namespace SolidGui
             _sfmEditorView.UpdateModel();
             _mainWindowPM.ProcessLexicon();
             _sfmEditorView.ClearContentsOfTextBox();
+            _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
             _sfmEditorView.DisplayEachFieldInCurrentRecord();
             Cursor = Cursors.Default;
         }

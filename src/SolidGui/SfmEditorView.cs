@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Elsehemy;
 using SolidEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SolidGui
 {
@@ -155,6 +156,7 @@ namespace SolidGui
         private Color _defaultTextColor = Color.Black;
         private int _indent = 130;
         private Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
+        private Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
 
         private KeyScanner _keyScanner = new KeyScanner();
         //private const string _processingMark = "\x01";
@@ -172,7 +174,9 @@ namespace SolidGui
         {
             get { return _indent; }
             set { _indent = value; }
-        }	
+        }
+
+        public IEnumerable<string> HighlightMarkers{ get; set;}
 
         public SfmEditorView()
         {
@@ -228,15 +232,16 @@ namespace SolidGui
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
-            if (e._record == null)
+            if (e.Record == null)
             {
                 _currentRecord = null;
                 ClearContentsOfTextBox();
             }
-            else if (_currentRecord != e._record)
+            else if (_currentRecord != e.Record || HighlightMarkers != e.HighlightMarkers)
             {
                 UpdateModel();
-                _currentRecord = e._record;
+                _currentRecord = e.Record;
+                HighlightMarkers =  e.HighlightMarkers;
                 UpdateView();
                 _keyScanner.Reset();
             }
@@ -308,8 +313,15 @@ namespace SolidGui
                 _contentsBoxDB.AppendText(indentation);
 
                 // 2) Marker
-                _contentsBoxDB.SelectionFont = _defaultFont;
                 string marker = field.Marker.Trim(new char[] { '_' });
+                if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
+                {
+                    _contentsBoxDB.SelectionFont = _highlightMarkerFont;
+                }
+                else
+                {
+                    _contentsBoxDB.SelectionFont = _defaultFont;
+                }
                 _contentsBoxDB.AppendText(markerPrefix + marker + "\t");
 
                 // 3) Value

@@ -14,11 +14,17 @@ namespace SolidGui
 
         public class RecordChangedEventArgs : System.EventArgs 
         {
-            public Record _record;
+            public Record Record{ get; set;}
 
-            public RecordChangedEventArgs(Record record)
+            public RecordChangedEventArgs(Record record, IEnumerable<string> _highlightMarkers)
             {
-                _record = record;
+                Record = record;
+                HighlightMarkers = _highlightMarkers;
+            }
+
+            public IEnumerable<string> HighlightMarkers
+            {
+                get; set;
             }
         }
 
@@ -55,13 +61,7 @@ namespace SolidGui
                         new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter)
                     );
                 }
-                if (RecordChanged != null)
-                {
-                    RecordChanged.Invoke(
-                        this,
-                        new RecordChangedEventArgs(_recordFilter.Current)
-                    );
-                }
+                SendRecordChangedEvent();
             }
         }
         
@@ -84,17 +84,21 @@ namespace SolidGui
         {
             if (_recordFilter.MoveToFirst())
             {
-                if (RecordChanged != null)
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                SendRecordChangedEvent();
             }
+        }
+
+        private void SendRecordChangedEvent()
+        {
+            if (RecordChanged != null)
+                RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter.HighlightMarkers));
         }
 
         public void MoveToLast()
         {
             if (_recordFilter.MoveToLast())
             {
-                if (RecordChanged != null)
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                SendRecordChangedEvent();
             }
         }
 
@@ -102,8 +106,7 @@ namespace SolidGui
         {
             if (_recordFilter.MoveToPrevious())
             {
-                if(RecordChanged != null)
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                SendRecordChangedEvent();
             }
         }
 
@@ -111,8 +114,7 @@ namespace SolidGui
         {
             if (_recordFilter.MoveToNext())
             {
-                if(RecordChanged != null)
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));     
+                SendRecordChangedEvent();
             }
         }
 
@@ -143,10 +145,7 @@ namespace SolidGui
             set
             {
                 _recordFilter.MoveTo(value);
-                if (RecordChanged != null)
-                {
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
-                }
+                SendRecordChangedEvent();
             }
         }
         
@@ -156,7 +155,7 @@ namespace SolidGui
             {
                 if(_recordFilter.MoveToByID(value))
                 {
-                    RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord));
+                    SendRecordChangedEvent();
                 }
             }
             get

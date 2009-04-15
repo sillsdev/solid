@@ -32,6 +32,7 @@ namespace SolidGui
                 case SolidReport.EntryType.StructureInsertInInferredFailed:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
+                        marker,
                         type,
                         string.Format("Failed to insert {0} in inferred marker", marker)
                     );
@@ -39,6 +40,7 @@ namespace SolidGui
                 case SolidReport.EntryType.StructureParentNotFound:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
+                        marker,
                         type,
                         string.Format("Marker {0} could not be placed in structure", marker)
                     );
@@ -46,6 +48,7 @@ namespace SolidGui
                 case SolidReport.EntryType.StructureParentNotFoundForInferred:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
+                        marker,
                         type,
                         string.Format("Inferred marker {0} could not be placed in structure", marker)
                     );
@@ -53,6 +56,7 @@ namespace SolidGui
                 case SolidReport.EntryType.EncodingUpperAscii:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
+                        marker,
                         type,
                         string.Format("Marker {0} contains upper ascii data", marker)
                     );
@@ -60,6 +64,7 @@ namespace SolidGui
                 case SolidReport.EntryType.EncodingBadUnicode:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,
+                        marker,
                         type,
                         string.Format("Marker {0} contains bad unicode data", marker)
                     );

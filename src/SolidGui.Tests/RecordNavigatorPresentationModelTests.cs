@@ -120,7 +120,7 @@ namespace SolidGui.Tests
 
         void OnNavigator_RecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
         {
-            _recordWeGotFromRecordChangedChangedEvent = e._record;
+            _recordWeGotFromRecordChangedChangedEvent = e.Record;
         }
     }
 

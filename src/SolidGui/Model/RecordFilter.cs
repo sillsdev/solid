@@ -8,16 +8,19 @@ namespace SolidGui
 
     public class SolidErrorRecordFilter : RecordFilter
     {
+        private readonly string _marker;
         SolidReport.EntryType _errorType;
 
         List<string> _errorMessages = new List<string>();
 
-        public SolidErrorRecordFilter(SfmDictionary d, SolidReport.EntryType errorType, string name) :
+        public SolidErrorRecordFilter(SfmDictionary d, string marker,SolidReport.EntryType errorType, string name) :
             base(d, name)
         {
+            _marker = marker;
             _errorType = errorType;
             _name = name;
         }
+
 
         public void AddEntry(SolidReport.Entry entry)
         {
@@ -25,6 +28,11 @@ namespace SolidGui
             {
                 _indexesOfRecords.Add(entry.RecordID);
             }
+        }
+
+        public override IEnumerable<string> HighlightMarkers
+        {
+            get { return new string[] { _marker }; }
         }
 
         public override string Description(int index)
@@ -105,7 +113,7 @@ namespace SolidGui
         public override void UpdateFilter()
         {
             _indexesOfRecords.Clear();
-            for (int i = 0; i < _d.Count; i++)
+            for (int i = 0; i < _recordManager.Count; i++)
             {
                 _indexesOfRecords.Add(i);
             }
@@ -113,7 +121,7 @@ namespace SolidGui
         
         public override string Description(int index)
         {
-            return "All " + _d.Count + " records";
+            return "All " + _recordManager.Count + " records";
         }
 
     }
@@ -132,16 +140,20 @@ namespace SolidGui
         public override void UpdateFilter()
         {
             _indexesOfRecords.Clear();
-            for (int i = 0; i < _d.Count; i++)
+            for (int i = 0; i < _recordManager.Count; i++)
             {
-                _d.MoveTo(i);
-                if (_d.Current.IsMarkerNotEmpty(_marker))
+                _recordManager.MoveTo(i);
+                if (_recordManager.Current.IsMarkerNotEmpty(_marker))
                 {
                     _indexesOfRecords.Add(i);
                 }
             }
         }
 
+        public override IEnumerable<string> HighlightMarkers
+        {
+            get { return new string[] { _marker }; }
+        }
         public override string Description(int index)
         {
             return string.Format("Records containing {0}", _marker);
@@ -171,7 +183,7 @@ namespace SolidGui
         public RecordFilter(RecordManager d, string name) :
             base(d)
         {
-            _d = d;
+            _recordManager = d;
             _name = name;
             _currentIndex = 0;
         }
@@ -193,8 +205,8 @@ namespace SolidGui
             {
                 if (_indexesOfRecords.Count > 0)
                 {
-                    _d.MoveTo(_indexesOfRecords[_currentIndex]);
-                    return _d.Current;
+                    _recordManager.MoveTo(_indexesOfRecords[_currentIndex]);
+                    return _recordManager.Current;
                 }
                 return new Record(0);
 
@@ -278,7 +290,12 @@ namespace SolidGui
         {
             get { return _name; }
         }
-        
+
+        public virtual IEnumerable<string> HighlightMarkers
+        {
+            get { return new string[] {""}; }
+        }
+
         public virtual string Description(int index)
         {
             return "unknown description";
@@ -301,7 +318,7 @@ namespace SolidGui
         public override Record GetRecord(int index)
         {
             if(index >= 0 && index < _indexesOfRecords.Count)
-                return _d.GetRecord(_indexesOfRecords[index]);
+                return _recordManager.GetRecord(_indexesOfRecords[index]);
 
             return null;
         }
