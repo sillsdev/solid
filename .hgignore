@@ -1,8 +1,10 @@
-glob:lib/Palaso.BuildTasks.*
-glob:output/
-glob:obj/
-glob:bin/
-glob:*.user
-glob:*.suo
-glob:*.pdb
-glob:*.Tests.dll
+syntax: glob
+lib/Palaso.BuildTasks.*
+output/
+obj/
+bin/
+*.user
+*.suo
+*.pdb
+src/_ReSharper.solid
+*.resharper

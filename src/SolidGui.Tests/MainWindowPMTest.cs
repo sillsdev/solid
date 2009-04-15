@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using NUnit.Framework;
+using Palaso;
 
 namespace SolidGui.Tests
 {
@@ -70,7 +71,7 @@ namespace SolidGui.Tests
             _mainWindowPM.OpenDictionary(DictionaryPath, null);
         }
 
-        [Test, Ignore("Needs redoing in Dictionary"), ExpectedException(typeof(Palaso.Reporting.ErrorReport.NonFatalMessageSentToUserException))]
+        [Test, Ignore("Needs redoing in Dictionary")]
         public void SaveDictionaryFailsWhenDictionaryEditedOutsideOfSolid()
         {
             //passes when ran individually
