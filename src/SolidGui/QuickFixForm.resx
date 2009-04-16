@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label5.Text" xml:space="preserve">
-    <value>This fix uses a really dumb algorithm which knows nothing about field bundles or subentries.
-Markers which are dangerous because of the simplicity of the algorithm here:
-1) markers which may have bundles (e.g. \va)
-2) markers which may be found under \se (e.g. \ph, \lt)
-
-Of course, not all dictionaries have subentries or bundles on the \va.</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>This fix uses a really dumb algorithm which knows nothing about field bundles or subentries.
-Markers which are dangerous because of the simplicity of the algorithm here:
-1) markers which may have bundles (e.g. \va)
-2) markers which may be found under \se (e.g. \ph)
-
-Of course, not all dictionaries have subentries or bundles on the \va.</value>
-  </data>
 </root>

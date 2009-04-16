@@ -11,14 +11,18 @@ namespace SolidGui.Tests
     [TestFixture]
     public class QuickFix_Tests
     {
-        private List<string> _markers = new List<string>(new string[] { "bw", "hm" });
+
+        private List<string> M(params string[] args)
+        {
+            return new List<string>(args);
+        }
 
         [Test]
         public void MoveCommonItemsUp()
         {
             var dict = MakeDictionary("lx", "ps", "bw");
             
-            new QuickFixer(dict).MoveCommonItemsUp(_markers);           
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));           
             AssertFieldOrder(dict.Records[0],"lx", "bw","ps");
         }
 
@@ -26,7 +30,7 @@ namespace SolidGui.Tests
         public void MoveCommonItemsUp_FirstTwoFieldsAreTopLevelOnes()
         {
             var dict = MakeDictionary("lx", "bw", "hm");
-            new QuickFixer(dict).MoveCommonItemsUp(_markers);
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx", "bw", "hm");
         }
 
@@ -34,7 +38,7 @@ namespace SolidGui.Tests
         public void MoveCommonItemsUp_NothingToMove()
         {
             var dict = MakeDictionary("lx", "ps");
-            new QuickFixer(dict).MoveCommonItemsUp(_markers);
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx", "ps");
         }
 
@@ -42,8 +46,33 @@ namespace SolidGui.Tests
         public void MoveCommonItemsUp_OnlyHasLx()
         {
             var dict = MakeDictionary("lx");
-            new QuickFixer(dict).MoveCommonItemsUp(_markers);
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx");
+        }
+
+
+        [Test]
+        public void MoveCommonItemsUp_HasSubEntry_MultipleMovedUpToSubEntry()
+        {
+            var dict = MakeDictionary("lx", "a", "se", "b", "p1", "p2");
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"));
+            AssertFieldOrder(dict.Records[0], "lx", "a", "se", "p1", "p2", "b");
+        }
+
+        [Test]
+        public void MoveCommonItemsUp_SomeToEntrySomeToSubEntry()
+        {
+            var dict = MakeDictionary("lx", "a", "ph", "se", "b", "ph", "c");
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("ph"));
+            AssertFieldOrder(dict.Records[0], "lx", "ph", "a", "se", "ph","b", "c");
+        }
+
+        [Test]
+        public void MoveCommonItemsUp_MoveToSnButNoSn_DoesntMove()
+        {
+            var dict = MakeDictionary("lx", "a", "ge");
+            new QuickFixer(dict).MoveCommonItemsUp(M("sn"), M("ge"));
+            AssertFieldOrder(dict.Records[0], "lx", "a", "ge");
         }
 
         [Test]

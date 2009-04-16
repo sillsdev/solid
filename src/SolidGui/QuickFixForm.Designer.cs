@@ -28,25 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickFixForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this._moveUpGoLink = new System.Windows.Forms.LinkLabel();
+            this._moveUpRoots = new System.Windows.Forms.TextBox();
             this._moveUpMarkers = new System.Windows.Forms.TextBox();
-            this._goLink = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this._executeRemoveEmpty = new System.Windows.Forms.LinkLabel();
             this._removeEmptyMarkers = new System.Windows.Forms.TextBox();
@@ -54,7 +53,6 @@
             this.tabControl1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +90,7 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(403, 320);
+            this.button1.Location = new System.Drawing.Point(396, 423);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -107,85 +105,112 @@
             this.tabControl2.Location = new System.Drawing.Point(12, 9);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(463, 305);
+            this.tabControl2.Size = new System.Drawing.Size(463, 408);
             this.tabControl2.TabIndex = 5;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.pictureBox2);
             this.tabPage3.Controls.Add(this.pictureBox1);
+            this.tabPage3.Controls.Add(this.linkLabel3);
+            this.tabPage3.Controls.Add(this.linkLabel2);
+            this.tabPage3.Controls.Add(this.linkLabel1);
             this.tabPage3.Controls.Add(this._moveUpGoLink);
+            this.tabPage3.Controls.Add(this._moveUpRoots);
             this.tabPage3.Controls.Add(this._moveUpMarkers);
-            this.tabPage3.Controls.Add(this._goLink);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(455, 279);
+            this.tabPage3.Size = new System.Drawing.Size(455, 382);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Move Up";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SolidGui.Properties.Resources.WarningHS;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 4);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(67, 65);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SolidGui.Properties.Resources.WarningHS;
-            this.pictureBox1.Location = new System.Drawing.Point(6, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(24, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(67, 65);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 16;
             this.pictureBox1.TabStop = false;
             // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.Location = new System.Drawing.Point(47, 227);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(149, 17);
+            this.linkLabel3.TabIndex = 13;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "(bw, hm, lc) to under (lx)";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.Location = new System.Drawing.Point(47, 263);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(110, 17);
+            this.linkLabel2.TabIndex = 13;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "(sd) to under (ps)";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(47, 194);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(160, 17);
+            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "(lt, ph) to under (lx, se, va)";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
+            // 
             // _moveUpGoLink
             // 
             this._moveUpGoLink.AutoSize = true;
-            this._moveUpGoLink.Location = new System.Drawing.Point(3, 240);
+            this._moveUpGoLink.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpGoLink.Location = new System.Drawing.Point(21, 336);
             this._moveUpGoLink.Name = "_moveUpGoLink";
-            this._moveUpGoLink.Size = new System.Drawing.Size(212, 13);
+            this._moveUpGoLink.Size = new System.Drawing.Size(257, 17);
             this._moveUpGoLink.TabIndex = 13;
             this._moveUpGoLink.TabStop = true;
             this._moveUpGoLink.Text = "I know what I\'m doing and have backed up";
             this._moveUpGoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteMoveUp);
             // 
+            // _moveUpRoots
+            // 
+            this._moveUpRoots.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpRoots.Location = new System.Drawing.Point(201, 128);
+            this._moveUpRoots.Name = "_moveUpRoots";
+            this._moveUpRoots.Size = new System.Drawing.Size(120, 25);
+            this._moveUpRoots.TabIndex = 11;
+            this._moveUpRoots.Text = "lx, se";
+            // 
             // _moveUpMarkers
             // 
-            this._moveUpMarkers.Location = new System.Drawing.Point(82, 100);
+            this._moveUpMarkers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpMarkers.Location = new System.Drawing.Point(201, 105);
             this._moveUpMarkers.Name = "_moveUpMarkers";
-            this._moveUpMarkers.Size = new System.Drawing.Size(288, 20);
+            this._moveUpMarkers.Size = new System.Drawing.Size(120, 25);
             this._moveUpMarkers.TabIndex = 11;
             this._moveUpMarkers.Text = "bw, hm, lc";
-            // 
-            // _goLink
-            // 
-            this._goLink.AutoSize = true;
-            this._goLink.Location = new System.Drawing.Point(3, 240);
-            this._goLink.Name = "_goLink";
-            this._goLink.Size = new System.Drawing.Size(212, 13);
-            this._goLink.TabIndex = 14;
-            this._goLink.TabStop = true;
-            this._goLink.Text = "I know what I\'m doing and have backed up";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(79, 4);
+            this.label6.Location = new System.Drawing.Point(106, 27);
             this.label6.MaximumSize = new System.Drawing.Size(300, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(261, 51);
@@ -194,57 +219,40 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Location = new System.Drawing.Point(0, 21);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 17;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 144);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(436, 78);
-            this.label5.TabIndex = 5;
-            this.label5.Text = resources.GetString("label5.Text");
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(79, 4);
-            this.label2.MaximumSize = new System.Drawing.Size(300, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 51);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Warning: this is very dangerous.  Backup before this, and check the results. ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 84);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(277, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Markers to move up out of senses, to the top of the entry:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 144);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(436, 78);
-            this.label3.TabIndex = 8;
-            this.label3.Text = resources.GetString("label3.Text");
+            this.label3.Size = new System.Drawing.Size(258, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Click one of these to fill in the fields above:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 84);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Markers to move up out of senses, to the top of the entry:";
+            this.label1.Size = new System.Drawing.Size(166, 17);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "To underneath these roots:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 105);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(130, 17);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Move these markers:";
             // 
             // tabPage4
             // 
@@ -254,7 +262,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(455, 279);
+            this.tabPage4.Size = new System.Drawing.Size(455, 382);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Remove empty";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -262,9 +270,10 @@
             // _executeRemoveEmpty
             // 
             this._executeRemoveEmpty.AutoSize = true;
+            this._executeRemoveEmpty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._executeRemoveEmpty.Location = new System.Drawing.Point(15, 234);
             this._executeRemoveEmpty.Name = "_executeRemoveEmpty";
-            this._executeRemoveEmpty.Size = new System.Drawing.Size(212, 13);
+            this._executeRemoveEmpty.Size = new System.Drawing.Size(257, 17);
             this._executeRemoveEmpty.TabIndex = 16;
             this._executeRemoveEmpty.TabStop = true;
             this._executeRemoveEmpty.Text = "I know what I\'m doing and have backed up";
@@ -272,26 +281,28 @@
             // 
             // _removeEmptyMarkers
             // 
-            this._removeEmptyMarkers.Location = new System.Drawing.Point(47, 39);
+            this._removeEmptyMarkers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._removeEmptyMarkers.Location = new System.Drawing.Point(49, 53);
             this._removeEmptyMarkers.Name = "_removeEmptyMarkers";
-            this._removeEmptyMarkers.Size = new System.Drawing.Size(288, 20);
+            this._removeEmptyMarkers.Size = new System.Drawing.Size(288, 25);
             this._removeEmptyMarkers.TabIndex = 15;
             this._removeEmptyMarkers.Text = "bw, hm, lt, lc, nt, so, co, ge, de, gn, gr, dr, ps";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(15, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(206, 13);
+            this.label7.Size = new System.Drawing.Size(262, 17);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Field to remove if they only have a marker:";
+            this.label7.Text = "Fields to remove if they only have a marker:";
             // 
             // QuickFixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 355);
+            this.ClientSize = new System.Drawing.Size(487, 458);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
@@ -305,7 +316,6 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
@@ -322,20 +332,20 @@
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.LinkLabel _moveUpGoLink;
         private System.Windows.Forms.TextBox _moveUpMarkers;
-        private System.Windows.Forms.LinkLabel _goLink;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel _executeRemoveEmpty;
         private System.Windows.Forms.TextBox _removeEmptyMarkers;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox _moveUpRoots;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label label3;
     }
 }
