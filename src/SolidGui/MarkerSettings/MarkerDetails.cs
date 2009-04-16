@@ -78,6 +78,9 @@ namespace SolidGui
             }
  //           _listView.Sorting = SortOrder.Ascending;
   //          _listView.Sort();
+
+            _listView.Columns[0].LastSortState = SortDirections.SortAscending;
+            _listView.SortColumn(0);//review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
         }
 
