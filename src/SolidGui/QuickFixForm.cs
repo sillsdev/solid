@@ -26,14 +26,30 @@ namespace SolidGui
             Close();
         }
 
-        private void _goLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OnExecuteMoveUp(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var markers = textBox1.Text.SplitTrimmed(',');
+            var markers = _moveUpMarkers.Text.SplitTrimmed(',');
             try
             {
                 _fixer.MoveCommonItemsUp(markers);
             }
             catch(Exception error)
+            {
+                Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+            }
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Close();
+        }
+
+ 
+        private void OnExecuteRemoveEmpty(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var markers = _removeEmptyMarkers.Text.SplitTrimmed(',');
+            try
+            {
+                _fixer.RemoveEmptyFields(markers);
+            }
+            catch (Exception error)
             {
                 Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
             }

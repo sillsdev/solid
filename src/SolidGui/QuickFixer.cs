@@ -40,5 +40,25 @@ namespace SolidEngine
                 }
             }
         }
+
+        public void RemoveEmptyFields(List<string> markers)
+        {
+            foreach (var record in _dictionary.AllRecords)
+            {
+                for (int i = record.Fields.Count-1;
+                    i > 0 ; // don't even look at record marker field
+                    i--)
+                {
+                    if (markers.Contains(record.Fields[i].Marker))
+                    {
+                        if(record.Fields[i].Value.Trim() == string.Empty)
+                        {
+                            record.RemoveField(i);
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

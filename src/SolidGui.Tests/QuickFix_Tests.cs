@@ -46,6 +46,40 @@ namespace SolidGui.Tests
             AssertFieldOrder(dict.Records[0], "lx");
         }
 
+        [Test]
+        public void RemoveEmptyFields_LastOne_Ok()
+        {
+            var dict = MakeDictionary("lx", "ps", "co");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "co" }));
+            AssertFieldOrder(dict.Records[0], "lx", "ps");
+            
+        }
+        [Test]
+        public void RemoveEmptyFields_FirstLineIsEmpty_Ok()
+        {
+            var dict = MakeDictionary("lx", "ps", "co");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "ps" }));
+            AssertFieldOrder(dict.Records[0], "lx", "co");
+            
+        }
+        [Test]
+        public void RemoveEmptyFields_NotEmpty_NotTouched()
+        {
+            var dict = MakeDictionary("lx", "ps noun", "co");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "ps" }));
+            AssertFieldOrder(dict.Records[0], "lx", "ps", "co");
+
+        }
+
+        [Test]
+        public void RemoveEmptyFields_MultipleSpecifiec_AllUsed()
+        {
+            var dict = MakeDictionary("lx", "a", "b", "b", "c", "d");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "a", "b", "c", }));
+            AssertFieldOrder(dict.Records[0], "lx", "d");
+
+        }
+
         private SfmDictionary MakeDictionary(params string[] fields)
         {
             var b = new StringBuilder();
@@ -69,6 +103,7 @@ namespace SolidGui.Tests
             {
                 Assert.AreEqual(markers[i], record.Fields[i].Marker);                
             }
+            Assert.AreEqual(markers.Length, record.Fields.Count);
         }
 
     }

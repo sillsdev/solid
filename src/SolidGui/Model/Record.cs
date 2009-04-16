@@ -224,5 +224,16 @@ namespace SolidGui
                 _fields.Insert(after, field);               
             }
         }
+
+        public void RemoveField(int index)
+        {
+            if(index == 0)
+                throw new ApplicationException("Cannot remove the first field, which is the record marker");
+
+            if(index < 0 || index >= _fields.Count)
+                throw new ArgumentOutOfRangeException(string.Format("RemoveField({0}) was asked to remove an index which is out of range", index));
+
+            _fields.RemoveAt(index);
+        }
     }
 }
