@@ -246,7 +246,7 @@ namespace SolidGui
             _solidSettings.SaveAs(filePath);
         }
 
-        public bool DictionarySave()
+        public bool DictionaryAndSettingsSave()
         {
             _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             _workingDictionary.SaveAs(_realDictionaryPath);

@@ -202,7 +202,7 @@ namespace SolidGui
         private void OnSaveClick(object sender, EventArgs e)
         {
             _sfmEditorView.UpdateModel();
-            _mainWindowPM.DictionarySave();
+            _mainWindowPM.DictionaryAndSettingsSave();
             _saveButton.Enabled = false;
         }
 
@@ -223,8 +223,24 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(_mainWindowPM.SolidSettings != null)
-                _mainWindowPM.SolidSettings.Save();
+
+            if(_saveButton.Enabled)//HACK this is so stupid to use the ui as the dirty bit, but it's all over
+            {
+                var answer = MessageBox.Show("Save changes before quitting?", "SOLID: Save first?", MessageBoxButtons.YesNoCancel,
+                                MessageBoxIcon.Question);
+                switch (answer)
+                {
+                    case System.Windows.Forms.DialogResult.Cancel:
+                        e.Cancel = true;
+                        break;
+                    case System.Windows.Forms.DialogResult.Yes:
+                        OnSaveClick(this,null);
+                        break;
+                    case System.Windows.Forms.DialogResult.No:
+                        break;
+
+                }
+            }
         }
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
