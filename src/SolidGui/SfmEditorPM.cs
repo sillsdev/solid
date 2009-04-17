@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
-using System.Xml;
+
 using Palaso.WritingSystems;
+
 using SolidEngine;
 
 namespace SolidGui
@@ -40,7 +41,7 @@ namespace SolidGui
             if (reader.Read())
             {
                 SfmRecord sfmRecord = reader.Record;
-                RemoveVirualFields(sfmRecord);
+                RemoveInferredFields(sfmRecord);
                 StringBuilder sb = new StringBuilder();
                 foreach (SfmField field in sfmRecord)
                 {
@@ -59,14 +60,9 @@ namespace SolidGui
             }
         }
 
-        private void RemoveVirualFields(SfmRecord sfmRecord)
+        private static void RemoveInferredFields(List<SfmField> sfmRecord)
         {
-            sfmRecord.RemoveAll(
-                delegate(SfmField rhs)
-                    {
-                        return rhs.key.StartsWith("+");
-                    }
-                );
+            sfmRecord.RemoveAll(rhs => rhs.key.StartsWith("+"));
         }
 
         public Font FontForMarker(string marker)
@@ -108,6 +104,8 @@ namespace SolidGui
                     if (retval.Length == 0)
                     {
                         retval = "Non Unicode Data Found";
+						// TODO: Need to lock this field of the current record at this point.
+						// The editor must *never* write back to the model (for this field)
                     }
                 }
             }
@@ -118,8 +116,7 @@ namespace SolidGui
             return retval;
         }
 
-
-        public string GetLatin1ValueFromUnicode(string marker, string value)
+        private string GetLatin1ValueFromUnicode(string marker, string value)
         {
             SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
             if (setting != null && setting.Unicode)
@@ -133,9 +130,9 @@ namespace SolidGui
             return value;
         }
 
-        private bool FontIsInstalled(string name)
+        private static bool FontIsInstalled(string name)
         {
-            foreach (FontFamily family in System.Drawing.FontFamily.Families)
+            foreach (FontFamily family in FontFamily.Families)
             {
                 if (family.Name == name)
                     return true;

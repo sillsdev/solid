@@ -15,8 +15,8 @@ namespace SolidGui
         class MarkerTip: SuperToolTip
         {
             private bool _showing = false;
-            private Dictionary<int, string> _lineMessage = new Dictionary<int, string>();
-            private Control _textBox;
+            private readonly Dictionary<int, string> _lineMessage = new Dictionary<int, string>();
+            private readonly Control _textBox;
             
             public MarkerTip(Control textBox, IContainer container):
                 base(container)
@@ -149,24 +149,24 @@ namespace SolidGui
         private SfmEditorPM _model;
         private Record _currentRecord;
 
-        private int _spacesInIndentation = 4;
-        private int _leftMarigin = 20;
-        private Color _inferredTextColor = Color.Blue;
-        private Color _errorTextColor = Color.Red;
-        private Color _defaultTextColor = Color.Black;
+        private const int _spacesInIndentation = 4;
+        private const int _leftMarigin = 20;
+        private readonly Color _inferredTextColor = Color.Blue;
+        private readonly Color _errorTextColor = Color.Red;
+        private readonly Color _defaultTextColor = Color.Black;
         private int _indent = 130;
-        private Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
-        private Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
+        private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
+        private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
 
-        private KeyScanner _keyScanner = new KeyScanner();
+        private readonly KeyScanner _keyScanner = new KeyScanner();
         //private const string _processingMark = "\x01";
         
-        private MarkerTip _markerTip;
+        private readonly MarkerTip _markerTip;
         private int _lineNumber = -1;
         private int _markerTipDisplayDelay = 10;
 
         private bool _isDirty = false;
-        private System.Windows.Forms.RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
+        private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
 
         public event EventHandler RecordTextChanged;
         
@@ -276,8 +276,8 @@ namespace SolidGui
             _contentsBoxDB.SelectAll();
             _contentsBoxDB.SelectionTabs = new int[] { _indent };
 
-            int currentPosition = 0;
-            bool foundProcessingMark = false;
+			const int currentPosition = 0;
+			const bool foundProcessingMark = false;
             int lineNumber = 0;
 
             foreach (Field field in _currentRecord.Fields)
@@ -371,10 +371,6 @@ namespace SolidGui
 */
         public void OnSolidSettingsChange()
         {
-            /* See http://projects.mseag.org/solid/ticket/139
-             */
-            _isDirty = true;
-            UpdateModel();
             UpdateView();
         }
 
