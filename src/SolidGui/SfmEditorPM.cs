@@ -13,8 +13,9 @@ namespace SolidGui
     public class SfmEditorPM
     {
         private SolidSettings _solidSettings;
+    	private RecordNavigatorPM _navigatorModel;
 
-        public class RecordEditedEventArgs:EventArgs
+    	public class RecordEditedEventArgs:EventArgs
         {
             public string _record;
 
@@ -24,13 +25,38 @@ namespace SolidGui
             }
         }
 
-        public SolidSettings Settings
+		public SfmEditorPM(RecordNavigatorPM navigatorModel)
+		{
+			_navigatorModel = navigatorModel;
+		}
+
+		public SolidSettings Settings
         {
             set
             {
                 _solidSettings = value; 
             }
         }
+
+		public void MoveToFirst()
+		{
+			_navigatorModel.MoveToFirst();
+		}
+
+		public void MoveToLast()
+		{
+			_navigatorModel.MoveToLast();
+		}
+
+		public void MoveToPrevious()
+		{
+			_navigatorModel.MoveToPrevious();
+		}
+
+		public void MoveToNext()
+		{
+			_navigatorModel.MoveToNext();
+		}
 
         public void UpdateCurrentRecord(Record record, string newContents)
         {
@@ -139,6 +165,7 @@ namespace SolidGui
             }
             return false;
         }
+
 
     }
 }

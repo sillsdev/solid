@@ -4,11 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Windows.Forms;
-using System.Xml;
-using SolidEngine;
-using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
+using SolidEngine;
 
 namespace SolidGui
 {
@@ -17,23 +14,20 @@ namespace SolidGui
     /// </summary>
     public class MainWindowPM
     {
-        private SfmDictionary _workingDictionary;
-        private String _tempDictionaryPath;
-        private String _realDictionaryPath;
-
-        private SolidSettings _solidSettings;
-        private MarkerSettingsPM _markerSettingsModel;
-        private RecordFilterSet _recordFilters;
-        private List<Record> _masterRecordList;
-        private RecordNavigatorPM _navigatorModel;
-        private FilterChooserPM _filterChooserModel;
-        private SfmEditorPM _sfmEditorModel;
-        private SearchPM _searchModel;
-
-        public event EventHandler DictionaryProcessed;
+    	private readonly FilterChooserPM _filterChooserModel;
+    	private readonly MarkerSettingsPM _markerSettingsModel;
+    	private readonly RecordNavigatorPM _navigatorModel;
+    	private readonly RecordFilterSet _recordFilters;
+    	private readonly SfmEditorPM _sfmEditorModel;
+    	private readonly String _tempDictionaryPath;
+    	private readonly SfmDictionary _workingDictionary;
+    	private List<Record> _masterRecordList;
+    	private String _realDictionaryPath;
+    	private SearchPM _searchModel;
+    	private SolidSettings _solidSettings;
 
 
-        public MainWindowPM()
+    	public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
             _workingDictionary = new SfmDictionary();
@@ -41,7 +35,7 @@ namespace SolidGui
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
-            _sfmEditorModel = new SfmEditorPM();
+            _sfmEditorModel = new SfmEditorPM(_navigatorModel);
             _searchModel = new SearchPM();
 
 
@@ -134,7 +128,117 @@ namespace SolidGui
             }
         }
 
-        /// <summary>
+    	public string DictionaryRealFilePath
+    	{
+    		get { return _realDictionaryPath; }
+    	}
+
+    	/// <summary>
+    	/// Note: omits the currently in-use settings
+    	/// </summary>
+    	public List<string> TemplatePaths
+    	{
+    		get
+    		{
+    			List<string> paths = new List<string>();
+
+    			foreach (string path in Directory.GetFiles(PathToFactoryTemplatesDirectory, "*.solid"))
+    			{
+    				paths.Add(path);
+    			}
+
+    			if (DictionaryRealFilePath != null)
+    			{
+    				foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
+    				{
+    					if (_solidSettings != null && path != _solidSettings.FilePath)
+    					{
+    						paths.Add(path);
+    					}
+    				}
+    			}
+    			return paths;
+    		}
+    	}
+
+    	public string PathToFactoryTemplatesDirectory
+    	{
+    		get
+    		{
+    			return Path.Combine(TopAppDirectory, "templates");
+    		}
+    	}
+
+
+    	public static string TopAppDirectory
+    	{
+    		get
+    		{
+    			string path = DirectoryOfExecutingAssembly;
+
+    			if (path.ToLower().IndexOf("output") > -1)
+    			{
+					// ReSharper disable PossibleNullReferenceException
+					//go up to output
+    				path = Directory.GetParent(path).FullName;
+    				//go up to directory containing output
+    				path = Directory.GetParent(path).FullName;
+					// ReSharper restore PossibleNullReferenceException
+				}
+    			return path;
+    		}
+    	}
+
+    	private static string DirectoryOfExecutingAssembly
+    	{
+    		get
+    		{
+    			string path;
+    			bool unitTesting = Assembly.GetEntryAssembly() == null;
+    			if (unitTesting)
+    			{
+    				path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
+    				path = Uri.UnescapeDataString(path);
+    			}
+    			else
+    			{
+    				path = Assembly.GetExecutingAssembly().Location;
+    			}
+    			return Directory.GetParent(path).FullName;
+    		}
+    	}
+
+    	public string PathToCurrentSolidSettingsFile
+    	{
+    		get
+    		{
+    			if (_solidSettings == null)
+    			{
+    				return null;
+    			}
+    			return _solidSettings.FilePath;
+    		}
+    	}
+
+    	public string PathToCurrentDictionary
+    	{
+    		get
+    		{
+    			return WorkingDictionary.FilePath;
+    		}
+    	}
+
+    	public SfmDictionary WorkingDictionary
+    	{
+    		get
+    		{
+    			return _workingDictionary;
+    		}
+    	}
+
+    	public event EventHandler DictionaryProcessed;
+
+    	/// <summary>
         /// Called by the view to determine whether to ask the user for a starting template
         /// </summary>
         /// <param name="filePath"></param>
@@ -197,12 +301,7 @@ namespace SolidGui
 
         }
 
-        public string DictionaryRealFilePath
-        {
-            get { return _realDictionaryPath; }
-        }
-
-        private void GiveSolidSettingsToModels()
+    	private void GiveSolidSettingsToModels()
         {
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
             _markerSettingsModel.Root = _solidSettings.RecordMarker;
@@ -269,110 +368,7 @@ namespace SolidGui
             return true; // Todo: can't fail.
         }
 
-        /// <summary>
-        /// Note: omits the currently in-use settings
-        /// </summary>
-        public List<string> TemplatePaths
-        {
-            get
-            {
-                List<string> paths = new List<string>();
-
-                foreach (string path in Directory.GetFiles(PathToFactoryTemplatesDirectory, "*.solid"))
-                {
-                    paths.Add(path);
-                }
-
-                if (DictionaryRealFilePath != null)
-                {
-                    foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
-                    {
-                        if (_solidSettings != null && path != _solidSettings.FilePath)
-                        {
-                            paths.Add(path);
-                        }
-                    }
-                }
-                return paths;
-            }
-        }
-
-        public string PathToFactoryTemplatesDirectory
-        {
-            get
-            {
-                return Path.Combine(TopAppDirectory, "templates");
-            }
-        }
-
-
-        public static string TopAppDirectory
-        {
-            get
-            {
-                string path;
-
-                path = DirectoryOfExecutingAssembly;
-
-                if (path.ToLower().IndexOf("output") > -1)
-                {
-                    //go up to output
-                    path = Directory.GetParent(path).FullName;
-                    //go up to directory containing output
-                    path = Directory.GetParent(path).FullName;
-                }
-                return path;
-            }
-        }
-
-        private static string DirectoryOfExecutingAssembly
-        {
-            get
-            {
-                string path;
-                bool unitTesting = Assembly.GetEntryAssembly() == null;
-                if (unitTesting)
-                {
-                    path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
-                    path = Uri.UnescapeDataString(path);
-                }
-                else
-                {
-                    path = Assembly.GetExecutingAssembly().Location;
-                }
-                return Directory.GetParent(path).FullName;
-            }
-        }
-
-        public string PathToCurrentSolidSettingsFile
-        {
-            get
-            {
-                if (_solidSettings == null)
-                {
-                    return null;
-                }
-                return _solidSettings.FilePath;
-            }
-        }
-
-        public string PathToCurrentDictionary
-        {
-            get
-            {
-                return WorkingDictionary.FilePath;
-            }
-        }
-
-        public SfmDictionary WorkingDictionary
-        {
-            get
-            {
-                return _workingDictionary;
-            }
-        }
-
-        public void UseSolidSettingsTemplate(string path)
+    	public void UseSolidSettingsTemplate(string path)
         {
             _solidSettings.Save();
             LoadSettingsFromTemplate(path);

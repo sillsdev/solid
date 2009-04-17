@@ -1,199 +1,61 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Elsehemy;
 using SolidEngine;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SolidGui
 {
     public partial class SfmEditorView : UserControl
     {
+    	private const int _leftMarigin = 20;
+    	private const int _spacesInIndentation = 4;
+    	private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
+    	private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
+    	private readonly Color _defaultTextColor = Color.Black;
+    	private readonly Color _errorTextColor = Color.Red;
+    	private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
+    	private readonly Color _inferredTextColor = Color.Blue;
 
-        class MarkerTip: SuperToolTip
-        {
-            private bool _showing = false;
-            private readonly Dictionary<int, string> _lineMessage = new Dictionary<int, string>();
-            private readonly Control _textBox;
-            
-            public MarkerTip(Control textBox, IContainer container):
-                base(container)
-            {
-                _textBox = textBox;
-                
-                SuperToolTipInfoWrapper wrapper = new SuperToolTipInfoWrapper();
-                wrapper.SuperToolTipInfo = CreateSuperInfo();
-                wrapper.UseSuperToolTip = true;
-                SetSuperStuff(_textBox, wrapper);
-            }
-
-            public bool Showing
-            {
-                get { return _showing; }
-            }
-
-            public void AddLineMessage(int line, string message)
-            {
-                _lineMessage[line] = message;
-            }
-
-            public void ShowMessage(string message)
-            {
-
-                Point point = MousePosition;
-                point.Y += _textBox.Font.Height/2;
-                point.X += 4;
-
-                point = _textBox.PointToClient(point);
-
-                GetSuperStuff(_textBox).SuperToolTipInfo.BodyText = message;
-                GetSuperStuff(_textBox).SuperToolTipInfo.OffsetForWhereToDisplay = point;
-
-                Show(_textBox);
-                _showing = true;
-                _textBox.Parent.Focus();
-            }
-
-            public SuperToolTipInfo CreateSuperInfo()
-            {
-                SuperToolTipInfo superToolTipInfo = new SuperToolTipInfo();
-
-                superToolTipInfo.BackgroundGradientBegin = Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-                superToolTipInfo.BackgroundGradientEnd = Color.FromArgb(((int)(((byte)(202)))), ((int)(((byte)(218)))), ((int)(((byte)(239)))));
-                superToolTipInfo.BackgroundGradientMiddle = Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(251)))));
-                superToolTipInfo.BodyFont = new Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                superToolTipInfo.BodyText = "";
-                superToolTipInfo.HeaderFont = new Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-                superToolTipInfo.HeaderText = "Problem Description";
-                superToolTipInfo.OffsetForWhereToDisplay = new Point(0, 0);
-
-                return superToolTipInfo;
-            }
-
-            public void ClearLineMessages()
-            {
-                _lineMessage.Clear();
-            }
-
-            public void ShowMessageForLine(int line)
-            {
-                if(_lineMessage.ContainsKey(line))
-                    ShowMessage(_lineMessage[line]);
-                else 
-                    Hide();
-            }
-
-            public void Hide()
-            {
-                if (_showing)
-                {
-                    _showing = false;
-                    Close();
-                }
-            }
-
-            protected override void MouseEntered(object sender, EventArgs e)
-            {
-                
-            }
-
-            protected override void MouseLeft(object sender, EventArgs e)
-            {
-                
-            }
-        }
-
-        class KeyScanner
-        {
-            enum State
-            {
-                ScanBackslash,
-                ScanWhite
-            }
-            State _state;
-
-            public KeyScanner()
-            {
-                Reset();
-            }
-
-            public void Reset()
-            {
-                _state = State.ScanBackslash;
-            }
-
-            public bool ProcessKey(int c)
-            {
-                bool retval = false;
-                switch (_state)
-                {
-                    case State.ScanBackslash:
-                        if (c == '\\' || c == 220)
-                        {
-                            _state = State.ScanWhite;
-                        }
-                        break;
-                    case State.ScanWhite:
-                        if (c == ' ' || c == 0x09)
-                        {
-                            retval = true;
-                        }
-                        break;
-                }
-                return retval;
-            }
-        }
-
-        private SfmEditorPM _model;
-        private Record _currentRecord;
-
-        private const int _spacesInIndentation = 4;
-        private const int _leftMarigin = 20;
-        private readonly Color _inferredTextColor = Color.Blue;
-        private readonly Color _errorTextColor = Color.Red;
-        private readonly Color _defaultTextColor = Color.Black;
-        private int _indent = 130;
-        private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
-        private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
-
-        private readonly KeyScanner _keyScanner = new KeyScanner();
+    	private readonly KeyScanner _keyScanner = new KeyScanner();
         //private const string _processingMark = "\x01";
         
         private readonly MarkerTip _markerTip;
-        private int _lineNumber = -1;
+    	private Record _currentRecord;
+    	private int _indent = 130;
+    	private bool _isDirty;
+    	private int _lineNumber = -1;
         private int _markerTipDisplayDelay = 10;
+    	private SfmEditorPM _model;
 
-        private bool _isDirty = false;
-        private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
+    	public SfmEditorView()
+    	{
+    		_currentRecord = null;
+    		InitializeComponent();
+    		_contentsBoxDB = new RichTextBox();
+    		_contentsBoxDB.Visible = false;
+    		_contentsBox.TextChanged -= _contentsBox_TextChanged;
+    		_contentsBox.SelectionIndent = _leftMarigin;
+    		_markerTip = new MarkerTip(_contentsBox, components);
+    		_timer.Tick += OnTick;
+    		_timer.Start();
+    		_contentsBox.DragEnter += _contentsBox_DragEnter;
+    		_contentsBox.TextChanged += _contentsBox_TextChanged;
+    	}
 
-        public event EventHandler RecordTextChanged;
-        
-        public int Indent
+    	public int Indent
         {
             get { return _indent; }
             set { _indent = value; }
         }
 
         public IEnumerable<string> HighlightMarkers{ get; set;}
+    	public event EventHandler RecordTextChanged;
 
-        public SfmEditorView()
-        {
-            _currentRecord = null;
-            InitializeComponent();
-            _contentsBoxDB = new RichTextBox();
-            _contentsBoxDB.Visible = false;
-            _contentsBox.TextChanged -= _contentsBox_TextChanged;
-            _contentsBox.SelectionIndent = _leftMarigin;
-            _markerTip = new MarkerTip(_contentsBox, components);
-            _timer.Tick += OnTick;
-            _timer.Start();
-            _contentsBox.DragEnter += new DragEventHandler(_contentsBox_DragEnter);
-            _contentsBox.TextChanged += _contentsBox_TextChanged;
-        }
-
-        void _contentsBox_DragEnter(object sender, DragEventArgs e)
+    	void _contentsBox_DragEnter(object sender, DragEventArgs e)
         {
             if(e.Data.GetDataPresent(DataFormats.Text))
             {
@@ -274,7 +136,7 @@ namespace SolidGui
             _markerTip.ClearLineMessages();
             _contentsBoxDB.Clear();
             _contentsBoxDB.SelectAll();
-            _contentsBoxDB.SelectionTabs = new int[] { _indent };
+            _contentsBoxDB.SelectionTabs = new[] { _indent };
 
 			const int currentPosition = 0;
 			const bool foundProcessingMark = false;
@@ -307,13 +169,13 @@ namespace SolidGui
                 {
                     _markerTip.AddLineMessage(lineNumber, GetErrorForField(_currentRecord.Report, field));
                     _contentsBoxDB.SelectionColor = _errorTextColor;
-                };
+                }
 
                 // 1) Indentation
                 _contentsBoxDB.AppendText(indentation);
 
                 // 2) Marker
-                string marker = field.Marker.Trim(new char[] { '_' });
+                string marker = field.Marker.Trim(new[] { '_' });
                 if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
                 {
                     _contentsBoxDB.SelectionFont = _highlightMarkerFont;
@@ -475,5 +337,175 @@ namespace SolidGui
             }
         }
 
+		private void _contentsBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Control)
+			{
+				switch (e.KeyCode)
+				{
+					case Keys.PageDown:
+						if (e.Shift)
+							_model.MoveToLast();
+						else
+							_model.MoveToNext();
+						e.Handled = true;
+						break;
+					case Keys.PageUp:
+						if (e.Shift)
+							_model.MoveToFirst();
+						else
+							_model.MoveToPrevious();
+						e.Handled = true;
+						break;
+				}
+			}
+		}
+
+    	#region Nested type: KeyScanner
+
+    	class KeyScanner
+    	{
+    		State _state;
+
+    		public KeyScanner()
+    		{
+    			Reset();
+    		}
+
+    		public void Reset()
+    		{
+    			_state = State.ScanBackslash;
+    		}
+
+    		public bool ProcessKey(int c)
+    		{
+    			bool retval = false;
+    			switch (_state)
+    			{
+    				case State.ScanBackslash:
+    					if (c == '\\' || c == 220)
+    					{
+    						_state = State.ScanWhite;
+    					}
+    					break;
+    				case State.ScanWhite:
+    					if (c == ' ' || c == 0x09)
+    					{
+    						retval = true;
+    					}
+    					break;
+    			}
+    			return retval;
+    		}
+
+    		#region Nested type: State
+
+    		enum State
+    		{
+    			ScanBackslash,
+    			ScanWhite
+    		}
+
+    		#endregion
+    	}
+
+    	#endregion
+
+    	#region Nested type: MarkerTip
+
+    	class MarkerTip: SuperToolTip
+    	{
+    		private readonly Dictionary<int, string> _lineMessage = new Dictionary<int, string>();
+    		private readonly Control _textBox;
+    		private bool _showing;
+
+    		public MarkerTip(Control textBox, IContainer container):
+    			base(container)
+    		{
+    			_textBox = textBox;
+                
+    			SuperToolTipInfoWrapper wrapper = new SuperToolTipInfoWrapper();
+    			wrapper.SuperToolTipInfo = CreateSuperInfo();
+    			wrapper.UseSuperToolTip = true;
+    			SetSuperStuff(_textBox, wrapper);
+    		}
+
+    		public bool Showing
+    		{
+    			get { return _showing; }
+    		}
+
+    		public void AddLineMessage(int line, string message)
+    		{
+    			_lineMessage[line] = message;
+    		}
+
+    		public void ShowMessage(string message)
+    		{
+
+    			Point point = MousePosition;
+    			point.Y += _textBox.Font.Height/2;
+    			point.X += 4;
+
+    			point = _textBox.PointToClient(point);
+
+    			GetSuperStuff(_textBox).SuperToolTipInfo.BodyText = message;
+    			GetSuperStuff(_textBox).SuperToolTipInfo.OffsetForWhereToDisplay = point;
+
+    			Show(_textBox);
+    			_showing = true;
+    			_textBox.Parent.Focus();
+    		}
+
+    		public SuperToolTipInfo CreateSuperInfo()
+    		{
+    			SuperToolTipInfo superToolTipInfo = new SuperToolTipInfo();
+
+    			superToolTipInfo.BackgroundGradientBegin = Color.FromArgb(((((255)))), ((((255)))), ((((255)))));
+    			superToolTipInfo.BackgroundGradientEnd = Color.FromArgb(((((202)))), ((((218)))), ((((239)))));
+    			superToolTipInfo.BackgroundGradientMiddle = Color.FromArgb(((((242)))), ((((246)))), ((((251)))));
+    			superToolTipInfo.BodyFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((0)));
+    			superToolTipInfo.BodyText = "";
+    			superToolTipInfo.HeaderFont = new Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+    			superToolTipInfo.HeaderText = "Problem Description";
+    			superToolTipInfo.OffsetForWhereToDisplay = new Point(0, 0);
+
+    			return superToolTipInfo;
+    		}
+
+    		public void ClearLineMessages()
+    		{
+    			_lineMessage.Clear();
+    		}
+
+    		public void ShowMessageForLine(int line)
+    		{
+    			if(_lineMessage.ContainsKey(line))
+    				ShowMessage(_lineMessage[line]);
+    			else 
+    				Hide();
+    		}
+
+    		public void Hide()
+    		{
+    			if (_showing)
+    			{
+    				_showing = false;
+    				Close();
+    			}
+    		}
+
+    		protected override void MouseEntered(object sender, EventArgs e)
+    		{
+                
+    		}
+
+    		protected override void MouseLeft(object sender, EventArgs e)
+    		{
+                
+    		}
+    	}
+
+    	#endregion
     }
 }
