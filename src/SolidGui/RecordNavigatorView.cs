@@ -85,5 +85,28 @@ namespace SolidGui
             _descriptionLabel.Text = "";
             _recordNumber.Text = "0";
         }
+
+		private void RecordNavigatorView_KeyDown(object sender, KeyEventArgs e)
+		{
+			switch (e.KeyCode)
+			{
+				case Keys.Left:
+					_model.MoveToPrevious();
+					UpdateDisplay();
+					break;
+				case Keys.Right:
+					_model.MoveToPrevious();
+					UpdateDisplay();
+					break;
+				case Keys.Home:
+					_model.MoveToFirst();
+					UpdateDisplay();
+					break;
+				case Keys.End:
+					_model.MoveToLast();
+					UpdateDisplay();
+					break;
+			}
+		}
     }
 }

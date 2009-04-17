@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
+using Palaso.Reporting;
+
 using NUnit.Framework;
-using Palaso;
 
 namespace SolidGui.Tests
 {
@@ -106,15 +105,34 @@ namespace SolidGui.Tests
             Assert.IsTrue(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
         }
 
-        [Test]
-        public void ShouldNotAskTemplateBeforeOpeningWhenSettingsExist()
+		[Test]
+		[ExpectedException(typeof(ErrorReport.ProblemNotificationSentToUserException))]
+		public void ShouldAskTemplateBeforeOpeningWithInvalidSettingsFile()
+		{
+			string path = PathToSettingsFileThatGoesWithDictionary;
+			try
+			{
+				File.WriteAllText(
+					path,
+					"hello");
+				Assert.IsTrue(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
+			}
+			finally
+			{
+				File.Delete(path);
+			}
+		}
+
+		[Test]
+        public void ShouldNotAskTemplateBeforeOpeningWhenValidSettingsFileExists()
         {
             string path = PathToSettingsFileThatGoesWithDictionary;
             try
             {
                 File.WriteAllText(
                     path,
-                    "hello");
+                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<SolidSettings>\n</SolidSettings>\n"
+				);
                 Assert.IsFalse(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
             }
             finally

@@ -82,33 +82,24 @@ namespace SolidEngine
         /// <summary>
         /// Open existing file
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="filePath"></param>
         /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
-        public static SolidSettings OpenSolidFile(string path)
+        public static SolidSettings OpenSolidFile(string filePath)
         {
             SolidSettings settings;
             XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
             
-            if(!File.Exists(path))
+            if(!File.Exists(filePath))
             {
-                using(File.Create(path))
+                using(File.Create(filePath))
                 {}
             }
-            try
+            using (StreamReader reader = new StreamReader(filePath))
             {
-                using (StreamReader reader = new StreamReader(path))
-                {
-                    settings = (SolidSettings) xs.Deserialize(reader);
-                }
-            }
-            catch(Exception e)
-            {
-                Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
-                    "There was a problem opening that settings file.  The error was\r\n" + e.Message);
-                return null              ;
+                settings = (SolidSettings) xs.Deserialize(reader);
             }
 
-            settings.FilePath = path;
+            settings.FilePath = filePath;
             // Fix settings for the record marker.
             SolidMarkerSetting markerSetting = settings.FindMarkerSetting(settings.RecordMarker);
             //!!! Assert if null

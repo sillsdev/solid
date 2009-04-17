@@ -137,11 +137,31 @@ namespace SolidGui
         /// <summary>
         /// Called by the view to determine whether to ask the user for a starting template
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="filePath"></param>
         /// <returns></returns>
-        public bool ShouldAskForTemplateBeforeOpening(string path)
+        public bool ShouldAskForTemplateBeforeOpening(string filePath)
         {
-            return !File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(path));
+        	bool result = true;
+        	string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(filePath);
+			if (File.Exists(solidFilePath))
+			{
+				// Check also that the setting file is valid.  If it's not allow true to be returned to pop up
+				// the template chooser.
+				// See http://projects.palaso.org/issues/show/180
+				SolidSettings solidSettings = null;
+				try
+				{
+					solidSettings = LoadSettingsFromExistingFile(solidFilePath);
+				}
+				catch (InvalidOperationException e)
+				{
+					Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
+						String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+					);
+				}
+				result = solidSettings == null;
+			}
+			return result;
         }
 
         /// <summary>
@@ -157,8 +177,17 @@ namespace SolidGui
             }
 
             _realDictionaryPath = dictionaryPath;
-            _solidSettings = CreateSolidSettings(templatePath);
-            _workingDictionary.Open(_realDictionaryPath, _solidSettings, _recordFilters);
+			string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
+			if (File.Exists(solidFilePath))
+			{
+				_solidSettings = LoadSettingsFromExistingFile(solidFilePath);
+			}
+			else
+			{
+				_solidSettings = LoadSettingsFromTemplate(templatePath);
+			}
+			GiveSolidSettingsToModels();
+			_workingDictionary.Open(_realDictionaryPath, _solidSettings, _recordFilters);
             _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
@@ -173,21 +202,6 @@ namespace SolidGui
             get { return _realDictionaryPath; }
         }
 
-        private SolidSettings CreateSolidSettings(string templatePath)
-        {
-            if (File.Exists(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)))
-            {
-                LoadSettingsFromExistingFile();
-            }
-            else
-            {
-                LoadSettingsFromTemplate(templatePath);
-            }            
-            GiveSolidSettingsToModels();
-
-            return _solidSettings;
-        }
-
         private void GiveSolidSettingsToModels()
         {
             _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
@@ -195,20 +209,22 @@ namespace SolidGui
             _sfmEditorModel.Settings = _solidSettings;
         }
 
-        private void LoadSettingsFromTemplate(string templatePath)
+		private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
-            Palaso.Reporting.Logger.WriteEvent("Loading Template from {0}", templatePath);
+            Palaso.Reporting.Logger.WriteEvent("Loading Solid file from Template from {0}", templatePath);
             Debug.Assert(!string.IsNullOrEmpty(templatePath));
-            _solidSettings =
-                SolidSettings.CreateSolidFileFromTemplate(templatePath, SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+            return SolidSettings.CreateSolidFileFromTemplate(
+				templatePath, 
+				SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)
+			);
         }
 
-        private void LoadSettingsFromExistingFile()
+		private SolidSettings LoadSettingsFromExistingFile(string solidFilePath)
         {
-            _solidSettings =
-                SolidSettings.OpenSolidFile(
-                    Path.Combine(WorkingDictionary.GetDirectoryPath(),
-                                 SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)));
+			Palaso.Reporting.Logger.WriteEvent("Loading Solid file from {0}", solidFilePath);
+			return SolidSettings.OpenSolidFile(
+				Path.Combine(WorkingDictionary.GetDirectoryPath(), solidFilePath)
+			);
         }
 
         /// <summary>
