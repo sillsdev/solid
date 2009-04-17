@@ -38,19 +38,15 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -58,7 +54,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -106,7 +102,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -322,7 +318,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -670,7 +666,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -997,7 +997,7 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
