@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Xml;
 using SolidGui;
 using System.Linq;
 
@@ -92,5 +93,63 @@ namespace SolidEngine
         }
 
 
+        public void MakeInferedMarkersReal()
+        {
+            foreach (var record in _dictionary.AllRecords)
+            {
+                foreach (var field in record.Fields)
+                {
+                    field.Inferred = false;
+                    
+                }
+            }          
+        }
+
+        struct RecordAdddition
+        {
+
+            public string targetHeadWord;
+            public string fromHeadWord;
+            public string fromMarker;
+
+            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker)
+            {
+                this.targetHeadWord = targetHeadWord;
+                this.fromMarker = fromMarker;
+                this.fromHeadWord = fromHeadWord;
+            }
+        }
+
+        public void MakeEntriesForReferredItems(List<string> markers)
+        {
+            var additions = new List<RecordAdddition>();
+            foreach (var record in _dictionary.AllRecords)
+            {
+                foreach (var field in record.Fields)
+                {
+                    if(markers.Contains(field.Marker))
+                    {
+                        var headword = field.Value.Trim();
+                        if(!additions.Any(x=>x.targetHeadWord == headword))
+                        {
+                            additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker));
+                        }
+                    }
+                }
+            }
+            SolidSettings nullSettings = new SolidSettings();
+            foreach (var addition in additions)
+            {
+                Record r = new Record(-1);
+                var b = new StringBuilder();
+                b.AppendLine("\\lx " + addition.targetHeadWord);
+                b.AppendFormat("\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.\r\n",
+                               addition.fromHeadWord, addition.fromMarker);
+               
+                
+                r.SetRecordContents(b.ToString(), nullSettings);
+                _dictionary.AddRecord(r);
+            }
+        }
     }
 }

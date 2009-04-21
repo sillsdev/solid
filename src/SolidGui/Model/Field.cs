@@ -7,14 +7,13 @@ namespace SolidGui
         private string _value;
         private int _depth;
         private int _errorState;
-        private bool _inferred;
 
         public Field(string markerNoSlash, string value, int depth, bool inferred, int id)
         {
             _marker = markerNoSlash;
             _value = value;
             _depth = depth;
-            _inferred = inferred;
+            Inferred = inferred;
             _id = id;
         }
 
@@ -62,7 +61,7 @@ namespace SolidGui
 
         public bool Inferred
         {
-            get { return _inferred; }
+            get; set;
         }
     }
 }

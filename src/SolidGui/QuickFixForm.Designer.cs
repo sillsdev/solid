@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickFixForm));
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -42,7 +40,6 @@
             this._moveUpRoots = new System.Windows.Forms.TextBox();
             this._moveUpMarkers = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,42 +47,18 @@
             this._executeRemoveEmpty = new System.Windows.Forms.LinkLabel();
             this._removeEmptyMarkers = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this._exectueFLExFixes = new System.Windows.Forms.LinkLabel();
+            this._createReferredToItems = new System.Windows.Forms.CheckBox();
+            this._makeInferedRealBox = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(399, 13);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(200, 100);
-            this.tabControl1.TabIndex = 5;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(192, 74);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 74);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -102,6 +75,7 @@
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage1);
             this.tabControl2.Location = new System.Drawing.Point(12, 9);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
@@ -118,7 +92,6 @@
             this.tabPage3.Controls.Add(this._moveUpRoots);
             this.tabPage3.Controls.Add(this._moveUpMarkers);
             this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.textBox1);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.label1);
             this.tabPage3.Controls.Add(this.label4);
@@ -217,13 +190,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Warning: this is very dangerous.  Backup before this, and check the results. ";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(0, 21);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 17;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -298,13 +264,80 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Fields to remove if they only have a marker:";
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this._exectueFLExFixes);
+            this.tabPage1.Controls.Add(this._createReferredToItems);
+            this.tabPage1.Controls.Add(this._makeInferedRealBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(455, 382);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "FLEx Import Fixes";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // _exectueFLExFixes
+            // 
+            this._exectueFLExFixes.AutoSize = true;
+            this._exectueFLExFixes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._exectueFLExFixes.Location = new System.Drawing.Point(24, 297);
+            this._exectueFLExFixes.Name = "_exectueFLExFixes";
+            this._exectueFLExFixes.Size = new System.Drawing.Size(257, 17);
+            this._exectueFLExFixes.TabIndex = 17;
+            this._exectueFLExFixes.TabStop = true;
+            this._exectueFLExFixes.Text = "I know what I\'m doing and have backed up";
+            this._exectueFLExFixes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteFLExFixes_LinkClicked);
+            // 
+            // _createReferredToItems
+            // 
+            this._createReferredToItems.AutoSize = true;
+            this._createReferredToItems.Location = new System.Drawing.Point(34, 110);
+            this._createReferredToItems.Name = "_createReferredToItems";
+            this._createReferredToItems.Size = new System.Drawing.Size(252, 17);
+            this._createReferredToItems.TabIndex = 0;
+            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\va)";
+            this._createReferredToItems.UseVisualStyleBackColor = true;
+            // 
+            // _makeInferedRealBox
+            // 
+            this._makeInferedRealBox.AutoSize = true;
+            this._makeInferedRealBox.Location = new System.Drawing.Point(34, 34);
+            this._makeInferedRealBox.Name = "_makeInferedRealBox";
+            this._makeInferedRealBox.Size = new System.Drawing.Size(247, 17);
+            this._makeInferedRealBox.TabIndex = 0;
+            this._makeInferedRealBox.Text = "Make all infered markers real (e.g. \\+sn --> \\sn)";
+            this._makeInferedRealBox.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 130);
+            this.label2.MaximumSize = new System.Drawing.Size(250, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(250, 65);
+            this.label2.TabIndex = 18;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(72, 54);
+            this.label5.MaximumSize = new System.Drawing.Size(250, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(226, 26);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "This just ensures that FLEx has the same idea about the structure as your SOLID r" +
+                "ules.";
+            // 
             // QuickFixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(487, 458);
             this.Controls.Add(this.tabControl2);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -312,22 +345,20 @@
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Quick Fixes";
-            this.tabControl1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
@@ -336,7 +367,6 @@
         private System.Windows.Forms.LinkLabel _moveUpGoLink;
         private System.Windows.Forms.TextBox _moveUpMarkers;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel _executeRemoveEmpty;
         private System.Windows.Forms.TextBox _removeEmptyMarkers;
@@ -347,5 +377,11 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.LinkLabel _exectueFLExFixes;
+        private System.Windows.Forms.CheckBox _createReferredToItems;
+        private System.Windows.Forms.CheckBox _makeInferedRealBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label2;
     }
 }

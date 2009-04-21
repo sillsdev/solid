@@ -168,7 +168,7 @@ namespace SolidGui
         //    return _fields[i].ToStructuredString();
         //}
 
-        public void SetRecordContents(string setToText, SolidSettings _solidSettings)
+        public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
             //!!!setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
             SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
@@ -181,7 +181,7 @@ namespace SolidGui
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(entryReader);
             SolidReport report = new SolidReport();
-            IProcess process = new ProcessStructure(_solidSettings);
+            IProcess process = new ProcessStructure(solidSettings);
             XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
 
             Report = report;

@@ -20,7 +20,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp()
         {
-            var dict = MakeDictionary("lx", "ps", "bw");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "bw");
             
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));           
             AssertFieldOrder(dict.Records[0],"lx", "bw","ps");
@@ -29,7 +29,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_FirstTwoFieldsAreTopLevelOnes()
         {
-            var dict = MakeDictionary("lx", "bw", "hm");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "bw", "hm");
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx", "bw", "hm");
         }
@@ -37,7 +37,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_NothingToMove()
         {
-            var dict = MakeDictionary("lx", "ps");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps");
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx", "ps");
         }
@@ -45,7 +45,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_OnlyHasLx()
         {
-            var dict = MakeDictionary("lx");
+            var dict = MakeDictionary(new SolidSettings(), "lx");
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
             AssertFieldOrder(dict.Records[0], "lx");
         }
@@ -54,7 +54,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_HasSubEntry_MultipleMovedUpToSubEntry()
         {
-            var dict = MakeDictionary("lx", "a", "se", "b", "p1", "p2");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "se", "b", "p1", "p2");
             new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"));
             AssertFieldOrder(dict.Records[0], "lx", "a", "se", "p1", "p2", "b");
         }
@@ -62,7 +62,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_SomeToEntrySomeToSubEntry()
         {
-            var dict = MakeDictionary("lx", "a", "ph", "se", "b", "ph", "c");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "ph", "se", "b", "ph", "c");
             new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("ph"));
             AssertFieldOrder(dict.Records[0], "lx", "ph", "a", "se", "ph","b", "c");
         }
@@ -70,7 +70,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_MoveToSnButNoSn_DoesntMove()
         {
-            var dict = MakeDictionary("lx", "a", "ge");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "ge");
             new QuickFixer(dict).MoveCommonItemsUp(M("sn"), M("ge"));
             AssertFieldOrder(dict.Records[0], "lx", "a", "ge");
         }
@@ -78,7 +78,7 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_LastOne_Ok()
         {
-            var dict = MakeDictionary("lx", "ps", "co");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "co");
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "co" }));
             AssertFieldOrder(dict.Records[0], "lx", "ps");
             
@@ -86,7 +86,7 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_FirstLineIsEmpty_Ok()
         {
-            var dict = MakeDictionary("lx", "ps", "co");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "co");
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "ps" }));
             AssertFieldOrder(dict.Records[0], "lx", "co");
             
@@ -94,7 +94,7 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_NotEmpty_NotTouched()
         {
-            var dict = MakeDictionary("lx", "ps noun", "co");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps noun", "co");
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "ps" }));
             AssertFieldOrder(dict.Records[0], "lx", "ps", "co");
 
@@ -103,26 +103,57 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_MultipleSpecifiec_AllUsed()
         {
-            var dict = MakeDictionary("lx", "a", "b", "b", "c", "d");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "b", "b", "c", "d");
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "a", "b", "c", }));
             AssertFieldOrder(dict.Records[0], "lx", "d");
 
         }
 
-        private SfmDictionary MakeDictionary(params string[] fields)
+        [Test]
+        public void MakeInferedMarkersReal_hasVirtualSn_Becomes_Real()
         {
-            var b = new StringBuilder();
-            foreach (var s in fields)
+            SolidMarkerSetting psSetting = new SolidMarkerSetting("ps");
+            psSetting.InferedParent = "sn";
+            psSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+            var settings = new SolidSettings();
+            settings.MarkerSettings.Add(psSetting);
+
+            var dict = MakeDictionary(settings, "lx", "ps");
+            AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
+            Assert.IsTrue(dict.Records[0].Fields[1].Inferred);
+            new QuickFixer(dict).MakeInferedMarkersReal();
+            AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
+            Assert.IsFalse(dict.Records[0].Fields[1].Inferred);
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b");
+             new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            AssertFieldContents(dict.Records[0], "lx a", "cf b");
+            AssertFieldContents(dict.Records[1], "lx b", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+        }
+
+
+
+        private SfmDictionary MakeDictionary(SolidSettings settings, params string[] fields)
+        {
+            var dictionary = new SfmDictionary();
+            for (int i = 0; i < fields.Length; i++)
             {
-                b.AppendLine("\\" + s);
+                var b = new StringBuilder();
+                do
+                {
+                    b.AppendLine("\\" + fields[i]);
+                    ++i;
+                } while (i < fields.Length && !fields[i].StartsWith("lx"));
+ 
+                var r = new Record(i);
+                r.SetRecordContents(b.ToString(), settings);
+                dictionary.AddRecord(r);
             }
 
-            var dictionary = new SfmDictionary();
-            var r = new Record(1);
-            SolidSettings solidSettings = new SolidSettings();
-
-            r.SetRecordContents(b.ToString(), solidSettings);
-            dictionary.AddRecord(r);
             return dictionary;
       }
 
@@ -133,6 +164,15 @@ namespace SolidGui.Tests
                 Assert.AreEqual(markers[i], record.Fields[i].Marker);                
             }
             Assert.AreEqual(markers.Length, record.Fields.Count);
+        }
+
+        private void AssertFieldContents(Record record,  params string[] fields)
+        {
+            for (int i = 0; i < fields.Length; i++)
+            {
+                Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString());
+            }
+            Assert.AreEqual(fields.Length, record.Fields.Count);
         }
 
     }

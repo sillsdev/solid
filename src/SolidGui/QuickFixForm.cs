@@ -75,5 +75,20 @@ namespace SolidGui
             _moveUpMarkers.Text = z[0];
             _moveUpRoots.Text = z[1];
         }
+
+        private void OnExecuteFLExFixes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if(_makeInferedRealBox.Checked)
+            {
+                _fixer.MakeInferedMarkersReal();
+            }
+            if (_createReferredToItems.Checked)
+            {
+                _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","va"}));
+            }
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Close();
+
+        }
     }
 }
