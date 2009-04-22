@@ -112,6 +112,11 @@ namespace SolidGui
             return field.ToString();
         }
 
+        public Field GetFirstFieldWithMarker(string marker)
+        {
+            return _fields.First(f=> f.Marker == marker);
+        }
+
         public void SetFieldValue(int id, string value)
         {
             if(_fields[id].Value != value)

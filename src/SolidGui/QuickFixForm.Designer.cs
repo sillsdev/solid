@@ -48,11 +48,11 @@
             this._removeEmptyMarkers = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this._exectueFLExFixes = new System.Windows.Forms.LinkLabel();
             this._createReferredToItems = new System.Windows.Forms.CheckBox();
             this._makeInferedRealBox = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -279,11 +279,32 @@
             this.tabPage1.Text = "FLEx Import Fixes";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(72, 54);
+            this.label5.MaximumSize = new System.Drawing.Size(250, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(250, 26);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Increases the chance that FLEx has the same idea about the structure as your SOLI" +
+                "D rules.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(72, 130);
+            this.label2.MaximumSize = new System.Drawing.Size(250, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(250, 195);
+            this.label2.TabIndex = 18;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
             // _exectueFLExFixes
             // 
             this._exectueFLExFixes.AutoSize = true;
             this._exectueFLExFixes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._exectueFLExFixes.Location = new System.Drawing.Point(24, 297);
+            this._exectueFLExFixes.Location = new System.Drawing.Point(19, 340);
             this._exectueFLExFixes.Name = "_exectueFLExFixes";
             this._exectueFLExFixes.Size = new System.Drawing.Size(257, 17);
             this._exectueFLExFixes.TabIndex = 17;
@@ -296,9 +317,9 @@
             this._createReferredToItems.AutoSize = true;
             this._createReferredToItems.Location = new System.Drawing.Point(34, 110);
             this._createReferredToItems.Name = "_createReferredToItems";
-            this._createReferredToItems.Size = new System.Drawing.Size(252, 17);
+            this._createReferredToItems.Size = new System.Drawing.Size(296, 17);
             this._createReferredToItems.TabIndex = 0;
-            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\va)";
+            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\va, \\sy, \\an)";
             this._createReferredToItems.UseVisualStyleBackColor = true;
             // 
             // _makeInferedRealBox
@@ -306,31 +327,10 @@
             this._makeInferedRealBox.AutoSize = true;
             this._makeInferedRealBox.Location = new System.Drawing.Point(34, 34);
             this._makeInferedRealBox.Name = "_makeInferedRealBox";
-            this._makeInferedRealBox.Size = new System.Drawing.Size(247, 17);
+            this._makeInferedRealBox.Size = new System.Drawing.Size(266, 17);
             this._makeInferedRealBox.TabIndex = 0;
-            this._makeInferedRealBox.Text = "Make all infered markers real (e.g. \\+sn --> \\sn)";
+            this._makeInferedRealBox.Text = "Make all infered \\sn markers real (e.g. \\+sn --> \\sn)";
             this._makeInferedRealBox.UseVisualStyleBackColor = true;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 130);
-            this.label2.MaximumSize = new System.Drawing.Size(250, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 65);
-            this.label2.TabIndex = 18;
-            this.label2.Text = resources.GetString("label2.Text");
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(72, 54);
-            this.label5.MaximumSize = new System.Drawing.Size(250, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(226, 26);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "This just ensures that FLEx has the same idea about the structure as your SOLID r" +
-                "ules.";
             // 
             // QuickFixForm
             // 

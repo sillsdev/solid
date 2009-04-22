@@ -295,7 +295,7 @@ namespace SolidGui
                             if (!field.Inferred)
                             {
                                 writer.Write("\\");
-                                writer.Write(field.Marker);
+                                writer.Write(field.Marker.TrimStart('_'));
                                 writer.Write(" ");
                                 writer.Write(field.Value);
                                 writer.Write("\r\n");

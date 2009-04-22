@@ -93,13 +93,14 @@ namespace SolidEngine
         }
 
 
-        public void MakeInferedMarkersReal()
+        public void MakeInferedMarkersReal(List<string> markers)
         {
             foreach (var record in _dictionary.AllRecords)
             {
                 foreach (var field in record.Fields)
                 {
-                    field.Inferred = false;
+                    if(field.Inferred && markers.Contains(field.Marker))
+                        field.Inferred = false;
                     
                 }
             }          
@@ -111,28 +112,46 @@ namespace SolidEngine
             public string targetHeadWord;
             public string fromHeadWord;
             public string fromMarker;
+            public string pos;
+            public readonly Field sourceField;
 
-            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker)
+            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, Field sourceField)
             {
                 this.targetHeadWord = targetHeadWord;
                 this.fromMarker = fromMarker;
+                pos = POS;
+                this.sourceField = sourceField;
                 this.fromHeadWord = fromHeadWord;
             }
+
         }
 
-        public void MakeEntriesForReferredItems(List<string> markers)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="markers"></param>
+        /// <returns>log of what it did</returns>
+        public string MakeEntriesForReferredItems(List<string> markers)
         {
+            var log = new StringBuilder();
             var additions = new List<RecordAdddition>();
             foreach (var record in _dictionary.AllRecords)
             {
+                string lastPOS = "FIXME";
                 foreach (var field in record.Fields)
                 {
+                    //nb: this isn't going to work when the refering marker
+                    //comes before any ps
+                    if(field.Marker =="ps" && !string.IsNullOrEmpty(field.Value))
+                    {
+                        lastPOS = field.Value;
+                    }
                     if(markers.Contains(field.Marker))
                     {
                         var headword = field.Value.Trim();
                         if(!additions.Any(x=>x.targetHeadWord == headword))
                         {
-                            additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker));
+                            additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker, lastPOS, field));
                         }
                     }
                 }
@@ -140,16 +159,74 @@ namespace SolidEngine
             SolidSettings nullSettings = new SolidSettings();
             foreach (var addition in additions)
             {
-                Record r = new Record(-1);
-                var b = new StringBuilder();
-                b.AppendLine("\\lx " + addition.targetHeadWord);
-                b.AppendFormat("\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.\r\n",
-                               addition.fromHeadWord, addition.fromMarker);
-               
-                
-                r.SetRecordContents(b.ToString(), nullSettings);
-                _dictionary.AddRecord(r);
+                string switchToCitationForm;
+                var targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
+                if (null == targetRecord)
+                {
+                    Record r = new Record(-1);
+                    var b = new StringBuilder();
+                    b.AppendLine("\\lx " + addition.targetHeadWord);
+                    b.AppendLine("\\ps " + addition.pos); //without this, flex balks
+                    b.AppendFormat(
+                        "\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.\r\n",
+                        addition.fromHeadWord, addition.fromMarker);
+
+
+                    r.SetRecordContents(b.ToString(), nullSettings);
+                    _dictionary.AddRecord(r);
+                    log.AppendFormat("Added {0} because '{1}' referred to it in the \\{2} field.\r\n",
+                                     addition.targetHeadWord, addition.fromHeadWord, addition.fromMarker);
+                }
+                else if(!string.IsNullOrEmpty(switchToCitationForm))
+                {
+                        //ok, now we're in the FLEx 5.4 situation where it
+                        //it's not going to link to the \lx because there is a different
+                        // \lc in there (only matches to the headword, which is
+                        //lx unless there is an lc. So now we switch the referrer to the lc.
+
+                    addition.sourceField.Value = switchToCitationForm;
+                        log.AppendFormat("***Switched  \\{3} target of '{0}' from '{1}' to the citation form '{2}' to get around Flex 5.4 limitation (only links to the 'headword', not the lx)\r\n",
+                                     addition.fromHeadWord, addition.targetHeadWord, switchToCitationForm, addition.fromMarker);
+
+                }
             }
+            return log.ToString();
+        }
+
+
+        private Record FindRecordByCitationFormOrLexemeForm(string form, out string switchToCitationForm)
+        {
+            switchToCitationForm = null;
+      
+            foreach (var record in _dictionary.Records)
+            {
+                if (record.HasMarker("lc"))
+                {
+                    var citationField = record.GetFirstFieldWithMarker("lc");
+                    if (citationField != null && citationField.Value == form)
+                    {
+                        return record;
+                    }
+                }
+            }
+
+            foreach (var record in _dictionary.Records)
+            {
+                if (record.Fields[0].Value == form)
+                {
+                    //do we need to switch to the lc so it links?
+                    if (record.HasMarker("lc"))
+                    {
+                        var citationField = record.GetFirstFieldWithMarker("lc");
+                        if (citationField != null)
+                        {
+                            switchToCitationForm = citationField.Value;
+                        }
+                    }
+                    return record;
+                }
+            }
+            return null;
         }
     }
 }

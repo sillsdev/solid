@@ -118,7 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="label2.Text" xml:space="preserve">
-    <value>This will create new records as needed. They will have a \CheckMe field, so they are easy to find.
+    <value>This will create new records as needed. They will have a \CheckMe field, so they are easy to find.  SOLID will guess at a \ps for the new entry based on the current one, or use 'FIXME' if it hasn't encountered a ps by the time it hits the referring field. (FLEx importer will only connect the entry if some sense exists on the new entry).
+
+FLEx will not do the connection based on \lx if the target also has an \lc.  Therefore, this fix will also change the refering field to match the \lc in the case where it matches an \lx but no \lc.
 
 With out this FLEx (5.4) just generates errors, and it takes a lot of work to create each one by hand.</value>
   </data>

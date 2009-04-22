@@ -121,26 +121,61 @@ namespace SolidGui.Tests
             var dict = MakeDictionary(settings, "lx", "ps");
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
             Assert.IsTrue(dict.Records[0].Fields[1].Inferred);
-            new QuickFixer(dict).MakeInferedMarkersReal();
+            new QuickFixer(dict).MakeInferedMarkersReal(M("sn"));
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
             Assert.IsFalse(dict.Records[0].Fields[1].Inferred);
         }
 
         [Test]
-        public void MakeEntriesForReferredItems()
+        public void MakeEntriesForReferredItems_TargetExists_DoesNothing()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b");
-             new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx b");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
             AssertFieldContents(dict.Records[0], "lx a", "cf b");
-            AssertFieldContents(dict.Records[1], "lx b", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+            AssertFieldContents(dict.Records[1], "lx b");
         }
 
+        [Test]
+        public void MakeEntriesForReferredItems_HasPos_POSCopied()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "ps verb", "cf b");
+             new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+             AssertFieldContents(dict.Records[0], "lx a", "ps verb", "cf b");
+            AssertFieldContents(dict.Records[1], "lx b", "ps verb", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_NoPos_FixMePOSCreated()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            AssertFieldContents(dict.Records[0], "lx a", "cf b");
+            AssertFieldContents(dict.Records[1], "lx b", "ps FIXME", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_HasMatchingLc_NoneCreated()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx x", "lc b");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_HasDifferentLc_ReferrerSwitchedToIt()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx b", "lc x");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], "lx a", "cf x");
+        }
 
 
         private SfmDictionary MakeDictionary(SolidSettings settings, params string[] fields)
         {
             var dictionary = new SfmDictionary();
-            for (int i = 0; i < fields.Length; i++)
+            for (int i = 0; i < fields.Length; )
             {
                 var b = new StringBuilder();
                 do

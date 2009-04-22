@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using Palaso.Reporting;
 using SolidEngine;
@@ -80,11 +82,15 @@ namespace SolidGui
         {
             if(_makeInferedRealBox.Checked)
             {
-                _fixer.MakeInferedMarkersReal();
+                _fixer.MakeInferedMarkersReal(new List<string>(new[] { "sn"}));
             }
             if (_createReferredToItems.Checked)
             {
-                _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","va"}));
+                var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","va","sy","an"}));
+                var path = Path.GetTempFileName()+".txt";
+                File.WriteAllText(path, log);
+                Process.Start(path);
+                
             }
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
