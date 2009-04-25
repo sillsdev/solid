@@ -507,5 +507,11 @@ namespace SolidGui
     	}
 
     	#endregion
+
+        public void Reload()
+        {
+            ClearContentsOfTextBox();
+            DisplayEachFieldInCurrentRecord();
+        }    
     }
 }

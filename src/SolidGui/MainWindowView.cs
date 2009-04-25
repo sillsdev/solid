@@ -91,13 +91,6 @@ namespace SolidGui
                 }
             }
             ChooseProject();
-            splitContainer1.Panel1.Enabled = true;
-            splitContainer2.Panel1.Enabled = true;
-            splitContainer2.Panel2.Enabled = true;
-            _sfmEditorView.Enabled = true;
-            _markerDetails.SelectMarker("lx");
-            _mainWindowPM.NavigatorModel.StartupOrReset();
-            _sfmEditorView.Focus();
         }
 
         private void ChooseProject()
@@ -149,8 +142,20 @@ namespace SolidGui
             }
             Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
-            Text = "SOLID " + dlg.FileName;
+            OnFileLoaded(dlg.FileName);
             Cursor = Cursors.Default;
+        }
+
+        public void OnFileLoaded(string name)
+        {
+            Text = "SOLID " + name;
+            splitContainer1.Panel1.Enabled = true;
+            splitContainer2.Panel1.Enabled = true;
+            splitContainer2.Panel2.Enabled = true;
+            _sfmEditorView.Enabled = true;
+            _markerDetails.SelectMarker("lx");
+            _mainWindowPM.NavigatorModel.StartupOrReset();
+            _sfmEditorView.Focus();
         }
 
         public bool NeedsSave()
@@ -184,11 +189,13 @@ namespace SolidGui
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModel();
             _mainWindowPM.ProcessLexicon();
-            _sfmEditorView.ClearContentsOfTextBox();
             _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
-            _sfmEditorView.DisplayEachFieldInCurrentRecord();
+
+            _sfmEditorView.Reload();
             Cursor = Cursors.Default;
         }
+
+
 
         private void UpdateDisplay()
         {
@@ -350,6 +357,7 @@ namespace SolidGui
                 return;
             }
             _mainWindowPM.ProcessLexicon();
+            _sfmEditorView.Reload();
             _saveButton.Enabled = true;
             
         }

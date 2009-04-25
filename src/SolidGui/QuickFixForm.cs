@@ -86,7 +86,7 @@ namespace SolidGui
             }
             if (_createReferredToItems.Checked)
             {
-                var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","va","sy","an"}));
+                var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
                 var path = Path.GetTempFileName()+".txt";
                 File.WriteAllText(path, log);
                 Process.Start(path);

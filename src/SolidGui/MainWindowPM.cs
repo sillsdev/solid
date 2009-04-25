@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Text;
+using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
 using SolidEngine;
 
@@ -416,6 +418,27 @@ namespace SolidGui
         }
 
 
+        public void OpenDictionary(string solidPath)
+        {
+            string[] extensions = new string[]{".db", ".sfm", ".mdf", ".dic", ".txt"};
+            foreach (var extension in extensions)
+            {
+                var path = solidPath.Replace(".solid", extension);
+                if(File.Exists(path))
+                {
+                    OpenDictionary(path, solidPath);
+                    return;
+                }
+            }
+            var x = new StringBuilder();
+            x.AppendFormat("SOLID could not find a matching dictionary for {0}. ", solidPath);
+            x.AppendFormat("It checks for dictionaries ending in: ");
+            foreach (var extension in extensions)
+            {
+                x.Append(extension + " ");
+            }
+            ErrorReport.NotifyUserOfProblem(x.ToString());
+        }
     }
 
 

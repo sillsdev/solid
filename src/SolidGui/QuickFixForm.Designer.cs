@@ -252,7 +252,7 @@
             this._removeEmptyMarkers.Name = "_removeEmptyMarkers";
             this._removeEmptyMarkers.Size = new System.Drawing.Size(288, 25);
             this._removeEmptyMarkers.TabIndex = 15;
-            this._removeEmptyMarkers.Text = "bw, hm, lt, lc, nt, so, co, ge, de, gn, gr, dr, ps";
+            this._removeEmptyMarkers.Text = "lx, sn";
             // 
             // label7
             // 
@@ -260,9 +260,9 @@
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(15, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(262, 17);
+            this.label7.Size = new System.Drawing.Size(230, 17);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Fields to remove if they only have a marker:";
+            this.label7.Text = "Fields to leave, even if they are empty:";
             // 
             // tabPage1
             // 
@@ -282,7 +282,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(72, 54);
+            this.label5.Location = new System.Drawing.Point(55, 54);
             this.label5.MaximumSize = new System.Drawing.Size(250, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(250, 26);
@@ -293,10 +293,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 130);
-            this.label2.MaximumSize = new System.Drawing.Size(250, 0);
+            this.label2.Location = new System.Drawing.Point(52, 118);
+            this.label2.MaximumSize = new System.Drawing.Size(350, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(250, 195);
+            this.label2.Size = new System.Drawing.Size(349, 208);
             this.label2.TabIndex = 18;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -304,7 +304,7 @@
             // 
             this._exectueFLExFixes.AutoSize = true;
             this._exectueFLExFixes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._exectueFLExFixes.Location = new System.Drawing.Point(19, 340);
+            this._exectueFLExFixes.Location = new System.Drawing.Point(31, 348);
             this._exectueFLExFixes.Name = "_exectueFLExFixes";
             this._exectueFLExFixes.Size = new System.Drawing.Size(257, 17);
             this._exectueFLExFixes.TabIndex = 17;
@@ -315,11 +315,11 @@
             // _createReferredToItems
             // 
             this._createReferredToItems.AutoSize = true;
-            this._createReferredToItems.Location = new System.Drawing.Point(34, 110);
+            this._createReferredToItems.Location = new System.Drawing.Point(34, 98);
             this._createReferredToItems.Name = "_createReferredToItems";
-            this._createReferredToItems.Size = new System.Drawing.Size(296, 17);
+            this._createReferredToItems.Size = new System.Drawing.Size(273, 17);
             this._createReferredToItems.TabIndex = 0;
-            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\va, \\sy, \\an)";
+            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\sy, \\an)";
             this._createReferredToItems.UseVisualStyleBackColor = true;
             // 
             // _makeInferedRealBox

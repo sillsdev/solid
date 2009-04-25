@@ -122,6 +122,8 @@
 
 FLEx will not do the connection based on \lx if the target also has an \lc.  Therefore, this fix will also change the refering field to match the \lc in the case where it matches an \lx but no \lc.
 
-With out this FLEx (5.4) just generates errors, and it takes a lot of work to create each one by hand.</value>
+FLEx cannot handle more than one reference per line.  Therefore this fix will split them up,  such that \sy one,two  becomes \sy one followed by \sy two.
+
+With out this FLEx  just generates errors, and it takes a lot of work to create each one by hand.</value>
   </data>
 </root>

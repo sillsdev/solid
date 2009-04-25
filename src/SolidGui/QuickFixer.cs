@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using SolidGui;
 using System.Linq;
+using Palaso.Extensions;
 
 namespace SolidEngine
 {
@@ -72,15 +73,20 @@ namespace SolidEngine
                 }
             }
         }
-        public void RemoveEmptyFields(List<string> markers)
+        public void RemoveEmptyFields(List<string> markersToLeaveAlone)
         {
+            if(!markersToLeaveAlone.Contains("lx"))//that'd be too dangerous
+            {
+                markersToLeaveAlone.Add("lx");
+            }
+
             foreach (var record in _dictionary.AllRecords)
             {
                 for (int i = record.Fields.Count-1;
                     i > 0 ; // don't even look at record marker field
                     i--)
                 {
-                    if (markers.Contains(record.Fields[i].Marker))
+                    if (!markersToLeaveAlone.Contains(record.Fields[i].Marker))
                     {
                         if(record.Fields[i].Value.Trim() == string.Empty)
                         {
@@ -129,11 +135,19 @@ namespace SolidEngine
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="markers"></param>
         /// <returns>log of what it did</returns>
         public string MakeEntriesForReferredItems(List<string> markers)
         {
             var log = new StringBuilder();
+
+            SplitFieldsWithMultipleItems(markers, log);
+            List<RecordAdddition> additions = FindNeededEntryAdditions(markers);
+            AddNewEntries(additions, log);
+            return log.ToString();
+        }
+
+        private List<RecordAdddition> FindNeededEntryAdditions(List<string> markers)
+        {
             var additions = new List<RecordAdddition>();
             foreach (var record in _dictionary.AllRecords)
             {
@@ -149,13 +163,19 @@ namespace SolidEngine
                     if(markers.Contains(field.Marker))
                     {
                         var headword = field.Value.Trim();
-                        if(!additions.Any(x=>x.targetHeadWord == headword))
+                        if(!string.IsNullOrEmpty(headword) &&
+                            !additions.Any(x=>x.targetHeadWord == headword))
                         {
                             additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker, lastPOS, field));
                         }
                     }
                 }
             }
+            return additions;
+        }
+
+        private void AddNewEntries(List<RecordAdddition> additions, StringBuilder log)
+        {
             SolidSettings nullSettings = new SolidSettings();
             foreach (var addition in additions)
             {
@@ -179,18 +199,44 @@ namespace SolidEngine
                 }
                 else if(!string.IsNullOrEmpty(switchToCitationForm))
                 {
-                        //ok, now we're in the FLEx 5.4 situation where it
-                        //it's not going to link to the \lx because there is a different
-                        // \lc in there (only matches to the headword, which is
-                        //lx unless there is an lc. So now we switch the referrer to the lc.
+                    //ok, now we're in the FLEx 5.4 situation where it
+                    //it's not going to link to the \lx because there is a different
+                    // \lc in there (only matches to the headword, which is
+                    //lx unless there is an lc. So now we switch the referrer to the lc.
 
                     addition.sourceField.Value = switchToCitationForm;
-                        log.AppendFormat("***Switched  \\{3} target of '{0}' from '{1}' to the citation form '{2}' to get around Flex 5.4 limitation (only links to the 'headword', not the lx)\r\n",
+                    log.AppendFormat("***Switched  \\{3} target of '{0}' from '{1}' to the citation form '{2}' to get around Flex 5.4 limitation (only links to the 'headword', not the lx)\r\n",
                                      addition.fromHeadWord, addition.targetHeadWord, switchToCitationForm, addition.fromMarker);
 
                 }
             }
-            return log.ToString();
+        }
+
+        private void SplitFieldsWithMultipleItems(List<string> markers, StringBuilder log)
+        {
+            foreach (var record in _dictionary.Records)
+            {
+                for (int i = 0; i < record.Fields.Count; i++)
+                {
+                    var field = record.Fields[i];
+                    if (markers.Contains(field.Marker))
+                    {
+                        var parts = field.Value.SplitTrimmed(',');
+                        if (parts.Count > 1)
+                        {
+                            parts.Reverse();
+                            record.RemoveField(i);
+
+                            log.AppendFormat("Splitting '\\{0} {1}' into multiple fields", field.Marker, field.Value);
+                            foreach (var headword in parts)
+                            {
+                                var f = new Field(field.Marker, headword, field.Depth, false, -1 /*review*/);
+                                record.InsertFieldAt(f, i);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 

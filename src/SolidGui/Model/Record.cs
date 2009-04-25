@@ -240,5 +240,10 @@ namespace SolidGui
 
             _fields.RemoveAt(index);
         }
+
+        public void InsertFieldAt(Field field, int indexForThisField)
+        {
+            _fields.Insert(indexForThisField,field);
+        }
     }
 }

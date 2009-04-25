@@ -79,23 +79,42 @@ namespace SolidGui.Tests
         public void RemoveEmptyFields_LastOne_Ok()
         {
             var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "co");
-            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "co" }));
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "lx", "ps" }));
             AssertFieldOrder(dict.Records[0], "lx", "ps");
             
         }
+
+        [Test]
+        public void RemoveEmptyFields_LxIsEmptyButLxNotSpecified_StillLeavesLx()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx", "sn", "co b");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "sn" }));
+            AssertFieldContents(dict.Records[0], "lx", "sn", "co b");
+
+        }
+
+        [Test]
+        public void RemoveEmptyFields_NoExceptionsSpecified_Ok()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "sn", "co b");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>());
+            AssertFieldContents(dict.Records[0], "lx a", "co b");
+
+        }
+
         [Test]
         public void RemoveEmptyFields_FirstLineIsEmpty_Ok()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "co");
-            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "ps" }));
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "sn", "co b");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new []{ "lx sn" }));
             AssertFieldOrder(dict.Records[0], "lx", "co");
             
         }
         [Test]
         public void RemoveEmptyFields_NotEmpty_NotTouched()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "ps noun", "co");
-            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "ps" }));
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps noun", "co x");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "sn" }));
             AssertFieldOrder(dict.Records[0], "lx", "ps", "co");
 
         }
@@ -103,9 +122,9 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_MultipleSpecifiec_AllUsed()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "b", "b", "c", "d");
-            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "a", "b", "c", }));
-            AssertFieldOrder(dict.Records[0], "lx", "d");
+            var dict = MakeDictionary(new SolidSettings(), "lx","sn", "rf");
+            new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "sn", "rf"}));
+            AssertFieldOrder(dict.Records[0], "lx", "sn", "rf");
 
         }
 
@@ -134,6 +153,38 @@ namespace SolidGui.Tests
             Assert.AreEqual(2, dict.Records.Count);
             AssertFieldContents(dict.Records[0], "lx a", "cf b");
             AssertFieldContents(dict.Records[1], "lx b");
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_SyWithNoValue_DoesNothing()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "sy");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("sy"));
+            Assert.AreEqual(1, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], "lx a", "sy");
+        }
+
+        
+        [Test]
+        public void MakeEntriesForReferredItems_HasThreeItemsTwoOfWhichAreMissing_TwoAdded()
+        {
+            var dict = MakeDictionary(new SolidSettings(), 
+                        "lx a", "ps noun", 
+                        "lx y", "ps verb", "sy x,y,z");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("sy"));
+            AssertFieldContents(dict.Records[0], "lx a", "ps noun");
+            AssertFieldContents(dict.Records[1], "lx y", "ps verb", "sy x", "sy y", "sy z");
+            AssertFieldContents(dict.Records[2], "lx x", "ps verb", "CheckMe Created by SOLID Quickfix because 'y' referred to it in the \\sy field.");
+            AssertFieldContents(dict.Records[3], "lx z", "ps verb", "CheckMe Created by SOLID Quickfix because 'y' referred to it in the \\sy field.");
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_HasTwoItems_GetSplitIntoTwoFields()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        "lx a", "sy x,y");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("sy"));
+            AssertFieldContents(dict.Records[0], "lx a","sy x", "sy y");
         }
 
         [Test]
@@ -205,7 +256,7 @@ namespace SolidGui.Tests
         {
             for (int i = 0; i < fields.Length; i++)
             {
-                Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString());
+                Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString().Trim());
             }
             Assert.AreEqual(fields.Length, record.Fields.Count);
         }

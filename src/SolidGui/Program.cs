@@ -12,7 +12,7 @@ namespace SolidGui
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(params string[]args)
         {
             SetupErrorHandling();
 
@@ -21,7 +21,11 @@ namespace SolidGui
             SetupUsageTracking();
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
-            
+           if(args.Length > 0 && args[0].EndsWith(".solid"))
+            {
+                model.OpenDictionary(args[0]);
+               form.OnFileLoaded(args[0]);
+            }            
             Application.Run(form);
             Settings.Default.Save();
         }
