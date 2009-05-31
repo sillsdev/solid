@@ -246,10 +246,17 @@ namespace SolidEngine
                         }
                         break;
                     case StateLex.BuildValue:
-                        //??? Should we strip cr/lf
-                        if (!isEOL(c0))
+						// See http://projects.palaso.org/issues/show/244
+						if (!isEOL(c0))
                         {
                             sb.Append(c0);
+                        }
+						else
+						{
+                        	if (!isEOL(c1))
+							{
+                        		sb.Append (' ');
+                        	}
                         }
                         break;
                     case StateLex.EOF:
