@@ -208,7 +208,7 @@ namespace SolidEngine
                         {
                             // Store the key and value.
                             currentField.value = sb.ToString();
-                            char[] trim = { ' ', '\t' };
+                            char[] trim = { ' ', '\t', '\x0a', '\x0d' };
                             currentField.value = currentField.value.TrimEnd(trim);
                             onField(currentField);
                             currentField = new SfmField();
@@ -247,6 +247,8 @@ namespace SolidEngine
                         break;
                     case StateLex.BuildValue:
 						// See http://projects.palaso.org/issues/show/244
+                	sb.Append (c0);
+					/*
 						if (!isEOL(c0))
                         {
                             sb.Append(c0);
@@ -258,13 +260,14 @@ namespace SolidEngine
                         		sb.Append (' ');
                         	}
                         }
+					 */
                         break;
                     case StateLex.EOF:
                         if (currentField.key != String.Empty)
                         {
                             currentField.value = sb.ToString();
-                            char[] trim = { ' ', '\t' };
-                            currentField.value = currentField.value.TrimEnd(trim);
+							char [] trim = { ' ', '\t', '\x0a', '\x0d' };
+							currentField.value = currentField.value.TrimEnd (trim);
                             onField(currentField);
                             currentField = new SfmField();
                             _recordEndLine = _line - 1; //??? -2?
