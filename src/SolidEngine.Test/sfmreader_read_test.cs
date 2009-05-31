@@ -165,7 +165,7 @@ namespace SolidEngineTests {
 			Assert.AreEqual (0, r.Header.Count);
 			Assert.AreEqual (2, r.FieldCount);
 			Assert.AreEqual ("a", r.Value ("lx"));
-			Assert.AreEqual ("b c", r.Value ("ge"));
+			Assert.AreEqual ("b\nc", r.Value ("ge"));
 		}
 
 		private SfmRecordReader ReadOneRecordData ()
