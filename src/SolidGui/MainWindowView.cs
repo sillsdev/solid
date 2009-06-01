@@ -170,13 +170,15 @@ namespace SolidGui
 
         private void OnRecordTextChanged(object sender, EventArgs e)
         {
+			// todo move this to the model.
             _saveButton.Enabled = true;
         }
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
             _saveButton.Enabled = true;
-            _sfmEditorView.OnSolidSettingsChange();
+        	_mainWindowPM.SaveButtonEnabled = true;
+            _sfmEditorView.OnMarkerSettingPossiblyChanged();
         }
 
         private void OnProcessButtonClick(object sender, EventArgs e)
@@ -202,8 +204,8 @@ namespace SolidGui
         private void OnSaveClick(object sender, EventArgs e)
         {
             _sfmEditorView.UpdateModel();
-            _mainWindowPM.DictionaryAndSettingsSave();
-            _saveButton.Enabled = false;
+            _mainWindowPM.SaveDictionaryAndSettings();
+            _saveButton.Enabled = _mainWindowPM.SaveButtonEnabled();
         }
 
         private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
@@ -224,10 +226,12 @@ namespace SolidGui
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if(_saveButton.Enabled)//HACK this is so stupid to use the ui as the dirty bit, but it's all over
+            if(_mainWindowPM.SaveButtonEnabled)
             {
-                var answer = MessageBox.Show("Save changes before quitting?", "SOLID: Save first?", MessageBoxButtons.YesNoCancel,
-                                MessageBoxIcon.Question);
+				DialogResult answer = MessageBox.Show(
+					"Save changes before quitting?", "SOLID: Save first?", MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question
+				);
                 switch (answer)
                 {
                     case System.Windows.Forms.DialogResult.Cancel:
@@ -350,7 +354,8 @@ namespace SolidGui
                 return;
             }
             _mainWindowPM.ProcessLexicon();
-            _saveButton.Enabled = true;
+        	_mainWindowPM.SaveButtonEnabled = true;
+        	_saveButton.Enabled = _mainWindowPM.SaveButtonEnabled; // todo move to updateview or similar
             
         }
     }

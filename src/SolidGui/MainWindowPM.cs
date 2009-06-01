@@ -25,6 +25,7 @@ namespace SolidGui
     	private String _realDictionaryPath;
     	private SearchPM _searchModel;
     	private SolidSettings _solidSettings;
+    	private bool _saveButtonEnabled;
 
 
     	public MainWindowPM()
@@ -356,16 +357,12 @@ namespace SolidGui
             }
         }
 
-        public void SolidSettingsSaveAs(string filePath)
+        public void SaveDictionaryAndSettings()
         {
-            _solidSettings.SaveAs(filePath);
-        }
-
-        public bool DictionaryAndSettingsSave()
-        {
-            _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
-            _workingDictionary.SaveAs(_realDictionaryPath);
-            return true; // Todo: can't fail.
+			bool result = true;
+			result &= _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+			result &= _workingDictionary.SaveAs(_realDictionaryPath);
+        	SaveButtonEnabled = result;
         }
 
     	public void UseSolidSettingsTemplate(string path)
@@ -416,7 +413,23 @@ namespace SolidGui
         }
 
 
-    }
+    	public bool SaveButtonEnabled
+    	{
+    		get
+    		{
+    			return _saveButtonEnabled;
+    		}
+			set
+			{
+				if (value != _saveButtonEnabled)
+				{
+					_saveButtonEnabled = value;
+					// todo trigger the event
+				}
+			}
+    	}
+
+	}
 
 
 }

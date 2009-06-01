@@ -231,7 +231,7 @@ namespace SolidGui
             }
         }
 */
-        public void OnSolidSettingsChange()
+        public void OnMarkerSettingPossiblyChanged()
         {
             UpdateView();
         }
