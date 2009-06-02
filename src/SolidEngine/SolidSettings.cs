@@ -7,15 +7,15 @@ namespace SolidEngine
 {
     public class SolidSettings
     {
-        private  string _filePath;
-        private List<SolidMarkerSetting> _markerSettings;
+        private readonly List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
         private string _version = "1.0";
-        private string _newestVersion = "1.0";
+        private const string _newestVersion = "1.0";
 
         public SolidSettings()
         {
             _markerSettings = new List<SolidMarkerSetting>();
+            DefaultEncodingUnicode = false;
         }
 
         public string RecordMarker
@@ -30,25 +30,45 @@ namespace SolidEngine
             set { _version = value; }
         }
 
-        public List<SolidMarkerSetting> MarkerSettings
+        public IEnumerable<string> Markers
+        {
+            get
+            {
+                foreach (var item in _markerSettings)
+                {
+                    yield return item.Marker;
+                }
+            }
+        }
+
+        public List<SolidMarkerSetting> MarkerSettings // review: this shouldn't be visible
         {
             get { return _markerSettings; }
         }
 
         [XmlIgnore]
-        public string FilePath
+        public string FilePath { get; set; }
+
+        [XmlIgnore]
+        public bool DefaultEncodingUnicode { get; private set; }
+
+        public bool HasMarker(string marker)
         {
-            get{ return _filePath ; }
-            set { _filePath = value; }
+            return FindMarkerSetting(marker) != null;
         }
 
-        public SolidMarkerSetting FindMarkerSetting(string marker)
+        private SolidMarkerSetting FindMarkerSetting(string marker)
+        {
+            return _markerSettings.Find(item => item.Marker == marker);
+        }
+
+        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker)
         {
             // Search for the marker. If not found return default marker settings.
-            SolidMarkerSetting result = _markerSettings.Find(delegate(SolidMarkerSetting item) { return item.Marker == marker; });
+            SolidMarkerSetting result = FindMarkerSetting(marker);
             if (result == null)
             {
-                result = new SolidMarkerSetting(marker);
+                result = new SolidMarkerSetting(marker, DefaultEncodingUnicode);
                 _markerSettings.Add(result);
             }
             return result;
@@ -57,18 +77,18 @@ namespace SolidEngine
         /// <summary>
         /// will overwrite existing file, if needed
         /// </summary>
-        /// <param name="templatePath"></param>
-        /// <param name="outputPath"></param>
+        /// <param name="templateFilePath"></param>
+        /// <param name="outputFilePath"></param>
         /// <returns></returns>
-        public static SolidSettings CreateSolidFileFromTemplate(string templatePath, string outputPath)
+        public static SolidSettings CreateSolidFileFromTemplate(string templateFilePath, string outputFilePath)
         {
             try
             {
-                if (File.Exists(outputPath))
+                if (File.Exists(outputFilePath))
                 {
-                    File.Delete(outputPath);
+                    File.Delete(outputFilePath);
                 }
-                File.Copy(templatePath, outputPath);
+                File.Copy(templateFilePath, outputFilePath);
             }
             catch (Exception e)
             {
@@ -76,7 +96,9 @@ namespace SolidEngine
                     "There was a problem opening that settings file.  The error was\r\n" + e.Message);
                 return null;
             }
-            return OpenSolidFile(outputPath);
+
+            bool defaultEncodingUnicode = String.Compare(templateFilePath, "unicode", true) == 0;
+            return OpenSolidFile(outputFilePath, defaultEncodingUnicode);
         }
 
         /// <summary>
@@ -85,6 +107,17 @@ namespace SolidEngine
         /// <param name="filePath"></param>
         /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
         public static SolidSettings OpenSolidFile(string filePath)
+        {
+            return OpenSolidFile(filePath, false);
+        }
+
+        /// <summary>
+        /// Open existing file
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="defaultEncodingUnicode"></param>
+        /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
+        public static SolidSettings OpenSolidFile(string filePath, bool defaultEncodingUnicode)
         {
             SolidSettings settings;
             XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
@@ -100,8 +133,9 @@ namespace SolidEngine
             }
 
             settings.FilePath = filePath;
+            settings.DefaultEncodingUnicode = defaultEncodingUnicode;
             // Fix settings for the record marker.
-            SolidMarkerSetting markerSetting = settings.FindMarkerSetting(settings.RecordMarker);
+            SolidMarkerSetting markerSetting = settings.FindOrCreateMarkerSetting(settings.RecordMarker);
             //!!! Assert if null
             // Check that it has 'entry' as the parent.
             if (!markerSetting.ParentExists("entry"))
@@ -113,7 +147,7 @@ namespace SolidEngine
 
         public void Save()
         {
-            SaveAs(_filePath);
+            SaveAs(FilePath);
         }
 
         public void SaveAs(string filePath)

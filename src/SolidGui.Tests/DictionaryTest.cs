@@ -21,16 +21,14 @@ namespace SolidGui.Tests
         public void SetUp()
         {
             _settings = new SolidSettings();
-            SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
+            SolidMarkerSetting lxSetting = _settings.FindOrCreateMarkerSetting("lx");
             lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
-            SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
-            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
-            SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
-            _settings.MarkerSettings.Add(lxSetting);
-            _settings.MarkerSettings.Add(snSetting);
-            _settings.MarkerSettings.Add(geSetting);
+            SolidMarkerSetting geSetting = _settings.FindOrCreateMarkerSetting("ge");
+            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+            
+            SolidMarkerSetting snSetting = _settings.FindOrCreateMarkerSetting("sn");
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
             Palaso.Reporting.ErrorReport.IsOkToInteractWithUser = false;
             _dictionary = new SfmDictionary();

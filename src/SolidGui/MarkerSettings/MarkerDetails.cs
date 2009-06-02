@@ -67,11 +67,11 @@ namespace SolidGui
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                SolidMarkerSetting markerSetting = _settings.FindMarkerSetting(pair.Key);
+                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
-              //  FillInStructureColumn(item, _settings.FindMarkerSetting(pair.Key).StructureProperties);
+              //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
               //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
                 _listView.Items.Add(item);

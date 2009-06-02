@@ -26,10 +26,9 @@ namespace SolidGui
     	private List<Record> _masterRecordList;
     	private String _realDictionaryPath;
     	private SearchPM _searchModel;
-    	private SolidSettings _solidSettings;
 
 
-    	public MainWindowPM()
+        public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
             _workingDictionary = new SfmDictionary();
@@ -57,10 +56,7 @@ namespace SolidGui
             }
         }
 
-        public SolidSettings SolidSettings
-        {
-            get { return _solidSettings; }
-        }
+        public SolidSettings Settings { get; private set; }
 
         public SearchPM SearchModel
         {
@@ -153,7 +149,7 @@ namespace SolidGui
     			{
     				foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
     				{
-    					if (_solidSettings != null && path != _solidSettings.FilePath)
+    					if (Settings != null && path != Settings.FilePath)
     					{
     						paths.Add(path);
     					}
@@ -214,11 +210,11 @@ namespace SolidGui
     	{
     		get
     		{
-    			if (_solidSettings == null)
+    			if (Settings == null)
     			{
     				return null;
     			}
-    			return _solidSettings.FilePath;
+    			return Settings.FilePath;
     		}
     	}
 
@@ -286,14 +282,14 @@ namespace SolidGui
 			string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
 			if (File.Exists(solidFilePath))
 			{
-				_solidSettings = LoadSettingsFromExistingFile(solidFilePath);
+				Settings = LoadSettingsFromExistingFile(solidFilePath);
 			}
 			else
 			{
-				_solidSettings = LoadSettingsFromTemplate(templatePath);
+				Settings = LoadSettingsFromTemplate(templatePath);
 			}
 			GiveSolidSettingsToModels();
-			_workingDictionary.Open(_realDictionaryPath, _solidSettings, _recordFilters);
+			_workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
             _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
@@ -305,9 +301,9 @@ namespace SolidGui
 
     	private void GiveSolidSettingsToModels()
         {
-            _markerSettingsModel.MarkerSettings = _solidSettings.MarkerSettings;
-            _markerSettingsModel.Root = _solidSettings.RecordMarker;
-            _sfmEditorModel.Settings = _solidSettings;
+            _markerSettingsModel.SolidSettings = Settings;
+            _markerSettingsModel.Root = Settings.RecordMarker;
+            _sfmEditorModel.SolidSettings = Settings;
         }
 
 		private SolidSettings LoadSettingsFromTemplate(string templatePath)
@@ -336,10 +332,10 @@ namespace SolidGui
         {
             //review Mark(JH): do we need to save an existing, open dictionary at this point (and let the user cancel)?
 
-            if(_solidSettings!=null)
+            if(Settings!=null)
             {
                 Palaso.Reporting.Logger.WriteEvent("Saving settings");
-                _solidSettings.Save();
+                Settings.Save();
             }
 
             return true; //todo: let the user cancel if the dictionary was changed
@@ -349,7 +345,7 @@ namespace SolidGui
         {
             WorkingDictionary.SaveAs(_tempDictionaryPath);
 
-            _workingDictionary.Open(_tempDictionaryPath, _solidSettings, _recordFilters);
+            _workingDictionary.Open(_tempDictionaryPath, Settings, _recordFilters);
             _filterChooserModel.OnDictionaryProcessed();
 
             if (DictionaryProcessed != null)
@@ -360,19 +356,19 @@ namespace SolidGui
 
         public void SolidSettingsSaveAs(string filePath)
         {
-            _solidSettings.SaveAs(filePath);
+            Settings.SaveAs(filePath);
         }
 
         public bool DictionaryAndSettingsSave()
         {
-            _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+            Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             _workingDictionary.SaveAs(_realDictionaryPath);
             return true; // Todo: can't fail.
         }
 
     	public void UseSolidSettingsTemplate(string path)
         {
-            _solidSettings.Save();
+            Settings.Save();
             LoadSettingsFromTemplate(path);
             GiveSolidSettingsToModels();
             ProcessLexicon();
@@ -397,7 +393,7 @@ namespace SolidGui
                 dlg.CanCancel = true;
 
                 _workingDictionary.SaveAs(_tempDictionaryPath);
-                _solidSettings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
+                Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
                 string sourceFilePath = _tempDictionaryPath;
 
                 ExportArguments exportArguments = new ExportArguments();

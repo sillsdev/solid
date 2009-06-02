@@ -17,24 +17,25 @@ namespace SolidTests
         }
 
         [Test]
-        public void SolidSettings_FileProperty_SetGetCorrect()
+        public void SolidSettings_FindOrCreateMarkerSetting_CreatesMarker()
         {
             SolidSettings f = new SolidSettings();
-            f.FilePath = "myfile";
-            Assert.AreEqual("myfile", f.FilePath);
+            f.FindOrCreateMarkerSetting("mk");
+
+            Assert.IsTrue(f.HasMarker("mk"));
         }
 
         [Test]
-        public void SolidSettings_Write1Read2_Correct()
+        public void SolidSettings_WriteRead_HasMarker()
         {
-            SolidSettings f;
-            f = new SolidSettings();
+            SolidSettings f = new SolidSettings();
             f.FilePath = "myfile.solid";
-            f.MarkerSettings.Add(new SolidMarkerSetting("mk"));
+            f.FindOrCreateMarkerSetting("mk");
             f.Save();
+
             f = SolidSettings.OpenSolidFile("myfile.solid");
-            //2 returned instead of 1 because lx has been hardcoded in
-            Assert.AreEqual(2, f.MarkerSettings.Count);
+
+            Assert.IsTrue(f.HasMarker("mk"));
         }
 
         [Test]

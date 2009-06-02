@@ -7,7 +7,7 @@ namespace SolidEngine
     {
         public enum MappingType
         {
-            FlexDefunct,//don't remove, this messes up old solid files
+            FlexDefunct, //don't remove, this messes up old solid files
             Lift,
             Max
         }
@@ -15,21 +15,22 @@ namespace SolidEngine
         private string _marker;
         private string _inferedParent;
         private string _writingSystemRfc4646;
-        private bool _isUnicode = false;
+        private bool _isUnicode;
         private List<SolidStructureProperty> _structureProperties;
         private string[] _mappings = new string[(int)MappingType.Max];
         
-        public SolidMarkerSetting()
+        public SolidMarkerSetting() : this("")
         {
-            _marker = "";
-            _inferedParent = "";
-            _writingSystemRfc4646 = "";
-            _structureProperties = new List<SolidStructureProperty>();
         }
 
-        public SolidMarkerSetting(string marker)
+        public SolidMarkerSetting(string marker) : this(marker, false)
+        {
+        }
+
+        public SolidMarkerSetting(string marker, bool isUnicode)
         {
             _marker = marker;
+            _isUnicode = isUnicode;
             _inferedParent = "";
             _writingSystemRfc4646 = "";
             _structureProperties = new List<SolidStructureProperty>();

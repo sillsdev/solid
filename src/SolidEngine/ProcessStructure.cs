@@ -21,7 +21,7 @@ namespace SolidEngine
         private void InsertInTreeAnyway(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope)
         {
             
-            SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Name);
            
             int level = 1;
             int i = scope.Count - level;
@@ -49,7 +49,7 @@ namespace SolidEngine
         private bool InsertInTree(XmlNode source, XmlDocument destination, SolidReport report, List<XmlNode> scope)
         {
             // Get the marker settings for this node.
-            SolidMarkerSetting setting = _settings.FindMarkerSetting(source.Name);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Name);
             bool foundParent = false;
             int i = scope.Count;
             // Check for record marker (assume is root)
@@ -149,7 +149,7 @@ namespace SolidEngine
         {
             // Can we infer a node.
             bool retval = false;
-            SolidMarkerSetting setting = _settings.FindMarkerSetting(xmlSourceField.Name);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlSourceField.Name);
             if (setting.InferedParent != String.Empty)
             {
                 XmlNode inferredNode = destination.CreateElement(setting.InferedParent);

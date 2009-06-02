@@ -30,7 +30,7 @@ namespace SolidGui
 			_navigatorModel = navigatorModel;
 		}
 
-		public SolidSettings Settings
+		public SolidSettings SolidSettings
         {
             set
             {
@@ -95,7 +95,7 @@ namespace SolidGui
         {
             LdmlInFolderWritingSystemStore repository =
                 new LdmlInFolderWritingSystemStore();
-            string writingSystemId = _solidSettings.FindMarkerSetting(marker).WritingSystemRfc4646;
+            string writingSystemId = _solidSettings.FindOrCreateMarkerSetting(marker).WritingSystemRfc4646;
 
             if (!string.IsNullOrEmpty(writingSystemId))
             {
@@ -116,7 +116,7 @@ namespace SolidGui
         public string GetUnicodeValueFromLatin1(string marker, string value)
         {
             string retval;
-            SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
+            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
                 retval = string.Empty;
@@ -144,7 +144,7 @@ namespace SolidGui
 
         private string GetLatin1ValueFromUnicode(string marker, string value)
         {
-            SolidMarkerSetting setting =  _solidSettings.FindMarkerSetting(marker);
+            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
                 Encoding stringEncoding = Encoding.UTF8;

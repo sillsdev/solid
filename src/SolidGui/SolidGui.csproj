@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -196,6 +196,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuickFixForm.resx">
       <DependentUpon>QuickFixForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="StructurePropertiesView.resx">
       <SubType>Designer</SubType>

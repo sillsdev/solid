@@ -17,18 +17,14 @@ namespace SolidTests
         public void Setup()
         {
             _settings = new SolidSettings();
-            SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
+            SolidMarkerSetting lxSetting = _settings.FindOrCreateMarkerSetting("lx");
             lxSetting.Unicode = false;
 
-            SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
+            SolidMarkerSetting geSetting = _settings.FindOrCreateMarkerSetting("ge");
             geSetting.Unicode = false;
 
-            SolidMarkerSetting guSetting = new SolidMarkerSetting("gu");
+            SolidMarkerSetting guSetting = _settings.FindOrCreateMarkerSetting("gu");
             guSetting.Unicode = true;
-
-            _settings.MarkerSettings.Add(lxSetting);
-            _settings.MarkerSettings.Add(geSetting);
-            _settings.MarkerSettings.Add(guSetting);
 
             _p = new ProcessEncoding(_settings);
         }

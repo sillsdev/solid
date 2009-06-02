@@ -23,7 +23,7 @@ namespace SolidEngine
                 string marker = xmlField.Name;
                 if (xmlField.FirstChild != null)
                 {
-                    SolidMarkerSetting setting = _settings.FindMarkerSetting(xmlField.Name);
+                    SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlField.Name);
                     string value = xmlField.FirstChild.Value;
                     if (setting.Unicode)
                     {

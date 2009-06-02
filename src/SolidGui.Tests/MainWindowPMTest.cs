@@ -3,6 +3,7 @@ using System.IO;
 using Palaso.Reporting;
 
 using NUnit.Framework;
+using SolidEngine;
 
 namespace SolidGui.Tests
 {
@@ -129,10 +130,8 @@ namespace SolidGui.Tests
             string path = PathToSettingsFileThatGoesWithDictionary;
             try
             {
-                File.WriteAllText(
-                    path,
-                    "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<SolidSettings>\n</SolidSettings>\n"
-				);
+                SolidSettings solidSettings = new SolidSettings();
+                solidSettings.SaveAs(path);
                 Assert.IsFalse(_mainWindowPM.ShouldAskForTemplateBeforeOpening(DictionaryPath));
             }
             finally

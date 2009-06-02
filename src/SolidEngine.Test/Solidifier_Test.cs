@@ -27,16 +27,12 @@ namespace SolidTests
         private SolidSettings InitSettings()
         {
             SolidSettings solidSettings = new SolidSettings();
-            SolidMarkerSetting lxSetting = new SolidMarkerSetting("lx");
+            SolidMarkerSetting lxSetting = solidSettings.FindOrCreateMarkerSetting("lx");
             lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
-            SolidMarkerSetting geSetting = new SolidMarkerSetting("ge");
+            SolidMarkerSetting geSetting = solidSettings.FindOrCreateMarkerSetting("ge");
             geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
-            SolidMarkerSetting snSetting = new SolidMarkerSetting("sn");
+            SolidMarkerSetting snSetting = solidSettings.FindOrCreateMarkerSetting("sn");
             snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
-
-            solidSettings.MarkerSettings.Add(lxSetting);
-            solidSettings.MarkerSettings.Add(snSetting);
-            solidSettings.MarkerSettings.Add(geSetting);
 
             return solidSettings;
         }
@@ -67,7 +63,7 @@ namespace SolidTests
             solid.Attach(new Observer(this));
             solid.Process(CreateSfmXmlReader(sfmIn), settings);
 
-//            SolidMarkerSetting setting = _settings.FindMarkerSetting("ge");
+//            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting("ge");
 //            Assert.IsNotNull(setting);
 //            setting.InferedParent = "sn";
 

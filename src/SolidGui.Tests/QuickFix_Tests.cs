@@ -131,11 +131,10 @@ namespace SolidGui.Tests
         [Test]
         public void MakeInferedMarkersReal_hasVirtualSn_Becomes_Real()
         {
-            SolidMarkerSetting psSetting = new SolidMarkerSetting("ps");
+            var settings = new SolidSettings();
+            SolidMarkerSetting psSetting = settings.FindOrCreateMarkerSetting("ps");
             psSetting.InferedParent = "sn";
             psSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
-            var settings = new SolidSettings();
-            settings.MarkerSettings.Add(psSetting);
 
             var dict = MakeDictionary(settings, "lx", "ps");
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");

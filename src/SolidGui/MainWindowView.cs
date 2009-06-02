@@ -69,7 +69,7 @@ namespace SolidGui
                 _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.FilterChooserModel,
                 _mainWindowPM.WorkingDictionary,
-                _mainWindowPM.SolidSettings
+                _mainWindowPM.Settings
             );
             _filterChooserView.UpdateDisplay();
             _markerDetails.UpdateDisplay();
@@ -261,7 +261,7 @@ namespace SolidGui
 
         private string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)
         {
-            TemplateChooser chooser = new TemplateChooser(_mainWindowPM.SolidSettings);
+            TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings);
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
             chooser.WouldBeReplacingExistingSettings = wouldBeReplacingExistingSettings;
