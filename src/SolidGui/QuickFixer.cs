@@ -227,7 +227,7 @@ namespace SolidEngine
                             parts.Reverse();
                             record.RemoveField(i);
 
-                            log.AppendFormat("Splitting '\\{0} {1}' into multiple fields", field.Marker, field.Value);
+                            log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
                             foreach (var headword in parts)
                             {
                                 var f = new Field(field.Marker, headword, field.Depth, false, -1 /*review*/);

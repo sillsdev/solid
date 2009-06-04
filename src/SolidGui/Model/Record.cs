@@ -114,7 +114,7 @@ namespace SolidGui
 
         public Field GetFirstFieldWithMarker(string marker)
         {
-            return _fields.First(f=> f.Marker == marker);
+            return _fields.FirstOrDefault(f=> f.Marker == marker);
         }
 
         public void SetFieldValue(int id, string value)
