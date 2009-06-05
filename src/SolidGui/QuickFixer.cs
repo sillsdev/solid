@@ -152,10 +152,37 @@ namespace SolidEngine
 
             //this isn't safe with \lv, 'cause each needs an \lf preceding.  That code
             //could be written, but hasn't been.  SplitFieldsWithMultipleItems(markers, log);
-
+            PropogateField("lf", "lv", log);
             List<RecordAdddition> additions = FindNeededEntryAdditions(new List<string>{"lv"});
             AddNewEntries(additions, log);
             return log.ToString();
+        }
+
+        private void PropogateField(string markerOfFieldToPropogate, string markerOfFieldToPlaceBefore, StringBuilder log)
+        {
+            foreach (var record in _dictionary.Records)
+            {
+                Field fieldToCopy = null;
+                for (int i = 0; i < record.Fields.Count; i++)
+                {
+                    var field = record.Fields[i];
+                    if (field.Marker == markerOfFieldToPropogate)
+                    {
+                        fieldToCopy = field;
+                        ++i;//skip the next line, since it is *already* preceded by this field
+                        continue;
+                    }
+                    else if(field.Marker == markerOfFieldToPlaceBefore)
+                    {
+                        if(fieldToCopy !=null)
+                        {
+                            var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1 /*review*/);
+                            record.InsertFieldAt(f, i); 
+                            ++i;//skip the next line, since not is is preceded by this field
+                        }
+                    }
+                }
+            }
         }
 
         private List<RecordAdddition> FindNeededEntryAdditions(List<string> markers)

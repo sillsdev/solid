@@ -63,7 +63,7 @@
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.Location = new System.Drawing.Point(396, 423);
+            this.button1.Location = new System.Drawing.Point(396, 450);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -79,7 +79,7 @@
             this.tabControl2.Location = new System.Drawing.Point(12, 9);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(463, 408);
+            this.tabControl2.Size = new System.Drawing.Size(463, 435);
             this.tabControl2.TabIndex = 5;
             // 
             // tabPage3
@@ -274,7 +274,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(455, 382);
+            this.tabPage1.Size = new System.Drawing.Size(455, 409);
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "FLEx Import Fixes";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -296,7 +296,7 @@
             this.label2.Location = new System.Drawing.Point(52, 118);
             this.label2.MaximumSize = new System.Drawing.Size(350, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(349, 208);
+            this.label2.Size = new System.Drawing.Size(349, 247);
             this.label2.TabIndex = 18;
             this.label2.Text = resources.GetString("label2.Text");
             // 
@@ -304,7 +304,7 @@
             // 
             this._exectueFLExFixes.AutoSize = true;
             this._exectueFLExFixes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._exectueFLExFixes.Location = new System.Drawing.Point(31, 348);
+            this._exectueFLExFixes.Location = new System.Drawing.Point(31, 379);
             this._exectueFLExFixes.Name = "_exectueFLExFixes";
             this._exectueFLExFixes.Size = new System.Drawing.Size(257, 17);
             this._exectueFLExFixes.TabIndex = 17;
@@ -317,9 +317,9 @@
             this._createReferredToItems.AutoSize = true;
             this._createReferredToItems.Location = new System.Drawing.Point(34, 98);
             this._createReferredToItems.Name = "_createReferredToItems";
-            this._createReferredToItems.Size = new System.Drawing.Size(273, 17);
+            this._createReferredToItems.Size = new System.Drawing.Size(292, 17);
             this._createReferredToItems.TabIndex = 0;
-            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\sy, \\an)";
+            this._createReferredToItems.Text = "Add entries for all referred to items (e.g. \\cf, \\sy, \\an, \\lv)";
             this._createReferredToItems.UseVisualStyleBackColor = true;
             // 
             // _makeInferedRealBox
@@ -336,7 +336,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(487, 458);
+            this.ClientSize = new System.Drawing.Size(487, 485);
             this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
