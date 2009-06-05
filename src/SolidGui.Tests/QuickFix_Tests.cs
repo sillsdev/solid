@@ -187,6 +187,17 @@ namespace SolidGui.Tests
         }
 
         [Test]
+        public void MakeEntriesForReferredItemsOfLv_TargetMissing_TargetAdded()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        "lx a", "lf foo", "lv x");
+            new QuickFixer(dict).MakeEntriesForReferredItemsOfLv();
+            Assert.AreEqual(2, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], "lx a", "lf foo", "lv x");
+            AssertFieldContents(dict.Records[1], "lx x", "*", "*");
+        }
+
+        [Test]
         public void MakeEntriesForReferredItems_HasPos_POSCopied()
         {
             var dict = MakeDictionary(new SolidSettings(), "lx a", "ps verb", "cf b");
@@ -255,7 +266,10 @@ namespace SolidGui.Tests
         {
             for (int i = 0; i < fields.Length; i++)
             {
-                Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString().Trim());
+                if(fields[i]!="*")
+                {
+                    Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString().Trim());
+                }
             }
             Assert.AreEqual(fields.Length, record.Fields.Count);
         }

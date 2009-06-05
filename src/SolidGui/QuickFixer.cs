@@ -146,6 +146,18 @@ namespace SolidEngine
             return log.ToString();
         }
 
+        public string MakeEntriesForReferredItemsOfLv()
+        {
+            var log = new StringBuilder();
+
+            //this isn't safe with \lv, 'cause each needs an \lf preceding.  That code
+            //could be written, but hasn't been.  SplitFieldsWithMultipleItems(markers, log);
+
+            List<RecordAdddition> additions = FindNeededEntryAdditions(new List<string>{"lv"});
+            AddNewEntries(additions, log);
+            return log.ToString();
+        }
+
         private List<RecordAdddition> FindNeededEntryAdditions(List<string> markers)
         {
             var additions = new List<RecordAdddition>();
@@ -274,5 +286,7 @@ namespace SolidEngine
             }
             return null;
         }
+
+
     }
 }

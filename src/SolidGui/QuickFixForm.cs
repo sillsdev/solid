@@ -89,6 +89,8 @@ namespace SolidGui
                 var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
                 var path = Path.GetTempFileName()+".txt";
                 File.WriteAllText(path, log);
+                log = _fixer.MakeEntriesForReferredItemsOfLv();
+                File.AppendAllText(path, log);
                 Process.Start(path);
                 
             }
