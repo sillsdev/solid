@@ -285,5 +285,23 @@ namespace SolidGui.Tests
             Assert.AreEqual(3, dict.Records.Count);
             AssertFieldContents(dict.Records[0], "lx a", "lf foo", "lv x", "lf foo", "lv y");
         }
+
+        [Test]
+        public void MakeEntriesForReferredItemsOfLv_FollowingLvAlreadyHasLf_Untouched()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        "lx a", "lf foo", "lv x", "lf boo", "lv y");
+            new QuickFixer(dict).MakeEntriesForReferredItemsOfLv();
+            Assert.AreEqual(3, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], "lx a", "lf foo", "lv x", "lf boo", "lv y");
+        }
+        [Test]
+        public void MakeEntriesForReferredItemsOfLv_SameMissingTargetRepeated_OnlyCreatedOnce()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        "lx a", "lf foo", "lv x", "lf boo", "lv x");
+            new QuickFixer(dict).MakeEntriesForReferredItemsOfLv();
+            Assert.AreEqual(2, dict.Records.Count);
+        }
     }
 }
