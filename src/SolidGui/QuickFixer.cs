@@ -315,5 +315,76 @@ namespace SolidEngine
         }
 
 
+        public string PropogatePartOfSpeech()
+        {
+            var sensesEffected = 0;
+
+            StringBuilder logBuilder= new StringBuilder();
+            foreach (var record in _dictionary.Records)
+            {
+                var encounteredSn = false;
+
+                //in the format we're changing to, \ps comes after \sn, so 
+                //we should remove one which appears before the first sn (it will have been copied in)
+                var indexOfPsFieldToRemoveAtEnd = 0;
+                
+                Field fieldToCopy = null;
+                for (int i = 0; i < record.Fields.Count; i++)
+                {
+                    var field = record.Fields[i];
+                    if (field.Marker == "ps")
+                    {
+                        if (!encounteredSn)
+                        {
+                            indexOfPsFieldToRemoveAtEnd = i;
+                        }
+                        fieldToCopy = field;
+                        continue;
+                    }
+                    else if (field.Marker == "sn")
+                    {
+                        
+                        encounteredSn = true;
+                        if (fieldToCopy != null)
+                        {
+                            if (!LevelHasMarker(record, i, "ps", "sn"))
+                            {
+                                var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1
+                                    /*review*/);
+                                record.InsertFieldAt(f, i+1);
+                                ++i;//skip over what we just inserted
+                                sensesEffected++;
+                            }
+                        }
+                    }
+                }
+                if(encounteredSn && indexOfPsFieldToRemoveAtEnd>0)
+                {
+                    Debug.Assert(record.Fields[indexOfPsFieldToRemoveAtEnd].Marker == "ps");
+                    //just one last sanity check
+                    if (record.Fields[indexOfPsFieldToRemoveAtEnd].Marker == "ps")
+                    {
+                        record.RemoveField(indexOfPsFieldToRemoveAtEnd);
+                    }
+                }
+            }
+            logBuilder.AppendFormat("ps was copied to {0} senses.", sensesEffected);
+            return logBuilder.ToString();
+        }
+
+        public bool LevelHasMarker(Record record, int startBelowMarkerIndex, string markerToFind, string markerToStopAt)
+        {
+            for (int i = startBelowMarkerIndex+1; i < record.Fields.Count; i++)
+            {
+                var field = record.Fields[i];
+                if (field.Marker == markerToStopAt)
+                {
+                    return false;
+                }
+                if(field.Marker == markerToFind)
+                    return true;
+            }
+            return false;
+        }
     }
 }

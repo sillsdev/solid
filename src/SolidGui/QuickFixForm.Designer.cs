@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickFixForm));
             this.button1 = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -49,10 +48,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this._exectueFLExFixes = new System.Windows.Forms.LinkLabel();
             this._createReferredToItems = new System.Windows.Forms.CheckBox();
             this._makeInferedRealBox = new System.Windows.Forms.CheckBox();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this._pushPsDownToSns = new System.Windows.Forms.CheckBox();
+            this._showPushPSInfo = new System.Windows.Forms.LinkLabel();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -98,7 +99,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(455, 382);
+            this.tabPage3.Size = new System.Drawing.Size(455, 409);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Move Up";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -228,7 +229,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(455, 382);
+            this.tabPage4.Size = new System.Drawing.Size(455, 409);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Remove empty";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -266,9 +267,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this._showPushPSInfo);
+            this.tabPage1.Controls.Add(this.linkLabel4);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this._exectueFLExFixes);
+            this.tabPage1.Controls.Add(this._pushPsDownToSns);
             this.tabPage1.Controls.Add(this._createReferredToItems);
             this.tabPage1.Controls.Add(this._makeInferedRealBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -289,16 +292,6 @@
             this.label5.TabIndex = 18;
             this.label5.Text = "Increases the chance that FLEx has the same idea about the structure as your SOLI" +
                 "D rules.";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(52, 118);
-            this.label2.MaximumSize = new System.Drawing.Size(350, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(349, 247);
-            this.label2.TabIndex = 18;
-            this.label2.Text = resources.GetString("label2.Text");
             // 
             // _exectueFLExFixes
             // 
@@ -331,6 +324,38 @@
             this._makeInferedRealBox.TabIndex = 0;
             this._makeInferedRealBox.Text = "Make all infered \\sn markers real (e.g. \\+sn --> \\sn)";
             this._makeInferedRealBox.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(58, 122);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(106, 13);
+            this.linkLabel4.TabIndex = 19;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "Important Information";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // _pushPsDownToSns
+            // 
+            this._pushPsDownToSns.AutoSize = true;
+            this._pushPsDownToSns.Location = new System.Drawing.Point(34, 154);
+            this._pushPsDownToSns.Name = "_pushPsDownToSns";
+            this._pushPsDownToSns.Size = new System.Drawing.Size(197, 17);
+            this._pushPsDownToSns.TabIndex = 0;
+            this._pushPsDownToSns.Text = "Push \\ps down to subsequent \\sn\'s.";
+            this._pushPsDownToSns.UseVisualStyleBackColor = true;
+            // 
+            // _showPushPSInfo
+            // 
+            this._showPushPSInfo.AutoSize = true;
+            this._showPushPSInfo.Location = new System.Drawing.Point(55, 184);
+            this._showPushPSInfo.Name = "_showPushPSInfo";
+            this._showPushPSInfo.Size = new System.Drawing.Size(106, 13);
+            this._showPushPSInfo.TabIndex = 19;
+            this._showPushPSInfo.TabStop = true;
+            this._showPushPSInfo.Text = "Important Information";
+            this._showPushPSInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._showPushPSInfo_LinkClicked);
             // 
             // QuickFixForm
             // 
@@ -382,6 +407,8 @@
         private System.Windows.Forms.CheckBox _createReferredToItems;
         private System.Windows.Forms.CheckBox _makeInferedRealBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.CheckBox _pushPsDownToSns;
+        private System.Windows.Forms.LinkLabel _showPushPSInfo;
     }
 }

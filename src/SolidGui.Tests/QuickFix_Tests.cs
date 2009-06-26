@@ -6,6 +6,7 @@ using System.Xml;
 using NUnit.Framework;
 using SolidEngine;
 
+
 namespace SolidGui.Tests
 {
     [TestFixture]
@@ -226,6 +227,11 @@ namespace SolidGui.Tests
 
         private SfmDictionary MakeDictionary(SolidSettings settings, params string[] fields)
         {
+            if (fields.Length == 1)  //enable usage like this:  @"\lx a \ps noun \sn 1 \ge cat"
+            {
+                fields = fields[0].TrimStart('\\').Split('\\');
+            }
+
             var dictionary = new SfmDictionary();
             for (int i = 0; i < fields.Length; )
             {
@@ -255,11 +261,16 @@ namespace SolidGui.Tests
 
         private void AssertFieldContents(Record record,  params string[] fields)
         {
+            if (fields.Length == 1)  //enable usage like this:  @"\lx a \ps noun \sn 1 \ge cat"
+            {
+                fields = fields[0].Trim('\\').Split('\\');
+            }
+
             for (int i = 0; i < fields.Length; i++)
             {
                 if(fields[i]!="*")
                 {
-                    Assert.AreEqual("\\"+fields[i], record.Fields[i].ToStructuredString().Trim());
+                    Assert.AreEqual("\\"+fields[i].Trim(), record.Fields[i].ToStructuredString().Trim());
                 }
             }
             Assert.AreEqual(fields.Length, record.Fields.Count);
@@ -302,6 +313,64 @@ namespace SolidGui.Tests
                         "lx a", "lf foo", "lv x", "lf boo", "lv x");
             new QuickFixer(dict).MakeEntriesForReferredItemsOfLv();
             Assert.AreEqual(2, dict.Records.Count);
+        }
+
+        //-------------------------------------------------------------------------------------
+
+        [Test]
+        public void LevelHasMarker_DefaultSettings_FindsPsInSenses()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \sn 1 \ge cat \ps foo \sn 2 \ge goo \s3 zz");
+            Assert.IsTrue(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 1,  "ps", "sn"));
+            Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 4, "ps", "sn"));
+            Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 6, "ps", "sn"));
+        }
+
+        [Test]
+        public void PropogatePartOfSpeech_SecondSenseLacksPs_Propogated()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge lion");
+            new QuickFixer(dict).PropogatePartOfSpeech();
+            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion");
+        }
+
+        [Test]
+        public void PropogatePartOfSpeech_PsBeforeSn_Switches()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \ps noun \sn 1 \ge cat");
+            new QuickFixer(dict).PropogatePartOfSpeech();
+            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun  \ge cat");
+        }
+        
+        [Test]
+        public void PropogatePartOfSpeech_StopsAtEndOfEntry()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \ps noun \lx b \ge dog");
+            new QuickFixer(dict).PropogatePartOfSpeech();
+            Assert.AreEqual(2, dict.Records.Count);
+            AssertFieldContents(dict.Records[1], "lx b", "ge dog");
+        }
+
+        [Test]
+        public void PropogatePartOfSpeech_PsPropgatedToNextSense()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge lion");
+            new QuickFixer(dict).PropogatePartOfSpeech();
+            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion");
+        }
+
+        [Test]
+        public void PropogatePartOfSpeech_NextSenseHasPOS_DoesntPropogate()
+        {
+            var dict = MakeDictionary(new SolidSettings(),
+                        @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge foo \ps verb");
+            new QuickFixer(dict).PropogatePartOfSpeech();
+            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge foo  \ps verb");
         }
     }
 }
