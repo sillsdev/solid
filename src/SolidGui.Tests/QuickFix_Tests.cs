@@ -216,6 +216,22 @@ namespace SolidGui.Tests
         }
 
         [Test]
+        public void MakeEntriesForReferredItems_HasMatchingVa_NoneCreated()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx x", "va b");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
+        }
+
+        [Test]
+        public void MakeEntriesForReferredItems_HasMatchingSe_NoneCreated()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx x", "se b");
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
+        }
+
+        [Test]
         public void MakeEntriesForReferredItems_HasDifferentLc_ReferrerSwitchedToIt()
         {
             var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx b", "lc x");

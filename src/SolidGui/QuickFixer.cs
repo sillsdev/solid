@@ -220,6 +220,10 @@ namespace SolidEngine
             {
                 string switchToCitationForm;
                 var targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
+                if (targetRecord == null)
+                {
+                    targetRecord = FindRecordContainingVariantOrSubEntry(addition.targetHeadWord);
+                }
                 if (null == targetRecord)
                 {
                     Record r = new Record(-1);
@@ -282,7 +286,8 @@ namespace SolidEngine
         private Record FindRecordByCitationFormOrLexemeForm(string form, out string switchToCitationForm)
         {
             switchToCitationForm = null;
-      
+
+
             foreach (var record in _dictionary.Records)
             {
                 if (record.HasMarker("lc"))
@@ -311,9 +316,25 @@ namespace SolidEngine
                     return record;
                 }
             }
+
             return null;
         }
+        private Record FindRecordContainingVariantOrSubEntry(string form)
+        {
 
+            foreach (var record in _dictionary.Records)
+            {
+                foreach (var field in record.Fields)
+                {
+                    if (field.Marker == "va" || field.Marker == "se")
+                    {
+                        if (field.Value.Trim() == form)
+                            return record;
+                    }
+                }
+            }
+            return null;
+        }
 
         public string PropogatePartOfSpeech()
         {
