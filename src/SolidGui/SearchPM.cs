@@ -118,7 +118,10 @@ namespace SolidGui
         {
             string recordText;
             int finalTextIndex;
-            recordText = filter.GetRecord(recordIndex).ToStructuredString();
+            var record = filter.GetRecord(recordIndex);
+            if (record == null)
+                return -1;
+            recordText = record.ToStructuredString();
             finalTextIndex = recordText.IndexOf(word, startTextIndex);
             return finalTextIndex;
         }
