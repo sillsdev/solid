@@ -184,7 +184,7 @@ namespace SolidGui
             _sfmEditorView.OnSolidSettingsChange();
         }
 
-        private void OnProcessButtonClick(object sender, EventArgs e)
+        private void OnRecheckButtonClick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModel();
@@ -296,6 +296,17 @@ namespace SolidGui
             if (e.Control == true && e.KeyCode == Keys.O)
             {
                 OnOpenClick(this, new EventArgs());
+            }
+            if (e.Control == true && e.KeyCode == Keys.S)
+            {
+                if (_saveButton.Enabled)
+                {
+                    OnSaveClick(this, new EventArgs());
+                }
+            }
+            if (e.Control == true && e.KeyCode == Keys.R)
+            {
+                OnRecheckButtonClick(this, new EventArgs());
             }
         }
 

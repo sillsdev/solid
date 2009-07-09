@@ -36,8 +36,8 @@ namespace SolidGui
             this._exportButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this._changeTemplate = new System.Windows.Forms.ToolStripButton();
-            this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this._quickFixButton = new System.Windows.Forms.ToolStripButton();
+            this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -85,7 +85,7 @@ namespace SolidGui
             this._openButton.Image = global::SolidGui.Properties.Resources.folder_open;
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
-            this._openButton.Size = new System.Drawing.Size(108, 22);
+            this._openButton.Size = new System.Drawing.Size(104, 22);
             this._openButton.Text = "Open Lexicon...";
             this._openButton.Click += new System.EventHandler(this.OnOpenClick);
             // 
@@ -104,7 +104,7 @@ namespace SolidGui
             this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
-            this._exportButton.Size = new System.Drawing.Size(69, 22);
+            this._exportButton.Size = new System.Drawing.Size(71, 22);
             this._exportButton.Text = "Export...";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
@@ -118,9 +118,19 @@ namespace SolidGui
             this._changeTemplate.Image = global::SolidGui.Properties.Resources.template;
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
-            this._changeTemplate.Size = new System.Drawing.Size(130, 22);
+            this._changeTemplate.Size = new System.Drawing.Size(123, 22);
             this._changeTemplate.Text = "Change Template...";
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
+            // 
+            // _quickFixButton
+            // 
+            this._quickFixButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
+            this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._quickFixButton.Name = "_quickFixButton";
+            this._quickFixButton.Size = new System.Drawing.Size(77, 22);
+            this._quickFixButton.Text = "Quick Fixes...";
+            this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // _aboutBoxButton
             // 
@@ -131,16 +141,6 @@ namespace SolidGui
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
-            // 
-            // _quickFixButton
-            // 
-            this._quickFixButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
-            this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._quickFixButton.Name = "_quickFixButton";
-            this._quickFixButton.Size = new System.Drawing.Size(79, 22);
-            this._quickFixButton.Text = "Quick Fixes...";
-            this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // splitContainer1
             // 
@@ -272,7 +272,7 @@ namespace SolidGui
             this._recheckButton.Text = "Recheck";
             this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._recheckButton.UseVisualStyleBackColor = true;
-            this._recheckButton.Click += new System.EventHandler(this.OnProcessButtonClick);
+            this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
             // 
             // _filterChooserView
             // 
@@ -292,6 +292,7 @@ namespace SolidGui
                         | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
             this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sfmEditorView.HighlightMarkers = null;
             this._sfmEditorView.Indent = 130;
             this._sfmEditorView.Location = new System.Drawing.Point(0, 35);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
