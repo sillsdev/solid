@@ -29,16 +29,11 @@ namespace SolidGui
 
         public void BindModel(RecordNavigatorPM model)
         {
-                _model = model;
+            _model = model;
+            _model.RecordChanged += OnRecordChanged;
                 //if (_model == null)//happens at design time
                 //    return;
                 //UpdateDisplay();
-        }
-
-        private void _PreviousButton_Click(object sender, EventArgs e)
-        {
-            _model.MoveToPrevious();
-            UpdateDisplay();
         }
 
         public void UpdateDisplay()
@@ -52,27 +47,34 @@ namespace SolidGui
             _recordNumber.Text = string.Format("{0}", _model.CurrentRecordIndex+1);
         }
 
-        private void _nextButton_Click(object sender, EventArgs e)
-        {
-            _model.MoveToNext();
-            UpdateDisplay();
-        }
-
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             UpdateDisplay();
         }
 
+        public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
+        {
+            UpdateDisplay();
+        }
+
+        private void _PreviousButton_Click(object sender, EventArgs e)
+        {
+            _model.MoveToPrevious();
+        }
+
+        private void _nextButton_Click(object sender, EventArgs e)
+        {
+            _model.MoveToNext();
+        }
+
         private void _firstButton_Click(object sender, EventArgs e)
         {
             _model.MoveToFirst();
-            UpdateDisplay();
         }
 
         private void _lastButton_Click(object sender, EventArgs e)
         {
             _model.MoveToLast();
-            UpdateDisplay();
         }
 
         private void _searchButton_Click(object sender, EventArgs e)
