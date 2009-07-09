@@ -43,14 +43,14 @@ namespace SolidGui
             this.panel2 = new System.Windows.Forms.Panel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._markerDetails = new SolidGui.MarkerDetails();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._markerDetails = new SolidGui.MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,6 +87,8 @@ namespace SolidGui
             this._openButton.Name = "_openButton";
             this._openButton.Size = new System.Drawing.Size(104, 22);
             this._openButton.Text = "Open Lexicon...";
+            this._openButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._openButton.ToolTipText = "Open Lexicon... Ctrl+O";
             this._openButton.Click += new System.EventHandler(this.OnOpenClick);
             // 
             // _saveButton
@@ -97,6 +99,8 @@ namespace SolidGui
             this._saveButton.Name = "_saveButton";
             this._saveButton.Size = new System.Drawing.Size(51, 22);
             this._saveButton.Text = "Save";
+            this._saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._saveButton.ToolTipText = "Save Ctrl+S";
             this._saveButton.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // _exportButton
@@ -224,16 +228,6 @@ namespace SolidGui
             this.label2.TabIndex = 5;
             this.label2.Text = "Marker Settings";
             // 
-            // _markerDetails
-            // 
-            this._markerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerDetails.Location = new System.Drawing.Point(0, 38);
-            this._markerDetails.Name = "_markerDetails";
-            this._markerDetails.Size = new System.Drawing.Size(435, 228);
-            this._markerDetails.TabIndex = 0;
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -273,6 +267,16 @@ namespace SolidGui
             this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            // 
+            // _markerDetails
+            // 
+            this._markerDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._markerDetails.Location = new System.Drawing.Point(0, 38);
+            this._markerDetails.Name = "_markerDetails";
+            this._markerDetails.Size = new System.Drawing.Size(435, 228);
+            this._markerDetails.TabIndex = 0;
             // 
             // _filterChooserView
             // 
