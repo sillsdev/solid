@@ -1,4 +1,5 @@
 using System;
+using Palaso.Reporting;
 using SolidEngine;
 using System.Windows.Forms;
 
@@ -129,12 +130,29 @@ namespace SolidGui
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            if (_model.ValidParent(_model.RemoveLeadingBackslash(e.Label)))
+            if (String.IsNullOrEmpty(e.Label) && e.Item > 0)
             {
-                _parentListView.Items[e.Item].Text = e.Label;
-                _model.UpdateParentMarkers(_parentListView.Items);
-                UpdateDisplay();
+                var d = new ProblemNotificationDialog("The parent marker cannot be empty. It must be a valid marker, like \\sn or \\lx for example", "Solid Error");
+                d.ShowDialog();
+                e.CancelEdit = true;
+                return;
             }
+            if (!_model.ValidParent(e.Label))
+            {
+                var d = new ProblemNotificationDialog(
+                    String.Format(
+                        "'{0}' isn't a valid parent marker. It must be a valid marker, like \\sn or \\lx for example",
+                        e.Label
+                    ),
+                    "Solid Error"
+                );
+                d.ShowDialog();
+                e.CancelEdit = true;
+                return;
+            }
+            _parentListView.Items[e.Item].Text = _model.RemoveLeadingBackslash(e.Label);
+            _model.UpdateParentMarkers(_parentListView.Items);
+            UpdateDisplay();
             e.CancelEdit = true;
         }
 
@@ -159,7 +177,7 @@ namespace SolidGui
 
         private void _parentListView_MouseUp(object sender, MouseEventArgs e)
         {
-            if(_parentListView.SelectedItems.Count >0)
+            if(_parentListView.SelectedItems.Count > 0)
             {
                 if (_model.GetSelectedText(_parentListView) == "(New)")
                 {

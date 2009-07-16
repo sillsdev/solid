@@ -77,22 +77,23 @@ namespace SolidGui
             }
         }
 
-        public bool ValidParent(string parent)
+        public bool ValidParent(string marker)
         {
+            var markerWithoutLeadingBackslash = RemoveLeadingBackslash(marker);
             return (
-                _allValidMarkers.Contains(parent) &&
-                !_markerSetting.ParentExists(parent) &&
-                _markerSetting.Marker != parent
+                _allValidMarkers.Contains(markerWithoutLeadingBackslash) &&
+                !_markerSetting.ParentExists(markerWithoutLeadingBackslash) &&
+                _markerSetting.Marker != markerWithoutLeadingBackslash
             );
         }
 
-        public string RemoveLeadingBackslash(string parent)
+        public string RemoveLeadingBackslash(string marker)
         {
-            if(parent != null && parent[0].Equals('\\'))
+            if(marker != null && marker[0].Equals('\\'))
             {
-                parent = parent.Substring(1);
+                marker = marker.Substring(1);
             }
-            return parent;
+            return marker;
         }
 
 
