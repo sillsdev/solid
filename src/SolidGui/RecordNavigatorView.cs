@@ -13,13 +13,31 @@ namespace SolidGui
         private RecordNavigatorPM _model;
         public event EventHandler SearchButtonClicked;
 
+        private readonly ToolTip _ttPrevious;
+        private readonly ToolTip _ttNext;
+        private readonly ToolTip _ttFirst;
+        private readonly ToolTip _ttFind;
+        private readonly ToolTip _ttRefresh;
+
         public RecordNavigatorView()
         {
             InitializeComponent();
-//            _searchButton.Image =
-//                _searchButton.Image.GetThumbnailImage(_searchButton.Width - 8, _searchButton.Height - 8, ReturnFalse,
+//            _findButton.Image =
+//                _findButton.Image.GetThumbnailImage(_findButton.Width - 8, _findButton.Height - 8, ReturnFalse,
 //                                                      System.IntPtr.Zero);
             _descriptionLabel.Text = "";
+
+            // Tooltips
+            _ttPrevious = new ToolTip();
+            _ttPrevious.SetToolTip(_previousButton, "Previous (Ctrl+PgUp)");
+            _ttNext = new ToolTip();
+            _ttNext.SetToolTip(_nextButton, "Next (Ctrl+PgDown)");
+            _ttFirst = new ToolTip();
+            _ttFirst.SetToolTip(_firstButton, "First (Ctrl+Shift+PgUp)");
+            _ttFind = new ToolTip();
+            _ttFind.SetToolTip(_findButton, "Find (Ctrl+F)");
+            _ttRefresh = new ToolTip();
+            _ttRefresh.SetToolTip(_recheckButton, "Refresh");
         }
 
         private bool ReturnFalse()
@@ -42,7 +60,7 @@ namespace SolidGui
                 return;
             _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
-            _PreviousButton.Enabled = _model.CanGoPrev();
+            _previousButton.Enabled = _model.CanGoPrev();
             _firstButton.Enabled = _model.CanGoPrev();
             _recordNumber.Text = string.Format("{0}", _model.CurrentRecordIndex+1);
         }
