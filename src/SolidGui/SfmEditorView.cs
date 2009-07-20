@@ -76,6 +76,11 @@ namespace SolidGui
 
         public void OnRecheckClicked(object sender, EventArgs e)
         {
+            Recheck();
+        }
+
+        private void Recheck()
+        {
             UpdateModel();
             UpdateView();
         }
@@ -339,25 +344,32 @@ namespace SolidGui
 
 		private void _contentsBox_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Control)
+			switch (e.KeyCode)
 			{
-				switch (e.KeyCode)
-				{
-					case Keys.PageDown:
-						if (e.Shift)
-							_model.MoveToLast();
-						else
-							_model.MoveToNext();
-						e.Handled = true;
-						break;
-					case Keys.PageUp:
-						if (e.Shift)
-							_model.MoveToFirst();
-						else
-							_model.MoveToPrevious();
-						e.Handled = true;
-						break;
-				}
+				case Keys.PageDown:
+                    if (e.Control)
+                    {
+                        if (e.Shift)
+                            _model.MoveToLast();
+                        else
+                            _model.MoveToNext();
+                        e.Handled = true;
+                    }
+			        break;
+				case Keys.PageUp:
+                    if (e.Control)
+                    {
+                        if (e.Shift)
+                            _model.MoveToFirst();
+                        else
+                            _model.MoveToPrevious();
+                        e.Handled = true;
+                    }
+			        break;
+                case Keys.F5:
+			        Recheck();
+			        e.Handled = true;
+			        break;
 			}
 		}
 

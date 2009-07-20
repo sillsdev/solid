@@ -166,6 +166,5 @@ namespace SolidGui
             return false;
         }
 
-
     }
 }
