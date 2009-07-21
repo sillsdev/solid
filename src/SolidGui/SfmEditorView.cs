@@ -77,6 +77,7 @@ namespace SolidGui
         public void OnRecheckClicked(object sender, EventArgs e)
         {
             Recheck();
+            _contentsBox.Focus();
         }
 
         private void Recheck()
@@ -103,8 +104,9 @@ namespace SolidGui
             {
                 _currentRecord = null;
                 ClearContentsOfTextBox();
+                return;
             }
-            else if (_currentRecord != e.Record || HighlightMarkers != e.HighlightMarkers)
+            if (_currentRecord != e.Record || HighlightMarkers != e.HighlightMarkers)
             {
                 UpdateModel();
                 _currentRecord = e.Record;
@@ -112,6 +114,7 @@ namespace SolidGui
                 UpdateView();
                 _keyScanner.Reset();
             }
+            _contentsBox.Focus();
         }
        
         public void UpdateModel()

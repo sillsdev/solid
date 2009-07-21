@@ -28,7 +28,6 @@ namespace SolidGui
             }
         }
 
-        public event EventHandler<EventArgs> RecordNavigatorComplete;
         public event EventHandler<RecordChangedEventArgs> RecordChanged;
         public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> FilterChanged;
         
@@ -86,15 +85,6 @@ namespace SolidGui
             if (_recordFilter.MoveToFirst())
             {
                 SendRecordChangedEvent();
-            }
-            SendRecordNavigatorCompleteEvent();
-        }
-
-        private void SendRecordNavigatorCompleteEvent()
-        {
-            if (RecordNavigatorComplete != null)
-            {
-                RecordNavigatorComplete.Invoke(this, new EventArgs());
             }
         }
 
