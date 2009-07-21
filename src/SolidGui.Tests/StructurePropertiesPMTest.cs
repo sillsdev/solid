@@ -78,6 +78,37 @@ namespace SolidGui.Tests
         }
 
         [Test]
+        public void RemoveLeadingBackslash_312_WithEmpty_Ok()
+        {
+            string testString = "";
+            string result = StructurePropertiesPM.RemoveLeadingBackslash(testString);
+            Assert.AreEqual("", result);
+        }
+
+        [Test]
+        public void RemoveLeadingBackslash_312_WithNull_Ok()
+        {
+            string result = StructurePropertiesPM.RemoveLeadingBackslash(null);
+            Assert.AreEqual(null, result);
+        }
+
+        [Test]
+        public void RemoveLeadingBackslash_NoBackslash_ReturnsSameString()
+        {
+            string testString = "test";
+            string result = StructurePropertiesPM.RemoveLeadingBackslash(testString);
+            Assert.AreEqual("test", result);
+        }
+
+        [Test]
+        public void RemoveLeadingBackslash_NoBackslash_RemovesSlash()
+        {
+            string testString = "\\test";
+            string result = StructurePropertiesPM.RemoveLeadingBackslash(testString);
+            Assert.AreEqual("test", result);
+        }
+
+        [Test]
         public void UpdateParentMarkersUpdatesTheStructurePropertiesList()
         {
 

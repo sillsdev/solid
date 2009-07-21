@@ -150,7 +150,7 @@ namespace SolidGui
                 e.CancelEdit = true;
                 return;
             }
-            _parentListView.Items[e.Item].Text = _model.RemoveLeadingBackslash(e.Label);
+            _parentListView.Items[e.Item].Text = StructurePropertiesPM.RemoveLeadingBackslash(e.Label);
             _model.UpdateParentMarkers(_parentListView.Items);
             UpdateDisplay();
             e.CancelEdit = true;

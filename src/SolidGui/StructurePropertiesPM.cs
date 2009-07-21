@@ -87,9 +87,9 @@ namespace SolidGui
             );
         }
 
-        public string RemoveLeadingBackslash(string marker)
+        public static string RemoveLeadingBackslash(string marker)
         {
-            if(marker != null && marker[0].Equals('\\'))
+            if (!String.IsNullOrEmpty(marker) && marker[0].Equals('\\'))
             {
                 marker = marker.Substring(1);
             }
