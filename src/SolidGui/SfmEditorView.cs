@@ -154,7 +154,6 @@ namespace SolidGui
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
-                //_contentsBoxDB.Font = _model.DisplayFont(field.Marker);
 /*
                 if (!foundProcessingMark)
                 {
