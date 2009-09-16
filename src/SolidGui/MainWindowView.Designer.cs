@@ -1,3 +1,5 @@
+using SolidGui.Search;
+
 namespace SolidGui
 {
     partial class MainWindowView

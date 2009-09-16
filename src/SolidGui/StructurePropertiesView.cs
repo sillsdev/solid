@@ -1,7 +1,8 @@
 using System;
 using Palaso.Reporting;
-using SolidEngine;
+
 using System.Windows.Forms;
+using Solid.Engine;
 
 namespace SolidGui
 {

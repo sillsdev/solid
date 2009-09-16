@@ -5,9 +5,10 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using SolidEngine;
+
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
+using Solid.Engine;
 
 namespace SolidGui
 {

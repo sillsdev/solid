@@ -3,7 +3,8 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using SolidEngine;
+using Solid.Engine;
+
 
 namespace SolidTests
 {
@@ -316,7 +317,7 @@ namespace SolidTests
 
             SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting("lx");
             Assert.IsNotNull(setting);
-            setting.Mapping[(int)SolidMarkerSetting.MappingType.Lift] = "a";
+            setting.Mappings[(int)SolidMarkerSetting.MappingType.Lift] = "a";
 
             XmlDocument entry = new XmlDocument();
             entry.LoadXml(xmlIn);
@@ -334,7 +335,7 @@ namespace SolidTests
 //
 //            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting("lx");
 //            Assert.IsNotNull(setting);
-//            setting.Mapping[(int)SolidMarkerSetting.MappingType.Flex] = "a";
+//            setting.Mappings[(int)SolidMarkerSetting.MappingType.Flex] = "a";
 //
 //            XmlDocument entry = new XmlDocument();
 //            entry.LoadXml(xmlIn);

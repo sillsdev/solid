@@ -7,7 +7,11 @@ using System.Reflection;
 using System.Text;
 using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.Export;
+using SolidGui.MarkerSettings;
+using SolidGui.Search;
+
 
 namespace SolidGui
 {
@@ -45,7 +49,7 @@ namespace SolidGui
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
-            _markerSettingsModel.AllMarkers = WorkingDictionary.AllMarkers;
+            _markerSettingsModel.MarkersInDictioanary = WorkingDictionary.AllMarkers;
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -388,7 +392,7 @@ namespace SolidGui
 
                 dlg.Overview = "Please wait...";
                 BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += exporter.OnDoWork;
+                worker.DoWork += exporter.ExportAsync;
                 dlg.BackgroundWorker = worker;
                 dlg.CanCancel = true;
 
@@ -400,6 +404,7 @@ namespace SolidGui
                 exportArguments.inputFilePath = sourceFilePath;
                 exportArguments.outputFilePath = destinationFilePath;
                 exportArguments.countHint = _workingDictionary.Count;
+                exportArguments.markerSettings = _markerSettingsModel;
 
                 dlg.ProgressState.Arguments = exportArguments;
                 dlg.ShowDialog();

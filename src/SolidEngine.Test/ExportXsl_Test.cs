@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using SolidEngine;
 
-namespace SolidEngineTests {
+
+namespace Solid.EngineTests {
 	[TestFixture, Ignore]
 	public class ExportXsl_Test
 	{

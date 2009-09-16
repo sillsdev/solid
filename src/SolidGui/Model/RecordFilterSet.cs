@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using SolidEngine;
+using Solid.Engine;
+
 
 namespace SolidGui
 {

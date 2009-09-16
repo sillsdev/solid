@@ -2,7 +2,9 @@ using System;
 using System.Windows.Forms;
 using Palaso.UI.WindowsForms.WritingSystems;
 using Palaso.WritingSystems;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.MarkerSettings;
+
 
 namespace SolidGui
 {

@@ -1,6 +1,8 @@
 using System;
 using System.Windows.Forms;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.MarkerSettings;
+
 
 namespace SolidGui
 {

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
-using SolidEngine;
+using SolidGui.Export;
 
-namespace SolidEngineTests {
+
+namespace Solid.EngineTests {
 	[TestFixture, Ignore]
 	public class ExportStructuredXml_Test
 	{

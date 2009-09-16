@@ -1,5 +1,5 @@
 
-namespace SolidEngineTests
+namespace Solid.EngineTests
 {
 	class Program
 	{

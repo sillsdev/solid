@@ -59,30 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="customxmlreader.cs" />
-    <Compile Include="EngineEnvironment.cs" />
-    <Compile Include="Exporter.cs" />
-    <Compile Include="ExportFactory.cs" />
-    <Compile Include="ExportFlatXml.cs" />
-    <Compile Include="ExportXsl.cs" />
-    <Compile Include="ExportHeader.cs" />
-    <Compile Include="ExportStructuredXml.cs" />
-    <Compile Include="MultiplicityAdjacency.cs" />
-    <Compile Include="Process.cs" />
-    <Compile Include="ProcessEncoding.cs" />
-    <Compile Include="ProcessStructure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SfmRecord.cs" />
-    <Compile Include="SfmRecordReader.cs" />
-    <Compile Include="sfmxmlreader.cs" />
-    <Compile Include="Solidifier.cs" />
-    <Compile Include="SolidMarkerSetting.cs" />
-    <Compile Include="SolidReport.cs" />
-    <Compile Include="SolidSettings.cs" />
-    <Compile Include="SolidStructureProperty.cs" />
-    <Compile Include="SolidXmlReader.cs" />
-    <Compile Include="XmlHelper.cs" />
-    <Compile Include="XmlReaderDecorator.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

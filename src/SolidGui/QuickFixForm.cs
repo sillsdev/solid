@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Palaso.Reporting;
-using SolidEngine;
+
 using Palaso.Extensions;
+using Solid.Engine;
 
 namespace SolidGui
 {

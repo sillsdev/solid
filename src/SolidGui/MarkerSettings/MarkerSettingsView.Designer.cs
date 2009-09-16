@@ -52,7 +52,7 @@ namespace SolidGui
             this._mappingPage.Name = "_mappingPage";
             this._mappingPage.Size = new System.Drawing.Size(445, 364);
             this._mappingPage.TabIndex = 2;
-            this._mappingPage.Text = "Mapping";
+            this._mappingPage.Text = "Mappings";
             this._mappingPage.UseVisualStyleBackColor = true;
             // 
             // _mappingView

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -86,16 +86,43 @@
     <Compile Include="AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Engine\customxmlreader.cs" />
+    <Compile Include="Engine\EngineEnvironment.cs" />
+    <Compile Include="Export\Exporter.cs" />
+    <Compile Include="Export\ExportFactory.cs" />
+    <Compile Include="Export\ExportFlatXml.cs" />
+    <Compile Include="Export\ExportHeader.cs" />
+    <Compile Include="Export\ExportStructuredXml.cs" />
+    <Compile Include="Export\ExportSummary.cs" />
+    <Compile Include="Export\ExportXsl.cs" />
+    <Compile Include="Mapping\MappingPM.cs" />
+    <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
+    <Compile Include="Engine\MultiplicityAdjacency.cs" />
+    <Compile Include="Engine\Process.cs" />
+    <Compile Include="Engine\ProcessEncoding.cs" />
+    <Compile Include="Engine\ProcessStructure.cs" />
+    <Compile Include="Engine\SfmRecord.cs" />
+    <Compile Include="Engine\SfmRecordReader.cs" />
+    <Compile Include="Engine\sfmxmlreader.cs" />
+    <Compile Include="Engine\Solidifier.cs" />
+    <Compile Include="Engine\SolidMarkerSetting.cs" />
+    <Compile Include="Engine\SolidReport.cs" />
+    <Compile Include="Engine\SolidSettings.cs" />
+    <Compile Include="Engine\SolidStructureProperty.cs" />
+    <Compile Include="Engine\SolidXmlReader.cs" />
+    <Compile Include="Engine\StructurePropertiesPM.cs" />
+    <Compile Include="Engine\XmlHelper.cs" />
+    <Compile Include="Engine\XmlReaderDecorator.cs" />
     <Compile Include="Model\Field.cs" />
     <Compile Include="QuickFixer.cs" />
     <Compile Include="Model\SfmDictionary.cs" />
     <Compile Include="EXListView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ExportForm.cs">
+    <Compile Include="Export\ExportForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExportForm.Designer.cs">
+    <Compile Include="Export\ExportForm.Designer.cs">
       <DependentUpon>ExportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterChooserPM.cs" />
@@ -112,11 +139,10 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowPM.cs" />
-    <Compile Include="MappingPM.cs" />
-    <Compile Include="MappingView.cs">
+    <Compile Include="Mapping\MappingView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MappingView.designer.cs">
+    <Compile Include="Mapping\MappingView.designer.cs">
       <DependentUpon>MappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="MarkerSettings\MarkerDetails.cs">
@@ -131,7 +157,6 @@
     <Compile Include="MarkerSettings\MarkerSettingsDialog.Designer.cs">
       <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,7 +178,6 @@
       <DependentUpon>QuickFixForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="StructurePropertiesPM.cs" />
     <Compile Include="StructurePropertiesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -166,7 +190,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportForm.resx">
+    <EmbeddedResource Include="Export\ExportForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ExportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -178,7 +202,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MappingView.resx">
+    <EmbeddedResource Include="Mapping\MappingView.resx">
       <DependentUpon>MappingView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -211,7 +235,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchView.resx">
+    <EmbeddedResource Include="Search\SearchView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SearchView.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,12 +269,12 @@
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchPM.cs" />
-    <Compile Include="SearchResult.cs" />
-    <Compile Include="SearchView.cs">
+    <Compile Include="Search\SearchPM.cs" />
+    <Compile Include="Search\SearchResult.cs" />
+    <Compile Include="Search\SearchView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchView.Designer.cs">
+    <Compile Include="Search\SearchView.Designer.cs">
       <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
     <Compile Include="SfmEditorPM.cs" />

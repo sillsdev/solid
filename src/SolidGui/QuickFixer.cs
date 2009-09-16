@@ -7,7 +7,7 @@ using SolidGui;
 using System.Linq;
 using Palaso.Extensions;
 
-namespace SolidEngine
+namespace Solid.Engine
 {
     public class QuickFixer
     {

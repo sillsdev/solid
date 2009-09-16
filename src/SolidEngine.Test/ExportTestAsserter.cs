@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 
-namespace SolidEngineTests
+namespace Solid.EngineTests
 {
     public class ExportTestAsserter : IAsserter
     {

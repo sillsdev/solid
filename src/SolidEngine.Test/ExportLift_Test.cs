@@ -1,10 +1,11 @@
 using System;
 using System.IO;
 using NUnit.Framework;
-using SolidEngine;
-using SolidEngineTests;
+using Solid.Engine;
+using SolidGui.Export;
 
-namespace SolidEngineTests
+
+namespace Solid.EngineTests
 {
 	[TestFixture]
 	public class ExportLift_Test

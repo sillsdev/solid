@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using SolidEngine;
+using Solid.Engine;
 
-namespace SolidEngineTests {
+
+namespace Solid.EngineTests {
 	[TestFixture]
 	public class SfmReader_Read_Test
 	{

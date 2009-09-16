@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using SolidEngine;
 using NUnit.Framework;
+using Solid.Engine;
 
-namespace SolidEngineTests {
+namespace Solid.EngineTests {
 	[TestFixture]
 	public class EngineEnvironment_Test
 	{

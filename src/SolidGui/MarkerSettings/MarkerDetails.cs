@@ -5,7 +5,10 @@ using System.Linq;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.Mapping;
+using SolidGui.MarkerSettings;
+
 
 namespace SolidGui
 {

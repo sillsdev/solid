@@ -1,16 +1,17 @@
 using System.Collections.Generic;
-using SolidEngine;
+using System.Linq;
+using Solid.Engine;
+using SolidGui.Mapping;
 
-namespace SolidGui
+namespace SolidGui.MarkerSettings
 {
     public class MarkerSettingsPM
     {
-        private IEnumerable<string> _allDictionaryMarkers;
 
         public MarkerSettingsPM()
         {
             Root = "";
-            _allDictionaryMarkers = new List<string>();
+            MarkersInDictioanary = new List<string>();
             StructurePropertiesModel = new StructurePropertiesPM();
             MappingModel = new MappingPM();
         }
@@ -28,23 +29,13 @@ namespace SolidGui
             return SolidSettings.FindOrCreateMarkerSetting(marker);
         }
 
-        public IEnumerable<string> AllMarkers
-        {
-            get
-            {
-                return _allDictionaryMarkers;
-            }
-            set
-            {
-                _allDictionaryMarkers = value;
-            }
-        }
+        public IEnumerable<string> MarkersInDictioanary { get; set; }
 
         public IList<string> GetValidMarkers()
         {
             List<string> allValidMarkers = new List<string>();
 
-            allValidMarkers.AddRange(_allDictionaryMarkers);
+            allValidMarkers.AddRange(MarkersInDictioanary);
 
             foreach (var marker in SolidSettings.Markers)
             {

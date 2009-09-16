@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 
-namespace SolidEngineTests {
+namespace Solid.EngineTests {
 	[TestFixture]
 	public class Encoding_Test
 	{

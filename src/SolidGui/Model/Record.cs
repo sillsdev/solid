@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using SolidEngine;
+
 using System.Linq;
+using Solid.Engine;
 
 namespace SolidGui
 {
