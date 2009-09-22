@@ -274,12 +274,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
-      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
-      <Name>SolidEngine</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\PrintHS.bmp" />
   </ItemGroup>
   <ItemGroup>
