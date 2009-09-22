@@ -127,5 +127,12 @@ With out this FLEx  just generates errors, and it takes a lot of work to create 
         {
             MessageBox.Show(@"Many dictionary entries have a single \ps, followed by multipe senses which share that part of speech. FLEx import does not handle this.  This fix attempts to move \ps down under all subsequent \sn's which are lacking their own \ps.  Your SOLID structure should have ps as a child of sn.");
         }
+
+        private void OnExecuteSaveInferred_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string s = _tbMakeRealMarkers.Text;
+            var tokens = s.SplitTrimmed(',');
+            _fixer.MakeInferedMarkersReal(tokens);
+        }
     }
 }

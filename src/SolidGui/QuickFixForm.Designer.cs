@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this._tbFixes = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
@@ -47,18 +47,24 @@
             this._removeEmptyMarkers = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this._showPushPSInfo = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
             this._exectueFLExFixes = new System.Windows.Forms.LinkLabel();
+            this._pushPsDownToSns = new System.Windows.Forms.CheckBox();
             this._createReferredToItems = new System.Windows.Forms.CheckBox();
             this._makeInferedRealBox = new System.Windows.Forms.CheckBox();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this._pushPsDownToSns = new System.Windows.Forms.CheckBox();
-            this._showPushPSInfo = new System.Windows.Forms.LinkLabel();
-            this.tabControl2.SuspendLayout();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this._tbMakeRealMarkers = new System.Windows.Forms.TextBox();
+            this._executeSaveInferred = new System.Windows.Forms.LinkLabel();
+            this._tbFixes.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -72,16 +78,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this._cancelButton_Click);
             // 
-            // tabControl2
+            // _tbFixes
             // 
-            this.tabControl2.Controls.Add(this.tabPage3);
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage1);
-            this.tabControl2.Location = new System.Drawing.Point(12, 9);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(463, 435);
-            this.tabControl2.TabIndex = 5;
+            this._tbFixes.Controls.Add(this.tabPage3);
+            this._tbFixes.Controls.Add(this.tabPage4);
+            this._tbFixes.Controls.Add(this.tabPage1);
+            this._tbFixes.Controls.Add(this.tabPage2);
+            this._tbFixes.Location = new System.Drawing.Point(12, 9);
+            this._tbFixes.Name = "_tbFixes";
+            this._tbFixes.SelectedIndex = 0;
+            this._tbFixes.Size = new System.Drawing.Size(463, 435);
+            this._tbFixes.TabIndex = 5;
             // 
             // tabPage3
             // 
@@ -117,10 +124,10 @@
             // linkLabel3
             // 
             this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.Location = new System.Drawing.Point(47, 227);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(149, 17);
+            this.linkLabel3.Size = new System.Drawing.Size(144, 16);
             this.linkLabel3.TabIndex = 13;
             this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "(bw, hm, lc) to under (lx)";
@@ -129,10 +136,10 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel2.Location = new System.Drawing.Point(47, 263);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(110, 17);
+            this.linkLabel2.Size = new System.Drawing.Size(108, 16);
             this.linkLabel2.TabIndex = 13;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "(sd) to under (ps)";
@@ -141,10 +148,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.Location = new System.Drawing.Point(47, 194);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(160, 17);
+            this.linkLabel1.Size = new System.Drawing.Size(156, 16);
             this.linkLabel1.TabIndex = 13;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "(lt, ph) to under (lx, se, va)";
@@ -152,11 +159,12 @@
             // 
             // _moveUpGoLink
             // 
+            this._moveUpGoLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._moveUpGoLink.AutoSize = true;
-            this._moveUpGoLink.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._moveUpGoLink.Location = new System.Drawing.Point(21, 336);
+            this._moveUpGoLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpGoLink.Location = new System.Drawing.Point(15, 380);
             this._moveUpGoLink.Name = "_moveUpGoLink";
-            this._moveUpGoLink.Size = new System.Drawing.Size(257, 17);
+            this._moveUpGoLink.Size = new System.Drawing.Size(258, 16);
             this._moveUpGoLink.TabIndex = 13;
             this._moveUpGoLink.TabStop = true;
             this._moveUpGoLink.Text = "I know what I\'m doing and have backed up";
@@ -164,19 +172,19 @@
             // 
             // _moveUpRoots
             // 
-            this._moveUpRoots.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpRoots.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._moveUpRoots.Location = new System.Drawing.Point(201, 128);
             this._moveUpRoots.Name = "_moveUpRoots";
-            this._moveUpRoots.Size = new System.Drawing.Size(120, 25);
+            this._moveUpRoots.Size = new System.Drawing.Size(120, 22);
             this._moveUpRoots.TabIndex = 11;
             this._moveUpRoots.Text = "lx, se";
             // 
             // _moveUpMarkers
             // 
-            this._moveUpMarkers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._moveUpMarkers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._moveUpMarkers.Location = new System.Drawing.Point(201, 105);
             this._moveUpMarkers.Name = "_moveUpMarkers";
-            this._moveUpMarkers.Size = new System.Drawing.Size(120, 25);
+            this._moveUpMarkers.Size = new System.Drawing.Size(120, 22);
             this._moveUpMarkers.TabIndex = 11;
             this._moveUpMarkers.Text = "bw, hm, lc";
             // 
@@ -194,30 +202,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(15, 170);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(258, 17);
+            this.label3.Size = new System.Drawing.Size(256, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "Click one of these to fill in the fields above:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(21, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(166, 17);
+            this.label1.Size = new System.Drawing.Size(167, 16);
             this.label1.TabIndex = 9;
             this.label1.Text = "To underneath these roots:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(21, 105);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(130, 17);
+            this.label4.Size = new System.Drawing.Size(133, 16);
             this.label4.TabIndex = 9;
             this.label4.Text = "Move these markers:";
             // 
@@ -236,11 +244,12 @@
             // 
             // _executeRemoveEmpty
             // 
+            this._executeRemoveEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._executeRemoveEmpty.AutoSize = true;
-            this._executeRemoveEmpty.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._executeRemoveEmpty.Location = new System.Drawing.Point(15, 234);
+            this._executeRemoveEmpty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._executeRemoveEmpty.Location = new System.Drawing.Point(15, 380);
             this._executeRemoveEmpty.Name = "_executeRemoveEmpty";
-            this._executeRemoveEmpty.Size = new System.Drawing.Size(257, 17);
+            this._executeRemoveEmpty.Size = new System.Drawing.Size(258, 16);
             this._executeRemoveEmpty.TabIndex = 16;
             this._executeRemoveEmpty.TabStop = true;
             this._executeRemoveEmpty.Text = "I know what I\'m doing and have backed up";
@@ -248,20 +257,20 @@
             // 
             // _removeEmptyMarkers
             // 
-            this._removeEmptyMarkers.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._removeEmptyMarkers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._removeEmptyMarkers.Location = new System.Drawing.Point(49, 53);
             this._removeEmptyMarkers.Name = "_removeEmptyMarkers";
-            this._removeEmptyMarkers.Size = new System.Drawing.Size(288, 25);
+            this._removeEmptyMarkers.Size = new System.Drawing.Size(288, 22);
             this._removeEmptyMarkers.TabIndex = 15;
             this._removeEmptyMarkers.Text = "lx, sn";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(15, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(230, 17);
+            this.label7.Size = new System.Drawing.Size(235, 16);
             this.label7.TabIndex = 14;
             this.label7.Text = "Fields to leave, even if they are empty:";
             // 
@@ -282,6 +291,28 @@
             this.tabPage1.Text = "FLEx Import Fixes";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // _showPushPSInfo
+            // 
+            this._showPushPSInfo.AutoSize = true;
+            this._showPushPSInfo.Location = new System.Drawing.Point(55, 184);
+            this._showPushPSInfo.Name = "_showPushPSInfo";
+            this._showPushPSInfo.Size = new System.Drawing.Size(106, 13);
+            this._showPushPSInfo.TabIndex = 19;
+            this._showPushPSInfo.TabStop = true;
+            this._showPushPSInfo.Text = "Important Information";
+            this._showPushPSInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._showPushPSInfo_LinkClicked);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Location = new System.Drawing.Point(58, 122);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(106, 13);
+            this.linkLabel4.TabIndex = 19;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "Important Information";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -295,15 +326,26 @@
             // 
             // _exectueFLExFixes
             // 
+            this._exectueFLExFixes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this._exectueFLExFixes.AutoSize = true;
-            this._exectueFLExFixes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._exectueFLExFixes.Location = new System.Drawing.Point(31, 379);
+            this._exectueFLExFixes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._exectueFLExFixes.Location = new System.Drawing.Point(15, 380);
             this._exectueFLExFixes.Name = "_exectueFLExFixes";
-            this._exectueFLExFixes.Size = new System.Drawing.Size(257, 17);
+            this._exectueFLExFixes.Size = new System.Drawing.Size(258, 16);
             this._exectueFLExFixes.TabIndex = 17;
             this._exectueFLExFixes.TabStop = true;
             this._exectueFLExFixes.Text = "I know what I\'m doing and have backed up";
             this._exectueFLExFixes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteFLExFixes_LinkClicked);
+            // 
+            // _pushPsDownToSns
+            // 
+            this._pushPsDownToSns.AutoSize = true;
+            this._pushPsDownToSns.Location = new System.Drawing.Point(34, 154);
+            this._pushPsDownToSns.Name = "_pushPsDownToSns";
+            this._pushPsDownToSns.Size = new System.Drawing.Size(197, 17);
+            this._pushPsDownToSns.TabIndex = 0;
+            this._pushPsDownToSns.Text = "Push \\ps down to subsequent \\sn\'s.";
+            this._pushPsDownToSns.UseVisualStyleBackColor = true;
             // 
             // _createReferredToItems
             // 
@@ -325,44 +367,68 @@
             this._makeInferedRealBox.Text = "Make all infered \\sn markers real (e.g. \\+sn --> \\sn)";
             this._makeInferedRealBox.UseVisualStyleBackColor = true;
             // 
-            // linkLabel4
+            // tabPage2
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(58, 122);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(106, 13);
-            this.linkLabel4.TabIndex = 19;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Important Information";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this._tbMakeRealMarkers);
+            this.tabPage2.Controls.Add(this._executeSaveInferred);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(455, 409);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "Make Markers Real";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // _pushPsDownToSns
+            // label8
             // 
-            this._pushPsDownToSns.AutoSize = true;
-            this._pushPsDownToSns.Location = new System.Drawing.Point(34, 154);
-            this._pushPsDownToSns.Name = "_pushPsDownToSns";
-            this._pushPsDownToSns.Size = new System.Drawing.Size(197, 17);
-            this._pushPsDownToSns.TabIndex = 0;
-            this._pushPsDownToSns.Text = "Push \\ps down to subsequent \\sn\'s.";
-            this._pushPsDownToSns.UseVisualStyleBackColor = true;
+            this.label8.Location = new System.Drawing.Point(15, 55);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(434, 73);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Enter a comma separated list of markers in the text box above.  Wherever these ma" +
+                "rkers are \'inferred\', they will be made real. i.e. The + sign will be removed an" +
+                "d they will be saved.";
             // 
-            // _showPushPSInfo
+            // label2
             // 
-            this._showPushPSInfo.AutoSize = true;
-            this._showPushPSInfo.Location = new System.Drawing.Point(55, 184);
-            this._showPushPSInfo.Name = "_showPushPSInfo";
-            this._showPushPSInfo.Size = new System.Drawing.Size(106, 13);
-            this._showPushPSInfo.TabIndex = 19;
-            this._showPushPSInfo.TabStop = true;
-            this._showPushPSInfo.Text = "Important Information";
-            this._showPushPSInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._showPushPSInfo_LinkClicked);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 18);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Markers to make real";
+            // 
+            // _tbMakeRealMarkers
+            // 
+            this._tbMakeRealMarkers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._tbMakeRealMarkers.Location = new System.Drawing.Point(127, 15);
+            this._tbMakeRealMarkers.Name = "_tbMakeRealMarkers";
+            this._tbMakeRealMarkers.Size = new System.Drawing.Size(322, 20);
+            this._tbMakeRealMarkers.TabIndex = 19;
+            this._tbMakeRealMarkers.Text = "sn,ps,rf";
+            // 
+            // _executeSaveInferred
+            // 
+            this._executeSaveInferred.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._executeSaveInferred.AutoSize = true;
+            this._executeSaveInferred.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._executeSaveInferred.Location = new System.Drawing.Point(15, 380);
+            this._executeSaveInferred.Name = "_executeSaveInferred";
+            this._executeSaveInferred.Size = new System.Drawing.Size(258, 16);
+            this._executeSaveInferred.TabIndex = 18;
+            this._executeSaveInferred.TabStop = true;
+            this._executeSaveInferred.Text = "I know what I\'m doing and have backed up";
+            this._executeSaveInferred.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteSaveInferred_LinkClicked);
             // 
             // QuickFixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(487, 485);
-            this.Controls.Add(this.tabControl2);
+            this.Controls.Add(this._tbFixes);
             this.Controls.Add(this.button1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -370,7 +436,7 @@
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Quick Fixes";
-            this.tabControl2.ResumeLayout(false);
+            this._tbFixes.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -378,6 +444,8 @@
             this.tabPage4.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -385,7 +453,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabControl _tbFixes;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -410,5 +478,10 @@
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.CheckBox _pushPsDownToSns;
         private System.Windows.Forms.LinkLabel _showPushPSInfo;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox _tbMakeRealMarkers;
+        private System.Windows.Forms.LinkLabel _executeSaveInferred;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label8;
     }
 }
