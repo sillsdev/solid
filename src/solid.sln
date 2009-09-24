@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidConsole", "SolidConsol
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidEngine.Test", "SolidEngine.Test\SolidEngine.Test.csproj", "{89CEA606-4FAA-4E31-A20B-2C453E458236}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidEngine", "SolidEngine\SolidEngine.csproj", "{B821554A-06BD-4EB3-96D4-959853E8E8A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89CEA606-4FAA-4E31-A20B-2C453E458236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
