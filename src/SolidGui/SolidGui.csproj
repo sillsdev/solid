@@ -313,6 +313,7 @@
   <ItemGroup>
     <Content Include="Resources\BackwardAll.png" />
     <Content Include="Resources\BackwordOne.png" />
+    <None Include="app.config" />
     <None Include="Resources\cog.png" />
     <Content Include="Resources\FindReplace.png" />
     <None Include="Resources\folder_export.ico" />
