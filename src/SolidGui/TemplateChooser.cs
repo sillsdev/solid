@@ -144,7 +144,7 @@ namespace SolidGui
             {
                 _solidSettings.SaveAs(dlg.FileName);
             }
-        }
+		}
 
     }
 }
