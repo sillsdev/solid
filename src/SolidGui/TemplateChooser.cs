@@ -1,37 +1,36 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 
 using SolidEngine;
+using System.Drawing;
 
 namespace SolidGui
 {
     public partial class TemplateChooser : Form
     {
-        private List<string> _templatePaths;
-        private string _pathToChosenTemplate="";
-        private bool _wouldBeReplacingExistingSettings = false;
+    	private readonly SolidSettings _solidSettings;
 
-        private SolidSettings _solidSettings;
-
-        public TemplateChooser(SolidSettings solidSettings)
+		public TemplateChooser (SolidSettings solidSettings)
         {
             InitializeComponent();
-            _instructionsLabelForReplacement.Location = _instructionsLabel.Location;
             _solidSettings = solidSettings;
+        	PathToChosenTemplate = "";
+        	WouldBeReplacingExistingSettings = false;
         }
 
+		public List<string> TemplatePaths { get; set; }
+
+		public string PathToChosenTemplate { get; private set; }
+
+		public bool WouldBeReplacingExistingSettings { get; set; }
 
         public string CustomizedSolidDestinationName
         {
             set
             {
-                _instructionsLabel.Text = string.Format(_instructionsLabel.Text, value);
+                _lblInstructions.Text = string.Format(_lblInstructions.Text, value);
             }
         }
 
@@ -40,64 +39,46 @@ namespace SolidGui
             _okButton.Enabled = _templateChooser.SelectedItems.Count == 1;
         }
 
-        public List<string> TemplatePaths
-        {
-            get
-            {
-                return _templatePaths;
-            }
-            set
-            {
-                _templatePaths = value;
-            }
-        }
-
-        public string PathToChosenTemplate
-        {
-            get
-            {
-                return _pathToChosenTemplate;
-            }
-        }
-
-        public bool WouldBeReplacingExistingSettings
-        {
-            get
-            {
-                return _wouldBeReplacingExistingSettings;
-            }
-            set
-            {
-                _wouldBeReplacingExistingSettings = value;
-            }
-        }
-
-        private void TemplateChooser_Load(object sender, EventArgs e)
+    	private void TemplateChooser_Load(object sender, EventArgs e)
         {
             _templateChooser.SuspendLayout();
             _templateChooser.Items.Clear();
-            foreach (string path in _templatePaths)
+            foreach (string path in TemplatePaths)
             {
-                ListViewItem item = new ListViewItem(Path.GetFileNameWithoutExtension(path));
+                var item = new ListViewItem(Path.GetFileNameWithoutExtension(path));
                 item.Tag = path;
                 item.ToolTipText = path;
                 _templateChooser.Items.Add(item);
 
-                _labelSaveFirst1.Visible = _labelSaveFirst2.Visible = _warningImage.Visible = _saveCurrentFirst.Visible = _wouldBeReplacingExistingSettings;
-                _instructionsLabelForReplacement.Visible = _wouldBeReplacingExistingSettings;
-                _instructionsLabel.Visible = !_wouldBeReplacingExistingSettings;
-
-                if (_wouldBeReplacingExistingSettings)
+            	int listViewBottom = _okButton.Location.Y - 8;
+                if (WouldBeReplacingExistingSettings)
                 {
-                    _templateChooser.Top = 64;
+                	_lblInstructions.Visible = false;
+                	_pnlWarning.Visible = true;
+                	_pnlListView.Location = new Point
+                	{
+						X = _pnlListView.Location.X,
+                		Y = (_pnlWarning.Location.Y + _pnlWarning.Height)
+                	};
+                	_pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
                 }
                 else
                 {
-                    if (path.ToLower().Contains("mdf.solid"))
+					_lblInstructions.Visible = true;
+					_pnlWarning.Visible = false;
+					_pnlListView.Location = new Point
+                	{
+						X = _pnlListView.Location.X,
+						Y = (_lblInstructions.Location.Y + _lblInstructions.Height)
+                	};
+					_pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
+					if (path.ToLower ().Contains ("mdf.solid"))
                     {
                         item.Selected = true;
                     }
                 }
+				this.SuspendLayout();
+				this.ResumeLayout();
             }
             _templateChooser.ResumeLayout();
 
@@ -106,40 +87,40 @@ namespace SolidGui
 
         private void OnOKButton_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void OnCancelButtonClick(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void OnSelectedIndexChanged(object sender, EventArgs e)
         {
             if (_templateChooser.SelectedItems.Count == 1)
             {
-                _pathToChosenTemplate =(string) _templateChooser.SelectedItems[0].Tag;
+                PathToChosenTemplate =(string) _templateChooser.SelectedItems[0].Tag;
             }
             UpdateDisplay();
         }
 
         private void OnMouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void OnSaveCurrentSettingsLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SaveFileDialog dlg = new SaveFileDialog();
+            var dlg = new SaveFileDialog();
             dlg.DefaultExt = ".solid";
             dlg.AddExtension = true;
             dlg.Filter = "Solid Settings File (*.solid)|*.solid";
             dlg.OverwritePrompt = true;
             dlg.Title = "Save Solid Settings File";
-            DialogResult result = dlg.ShowDialog();
+            var result = dlg.ShowDialog();
             if (result == DialogResult.OK)
             {
                 _solidSettings.SaveAs(dlg.FileName);
