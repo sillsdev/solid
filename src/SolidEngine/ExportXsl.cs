@@ -151,7 +151,8 @@ namespace SolidEngine
             if (_processMethod == "file")
             {
                 // Prepare the output XML
-                XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
+            	XmlTextWriter xmlWriter = new LiftGuidWriter(exportArguments.outputFilePath, Encoding.UTF8);
+				//XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
                 xmlWriter.Formatting = Formatting.Indented;
                 xmlWriter.WriteStartDocument();
 
@@ -177,7 +178,8 @@ namespace SolidEngine
             else if (_processMethod == "record")
             {
                 // Prepare the output XML
-                XmlTextWriter xmlWriter = new XmlTextWriter(exportArguments.outputFilePath, Encoding.UTF8);
+				XmlTextWriter xmlWriter = new LiftGuidWriter (exportArguments.outputFilePath, Encoding.UTF8);
+				//XmlTextWriter xmlWriter = new XmlTextWriter (exportArguments.outputFilePath, Encoding.UTF8);
                 xmlWriter.Formatting = Formatting.Indented;
                 xmlWriter.WriteStartDocument();
 

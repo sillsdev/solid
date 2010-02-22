@@ -1,4 +1,5 @@
 syntax: glob
+*.orig
 lib/Palaso.BuildTasks.*
 output/
 obj/

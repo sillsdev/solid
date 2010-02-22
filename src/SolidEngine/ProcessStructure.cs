@@ -249,6 +249,15 @@ namespace SolidEngine
             scope.Add(destination.AppendChild(destination.ImportNode(xmlEntry, false)));
             XmlNode xmlField = xmlEntry.FirstChild;
             int fieldId = 0;
+			//if (xmlField != null)
+			//{
+			//    if (xmlField.Name == "lx")
+			//    {
+			//        XmlAttribute guid = xmlField.OwnerDocument.CreateAttribute("guid");
+			//        guid.Value = Guid.NewGuid().ToString();
+			//        xmlField.Attributes.Append(guid);
+			//    }
+			//}
             while (xmlField != null)
             {
                 if (!InsertInTree(xmlField, destination, report, scope))

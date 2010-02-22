@@ -67,6 +67,7 @@
     <Compile Include="ExportXsl.cs" />
     <Compile Include="ExportHeader.cs" />
     <Compile Include="ExportStructuredXml.cs" />
+    <Compile Include="LiftGuidWriter.cs" />
     <Compile Include="MultiplicityAdjacency.cs" />
     <Compile Include="Process.cs" />
     <Compile Include="ProcessEncoding.cs" />
