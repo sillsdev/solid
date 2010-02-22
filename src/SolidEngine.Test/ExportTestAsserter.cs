@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace SolidEngineTests
@@ -50,12 +51,18 @@ namespace SolidEngineTests
                     }
                     if (line != srcLine)
                     {
-                        _message = string.Format(
-                            "\n{0:s}\n\tFile compare fail in line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
-                            _srcFilePath, line, srcLine, lineCount
-                            );
-                        retval = false;
-                        break;
+						// Try the srcLine as a regular expression
+                    	var reg = new Regex(line);
+                    	var regExResult = reg.Match(srcLine);
+						if (!regExResult.Success)
+						{
+							_message = string.Format(
+								"\n{0:s}\n\tFile compare fail in line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
+								_srcFilePath, line, srcLine, lineCount
+								);
+							retval = false;
+						}
+						break;
                     }
                 }
                 masterFile.Close();
