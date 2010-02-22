@@ -45,6 +45,14 @@ namespace SolidTests
             Assert.AreEqual("mydatafile.solid", result);
         }
 
+		[Test]
+		// http://projects.palaso.org/issues/show/404
+		public void SolidSettings_SettingsFilePathWithNoExtension_Correct()
+		{
+			string result = SolidSettings.GetSettingsFilePathFromDictionaryPath ("mydatafile");
+			Assert.AreEqual ("mydatafile.solid", result);
+		}
+
 
 
     }
