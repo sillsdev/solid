@@ -33,7 +33,7 @@ namespace SolidGui
         private static void SetupErrorHandling()
         {
             Logger.Init();
-            ErrorReport.EmailAddress = "cambell_prince@sil.org";//TODO Change this address
+            ErrorReport.EmailAddress = "solid@projects.palaso.org";
             ErrorReport.AddStandardProperties();
             ExceptionHandler.Init();
         }
