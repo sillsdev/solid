@@ -33,13 +33,14 @@ namespace SolidGui
         private static void SetupErrorHandling()
         {
             Logger.Init();
-            ErrorReport.EmailAddress = "cambell_prince@sil.org";//TODO Change this address
+            ErrorReport.EmailAddress = "solid@projects.palaso.org";//TODO Change this address
             ErrorReport.AddStandardProperties();
             ExceptionHandler.Init();
         }
 
         private static void SetupUsageTracking()
         {
+			UsageReporter.AppReportingSettings = Settings.Default.Reporting;
             UsageReporter.AppNameToUseInDialogs = "SOLID";
             UsageReporter.AppNameToUseInReporting = "SOLID";
             UsageReporter.RecordLaunch();

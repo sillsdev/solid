@@ -13,12 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidGui", "SolidGui\SolidG
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidConsole", "SolidConsole\SolidConsole.csproj", "{2AE6670D-904B-42E3-AEBC-453649B1A6A3}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidEngine", "SolidEngine\SolidEngine.csproj", "{B821554A-06BD-4EB3-96D4-959853E8E8A6}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
@@ -45,10 +39,6 @@ Global
 		{30985726-18E5-44E3-9CAD-FE27E0323FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30985726-18E5-44E3-9CAD-FE27E0323FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30985726-18E5-44E3-9CAD-FE27E0323FA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2AE6670D-904B-42E3-AEBC-453649B1A6A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B821554A-06BD-4EB3-96D4-959853E8E8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU

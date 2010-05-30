@@ -8,6 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.Configuration;
+using System.Diagnostics;
+
 namespace SolidGui.Properties {
     
     
@@ -34,5 +37,13 @@ namespace SolidGui.Properties {
                 this["PreviousPathToDictionary"] = value;
             }
         }
+
+		[UserScopedSetting()]
+		[DebuggerNonUserCode()]
+		public Palaso.Reporting.ReportingSettings Reporting
+		{
+			get { return ((Palaso.Reporting.ReportingSettings)(this["Reporting"])); }
+			set { this["Reporting"] = value; }
+		}
     }
 }

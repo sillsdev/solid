@@ -168,7 +168,7 @@ xv,Example (v)";
 
         public static ExportHeader GetHeader()
         {
-            return new ExportHeader { Driver = DriverName, FileNameFilter = "SFM Field Summary (*.txt)|*.txt", Name = "Field Summary" };
+            return new ExportHeader { Driver = DriverName, FileNameFilter = "MDF Field Summary (*.txt)|*.txt", Name = "Field Summary" };
         }
 
         public const string DriverName="FieldSummary";

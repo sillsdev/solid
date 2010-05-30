@@ -11,14 +11,14 @@ namespace SolidGui
     public partial class MarkerSettingsView : UserControl
     {
         private SolidMarkerSetting _currentMarkerSetting;
-        private WritingSystemSetupPM _wsModel;
+		private WritingSystemSetupModel _wsModel;
         private LdmlInFolderWritingSystemStore _store;
 
         public MarkerSettingsView()
         {
             InitializeComponent();
             _store = new LdmlInFolderWritingSystemStore();
-            _wsModel = new WritingSystemSetupPM(_store);
+            _wsModel = new WritingSystemSetupModel(_store);
            // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             this.wsPickerUsingComboBox1.BindToModel(_wsModel);
             wsPickerUsingComboBox1.SelectedComboIndexChanged += new EventHandler(wsPickerUsingComboBox1_SelectedComboIndexChanged);
@@ -118,7 +118,7 @@ namespace SolidGui
 
         private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (var d = new WSPropertiesDialog(_wsModel))
+            using (var d = new WritingSystemSetupDialog(_wsModel))
             {
                 if (_wsModel.HasCurrentSelection)
                 {
