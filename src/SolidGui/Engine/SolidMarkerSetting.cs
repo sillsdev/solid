@@ -17,7 +17,6 @@ namespace Solid.Engine
         private string _writingSystemRfc4646;
         private bool _isUnicode;
         private List<SolidStructureProperty> _structureProperties;
-        private string[] _mappings = new string[(int)MappingType.Max];
         
         public SolidMarkerSetting() : this("")
         {
@@ -29,6 +28,7 @@ namespace Solid.Engine
 
         public SolidMarkerSetting(string marker, bool isUnicode)
         {
+            Mappings = new string[(int)MappingType.Max];
             _marker = marker;
             _isUnicode = isUnicode;
             _inferedParent = "";
@@ -49,19 +49,16 @@ namespace Solid.Engine
             set { _isUnicode = value; }
         }
 
-        public string[] Mappings
-        {
-            get { return _mappings; }
-        }
+        public string[] Mappings { get; set; }
 
         public void SetMappingConcept(MappingType mappingType, string id)
         {
-                _mappings[(int) mappingType] = id;
+                Mappings[(int) mappingType] = id;
         }
 
         public string GetMappingConceptId(MappingType mappingType)
         {
-            return _mappings[(int) mappingType];
+            return Mappings[(int) mappingType];
         }
 	
         public bool ParentExists(string marker)
