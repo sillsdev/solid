@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class SolidMarkerSetting
     {
@@ -53,7 +53,7 @@ namespace Solid.Engine
 
         public void SetMappingConcept(MappingType mappingType, string id)
         {
-                Mappings[(int) mappingType] = id;
+            Mappings[(int) mappingType] = id;
         }
 
         public string GetMappingConceptId(MappingType mappingType)
@@ -65,10 +65,10 @@ namespace Solid.Engine
         {
             SolidStructureProperty result = _structureProperties.Find(
                 delegate(SolidStructureProperty item)
-                {
-                    return item.Parent == marker;
-                }
-            );
+                    {
+                        return item.Parent == marker;
+                    }
+                );
             return result != null;
         }
 
@@ -85,7 +85,7 @@ namespace Solid.Engine
             }
             set
             {
-                    _inferedParent = value;
+                _inferedParent = value;
             }
         }
 
@@ -118,11 +118,10 @@ namespace Solid.Engine
         {
             return _structureProperties.Find(
                 delegate (SolidStructureProperty property)
-                {
-                    return property.Parent == name;
-                }
-            );
+                    {
+                        return property.Parent == name;
+                    }
+                );
         }
     }
-
 }

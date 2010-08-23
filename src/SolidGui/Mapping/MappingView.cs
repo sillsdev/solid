@@ -1,16 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using Solid.Engine;
-using SolidGui.Mapping;
+using SolidGui.Engine;
 
-
-namespace SolidGui
+namespace SolidGui.Mapping
 {
     /// <summary>
     /// The mapping control allows the user to connect markers to concepts in other
@@ -36,7 +28,7 @@ namespace SolidGui
             set
             {
                 _model = value;
-             }
+            }
         }
         private void OnLoad(object sender, EventArgs e)
         {
@@ -64,8 +56,8 @@ namespace SolidGui
 
         private void HighlightPreviouslySelectedConcept()
         {
-           // _model.SelectedConcept = (MappingPM.Concept)_conceptList.Items[0].Tag;
-           // _conceptList.Items[0].Selected = true;
+            // _model.SelectedConcept = (MappingPM.Concept)_conceptList.Items[0].Tag;
+            // _conceptList.Items[0].Selected = true;
 
             foreach(ListViewItem item in _conceptList.Items)
             {
@@ -124,7 +116,7 @@ namespace SolidGui
                 return;
             }
             string html = _model.TransformInformationToHtml(_model.SelectedConcept.InformationAsXml);
-             _htmlViewer.DocumentText = html;
+            _htmlViewer.DocumentText = html;
         }
 
         private void _conceptList_SizeChanged(object sender, EventArgs e)

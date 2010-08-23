@@ -1,13 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Xml;
+using SolidGui.Engine;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class ProcessEncoding : IProcess
     {
-        SolidSettings _settings;
+        readonly SolidSettings _settings;
 
         public ProcessEncoding(SolidSettings settings)
         {
@@ -20,7 +19,6 @@ namespace Solid.Engine
             XmlNode xmlField = xmlEntry.FirstChild;
             while (xmlField != null)
             {
-                string marker = xmlField.Name;
                 if (xmlField.FirstChild != null)
                 {
                     SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlField.Name);
@@ -71,7 +69,7 @@ namespace Solid.Engine
                                     xmlEntry,
                                     xmlField,
                                     String.Format("Marker \\{0} contains bad unicode data", xmlField.Name)
-                                );
+                                    );
                             }
                         }
                     }
@@ -87,7 +85,7 @@ namespace Solid.Engine
                                     xmlEntry,
                                     xmlField,
                                     String.Format("Marker \\{0} may use a hacked font", xmlField.Name)
-                                );
+                                    );
                                 break;
                             }
                         }

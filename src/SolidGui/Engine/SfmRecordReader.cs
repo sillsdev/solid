@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using SolidGui.Engine;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class SfmRecordReader
     {
@@ -246,9 +246,9 @@ namespace Solid.Engine
                         }
                         break;
                     case StateLex.BuildValue:
-						// See http://projects.palaso.org/issues/show/244
-                	sb.Append (c0);
-					/*
+                        // See http://projects.palaso.org/issues/show/244
+                        sb.Append (c0);
+                        /*
 						if (!isEOL(c0))
                         {
                             sb.Append(c0);
@@ -266,8 +266,8 @@ namespace Solid.Engine
                         if (currentField.key != String.Empty)
                         {
                             currentField.value = sb.ToString();
-							char [] trim = { ' ', '\t', '\x0a', '\x0d' };
-							currentField.value = currentField.value.TrimEnd (trim);
+                            char [] trim = { ' ', '\t', '\x0a', '\x0d' };
+                            currentField.value = currentField.value.TrimEnd (trim);
                             onField(currentField);
                             currentField = new SfmField();
                             _recordEndLine = _line - 1; //??? -2?
@@ -377,5 +377,4 @@ namespace Solid.Engine
         }
 
     }
-
 }

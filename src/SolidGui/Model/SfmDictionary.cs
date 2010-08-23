@@ -8,7 +8,8 @@ using System.Xml;
 
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
-using Solid.Engine;
+using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui
 {

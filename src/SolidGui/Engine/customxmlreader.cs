@@ -11,12 +11,9 @@
 using System;
 using System.Xml;
 using System.IO;
-using System.Collections;
-using System.Text;
-using System.Net;
 
-namespace Solid.Engine {
-
+namespace SolidGui.Engine
+{
     /// <summary>
     /// Summary description for XmlCustomReader.
     /// </summary>
@@ -31,7 +28,7 @@ namespace Solid.Engine {
 //        string[] _names;
 //        State _state = State.Initial;
 //        int _attr = 0;
-  //      bool _asAttrs = false;
+        //      bool _asAttrs = false;
 //        bool _firstRowHasColumnNames = false;
 //        char _delimiter;
         //        Encoding _encoding;
@@ -712,5 +709,4 @@ namespace Solid.Engine {
         } 
 
     }
- 
 }

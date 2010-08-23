@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Xml;
 using Palaso.Progress;
-using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui.Export
 {

@@ -3,7 +3,7 @@ using System.IO;
 using Palaso.Reporting;
 
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
 namespace SolidGui.Tests

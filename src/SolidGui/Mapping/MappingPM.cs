@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
-using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui.Mapping
 {

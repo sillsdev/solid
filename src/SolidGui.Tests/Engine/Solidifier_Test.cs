@@ -1,19 +1,17 @@
-using System;
 using System.IO;
-using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
-namespace SolidTests
+namespace SolidGui.Tests.Engine
 {
     [TestFixture]
     public class SolidifierTest
     {
         class Observer : Solidifier.Observer
         {
-            SolidifierTest _o;
+            readonly SolidifierTest _o;
             public Observer(SolidifierTest o)
             {
                 _o = o;
@@ -25,14 +23,15 @@ namespace SolidTests
             }
         }
 
+        // TODO Change tests to using (var = Environment) { ... style
         private SolidSettings InitSettings()
         {
-            SolidSettings solidSettings = new SolidSettings();
-            SolidMarkerSetting lxSetting = solidSettings.FindOrCreateMarkerSetting("lx");
+            var solidSettings = new SolidSettings();
+            var lxSetting = solidSettings.FindOrCreateMarkerSetting("lx");
             lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
-            SolidMarkerSetting geSetting = solidSettings.FindOrCreateMarkerSetting("ge");
+            var geSetting = solidSettings.FindOrCreateMarkerSetting("ge");
             geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
-            SolidMarkerSetting snSetting = solidSettings.FindOrCreateMarkerSetting("sn");
+            var snSetting = solidSettings.FindOrCreateMarkerSetting("sn");
             snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
             return solidSettings;
@@ -51,15 +50,14 @@ namespace SolidTests
         [Test]
         public void Solidifier_InferNode_Correct()
         {
-            string sfmIn =
-                "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
-                "\\_DateStampHasFourDigitYear\n" +
-                "\\lx a\n" +
-                "\\ge b\n";
+            const string sfmIn = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
+                                 "\\_DateStampHasFourDigitYear\n" +
+                                 "\\lx a\n" +
+                                 "\\ge b\n";
 //            string xmlEx = "<root><lx><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></root>";
 
-            SolidSettings settings = InitSettings();
-            Solidifier solid = new Solidifier();
+            var settings = InitSettings();
+            var solid = new Solidifier();
 
             solid.Attach(new Observer(this));
             solid.Process(CreateSfmXmlReader(sfmIn), settings);

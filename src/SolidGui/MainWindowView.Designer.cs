@@ -1,4 +1,5 @@
 using SolidGui.Search;
+using MarkerDetails=SolidGui.MarkerSettings.MarkerDetails;
 
 namespace SolidGui
 {
@@ -49,7 +50,7 @@ namespace SolidGui
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._markerDetails = new SolidGui.MarkerDetails();
+            this._markerDetails = new MarkerDetails();
             this._filterChooserView = new SolidGui.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();

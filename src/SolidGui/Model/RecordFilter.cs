@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Solid.Engine;
+using SolidGui.Engine;
 
-
-namespace SolidGui
+namespace SolidGui.Model
 {
-
     public class SolidErrorRecordFilter : RecordFilter
     {
         private readonly string _marker;
@@ -43,54 +40,6 @@ namespace SolidGui
 
 
     }
-    /*
-    public class RegExRecordFilter : RecordFilter
-    {
-        private readonly bool _matchWhenNotFound;
-        private string _pattern;
-        public RegExRecordFilter(string name, string pattern, bool matchWhenNotFound,List<Record> records)
-        {
-            _descriptions = new List<string>();
-            _matchWhenNotFound = matchWhenNotFound;
-            _name = name;
-            _pattern = pattern;
-            _indexesOfRecords = GetIndicesOfMatchingRecords(records);
-            
-        }
-        public RegExRecordFilter(string name, string pattern, List<Record> records):this(name,pattern,false,records)
-        {
-            _name = name;
-            _pattern = pattern;
-        }
-
-        protected override List<int> GetIndicesOfMatchingRecords(List<Record> records)
-        {
-            _indexesOfRecords.Clear();
-
-            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(_pattern, 
-                System.Text.RegularExpressions.RegexOptions.Compiled & System.Text.RegularExpressions.RegexOptions.Singleline);
-
-            for (int i = 0; i < records.Count; i++)
-            {
-                bool match = regex.IsMatch(records[i].Value);
-                if(match == !_matchWhenNotFound)
-                {
-                    _indexesOfRecords.Add(i);
-                    _descriptions.Add(String.Format("Records that match '{0}'", _pattern));
-                }
-            }
-            return _indexesOfRecords;
-        }
-
-        public override List<string> Descriptions
-        {
-            get
-            {
-                return _descriptions;
-            }
-        }
-    }
-    */
 
     public class AllRecordFilter : RecordFilter
     {
@@ -164,7 +113,6 @@ namespace SolidGui
     
     }
 
-    
     public class NullRecordFilter : RecordFilter
     {
         public NullRecordFilter()
@@ -172,12 +120,11 @@ namespace SolidGui
         {
         }
     }
-     
 
     public class RecordFilter : RecordManagerDecorator
     {
         protected string _name;
-      //  protected List<string> _descriptions;
+        //  protected List<string> _descriptions;
         protected List<int> _indexesOfRecords = new List<int>();
         private int _currentIndex;
 

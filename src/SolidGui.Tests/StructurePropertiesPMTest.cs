@@ -4,6 +4,7 @@ using System.Xml;
 
 using NUnit.Framework;
 using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui.Tests
 {

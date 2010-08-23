@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 using SolidGui.Export;
 
 
-namespace SolidEngineTests
+namespace SolidGui.Tests.Export
 {
     [TestFixture]
     public class ExportFactory_Test
@@ -25,7 +21,7 @@ namespace SolidEngineTests
         [Test]
         public void Singleton_NotNull()
         {
-            ExportFactory f = ExportFactory.Singleton();
+            var f = ExportFactory.Singleton();
             Assert.IsNotNull(f);
         }
 
@@ -39,7 +35,7 @@ namespace SolidEngineTests
         public void ExportSetting0_LiftCorrect()
         {
             Assert.Greater(_f.ExportSettings.Count, 3);
-            ExportHeader h = _f.ExportSettings[0];
+            var h = _f.ExportSettings[0];
             Assert.AreEqual("LIFT", h.Name);
             Assert.AreEqual("Xsl", h.Driver);
             Assert.AreEqual("LIFT (*.lift)|*.lift", h.FileNameFilter);
@@ -49,7 +45,7 @@ namespace SolidEngineTests
         public void ExportSetting1_LiftAltCorrect()
         {
             Assert.Greater(_f.ExportSettings.Count, 3);
-            ExportHeader h = _f.ExportSettings[1];
+            var h = _f.ExportSettings[1];
             Assert.AreEqual("LIFT from Alternate Hierarchy SFM", h.Name);
             Assert.AreEqual("Xsl", h.Driver);
             Assert.AreEqual("LIFT from Alternate Hierarchy SFM (*.lift)|*.lift", h.FileNameFilter);
@@ -59,7 +55,7 @@ namespace SolidEngineTests
         public void ExportSetting2_StructureXMLCorrect()
         {
             Assert.Greater(_f.ExportSettings.Count, 3);
-            ExportHeader h = _f.ExportSettings[2];
+            var h = _f.ExportSettings[2];
             Assert.AreEqual("Structured XML", h.Name);
             Assert.AreEqual("StructuredXml", h.Driver);
             Assert.AreEqual("Structured XML (*.xml)|*.xml", h.FileNameFilter);
@@ -69,7 +65,7 @@ namespace SolidEngineTests
         public void ExportSetting3_FlatXMLCorrect()
         {
             Assert.Greater(_f.ExportSettings.Count, 3);
-            ExportHeader h = _f.ExportSettings[3];
+            var h = _f.ExportSettings[3];
             Assert.AreEqual("Flat XML", h.Name);
             Assert.AreEqual("FlatXml", h.Driver);
             Assert.AreEqual("Flat XML (*.xml)|*.xml", h.FileNameFilter);
@@ -79,8 +75,8 @@ namespace SolidEngineTests
         public void CreateFromFileFilter_NotNull()
         {
             Assert.Greater(_f.ExportSettings.Count, 0);
-            ExportHeader h = _f.ExportSettings[0];
-            IExporter exporter = _f.CreateFromFileFilter(h.FileNameFilter);
+            var h = _f.ExportSettings[0];
+            var exporter = _f.CreateFromFileFilter(h.FileNameFilter);
             Assert.IsNotNull(exporter);
         }
 
@@ -88,8 +84,8 @@ namespace SolidEngineTests
         public void CreateFromFileFilterFail_IsNull()
         {
             Assert.Greater(_f.ExportSettings.Count, 0);
-            ExportHeader h = _f.ExportSettings[0];
-            IExporter exporter = _f.CreateFromFileFilter("nodriver");
+            var h = _f.ExportSettings[0];
+            var exporter = _f.CreateFromFileFilter("nodriver");
             Assert.IsNull(exporter);
         }
 

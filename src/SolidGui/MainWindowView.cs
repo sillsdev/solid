@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Text;
 using Solid.Engine;
+using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Properties;
 using SolidGui.Search;

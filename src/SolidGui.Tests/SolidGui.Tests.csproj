@@ -83,7 +83,6 @@
     <Compile Include="Export\ExportLift_Test.cs" />
     <Compile Include="Export\ExportStructuredXml_Test.cs" />
     <Compile Include="Export\ExportTestAsserter.cs" />
-    <Compile Include="Export\ExportXsl_Test.cs" />
     <Compile Include="DictionaryTest.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />

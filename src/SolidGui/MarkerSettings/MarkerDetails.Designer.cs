@@ -1,4 +1,4 @@
-namespace SolidGui
+namespace SolidGui.MarkerSettings
 {
     partial class MarkerDetails
     {
@@ -91,11 +91,11 @@ namespace SolidGui
             glColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             glColumn5.Width = 100;
             this._listView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
-            glColumn1,
-            glColumn2,
-            glColumn3,
-            glColumn4,
-            glColumn5});
+                                                                                          glColumn1,
+                                                                                          glColumn2,
+                                                                                          glColumn3,
+                                                                                          glColumn4,
+                                                                                          glColumn5});
             this._listView.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this._listView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._listView.FullRowSelect = true;

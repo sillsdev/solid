@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class SolidSettings
     {

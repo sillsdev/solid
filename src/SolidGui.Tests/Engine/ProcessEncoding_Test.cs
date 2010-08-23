@@ -1,12 +1,9 @@
-using System;
-using System.IO;
-using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
-namespace SolidTests
+namespace SolidGui.Tests.Engine
 {
     [TestFixture]
     public class ProcessEncodingTest
@@ -18,13 +15,13 @@ namespace SolidTests
         public void Setup()
         {
             _settings = new SolidSettings();
-            SolidMarkerSetting lxSetting = _settings.FindOrCreateMarkerSetting("lx");
+            var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
             lxSetting.Unicode = false;
 
-            SolidMarkerSetting geSetting = _settings.FindOrCreateMarkerSetting("ge");
+            var geSetting = _settings.FindOrCreateMarkerSetting("ge");
             geSetting.Unicode = false;
 
-            SolidMarkerSetting guSetting = _settings.FindOrCreateMarkerSetting("gu");
+            var guSetting = _settings.FindOrCreateMarkerSetting("gu");
             guSetting.Unicode = true;
 
             _p = new ProcessEncoding(_settings);
@@ -38,10 +35,10 @@ namespace SolidTests
         [Test]
         public void AsciiDataAsNonUnicode_Correct()
         {
-            string xmlIn = "<entry><lx>1</lx><ge>english</ge></entry>";
-            XmlDocument entry = new XmlDocument();
+            const string xmlIn = "<entry><lx>1</lx><ge>english</ge></entry>";
+            var entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
+            var report = new SolidReport();
             _p.Process(entry.DocumentElement, report);
 
             Assert.AreEqual(0, report.Count);
@@ -50,10 +47,10 @@ namespace SolidTests
         [Test]
         public void AsciiDataAsUnicode_Correct()
         {
-            string xmlIn = "<entry><lx>1</lx><gu>english</gu></entry>";
-            XmlDocument entry = new XmlDocument();
+            const string xmlIn = "<entry><lx>1</lx><gu>english</gu></entry>";
+            var entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
+            var report = new SolidReport();
             _p.Process(entry.DocumentElement, report);
 
             Assert.AreEqual(0, report.Count);
@@ -62,10 +59,10 @@ namespace SolidTests
         [Test]
         public void UpperAsciiDataAsNonUnicode_ReportError()
         {
-            string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
-            XmlDocument entry = new XmlDocument();
+            const string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
+            var entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
+            var report = new SolidReport();
             _p.Process(entry.DocumentElement, report);
 
             Assert.AreEqual(1, report.Count);
@@ -75,10 +72,10 @@ namespace SolidTests
         [Test]
         public void UpperAsciiDataAsUnicode_Correct()
         {
-            string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
-            XmlDocument entry = new XmlDocument();
+            const string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
+            var entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
+            var report = new SolidReport();
             _p.Process(entry.DocumentElement, report);
 
             Assert.AreEqual(0, report.Count);
@@ -87,10 +84,10 @@ namespace SolidTests
         [Test]
         public void BadUnicode_ReportError()
         {
-            string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
-            XmlDocument entry = new XmlDocument();
+            const string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
+            var entry = new XmlDocument();
             entry.LoadXml(xmlIn);
-            SolidReport report = new SolidReport();
+            var report = new SolidReport();
             _p.Process(entry.DocumentElement, report);
 
             Assert.AreEqual(1, report.Count);

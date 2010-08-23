@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
-using Solid.Engine;
+using SolidGui.Engine;
 
-
-namespace SolidGui
+namespace SolidGui.Model
 {
     public class RecordFilterSet : List<RecordFilter>
     {
@@ -36,7 +33,7 @@ namespace SolidGui
                         marker,
                         type,
                         string.Format("Failed to insert {0} in inferred marker", marker)
-                    );
+                        );
                     break;
                 case SolidReport.EntryType.StructureParentNotFound:
                     retval = new SolidErrorRecordFilter(
@@ -44,7 +41,7 @@ namespace SolidGui
                         marker,
                         type,
                         string.Format("Marker {0} could not be placed in structure", marker)
-                    );
+                        );
                     break;
                 case SolidReport.EntryType.StructureParentNotFoundForInferred:
                     retval = new SolidErrorRecordFilter(
@@ -52,7 +49,7 @@ namespace SolidGui
                         marker,
                         type,
                         string.Format("Inferred marker {0} could not be placed in structure", marker)
-                    );
+                        );
                     break;
                 case SolidReport.EntryType.EncodingUpperAscii:
                     retval = new SolidErrorRecordFilter(
@@ -60,7 +57,7 @@ namespace SolidGui
                         marker,
                         type,
                         string.Format("Marker {0} contains upper ascii data", marker)
-                    );
+                        );
                     break;
                 case SolidReport.EntryType.EncodingBadUnicode:
                     retval = new SolidErrorRecordFilter(
@@ -68,7 +65,7 @@ namespace SolidGui
                         marker,
                         type,
                         string.Format("Marker {0} contains bad unicode data", marker)
-                    );
+                        );
                     break;
             }
             return retval;

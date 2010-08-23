@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class SfmField
     {
@@ -24,17 +23,15 @@ namespace Solid.Engine
     {
         public SfmRecord()
             :
-            base()
+                base()
         {
         }
 
         public SfmRecord(SfmRecord rhs)
             :
-            base(rhs)
+                base(rhs)
         {
         }
 
     }
-
-
 }

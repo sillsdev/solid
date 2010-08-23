@@ -7,17 +7,12 @@
 using System;
 using System.Xml;
 using System.IO;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Net;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
-
     /// <summary>
     /// Summary description for XmlSfmReader.
     /// </summary>
@@ -61,26 +56,26 @@ namespace Solid.Engine
         }
 
         SfmStateInfo[] _sfmStateInfo = new SfmStateInfo[] 
-        {
-            new SfmStateInfo(
-                0,
-                "root",
-                false,
-                null
-            ),
-            new SfmStateInfo(
-                1, 
-                "entry",
-                false,
-                new string[] {"record", "startline", "endline"}
-            ),
-            new SfmStateInfo(
-                2,
-                "field", // Not its real name
-                true,
-                new string[] {"field"}
-            )
-        };
+                                           {
+                                               new SfmStateInfo(
+                                                   0,
+                                                   "root",
+                                                   false,
+                                                   null
+                                                   ),
+                                               new SfmStateInfo(
+                                                   1, 
+                                                   "entry",
+                                                   false,
+                                                   new string[] {"record", "startline", "endline"}
+                                                   ),
+                                               new SfmStateInfo(
+                                                   2,
+                                                   "field", // Not its real name
+                                                   true,
+                                                   new string[] {"field"}
+                                                   )
+                                           };
 
         SfmRecordReader _sfmReader;
         
@@ -135,7 +130,7 @@ namespace Solid.Engine
         /// <param name="input">The uri of the input stream</param>
         public SfmXmlReader(string uri)
             :
-            base(new Uri(uri))
+                base(new Uri(uri))
         {
             _encoding = Encoding.GetEncoding("iso-8859-1");
         }
@@ -146,7 +141,7 @@ namespace Solid.Engine
         /// <param name="input">The input text reader</param>
         public SfmXmlReader(TextReader input)
             :
-            base()
+                base()
         {
             _encoding = Encoding.GetEncoding("iso-8859-1");
             _sfmReader = new SfmRecordReader(input);
@@ -407,21 +402,21 @@ namespace Solid.Engine
                 bool retval = false;
                 //if (_xmlState == XmlState.Element)
                 //{
-                    switch (_sfmContext)
-                    {
-                        case SfmState.Root:
-                        case SfmState.Record:
-                            retval = (_sfmReader.FieldCount == 0);
-                            //!!! Fault in Read makes this not yet possible.
-                            // These entities may have children, so don't allow them to present as empty.
-                            retval = false;
-                            break;
-                        case SfmState.Field:
-                            string vt = _sfmReader.Value(_fieldIndex);
-                            retval = (vt == String.Empty || vt == null);
-                            retval = false; //!!!
-                            break;
-                    }
+                switch (_sfmContext)
+                {
+                    case SfmState.Root:
+                    case SfmState.Record:
+                        retval = (_sfmReader.FieldCount == 0);
+                        //!!! Fault in Read makes this not yet possible.
+                        // These entities may have children, so don't allow them to present as empty.
+                        retval = false;
+                        break;
+                    case SfmState.Field:
+                        string vt = _sfmReader.Value(_fieldIndex);
+                        retval = (vt == String.Empty || vt == null);
+                        retval = false; //!!!
+                        break;
+                }
                 //}
                 return retval;
             }
@@ -820,5 +815,4 @@ namespace Solid.Engine
         }
 
     }
-
 }

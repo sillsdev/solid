@@ -7,7 +7,7 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
 using Palaso.Progress;
-using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui.Export
 {

@@ -1,5 +1,6 @@
 
-namespace Solid.Engine
+
+namespace SolidGui.Engine
 {
     public class SolidStructureProperty
     {
@@ -37,7 +38,7 @@ namespace Solid.Engine
             }
             set
             {
-                    _parent = value;
+                _parent = value;
             }
         }
 
@@ -49,7 +50,7 @@ namespace Solid.Engine
             }
             set
             {
-                    _multipleAdjacent = value;
+                _multipleAdjacent = value;
             }
         }
     }

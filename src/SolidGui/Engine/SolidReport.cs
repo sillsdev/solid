@@ -1,22 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class SolidReport
     {
         public enum EntryType
         {
             StructureInsertInInferredFailed, 
- 	        StructureParentNotFound, 
- 	        StructureParentNotFoundForInferred,
+            StructureParentNotFound, 
+            StructureParentNotFoundForInferred,
             EncodingBadUnicode,
             EncodingUpperAscii,
- 	        Max 
+            Max 
         }
 
         public class Entry
@@ -150,7 +149,7 @@ namespace Solid.Engine
                     {
                         return entry.FieldID == id;
                     }
-            );
+                );
 
             return retVal;
         }
@@ -164,20 +163,20 @@ namespace Solid.Engine
         {
             return _entries.FindAll(
                 delegate(Entry rhs)
-                {
-                    return rhs.RecordID == recordID;
-                }
-            );
+                    {
+                        return rhs.RecordID == recordID;
+                    }
+                );
         }
 
         public List<SolidReport.Entry> EntriesForMarker(string marker)
         {
             return _entries.FindAll(
                 delegate(Entry rhs)
-                {
-                    return rhs.Marker == marker;
-                }
-            );
+                    {
+                        return rhs.Marker == marker;
+                    }
+                );
         }
 
         public List<string> Markers()

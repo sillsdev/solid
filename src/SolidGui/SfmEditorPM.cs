@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 
 using Palaso.WritingSystems;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
 namespace SolidGui

@@ -3,6 +3,7 @@ using Palaso.Reporting;
 
 using System.Windows.Forms;
 using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui
 {

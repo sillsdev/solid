@@ -1,4 +1,6 @@
-namespace SolidGui
+using MappingView=SolidGui.Mapping.MappingView;
+
+namespace SolidGui.MarkerSettings
 {
     partial class MarkerSettingsView
     {
@@ -29,7 +31,7 @@ namespace SolidGui
         private void InitializeComponent()
         {
             this._mappingPage = new System.Windows.Forms.TabPage();
-            this._mappingView = new SolidGui.MappingView();
+            this._mappingView = new MappingView();
             this._writingSystemPage = new System.Windows.Forms.TabPage();
             this._cbUnicode = new System.Windows.Forms.CheckBox();
             this._structurePage = new System.Windows.Forms.TabPage();
@@ -112,7 +114,7 @@ namespace SolidGui
             // _markerListBox
             // 
             this._markerListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+                                                                               | System.Windows.Forms.AnchorStyles.Left)));
             this._markerListBox.FormattingEnabled = true;
             this._markerListBox.Location = new System.Drawing.Point(255, -31);
             this._markerListBox.Name = "_markerListBox";
@@ -124,8 +126,8 @@ namespace SolidGui
             // _structureTabControl
             // 
             this._structureTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+                                                                                      | System.Windows.Forms.AnchorStyles.Left)
+                                                                                     | System.Windows.Forms.AnchorStyles.Right)));
             this._structureTabControl.Controls.Add(this._structurePage);
             this._structureTabControl.Controls.Add(this._writingSystemPage);
             this._structureTabControl.Controls.Add(this._mappingPage);

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public enum MultiplicityAdjacency
     {

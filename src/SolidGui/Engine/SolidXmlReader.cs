@@ -9,9 +9,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
-
     /// <summary>
     /// Summary description for SolidXmlReader.
     /// </summary>
@@ -210,5 +209,4 @@ namespace Solid.Engine
         }
         */
     }
-
 }

@@ -1,4 +1,4 @@
-namespace SolidGui
+namespace SolidGui.Mapping
 {
     partial class MappingView
     {
@@ -56,8 +56,8 @@ namespace SolidGui
             // 
             this._targetCombo.FormattingEnabled = true;
             this._targetCombo.Items.AddRange(new object[] {
-            "FLEX (Use LIFT instead)",
-            "Lexical Interchange Format (LIFT)"});
+                                                              "FLEX (Use LIFT instead)",
+                                                              "Lexical Interchange Format (LIFT)"});
             this._targetCombo.Location = new System.Drawing.Point(47, 6);
             this._targetCombo.Name = "_targetCombo";
             this._targetCombo.Size = new System.Drawing.Size(240, 21);
@@ -68,8 +68,8 @@ namespace SolidGui
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+                                                                                 | System.Windows.Forms.AnchorStyles.Left)
+                                                                                | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(6, 33);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -89,10 +89,10 @@ namespace SolidGui
             // _conceptList
             // 
             this._conceptList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+                                                                              | System.Windows.Forms.AnchorStyles.Left)
+                                                                             | System.Windows.Forms.AnchorStyles.Right)));
             this._conceptList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1});
+                                                                                           this.columnHeader1});
             this._conceptList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this._conceptList.HideSelection = false;
             this._conceptList.Location = new System.Drawing.Point(3, 18);
@@ -119,8 +119,8 @@ namespace SolidGui
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+                                                                        | System.Windows.Forms.AnchorStyles.Left)
+                                                                       | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this._htmlViewer);
             this.panel1.Location = new System.Drawing.Point(6, 18);

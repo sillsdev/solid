@@ -6,6 +6,7 @@ using System.Xml;
 using SolidGui;
 using System.Linq;
 using Palaso.Extensions;
+using SolidGui.Engine;
 
 namespace Solid.Engine
 {

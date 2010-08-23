@@ -4,14 +4,10 @@
 * 
 */
 
-using System;
 using System.Xml;
-using System.IO;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
-    //!!! TODO: Protect with if (_d != null) _d... else base....
-
     /// <summary>
     /// Summary description for XmlReaderDecorator.
     /// </summary>
@@ -216,5 +212,4 @@ namespace Solid.Engine
         }
 
     }
-
 }

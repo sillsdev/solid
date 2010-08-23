@@ -1,12 +1,8 @@
-using System;
-using System.IO;
-using System.Text;
-using System.Xml;
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
-namespace SolidTests
+namespace SolidGui.Tests.Engine
 {
     [TestFixture]
     public class SolidSettingsTest
@@ -20,7 +16,7 @@ namespace SolidTests
         [Test]
         public void SolidSettings_FindOrCreateMarkerSetting_CreatesMarker()
         {
-            SolidSettings f = new SolidSettings();
+            var f = new SolidSettings();
             f.FindOrCreateMarkerSetting("mk");
 
             Assert.IsTrue(f.HasMarker("mk"));
@@ -29,7 +25,7 @@ namespace SolidTests
         [Test]
         public void SolidSettings_WriteRead_HasMarker()
         {
-            SolidSettings f = new SolidSettings();
+            var f = new SolidSettings();
             f.FilePath = "myfile.solid";
             f.FindOrCreateMarkerSetting("mk");
             f.Save();

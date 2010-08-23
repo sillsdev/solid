@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 
-namespace Solid.Engine
+namespace SolidGui.Engine
 {
     public class ProcessStructure : IProcess
     {
@@ -173,7 +173,7 @@ namespace Solid.Engine
                             xmlEntry,
                             xmlSourceField,
                             String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
-                        );
+                            );
                         InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                     }
                 }
@@ -197,7 +197,7 @@ namespace Solid.Engine
                                     xmlEntry,
                                     xmlSourceField,
                                     String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
-                                );
+                                    );
                                 InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                             }
                         }
@@ -215,14 +215,14 @@ namespace Solid.Engine
                             xmlEntry,
                             inferredNode,
                             String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
-                        );
+                            );
                         // Error
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFound,
                             xmlEntry,
                             xmlSourceField,
                             string.Format("Marker \\{0} could not be placed in structure", xmlSourceField.Name)
-                        );
+                            );
                         InsertInTreeAnyway(xmlSourceField, destination, report, scope);
                     }
                 }
@@ -235,7 +235,7 @@ namespace Solid.Engine
                     xmlEntry,
                     xmlSourceField,
                     string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", xmlSourceField.Name)
-                );
+                    );
                 InsertInTreeAnyway(xmlSourceField, destination, report, scope);
             }
             return retval;

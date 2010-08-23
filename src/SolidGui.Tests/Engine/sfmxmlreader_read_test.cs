@@ -1,13 +1,11 @@
 using System;
-//using System.Collections.Generic;
 using System.IO;
-//using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using Solid.Engine;
+using SolidGui.Engine;
 
 
-namespace SolidTests
+namespace SolidGui.Tests.Engine
 {
     [TestFixture]
     public class SfmXmlReaderTests : Assertion
@@ -15,11 +13,10 @@ namespace SolidTests
 
         private XmlReader ReadOneRecordData()
         {
-            string sfm =
-                "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
-                "\\_DateStampHasFourDigitYear\n" +
-                "\\lx a\n" +
-                "\\ge b\n";
+            const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
+                               "\\_DateStampHasFourDigitYear\n" +
+                               "\\lx a\n" +
+                               "\\ge b\n";
             XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
             return xmlReader;
         }
@@ -134,7 +131,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 xmlReader, // xmlReader
@@ -147,7 +144,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertEndDocument(xmlReader);
         }
@@ -155,8 +152,8 @@ namespace SolidTests
         [Test]
         public void SFMHeaderDocument_Correct()
         {
-            string sfm = "\\_a a\n"
-                + "\\_b b";
+            const string sfm = "\\_a a\n"
+                               + "\\_b b";
             XmlReader xmlReader =
                 new SfmXmlReader(new StringReader(sfm));
 
@@ -173,7 +170,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 2 // attributeCount
-            );
+                );
             /*
             AssertAttribute(
                 xmlReader, // xmlReader
@@ -196,7 +193,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 2 // attributeCount
-            );
+                );
 
             AssertEndDocument(xmlReader);
         }
@@ -204,10 +201,10 @@ namespace SolidTests
         [Test]
         public void ReadSubtreeFromXml_Correct()
         {
-            string xmlIn = "<root _sh=\"sh\" _DateTimeStampHasFourDigitYear=\"true\"><entry><lx>lex1</lx><ge>ggg</ge></entry></root>";
-            XmlReader xmlReader = XmlReader.Create(new StringReader(xmlIn));
+            const string xmlIn = "<root _sh=\"sh\" _DateTimeStampHasFourDigitYear=\"true\"><entry><lx>lex1</lx><ge>ggg</ge></entry></root>";
+            var xmlReader = XmlReader.Create(new StringReader(xmlIn));
             xmlReader.ReadToFollowing("entry");
-            XmlReader entryReader = xmlReader.ReadSubtree();
+            var entryReader = xmlReader.ReadSubtree();
 
             AssertStartDocument(entryReader);
 
@@ -222,7 +219,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -235,7 +232,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -248,7 +245,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 "lex1", // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -261,7 +258,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -274,7 +271,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -287,7 +284,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 "ggg", // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -300,7 +297,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -313,7 +310,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertEndDocument(entryReader);
         }
@@ -322,13 +319,12 @@ namespace SolidTests
         [Test]
         public void ReadSubtreeFromSfm_Correct()
         {
-            string sfm =
-                "\\_a 1\n" +
-                "\\lx lex1\n" +
-                "\\ge ggg\n";
+            const string sfm = "\\_a 1\n" +
+                               "\\lx lex1\n" +
+                               "\\ge ggg\n";
             XmlReader xmlReader = new SfmXmlReader(new StringReader(sfm));
             xmlReader.ReadToFollowing("entry");
-            XmlReader entryReader = xmlReader.ReadSubtree();
+            var entryReader = xmlReader.ReadSubtree();
 
             AssertStartDocument(entryReader);
 
@@ -343,7 +339,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 3 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -356,7 +352,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -369,7 +365,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 "lex1", // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -382,7 +378,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -395,7 +391,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -408,7 +404,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 "ggg", // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
                 entryReader, // xmlReader
@@ -421,22 +417,22 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 1 // attributeCount
-            );
+                );
 
             AssertNode(
-               entryReader, // xmlReader
-               XmlNodeType.EndElement, // nodeType
-               0, //depth
-               false, // isEmptyElement
-               "entry", // name
-               String.Empty, // prefix
-               "entry", // localName
-               String.Empty, // namespaceURI
-               String.Empty, // value
-               3 // attributeCount
-           );
+                entryReader, // xmlReader
+                XmlNodeType.EndElement, // nodeType
+                0, //depth
+                false, // isEmptyElement
+                "entry", // name
+                String.Empty, // prefix
+                "entry", // localName
+                String.Empty, // namespaceURI
+                String.Empty, // value
+                3 // attributeCount
+                );
             
-           AssertEndDocument(entryReader);
+            AssertEndDocument(entryReader);
         }
 
 
@@ -444,7 +440,7 @@ namespace SolidTests
         public void SFMSingleEntryDocument_Correct()
         {
             //string file = @"../../data/dict2-1entry.txt";
-            XmlReader xmlReader = ReadOneRecordData();
+            var xmlReader = ReadOneRecordData();
 
             AssertStartDocument(xmlReader);
 
@@ -460,7 +456,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 2 // attributeCount
-            );
+                );
             /*
             // elementvalue empty
             AssertNode(
@@ -488,7 +484,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
             // element entry
             AssertNode(
                 xmlReader, // xmlReader
@@ -501,7 +497,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 "a", // value
                 0 // attributeCount
-            );
+                );
             
             // elementvalue empty
             AssertNode(
@@ -515,7 +511,7 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
             
 
             AssertNode(
@@ -529,13 +525,12 @@ namespace SolidTests
                 String.Empty, // namespaceURI
                 String.Empty, // value
                 0 // attributeCount
-            );
+                );
 
             AssertEndDocument(xmlReader);
         }
 
     }
-
 }
 
 #if false

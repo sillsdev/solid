@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SolidGui.Model;
 
 namespace SolidGui
 {

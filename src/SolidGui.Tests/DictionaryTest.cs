@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using Solid.Engine;
-
+using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui.Tests
 {
@@ -22,13 +21,13 @@ namespace SolidGui.Tests
         public void SetUp()
         {
             _settings = new SolidSettings();
-            SolidMarkerSetting lxSetting = _settings.FindOrCreateMarkerSetting("lx");
+            var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
             lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
 
-            SolidMarkerSetting geSetting = _settings.FindOrCreateMarkerSetting("ge");
+            var geSetting = _settings.FindOrCreateMarkerSetting("ge");
             geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
             
-            SolidMarkerSetting snSetting = _settings.FindOrCreateMarkerSetting("sn");
+            var snSetting = _settings.FindOrCreateMarkerSetting("sn");
             snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
             Palaso.Reporting.ErrorReport.IsOkToInteractWithUser = false;
@@ -38,7 +37,7 @@ namespace SolidGui.Tests
             _dictionaryPath = Path.Combine(_projectFolder, "Dictionary.db");
             _tempDictionaryPath = Path.Combine(_projectFolder, "tempDictionary.db");
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.AppendLine(@"\lx one");
             builder.AppendLine(@"\ge oneGloss");
             builder.AppendLine(@"\lx two");
@@ -55,14 +54,14 @@ namespace SolidGui.Tests
         [Test]
         public void OpenReadsInAllDictionaryMarkers()
         {
-            List<string> _markers = new List<string>();
+            var _markers = new List<string>();
             _markers.Add("lx");
             _markers.Add("ge");
 
             _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             int markerCount = 0;
 
-            foreach (string  storedMarker in _dictionary.AllMarkers)
+            foreach (var  storedMarker in _dictionary.AllMarkers)
             {
                     markerCount++;
                     Assert.IsTrue(_markers.Contains(storedMarker));
@@ -98,11 +97,11 @@ namespace SolidGui.Tests
         public void SaveSavesDictionaryBackToOriginalFile()
         {
             _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
-            List<Record> data = _dictionary.AllRecords;
+            var data = _dictionary.AllRecords;
             data[1].SetFieldValue(1,"threeGloss");
             _dictionary.Save();
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.AppendLine(@"\lx one");
             builder.AppendLine(@"\ge oneGloss");
             builder.AppendLine(@"\lx two");

@@ -1,4 +1,4 @@
-namespace SolidGui
+namespace SolidGui.Export
 {
     partial class ExportForm
     {
