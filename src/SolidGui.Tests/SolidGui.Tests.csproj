@@ -68,6 +68,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encoding_Test.cs" />
+    <Compile Include="Engine\EngineEnvironment_Test.cs" />
+    <Compile Include="Engine\ProcessEncoding_Test.cs" />
+    <Compile Include="Engine\ProcessStructure_Test.cs" />
+    <Compile Include="Engine\sfmreader_read_test.cs" />
+    <Compile Include="Engine\sfmxmlreader_read_test.cs" />
+    <Compile Include="Engine\sfmxmlreader_xmldoc_test.cs" />
+    <Compile Include="Engine\Solidifier_Test.cs" />
+    <Compile Include="Engine\SolidReport_Test.cs" />
+    <Compile Include="Engine\SolidSettings_Test.cs" />
+    <Compile Include="Engine\SolidXmlReader_Read_Test.cs" />
+    <Compile Include="Export\ExportFactory_Test.cs" />
+    <Compile Include="Export\ExportLift_Test.cs" />
+    <Compile Include="Export\ExportStructuredXml_Test.cs" />
+    <Compile Include="Export\ExportTestAsserter.cs" />
+    <Compile Include="Export\ExportXsl_Test.cs" />
     <Compile Include="DictionaryTest.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />
@@ -80,10 +96,6 @@
     <Compile Include="SfmEditorPresentationModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidConsole\SolidConsole.csproj">
-      <Project>{2AE6670D-904B-42E3-AEBC-453649B1A6A3}</Project>
-      <Name>SolidConsole</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SolidGui\SolidGui.csproj">
       <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
       <Name>SolidGui</Name>
