@@ -8,18 +8,22 @@ using System.Linq;
 using SolidGui.Engine;
 using SolidGui.Processes;
 
-namespace SolidGui
+namespace SolidGui.Model
 {
     public class Record
     {
+        private static int _recordIdCounter = 0;
+
+        private SfmLexEntry _entry;
         private List<Field> _fields = new List<Field>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
         private SolidReport _report;
+        public SfmLexEntry LexEntry { get; set; }
 
         public int ID
         {
-           get { return _recordID; }
+            get { return _recordID; }
         }
         /*
         public Record(List<string> fieldValues)
@@ -33,22 +37,15 @@ namespace SolidGui
         }
         */
 
-        public Record(int recordID)
+        public Record()
         {
-            _recordID = recordID;
+            _recordID = _recordIdCounter++;
         }
 
-        static public Record CreateFromXml(XmlNode entry, SolidReport report)
+        static public Record CreateRecordFromSfmLexEntry(SfmLexEntry entry, SolidReport report)
         {
-            XmlHelper xh = new XmlHelper(entry);
-            string s = xh.GetAttribute("record");
-            int recordID = (s != string.Empty) ? Convert.ToInt32(s) : -1;
-            Record record = new Record(recordID);
-            foreach (XmlNode xmlChild in entry.ChildNodes)
-            {
-                record.ReadField(xmlChild, 0, report);
-            }
-
+            var record = new Record();
+            record.LexEntry = entry;
             record.Report = new SolidReport(report);
 
             return record;
@@ -91,21 +88,21 @@ namespace SolidGui
         public bool HasMarker(string marker)
         {
             return _fields.Find(
-                delegate(Field f)
-                {
-                    return f.Marker == marker;
-                }
-            ) != null;
+                       delegate(Field f)
+                           {
+                               return f.Marker == marker;
+                           }
+                       ) != null;
         }
 
         public bool IsMarkerNotEmpty(string marker)
         {
             return _fields.Find(
-                delegate(Field f)
-                {
-                    return f.Marker == marker && f.Value != string.Empty;
-                }
-            ) != null;
+                       delegate(Field f)
+                           {
+                               return f.Marker == marker && f.Value != string.Empty;
+                           }
+                       ) != null;
         }
 
         public string GetField(int id)
@@ -177,26 +174,12 @@ namespace SolidGui
 
         public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
-            //!!!setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
-            SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
-            if(!xr.ReadToFollowing("entry"))
-            {
-                return;
-            }
-            XmlReader entryReader = xr.ReadSubtree();
-            // Load the current record from xr into an XmlDocument
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(entryReader);
-            SolidReport report = new SolidReport();
+            _entry = SfmLexEntry.CreateFromText(setToText);
+            var report = new SolidReport();
             IProcess process = new ProcessStructure(solidSettings);
-            XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
+            var xmlResult = process.Process(_entry, report);
 
             Report = report;
-            _fields.Clear();
-            foreach (XmlNode xmlChild in xmlResult.ChildNodes)
-            {
-                ReadField(xmlChild, 0, report);
-            }
         }
 
         public void AddMarkerStatistics(Dictionary<string, int> frequencies, Dictionary<string, int> errorCount)

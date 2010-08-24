@@ -1,6 +1,7 @@
 using System;
 using System.Xml;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui.Processes
 {
@@ -13,16 +14,16 @@ namespace SolidGui.Processes
             _settings = settings;
         }
 
-        public XmlNode Process(XmlNode xmlEntry, SolidReport report)
+        public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)
         {
             // Iterate through each (flat) node in the src d
-            XmlNode xmlField = xmlEntry.FirstChild;
-            while (xmlField != null)
+            SfmFieldModel sfmField = lexEntry.FirstChild;
+            while (sfmField != null)
             {
-                if (xmlField.FirstChild != null)
+                if (sfmField.FirstChild != null)
                 {
-                    SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlField.Name);
-                    string value = xmlField.FirstChild.Value;
+                    SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sfmField.Name);
+                    string value = sfmField.FirstChild.Value;
                     if (setting.Unicode)
                     {
                         // Confirm that the value is in valid unicode encoded as UTF-8
@@ -66,9 +67,9 @@ namespace SolidGui.Processes
                             {
                                 report.AddEntry(
                                     SolidReport.EntryType.EncodingBadUnicode,
-                                    xmlEntry,
-                                    xmlField,
-                                    String.Format("Marker \\{0} contains bad unicode data", xmlField.Name)
+                                    lexEntry,
+                                    sfmField,
+                                    String.Format("Marker \\{0} contains bad unicode data", sfmField.Name)
                                     );
                             }
                         }
@@ -82,18 +83,18 @@ namespace SolidGui.Processes
                             {
                                 report.AddEntry(
                                     SolidReport.EntryType.EncodingUpperAscii,
-                                    xmlEntry,
-                                    xmlField,
-                                    String.Format("Marker \\{0} may use a hacked font", xmlField.Name)
+                                    lexEntry,
+                                    sfmField,
+                                    String.Format("Marker \\{0} may use a hacked font", sfmField.Name)
                                     );
                                 break;
                             }
                         }
                     }
                 }
-                xmlField = xmlField.NextSibling;
+                sfmField = sfmField.NextSibling;
             }
-            return xmlEntry;
+            return lexEntry;
         }
     }
 }

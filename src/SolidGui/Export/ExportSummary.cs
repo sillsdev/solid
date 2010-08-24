@@ -19,7 +19,7 @@ namespace SolidGui.Export
 
         public void ExportAsync(object sender, DoWorkEventArgs args)
         {
-            string g = @"1d,First dual
+            const string g = @"1d,First dual
 1e,First plural exclusive
 1i,First plural inclusive
 1p,First plural
@@ -127,14 +127,14 @@ xv,Example (v)";
             var guesses = new Dictionary<string, string>();
             foreach (var marker in g.Split((new []{'\n'})))
             {
-                var pairs = marker.Split(new char[] {','});
+                var pairs = marker.Split(new[] {','});
                 var m = pairs[0];
                 var desc = pairs[1];
                 guesses.Add(m.Trim(), desc.Trim());
             }
 
             var progress = (ProgressState)args.Argument;
-            ExportArguments exportArguments = (ExportArguments)progress.Arguments;
+            var exportArguments = (ExportArguments)progress.Arguments;
             using (var w = new StreamWriter(exportArguments.outputFilePath))
             {
                 foreach (var rawMarker in exportArguments.markerSettings.MarkersInDictioanary)

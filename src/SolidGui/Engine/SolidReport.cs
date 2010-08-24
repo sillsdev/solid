@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
+using SolidGui.Model;
 
 namespace SolidGui.Engine
 {
@@ -21,8 +21,8 @@ namespace SolidGui.Engine
         public class Entry
         {
             EntryType _entryType;
-            int _recordID;
-            int _fieldID;
+            int _recordID; // TODO Remove these, they aren't used?
+            int _fieldID;  // TODO Remove these, they aren't used?
             //int _recordStartLine;
             //int _recordEndLine;
             string _entryName;
@@ -32,21 +32,19 @@ namespace SolidGui.Engine
             public Entry()
             {}
 
-            public Entry(EntryType type, XmlNode entry, XmlNode field, string description)
+            public Entry(EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
             {
                 _entryType = type;
                 if (entry != null)
                 {
-                    XmlHelper xhEntry = new XmlHelper(entry);
                     _entryName = entry.Name; //??? TODO what's a good name for this entry???
-                    _recordID = Convert.ToInt32(xhEntry.GetAttribute("record", "-1"));
+                    _recordID = entry.RecordId;
                     //_recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
                     //_recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
                 }
                 if (field != null)
                 {
-                    XmlHelper xhField = new XmlHelper(field);
-                    _fieldID = Convert.ToInt32(xhField.GetAttribute("field", "-1"));
+                    _fieldID = field.FieldId;
                     _marker = field.Name;
                 }
                 _description = description;
@@ -154,7 +152,7 @@ namespace SolidGui.Engine
             return retVal;
         }
 
-        public void AddEntry(EntryType type, XmlNode entry, XmlNode field, string description)
+        public void AddEntry(EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
         {
             Add(new Entry(type, entry, field, description));
         }

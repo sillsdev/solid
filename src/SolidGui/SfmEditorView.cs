@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Elsehemy;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 
 namespace SolidGui

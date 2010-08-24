@@ -75,7 +75,6 @@
     <Compile Include="Engine\sfmreader_read_test.cs" />
     <Compile Include="Engine\sfmxmlreader_read_test.cs" />
     <Compile Include="Engine\sfmxmlreader_xmldoc_test.cs" />
-    <Compile Include="Engine\Solidifier_Test.cs" />
     <Compile Include="Engine\SolidReport_Test.cs" />
     <Compile Include="Engine\SolidSettings_Test.cs" />
     <Compile Include="Engine\SolidXmlReader_Read_Test.cs" />

@@ -6,6 +6,7 @@ using System.Text;
 
 using Palaso.WritingSystems;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 
 namespace SolidGui

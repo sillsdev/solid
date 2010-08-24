@@ -12,7 +12,7 @@ using SolidGui.Engine;
 using SolidGui.Model;
 using SolidGui.Processes;
 
-namespace SolidGui
+namespace SolidGui.Model
 {
     public struct DictionaryOpenArguments
     {
@@ -68,10 +68,10 @@ namespace SolidGui
         public override Record Current
         {
             get{ 
-                    if(_recordList.Count > 0)
-                        return _recordList[_currentIndex];
-                    return null;
-               }
+                if(_recordList.Count > 0)
+                    return _recordList[_currentIndex];
+                return null;
+            }
         }
 
         public override int CurrentIndex
@@ -152,10 +152,10 @@ namespace SolidGui
             _markerFrequencies.Clear();
         }
 
-        public void AddRecord(XmlNode entry, SolidReport report)
+        public void AddRecord(SfmLexEntry entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
-            Record record = Record.CreateFromXml(entry, report);
+            Record record = Record.CreateRecordFromSfmLexEntry(entry, report);
             record.AddMarkerStatistics(_markerFrequencies, _markerErrors);
             _recordList.Add(record);
         }
@@ -177,46 +177,38 @@ namespace SolidGui
             ProgressState progressState = (ProgressState)args.Argument;
             DictionaryOpenArguments openArguments = (DictionaryOpenArguments)progressState.Arguments;
             openArguments.filterSet.BeginBuild(this);
-            int entryCount = 0;
-            using (XmlReader xt = new SfmXmlReader(_filePath))
-            {
-                while (xt.ReadToFollowing("entry"))
-                {
-                    entryCount++;
-                }
-                progressState.TotalNumberOfSteps = entryCount;
-                progressState.NumberOfStepsCompleted = 1;
-            }
+           
+            var sfmDataSet = new SfmDataSet();
 
+           
+            progressState.TotalNumberOfSteps = sfmDataSet.NumberOfEntries;
+            progressState.NumberOfStepsCompleted = 1;
+            
             List<IProcess> processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.solidSettings));
             processes.Add(new ProcessStructure(openArguments.solidSettings));
 
-            using (XmlReader xr = new SfmXmlReader(_filePath))
-            {
-                XmlDocument xmldoc = new XmlDocument();
-                while (xr.ReadToFollowing("entry"))
+           
+                
+                foreach (SfmLexEntry entry in sfmDataSet)
                 {
                     progressState.NumberOfStepsCompleted += 1;
-                    XmlReader entryReader = xr.ReadSubtree();
-                    // Load the current record from xr into an XmlDocument
-                    xmldoc.RemoveAll();
-                    xmldoc.Load(entryReader);
+                   
                     SolidReport recordReport = new SolidReport();
-                    XmlNode xmlResult = xmldoc.DocumentElement;
+                    SfmLexEntry lexEntry = entry;
                     foreach (IProcess process in processes)
                     {
-                        xmlResult = process.Process(xmlResult, recordReport);
+                        lexEntry = process.Process(lexEntry, recordReport);
                     }
                     //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
-                    AddRecord(xmlResult, recordReport);
+                    AddRecord(lexEntry, recordReport);
                     if (openArguments.filterSet != null)
                     {
                         openArguments.filterSet.AddRecord(Count - 1, recordReport);
                     }
                     //!!!_recordFilters.AddRecord(report);
                 }
-            }
+            
             openArguments.filterSet.EndBuild();
         }
 

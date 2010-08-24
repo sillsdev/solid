@@ -4,8 +4,8 @@ namespace SolidGui.Engine
 {
     public class XmlHelper
     {
-        private XmlDocument _xmlDoc;
-        private XmlNode _node;
+        private readonly XmlDocument _xmlDoc;
+        private readonly XmlNode _node;
 
         /*
         public XmlHelper(XmlDocument xmlDoc)

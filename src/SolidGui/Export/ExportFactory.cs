@@ -86,15 +86,9 @@ namespace SolidGui.Export
             IExporter retval = null;
             switch (header.Driver)
             {
-                case "FlatXml":
-                    retval = ExportFlatXml.Create();
-                    break;
-                case "StructuredXml":
-                    retval = ExportStructuredXml.Create();
-                    break;
-                case "Xsl":
-                    retval = ExportXsl.Create(header);
-                    break;
+                //case "Lift":
+                //    retval = ExportLift.Create();
+                //    break;
                 case ExportSummary.DriverName:
                     retval = ExportSummary.Create(header);
                     break;

@@ -6,6 +6,7 @@ using System.Xml;
 using NUnit.Framework;
 using Solid.Engine;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 
 namespace SolidGui.Tests
