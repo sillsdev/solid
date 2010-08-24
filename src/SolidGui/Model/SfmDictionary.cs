@@ -10,6 +10,7 @@ using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
+using SolidGui.Processes;
 
 namespace SolidGui
 {

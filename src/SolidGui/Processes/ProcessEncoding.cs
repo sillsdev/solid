@@ -2,7 +2,7 @@ using System;
 using System.Xml;
 using SolidGui.Engine;
 
-namespace SolidGui.Engine
+namespace SolidGui.Processes
 {
     public class ProcessEncoding : IProcess
     {

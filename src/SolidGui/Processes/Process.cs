@@ -1,6 +1,7 @@
 using System.Xml;
+using SolidGui.Engine;
 
-namespace SolidGui.Engine
+namespace SolidGui.Processes
 {
     public interface IProcess
     {

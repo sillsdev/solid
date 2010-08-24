@@ -6,6 +6,7 @@ using System.Xml;
 
 using System.Linq;
 using SolidGui.Engine;
+using SolidGui.Processes;
 
 namespace SolidGui
 {

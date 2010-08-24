@@ -98,9 +98,9 @@
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
-    <Compile Include="Engine\Process.cs" />
-    <Compile Include="Engine\ProcessEncoding.cs" />
-    <Compile Include="Engine\ProcessStructure.cs" />
+    <Compile Include="Processes\Process.cs" />
+    <Compile Include="Processes\ProcessEncoding.cs" />
+    <Compile Include="Processes\ProcessStructure.cs" />
     <Compile Include="Engine\SfmRecord.cs" />
     <Compile Include="Engine\SfmRecordReader.cs" />
     <Compile Include="Engine\sfmxmlreader.cs" />

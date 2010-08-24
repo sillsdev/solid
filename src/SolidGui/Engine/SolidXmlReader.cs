@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using SolidGui.Processes;
 
 namespace SolidGui.Engine
 {
