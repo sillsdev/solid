@@ -1,6 +1,7 @@
 using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
+using SolidGui.Model;
 using SolidGui.Processes;
 
 
@@ -36,11 +37,16 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void AsciiDataAsNonUnicode_Correct()
         {
-            const string xmlIn = "<entry><lx>1</lx><ge>english</ge></entry>";
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            const string sfmIn = @"
+\lx 1
+\ge english";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            //const string xmlIn = "<entry><lx>1</lx><ge>english</ge></entry>";
+            //var entry = new XmlDocument();
+            //entry.LoadXml(xmlIn);
             var report = new SolidReport();
-            _p.Process(entry.DocumentElement, report);
+            _p.Process(entry, report);
 
             Assert.AreEqual(0, report.Count);
         }

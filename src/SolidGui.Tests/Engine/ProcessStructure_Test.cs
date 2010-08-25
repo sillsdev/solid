@@ -1,6 +1,7 @@
 using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
+using SolidGui.Model;
 using SolidGui.Processes;
 
 
@@ -43,8 +44,16 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void InfersNodeForEverySeperateChildWhenChildCanAppearUnderParentOnce()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            const string sfmIn = @"
+\lx test1
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
             ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
@@ -52,19 +61,30 @@ namespace SolidGui.Tests.Engine
             Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            
             var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            var result = _p.Process(entry, report);
+            
+            //string xmlOut = xmlResult.OuterXml;
+            //Assert.AreEqual(sfmEx, xmlOut);
         }
 
         [Test]
         public void InfersNodeForEveryChildTogetherWhenChildCanAppearUnderParentOnce()
         {
-            const string xmlIn = "<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
-            const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            //const string xmlIn = @"<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+
+            const string sfmIn = @"
+\lx test2
+\cc fire
+\cc foo
+\sn
+\cc bar";
+            
+
+            //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+
+
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
             ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
@@ -72,19 +92,29 @@ namespace SolidGui.Tests.Engine
             Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            
             var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            var result = _p.Process(entry, report);
+            
+            //string xmlOut = xmlResult.OuterXml;
+            //Assert.AreEqual(xmlEx, xmlOut);
         }
 
         [Test]
         public void InfersNodeForEverySeperateChildWhenChildCanAppearUnderParentMultipleTogether()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+
+            const string sfmIn = @"
+\lx test1
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
+            
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
             ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
@@ -92,19 +122,29 @@ namespace SolidGui.Tests.Engine
             Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
             ccSetting.InferedParent = "bb";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            
             var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            var result = _p.Process(entry, report);
+            
+            //string xmlOut = xmlResult.OuterXml;
+            //Assert.AreEqual(xmlEx, xmlOut);
         }
 
         [Test]
         public void InfersNodeOnceForEveryChildTogetherWhenChildCanAppearUnderParentMultipleTogether()
         {
-            const string xmlIn = "<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
-            const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            const string sfmIn = @"
+\lx test2
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
+
+
+            //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
             ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
@@ -123,7 +163,16 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void InfersNodeOnceForAllChildrenSeperatedWhenChildCanAppearUnderParentMultipleApart()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+
+            const string sfmIn = @"
+\lx test1
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><sn><data /></sn><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
@@ -145,7 +194,19 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void InfersNodeOnceForAllChildrenTogetherAndSeperatedWhenChildCanAppearUnderParentMultipleApart()
         {
-            const string xmlIn = "<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+
+
+            //const string xmlIn = "<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
+
+
+            const string sfmIn = @"
+\lx test2
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
+            
             const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
 
             var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
@@ -168,7 +229,13 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_InferNode_Correct()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><ge>g</ge></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><ge>g</ge></entry>";
+
+
+            const string sfmIn = @"
+\lx a
+\ge g";
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></entry>";
 
             var setting =  _settings.FindOrCreateMarkerSetting("ge");
@@ -187,7 +254,13 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_NoInferReqd_Correct()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn></sn><ge>g</ge></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn></sn><ge>g</ge></entry>";
+
+            const string sfmIn = @"
+\lx a
+\sn
+\ge g";
+
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></entry>";
 
             var setting = _settings.FindOrCreateMarkerSetting("ge");
@@ -206,7 +279,12 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_RecursiveInfer_Correct()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+            
+            const string sfmIn = @"
+\lx a
+\xe b";
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
 
             var setting = _settings.FindOrCreateMarkerSetting("ge");
@@ -226,8 +304,16 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_RecursiveInferIssue144_MarkersNotDuplicated()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
-//            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+
+            const string sfmIn = @"
+\lx a
+\ge g";
+            
+            
+            
+            
+            //string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
 
             _settings = new SolidSettings();
@@ -264,6 +350,13 @@ namespace SolidGui.Tests.Engine
         public void ProcessStructure_ErrorRecordID145_RecordIDValid()
         {
             const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+
+            const string sfmIn = @"
+\lx a
+\ge g";
+            
+            
+            
             //            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xe field=\"2\"><data>b</data></xe></lx></entry>";
 
@@ -291,7 +384,14 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_NoInferInsertAnyway_Correct()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
+
+            const string sfmIn = @"
+\lx a
+\sn
+\ge g
+\zz z";
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
 
             var setting = _settings.FindOrCreateMarkerSetting("ge");
@@ -310,7 +410,12 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ProcessStructure_LiftMapping_Correct()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">b</lx></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">b</lx></entry>";
+
+            const string sfmIn = @"
+\lx b";
+            
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
 
             var setting = _settings.FindOrCreateMarkerSetting("lx");
@@ -347,7 +452,13 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void MultipleErrorMarkers_AreSiblings()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xx field=\"2\">xx</xx><yy field=\"3\">yy</yy><zz field=\"4\">zz</zz></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xx field=\"2\">xx</xx><yy field=\"3\">yy</yy><zz field=\"4\">zz</zz></entry>";
+            const string sfmIn = @"
+\lx a
+\xx x
+\yy y
+\zz z";
+            
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xx field=\"2\"><data>xx</data></xx><yy field=\"3\"><data>yy</data></yy><zz field=\"4\"><data>zz</data></zz></lx></entry>";
 
             var entry = new XmlDocument();
