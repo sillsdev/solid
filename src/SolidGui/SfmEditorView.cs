@@ -152,7 +152,7 @@ namespace SolidGui
 			const bool foundProcessingMark = false;
             int lineNumber = 0;
 
-            foreach (Field field in _currentRecord.Fields)
+            foreach (SfmFieldModel field in _currentRecord.Fields)
             {
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
@@ -214,7 +214,7 @@ namespace SolidGui
             _contentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        private string GetErrorForField(SolidReport report, Field field)
+        private string GetErrorForField(SolidReport report, SfmFieldModel field)
         {
             SolidReport.Entry entry = report.GetEntryById(field.Id);
             if (entry != null)

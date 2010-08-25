@@ -111,7 +111,6 @@
     <Compile Include="Engine\StructurePropertiesPM.cs" />
     <Compile Include="Engine\XmlHelper.cs" />
     <Compile Include="Engine\XmlReaderDecorator.cs" />
-    <Compile Include="Model\Field.cs" />
     <Compile Include="QuickFixer.cs" />
     <Compile Include="Model\SfmDictionary.cs" />
     <Compile Include="EXListView.cs">

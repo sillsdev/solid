@@ -121,9 +121,9 @@ namespace Solid.Engine
             public string fromHeadWord;
             public string fromMarker;
             public string pos;
-            public readonly Field sourceField;
+            public readonly SfmFieldModel sourceField;
 
-            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, Field sourceField)
+            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, SfmFieldModel sourceField)
             {
                 this.targetHeadWord = targetHeadWord;
                 this.fromMarker = fromMarker;
@@ -164,7 +164,7 @@ namespace Solid.Engine
         {
             foreach (var record in _dictionary.Records)
             {
-                Field fieldToCopy = null;
+                SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     var field = record.Fields[i];
@@ -178,7 +178,7 @@ namespace Solid.Engine
                     {
                         if(fieldToCopy !=null)
                         {
-                            var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1 /*review*/);
+                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1 /*review*/);
                             record.InsertFieldAt(f, i); 
                             ++i;//skip the next line, since not is is preceded by this field
                         }
@@ -228,7 +228,7 @@ namespace Solid.Engine
                 }
                 if (null == targetRecord)
                 {
-                    Record r = new Record(-1);
+                    Record r = new Record();
                     var b = new StringBuilder();
                     b.AppendLine("\\lx " + addition.targetHeadWord);
                     b.AppendLine("\\ps " + addition.pos); //without this, flex balks
@@ -275,7 +275,7 @@ namespace Solid.Engine
                             log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
                             foreach (var headword in parts)
                             {
-                                var f = new Field(field.Marker, headword, field.Depth, false, -1 /*review*/);
+                                var f = new SfmFieldModel(field.Marker, headword, field.Depth, false, -1 /*review*/);
                                 record.InsertFieldAt(f, i);
                             }
                         }
@@ -350,8 +350,8 @@ namespace Solid.Engine
                 //in the format we're changing to, \ps comes after \sn, so 
                 //we should remove one which appears before the first sn (it will have been copied in)
                 var indexOfPsFieldToRemoveAtEnd = 0;
-                
-                Field fieldToCopy = null;
+
+                SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     var field = record.Fields[i];
@@ -372,7 +372,7 @@ namespace Solid.Engine
                         {
                             if (!LevelHasMarker(record, i, "ps", "sn"))
                             {
-                                var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1
+                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1
                                     /*review*/);
                                 record.InsertFieldAt(f, i+1);
                                 ++i;//skip over what we just inserted

@@ -6,7 +6,7 @@ using System.Xml;
 using SolidGui.Model;
 
 
-namespace SolidGui
+namespace SolidGui.Model
 {
     public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
     {

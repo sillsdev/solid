@@ -15,11 +15,19 @@ namespace SolidGui.Model
         private static int _recordIdCounter = 0;
 
         private SfmLexEntry _entry;
-        private List<Field> _fields = new List<Field>();
+        private List<SfmFieldModel> _fields = new List<SfmFieldModel>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
         private SolidReport _report;
         public SfmLexEntry LexEntry { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (Record)) return false;
+            return Equals((Record) obj);
+        }
 
         public int ID
         {
@@ -41,6 +49,7 @@ namespace SolidGui.Model
         {
             _recordID = _recordIdCounter++;
         }
+
 
         static public Record CreateRecordFromSfmLexEntry(SfmLexEntry entry, SolidReport report)
         {
@@ -68,7 +77,7 @@ namespace SolidGui.Model
             {
                 if (xmlChild.Name == "data")
                 {
-                    Field field = new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
+                    SfmFieldModel field = new SfmFieldModel(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
                     SolidReport.Entry reportEntry = report.GetEntryById(field.Id);
                     field.ErrorState = (reportEntry != null) ? 1 : 0;
                     _fields.Add(field);
@@ -80,7 +89,7 @@ namespace SolidGui.Model
             }
         }
 
-        public List<Field> Fields
+        public List<SfmFieldModel> Fields
         {
             get { return _fields; }
         }
@@ -88,7 +97,7 @@ namespace SolidGui.Model
         public bool HasMarker(string marker)
         {
             return _fields.Find(
-                       delegate(Field f)
+                       delegate(SfmFieldModel f)
                            {
                                return f.Marker == marker;
                            }
@@ -98,7 +107,7 @@ namespace SolidGui.Model
         public bool IsMarkerNotEmpty(string marker)
         {
             return _fields.Find(
-                       delegate(Field f)
+                       delegate(SfmFieldModel f)
                            {
                                return f.Marker == marker && f.Value != string.Empty;
                            }
@@ -107,11 +116,11 @@ namespace SolidGui.Model
 
         public string GetField(int id)
         {
-            Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });
+            SfmFieldModel field = _fields.Find(delegate(SfmFieldModel aField) { return aField.Id == id; });
             return field.ToString();
         }
 
-        public Field GetFirstFieldWithMarker(string marker)
+        public SfmFieldModel GetFirstFieldWithMarker(string marker)
         {
             return _fields.FirstOrDefault(f=> f.Marker == marker);
         }
@@ -159,7 +168,7 @@ namespace SolidGui.Model
         public string ToStructuredString()
         {
             StringBuilder record = new StringBuilder();
-            foreach (Field field in _fields)
+            foreach (SfmFieldModel field in _fields)
             {
                 record.Append(field.ToStructuredString() + "\n");
             }
@@ -184,7 +193,7 @@ namespace SolidGui.Model
 
         public void AddMarkerStatistics(Dictionary<string, int> frequencies, Dictionary<string, int> errorCount)
         {
-            foreach (Field field in _fields)
+            foreach (SfmFieldModel field in _fields)
             {
                 if (!frequencies.ContainsKey(field.Marker))
                 {
@@ -201,7 +210,7 @@ namespace SolidGui.Model
             }
         }
 
-        public void MoveField(Field field, int after)
+        public void MoveField(SfmFieldModel field, int after)
         {
             int from = _fields.IndexOf(field);
             _fields.RemoveAt(from);
@@ -226,9 +235,31 @@ namespace SolidGui.Model
             _fields.RemoveAt(index);
         }
 
-        public void InsertFieldAt(Field field, int indexForThisField)
+        public void InsertFieldAt(SfmFieldModel field, int indexForThisField)
         {
             _fields.Insert(indexForThisField,field);
+        }
+
+        public bool Equals(Record obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj._recordID == _recordID;
+        }
+
+        public override int GetHashCode()
+        {
+            return _recordID;
+        }
+
+        public static bool operator ==(Record left, Record right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Record left, Record right)
+        {
+            return !Equals(left, right);
         }
     }
 }

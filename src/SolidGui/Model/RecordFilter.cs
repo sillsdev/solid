@@ -156,7 +156,7 @@ namespace SolidGui.Model
                     _recordManager.MoveTo(_indexesOfRecords[_currentIndex]);
                     return _recordManager.Current;
                 }
-                return new Record(0);
+                return new Record();
 
             }
         }

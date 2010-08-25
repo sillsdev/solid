@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
@@ -285,7 +284,7 @@ namespace SolidGui.Model
                 {
                     foreach (Record record in _recordList)
                     {
-                        foreach (Field field in record.Fields)
+                        foreach (SfmFieldModel field in record.Fields)
                         {
                             if (!field.Inferred)
                             {
