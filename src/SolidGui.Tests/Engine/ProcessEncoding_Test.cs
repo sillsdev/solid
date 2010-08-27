@@ -54,11 +54,15 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void AsciiDataAsUnicode_Correct()
         {
-            const string xmlIn = "<entry><lx>1</lx><gu>english</gu></entry>";
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            //const string xmlIn = "<entry><lx>1</lx><gu>english</gu></entry>";
+            const string sfmIn = @"
+\lx 1
+\gu english";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            
             var report = new SolidReport();
-            _p.Process(entry.DocumentElement, report);
+            _p.Process(entry, report);
 
             Assert.AreEqual(0, report.Count);
         }
@@ -66,11 +70,16 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void UpperAsciiDataAsNonUnicode_ReportError()
         {
-            const string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            //const string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
+            const string sfmIn = @"
+\lx 1
+\ge \xA9\xA9";
+            
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            
             var report = new SolidReport();
-            _p.Process(entry.DocumentElement, report);
+            _p.Process(entry, report);
 
             Assert.AreEqual(1, report.Count);
             Assert.AreEqual("Marker \\ge may use a hacked font", report.Entries[0].Description);
@@ -79,11 +88,15 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void UpperAsciiDataAsUnicode_Correct()
         {
-            const string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            //const string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
+            const string sfmIn = @"
+\lx 1
+\gu \xC2\xA9\xC2\xA9";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+           
             var report = new SolidReport();
-            _p.Process(entry.DocumentElement, report);
+            _p.Process(entry, report);
 
             Assert.AreEqual(0, report.Count);
         }
@@ -91,11 +104,14 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void BadUnicode_ReportError()
         {
-            const string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
+            //const string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
+            const string sfmIn = @"
+\lx 1
+\gu abc \xA9\xA9\xA9";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
             var report = new SolidReport();
-            _p.Process(entry.DocumentElement, report);
+            _p.Process(entry, report);
 
             Assert.AreEqual(1, report.Count);
             Assert.AreEqual("Marker \\gu contains bad unicode data", report.Entries[0].Description);

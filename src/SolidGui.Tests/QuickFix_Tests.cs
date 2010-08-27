@@ -260,7 +260,7 @@ namespace SolidGui.Tests
                     ++i;
                 } while (i < fields.Length && !fields[i].StartsWith("lx"));
  
-                var r = new Record(i);
+                var r = new Record();
                 r.SetRecordContents(b.ToString(), settings);
                 dictionary.AddRecord(r);
             }

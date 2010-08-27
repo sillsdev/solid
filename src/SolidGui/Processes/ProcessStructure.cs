@@ -41,21 +41,21 @@ namespace SolidGui.Processes
         private bool InsertInTree(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope)
         {
             // Get the marker settings for this node.
-            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Name);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Marker);
             bool foundParent = false;
             int i = scope.Count;
             // Check for record marker (assume is root)
             while (i > 0 && !foundParent)
             {
                 i--;
-                SolidStructureProperty structureProperty = setting.getStructureProperty(scope[i].Name);
+                SolidStructureProperty structureProperty = setting.getStructureProperty(scope[i].Marker);
                 if (structureProperty != null)
                 {
                     if (i == scope.Count - 1)
                     {
                         foundParent = true;
                     }
-                    else if (scope[i + 1].Name == setting.Marker &&
+                    else if (scope[i + 1].Marker == setting.Marker &&
                              structureProperty.MultipleAdjacent != MultiplicityAdjacency.Once)
                     {
                         foundParent = true;
@@ -65,9 +65,9 @@ namespace SolidGui.Processes
                         foundParent = true;
 
                         //make sure the parent doesn't allready contain the node we want to add
-                        foreach (SfmFieldModel childNode in scope[i].ChildNodes)
+                        foreach (SfmFieldModel childNode in scope[i].Children)
                         {
-                            if (childNode.Name == source.Name)
+                            if (childNode.Marker == source.Marker)
                                 foundParent = false;
                         }
                     }
@@ -106,7 +106,7 @@ namespace SolidGui.Processes
         {
             // Can we infer a node.
             bool retval = false;
-            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlSourceField.Name);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlSourceField.Marker);
             if (setting.InferedParent != String.Empty)
             {
                 var inferredNode = new SfmFieldModel(setting.InferedParent);
@@ -129,7 +129,7 @@ namespace SolidGui.Processes
                             SolidReport.EntryType.StructureInsertInInferredFailed,
                             xmlEntry,
                             xmlSourceField,
-                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
+                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Marker)
                             );
                         InsertInTreeAnyway(xmlSourceField, report, scope);
                     }
@@ -153,7 +153,7 @@ namespace SolidGui.Processes
                                     SolidReport.EntryType.StructureInsertInInferredFailed,
                                     xmlEntry,
                                     xmlSourceField,
-                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Name)
+                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Marker)
                                     );
                                 InsertInTreeAnyway(xmlSourceField, report, scope);
                             }
@@ -171,14 +171,14 @@ namespace SolidGui.Processes
                             SolidReport.EntryType.StructureParentNotFoundForInferred,
                             xmlEntry,
                             inferredNode,
-                            String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Name)
+                            String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Marker)
                             );
                         // Error
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFound,
                             xmlEntry,
                             xmlSourceField,
-                            string.Format("Marker \\{0} could not be placed in structure", xmlSourceField.Name)
+                            string.Format("Marker \\{0} could not be placed in structure", xmlSourceField.Marker)
                             );
                         InsertInTreeAnyway(xmlSourceField, report, scope);
                     }
@@ -191,7 +191,7 @@ namespace SolidGui.Processes
                     SolidReport.EntryType.StructureParentNotFound,
                     xmlEntry,
                     xmlSourceField,
-                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", xmlSourceField.Name)
+                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", xmlSourceField.Marker)
                     );
                 InsertInTreeAnyway(xmlSourceField, report, scope);
             }

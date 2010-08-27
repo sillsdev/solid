@@ -9,28 +9,33 @@ namespace SolidGui.Model
     public class SfmFieldModel
     {
         private int _id;
-        private string _marker;
-        private string _value;
         private int _errorState;
-
+        private readonly List<SfmFieldModel> _children;
 
         public SfmFieldModel(string marker)
         {
             Marker = marker;
             Inferred = false;
+            _children = new List<SfmFieldModel>();
         }
 
 
         public SfmFieldModel(string markerNoSlash, string value, int depth, bool inferred, int id)
         {
-            _marker = markerNoSlash;
-            _value = value;
+            Marker = markerNoSlash;
+            Value = value;
             Depth = depth;
             Inferred = inferred;
             _id = id;
+            _children = new List<SfmFieldModel>();
         }
 
-        public IEnumerable ChildNodes;
+        public IEnumerable<SfmFieldModel> Children 
+        {
+            get { return _children;  }
+        }
+        
+        public SfmFieldModel Parent { get; set; }
         public int FieldId { get; private set; }
         public bool Inferred { get; set; }
         public string Field { get; set; }
@@ -38,22 +43,17 @@ namespace SolidGui.Model
         public string Marker { get; private set; }
         public string Mapping { get; set; }
 
-        public SfmFieldModel NextSibling
+        public SfmFieldModel NextSibling // TODO Remove this CP 2010-08
         {
             get { throw new NotImplementedException(); }
         }
 
-        public SfmFieldModel FirstChild
+        public SfmFieldModel FirstChild // TODO Remove this CP 2010-08
         {
             get { throw new NotImplementedException(); }
         }
 
-        public string Name
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public object Attributes
+        public object Attributes // TODO Remove this CP 2010-08
         {
             get { throw new NotImplementedException(); }
         }
@@ -67,7 +67,7 @@ namespace SolidGui.Model
 
 
 
-        public string ToStructuredString()
+        public string ToStructuredString() // TODO Move to UI Adapter CP 2010-08
         {
             int spacesInIndentation = 4;
                 
@@ -91,18 +91,15 @@ namespace SolidGui.Model
             get { return _id; }
         }
 
-     
-        public string Value
+        public string Value { get; set; }
+
+        public int Depth { get; set; }
+
+
+        private SfmFieldModel this[int i]
         {
-            get { return _value; }
-            set { _value = value; }
+            get { return _children[i]; }
         }
-
-        public int Depth { get; private set; }
-
-
-        
-    
     }
 
 

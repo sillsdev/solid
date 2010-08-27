@@ -45,7 +45,7 @@ namespace SolidGui.Engine
                 if (field != null)
                 {
                     _fieldID = field.FieldId;
-                    _marker = field.Name;
+                    _marker = field.Marker;
                 }
                 _description = description;
             }

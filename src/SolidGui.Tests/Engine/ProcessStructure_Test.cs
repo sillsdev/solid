@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
@@ -10,67 +12,108 @@ namespace SolidGui.Tests.Engine
     [TestFixture]
     public class ProcessStructureTest
     {
-        ProcessStructure _p;
-        SolidSettings _settings;
-
-        [SetUp]
-        public void Setup()
+        private class EnvironmentForTest : IDisposable
         {
-            _settings = new SolidSettings();
-            var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
-            var geSetting = _settings.FindOrCreateMarkerSetting("ge");
-            geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
-            var snSetting = _settings.FindOrCreateMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
-            var bbSetting = _settings.FindOrCreateMarkerSetting("bb");
-            bbSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
+            private readonly SolidSettings _settings;
 
-            var rfSetting = _settings.FindOrCreateMarkerSetting("rf");
-            rfSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleTogether));
-            rfSetting.InferedParent = "sn";
-            var xeSetting = _settings.FindOrCreateMarkerSetting("xe");
-            xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
-            xeSetting.InferedParent = "rf";
+            public void Dispose()
+            {
+            }
 
-            _p = new ProcessStructure(_settings);
+            public EnvironmentForTest()
+            {
+                _settings = new SolidSettings();
+                var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
+                lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
+                var geSetting = _settings.FindOrCreateMarkerSetting("ge");
+                geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+                var snSetting = _settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
+                var bbSetting = _settings.FindOrCreateMarkerSetting("bb");
+                bbSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
+
+                var rfSetting = _settings.FindOrCreateMarkerSetting("rf");
+                rfSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleTogether));
+                rfSetting.InferedParent = "sn";
+                var xeSetting = _settings.FindOrCreateMarkerSetting("xe");
+                xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
+                xeSetting.InferedParent = "rf";
+            }
+
+            public SolidSettings SettingsForTest
+            {
+                get { return _settings; }
+            }
+
+            public SolidReport CreateReportForTest()
+            {
+                return new SolidReport();
+            }
         }
 
-        [TearDown]
-        public void TearDown()
+        private static string ParentMarkerForField(SfmFieldModel field)
         {
+            return field.Parent.Marker;
+        }
+
+        private static string ChildMarkerForField(SfmFieldModel field, int n)
+        {
+            var list = new List<SfmFieldModel>(field.Children);
+            return list[n].Marker;
         }
 
         [Test]
-        public void InfersNodeForEverySeperateChildWhenChildCanAppearUnderParentOnce()
+        public void Multiplicity_WhenChildCanAppearUnderParentOnce_InfersNodeForEverySeperateChild()
         {
             const string sfmIn = @"
 \lx test1
 \cc fire
 \sn
-\cc foo
-\sn
-\cc bar";
+\cc foo";
+
+            //expecting:
+
+            /*
+             * \lx test1
+             *    \bb
+             *      \cc fire
+             *    \sn
+             *    \bb
+             *      \cc foo
+             *
+             */
+
             //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
 
-            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
-            
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+                
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
 
-            
-            var report = new SolidReport();
-            var result = _p.Process(entry, report);
-            
-            //string xmlOut = xmlResult.OuterXml;
-            //Assert.AreEqual(sfmEx, xmlOut);
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 2));
+            }
         }
 
         [Test]
-        public void InfersNodeForEveryChildTogetherWhenChildCanAppearUnderParentOnce()
+        public void MultiplicityOnce_WhenChildCanAppearUnderParentOnce_InfersNodeForEachChildTogether()
         {
             //const string xmlIn = @"<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
 
@@ -80,29 +123,51 @@ namespace SolidGui.Tests.Engine
 \cc foo
 \sn
 \cc bar";
-            
 
-            //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            //expecting:
 
+            /*
+             * \lx test2
+             *    \bb
+             *      \cc fire
+             *    \bb
+             *      \cc foo
+             *    \sn
+             *    \bb
+             *      \cc bar
+             * 
+             */
 
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+                //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.Once));
 
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
 
-            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
-            
-            var report = new SolidReport();
-            var result = _p.Process(entry, report);
-            
-            //string xmlOut = xmlResult.OuterXml;
-            //Assert.AreEqual(xmlEx, xmlOut);
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 1));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 2));
+
+            }
         }
 
         [Test]
-        public void InfersNodeForEverySeperateChildWhenChildCanAppearUnderParentMultipleTogether()
+        public void MultiplicityTogether_WhenChildCanAppearUnderParentMultipleTogether_InfersNodeForEverySeperateChild()
         {
             //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
 
@@ -113,55 +178,101 @@ namespace SolidGui.Tests.Engine
 \cc foo
 \sn
 \cc bar";
+
+            //expecting:
+
+            /*
+             * \lx test1
+             *    \bb
+             *      \cc fire
+             *    \sn
+             *    \bb
+             *      \cc foo
+             *    \sn
+             *    \bb
+             *      \cc bar
+             */
             
             //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
 
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
 
-            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+                
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
 
-            
-            var report = new SolidReport();
-            var result = _p.Process(entry, report);
-            
-            //string xmlOut = xmlResult.OuterXml;
-            //Assert.AreEqual(xmlEx, xmlOut);
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 2));
+            }
         }
 
         [Test]
-        public void InfersNodeOnceForEveryChildTogetherWhenChildCanAppearUnderParentMultipleTogether()
+        public void MultiplicityTogether_WhenChildCanAppearUnderParentMultipleTogether_InfersNodeOnceForEveryChildTogether()
         {
             const string sfmIn = @"
 \lx test2
 \cc fire
-\sn
 \cc foo
 \sn
 \cc bar";
 
+            //expecting:
+
+            /*
+             * \lx test2
+             *    \bb
+             *      \cc fire
+             *      \cc foo
+             *    \sn
+             *    \bb
+             *      \cc bar
+             */
 
             //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc></bb><sn><data /></sn><bb inferred=\"true\"><data /><cc><data>bar</data></cc></bb></lx></entry>";
+            using (var environment = new EnvironmentForTest())
+            {
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleTogether));
+                var settings = environment.SettingsForTest;
 
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb",
+                                                                             MultiplicityAdjacency.MultipleTogether));
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                entry = process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 2));
+            }
         }
 
         [Test]
-        public void InfersNodeOnceForAllChildrenSeperatedWhenChildCanAppearUnderParentMultipleApart()
+        public void MultiplicityApart_WhenChildCanAppearUnderParentMultipleApart_InfersNodeOnceForAllChildrenSeperated()
         {
             //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">test1</lx><cc>fire</cc><sn></sn><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
 
@@ -172,58 +283,101 @@ namespace SolidGui.Tests.Engine
 \cc foo
 \sn
 \cc bar";
-            
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><sn><data /></sn><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
+            //expecting:
 
-            var snSetting = _settings.FindOrCreateMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("bb",MultiplicityAdjacency.MultipleApart));
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+            /*
+             * \lx test1
+             *    \bb
+             *      \cc fire
+             *      \sn
+             *      \cc foo
+             *      \sn
+             *      \cc bar
+             */
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>test1</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><sn><data /></sn><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
+
+                var snSetting = settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("cc", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[1], 2));
+            }
         }
 
         [Test]
-        public void InfersNodeOnceForAllChildrenTogetherAndSeperatedWhenChildCanAppearUnderParentMultipleApart()
+        public void MultiplicityApart_WhenChildCanAppearUnderParentMultipleApart_InfersNodeOnceForAllChildrenTogetherAndSeperated()
         {
-
-
             //const string xmlIn = "<entry record=\"5\"><lx field=\"1\">test2</lx><cc>fire</cc><cc>foo</cc><sn></sn><cc>bar</cc></entry>";
-
 
             const string sfmIn = @"
 \lx test2
 \cc fire
-\sn
 \cc foo
 \sn
 \cc bar";
+
+            //expecting:
+
+            /*
+             * \lx test1
+             *    \bb
+             *      \cc fire
+             *      \cc foo
+             *      \sn
+             *      \cc bar
+             */
             
-            const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
+            //const string xmlEx = "<entry record=\"5\"><lx field=\"1\"><data>test2</data><bb inferred=\"true\"><data /><cc><data>fire</data></cc><cc><data>foo</data></cc><sn><data /></sn><cc><data>bar</data></cc></bb></lx></entry>";
 
-            var ccSetting = _settings.FindOrCreateMarkerSetting("cc");
-            ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
-            var snSetting = _settings.FindOrCreateMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
-            
-            Assert.IsNotNull(_settings.FindOrCreateMarkerSetting("cc"));
-            ccSetting.InferedParent = "bb";
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+                var snSetting = settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("bb", MultiplicityAdjacency.MultipleApart));
+
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("cc", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("sn", ChildMarkerForField(entry[1], 2));
+            }
         }
 
         [Test]
@@ -231,24 +385,42 @@ namespace SolidGui.Tests.Engine
         {
             //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><ge>g</ge></entry>";
 
-
             const string sfmIn = @"
 \lx a
 \ge g";
-            
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></entry>";
 
-            var setting =  _settings.FindOrCreateMarkerSetting("ge");
-            Assert.IsNotNull(setting);
-            setting.InferedParent = "sn";
+            //expecting:
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            /*
+             * \lx a
+             *    \sn
+             *      \ge g     
+             */
             
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><ge><data>g</data></ge></sn></lx></entry>";
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+
+                var setting = settings.FindOrCreateMarkerSetting("ge");
+                Assert.IsNotNull(setting);
+                setting.InferedParent = "sn";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                entry = process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+                
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("ge", ChildMarkerForField(entry[1], 1));
+
+            }
         }
 
         [Test]
@@ -260,20 +432,37 @@ namespace SolidGui.Tests.Engine
 \lx a
 \sn
 \ge g";
+            //expecting:
 
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></entry>";
+            /*
+             * \lx a
+             *    \sn
+             *      \ge g     
+             */
 
-            var setting = _settings.FindOrCreateMarkerSetting("ge");
-            Assert.IsNotNull(setting);
-            setting.InferedParent = "";
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn><data /><ge><data>g</data></ge></sn></lx></entry>";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
+                var setting = settings.FindOrCreateMarkerSetting("ge");
+                Assert.IsNotNull(setting);
+                setting.InferedParent = "";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("ge", ChildMarkerForField(entry[1], 1));
+
+            }
         }
 
         [Test]
@@ -284,20 +473,39 @@ namespace SolidGui.Tests.Engine
             const string sfmIn = @"
 \lx a
 \xe b";
+            //expecting:
+
+            /*
+             * \lx a
+             *    \sn
+             *      \rf
+             *        \xe b
+             */
+
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
             
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
-            var setting = _settings.FindOrCreateMarkerSetting("ge");
-            Assert.IsNotNull(setting);
-            setting.InferedParent = "";
+                var setting = settings.FindOrCreateMarkerSetting("ge");  // TODO create 'ge'?? no 'ge' in xml output
+                Assert.IsNotNull(setting);
+                setting.InferedParent = "";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
-            Assert.AreEqual(0, report.Count);
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+            }
 
         }
 
@@ -309,76 +517,101 @@ namespace SolidGui.Tests.Engine
             const string sfmIn = @"
 \lx a
 \ge g";
+
+            //expecting:
+
+            /*
+             * \lx a
+             *    \sn
+             *      \rf
+             *        \xe b
+             */
             
-            
-            
-            
+            // TODO which one is the corrent xmlEx?? using the const one
             //string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
 
-            _settings = new SolidSettings();
-            var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
-            var psSetting = _settings.FindOrCreateMarkerSetting("ps");
-            psSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
-            
-            var snSetting = _settings.FindOrCreateMarkerSetting("sn");
-            snSetting.StructureProperties.Add(new SolidStructureProperty("ps", MultiplicityAdjacency.MultipleApart));
-            snSetting.InferedParent = "";
-            
-            var rfSetting = _settings.FindOrCreateMarkerSetting("rf");
-            rfSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleTogether));
-            rfSetting.InferedParent = "sn";
-            
-            var xeSetting = _settings.FindOrCreateMarkerSetting("xe");
-            xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
-            xeSetting.InferedParent = "rf";
+                settings = new SolidSettings();
+                var lxSetting = settings.FindOrCreateMarkerSetting("lx");
+                lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
 
-            _p = new ProcessStructure(_settings);
-            
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
-            Assert.AreEqual(5, report.Count);
+                var psSetting = settings.FindOrCreateMarkerSetting("ps");
+                psSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
+
+                var snSetting = settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("ps", MultiplicityAdjacency.MultipleApart));
+                snSetting.InferedParent = "";
+
+                var rfSetting = settings.FindOrCreateMarkerSetting("rf");
+                rfSetting.StructureProperties.Add(new SolidStructureProperty("sn",
+                                                                             MultiplicityAdjacency.MultipleTogether));
+                rfSetting.InferedParent = "sn";
+
+                var xeSetting = settings.FindOrCreateMarkerSetting("xe");
+                xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
+                xeSetting.InferedParent = "rf";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+
+            }
         }
 
         [Test]
         public void ProcessStructure_ErrorRecordID145_RecordIDValid()
         {
-            const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><xe field=\"2\">b</xe></entry>";
 
             const string sfmIn = @"
 \lx a
 \ge g";
-            
-            
+
+            //expecting:
+
+            /*
+             * \lx a
+             *    \xe b
+             */
             
             //            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xe field=\"2\"><data>b</data></xe></lx></entry>";
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xe field=\"2\"><data>b</data></xe></lx></entry>";
 
-            _settings = new SolidSettings();
-            var lxSetting = _settings.FindOrCreateMarkerSetting("lx");
-            lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = new SolidSettings();
+                var lxSetting = settings.FindOrCreateMarkerSetting("lx");
+                lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
 
-            var xeSetting = _settings.FindOrCreateMarkerSetting("xe");
-            xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
-            xeSetting.InferedParent = "";
+                var xeSetting = settings.FindOrCreateMarkerSetting("xe");
+                xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
+                xeSetting.InferedParent = "";
 
-            _p = new ProcessStructure(_settings);
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
-            Assert.AreEqual(1, report.Count);
-            Assert.AreEqual(4, report.Entries[0].RecordID);
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
 
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+      
+                Assert.AreEqual("xe", ChildMarkerForField(entry[0], 0));
+         
+            }
         }
 
         [Test]
@@ -391,43 +624,75 @@ namespace SolidGui.Tests.Engine
 \sn
 \ge g
 \zz z";
-            
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
+            //expecting:
 
-            var setting = _settings.FindOrCreateMarkerSetting("ge");
-            Assert.IsNotNull(setting);
-            setting.InferedParent = "";
+            /*
+             * \lx a
+             *    \xe b
+             */
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+                var markerSettings = settings.FindOrCreateMarkerSetting("ge");
+                Assert.IsNotNull(markerSettings);
+                markerSettings.InferedParent = "";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+            }
 
         }
 
-        [Test]
+        [Test] // TODO this test does not have structure
         public void ProcessStructure_LiftMapping_Correct()
         {
             //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">b</lx></entry>";
 
             const string sfmIn = @"
 \lx b";
+
+            //expecting:
+
+            /*
+             * \lx b
+             */
             
             
-            const string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\" lift=\"a\" writingsystem=\"zxx\"><data>b</data></lx></entry>";
 
-            var setting = _settings.FindOrCreateMarkerSetting("lx");
-            Assert.IsNotNull(setting);
-            setting.Mappings[(int)SolidMarkerSetting.MappingType.Lift] = "a";
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+                var markerSetttings = settings.FindOrCreateMarkerSetting("lx");
+                Assert.IsNotNull(markerSetttings);
+                markerSetttings.Mappings[(int) SolidMarkerSetting.MappingType.Lift] = "a";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                //string xmlOut = xmlResult.OuterXml;
+                //Assert.AreEqual(xmlEx, xmlOut);
+
+            }
         }
 
 //        [Test]
@@ -458,15 +723,37 @@ namespace SolidGui.Tests.Engine
 \xx x
 \yy y
 \zz z";
-            
+
+            //expecting:
+
+            /*
+             * \lx a
+             *    \xx xx
+             *    \yy yy
+             *    \zz zz
+             */
+
             const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xx field=\"2\"><data>xx</data></xx><yy field=\"3\"><data>yy</data></yy><zz field=\"4\"><data>zz</data></zz></lx></entry>";
 
-            var entry = new XmlDocument();
-            entry.LoadXml(xmlIn);
-            var report = new SolidReport();
-            var xmlResult = _p.Process(entry.DocumentElement, report);
-            string xmlOut = xmlResult.OuterXml;
-            Assert.AreEqual(xmlEx, xmlOut);
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                process.Process(entry, report);
+
+                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+
+                Assert.AreEqual("xx", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual("yy", ChildMarkerForField(entry[0], 1));
+                Assert.AreEqual("zz", ChildMarkerForField(entry[0], 2));
+            }
         }
 
     }

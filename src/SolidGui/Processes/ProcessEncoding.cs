@@ -22,7 +22,7 @@ namespace SolidGui.Processes
             {
                 if (sfmField.FirstChild != null)
                 {
-                    SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sfmField.Name);
+                    SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sfmField.Marker);
                     string value = sfmField.FirstChild.Value;
                     if (setting.Unicode)
                     {
@@ -69,7 +69,7 @@ namespace SolidGui.Processes
                                     SolidReport.EntryType.EncodingBadUnicode,
                                     lexEntry,
                                     sfmField,
-                                    String.Format("Marker \\{0} contains bad unicode data", sfmField.Name)
+                                    String.Format("Marker \\{0} contains bad unicode data", sfmField.Marker)
                                     );
                             }
                         }
@@ -85,7 +85,7 @@ namespace SolidGui.Processes
                                     SolidReport.EntryType.EncodingUpperAscii,
                                     lexEntry,
                                     sfmField,
-                                    String.Format("Marker \\{0} may use a hacked font", sfmField.Name)
+                                    String.Format("Marker \\{0} may use a hacked font", sfmField.Marker)
                                     );
                                 break;
                             }

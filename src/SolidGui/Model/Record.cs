@@ -15,6 +15,7 @@ namespace SolidGui.Model
         private static int _recordIdCounter = 0;
 
         private SfmLexEntry _entry;
+        // TODO delegate this to SfmLexEntry CP 2010-08
         private List<SfmFieldModel> _fields = new List<SfmFieldModel>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
@@ -97,20 +98,14 @@ namespace SolidGui.Model
         public bool HasMarker(string marker)
         {
             return _fields.Find(
-                       delegate(SfmFieldModel f)
-                           {
-                               return f.Marker == marker;
-                           }
+                       f => f.Marker == marker
                        ) != null;
         }
 
         public bool IsMarkerNotEmpty(string marker)
         {
             return _fields.Find(
-                       delegate(SfmFieldModel f)
-                           {
-                               return f.Marker == marker && f.Value != string.Empty;
-                           }
+                       f => f.Marker == marker && f.Value != string.Empty
                        ) != null;
         }
 

@@ -20,10 +20,10 @@ namespace SolidGui.Tests
         {
             var r = CreateDefaultRecord();
             int fieldID = 0;
-            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             r.MoveField(r.Fields[2], 0);
             Assert.AreEqual("lx",r.Fields[0].Marker);
             Assert.AreEqual("bw", r.Fields[1].Marker);
@@ -36,10 +36,10 @@ namespace SolidGui.Tests
         {
             var r = CreateDefaultRecord();
             int fieldID = 0;
-            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             r.MoveField(r.Fields[2], 1);
             Assert.AreEqual("lx", r.Fields[0].Marker);
             Assert.AreEqual("ps", r.Fields[1].Marker);
@@ -52,10 +52,10 @@ namespace SolidGui.Tests
         {
             var r = CreateDefaultRecord();
             int fieldID = 0;
-            r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new Field("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             r.MoveField(r.Fields[1], 2);//move ps below bw
             Assert.AreEqual("lx", r.Fields[0].Marker);
             Assert.AreEqual("bw", r.Fields[1].Marker);
@@ -68,9 +68,9 @@ namespace SolidGui.Tests
         {
             var record = CreateDefaultRecord();
             int fieldID = 0;
-            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             Assert.AreEqual(3, record.Fields.Count);
             
         }
@@ -80,9 +80,9 @@ namespace SolidGui.Tests
         {
             var record = CreateDefaultRecord();
             int fieldID = 0;
-            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             Assert.IsTrue(record.HasMarker("lx"));   
         }
 
@@ -91,9 +91,9 @@ namespace SolidGui.Tests
         {
             var record = CreateDefaultRecord();
             int fieldID = 0;
-            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
             Assert.IsFalse(record.HasMarker(string.Empty));   
         }
     }

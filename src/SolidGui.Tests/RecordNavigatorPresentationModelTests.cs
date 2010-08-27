@@ -14,13 +14,12 @@ namespace SolidGui.Tests
         [SetUp]
         public void Setup()
         {
-            int recordID = 0;
             SfmDictionary dictionary = new SfmDictionary();
-            Record record = new Record(recordID++);
-            dictionary.AddRecord(new Record(recordID++));
-            dictionary.AddRecord(new Record(recordID++));
-            dictionary.AddRecord(new Record(recordID++));
-            dictionary.AddRecord(new Record(recordID++));
+            Record record = new Record();
+            dictionary.AddRecord(new Record());
+            dictionary.AddRecord(new Record());
+            dictionary.AddRecord(new Record());
+            dictionary.AddRecord(new Record());
             RecordFilter recordFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
             _navigator = new RecordNavigatorPM();
 

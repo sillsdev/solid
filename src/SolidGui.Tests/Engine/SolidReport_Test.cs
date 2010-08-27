@@ -30,10 +30,11 @@ namespace SolidGui.Tests.Engine
                 );
             Assert.AreEqual(1, r.Count);
         }
-
+        /*
         [Test]
         public void SolidReport_AddEntry_Correct()
         {
+            // TODO this test isn't high value.  Improve it. CP 2010-08
             const string xml = "<entry record=\"22\" startline=\"33\" endline=\"44\"><lx field=\"0\">a</lx><ge field=\"1\">b</ge></entry>";
             var entry = new XmlDocument();
             entry.LoadXml(xml);
@@ -53,6 +54,7 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("ge", reportEntry.Marker); 
             Assert.AreEqual("Test", reportEntry.Description); 
         }
+         */
 
         [Test, Ignore] //!!! TODO Streaming isn't working yet. But currently we don't need to save it anyway.
         public void SolidReport_SaveOpen_Correct()
