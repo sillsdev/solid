@@ -9,30 +9,16 @@ namespace SolidGui.Tests
     [TestFixture]
     public class RecordTests
     {
-        private Record _record;
-
-        [SetUp]
-        public void SetUp()
+        private static Record CreateDefaultRecord()
         {
-            _record = new Record(1);
-            int fieldID = 0;
-            _record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
-            _record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
-            _record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
- 
- 
+            return new Record();
         }
 
 
         [Test]
         public void MoveField_FieldIsBelowTarget_MovesAfterGivenIndex()
         {
-            var r = new Record(1);
+            var r = CreateDefaultRecord();
             int fieldID = 0;
             r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
             r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
@@ -48,7 +34,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveField_FieldIsAlreadyInPosition_DoesNotMove()
         {
-            var r = new Record(1);
+            var r = CreateDefaultRecord();
             int fieldID = 0;
             r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
             r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
@@ -64,7 +50,7 @@ namespace SolidGui.Tests
         [Test]
         public void MoveField_FieldHigherThanTarget_MovesAfterGivenIndex()
         {
-            var r = new Record(1);
+            var r = CreateDefaultRecord();
             int fieldID = 0;
             r.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
             r.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
@@ -80,20 +66,35 @@ namespace SolidGui.Tests
         [Test]
         public void FieldCountReturnsCorrectNumberOfFields()
         {
-            Assert.AreEqual(3, _record.Fields.Count);
+            var record = CreateDefaultRecord();
+            int fieldID = 0;
+            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            Assert.AreEqual(3, record.Fields.Count);
             
         }
 
         [Test]
         public void HasMarkerIndicateItHasCorrectMarker()
         {
-            Assert.IsTrue(_record.HasMarker("lx"));   
+            var record = CreateDefaultRecord();
+            int fieldID = 0;
+            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            Assert.IsTrue(record.HasMarker("lx"));   
         }
 
         [Test]
         public void HasMarkerIndicatesItDoesntHaveIncorrectMarker()
         {
-            Assert.IsFalse(_record.HasMarker(string.Empty));   
+            var record = CreateDefaultRecord();
+            int fieldID = 0;
+            record.Fields.Add(new Field("lx", "foo", 0, false, fieldID++));
+            record.Fields.Add(new Field("ps", "noun", 0, false, fieldID++));
+            record.Fields.Add(new Field("ge", "bar", 0, false, fieldID++));
+            Assert.IsFalse(record.HasMarker(string.Empty));   
         }
     }
 }
