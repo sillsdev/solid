@@ -14,9 +14,6 @@ namespace SolidGui.Model
     {
         private static int _recordIdCounter = 0;
 
-        private SfmLexEntry _entry;
-        // TODO delegate this to SfmLexEntry CP 2010-08
-        private List<SfmFieldModel> _fields = new List<SfmFieldModel>();
         private int _recordID = -1;
         public static event EventHandler RecordTextChanged;
         private SolidReport _report;
@@ -26,8 +23,8 @@ namespace SolidGui.Model
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof (Record)) return false;
-            return Equals((Record) obj);
+            if (obj.GetType() != typeof(Record)) return false;
+            return Equals((Record)obj);
         }
 
         public int ID
@@ -63,69 +60,45 @@ namespace SolidGui.Model
 
         public SolidReport Report
         {
-            set{ _report = value; }
+            set { _report = value; }
             get { return _report; }
-        }
-
-        private void ReadField(XmlNode entry, int depth, SolidReport report)
-        {
-            XmlHelper x = new XmlHelper(entry);
-            string s;
-            bool isInferred = x.GetAttribute("inferred") == "true";
-            s = x.GetAttribute("field");
-            int fieldID = (s != string.Empty) ? Convert.ToInt32(s) : 0;
-            foreach (XmlNode xmlChild in entry.ChildNodes)
-            {
-                if (xmlChild.Name == "data")
-                {
-                    SfmFieldModel field = new SfmFieldModel(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
-                    SolidReport.Entry reportEntry = report.GetEntryById(field.Id);
-                    field.ErrorState = (reportEntry != null) ? 1 : 0;
-                    _fields.Add(field);
-                }
-                else
-                {
-                    ReadField(xmlChild, depth + 1, report);
-                }
-            }
         }
 
         public List<SfmFieldModel> Fields
         {
-            get { return _fields; }
+            get { return LexEntry.Fields; }
         }
 
         public bool HasMarker(string marker)
         {
-            return _fields.Find(
-                       f => f.Marker == marker
-                       ) != null;
+            return LexEntry.HasMarker(marker);
         }
 
         public bool IsMarkerNotEmpty(string marker)
         {
-            return _fields.Find(
-                       f => f.Marker == marker && f.Value != string.Empty
-                       ) != null;
+            return LexEntry.IsMarkerNotEmpty(marker);
         }
 
         public string GetField(int id)
         {
-            SfmFieldModel field = _fields.Find(delegate(SfmFieldModel aField) { return aField.Id == id; });
-            return field.ToString();
+            return LexEntry.GetField(id);
         }
 
         public SfmFieldModel GetFirstFieldWithMarker(string marker)
         {
-            return _fields.FirstOrDefault(f=> f.Marker == marker);
+            return LexEntry.GetFirstFieldWithMarker(marker);
         }
 
+        
+
+        
+        // dont move to SfmLexEntry
         public void SetFieldValue(int id, string value)
         {
-            if(_fields[id].Value != value)
+            if(LexEntry.Fields[id].Value != value)
             {
-                _fields[id].Value = value;
-                if(RecordTextChanged != null)
+                LexEntry.Fields[id].Value = value;
+                if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
         }
@@ -159,11 +132,11 @@ namespace SolidGui.Model
             get { return ToString(); }
         }
 
-        //!!! Shouldn't be used ???
+        //!!! Shouldn't be used ??? // TODO Move to SearchPM? CP 2010-08
         public string ToStructuredString()
         {
             StringBuilder record = new StringBuilder();
-            foreach (SfmFieldModel field in _fields)
+            foreach (SfmFieldModel field in LexEntry.Fields)
             {
                 record.Append(field.ToStructuredString() + "\n");
             }
@@ -178,63 +151,31 @@ namespace SolidGui.Model
 
         public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
-            _entry = SfmLexEntry.CreateFromText(setToText);
+            LexEntry = SfmLexEntry.CreateFromText(setToText);
             var report = new SolidReport();
             IProcess process = new ProcessStructure(solidSettings);
-            var xmlResult = process.Process(_entry, report);
+            var xmlResult = process.Process(LexEntry, report);
 
             Report = report;
         }
 
-        public void AddMarkerStatistics(Dictionary<string, int> frequencies, Dictionary<string, int> errorCount)
-        {
-            foreach (SfmFieldModel field in _fields)
-            {
-                if (!frequencies.ContainsKey(field.Marker))
-                {
-                    frequencies.Add(field.Marker, 0);
-                    errorCount.Add(field.Marker, 0);
-                }
-                
-                frequencies[field.Marker] += 1;
-                
-                if(field.ErrorState > 0)
-                {
-                    errorCount[field.Marker] += 1;    
-                }
-            }
-        }
-
         public void MoveField(SfmFieldModel field, int after)
         {
-            int from = _fields.IndexOf(field);
-            _fields.RemoveAt(from);
-            if (from > after)
-            {
-                _fields.Insert(after + 1, field);               
-            }
-            else
-            {
-                _fields.Insert(after, field);               
-            }
+            LexEntry.MoveField(field, after);
         }
 
         public void RemoveField(int index)
         {
-            if(index == 0)
-                throw new ApplicationException("Cannot remove the first field, which is the record marker");
+            LexEntry.RemoveField(index);
 
-            if(index < 0 || index >= _fields.Count)
-                throw new ArgumentOutOfRangeException(string.Format("RemoveField({0}) was asked to remove an index which is out of range", index));
-
-            _fields.RemoveAt(index);
         }
 
         public void InsertFieldAt(SfmFieldModel field, int indexForThisField)
         {
-            _fields.Insert(indexForThisField,field);
+            LexEntry.InsertFieldAt(field, indexForThisField);
         }
 
+        
         public bool Equals(Record obj)
         {
             if (ReferenceEquals(null, obj)) return false;

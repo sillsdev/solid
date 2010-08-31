@@ -14,7 +14,7 @@ namespace SolidGui.Processes
             _settings = settings;
         }
 
-        private static void InsertInTreeAnyway(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope)
+        private static void InsertInTreeAnyway(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
         {
             int level = 1;
             int i = scope.Count - level;
@@ -34,11 +34,12 @@ namespace SolidGui.Processes
 
             TruncateScope(i, scope);
             // Add the node under scope[i]
-            SfmFieldModel n = scope[i].AppendChild(source);
-            scope.Add(n);
+            scope[i].AppendChild(source);
+            scope.Add(source);
+            outputEntry.AppendField(source);
         }
 
-        private bool InsertInTree(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope)
+        private bool InsertInTree(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
         {
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Marker);
@@ -81,8 +82,9 @@ namespace SolidGui.Processes
             if(foundParent)
             {
                 // Add the node under this parent
-                SfmFieldModel fieldNodeInTree = scope[i].AppendChild(source);
-                UpdateScope(scope, i, fieldNodeInTree);
+                scope[i].AppendChild(source);
+                UpdateScope(scope, i, source);
+                outputEntry.AppendField(source);
             }
             
             return foundParent;
@@ -102,11 +104,11 @@ namespace SolidGui.Processes
             }
         }
 
-        private bool InferNode(SfmLexEntry xmlEntry, SfmFieldModel xmlSourceField, SolidReport report, List<SfmFieldModel> scope, ref int recurseCount)
+        private bool InferNode(SfmFieldModel sourceField, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry, ref int recurseCount)
         {
             // Can we infer a node.
             bool retval = false;
-            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(xmlSourceField.Marker);
+            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sourceField.Marker);
             if (setting.InferedParent != String.Empty)
             {
                 var inferredNode = new SfmFieldModel(setting.InferedParent);
@@ -114,10 +116,10 @@ namespace SolidGui.Processes
 
                 // Attempt to insert the inferred node in the tree.
                 // The inferred node needs to find a valid parent
-                if (InsertInTree(inferredNode, report, scope))
+                if (InsertInTree(inferredNode, report, scope, outputEntry))
                 {
                     // Now try and add the current node under the inferred node.
-                    if (InsertInTree(xmlSourceField, report, scope))
+                    if (InsertInTree(sourceField, report, scope, outputEntry))
                     {
                         retval = true;
                     }
@@ -127,21 +129,21 @@ namespace SolidGui.Processes
                         // Error.
                         report.AddEntry(
                             SolidReport.EntryType.StructureInsertInInferredFailed,
-                            xmlEntry,
-                            xmlSourceField,
-                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Marker)
+                            outputEntry,
+                            sourceField,
+                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
                             );
-                        InsertInTreeAnyway(xmlSourceField, report, scope);
+                        InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                     }
                 }
                 else
                 {
                     if (recurseCount < 10)
                     {
-                        if (InferNode(xmlEntry, inferredNode, report, scope, ref recurseCount))
+                        if (InferNode(inferredNode, report, scope, outputEntry, ref recurseCount))
                         {
                             // Now try and add the current node under the inferred node.
-                            if (InsertInTree(xmlSourceField, report, scope))
+                            if (InsertInTree(sourceField, report, scope, outputEntry))
                             {
                                 retval = true;
                             }
@@ -151,11 +153,11 @@ namespace SolidGui.Processes
                                 // Error.
                                 report.AddEntry(
                                     SolidReport.EntryType.StructureInsertInInferredFailed,
-                                    xmlEntry,
-                                    xmlSourceField,
-                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, xmlSourceField.Marker)
+                                    outputEntry,
+                                    sourceField,
+                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
                                     );
-                                InsertInTreeAnyway(xmlSourceField, report, scope);
+                                InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                             }
                         }
                         // No else required, the InferNode puts the entries in the tree.
@@ -169,18 +171,18 @@ namespace SolidGui.Processes
                         // Error.
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFoundForInferred,
-                            xmlEntry,
+                            outputEntry,
                             inferredNode,
                             String.Format("Inferred marker \\{0} could not be placed in structure.", inferredNode.Marker)
                             );
                         // Error
                         report.AddEntry(
                             SolidReport.EntryType.StructureParentNotFound,
-                            xmlEntry,
-                            xmlSourceField,
-                            string.Format("Marker \\{0} could not be placed in structure", xmlSourceField.Marker)
+                            outputEntry,
+                            sourceField,
+                            string.Format("Marker \\{0} could not be placed in structure", sourceField.Marker)
                             );
-                        InsertInTreeAnyway(xmlSourceField, report, scope);
+                        InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                     }
                 }
             }
@@ -189,11 +191,11 @@ namespace SolidGui.Processes
                 // Error
                 report.AddEntry(
                     SolidReport.EntryType.StructureParentNotFound,
-                    xmlEntry,
-                    xmlSourceField,
-                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", xmlSourceField.Marker)
+                    outputEntry,
+                    sourceField,
+                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", sourceField.Marker)
                     );
-                InsertInTreeAnyway(xmlSourceField, report, scope);
+                InsertInTreeAnyway(sourceField, report, scope, outputEntry);
             }
             return retval;
         }
@@ -202,18 +204,22 @@ namespace SolidGui.Processes
         {
             // Iterate through each (flat) node in the src d
             var scope = new List<SfmFieldModel>();
-            scope.Add(lexEntry.FirstChild/* The lx field */); 
-            SfmFieldModel sfmField = lexEntry.FirstChild;
-            while (sfmField != null)
+            scope.Add(lexEntry.FirstField/* The lx field */);
+            var outputEntry = SfmLexEntry.CreateDefault(lexEntry.FirstField);
+            foreach (var sfmField in lexEntry.Fields)
             {
-                if (!InsertInTree(sfmField, report, scope))
+                if(sfmField != lexEntry.FirstField)
                 {
-                    int recurseCount = 0;
-                    InferNode(lexEntry, sfmField, report, scope, ref recurseCount);
+                    if (!InsertInTree(sfmField, report, scope, outputEntry))
+                    {
+                        int recurseCount = 0;
+                        InferNode(sfmField, report, scope, outputEntry, ref recurseCount);
+                    }
                 }
-                sfmField = sfmField.NextSibling;
+
+                
             }
-            return lexEntry;
+            return outputEntry;
         }
     }
 

@@ -71,9 +71,7 @@ namespace SolidGui.Tests.Engine
         public void UpperAsciiDataAsNonUnicode_ReportError()
         {
             //const string xmlIn = "<entry><lx>1</lx><ge>\xA9\xA9</ge></entry>";
-            const string sfmIn = @"
-\lx 1
-\ge \xA9\xA9";
+            const string sfmIn = "\\lx 1\n\\ge \xA9\xA9";
             
             SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
 
@@ -89,9 +87,7 @@ namespace SolidGui.Tests.Engine
         public void UpperAsciiDataAsUnicode_Correct()
         {
             //const string xmlIn = "<entry><lx>1</lx><gu>\xC2\xA9\xC2\xA9</gu></entry>";
-            const string sfmIn = @"
-\lx 1
-\gu \xC2\xA9\xC2\xA9";
+            const string sfmIn = "\\lx 1\n\\gu \xC2\xA9\xC2\xA9";
 
             SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
            
@@ -105,9 +101,7 @@ namespace SolidGui.Tests.Engine
         public void BadUnicode_ReportError()
         {
             //const string xmlIn = "<entry><lx>1</lx><gu>abc \xA9\xA9\xA9</gu></entry>";
-            const string sfmIn = @"
-\lx 1
-\gu abc \xA9\xA9\xA9";
+            const string sfmIn = "\\lx 1\n\\gu abc \xA9\xA9\xA9";
 
             SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
             var report = new SolidReport();

@@ -27,7 +27,7 @@ namespace SolidGui.Tests.Export
                 string outputFilePath = String.Format("{0}{1}.lift", tempPath, Path.GetFileNameWithoutExtension(srcFilePath));
                 var exporter = factory.CreateFromFileFilter("LIFT (*.lift)|*.lift");
                 exporter.Export(srcFilePath, outputFilePath);
-                Assert.DoAssert(new ExportTestAsserter(srcFilePath, outputFilePath));
+                Assert.That(outputFilePath, Has.Some.Matches(new ExportTestConstraint(srcFilePath)));
             }
         }
 

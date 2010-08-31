@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -6,7 +8,7 @@ using SolidGui.Engine;
 
 namespace SolidGui.Engine
 {
-    public class SfmRecordReader
+    public class SfmRecordReader : IDisposable
     {
         enum StateLex
         {
@@ -42,8 +44,8 @@ namespace SolidGui.Engine
         private int _used;
 
         // Reading state
-        public int _line = 1; //!!! These should be private
-        public int _col = 1;
+        private int _line = 1;
+        private int _col = 1;
         private int _backslashCount = 0;
 
         private int _bufferSize = 4096;
@@ -99,39 +101,13 @@ namespace SolidGui.Engine
         #endregion
 
         #region Constructors
-        public SfmRecordReader(Uri location, string proxy)
-        {
-            _buffer = new char[_bufferSize];
-            if (location.IsFile)
-            {
-                _r = new StreamReader(location.LocalPath, _encoding, false);
-            }
-            else
-            {
-                WebRequest wr = WebRequest.Create(location);
-                if (proxy != null && proxy != "")
-                {
-                    wr.Proxy = new WebProxy(proxy);
-                }
-                wr.Credentials = CredentialCache.DefaultCredentials;
-                Stream stm = wr.GetResponse().GetResponseStream();
-                _r = new StreamReader(stm, _encoding, false);
-            }
-        }
-
-        public SfmRecordReader(Stream stream)
-        {
-            _r = new StreamReader(stream, _encoding, false);
-            _buffer = new char[_bufferSize];
-        }
-
-        public SfmRecordReader(TextReader stream)
+        private SfmRecordReader(TextReader stream)
         {  // the location of the file
             _r = stream;
             _buffer = new char[_bufferSize];
         }
 
-        public SfmRecordReader(string filePath)
+        private SfmRecordReader(string filePath)
         {  // the location of the file
             _r = new StreamReader(filePath, _encoding, false);
             _buffer = new char[_bufferSize];
@@ -336,6 +312,12 @@ namespace SolidGui.Engine
             }
         }
 
+        public IEnumerable<SfmField> Fields
+        {
+            //get { throw new NotImplementedException(); }
+            get { return _record; }
+        }
+
         public SfmField Field(int i)
         {
             return _record[i];
@@ -376,5 +358,20 @@ namespace SolidGui.Engine
             return _buffer[_pos++];
         }
 
+        public static SfmRecordReader CreateFromText(string text)
+        {
+            var stream = new StringReader(text);
+            return new SfmRecordReader(stream);
+        }
+
+        public static SfmRecordReader CreateFromFilePath(string filePath)
+        {
+            return new SfmRecordReader(filePath);
+        }
+
+        public void Dispose()
+        {
+            _r.Dispose();
+        }
     }
 }

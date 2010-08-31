@@ -11,26 +11,30 @@ namespace SolidGui.Model
         private int _id;
         private int _errorState;
         private readonly List<SfmFieldModel> _children;
+        private static int _fieldId = 0;
+        
 
-        public SfmFieldModel(string marker)
+        public SfmFieldModel(string marker) :
+            this(marker, "")
         {
-            Marker = marker;
-            Inferred = false;
-            _children = new List<SfmFieldModel>();
         }
 
+        public SfmFieldModel(string marker, string value) :
+            this(marker, value, 0, false)
+        {
+        }
 
-        public SfmFieldModel(string markerNoSlash, string value, int depth, bool inferred, int id)
+        public SfmFieldModel(string markerNoSlash, string value, int depth, bool inferred)
         {
             Marker = markerNoSlash;
             Value = value;
             Depth = depth;
             Inferred = inferred;
-            _id = id;
+            _id = _fieldId++;
             _children = new List<SfmFieldModel>();
         }
 
-        public IEnumerable<SfmFieldModel> Children 
+        public List<SfmFieldModel> Children 
         {
             get { return _children;  }
         }
@@ -43,27 +47,15 @@ namespace SolidGui.Model
         public string Marker { get; private set; }
         public string Mapping { get; set; }
 
-        public SfmFieldModel NextSibling // TODO Remove this CP 2010-08
-        {
-            get { throw new NotImplementedException(); }
-        }
 
-        public SfmFieldModel FirstChild // TODO Remove this CP 2010-08
-        {
-            get { throw new NotImplementedException(); }
-        }
 
-        public object Attributes // TODO Remove this CP 2010-08
+        public void AppendChild(SfmFieldModel node)
         {
-            get { throw new NotImplementedException(); }
+            node.Parent = this;
+            _children.Add(node);
         }
 
         
-
-        public SfmFieldModel AppendChild(SfmFieldModel node)
-        {
-            throw new NotImplementedException();
-        }
 
 
 
@@ -96,7 +88,7 @@ namespace SolidGui.Model
         public int Depth { get; set; }
 
 
-        private SfmFieldModel this[int i]
+        public SfmFieldModel this[int i]
         {
             get { return _children[i]; }
         }

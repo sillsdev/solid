@@ -43,6 +43,14 @@ namespace SolidGui.Tests.Model
             Assert.AreEqual("aa", ChildMarkerForField(field, 0));
         }
 
+        [Test]
+        public void AppendChild_AddChild_ParentCorrect()
+        {
+            var field = CreateFieldForTest();
+            field.AppendChild(new SfmFieldModel("aa"));
+            Assert.AreEqual("zz", ParentMarkerForField(field.Children[0]));
+
+        }
         private static SfmFieldModel CreateFieldForTest()
         {
             return new SfmFieldModel("zz");

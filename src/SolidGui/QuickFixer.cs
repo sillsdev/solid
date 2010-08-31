@@ -178,7 +178,7 @@ namespace Solid.Engine
                     {
                         if(fieldToCopy !=null)
                         {
-                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1 /*review*/);
+                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
                             record.InsertFieldAt(f, i); 
                             ++i;//skip the next line, since not is is preceded by this field
                         }
@@ -275,7 +275,7 @@ namespace Solid.Engine
                             log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
                             foreach (var headword in parts)
                             {
-                                var f = new SfmFieldModel(field.Marker, headword, field.Depth, false, -1 /*review*/);
+                                var f = new SfmFieldModel(field.Marker, headword, field.Depth, false);
                                 record.InsertFieldAt(f, i);
                             }
                         }
@@ -372,8 +372,7 @@ namespace Solid.Engine
                         {
                             if (!LevelHasMarker(record, i, "ps", "sn"))
                             {
-                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1
-                                    /*review*/);
+                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
                                 record.InsertFieldAt(f, i+1);
                                 ++i;//skip over what we just inserted
                                 sensesEffected++;

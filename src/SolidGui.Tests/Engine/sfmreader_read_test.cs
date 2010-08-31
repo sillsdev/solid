@@ -8,6 +8,7 @@ namespace SolidGui.Tests.Engine
     [TestFixture]
     public class SfmReader_Read_Test
     {
+
         [TestFixtureSetUp]
         public void Init()
         {
@@ -17,7 +18,7 @@ namespace SolidGui.Tests.Engine
         public void EmptySFM_HeaderCount_0()
         {
             const string sfm = @"";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(false, result);
             Assert.AreEqual(0, r.Header.Count);
@@ -28,7 +29,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                                "\\_DateStampHasFourDigitYear\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(false, result);
             Assert.AreEqual(2, r.Header.Count);
@@ -42,7 +43,7 @@ namespace SolidGui.Tests.Engine
         public void EmptySFMRecordRead_False()
         {
             const string sfm = @"";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(false, result);
         }
@@ -52,7 +53,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                                "\\_DateStampHasFourDigitYear\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(false, result);
         }
@@ -62,7 +63,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "\\ge b\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -76,7 +77,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx\ta\n" +
                                "\\ge\tb\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -90,7 +91,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "\\ge\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -105,7 +106,7 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\lx a\n" +
                                "\\\n" +
                                "\\ge b";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -120,7 +121,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "  \\ge b\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             r.AllowLeadingWhiteSpace = true;
             bool result = r.Read();
             Assert.IsTrue(result);
@@ -135,7 +136,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "\\ge \\b\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.IsTrue(result);
             Assert.AreEqual(0, r.Header.Count);
@@ -149,7 +150,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "\\ge b\nc";
-            var r = new SfmRecordReader (new StringReader (sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read ();
             Assert.IsTrue (result);
             Assert.AreEqual (0, r.Header.Count);
@@ -164,7 +165,7 @@ namespace SolidGui.Tests.Engine
                                "\\_DateStampHasFourDigitYear\n" +
                                "\\lx a\n" +
                                "\\ge b\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(true, result);
             return r;
@@ -178,7 +179,7 @@ namespace SolidGui.Tests.Engine
                                "\\ge b\n" +
                                "\\lx c\n" +
                                "\\gn d\n";
-            var r = new SfmRecordReader(new StringReader(sfm));
+            var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.Read();
             Assert.AreEqual(true, result);
             return r;
@@ -246,6 +247,20 @@ namespace SolidGui.Tests.Engine
             bool result = r.Read();
             Assert.IsTrue(result); // Should be for two records.
             Assert.AreEqual(1, r.RecordID);
+        }
+
+        [Test]
+        public void CreateFromFilePath_ExistingFile_ReadsOk()
+        {
+            // string sfm = "some valid sfm string"
+            // write to temp file
+            //using (var e = new EnvironmentForTest())
+            //{
+            //    var reader = SfmRecordReader.CreateFromFilePath(e.TempFilePath);
+                // Do some Assert.areequal checks
+                Assert.Fail();
+                
+            //}
         }
 
     }

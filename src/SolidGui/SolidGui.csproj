@@ -103,7 +103,6 @@
     <Compile Include="Processes\ProcessStructure.cs" />
     <Compile Include="Engine\SfmRecord.cs" />
     <Compile Include="Engine\SfmRecordReader.cs" />
-    <Compile Include="Engine\sfmxmlreader.cs" />
     <Compile Include="Engine\SolidMarkerSetting.cs" />
     <Compile Include="Engine\SolidReport.cs" />
     <Compile Include="Engine\SolidSettings.cs" />

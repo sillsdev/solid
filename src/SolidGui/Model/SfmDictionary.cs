@@ -155,9 +155,29 @@ namespace SolidGui.Model
         {
 //            _recordList.Add(new Record(entry, report));
             Record record = Record.CreateRecordFromSfmLexEntry(entry, report);
-            record.AddMarkerStatistics(_markerFrequencies, _markerErrors);
+            UpdateMarkerStatistics(record);
             _recordList.Add(record);
         }
+
+        private void UpdateMarkerStatistics(Record record)
+        {
+            foreach (SfmFieldModel field in record.Fields)
+            {
+                if (!_markerFrequencies.ContainsKey(field.Marker))
+                {
+                    _markerFrequencies.Add(field.Marker, 0);
+                    _markerErrors.Add(field.Marker, 0);
+                }
+
+                _markerFrequencies[field.Marker] += 1;
+
+                if (field.ErrorState > 0)
+                {
+                    _markerErrors[field.Marker] += 1;
+                }
+            }
+        }
+
 
         public void AddRecord(Record record)
         {
@@ -176,28 +196,35 @@ namespace SolidGui.Model
             ProgressState progressState = (ProgressState)args.Argument;
             DictionaryOpenArguments openArguments = (DictionaryOpenArguments)progressState.Arguments;
             openArguments.filterSet.BeginBuild(this);
-           
-            var sfmDataSet = new SfmDataSet();
+
+            var sfmDataSet = new SfmDictionary();//SfmDataSet();
 
            
-            progressState.TotalNumberOfSteps = sfmDataSet.NumberOfEntries;
+            progressState.TotalNumberOfSteps = sfmDataSet.Count;
             progressState.NumberOfStepsCompleted = 1;
             
+            ReadDictionary(progressState, openArguments, sfmDataSet);
+
+            openArguments.filterSet.EndBuild();
+        }
+
+        private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments, SfmDictionary sfmDataSet)
+        {
             List<IProcess> processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.solidSettings));
             processes.Add(new ProcessStructure(openArguments.solidSettings));
 
-           
-                
-                foreach (SfmLexEntry entry in sfmDataSet)
+            using (var reader = SfmRecordReader.CreateFromFilePath(_filePath))
+            {
+                while (reader.Read())
                 {
-                    progressState.NumberOfStepsCompleted += 1;
-                   
-                    SolidReport recordReport = new SolidReport();
-                    SfmLexEntry lexEntry = entry;
+                    progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08 
+
+                    var lexEntry = SfmLexEntry.CreateFromReader(reader);
+                    var recordReport = new SolidReport();
                     foreach (IProcess process in processes)
                     {
-                        lexEntry = process.Process(lexEntry, recordReport);
+                        process.Process(lexEntry, recordReport);
                     }
                     //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
                     AddRecord(lexEntry, recordReport);
@@ -205,10 +232,8 @@ namespace SolidGui.Model
                     {
                         openArguments.filterSet.AddRecord(Count - 1, recordReport);
                     }
-                    //!!!_recordFilters.AddRecord(report);
                 }
-            
-            openArguments.filterSet.EndBuild();
+            }
         }
 
         public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)

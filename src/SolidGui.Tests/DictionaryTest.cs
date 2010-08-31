@@ -61,7 +61,7 @@ namespace SolidGui.Tests
             _dictionary.Open(_dictionaryPath, _settings, new RecordFilterSet());
             int markerCount = 0;
 
-            foreach (var  storedMarker in _dictionary.AllMarkers)
+            foreach (var storedMarker in _dictionary.AllMarkers)
             {
                     markerCount++;
                     Assert.IsTrue(_markers.Contains(storedMarker));

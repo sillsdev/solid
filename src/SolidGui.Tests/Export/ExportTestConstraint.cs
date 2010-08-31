@@ -1,58 +1,52 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using NUnit.Framework;
+using System.Text;
+using NUnit.Framework.Constraints;
 
 namespace SolidGui.Tests.Export
 {
-    public class ExportTestAsserter : IAsserter
+    public class ExportTestConstraint : NUnit.Framework.Constraints.Constraint
     {
-        private readonly string _srcFilePath;
-        private readonly string _desFilePath;
-
+        private string _srcFilePath;
         private string _message;
+        private string _line;
+        private string _srcLine;
 
-        public string Message
+        public ExportTestConstraint(string filePath)
         {
-            get { return _message; }
+            _srcFilePath = filePath;
         }
 
-        public ExportTestAsserter(string srcFilePath, string desFilePath)
+        public override bool Matches(object actual)
         {
-            _srcFilePath = srcFilePath;
-            _desFilePath = desFilePath;
-            _message = string.Empty;
-        }
-
-        /// <summary>
-        /// called by nunit DoAssert()
-        /// </summary>
-        /// <returns></returns>
-        public bool Test()
-        {
+            string desFilePath = actual as String;
             Console.WriteLine("Testing {0:s}", _srcFilePath);
             bool retval = true;
-            TextReader exportFile = new StreamReader(_desFilePath);
+            TextReader exportFile = new StreamReader(desFilePath);
             string masterFilePath = Path.ChangeExtension(_srcFilePath, ".tmpl");
             try
             {
                 TextReader masterFile = new StreamReader(masterFilePath);
-                string srcLine;
+                
                 int lineCount = 0;
-                while ((srcLine = exportFile.ReadLine()) != null)
+                while ((_srcLine = exportFile.ReadLine()) != null)
                 {
                     lineCount++;
-                    string line = masterFile.ReadLine();
-                    if (line == null)
+                    _line = masterFile.ReadLine();
+                    if (_line == null)
                     {
                         _message = string.Format("null fail");
                         retval = false;
                         break;
                     }
-                    if (line != srcLine)
+                    
+
+                    if (_line != _srcLine)
                     {
                         _message = string.Format(
-                            "\n{0:s}\n\tFile compare fail in line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
-                            _srcFilePath, line, srcLine, lineCount
+                            "\n{0:s}\n\tFile compare fail in _line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
+                            _srcFilePath, _line, _srcLine, lineCount
                             );
                         retval = false;
                         break;
@@ -69,5 +63,9 @@ namespace SolidGui.Tests.Export
             return retval;
         }
 
-    };
+        public override void WriteDescriptionTo(MessageWriter writer)
+        {
+            writer.DisplayStringDifferences(_line, _srcLine, 0, false, true);
+        }
+    }
 }

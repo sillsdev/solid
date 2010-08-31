@@ -19,11 +19,10 @@ namespace SolidGui.Tests
         public void MoveField_FieldIsBelowTarget_MovesAfterGivenIndex()
         {
             var r = CreateDefaultRecord();
-            int fieldID = 0;
-            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             r.MoveField(r.Fields[2], 0);
             Assert.AreEqual("lx",r.Fields[0].Marker);
             Assert.AreEqual("bw", r.Fields[1].Marker);
@@ -35,11 +34,10 @@ namespace SolidGui.Tests
         public void MoveField_FieldIsAlreadyInPosition_DoesNotMove()
         {
             var r = CreateDefaultRecord();
-            int fieldID = 0;
-            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             r.MoveField(r.Fields[2], 1);
             Assert.AreEqual("lx", r.Fields[0].Marker);
             Assert.AreEqual("ps", r.Fields[1].Marker);
@@ -51,11 +49,10 @@ namespace SolidGui.Tests
         public void MoveField_FieldHigherThanTarget_MovesAfterGivenIndex()
         {
             var r = CreateDefaultRecord();
-            int fieldID = 0;
-            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false, fieldID++));
-            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            r.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            r.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            r.Fields.Add(new SfmFieldModel("bw", "bar", 0, false));
+            r.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             r.MoveField(r.Fields[1], 2);//move ps below bw
             Assert.AreEqual("lx", r.Fields[0].Marker);
             Assert.AreEqual("bw", r.Fields[1].Marker);
@@ -67,10 +64,9 @@ namespace SolidGui.Tests
         public void FieldCountReturnsCorrectNumberOfFields()
         {
             var record = CreateDefaultRecord();
-            int fieldID = 0;
-            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             Assert.AreEqual(3, record.Fields.Count);
             
         }
@@ -79,10 +75,9 @@ namespace SolidGui.Tests
         public void HasMarkerIndicateItHasCorrectMarker()
         {
             var record = CreateDefaultRecord();
-            int fieldID = 0;
-            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             Assert.IsTrue(record.HasMarker("lx"));   
         }
 
@@ -90,10 +85,9 @@ namespace SolidGui.Tests
         public void HasMarkerIndicatesItDoesntHaveIncorrectMarker()
         {
             var record = CreateDefaultRecord();
-            int fieldID = 0;
-            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false, fieldID++));
-            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false, fieldID++));
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
             Assert.IsFalse(record.HasMarker(string.Empty));   
         }
     }
