@@ -34,12 +34,26 @@ namespace SolidGui.Processes
 
             TruncateScope(i, scope);
             // Add the node under scope[i]
-            scope[i].AppendChild(source);
-            scope.Add(source);
+            //scope[i].AppendChild(source);
+            //scope.Add(source);
             outputEntry.AppendField(source);
         }
 
         private bool InsertInTree(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
+        {
+            int index = CanInsertInTree(source, scope);
+            if (index < 0)
+            {
+                return false;
+            }
+            // Add the node under this parent
+            scope[index].AppendChild(source);
+            UpdateScope(scope, index, source);
+            outputEntry.AppendField(source);
+            return true;
+        }
+
+        private int CanInsertInTree(SfmFieldModel source, List<SfmFieldModel> scope)
         {
             // Get the marker settings for this node.
             SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Marker);
@@ -78,16 +92,7 @@ namespace SolidGui.Processes
                     }
                 }
             }
-
-            if(foundParent)
-            {
-                // Add the node under this parent
-                scope[i].AppendChild(source);
-                UpdateScope(scope, i, source);
-                outputEntry.AppendField(source);
-            }
-            
-            return foundParent;
+            return foundParent ? i : -1;
         }
 
         private static void UpdateScope(List<SfmFieldModel> scope, int i, SfmFieldModel n)
@@ -113,6 +118,7 @@ namespace SolidGui.Processes
             {
                 var inferredNode = new SfmFieldModel(setting.InferedParent);
                 inferredNode.Inferred = true;
+//!!!                inferredNode.AppendChild(sourceField);
 
                 // Attempt to insert the inferred node in the tree.
                 // The inferred node needs to find a valid parent
@@ -159,6 +165,11 @@ namespace SolidGui.Processes
                                     );
                                 InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                             }
+                        }
+                        else
+                        {
+                            inferredNode.AppendChild(sourceField);
+                            var a = 1 + 2;
                         }
                         // No else required, the InferNode puts the entries in the tree.
                     }

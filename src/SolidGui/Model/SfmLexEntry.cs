@@ -130,13 +130,11 @@ namespace SolidGui.Model
 
         public void AppendField(SfmFieldModel field)
         {
-            //throw new NotImplementedException();
             _fields.Add(field);
         }
 
         public static SfmLexEntry CreateDefault(SfmFieldModel field)
         {
-            throw new NotImplementedException();
             var entry = new SfmLexEntry();
             entry.AppendField(field);
             return entry;

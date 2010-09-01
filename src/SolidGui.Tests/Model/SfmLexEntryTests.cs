@@ -95,16 +95,11 @@ namespace SolidGui.Tests.Model
         [Test]
         public void CreateDefault_CreateSuccessfully()
         {
-            const string sfmIn = @"
-\lx test1
-\sn sense1";
-            var entry = SfmLexEntry.CreateFromText(sfmIn);
-            var field = new SfmFieldModel(@"ge", @"gloss");
+            var field = new SfmFieldModel(@"lx");
+            var entry = SfmLexEntry.CreateDefault(field);
 
-            entry.AppendField(field);
-
-            Assert.AreEqual("ge", entry[2].Marker);
-            Assert.AreEqual("gloss", entry[2].Value);
+            Assert.AreEqual("lx", entry[0].Marker);
+            
         }
         
     }

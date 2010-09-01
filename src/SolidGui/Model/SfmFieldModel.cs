@@ -38,8 +38,21 @@ namespace SolidGui.Model
         {
             get { return _children;  }
         }
-        
-        public SfmFieldModel Parent { get; set; }
+
+        private SfmFieldModel _parent;
+        public SfmFieldModel Parent
+        {
+            get { return _parent; }
+            set
+            {
+                if (_parent != null)
+                {
+                    throw new ArgumentException(String.Format("Parent already exists in {0}", Marker));
+                }
+                _parent = value;
+            }
+        }
+
         public int FieldId { get; private set; }
         public bool Inferred { get; set; }
         public string Field { get; set; }
@@ -91,6 +104,11 @@ namespace SolidGui.Model
         public SfmFieldModel this[int i]
         {
             get { return _children[i]; }
+        }
+
+        public override string ToString()
+        {
+            return Marker + " " + Value;
         }
     }
 

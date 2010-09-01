@@ -100,16 +100,14 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual(null, entry[0].Parent);
-                Assert.AreEqual("bb", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("lx", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
-
-                //Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                //Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
-                //Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[5]));
 
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
                 Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
@@ -158,13 +156,16 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual(null, entry[0].Parent);
-                Assert.AreEqual("bb", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[4]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[5]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[6]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[7]));
 
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 1));
@@ -217,14 +218,17 @@ namespace SolidGui.Tests.Engine
                 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual(null, entry[0].Parent);
-                Assert.AreEqual("bb", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("lx", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
-                Assert.AreEqual("lx", ParentMarkerForField(entry[4]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[5]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[5]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[6]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[7]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[8]));
 
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
                 Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
@@ -273,14 +277,16 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                entry = process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual(null, entry[0].Parent);
-                Assert.AreEqual("bb", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("lx", ParentMarkerForField(entry[3]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[4]));
-
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[5]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[6]));
+                
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
                 Assert.AreEqual("sn", ChildMarkerForField(entry[0], 1));
                 Assert.AreEqual("bb", ChildMarkerForField(entry[0], 2));
@@ -331,20 +337,30 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual(null, entry[0].Parent);
-                Assert.AreEqual("bb", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[4]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[5]));
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("bb", outputEntry[1].Marker);
+                Assert.AreEqual("cc", outputEntry[2].Marker);
+                Assert.AreEqual("sn", outputEntry[3].Marker);
+                Assert.AreEqual("cc", outputEntry[4].Marker);
+                Assert.AreEqual("sn", outputEntry[5].Marker);
+                Assert.AreEqual("cc", outputEntry[6].Marker);
 
-                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
-                
-                //cant view children of inferred node
-                /*Assert.AreEqual("cc", ChildMarkerForField(entry[1], 1));
-                Assert.AreEqual("sn", ChildMarkerForField(entry[1], 2));*/
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[5]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[6]));
+
+                Assert.AreEqual("bb", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 0));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[1], 1));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 2));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[1], 3));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 4));
             }
         }
 
@@ -390,15 +406,21 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("bb", ParentMarkerForField(entry[3]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[4]));
+                Assert.AreEqual("bb", ParentMarkerForField(outputEntry[5]));
+ 
 
-                Assert.AreEqual("bb", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("cc", ChildMarkerForField(entry[1], 1));
-                Assert.AreEqual("sn", ChildMarkerForField(entry[1], 2));
+                Assert.AreEqual("bb", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 0));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 1));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[1], 2));
+                Assert.AreEqual("cc", ChildMarkerForField(outputEntry[1], 3));
             }
         }
 
@@ -434,14 +456,14 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                entry = process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
-                
-                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("ge", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
 
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("ge", ChildMarkerForField(outputEntry[1], 0));
             }
         }
 
@@ -476,13 +498,14 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
 
-                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("ge", ChildMarkerForField(entry[1], 1));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("ge", ChildMarkerForField(outputEntry[1], 0));
 
             }
         }
@@ -518,15 +541,17 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("rf", ParentMarkerForField(outputEntry[3]));
 
-                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
-                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("rf", ChildMarkerForField(outputEntry[1], 0));
+                Assert.AreEqual("xe", ChildMarkerForField(outputEntry[2], 0));
+
             }
 
         }
@@ -538,28 +563,25 @@ namespace SolidGui.Tests.Engine
 
             const string sfmIn = @"
 \lx a
-\ge g";
+\xe b";
 
             //expecting:
 
             /*
              * \lx a
-             *    \sn
-             *      \rf
-             *        \xe b
+             * \sn
+             *    \rf
+             *       \xe b
              */
             
-            // TODO which one is the corrent xmlEx?? using the const one
             //string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
-            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></lx></entry>";
-
+            
             using (var environment = new EnvironmentForTest())
             {
-                var settings = environment.SettingsForTest;
-
-                settings = new SolidSettings();
-                var lxSetting = settings.FindOrCreateMarkerSetting("lx");
-                lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
+                
+                var settings = new SolidSettings();
+                //var lxSetting = settings.FindOrCreateMarkerSetting("lx");
+                //lxSetting.StructureProperties.Add(new SolidStructureProperty("entry", MultiplicityAdjacency.Once));
 
                 var psSetting = settings.FindOrCreateMarkerSetting("ps");
                 psSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
@@ -581,16 +603,23 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("sn", outputEntry[1].Marker);
+                Assert.AreEqual("rf", outputEntry[2].Marker);
+                Assert.AreEqual("xe", outputEntry[3].Marker);
 
-                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
-                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual(null, outputEntry[1].Parent);
+                //Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("rf", ParentMarkerForField(outputEntry[3]));
 
+                //Assert.AreEqual("ps", ChildMarkerForField(outputEntry[0], 0));
+                //Assert.AreEqual("sn", ChildMarkerForField(outputEntry[1], 0));
+                //Assert.AreEqual("rf", ChildMarkerForField(outputEntry[2], 0));
+                //Assert.AreEqual("xe", ChildMarkerForField(outputEntry[3], 0));
             }
         }
 
@@ -609,6 +638,17 @@ namespace SolidGui.Tests.Engine
              * \lx a
              *    \xe b
              */
+
+            //or expecting: ???
+
+            /*
+             * \lx a
+             *    \ps
+             *      \sn
+             *        \rf
+             *          \xe b
+             */
+
             
             //            string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><ps inferred=\"true\"><data /><sn inferred=\"true\"><data /><rf inferred=\"true\"><data /><xe field=\"2\"><data>b</data></xe></rf></sn></ps></lx></entry>";
             //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><xe field=\"2\"><data>b</data></xe></lx></entry>";
@@ -627,17 +667,24 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-      
-                Assert.AreEqual("xe", ChildMarkerForField(entry[0], 0));
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual("ps", ParentMarkerForField(outputEntry[2]));
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[3]));
+                Assert.AreEqual("rf", ParentMarkerForField(outputEntry[4]));
+
+                Assert.AreEqual("ps", ChildMarkerForField(outputEntry[0], 0));
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[1], 0));
+                Assert.AreEqual("rf", ChildMarkerForField(outputEntry[2], 0));
+                Assert.AreEqual("xe", ChildMarkerForField(outputEntry[3], 0));
          
             }
         }
 
         [Test]
-        public void ProcessStructure_NoInferInsertAnyway_Correct()
+        public void ProcessStructure_NoInferInsertAnyway_AllFieldsExistInOutputEntry()
         {
             //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
 
@@ -646,11 +693,13 @@ namespace SolidGui.Tests.Engine
 \sn
 \ge g
 \zz z";
-            //expecting:
+            //expecting: ???
 
             /*
              * \lx a
-             *    \xe b
+             *   \sn
+             * \ge g
+             * \zz z
              */
 
             //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
@@ -667,17 +716,60 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
-                Assert.AreEqual("lx", ParentMarkerForField(entry[1]));
-                Assert.AreEqual("sn", ParentMarkerForField(entry[2]));
-                Assert.AreEqual("rf", ParentMarkerForField(entry[3]));
-
-                Assert.AreEqual("sn", ChildMarkerForField(entry[0], 0));
-                Assert.AreEqual("rf", ChildMarkerForField(entry[1], 1));
-                Assert.AreEqual("xe", ChildMarkerForField(entry[2], 2));
+               
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("sn", outputEntry[1].Marker);
+                Assert.AreEqual("ge", outputEntry[2].Marker);
+                Assert.AreEqual("zz", outputEntry[3].Marker);
             }
+        }
 
+        [Test]
+        public void ProcessStructure_NoInferInsertAnyway_MarkersWithoutParentsShowNullParent()
+        {
+            //const string xmlIn = "<entry record=\"4\"><lx field=\"1\">a</lx><sn field=\"2\"></sn><ge field=\"3\">g</ge><zz field=\"4\">z</zz></entry>";
+
+            const string sfmIn = @"
+\lx a
+\sn
+\ge g
+\zz z";
+            //expecting:
+
+            /*
+             * \lx a
+             *   \sn
+             * \ge g
+             * \zz z
+             */
+
+            //const string xmlEx = "<entry record=\"4\"><lx field=\"1\"><data>a</data><sn field=\"2\"><data /><ge field=\"3\"><data>g</data><zz field=\"4\"><data>z</data></zz></ge></sn></lx></entry>";
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+                var markerSettings = settings.FindOrCreateMarkerSetting("ge");
+                Assert.IsNotNull(markerSettings);
+                markerSettings.InferedParent = "";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+                Assert.AreEqual(null, outputEntry[2].Parent);
+                Assert.AreEqual(null, outputEntry[3].Parent);
+
+
+                Assert.AreEqual("sn", ChildMarkerForField(outputEntry[0], 0));
+                
+            }
         }
 
         [Test] // TODO this test does not have structure
@@ -808,7 +900,7 @@ namespace SolidGui.Tests.Engine
 
                 var process = new ProcessStructure(settings);
                 var report = environment.CreateReportForTest();
-                SfmLexEntry outputEntry = process.Process(entry, report);
+                var outputEntry = process.Process(entry, report);
 
                 Assert.AreEqual(entry[0], outputEntry[0]);
                 Assert.AreEqual(entry[1], outputEntry[1]);
@@ -860,7 +952,7 @@ namespace SolidGui.Tests.Engine
                 SfmLexEntry outputEntry = process.Process(entry, report);
 
                 Assert.AreEqual(entry[0], outputEntry[0]);
-                Assert.AreEqual("bb", outputEntry[1]);
+                Assert.AreEqual("bb", outputEntry[1].Marker); // compare markers; SfmFieldModels will not be equal
                 Assert.AreEqual(entry[1], outputEntry[2]);
                 Assert.AreEqual(entry[2], outputEntry[3]);
                 Assert.AreEqual(entry[3], outputEntry[4]);
