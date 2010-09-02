@@ -169,7 +169,7 @@ namespace SolidGui.Processes
                         else
                         {
                             inferredNode.AppendChild(sourceField);
-                            var a = 1 + 2;
+                            
                         }
                         // No else required, the InferNode puts the entries in the tree.
                     }

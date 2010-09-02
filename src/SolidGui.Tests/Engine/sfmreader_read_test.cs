@@ -259,7 +259,7 @@ namespace SolidGui.Tests.Engine
             //    var reader = SfmRecordReader.CreateFromFilePath(e.TempFilePath);
                 // Do some Assert.areequal checks
                 Assert.Fail();
-                
+
             //}
         }
 

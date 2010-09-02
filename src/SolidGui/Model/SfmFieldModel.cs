@@ -108,6 +108,10 @@ namespace SolidGui.Model
 
         public override string ToString()
         {
+            if(String.IsNullOrEmpty(Value))
+            {
+                return Marker;
+            }
             return Marker + " " + Value;
         }
     }
