@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using NUnit.Framework;
 using SolidGui.Engine;
@@ -252,16 +253,43 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void CreateFromFilePath_ExistingFile_ReadsOk()
         {
-            // string sfm = "some valid sfm string"
-            // write to temp file
-            //using (var e = new EnvironmentForTest())
-            //{
-            //    var reader = SfmRecordReader.CreateFromFilePath(e.TempFilePath);
-                // Do some Assert.areequal checks
-                Assert.Fail();
+            using (var e = new EnvironmentForTest())
+            {
+                const string input = @"
+\lx test1
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar";
 
-            //}
+                using (var writer = new StreamWriter(e.TempFilePath))
+                {
+                    writer.Write(input);
+                    writer.Close();
+                }
+                using (var reader = new StreamReader(e.TempFilePath))
+                {
+                    var output = reader.ReadToEnd();
+                    reader.Close();
+                    Assert.AreEqual(input, output);
+                }
+            }
         }
 
+        public class EnvironmentForTest : IDisposable
+        {
+            public EnvironmentForTest()
+            {
+                TempFilePath = Path.GetTempFileName();
+            }
+
+            public string TempFilePath { get; private set; }
+
+            public void Dispose()
+            {
+                File.Delete(TempFilePath);
+            }
+        }
     }
 }
