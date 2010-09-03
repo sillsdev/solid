@@ -63,11 +63,46 @@ namespace SolidGui.Tests.Model
         }
 
         [Test]
+        public void CreateFromText_BiggishEntry_Valid()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\bb
+\aa
+\bb";
+            //expecting:
+
+            /*
+             * \lx test
+             * \aa
+             * \bb
+             * \aa
+             * \bb
+             */
+
+            var entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            Assert.AreEqual("lx", entry[0].Marker);
+            Assert.AreEqual("test", entry[0].Value);
+
+            Assert.AreEqual("aa", entry[1].Marker);
+            Assert.AreEqual("bb", entry[2].Marker);
+            Assert.AreEqual("aa", entry[3].Marker);
+            Assert.AreEqual("bb", entry[4].Marker);
+
+            
+
+
+
+        }
+
+        [Test]
         public void CreateFromText_TwoFieldEntryWithOneEmptyValue_ReadsBothValues()
         {
             const string sfmIn = @"
 \lx cc
-\sn ";
+\sn";
             var entry = SfmLexEntry.CreateFromText(sfmIn);
 
             Assert.AreEqual("lx", entry[0].Marker);

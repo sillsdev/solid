@@ -104,15 +104,15 @@ namespace Solid.Engine
         {
             if (onceChecked)
             {
-                selected.MultipleAdjacent = MultiplicityAdjacency.Once;
+                selected.Multiplicity = MultiplicityAdjacency.Once;
             }
             else if (multipleApartChecked)
             {
-                selected.MultipleAdjacent = MultiplicityAdjacency.MultipleApart;
+                selected.Multiplicity = MultiplicityAdjacency.MultipleApart;
             }
             else
             {
-                selected.MultipleAdjacent = MultiplicityAdjacency.MultipleTogether;
+                selected.Multiplicity = MultiplicityAdjacency.MultipleTogether;
             }
         }
 

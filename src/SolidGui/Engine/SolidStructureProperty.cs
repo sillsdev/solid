@@ -5,24 +5,23 @@ namespace SolidGui.Engine
     public class SolidStructureProperty
     {
         private string _parent;
-        private MultiplicityAdjacency _multipleAdjacent;
-        
+
         public SolidStructureProperty()
         {
             Parent = "";
-            _multipleAdjacent = MultiplicityAdjacency.MultipleApart;
+            Multiplicity = MultiplicityAdjacency.MultipleApart;
         }
 
         public SolidStructureProperty(string parent,MultiplicityAdjacency ma)
         {
             Parent = parent;
-            _multipleAdjacent = ma;
+            Multiplicity = ma;
         }
 
         public SolidStructureProperty(string parent)
         {
             Parent = parent;
-            _multipleAdjacent = MultiplicityAdjacency.MultipleApart;
+            Multiplicity = MultiplicityAdjacency.MultipleApart;
         }
 
         public override string ToString()
@@ -42,16 +41,6 @@ namespace SolidGui.Engine
             }
         }
 
-        public MultiplicityAdjacency MultipleAdjacent
-        {
-            get
-            {
-                return _multipleAdjacent;
-            }
-            set
-            {
-                _multipleAdjacent = value;
-            }
-        }
+        public MultiplicityAdjacency Multiplicity { get; set; }
     }
 }

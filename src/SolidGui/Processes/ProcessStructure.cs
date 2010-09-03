@@ -56,39 +56,51 @@ namespace SolidGui.Processes
         private int CanInsertInTree(SfmFieldModel source, List<SfmFieldModel> scope)
         {
             // Get the marker settings for this node.
-            SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(source.Marker);
+            SolidMarkerSetting sourceSetting = _settings.FindOrCreateMarkerSetting(source.Marker);
             bool foundParent = false;
             int i = scope.Count;
             // Check for record marker (assume is root)
             while (i > 0 && !foundParent)
             {
                 i--;
-                SolidStructureProperty structureProperty = setting.getStructureProperty(scope[i].Marker);
-                if (structureProperty != null)
+                SolidStructureProperty sourceStructurePropertiesForParent = sourceSetting.GetStructurePropertiesForParent(scope[i].Marker);
+                if (sourceStructurePropertiesForParent != null)
                 {
-                    if (i == scope.Count - 1)
+                    switch (sourceStructurePropertiesForParent.Multiplicity)
                     {
-                        foundParent = true;
-                    }
-                    else if (scope[i + 1].Marker == setting.Marker &&
-                             structureProperty.MultipleAdjacent != MultiplicityAdjacency.Once)
-                    {
-                        foundParent = true;
-                    }
-                    else if (structureProperty.MultipleAdjacent == MultiplicityAdjacency.Once)
-                    {
-                        foundParent = true;
+                        case MultiplicityAdjacency.Once:
+                            foundParent = true;
+                            foreach (SfmFieldModel childNode in scope[i].Children)
+                            {
+                                if (childNode.Marker == source.Marker)
+                                    foundParent = false;
+                            }
+                            break;
+                        case MultiplicityAdjacency.MultipleTogether:
+                            {
+                                foundParent = true;
+                                bool foundSelfAsSibling = false;
 
-                        //make sure the parent doesn't allready contain the node we want to add
-                        foreach (SfmFieldModel childNode in scope[i].Children)
-                        {
-                            if (childNode.Marker == source.Marker)
-                                foundParent = false;
-                        }
-                    }
-                    else if (structureProperty.MultipleAdjacent == MultiplicityAdjacency.MultipleApart)
-                    {
-                        foundParent = true;
+                                //make sure the parent doesn't allready contain the node we want to add
+                                foreach (SfmFieldModel childNode in scope[i].Children)
+                                {
+                                    if (childNode.Marker == source.Marker)
+                                    {
+                                        foundSelfAsSibling = true;
+                                    }
+                                    else
+                                    {
+                                        if (foundSelfAsSibling)
+                                        {
+                                            foundParent = false;
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+                        case MultiplicityAdjacency.MultipleApart:
+                            foundParent = true;
+                            break;
                     }
                 }
             }

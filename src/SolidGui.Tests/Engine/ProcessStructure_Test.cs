@@ -32,13 +32,13 @@ namespace SolidGui.Tests.Engine
                 var bbSetting = _settings.FindOrCreateMarkerSetting("bb");
                 bbSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
-                var rfSetting = _settings.FindOrCreateMarkerSetting("rf");
-                rfSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleTogether));
-                rfSetting.InferedParent = "sn";
+                SetMarkerSettings(_settings, "rf", "sn", "sn", MultiplicityAdjacency.MultipleTogether);
                 var xeSetting = _settings.FindOrCreateMarkerSetting("xe");
                 xeSetting.StructureProperties.Add(new SolidStructureProperty("rf", MultiplicityAdjacency.Once));
                 xeSetting.InferedParent = "rf";
             }
+
+            
 
             public SolidSettings SettingsForTest
             {
@@ -978,7 +978,513 @@ namespace SolidGui.Tests.Engine
 
         }
 
-    
+        #region New comprehensive test coverage
+
+        [Test]
+        public void ProcessStructure_NoInferMultiplicityOnce_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\bb
+\aa
+\bb";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \aa
+             *      \bb
+             *    \aa
+             *      \bb
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.Once);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("aa", outputEntry[1].Marker); 
+            Assert.AreEqual("bb", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("bb", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
+        }
+
+        [Test]
+        public void ProcessStructure_NoInferMultiplicityTogether_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\bb
+\aa
+\bb";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \aa
+             *      \bb
+             *    \aa
+             *      \bb
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "lx", "", MultiplicityAdjacency.MultipleTogether);
+            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.MultipleTogether);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("aa", outputEntry[1].Marker);
+            Assert.AreEqual("bb", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("bb", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
+        }
+
+        [Test]
+        public void ProcessStructure_NoInferMultiplicityApart_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\bb
+\aa
+\bb";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \aa
+             *      \bb
+             *    \aa
+             *      \bb
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("aa", outputEntry[1].Marker);
+            Assert.AreEqual("bb", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("bb", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityOnce_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *    \inferred
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.Once);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleTogether);
+            
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("inferred", outputEntry[3].Marker);
+            Assert.AreEqual("aa", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[4]));
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityOnceWithSpacer_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\spacer
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \spacer
+             *    \inferred
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.Once);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("spacer", outputEntry[3].Marker);
+            Assert.AreEqual("inferred", outputEntry[4].Marker);
+            Assert.AreEqual("aa", outputEntry[5].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[4]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[5]));
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityTogether_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleTogether);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleTogether);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+            
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityApartWithoutSpacer_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleTogether);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityTogetherWithSpacer_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\spacer
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \spacer
+             *    \inferred
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleTogether);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("spacer", outputEntry[3].Marker);
+            Assert.AreEqual("inferred", outputEntry[4].Marker);
+            Assert.AreEqual("aa", outputEntry[5].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[4]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[5]));
+
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityTogether_AAHasInferredAsParent()
+        {
+            const string sfmIn = @"
+\lx test
+\spacer
+\aa
+\spacer";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \spacer
+             *      \aa
+             *      \spacer
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "", MultiplicityAdjacency.MultipleTogether);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "inferred", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("spacer", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("spacer", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[4]));
+
+        }
+
+        [Test]
+        public void ProcessStructure_InferMultiplicityApart_MarkersInOutputAndParentsCorrect()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\spacer
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \spacer
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "", MultiplicityAdjacency.MultipleApart); // NOTE Fails with MultipleTogether
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("inferred", outputEntry[1].Marker);
+            Assert.AreEqual("aa", outputEntry[2].Marker);
+            Assert.AreEqual("spacer", outputEntry[3].Marker);
+            Assert.AreEqual("aa", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("inferred", ParentMarkerForField(outputEntry[4]));
+
+        }
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        private static void SetMarkerSettings(SolidSettings settings, string marker, string parentMarker, string inferredMarker, MultiplicityAdjacency multiplicity)
+        {
+            var setting = settings.FindOrCreateMarkerSetting(marker);
+            setting.StructureProperties.Add(new SolidStructureProperty(parentMarker, multiplicity));
+            setting.InferedParent = inferredMarker;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // TODO This is an example of another axis of testing. Tests the NoInfer with bad input expecting an error for each Multiplicity
+        [Test]
+        [Ignore("asserts are not valid")]
+        public void ProcessStructure_NoInferMultiplicityTogether_SecondFieldReportsError()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\bb
+\spacer
+\bb";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \aa
+             *      \bb
+             *      \spacer
+             * \bb
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual("lx", outputEntry[0].Marker);
+            Assert.AreEqual("aa", outputEntry[1].Marker);
+            Assert.AreEqual("bb", outputEntry[2].Marker);
+            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("bb", outputEntry[4].Marker);
+
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[2]));
+            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
+        }
 
     }
 }

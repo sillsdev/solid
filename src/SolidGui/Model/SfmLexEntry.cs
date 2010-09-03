@@ -60,6 +60,8 @@ namespace SolidGui.Model
                 throw new ArgumentException("text cannot be null or empty");
             }
 
+            text += "\n"; //hack to fix bug in RecordReader (not reading last line of entries) smw 2sep2010
+
             var reader = SfmRecordReader.CreateFromText(text);
             reader.Read();
 

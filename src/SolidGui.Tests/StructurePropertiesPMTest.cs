@@ -41,7 +41,7 @@ namespace SolidGui.Tests
             SolidStructureProperty sp = new SolidStructureProperty();
             _model.UpdateMultiplicity(sp, true, false, false);
 
-            Assert.AreEqual(MultiplicityAdjacency.Once, sp.MultipleAdjacent);
+            Assert.AreEqual(MultiplicityAdjacency.Once, sp.Multiplicity);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace SolidGui.Tests
             SolidStructureProperty sp = new SolidStructureProperty();
             _model.UpdateMultiplicity(sp, false, true, false);
 
-            Assert.AreEqual(MultiplicityAdjacency.MultipleApart, sp.MultipleAdjacent);
+            Assert.AreEqual(MultiplicityAdjacency.MultipleApart, sp.Multiplicity);
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace SolidGui.Tests
             SolidStructureProperty sp = new SolidStructureProperty();
             _model.UpdateMultiplicity(sp, false, false, true);
 
-            Assert.AreEqual(MultiplicityAdjacency.MultipleTogether, sp.MultipleAdjacent);
+            Assert.AreEqual(MultiplicityAdjacency.MultipleTogether, sp.Multiplicity);
         }
 
 

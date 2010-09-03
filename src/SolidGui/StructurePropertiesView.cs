@@ -74,7 +74,7 @@ namespace SolidGui
             if (_parentListView.SelectedItems.Count > 0)
             {
                 SolidStructureProperty property = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
-                switch (property.MultipleAdjacent)
+                switch (property.Multiplicity)
                 {
                     case MultiplicityAdjacency.Once:
                         {

@@ -114,13 +114,10 @@ namespace SolidGui.Engine
             }
         }
 
-        public SolidStructureProperty getStructureProperty(string name)
+        public SolidStructureProperty GetStructurePropertiesForParent(string name)
         {
             return _structureProperties.Find(
-                delegate (SolidStructureProperty property)
-                    {
-                        return property.Parent == name;
-                    }
+                property => property.Parent == name
                 );
         }
     }
