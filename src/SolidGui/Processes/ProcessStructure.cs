@@ -33,9 +33,11 @@ namespace SolidGui.Processes
             }
 
             TruncateScope(i, scope);
+
             // Add the node under scope[i]
             //scope[i].AppendChild(source);
             //scope.Add(source);
+            
             outputEntry.AppendField(source);
         }
 
@@ -47,8 +49,12 @@ namespace SolidGui.Processes
                 return false;
             }
             // Add the node under this parent
+
             scope[index].AppendChild(source);
             UpdateScope(scope, index, source);
+
+            source.Depth = scope.Count - 1;
+            
             outputEntry.AppendField(source);
             return true;
         }

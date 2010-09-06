@@ -1399,45 +1399,209 @@ namespace SolidGui.Tests.Engine
 
         }
 
-
-        #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private static void SetMarkerSettings(SolidSettings settings, string marker, string parentMarker, string inferredMarker, MultiplicityAdjacency multiplicity)
         {
             var setting = settings.FindOrCreateMarkerSetting(marker);
             setting.StructureProperties.Add(new SolidStructureProperty(parentMarker, multiplicity));
             setting.InferedParent = inferredMarker;
         }
+        #endregion
 
 
+        [Test]
+        public void ProcessStructure_DepthInferredWithSpacerTest_CalculatesCorrectly()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\spacer
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \spacer
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual(0, outputEntry[0].Depth);
+            Assert.AreEqual(1, outputEntry[1].Depth);
+            Assert.AreEqual(2, outputEntry[2].Depth);
+            Assert.AreEqual(2, outputEntry[3].Depth);
+            Assert.AreEqual(2, outputEntry[4].Depth);
+
+           
+            
+        }
+
+        [Test]
+        public void ProcessStructure_DepthSingleField_CalculatesCorrectly()
+        {
+            const string sfmIn = @"
+\lx test";
+            //expecting:
+
+            /*
+             * \lx test
+             */
+
+            var settings = new SolidSettings();
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual(0, outputEntry[0].Depth);
+            
+        }
 
 
+        [Test]
+        public void ProcessStructure_DepthRecursiveTest_CalculatesCorrectly()
+        {
+
+            const string sfmIn = @"
+\lx a
+\xe b";
+            //expecting:
+
+            /*
+             * \lx a
+             *    \sn
+             *      \rf
+             *        \xe b
+             */
 
 
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = environment.SettingsForTest;
+
+                var setting = settings.FindOrCreateMarkerSetting("ge");
+                Assert.IsNotNull(setting);
+                setting.InferedParent = "";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+
+                Assert.AreEqual(0, outputEntry[0].Depth);
+                Assert.AreEqual(1, outputEntry[1].Depth);
+                Assert.AreEqual(2, outputEntry[2].Depth);
+                Assert.AreEqual(3, outputEntry[3].Depth);
+            }
+
+        }
+
+        [Test]
+        public void ProcessStructure_DepthMultiplicityTogetherWithSpacer_CalculatesCorrectly()
+        {
+            const string sfmIn = @"
+\lx test
+\aa
+\spacer
+\aa";
+            //expecting:
+
+            /*
+             * \lx test
+             *    \inferred
+             *      \aa
+             *      \spacer
+             *    \inferred
+             *      \aa
+             */
+
+            var settings = new SolidSettings();
+
+            SetMarkerSettings(settings, "aa", "inferred", "inferred", MultiplicityAdjacency.MultipleTogether);
+            SetMarkerSettings(settings, "inferred", "lx", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "inferred", "", MultiplicityAdjacency.MultipleApart);
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+            var process = new ProcessStructure(settings);
+            var report = new SolidReport();
+            SfmLexEntry outputEntry = process.Process(entry, report);
+
+            Assert.AreEqual(0, outputEntry[0].Depth);
+            Assert.AreEqual(1, outputEntry[1].Depth);
+            Assert.AreEqual(2, outputEntry[2].Depth);
+            Assert.AreEqual(2, outputEntry[3].Depth);
+            Assert.AreEqual(1, outputEntry[4].Depth); 
+            Assert.AreEqual(2, outputEntry[5].Depth);
 
 
+        }
 
+        [Test]
+        public void ProcessStructure_DepthWhenChildCanAppearUnderParentMultipleTogether_CalculateCorrectly()
+        {
+            const string sfmIn = @"
+\lx test2
+\cc fire
+\cc foo
+\sn
+\cc bar";
 
+            //expecting:
 
+            /*
+             * \lx test2
+             *    \bb
+             *      \cc fire
+             *      \cc foo
+             *    \sn
+             *    \bb
+             *      \cc bar
+             */
 
+            using (var environment = new EnvironmentForTest())
+            {
 
+                var settings = environment.SettingsForTest;
+
+                var ccSetting = settings.FindOrCreateMarkerSetting("cc");
+                ccSetting.StructureProperties.Add(new SolidStructureProperty("bb",
+                                                                             MultiplicityAdjacency.MultipleTogether));
+
+                Assert.IsNotNull(settings.FindOrCreateMarkerSetting("cc"));
+                ccSetting.InferedParent = "bb";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+
+                Assert.AreEqual(0, outputEntry[0].Depth);
+                Assert.AreEqual(1, outputEntry[1].Depth);
+                Assert.AreEqual(2, outputEntry[2].Depth);
+                Assert.AreEqual(2, outputEntry[3].Depth);
+                Assert.AreEqual(1, outputEntry[4].Depth);
+                Assert.AreEqual(1, outputEntry[5].Depth);
+                Assert.AreEqual(2, outputEntry[6].Depth);
+
+            }
+        }
 
 
 

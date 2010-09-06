@@ -154,7 +154,7 @@ namespace SolidGui.Model
         public void AddRecord(SfmLexEntry entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
-            Record record = Record.CreateRecordFromSfmLexEntry(entry, report);
+            Record record = new Record(entry, report);
             UpdateMarkerStatistics(record);
             _recordList.Add(record);
         }
@@ -177,7 +177,6 @@ namespace SolidGui.Model
                 }
             }
         }
-
 
         public void AddRecord(Record record)
         {
@@ -224,7 +223,7 @@ namespace SolidGui.Model
                     var recordReport = new SolidReport();
                     foreach (IProcess process in processes)
                     {
-                        process.Process(lexEntry, recordReport);
+                        lexEntry = process.Process(lexEntry, recordReport);
                     }
                     //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
                     AddRecord(lexEntry, recordReport);

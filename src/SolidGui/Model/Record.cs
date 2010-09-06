@@ -14,7 +14,7 @@ namespace SolidGui.Model
     {
         private static int _recordIdCounter = 0;
 
-        private int _recordID = -1;
+        private readonly int _recordID = -1;
         public static event EventHandler RecordTextChanged;
         private SolidReport _report;
         public SfmLexEntry LexEntry { get; set; }
@@ -45,17 +45,15 @@ namespace SolidGui.Model
 
         public Record()
         {
+            LexEntry = new SfmLexEntry();
             _recordID = _recordIdCounter++;
         }
 
-
-        static public Record CreateRecordFromSfmLexEntry(SfmLexEntry entry, SolidReport report)
+        public Record(SfmLexEntry entry, SolidReport report)
         {
-            var record = new Record();
-            record.LexEntry = entry;
-            record.Report = new SolidReport(report);
-
-            return record;
+            LexEntry = entry;
+            Report = new SolidReport(report);
+            _recordID = _recordIdCounter++;
         }
 
         public SolidReport Report

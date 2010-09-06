@@ -20,17 +20,14 @@ namespace SolidGui.Engine
 
         public class Entry
         {
-            EntryType _entryType;
-            int _recordID; // TODO Remove these, they aren't used?
-            int _fieldID;  // TODO Remove these, they aren't used?
+            readonly EntryType _entryType;
+            readonly int _recordID; // TODO Remove these, they aren't used?
+            readonly int _fieldID;  // TODO Remove these, they aren't used?
             //int _recordStartLine;
             //int _recordEndLine;
-            string _entryName;
-            string _marker;
-            string _description;
-
-            public Entry()
-            {}
+            readonly string _entryName;
+            readonly string _marker;
+            readonly string _description;
 
             public Entry(EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
             {
@@ -92,62 +89,35 @@ namespace SolidGui.Engine
             }
         }
 
-        public class SolidEntries : List<SolidReport.Entry>
-        {
-            public SolidEntries() : base()
-            {
-            }
-
-            public SolidEntries(SolidEntries rhs) : base(rhs)
-            {
-            }
-        }
-
-        public SolidEntries _entries;
-                
-        [XmlIgnore]
-        private string _filePath;
-
-        public SolidEntries Entries
-        {
-            get { return _entries; }
-        }
+        public List<Entry> Entries { get; set; }
 
         [XmlIgnore]
-        public string FilePath
-        {
-            get { return _filePath; }
-            set { _filePath = value; }
-        }
-	
+        public string FilePath { get; set; }
+
         public SolidReport()
         {
-            _entries = new SolidEntries();
+            Entries = new List<Entry>();
         }
 
-        public SolidReport(SolidReport report)
-        {
-            _entries = new SolidEntries(report.Entries);
+        public SolidReport(SolidReport report)        {
+            Entries = new List<Entry>(report.Entries);
         }
 
         public void Reset()
         {
-            _entries.Clear();
+            Entries.Clear();
         }
 
         public void Add(Entry e)
         {
-            _entries.Add(e);
+            Entries.Add(e);
         }
 
         public Entry GetEntryById(int id)
         {
-            Entry retVal =_entries.Find(
-                delegate(Entry entry)
-                    {
-                        return entry.FieldID == id;
-                    }
-                );
+            var retVal =Entries.Find(
+                entry => entry.FieldID == id
+            );
 
             return retVal;
         }
@@ -157,30 +127,24 @@ namespace SolidGui.Engine
             Add(new Entry(type, entry, field, description));
         }
 
-        public List<SolidReport.Entry> EntriesForRecord(int recordID)
+        public List<Entry> EntriesForRecord(int recordID)
         {
-            return _entries.FindAll(
-                delegate(Entry rhs)
-                    {
-                        return rhs.RecordID == recordID;
-                    }
-                );
+            return Entries.FindAll(
+                rhs => rhs.RecordID == recordID
+            );
         }
 
-        public List<SolidReport.Entry> EntriesForMarker(string marker)
+        public List<Entry> EntriesForMarker(string marker)
         {
-            return _entries.FindAll(
-                delegate(Entry rhs)
-                    {
-                        return rhs.Marker == marker;
-                    }
-                );
+            return Entries.FindAll(
+                rhs => rhs.Marker == marker
+            );
         }
 
         public List<string> Markers()
         {
-            List<string> list = new List<string>();
-            foreach (Entry entry in _entries)
+            var list = new List<string>();
+            foreach (var entry in Entries)
             {
                 if (!list.Contains(entry.Marker))
                 {
@@ -192,16 +156,16 @@ namespace SolidGui.Engine
 
         public int Count
         {
-            get { return _entries.Count; }
+            get { return Entries.Count; }
         }
 
         public static SolidReport OpenSolidReport(string path)
         {
             SolidReport r;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidReport), new Type[] { typeof(Entry) });
+            var xs = new XmlSerializer(typeof(SolidReport), new[] { typeof(Entry) });
             try
             {
-                using (StreamReader reader = new StreamReader(path))
+                using (var reader = new StreamReader(path))
                 {
                     r = (SolidReport)xs.Deserialize(reader);
                     r.FilePath = path;
@@ -216,14 +180,14 @@ namespace SolidGui.Engine
 
         public void Save()
         {
-            SaveAs(_filePath);
+            SaveAs(FilePath);
         }
 
         public void SaveAs(string filePath)
         {
-            _filePath = filePath;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidReport));//, new Type[]{typeof(Entry)});
-            using (StreamWriter writer = new StreamWriter(_filePath))
+            FilePath = filePath;
+            var xs = new XmlSerializer(typeof(SolidReport));//, new Type[]{typeof(Entry)});
+            using (var writer = new StreamWriter(FilePath))
             {
                 xs.Serialize(writer, this);
             }

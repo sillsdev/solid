@@ -110,9 +110,9 @@ namespace SolidGui.Model
         {
             if(String.IsNullOrEmpty(Value))
             {
-                return Marker;
+                return "\"" + Marker + "\"" + " DEPTH:" + this.Depth;
             }
-            return Marker + " " + Value;
+            return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
         }
     }
 
