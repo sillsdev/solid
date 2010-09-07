@@ -1,6 +1,7 @@
 using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui.Tests.Engine
 {
@@ -24,9 +25,10 @@ namespace SolidGui.Tests.Engine
         public void SolidReport_AddNullEntry_Correct()
         {
             var r = new SolidReport();
+            var field = new SfmFieldModel("test");
             Assert.AreEqual(0, r.Count);
             r.AddEntry(
-                SolidReport.EntryType.StructureParentNotFound, null, null, "Test"
+                SolidReport.EntryType.StructureParentNotFound, null, field, "Test"
                 );
             Assert.AreEqual(1, r.Count);
         }

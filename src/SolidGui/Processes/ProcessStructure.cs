@@ -16,28 +16,7 @@ namespace SolidGui.Processes
 
         private static void InsertInTreeAnyway(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
         {
-            int level = 1;
-            int i = scope.Count - level;
-            
-            SfmFieldModel field = scope[scope.Count - 1];
-            bool inferred = field.Inferred;
-            string fieldValue = field.Value; // TODO Find out where this comes from. I suspect it's not really used in any meaningful way, but refers to the origin of the field in the original SFM file. CP
-            if (!inferred && fieldValue != string.Empty)
-            {
-                ReportEntry e = (report.GetEntryById(Convert.ToInt32(fieldValue)));
-                level = (e != null) ? 2 : 1;
-                if (scope.Count >= level)
-                {
-                    i = scope.Count - level; //!!! Bit hacky.
-                }
-            }
-
-            TruncateScope(i, scope);
-
-            // Add the node under scope[i]
-            //scope[i].AppendChild(source);
-            //scope.Add(source);
-            
+            TruncateScope(scope.Count - 1, scope);
             outputEntry.AppendField(source);
         }
 
