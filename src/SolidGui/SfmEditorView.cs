@@ -174,9 +174,9 @@ namespace SolidGui
                     _markerTip.AddLineMessage(lineNumber, "Inferred");
                     _contentsBoxDB.SelectionColor = _inferredTextColor;
                 }
-                else if (field.ErrorState > 0)
+                foreach (var reportEntry in field.ReportEntries)
                 {
-                    _markerTip.AddLineMessage(lineNumber, GetErrorForField(_currentRecord.Report, field));
+                    _markerTip.AddLineMessage(lineNumber, reportEntry.Description);
                     _contentsBoxDB.SelectionColor = _errorTextColor;
                 }
 
@@ -212,16 +212,6 @@ namespace SolidGui
             _contentsBox.Rtf = _contentsBoxDB.Rtf;
 
             _contentsBox.TextChanged += _contentsBox_TextChanged;
-        }
-
-        private string GetErrorForField(SolidReport report, SfmFieldModel field)
-        {
-            SolidReport.Entry entry = report.GetEntryById(field.Id);
-            if (entry != null)
-            {
-                return entry.Description;
-            }
-            return "This isn't really an error";
         }
 
 

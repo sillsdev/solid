@@ -21,10 +21,10 @@ namespace SolidGui.Processes
             
             SfmFieldModel field = scope[scope.Count - 1];
             bool inferred = field.Inferred;
-            string fieldValue = field.Field; // TODO Find out where this comes from. I suspect it's not really used in any meaningful way, but refers to the origin of the field in the original SFM file. CP
+            string fieldValue = field.Value; // TODO Find out where this comes from. I suspect it's not really used in any meaningful way, but refers to the origin of the field in the original SFM file. CP
             if (!inferred && fieldValue != string.Empty)
             {
-                SolidReport.Entry e = (report.GetEntryById(Convert.ToInt32(fieldValue)));
+                ReportEntry e = (report.GetEntryById(Convert.ToInt32(fieldValue)));
                 level = (e != null) ? 2 : 1;
                 if (scope.Count >= level)
                 {

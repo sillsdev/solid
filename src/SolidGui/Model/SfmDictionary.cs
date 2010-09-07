@@ -171,7 +171,7 @@ namespace SolidGui.Model
 
                 _markerFrequencies[field.Marker] += 1;
 
-                if (field.ErrorState > 0)
+                if (field.HasReportEntry)
                 {
                     _markerErrors[field.Marker] += 1;
                 }

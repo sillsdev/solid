@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using SolidGui.Engine;
 
 namespace SolidGui.Model
 {
     public class SfmFieldModel
     {
-        private int _id;
-        private int _errorState;
+        private readonly int _id;
         private readonly List<SfmFieldModel> _children;
         private static int _fieldId = 0;
-        
+        private readonly List<ReportEntry> _reportEntries;
 
         public SfmFieldModel(string marker) :
             this(marker, "")
@@ -32,6 +32,7 @@ namespace SolidGui.Model
             Inferred = inferred;
             _id = _fieldId++;
             _children = new List<SfmFieldModel>();
+            _reportEntries = new List<ReportEntry>();
         }
 
         public List<SfmFieldModel> Children 
@@ -40,6 +41,19 @@ namespace SolidGui.Model
         }
 
         private SfmFieldModel _parent;
+
+
+
+        public IEnumerable<ReportEntry> ReportEntries
+        {
+            get { return _reportEntries; }
+        }
+
+        public void AddReportEntry(ReportEntry reportEntry)
+        {
+            _reportEntries.Add(reportEntry);
+        }
+
         public SfmFieldModel Parent
         {
             get { return _parent; }
@@ -55,7 +69,6 @@ namespace SolidGui.Model
 
         public int FieldId { get; private set; }
         public bool Inferred { get; set; }
-        public string Field { get; set; }
 
         public string Marker { get; private set; }
         public string Mapping { get; set; }
@@ -85,12 +98,6 @@ namespace SolidGui.Model
 
         }
             
-        public int ErrorState
-        {
-            get { return _errorState; }
-            set { _errorState = value; }
-        }
-
         public int Id
         {
             get { return _id; }
@@ -99,6 +106,11 @@ namespace SolidGui.Model
         public string Value { get; set; }
 
         public int Depth { get; set; }
+
+        public bool HasReportEntry
+        {
+            get { return _reportEntries.Count > 0; }
+        }
 
 
         public SfmFieldModel this[int i]

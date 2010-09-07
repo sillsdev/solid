@@ -117,7 +117,7 @@ namespace SolidGui.Model
 
         public void AddRecord(int record, SolidReport report)
         {
-            foreach (SolidReport.Entry entry in report.Entries)
+            foreach (ReportEntry entry in report.Entries)
             {
                 ErrorFilterForType filter = _solidErrors[(int)entry.EntryType];
                 if (!filter.ContainsKey(entry.Marker))

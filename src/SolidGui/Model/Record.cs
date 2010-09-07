@@ -130,7 +130,7 @@ namespace SolidGui.Model
             get { return ToString(); }
         }
 
-        //!!! Shouldn't be used ??? // TODO Move to SearchPM? CP 2010-08
+        //!!! Shouldn't be used ??? // TODO Make an adapter for the presentation of records used by SearchPM and the SfmEditorView CP 2010-09
         public string ToStructuredString()
         {
             StringBuilder record = new StringBuilder();

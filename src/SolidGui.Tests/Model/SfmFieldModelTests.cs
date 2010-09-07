@@ -48,12 +48,21 @@ namespace SolidGui.Tests.Model
         {
             var field = CreateFieldForTest();
             field.AppendChild(new SfmFieldModel("aa"));
-            Assert.AreEqual("zz", ParentMarkerForField(field.Children[0]));
+            Assert.AreEqual("zz test", ParentMarkerForField(field.Children[0]));
+        }
+
+        [Test]
+        public void AddReportEntry_AddOneEntry_ReportEntriesIsIterable()
+        {
+            
 
         }
+
+
+
         private static SfmFieldModel CreateFieldForTest()
         {
-            return new SfmFieldModel("zz");
+            return new SfmFieldModel("zz test");
         }
     }
 }

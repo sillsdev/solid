@@ -20,7 +20,7 @@ namespace SolidGui.Model
         }
 
 
-        public void AddEntry(SolidReport.Entry entry)
+        public void AddEntry(ReportEntry entry)
         {
             if (!_indexesOfRecords.Contains(entry.RecordID))
             {
