@@ -79,6 +79,7 @@ namespace SolidGui.Model
         {
             node.Parent = this;
             _children.Add(node);
+            node.Depth = Depth + 1;
         }
 
         

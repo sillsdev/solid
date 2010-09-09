@@ -16,7 +16,8 @@ namespace SolidGui.Processes
 
         private static void InsertInTreeAnyway(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
         {
-            TruncateScope(scope.Count - 1, scope);
+            UpdateScope(scope, scope.Count, source);
+//            TruncateScope(scope.Count - 1, scope);
             outputEntry.AppendField(source);
         }
 
@@ -27,12 +28,10 @@ namespace SolidGui.Processes
             {
                 return false;
             }
-            // Add the node under this parent
+            scope[index].AppendChild(source);  // Add the node under this parent
+            UpdateScope(scope, index, source); // Add to list of possible parents
 
-            scope[index].AppendChild(source);
-            UpdateScope(scope, index, source);
-
-            source.Depth = scope.Count - 1;
+            //source.Depth = scope.Count - 1;
             
             outputEntry.AppendField(source);
             return true;
@@ -165,8 +164,10 @@ namespace SolidGui.Processes
                         }
                         else
                         {
-                            inferredNode.AppendChild(sourceField);
-                            
+                            if (InsertInTree(sourceField, report, scope, outputEntry))
+                            {
+                                retval = true;
+                            }
                         }
                         // No else required, the InferNode puts the entries in the tree.
                     }

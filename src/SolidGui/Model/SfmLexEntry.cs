@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Palaso.Lift;
 using SolidGui.Engine;
 
 namespace SolidGui.Model
@@ -141,6 +142,7 @@ namespace SolidGui.Model
             entry.AppendField(field);
             return entry;
         }
+
     }
 
 }

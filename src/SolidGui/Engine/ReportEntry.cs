@@ -74,6 +74,11 @@ namespace SolidGui.Engine
         {
             get { return _entryName; }
         }
+
+        public override string ToString()
+        {
+            return "NAME:" + _entryName + " DESCRIP:" + _description + " TYPE:" + _entryType;
+        }
     }
 
 }

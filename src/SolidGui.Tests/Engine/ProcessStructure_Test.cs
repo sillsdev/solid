@@ -1650,5 +1650,175 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
         }
 
+        [Test]
+        public void ProcessStructure_ValidMarkerUnderInferredMarkerAfterError_HasCorrectParent()
+        {
+
+            const string sfmIn = @"
+\lx a
+\ge b";
+
+            //expecting:
+
+            /*
+             * \lx a
+             * \sn
+             *    \ge
+             */
+
+            using (var environment = new EnvironmentForTest())
+            {
+
+                var settings = new SolidSettings();
+
+                var snSetting = settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("noparent",
+                                                                             MultiplicityAdjacency.MultipleApart));
+                snSetting.InferedParent = "";
+
+                var geSetting = settings.FindOrCreateMarkerSetting("ge");
+                geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+                geSetting.InferedParent = "sn";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("sn", outputEntry[1].Marker);
+                Assert.AreEqual("ge", outputEntry[2].Marker);
+
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual(null, outputEntry[1].Parent);
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
+
+
+            }
+        }
+
+        [Test]
+        public void ProcessStructure_MarkerCannotBePlacedInStructureAndNothingCouldBeInferred_GeneratesReport()
+        {
+
+            const string sfmIn = @"
+\lx a
+\sn
+\ge g
+\zz z";
+            //expecting:
+
+            /*
+             * \lx a
+             *   \sn
+             *     \ge g
+             * \zz z
+             */
+
+            using (var environment = new EnvironmentForTest())
+            {
+                var settings = new SolidSettings();
+
+                var geSettings = settings.FindOrCreateMarkerSetting("ge");
+                geSettings.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+                geSettings.InferedParent = "";
+
+                var snSettings = settings.FindOrCreateMarkerSetting("sn");
+                snSettings.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
+                snSettings.InferedParent = "";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+               
+                Assert.AreEqual(0, outputEntry[0].Depth);
+                Assert.AreEqual(1, outputEntry[1].Depth);
+                Assert.AreEqual(2, outputEntry[2].Depth);
+                Assert.AreEqual(0, outputEntry[3].Depth);
+
+                
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("sn", outputEntry[1].Marker);
+                Assert.AreEqual("ge", outputEntry[2].Marker);
+                Assert.AreEqual("zz", outputEntry[3].Marker);
+
+
+                // test that report was generated
+
+                var expectedReportEntry = new ReportEntry(
+                    SolidReport.EntryType.StructureParentNotFound,
+                    outputEntry,
+                    outputEntry[3],
+                    string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", outputEntry[3].Marker)
+                    );
+
+                Assert.AreEqual(1, report.Count);
+
+                Assert.AreEqual(SolidReport.EntryType.StructureParentNotFound, report.Entries[0].EntryType);
+                Assert.AreEqual("zz", report.Entries[0].Marker);
+            }
+        }
+
+        [Test]
+        public void ProcessStructure_MarkerCannotBePlacedInStructure_GeneratesReportEntry()
+        {
+            const string sfmIn = @"
+\lx a
+\ge b";
+
+            //expecting:
+
+            /*
+             * \lx a
+             * \sn
+             *    \ge
+             */
+
+            using (var environment = new EnvironmentForTest())
+            {
+
+                var settings = new SolidSettings();
+                
+                var snSetting = settings.FindOrCreateMarkerSetting("sn");
+                snSetting.StructureProperties.Add(new SolidStructureProperty("noparent", MultiplicityAdjacency.MultipleApart));
+                snSetting.InferedParent = "";
+
+                var geSetting = settings.FindOrCreateMarkerSetting("ge");
+                geSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+                geSetting.InferedParent = "sn";
+
+                SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                var outputEntry = process.Process(entry, report);
+
+                //depth check
+
+                Assert.AreEqual(0, outputEntry[0].Depth);
+                Assert.AreEqual(0, outputEntry[1].Depth);
+                Assert.AreEqual(1, outputEntry[2].Depth);
+
+
+                Assert.AreEqual("lx", outputEntry[0].Marker);
+                Assert.AreEqual("sn", outputEntry[1].Marker);
+                Assert.AreEqual("ge", outputEntry[2].Marker);
+
+                Assert.AreEqual(null, outputEntry[0].Parent);
+                Assert.AreEqual(null, outputEntry[1].Parent);
+                Assert.AreEqual("sn", ParentMarkerForField(outputEntry[2]));
+
+
+                Assert.AreEqual(1, report.Count);
+
+                Assert.AreEqual(SolidReport.EntryType.StructureParentNotFound, report.Entries[0].EntryType);
+                Assert.AreEqual("sn", report.Entries[0].Marker);
+           }
+
+
+        }
     }
 }
