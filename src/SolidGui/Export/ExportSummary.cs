@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Palaso.Progress;
+using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui.Export
 {
@@ -15,6 +17,16 @@ namespace SolidGui.Export
         public void Export(string inputFilePath, string outputFilePath)
         {
             
+        }
+
+        public void Export(IEnumerable<Record> records, string outputFilePath) // added to implement interface smw:10sep2010
+        {
+            throw new System.NotImplementedException(); 
+        }
+
+        public void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath)
+        {
+            throw new System.NotImplementedException();
         }
 
         public void ExportAsync(object sender, DoWorkEventArgs args)

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using NUnit.Framework.Constraints;
 
 namespace SolidGui.Tests.Export
 {
+
     public class ExportTestConstraint : NUnit.Framework.Constraints.Constraint
     {
         private string _srcFilePath;
@@ -18,12 +20,13 @@ namespace SolidGui.Tests.Export
             _srcFilePath = filePath;
         }
 
-        public override bool Matches(object actual)
+        public override bool Matches(object value)
         {
-            string desFilePath = actual as String;
+            string outputFilePath = value as string;
+            TextReader exportFile = new StreamReader(outputFilePath);
             Console.WriteLine("Testing {0:s}", _srcFilePath);
             bool retval = true;
-            TextReader exportFile = new StreamReader(desFilePath);
+            
             string masterFilePath = Path.ChangeExtension(_srcFilePath, ".tmpl");
             try
             {
@@ -41,8 +44,18 @@ namespace SolidGui.Tests.Export
                         break;
                     }
                     
-
-                    if (_line != _srcLine)
+                    if (_srcLine.Contains("*"))
+                    {
+                        string patternString = _srcLine.Replace("*", ".*");
+                        var pattern = new Regex(patternString);
+                        Match match = pattern.Match(_line);
+                        if (!match.Success)
+                        {
+                            retval = false;
+                            break;
+                        }
+                    }
+                    else if (_line != _srcLine)
                     {
                         _message = string.Format(
                             "\n{0:s}\n\tFile compare fail in _line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",

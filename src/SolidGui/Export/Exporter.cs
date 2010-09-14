@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using SolidGui.Engine;
 using SolidGui.MarkerSettings;
+using SolidGui.Model;
 
 namespace SolidGui.Export
 {
@@ -18,7 +20,7 @@ namespace SolidGui.Export
     public interface IExporter
     {
         //ExportSetting ExportSettings;
-        void Export(string inputFilePath, string outputFilePath);
+        void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath);
 
         /// <summary>
         /// This runs as a background worker.

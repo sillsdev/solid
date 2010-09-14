@@ -3,18 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using Palaso.DictionaryServices.Lift;
+using Palaso.DictionaryServices.Model;
+using SolidGui.Engine;
+using SolidGui.Model;
 
 namespace SolidGui.Export
 {
     public class LiftExporter : IExporter
     {
-
-        // TODO change this to IEnumerable<SfmLexEntry> or similar
-        public void Export(string inputFilePath, string outputFilePath)
+        public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath)
         {
             var dm = new LiftDataMapper(outputFilePath);
-            var entry = new SfmLiftLexEntryAdapter(null);
-            dm.SaveItem(entry);
+            foreach (var sfmLexEntry in sfmLexEntries)
+            {
+                var lexEntry = new SfmLiftLexEntryAdapter(sfmLexEntry.LexEntry, solidSettings);
+                var createdItem = dm.CreateItem();
+                lexEntry.PopulateEntry(createdItem);
+
+                dm.SaveItem(createdItem);
+            }
+
         }
 
         public void ExportAsync(object sender, DoWorkEventArgs args)
