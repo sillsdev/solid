@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
+using Palaso.Lift.Options;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -69,7 +70,7 @@ namespace SolidGui.Export
             { "borrowedWord", Concepts.BorrowedWord },
             { "confer", Concepts.Confer },
             { "dateModified", Concepts.DateModified },
-            { "homonym", Concepts.HomonymNumber },
+            { "homonym", Concepts.HomonymNumber }, // Really homograph number CP 2010-09
             { "citation", Concepts.CitationForm },
             { "illustration", Concepts.Illustration },
             { "pronunciation", Concepts.Pronunciation },
@@ -117,6 +118,7 @@ namespace SolidGui.Export
 
         public void PopulateEntry(LexEntry liftLexEntry)
         {
+            var currentLexEntry = liftLexEntry;
             var state = States.LexEntry;
             LexSense currentSense = null;
             LexExampleSentence currentExample = null;
@@ -129,6 +131,10 @@ namespace SolidGui.Export
                         switch (liftInfo.LiftConcept)
                         {
                             case Concepts.Ignore: // dont add to LexEntry
+                                break;
+                            case Concepts.SubEntry:
+                                currentLexEntry = new LexEntry();
+                                currentLexEntry.LexicalForm[liftInfo.WritingSystem] = field.Value;
                                 break;
                             case Concepts.LexicalUnit:
                                 liftLexEntry.LexicalForm[liftInfo.WritingSystem] = field.Value;
@@ -147,52 +153,59 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.BorrowedWord:
-                                //AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.);
+                                // NOTE Palaso does not support lift etymology as a first class element yet, so write it out as a lift trait (OptionRef).
+                                var o = new OptionRef("borrowed");
+                                o.Value = field.Value;
+                                liftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", o));
                                 break;
                             case Concepts.Confer:
-                                //?
+                                // TODO This is a relation, come back to this when we know how to do relations. CP 2010-09
                                 break;
                             case Concepts.DateModified:
                                 var inModTime = field.Value;
                                 liftLexEntry.ModificationTime = Convert.ToDateTime(inModTime); // convert string to DateTime
                                 break;
                             case Concepts.HomonymNumber:
-                                //?
+                                liftLexEntry.OrderInFile = int.Parse(field.Value);
                                 break;
                             case Concepts.CitationForm:
-                                //this.CitationForm = field.Value;
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, LexEntry.WellKnownProperties.Citation);
                                 break;
                             case Concepts.Pronunciation:
-                                //?
+                                // NOTE Palaso does not support first class <pronunciation> element yet
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "pronunciation");
                                 break;
                             case Concepts.Variant:
-                                
+                                // NOTE Palaso does not support first class <variant> element yet
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "variant");
                                 break;
                             case Concepts.Reversal:
-                                //?
+                                // NOTE Palaso does not support first class <reversal> element yet
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "reversal"); 
                                 break;
                             case Concepts.Etymology:
-                                //?
+                                // NOTE Palaso does not support first class <etymology> element yet
+                                var op = new OptionRef("proto");
+                                op.Value = field.Value;
+                                liftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", op));
                                 break;
                             case Concepts.EtymologySource:
-                                //?
+                                // NOTE Palaso does not support etymology-source yet
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "etymology-source");
                                 break;
                             case Concepts.CustomField:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, field.Marker);
                                 break;
                             case Concepts.LexicalRelationType:
-                                
+                                // TODO
                                 break;
                             case Concepts.LexicalRelationLexeme:
-                                //?
-                                break;
-                            case Concepts.SubEntry:
-                                //make new LexEntry??
+                                // TODO
                                 break;
                             case Concepts.Comment:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
-
+                            
                             // change state
                             case Concepts.Sense:
                                 currentSense = new LexSense();
@@ -219,31 +232,34 @@ namespace SolidGui.Export
                             case Concepts.NoteSource:
                                 AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
-                            
                             case Concepts.Illustration:
-                                //?
+                                var illustration = new PictureRef();
+                                illustration.Value = field.Value;
+                                currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.Picture, illustration));
                                 break;
                             case Concepts.GrammaticalInfo_PS:
-                                //?
+                                var gi = new OptionRef(field.Value); // TODO One we could check the fieldValue against some RangeSet (OptionRefCollection)
+                                // var optRefCollection = new OptionRefCollection();
+                                currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.PartOfSpeech, gi));
                                 break;
                             case Concepts.Definition:
-                                
+                                currentSense.Definition[liftInfo.WritingSystem] = field.Value;
                                 break;
                             case Concepts.SemanticDomain:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "semantic-domain");
                                 break;
                             case Concepts.CustomField:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, field.Marker);
                                 break;
                             case Concepts.Comment:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
-
-                            
+                                
                             case Concepts.Gloss:
                                 currentSense.Gloss[liftInfo.WritingSystem] = field.Value;
-
                                 break;
+
+                            // change state
                             case Concepts.ExampleSentence:
                                 currentExample = new LexExampleSentence();
                                 currentSense.ExampleSentences.Add(currentExample);
@@ -271,40 +287,38 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.CustomField:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, field.Marker);
                                 break;
-
                             case Concepts.ExampleReference:
-                                
+                                // NOTE Palaso does not support ExampleReference yet
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, "example-reference");
                                 break;
                             case Concepts.ExampleSentence:
                                 currentExample.Sentence[liftInfo.WritingSystem] = field.Value;
                                 break;
                             case Concepts.ExampleSentenceTranslation:
-                                //?
+                                currentExample.Translation[liftInfo.WritingSystem] = field.Value;
                                 break;
                             case Concepts.Comment:
-                                //?
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, liftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
-
-
+                                
                             default:
                                 // change state
                                 state = ConceptState(liftInfo.LiftConcept, state);
                                 break;
                         }
                         break;
-                    
-                }
+                 }
 
             }
         }
 
-        private static void AddMultiTextToPalasoDataObject(string fieldValue, string writingSystem, LexEntry liftLexEntry, string type)
+        private static void AddMultiTextToPalasoDataObject(string fieldValue, string writingSystem, LexEntry liftLexEntry, string propertyName)
         {
             var mt = new MultiText();
             mt[writingSystem] = fieldValue;
-            liftLexEntry.Properties.Add(new KeyValuePair<string, object>(type, mt));
+            liftLexEntry.Properties.Add(new KeyValuePair<string, object>(propertyName, mt));
         }
 
         private static States ConceptState(Concepts concept, States state)

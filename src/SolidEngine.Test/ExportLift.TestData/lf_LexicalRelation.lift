@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="EntryOne_a6326bdb-8e3f-4fc9-bad2-336b8fe3b4ce"
+		dateCreated="2010-09-20T09:48:52Z"
+		dateModified="2010-09-20T09:48:52Z"
+		guid="a6326bdb-8e3f-4fc9-bad2-336b8fe3b4ce">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryOne</text>
+			</form>
+		</lexical-unit>
+	</entry>
+	<entry
+		id="EntryTwo_d503e469-b1df-4be3-bf7a-01961d045ce4"
+		dateCreated="2010-09-20T09:48:52Z"
+		dateModified="2010-09-20T09:48:52Z"
+		guid="d503e469-b1df-4be3-bf7a-01961d045ce4">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryTwo</text>
+			</form>
+		</lexical-unit>
+	</entry>
+</lift>

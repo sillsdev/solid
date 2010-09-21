@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="TestLexeme_d373c397-a9be-461a-a235-e2503e1529ee"
+		dateCreated="2010-09-20T09:48:50Z"
+		dateModified="2010-09-20T09:48:50Z"
+		guid="d373c397-a9be-461a-a235-e2503e1529ee">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<field
+			type="variant">
+			<form
+				lang="eng">
+				<text>VariantOfTestLexeme</text>
+			</form>
+		</field>
+	</entry>
+</lift>

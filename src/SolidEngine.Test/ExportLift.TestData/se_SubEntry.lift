@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="TestLexeme_a63aa492-bb3f-43c5-af82-36e6f65baae7"
+		dateCreated="2010-09-20T09:48:54Z"
+		dateModified="2010-09-20T09:48:54Z"
+		guid="a63aa492-bb3f-43c5-af82-36e6f65baae7">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<sense
+			id="1a46d3af-bad1-44ce-b2a5-a887ddbbff8d">
+			<gloss
+				lang="eng">
+				<text>SubEntryGloss</text>
+			</gloss>
+		</sense>
+	</entry>
+</lift>

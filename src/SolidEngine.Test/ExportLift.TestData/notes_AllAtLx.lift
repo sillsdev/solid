@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="TestLexeme_8903e394-c267-4039-87e9-8e16e5117c07"
+		dateCreated="2010-09-20T09:48:52Z"
+		dateModified="2010-09-20T09:48:52Z"
+		guid="8903e394-c267-4039-87e9-8e16e5117c07">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<note>
+			<form
+				lang="eng">
+				<text>Anthropology note</text>
+			</form>
+		</note>
+	</entry>
+</lift>

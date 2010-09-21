@@ -10,75 +10,74 @@ namespace SolidGui.Tests.Export
 
     public class ExportTestConstraint : NUnit.Framework.Constraints.Constraint
     {
-        private string _srcFilePath;
+        private string _templateFilePath;
         private string _message;
-        private string _line;
-        private string _srcLine;
+        private string _templateLine;
+        private string _outputLine;
 
         public ExportTestConstraint(string filePath)
         {
-            _srcFilePath = filePath;
+            _templateFilePath = filePath;
         }
 
         public override bool Matches(object value)
         {
             string outputFilePath = value as string;
-            TextReader exportFile = new StreamReader(outputFilePath);
-            Console.WriteLine("Testing {0:s}", _srcFilePath);
+            TextReader outputFile = new StreamReader(outputFilePath);
+            Console.WriteLine("Testing {0:s}", _templateFilePath);
             bool retval = true;
             
-            string masterFilePath = Path.ChangeExtension(_srcFilePath, ".tmpl");
             try
             {
-                TextReader masterFile = new StreamReader(masterFilePath);
+                TextReader templateFile = new StreamReader(_templateFilePath);
                 
                 int lineCount = 0;
-                while ((_srcLine = exportFile.ReadLine()) != null)
+                while ((_outputLine = outputFile.ReadLine()) != null)
                 {
                     lineCount++;
-                    _line = masterFile.ReadLine();
-                    if (_line == null)
+                    _templateLine = templateFile.ReadLine();
+                    if (_templateLine == null)
                     {
                         _message = string.Format("null fail");
                         retval = false;
                         break;
                     }
                     
-                    if (_srcLine.Contains("*"))
+                    if (_templateLine.Contains("*"))
                     {
-                        string patternString = _srcLine.Replace("*", ".*");
+                        string patternString = _templateLine.Replace("*", ".*");
                         var pattern = new Regex(patternString);
-                        Match match = pattern.Match(_line);
+                        Match match = pattern.Match(_outputLine);
                         if (!match.Success)
                         {
                             retval = false;
                             break;
                         }
                     }
-                    else if (_line != _srcLine)
+                    else if (_templateLine != _outputLine)
                     {
                         _message = string.Format(
                             "\n{0:s}\n\tFile compare fail in _line {3:d}:\n\texp: {1:s}\n\tgot: {2:s}",
-                            _srcFilePath, _line, _srcLine, lineCount
+                            _templateFilePath, _templateLine, _outputLine, lineCount
                             );
                         retval = false;
                         break;
                     }
                 }
-                masterFile.Close();
+                templateFile.Close();
             }
             catch (IOException e)
             {
-                _message = string.Format("\n{0:s}\n\t{1:s}", _srcFilePath, e.Message);
+                _message = string.Format("\n{0:s}\n\t{1:s}", _templateFilePath, e.Message);
                 retval = false;
             }
-            exportFile.Close();
+            outputFile.Close();
             return retval;
         }
 
         public override void WriteDescriptionTo(MessageWriter writer)
         {
-            writer.DisplayStringDifferences(_line, _srcLine, 0, false, true);
+            writer.DisplayStringDifferences(_templateLine, _outputLine, 0, false, true);
         }
     }
 }

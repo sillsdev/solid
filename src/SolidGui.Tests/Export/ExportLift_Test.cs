@@ -13,38 +13,12 @@ namespace SolidGui.Tests.Export
     {
 
         [Test]
-        [Ignore]
-        public void ExportSamples_Correct()
-        {
-            var factory = ExportFactory.Singleton();
-            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
-            string tempPath = Path.GetTempPath() + "SolidTest\\";
-            if (Directory.Exists(tempPath))
-            {
-                Directory.Delete(tempPath, true);
-            }
-            Directory.CreateDirectory(tempPath);
-            SfmDictionary dictionary = new SfmDictionary();
-            
-            
-            foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
-            {
-                //dictionary.Open(srcFilePath, new SolidSettings(),  );
-
-                string outputFilePath = String.Format("{0}{1}.lift", tempPath, Path.GetFileNameWithoutExtension(srcFilePath));
-                var exporter = factory.CreateFromFileFilter("LIFT (*.lift)|*.lift");
-                Assert.Fail("need to get list of sfmLexEntries for exporter - smw 10sep2010");//exporter.Export(srcFilePath, outputFilePath);
-                Assert.That(outputFilePath, Has.Some.Matches(new ExportTestConstraint(srcFilePath)));
-            }
-        }
-
-        [Test]
-        public void TestLiftExport()
+        [Ignore("SOLID is not yet able to export properly due to insufficiencies in the Palaso Lift exporter.")]
+        public void LiftExporter_CompareOutputToLiftSpecTemplate_GeneratedMatchesTemplate()
         {
 
             string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
             
-
             foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
             {
                 var dictionary = new SfmDictionary();
@@ -65,13 +39,43 @@ namespace SolidGui.Tests.Export
                 //string outputFilePath = String.Format("{0}{1}.lift", tempPath, Path.GetFileNameWithoutExtension(srcFilePath));
                 string outputFilePath = Path.ChangeExtension(srcFilePath, "lift"); // Change this back!!! CP 2010-09
 
+                if(File.Exists(outputFilePath))
+                {
+                    File.Delete(outputFilePath);
+                }
+
                 liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
 
+                string templateFilePath = Path.ChangeExtension(srcFilePath, ".tmpl");
 
-                //TextReader exportFile = new StreamReader(outputFilePath);
-                //Assert.That(outputFilePath, new ExportTestConstraint(srcFilePath));
-                // Assert.That(null, Has.Some.Matches(new ExportTestConstraint(srcFilePath)));
+                Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
+                
 
+            }
+
+        }
+
+        [Test]
+        public void LiftExporter_CompareOutputToSOLIDfriendlyTemplateWithCustomFields_GeneratedMatchesTemplate()
+        {
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+
+            foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
+            {
+                var dictionary = new SfmDictionary();
+                var liftExporter = new LiftExporter();
+                var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
+                dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
+
+                string outputFilePath = Path.ChangeExtension(srcFilePath, "lift");
+
+                if (File.Exists(outputFilePath))
+                {
+                    File.Delete(outputFilePath);
+                }
+                liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
+                string templateFilePath = Path.ChangeExtension(srcFilePath, ".newtmpl");
+                Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
             }
 
         }
