@@ -1,22 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <lift
 	version="0.13"
-	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
 	<entry
-		id="TestLexeme_a63aa492-bb3f-43c5-af82-36e6f65baae7"
-		dateCreated="2010-09-20T09:48:54Z"
-		dateModified="2010-09-20T09:48:54Z"
-		guid="a63aa492-bb3f-43c5-af82-36e6f65baae7">
+		id="TestLexeme_83676155-815b-40b3-8eca-c68a767bd98c"
+		dateCreated="2010-09-29T07:16:57Z"
+		dateModified="2010-09-29T07:16:57Z"
+		guid="83676155-815b-40b3-8eca-c68a767bd98c">
 		<lexical-unit>
 			<form
-				lang="eng">
+				lang="th">
 				<text>TestLexeme</text>
 			</form>
 		</lexical-unit>
 		<sense
-			id="1a46d3af-bad1-44ce-b2a5-a887ddbbff8d">
+			id="c4894346-c8b6-47db-93fb-a19c46916708">
 			<gloss
-				lang="eng">
+				lang="en">
+				<text>TestGloss</text>
+			</gloss>
+		</sense>
+	</entry>
+	<entry
+		id="TestLexeme_0a610d99-bc97-4b29-af8d-ab1361bb0433"
+		dateCreated="2010-09-29T07:16:57Z"
+		dateModified="2010-09-29T07:16:57Z"
+		guid="0a610d99-bc97-4b29-af8d-ab1361bb0433">
+		<lexical-unit>
+			<form
+				lang="th">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<relation
+			type="BaseForm"
+			ref="83676155-815b-40b3-8eca-c68a767bd98c" />
+		<sense
+			id="47135e29-2333-4ae9-9baf-b44fbcfb1ab5">
+			<gloss
+				lang="en">
 				<text>SubEntryGloss</text>
 			</gloss>
 		</sense>

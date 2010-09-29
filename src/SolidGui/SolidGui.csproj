@@ -106,6 +106,7 @@
     <Compile Include="Export\ExportHeader.cs" />
     <Compile Include="Export\ExportSummary.cs" />
     <Compile Include="Export\LiftExporter.cs" />
+    <Compile Include="Export\Relation.cs" />
     <Compile Include="Export\SfmLiftLexEntryAdapter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />

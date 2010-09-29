@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <lift
 	version="0.13"
-	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	producer="Palaso.DictionaryServices.LiftWriter *">
 	<entry
 		id="EntryOne_*"
 		dateCreated="*"
@@ -13,6 +13,9 @@
 				<text>EntryOne</text>
 			</form>
 		</lexical-unit>
+		<relation
+			type="*"
+			ref="*" />
 	</entry>
 	<entry
 		id="EntryTwo_*"
@@ -23,6 +26,33 @@
 			<form
 				lang="eng">
 				<text>EntryTwo</text>
+			</form>
+		</lexical-unit>
+	</entry>
+	<entry
+		id="EntryThree_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryThree</text>
+			</form>
+		</lexical-unit>
+		<relation
+			type="*"
+			ref="*" />
+	</entry>
+	<entry
+		id="EntryFour_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryFour</text>
 			</form>
 		</lexical-unit>
 	</entry>

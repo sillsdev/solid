@@ -41,7 +41,7 @@ namespace SolidGui.Engine
             }
         }
 
-        public List<SolidMarkerSetting> MarkerSettings // review: this shouldn't be visible
+        public List<SolidMarkerSetting> MarkerSettings // TODO review: this shouldn't be visible
         {
             get { return _markerSettings; }
         }

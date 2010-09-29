@@ -24,7 +24,7 @@ namespace SolidGui.Tests.Export
         {
             string outputFilePath = value as string;
             TextReader outputFile = new StreamReader(outputFilePath);
-            Console.WriteLine("Testing {0:s}", _templateFilePath);
+            //Console.WriteLine("Testing {0:s}", _templateFilePath);
             bool retval = true;
             
             try

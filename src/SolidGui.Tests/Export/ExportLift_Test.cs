@@ -49,10 +49,8 @@ namespace SolidGui.Tests.Export
                 string templateFilePath = Path.ChangeExtension(srcFilePath, ".tmpl");
 
                 Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
-                
-
+             
             }
-
         }
 
         [Test]
@@ -68,15 +66,46 @@ namespace SolidGui.Tests.Export
                 dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
 
                 string outputFilePath = Path.ChangeExtension(srcFilePath, "lift");
-
+                string templateFilePath = Path.ChangeExtension(srcFilePath, ".newtmpl");
+                Console.WriteLine("Testing:\nTemplate: {0} \nOutput: {1}", templateFilePath, outputFilePath);
+                
                 if (File.Exists(outputFilePath))
                 {
                     File.Delete(outputFilePath);
                 }
                 liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
-                string templateFilePath = Path.ChangeExtension(srcFilePath, ".newtmpl");
+                
                 Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
             }
+
+        }
+
+        [Test]
+        public void LiftExporter_IndividualFile_GeneratedMatchesTemplate()
+        {
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+
+            var srcFilePath = srcDataPath + "/xe_WithTranslation.db";
+            
+            var dictionary = new SfmDictionary();
+            var liftExporter = new LiftExporter();
+            var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
+            dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
+
+            string outputFilePath = Path.ChangeExtension(srcFilePath, "lift");
+            string templateFilePath = Path.ChangeExtension(srcFilePath, ".newtmpl");
+            Console.WriteLine("Testing:\nTemplate: {0} \nOutput: {1}", templateFilePath, outputFilePath);
+
+
+            if (File.Exists(outputFilePath))
+            {
+                File.Delete(outputFilePath);
+            }
+            liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
+
+
+            Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
+            
 
         }
 

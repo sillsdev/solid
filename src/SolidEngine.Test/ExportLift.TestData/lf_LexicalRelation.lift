@@ -1,28 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <lift
 	version="0.13"
-	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
 	<entry
-		id="EntryOne_a6326bdb-8e3f-4fc9-bad2-336b8fe3b4ce"
-		dateCreated="2010-09-20T09:48:52Z"
-		dateModified="2010-09-20T09:48:52Z"
-		guid="a6326bdb-8e3f-4fc9-bad2-336b8fe3b4ce">
+		id="EntryOne_92cb944a-ac15-4884-a8d1-0723f98d25c3"
+		dateCreated="2010-09-29T07:16:55Z"
+		dateModified="2010-09-29T07:16:55Z"
+		guid="92cb944a-ac15-4884-a8d1-0723f98d25c3">
 		<lexical-unit>
 			<form
 				lang="eng">
 				<text>EntryOne</text>
 			</form>
 		</lexical-unit>
+		<relation
+			type="LexFunc"
+			ref="53ac4837-29e2-4fe9-965c-514ed6c2b542" />
 	</entry>
 	<entry
-		id="EntryTwo_d503e469-b1df-4be3-bf7a-01961d045ce4"
-		dateCreated="2010-09-20T09:48:52Z"
-		dateModified="2010-09-20T09:48:52Z"
-		guid="d503e469-b1df-4be3-bf7a-01961d045ce4">
+		id="EntryTwo_53ac4837-29e2-4fe9-965c-514ed6c2b542"
+		dateCreated="2010-09-29T07:16:55Z"
+		dateModified="2010-09-29T07:16:55Z"
+		guid="53ac4837-29e2-4fe9-965c-514ed6c2b542">
 		<lexical-unit>
 			<form
 				lang="eng">
 				<text>EntryTwo</text>
+			</form>
+		</lexical-unit>
+	</entry>
+	<entry
+		id="EntryThree_83a3aacc-de13-4d02-8751-b6b1a8b6d407"
+		dateCreated="2010-09-29T07:16:55Z"
+		dateModified="2010-09-29T07:16:55Z"
+		guid="83a3aacc-de13-4d02-8751-b6b1a8b6d407">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryThree</text>
+			</form>
+		</lexical-unit>
+		<relation
+			type="Gen"
+			ref="96d964d0-d2e5-445b-b145-c248066caae7" />
+	</entry>
+	<entry
+		id="EntryFour_96d964d0-d2e5-445b-b145-c248066caae7"
+		dateCreated="2010-09-29T07:16:55Z"
+		dateModified="2010-09-29T07:16:55Z"
+		guid="96d964d0-d2e5-445b-b145-c248066caae7">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryFour</text>
 			</form>
 		</lexical-unit>
 	</entry>

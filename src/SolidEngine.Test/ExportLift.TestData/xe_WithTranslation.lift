@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <lift
 	version="0.13"
-	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
 	<entry
-		id="TestLexeme_06d6e046-4a84-497d-bd30-f81120102d49"
-		dateCreated="2010-09-20T09:48:54Z"
-		dateModified="2010-09-20T09:48:54Z"
-		guid="06d6e046-4a84-497d-bd30-f81120102d49">
+		id="TestLexeme_23a668e6-1837-495d-b3ea-a4bda99008ac"
+		dateCreated="2010-09-29T07:16:57Z"
+		dateModified="2010-09-29T07:16:57Z"
+		guid="23a668e6-1837-495d-b3ea-a4bda99008ac">
 		<lexical-unit>
 			<form
 				lang="tha">
@@ -14,7 +14,7 @@
 			</form>
 		</lexical-unit>
 		<sense
-			id="f1816bd1-583b-468b-84d9-e91d9e0a3d4a">
+			id="f9336dec-08e1-459a-8dee-b32dd505815b">
 			<example>
 				<form
 					lang="tha">
