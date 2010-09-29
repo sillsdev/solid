@@ -121,6 +121,7 @@ namespace SolidGui.Tests.Export
 
         [Test]
         // http://projects.palaso.org/issues/show/157
+        // TODO: Make ps (Concept:Grammi) start a new sense in the SfmLexEntryAdapter
         public void Bug157_LiftExportPartOfSpeech_IsInLift()
         {
             string sfm = @"
