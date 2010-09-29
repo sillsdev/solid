@@ -90,5 +90,23 @@ namespace SolidGui.Tests.Export
             }
         }
 
+        [Test]
+        public void Bug150_LiftExportWithBorrowedWord_IsNotVariant()
+        {
+            string sfm = @"
+\lx Lexeme
+\bw BorrowedWord
+";
+            using (var e = new EnvironmentForTest(sfm))
+            {
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("bw", "borrowedWord", "en");
+                var liftExporter = new LiftExporter();
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
+            }
+        }
+
+
     }
 }
