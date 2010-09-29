@@ -178,15 +178,10 @@ namespace SolidGui
     		get
     		{
     			string path = DirectoryOfExecutingAssembly;
-
-    			if (path.ToLower().IndexOf("output") > -1)
-    			{
-					// ReSharper disable PossibleNullReferenceException
-					//go up to output
-    				path = Directory.GetParent(path).FullName;
-    				//go up to directory containing output
-    				path = Directory.GetParent(path).FullName;
-					// ReSharper restore PossibleNullReferenceException
+    		    int outputIndex = path.ToLower().IndexOf("output");
+                if (outputIndex > -1)
+                {
+                    path = path.Substring(0, outputIndex);
 				}
     			return path;
     		}
