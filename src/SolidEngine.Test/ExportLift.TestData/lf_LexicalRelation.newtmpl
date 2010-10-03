@@ -28,6 +28,12 @@
 				<text>EntryTwo</text>
 			</form>
 		</lexical-unit>
+		<note>
+			<form
+				lang="en">
+				<text>SOLID NOTE: Cannot find target: EntryFive</text>
+			</form>
+		</note>
 	</entry>
 	<entry
 		id="EntryThree_*"
