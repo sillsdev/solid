@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter *">
+	<entry
+		id="TestLexeme_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="tha">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<sense
+			id="*">
+			<example>
+				<form
+					lang="tha">
+					<text>A example sentence</text>
+				</form>
+				<translation>
+					<form
+						lang="eng">
+						<text>A translated example</text>
+					</form>
+				</translation>
+			</example>
+		</sense>
+	</entry>
+</lift>

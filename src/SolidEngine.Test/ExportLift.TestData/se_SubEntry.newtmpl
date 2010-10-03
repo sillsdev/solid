@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter *">
+	<entry
+		id="TestLexeme_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="th">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<sense
+			id="*">
+			<gloss
+				lang="en">
+				<text>TestGloss</text>
+			</gloss>
+		</sense>
+	</entry>
+	<entry
+		id="TestLexeme_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="th">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<relation
+			type="BaseForm"
+			ref="*" />
+		<sense
+			id="*">
+			<gloss
+				lang="en">
+				<text>SubEntryGloss</text>
+			</gloss>
+		</sense>
+	</entry>
+</lift>

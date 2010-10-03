@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<lift version="0.10">
-  <header>
-    <fields>
-      <field tag="custom">
-        <form lang="en">
-          <text>For storing markers that are otherwise not defined</text>
-        </form>
-      </field>
-    </fields>
-  </header>
-  <entry guid=".*" id="TestLexeme-ID0EE" dateModified="2007-11-27">
-    <lexical-unit>
-      <form lang="tha">
-        <text>TestLexeme</text>
-      </form>
-    </lexical-unit>
-    <sense>
-      <example source="ABC 1.2.3">
-        <form lang="tha">
-          <text>A example sentence</text>
-        </form>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="TestLexeme_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<formsource="ABC 1.2.3"
+				lang="tha">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<sense
+			id="*">
+			<example source="ABC 1.2.3">
+				<form
+					lang="tha">
+					<text>A example sentence</text>
+				</form>
         <translation>
           <form lang="eng">
             <text>A translated example</text>
           </form>
         </translation>
-      </example>
-    </sense>
-  </entry>
+			</example>
+		</sense>
+	</entry>
 </lift>

@@ -4,7 +4,9 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using NUnit.Framework;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.Engine;
+using SolidGui.Model;
 
 
 namespace SolidGui.Tests
@@ -258,7 +260,7 @@ namespace SolidGui.Tests
                     ++i;
                 } while (i < fields.Length && !fields[i].StartsWith("lx"));
  
-                var r = new Record(i);
+                var r = new Record();
                 r.SetRecordContents(b.ToString(), settings);
                 dictionary.AddRecord(r);
             }

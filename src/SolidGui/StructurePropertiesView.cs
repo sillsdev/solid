@@ -1,7 +1,9 @@
 using System;
 using Palaso.Reporting;
-using SolidEngine;
+
 using System.Windows.Forms;
+using Solid.Engine;
+using SolidGui.Engine;
 
 namespace SolidGui
 {
@@ -72,7 +74,7 @@ namespace SolidGui
             if (_parentListView.SelectedItems.Count > 0)
             {
                 SolidStructureProperty property = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
-                switch (property.MultipleAdjacent)
+                switch (property.Multiplicity)
                 {
                     case MultiplicityAdjacency.Once:
                         {

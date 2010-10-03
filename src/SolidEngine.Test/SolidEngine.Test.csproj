@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{89CEA606-4FAA-4E31-A20B-2C453E458236}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -68,29 +68,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encoding_Test.cs" />
-    <Compile Include="EngineEnvironment_Test.cs" />
-    <Compile Include="ExportFactory_Test.cs" />
-    <Compile Include="ExportLift_Test.cs" />
-    <Compile Include="ExportXsl_Test.cs" />
-    <Compile Include="ExportStructuredXml_Test.cs" />
-    <Compile Include="ExportTestAsserter.cs" />
-    <Compile Include="ProcessEncoding_Test.cs" />
-    <Compile Include="ProcessStructure_Test.cs" />
+    <Compile Include="Engine\EngineEnvironment_Test.cs" />
+    <Compile Include="Export\ExportFactory_Test.cs" />
+    <Compile Include="Export\ExportLift_Test.cs" />
+    <Compile Include="Export\ExportXsl_Test.cs" />
+    <Compile Include="Export\ExportStructuredXml_Test.cs" />
+    <Compile Include="Export\ExportTestAsserter.cs" />
+    <Compile Include="Engine\ProcessEncoding_Test.cs" />
+    <Compile Include="Engine\ProcessStructure_Test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sfmreader_read_test.cs" />
-    <Compile Include="sfmxmlreader_read_test.cs" />
-    <Compile Include="sfmxmlreader_xmldoc_test.cs" />
-    <Compile Include="Solidifier_Test.cs" />
-    <Compile Include="SolidReport_Test.cs" />
-    <Compile Include="SolidSettings_Test.cs" />
-    <Compile Include="SolidXmlReader_Read_Test.cs" />
+    <Compile Include="Engine\sfmreader_read_test.cs" />
+    <Compile Include="Engine\sfmxmlreader_read_test.cs" />
+    <Compile Include="Engine\sfmxmlreader_xmldoc_test.cs" />
+    <Compile Include="Engine\Solidifier_Test.cs" />
+    <Compile Include="Engine\SolidReport_Test.cs" />
+    <Compile Include="Engine\SolidSettings_Test.cs" />
+    <Compile Include="Engine\SolidXmlReader_Read_Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
-      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
-      <Name>SolidEngine</Name>
+    <ProjectReference Include="..\SolidGui\SolidGui.csproj">
+      <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
+      <Name>SolidGui</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{3DC3F32B-28DF-469D-B69C-46181292D2BE}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -51,7 +51,43 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\output\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="liftio, Version=1.1.150.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\liftio.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit.framework.dll</HintPath>
@@ -59,6 +95,14 @@
     <Reference Include="Palaso, Version=1.2.316.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Palaso.dll</HintPath>
+    </Reference>
+    <Reference Include="Palaso.DictionaryServices, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Palaso.DictionaryServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Palaso.Lift, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Palaso.Lift.dll</HintPath>
     </Reference>
     <Reference Include="Palaso.TestUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -73,9 +117,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encoding_Test.cs" />
+    <Compile Include="Engine\EngineEnvironment_Test.cs" />
+    <Compile Include="Engine\ProcessEncoding_Test.cs" />
+    <Compile Include="Engine\ProcessStructure_Test.cs" />
+    <Compile Include="Engine\sfmreader_read_test.cs" />
+    <Compile Include="Engine\SolidReport_Test.cs" />
+    <Compile Include="Engine\SolidSettings_Test.cs" />
+    <Compile Include="Export\ExportFactory_Test.cs" />
+    <Compile Include="Export\ExportLiftRegressionTests.cs" />
+    <Compile Include="Export\ExportLift_Test.cs" />
     <Compile Include="DictionaryTest.cs" />
+    <Compile Include="Export\ExportTestConstraint.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />
+    <Compile Include="Model\SfmFieldModelTests.cs" />
+    <Compile Include="Model\SfmLexEntryTests.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="QuickFix_Tests.cs" />
     <Compile Include="RecordTests.cs" />
@@ -85,14 +142,6 @@
     <Compile Include="SfmEditorPresentationModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidConsole\SolidConsole.csproj">
-      <Project>{2AE6670D-904B-42E3-AEBC-453649B1A6A3}</Project>
-      <Name>SolidConsole</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
-      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
-      <Name>SolidEngine</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SolidGui\SolidGui.csproj">
       <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
       <Name>SolidGui</Name>

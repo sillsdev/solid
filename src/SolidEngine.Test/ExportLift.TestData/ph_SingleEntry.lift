@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
+	<entry
+		id="TestLexeme_d71ac4af-c8a9-490e-af3d-2ecc3f362cbd"
+		dateCreated="2010-09-29T07:16:56Z"
+		dateModified="2010-09-29T07:16:56Z"
+		guid="d71ac4af-c8a9-490e-af3d-2ecc3f362cbd">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<field
+			type="pronunciation">
+			<form
+				lang="tha">
+				<text>Pronunciation</text>
+			</form>
+		</field>
+	</entry>
+</lift>

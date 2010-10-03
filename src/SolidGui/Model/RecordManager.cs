@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using SolidEngine;
+using SolidGui.Model;
 
-namespace SolidGui
+
+namespace SolidGui.Model
 {
     public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
     {

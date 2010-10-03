@@ -5,9 +5,13 @@ using System.Linq;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
-using SolidEngine;
+using SolidGui.Engine;
+using SolidGui.Mapping;
+using SolidGui.MarkerSettings;
+using SolidGui.Model;
 
-namespace SolidGui
+
+namespace SolidGui.MarkerSettings
 {
     public partial class MarkerDetails : UserControl
     {
@@ -53,8 +57,8 @@ namespace SolidGui
 
             _listView.Items.Clear();
             //_listView.MySortBrush  = null;
-           // _listView.MySortBrush = Brushes.Coral;
-           // _listView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
+            // _listView.MySortBrush = Brushes.Coral;
+            // _listView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
 
 //            ImageList colimglst = new ImageList();
 //            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
@@ -71,13 +75,13 @@ namespace SolidGui
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
-              //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
-              //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
+                //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
+                //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
                 _listView.Items.Add(item);
             }
- //           _listView.Sorting = SortOrder.Ascending;
-  //          _listView.Sort();
+            //           _listView.Sorting = SortOrder.Ascending;
+            //          _listView.Sort();
 
             _listView.Columns[0].LastSortState = SortDirections.SortAscending;
             _listView.SortColumn(0);//review... how to keep the old order?
@@ -112,7 +116,7 @@ namespace SolidGui
             }
             
             Palaso.WritingSystems.LdmlInFolderWritingSystemStore repository =
-                    new Palaso.WritingSystems.LdmlInFolderWritingSystemStore();
+                new Palaso.WritingSystems.LdmlInFolderWritingSystemStore();
 
             Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
 
@@ -172,7 +176,7 @@ namespace SolidGui
             //label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             link.Control = label;
             item.SubItems.Add(link);
-          //  item.SubItems.Add(text);
+            //  item.SubItems.Add(text);
         }
 
         private void OnStructureLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -217,7 +221,7 @@ namespace SolidGui
             _listView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
             _listView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
             _listView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
-          }
+        }
 
         public void OpenSettingsDialog(string area)
         {

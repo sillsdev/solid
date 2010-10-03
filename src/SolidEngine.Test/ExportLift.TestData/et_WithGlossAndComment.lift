@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
+	<entry
+		id="TestLexeme_2734091f-338c-43c5-8746-ebc56aa23bcd"
+		dateCreated="2010-10-03T01:46:42Z"
+		dateModified="2010-10-03T01:46:42Z"
+		guid="2734091f-338c-43c5-8746-ebc56aa23bcd">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<note>
+			<form
+				lang="eng">
+				<text>A comment</text>
+			</form>
+		</note>
+		<trait
+			name="etymology"
+			value="Etymology data" />
+		<field
+			type="etymology-source">
+			<form
+				lang="eng">
+				<text>Etymology Source</text>
+			</form>
+		</field>
+	</entry>
+</lift>

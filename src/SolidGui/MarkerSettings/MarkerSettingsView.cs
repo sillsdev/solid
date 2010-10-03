@@ -2,9 +2,9 @@ using System;
 using System.Windows.Forms;
 using Palaso.UI.WindowsForms.WritingSystems;
 using Palaso.WritingSystems;
-using SolidEngine;
+using SolidGui.Engine;
 
-namespace SolidGui
+namespace SolidGui.MarkerSettings
 {
     public partial class MarkerSettingsView : UserControl
     {
@@ -17,7 +17,7 @@ namespace SolidGui
             InitializeComponent();
             _store = new LdmlInFolderWritingSystemStore();
             _wsModel = new WritingSystemSetupModel(_store);
-           // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
+            // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             this.wsPickerUsingComboBox1.BindToModel(_wsModel);
             wsPickerUsingComboBox1.SelectedComboIndexChanged += new EventHandler(wsPickerUsingComboBox1_SelectedComboIndexChanged);
         }

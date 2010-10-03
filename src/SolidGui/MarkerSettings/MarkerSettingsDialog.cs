@@ -1,8 +1,10 @@
 using System;
 using System.Windows.Forms;
-using SolidEngine;
+using SolidGui.Engine;
+using SolidGui.MarkerSettings;
 
-namespace SolidGui
+
+namespace SolidGui.MarkerSettings
 {
     public partial class MarkerSettingsDialog : Form
     {

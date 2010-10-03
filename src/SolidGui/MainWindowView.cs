@@ -2,8 +2,11 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Text;
-using SolidEngine;
+using Solid.Engine;
+using SolidGui.Engine;
+using SolidGui.Export;
 using SolidGui.Properties;
+using SolidGui.Search;
 
 namespace SolidGui
 {

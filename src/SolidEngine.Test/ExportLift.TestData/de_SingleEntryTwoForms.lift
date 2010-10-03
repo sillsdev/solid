@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
+	<entry
+		id="TestLexeme_63b07276-1bf2-4442-aeae-6c153ae26259"
+		dateCreated="2010-10-03T01:46:41Z"
+		dateModified="2010-10-03T01:46:41Z"
+		guid="63b07276-1bf2-4442-aeae-6c153ae26259">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<sense
+			id="e28b5b93-fdcd-4afb-8857-fe0e40ea7362">
+			<definition>
+				<form
+					lang="eng">
+					<text>Definition</text>
+				</form>
+				<form
+					lang="tha">
+					<text>National definition</text>
+				</form>
+			</definition>
+		</sense>
+	</entry>
+</lift>

@@ -6,8 +6,10 @@ using System.Xml;
 using SolidGui;
 using System.Linq;
 using Palaso.Extensions;
+using SolidGui.Engine;
+using SolidGui.Model;
 
-namespace SolidEngine
+namespace Solid.Engine
 {
     public class QuickFixer
     {
@@ -119,9 +121,9 @@ namespace SolidEngine
             public string fromHeadWord;
             public string fromMarker;
             public string pos;
-            public readonly Field sourceField;
+            public readonly SfmFieldModel sourceField;
 
-            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, Field sourceField)
+            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, SfmFieldModel sourceField)
             {
                 this.targetHeadWord = targetHeadWord;
                 this.fromMarker = fromMarker;
@@ -162,7 +164,7 @@ namespace SolidEngine
         {
             foreach (var record in _dictionary.Records)
             {
-                Field fieldToCopy = null;
+                SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     var field = record.Fields[i];
@@ -176,7 +178,7 @@ namespace SolidEngine
                     {
                         if(fieldToCopy !=null)
                         {
-                            var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1 /*review*/);
+                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
                             record.InsertFieldAt(f, i); 
                             ++i;//skip the next line, since not is is preceded by this field
                         }
@@ -226,7 +228,7 @@ namespace SolidEngine
                 }
                 if (null == targetRecord)
                 {
-                    Record r = new Record(-1);
+                    Record r = new Record();
                     var b = new StringBuilder();
                     b.AppendLine("\\lx " + addition.targetHeadWord);
                     b.AppendLine("\\ps " + addition.pos); //without this, flex balks
@@ -273,7 +275,7 @@ namespace SolidEngine
                             log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
                             foreach (var headword in parts)
                             {
-                                var f = new Field(field.Marker, headword, field.Depth, false, -1 /*review*/);
+                                var f = new SfmFieldModel(field.Marker, headword, field.Depth, false);
                                 record.InsertFieldAt(f, i);
                             }
                         }
@@ -348,8 +350,8 @@ namespace SolidEngine
                 //in the format we're changing to, \ps comes after \sn, so 
                 //we should remove one which appears before the first sn (it will have been copied in)
                 var indexOfPsFieldToRemoveAtEnd = 0;
-                
-                Field fieldToCopy = null;
+
+                SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     var field = record.Fields[i];
@@ -370,8 +372,7 @@ namespace SolidEngine
                         {
                             if (!LevelHasMarker(record, i, "ps", "sn"))
                             {
-                                var f = new Field(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false, -1
-                                    /*review*/);
+                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
                                 record.InsertFieldAt(f, i+1);
                                 ++i;//skip over what we just inserted
                                 sensesEffected++;

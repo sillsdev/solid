@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<lift version="0.10">
-  <header>
-    <fields>
-      <field tag="custom">
-        <form lang="en">
-          <text>For storing markers that are otherwise not defined</text>
-        </form>
-      </field>
-    </fields>
-  </header>
-  <entry guid=".*" id="EntryOne-ID0EE" dateModified="2007-11-27">
-    <lexical-unit>
-      <form lang="eng">
-        <text>EntryOne</text>
-      </form>
-    </lexical-unit>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.3.81.0">
+	<entry
+		id="EntryOne_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryOne</text>
+			</form>
+		</lexical-unit>
     <relation name="LexFunc" ref="EntryTwo-ID0EOB" />
-  </entry>
-  <entry guid=".*" id="EntryTwo-ID0EOB" dateModified="2007-11-27">
-    <lexical-unit>
-      <form lang="eng">
-        <text>EntryTwo</text>
-      </form>
-    </lexical-unit>
-  </entry>
+	</entry>
+	<entry
+		id="EntryTwo_*"
+		dateCreated="*"
+		dateModified="*"
+		guid="*">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>EntryTwo</text>
+			</form>
+		</lexical-unit>
+	</entry>
 </lift>

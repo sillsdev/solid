@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<lift
+	version="0.13"
+	producer="Palaso.DictionaryServices.LiftWriter 1.0.0.0">
+	<entry
+		id="TestLexeme_637f025c-557f-40a7-928c-810a99eac513"
+		dateCreated="2010-10-03T01:46:42Z"
+		dateModified="2010-10-03T01:46:42Z"
+		guid="637f025c-557f-40a7-928c-810a99eac513">
+		<lexical-unit>
+			<form
+				lang="eng">
+				<text>TestLexeme</text>
+			</form>
+		</lexical-unit>
+		<note>
+			<form
+				lang="eng">
+				<text>Encylopedic note entry</text>
+			</form>
+		</note>
+		<sense
+			id="3bf69f16-e8b6-4220-899c-3057502fdb02" />
+	</entry>
+</lift>

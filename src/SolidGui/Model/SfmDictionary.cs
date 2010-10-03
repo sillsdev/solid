@@ -4,12 +4,14 @@ using System.ComponentModel;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
-using SolidEngine;
+
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
+using SolidGui.Engine;
+using SolidGui.Model;
+using SolidGui.Processes;
 
-namespace SolidGui
+namespace SolidGui.Model
 {
     public struct DictionaryOpenArguments
     {
@@ -65,10 +67,10 @@ namespace SolidGui
         public override Record Current
         {
             get{ 
-                    if(_recordList.Count > 0)
-                        return _recordList[_currentIndex];
-                    return null;
-               }
+                if(_recordList.Count > 0)
+                    return _recordList[_currentIndex];
+                return null;
+            }
         }
 
         public override int CurrentIndex
@@ -149,12 +151,31 @@ namespace SolidGui
             _markerFrequencies.Clear();
         }
 
-        public void AddRecord(XmlNode entry, SolidReport report)
+        public void AddRecord(SfmLexEntry entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
-            Record record = Record.CreateFromXml(entry, report);
-            record.AddMarkerStatistics(_markerFrequencies, _markerErrors);
+            Record record = new Record(entry, report);
+            UpdateMarkerStatistics(record);
             _recordList.Add(record);
+        }
+
+        private void UpdateMarkerStatistics(Record record)
+        {
+            foreach (SfmFieldModel field in record.Fields)
+            {
+                if (!_markerFrequencies.ContainsKey(field.Marker))
+                {
+                    _markerFrequencies.Add(field.Marker, 0);
+                    _markerErrors.Add(field.Marker, 0);
+                }
+
+                _markerFrequencies[field.Marker] += 1;
+
+                if (field.HasReportEntry)
+                {
+                    _markerErrors[field.Marker] += 1;
+                }
+            }
         }
 
         public void AddRecord(Record record)
@@ -174,47 +195,44 @@ namespace SolidGui
             ProgressState progressState = (ProgressState)args.Argument;
             DictionaryOpenArguments openArguments = (DictionaryOpenArguments)progressState.Arguments;
             openArguments.filterSet.BeginBuild(this);
-            int entryCount = 0;
-            using (XmlReader xt = new SfmXmlReader(_filePath))
-            {
-                while (xt.ReadToFollowing("entry"))
-                {
-                    entryCount++;
-                }
-                progressState.TotalNumberOfSteps = entryCount;
-                progressState.NumberOfStepsCompleted = 1;
-            }
 
+            var sfmDataSet = new SfmDictionary();//SfmDataSet();
+
+           
+            progressState.TotalNumberOfSteps = sfmDataSet.Count;
+            progressState.NumberOfStepsCompleted = 1;
+            
+            ReadDictionary(progressState, openArguments, sfmDataSet);
+
+            openArguments.filterSet.EndBuild();
+        }
+
+        private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments, SfmDictionary sfmDataSet)
+        {
             List<IProcess> processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.solidSettings));
             processes.Add(new ProcessStructure(openArguments.solidSettings));
 
-            using (XmlReader xr = new SfmXmlReader(_filePath))
+            using (var reader = SfmRecordReader.CreateFromFilePath(_filePath))
             {
-                XmlDocument xmldoc = new XmlDocument();
-                while (xr.ReadToFollowing("entry"))
+                while (reader.Read())
                 {
-                    progressState.NumberOfStepsCompleted += 1;
-                    XmlReader entryReader = xr.ReadSubtree();
-                    // Load the current record from xr into an XmlDocument
-                    xmldoc.RemoveAll();
-                    xmldoc.Load(entryReader);
-                    SolidReport recordReport = new SolidReport();
-                    XmlNode xmlResult = xmldoc.DocumentElement;
+                    progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08 
+
+                    var lexEntry = SfmLexEntry.CreateFromReader(reader);
+                    var recordReport = new SolidReport();
                     foreach (IProcess process in processes)
                     {
-                        xmlResult = process.Process(xmlResult, recordReport);
+                        lexEntry = process.Process(lexEntry, recordReport);
                     }
                     //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
-                    AddRecord(xmlResult, recordReport);
+                    AddRecord(lexEntry, recordReport);
                     if (openArguments.filterSet != null)
                     {
                         openArguments.filterSet.AddRecord(Count - 1, recordReport);
                     }
-                    //!!!_recordFilters.AddRecord(report);
                 }
             }
-            openArguments.filterSet.EndBuild();
         }
 
         public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
@@ -290,7 +308,7 @@ namespace SolidGui
                 {
                     foreach (Record record in _recordList)
                     {
-                        foreach (Field field in record.Fields)
+                        foreach (SfmFieldModel field in record.Fields)
                         {
                             if (!field.Inferred)
                             {

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -42,7 +42,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,6 +51,38 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\output\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GlacialList, Version=1.0.3259.29472, Culture=neutral, processorArchitecture=MSIL">
@@ -61,17 +93,30 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\KeymanLink.dll</HintPath>
     </Reference>
+    <Reference Include="liftio, Version=1.1.150.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\liftio.dll</HintPath>
+    </Reference>
     <Reference Include="Palaso, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Palaso.dll</HintPath>
+    </Reference>
+    <Reference Include="Palaso.DictionaryServices, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Palaso.DictionaryServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Palaso.Lift, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Palaso.Lift.dll</HintPath>
     </Reference>
     <Reference Include="PalasoUIWindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\lib\PalasoUIWindowsForms.dll</HintPath>
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core">
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\System.Core.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -87,17 +132,38 @@
     <Compile Include="AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Field.cs" />
+    <Compile Include="Engine\customxmlreader.cs" />
+    <Compile Include="Engine\EngineEnvironment.cs" />
+    <Compile Include="Engine\ReportEntry.cs" />
+    <Compile Include="Export\Exporter.cs" />
+    <Compile Include="Export\ExportFactory.cs" />
+    <Compile Include="Export\ExportHeader.cs" />
+    <Compile Include="Export\ExportSummary.cs" />
+    <Compile Include="Export\LiftExporter.cs" />
+    <Compile Include="Export\Relation.cs" />
+    <Compile Include="Export\SfmLiftLexEntryAdapter.cs" />
+    <Compile Include="Mapping\MappingPM.cs" />
+    <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
+    <Compile Include="Engine\MultiplicityAdjacency.cs" />
+    <Compile Include="Model\SfmDataSet.cs" />
+    <Compile Include="Model\SfmFieldModel.cs" />
+    <Compile Include="Model\SfmLexEntry.cs" />
+    <Compile Include="Processes\Process.cs" />
+    <Compile Include="Processes\ProcessEncoding.cs" />
+    <Compile Include="Processes\ProcessStructure.cs" />
+    <Compile Include="Engine\SfmRecord.cs" />
+    <Compile Include="Engine\SfmRecordReader.cs" />
+    <Compile Include="Engine\SolidMarkerSetting.cs" />
+    <Compile Include="Engine\SolidReport.cs" />
+    <Compile Include="Engine\SolidSettings.cs" />
+    <Compile Include="Engine\SolidStructureProperty.cs" />
+    <Compile Include="Engine\StructurePropertiesPM.cs" />
+    <Compile Include="Engine\XmlHelper.cs" />
+    <Compile Include="Engine\XmlReaderDecorator.cs" />
     <Compile Include="QuickFixer.cs" />
     <Compile Include="Model\SfmDictionary.cs" />
     <Compile Include="EXListView.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="ExportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ExportForm.Designer.cs">
-      <DependentUpon>ExportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FilterChooserPM.cs" />
     <Compile Include="FilterChooserView.cs">
@@ -113,11 +179,10 @@
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindowPM.cs" />
-    <Compile Include="MappingPM.cs" />
-    <Compile Include="MappingView.cs">
+    <Compile Include="Mapping\MappingView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MappingView.designer.cs">
+    <Compile Include="Mapping\MappingView.designer.cs">
       <DependentUpon>MappingView.cs</DependentUpon>
     </Compile>
     <Compile Include="MarkerSettings\MarkerDetails.cs">
@@ -132,7 +197,6 @@
     <Compile Include="MarkerSettings\MarkerSettingsDialog.Designer.cs">
       <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,7 +218,6 @@
       <DependentUpon>QuickFixForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="StructurePropertiesPM.cs" />
     <Compile Include="StructurePropertiesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,10 +230,6 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>ExportForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FilterChooserView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FilterChooserView.cs</DependentUpon>
@@ -179,7 +238,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>MainWindowView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MappingView.resx">
+    <EmbeddedResource Include="Mapping\MappingView.resx">
       <DependentUpon>MappingView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -212,7 +271,7 @@
       <SubType>Designer</SubType>
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchView.resx">
+    <EmbeddedResource Include="Search\SearchView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SearchView.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,12 +305,12 @@
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchPM.cs" />
-    <Compile Include="SearchResult.cs" />
-    <Compile Include="SearchView.cs">
+    <Compile Include="Search\SearchPM.cs" />
+    <Compile Include="Search\SearchResult.cs" />
+    <Compile Include="Search\SearchView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchView.Designer.cs">
+    <Compile Include="Search\SearchView.Designer.cs">
       <DependentUpon>SearchView.cs</DependentUpon>
     </Compile>
     <Compile Include="SfmEditorPM.cs" />
@@ -328,12 +387,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SolidEngine\SolidEngine.csproj">
-      <Project>{B821554A-06BD-4EB3-96D4-959853E8E8A6}</Project>
-      <Name>SolidEngine</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

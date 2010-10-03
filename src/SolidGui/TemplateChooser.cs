@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using SolidGui.Engine;
 
-using SolidEngine;
 using System.Drawing;
 
 namespace SolidGui

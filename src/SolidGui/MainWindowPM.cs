@@ -7,7 +7,12 @@ using System.Reflection;
 using System.Text;
 using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
-using SolidEngine;
+using SolidGui.Engine;
+using SolidGui.Export;
+using SolidGui.MarkerSettings;
+using SolidGui.Model;
+using SolidGui.Search;
+
 
 namespace SolidGui
 {
@@ -45,7 +50,7 @@ namespace SolidGui
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
-            _markerSettingsModel.AllMarkers = WorkingDictionary.AllMarkers;
+            _markerSettingsModel.MarkersInDictioanary = WorkingDictionary.AllMarkers;
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -173,15 +178,10 @@ namespace SolidGui
     		get
     		{
     			string path = DirectoryOfExecutingAssembly;
-
-    			if (path.ToLower().IndexOf("output") > -1)
-    			{
-					// ReSharper disable PossibleNullReferenceException
-					//go up to output
-    				path = Directory.GetParent(path).FullName;
-    				//go up to directory containing output
-    				path = Directory.GetParent(path).FullName;
-					// ReSharper restore PossibleNullReferenceException
+    		    int outputIndex = path.ToLower().IndexOf("output");
+                if (outputIndex > -1)
+                {
+                    path = path.Substring(0, outputIndex);
 				}
     			return path;
     		}
@@ -388,7 +388,7 @@ namespace SolidGui
 
                 dlg.Overview = "Please wait...";
                 BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += exporter.OnDoWork;
+                worker.DoWork += exporter.ExportAsync;
                 dlg.BackgroundWorker = worker;
                 dlg.CanCancel = true;
 
@@ -400,6 +400,7 @@ namespace SolidGui
                 exportArguments.inputFilePath = sourceFilePath;
                 exportArguments.outputFilePath = destinationFilePath;
                 exportArguments.countHint = _workingDictionary.Count;
+                exportArguments.markerSettings = _markerSettingsModel;
 
                 dlg.ProgressState.Arguments = exportArguments;
                 dlg.ShowDialog();

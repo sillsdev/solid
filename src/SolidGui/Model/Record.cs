@@ -3,21 +3,33 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
-using SolidEngine;
-using System.Linq;
 
-namespace SolidGui
+using System.Linq;
+using SolidGui.Engine;
+using SolidGui.Processes;
+
+namespace SolidGui.Model
 {
     public class Record
     {
-        private List<Field> _fields = new List<Field>();
-        private int _recordID = -1;
+        private static int _recordIdCounter = 0;
+
+        private readonly int _recordID = -1;
         public static event EventHandler RecordTextChanged;
         private SolidReport _report;
+        public SfmLexEntry LexEntry { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof(Record)) return false;
+            return Equals((Record)obj);
+        }
 
         public int ID
         {
-           get { return _recordID; }
+            get { return _recordID; }
         }
         /*
         public Record(List<string> fieldValues)
@@ -31,98 +43,60 @@ namespace SolidGui
         }
         */
 
-        public Record(int recordID)
+        public Record()
         {
-            _recordID = recordID;
+            LexEntry = new SfmLexEntry();
+            _recordID = _recordIdCounter++;
         }
 
-        static public Record CreateFromXml(XmlNode entry, SolidReport report)
+        public Record(SfmLexEntry entry, SolidReport report)
         {
-            XmlHelper xh = new XmlHelper(entry);
-            string s = xh.GetAttribute("record");
-            int recordID = (s != string.Empty) ? Convert.ToInt32(s) : -1;
-            Record record = new Record(recordID);
-            foreach (XmlNode xmlChild in entry.ChildNodes)
-            {
-                record.ReadField(xmlChild, 0, report);
-            }
-
-            record.Report = new SolidReport(report);
-
-            return record;
+            LexEntry = entry;
+            Report = new SolidReport(report);
+            _recordID = _recordIdCounter++;
         }
 
         public SolidReport Report
         {
-            set{ _report = value; }
+            set { _report = value; }
             get { return _report; }
         }
 
-        private void ReadField(XmlNode entry, int depth, SolidReport report)
+        public List<SfmFieldModel> Fields
         {
-            XmlHelper x = new XmlHelper(entry);
-            string s;
-            bool isInferred = x.GetAttribute("inferred") == "true";
-            s = x.GetAttribute("field");
-            int fieldID = (s != string.Empty) ? Convert.ToInt32(s) : 0;
-            foreach (XmlNode xmlChild in entry.ChildNodes)
-            {
-                if (xmlChild.Name == "data")
-                {
-                    Field field = new Field(entry.Name, xmlChild.InnerText, depth, isInferred, fieldID);
-                    SolidReport.Entry reportEntry = report.GetEntryById(field.Id);
-                    field.ErrorState = (reportEntry != null) ? 1 : 0;
-                    _fields.Add(field);
-                }
-                else
-                {
-                    ReadField(xmlChild, depth + 1, report);
-                }
-            }
-        }
-
-        public List<Field> Fields
-        {
-            get { return _fields; }
+            get { return LexEntry.Fields; }
         }
 
         public bool HasMarker(string marker)
         {
-            return _fields.Find(
-                delegate(Field f)
-                {
-                    return f.Marker == marker;
-                }
-            ) != null;
+            return LexEntry.HasMarker(marker);
         }
 
         public bool IsMarkerNotEmpty(string marker)
         {
-            return _fields.Find(
-                delegate(Field f)
-                {
-                    return f.Marker == marker && f.Value != string.Empty;
-                }
-            ) != null;
+            return LexEntry.IsMarkerNotEmpty(marker);
         }
 
         public string GetField(int id)
         {
-            Field field = _fields.Find(delegate(Field aField) { return aField.Id == id; });
-            return field.ToString();
+            return LexEntry.GetField(id);
         }
 
-        public Field GetFirstFieldWithMarker(string marker)
+        public SfmFieldModel GetFirstFieldWithMarker(string marker)
         {
-            return _fields.FirstOrDefault(f=> f.Marker == marker);
+            return LexEntry.GetFirstFieldWithMarker(marker);
         }
 
+        
+
+        
+        // dont move to SfmLexEntry
         public void SetFieldValue(int id, string value)
         {
-            if(_fields[id].Value != value)
+            if(LexEntry.Fields[id].Value != value)
             {
-                _fields[id].Value = value;
-                if(RecordTextChanged != null)
+                LexEntry.Fields[id].Value = value;
+                if (RecordTextChanged != null)
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
         }
@@ -156,11 +130,11 @@ namespace SolidGui
             get { return ToString(); }
         }
 
-        //!!! Shouldn't be used ???
+        //!!! Shouldn't be used ??? // TODO Make an adapter for the presentation of records used by SearchPM and the SfmEditorView CP 2010-09
         public string ToStructuredString()
         {
             StringBuilder record = new StringBuilder();
-            foreach (Field field in _fields)
+            foreach (SfmFieldModel field in LexEntry.Fields)
             {
                 record.Append(field.ToStructuredString() + "\n");
             }
@@ -175,75 +149,51 @@ namespace SolidGui
 
         public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
-            //!!!setToText = "\\_sh a\n" + setToText; //!!! Test for lx being first, i.e no header.  CP
-            SfmXmlReader xr = new SfmXmlReader(new StringReader(setToText));
-            if(!xr.ReadToFollowing("entry"))
-            {
-                return;
-            }
-            XmlReader entryReader = xr.ReadSubtree();
-            // Load the current record from xr into an XmlDocument
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.Load(entryReader);
-            SolidReport report = new SolidReport();
+            LexEntry = SfmLexEntry.CreateFromText(setToText);
+            var report = new SolidReport();
             IProcess process = new ProcessStructure(solidSettings);
-            XmlNode xmlResult = process.Process(xmldoc.DocumentElement, report);
+            var xmlResult = process.Process(LexEntry, report);
 
             Report = report;
-            _fields.Clear();
-            foreach (XmlNode xmlChild in xmlResult.ChildNodes)
-            {
-                ReadField(xmlChild, 0, report);
-            }
         }
 
-        public void AddMarkerStatistics(Dictionary<string, int> frequencies, Dictionary<string, int> errorCount)
+        public void MoveField(SfmFieldModel field, int after)
         {
-            foreach (Field field in _fields)
-            {
-                if (!frequencies.ContainsKey(field.Marker))
-                {
-                    frequencies.Add(field.Marker, 0);
-                    errorCount.Add(field.Marker, 0);
-                }
-                
-                frequencies[field.Marker] += 1;
-                
-                if(field.ErrorState > 0)
-                {
-                    errorCount[field.Marker] += 1;    
-                }
-            }
-        }
-
-        public void MoveField(Field field, int after)
-        {
-            int from = _fields.IndexOf(field);
-            _fields.RemoveAt(from);
-            if (from > after)
-            {
-                _fields.Insert(after + 1, field);               
-            }
-            else
-            {
-                _fields.Insert(after, field);               
-            }
+            LexEntry.MoveField(field, after);
         }
 
         public void RemoveField(int index)
         {
-            if(index == 0)
-                throw new ApplicationException("Cannot remove the first field, which is the record marker");
+            LexEntry.RemoveField(index);
 
-            if(index < 0 || index >= _fields.Count)
-                throw new ArgumentOutOfRangeException(string.Format("RemoveField({0}) was asked to remove an index which is out of range", index));
-
-            _fields.RemoveAt(index);
         }
 
-        public void InsertFieldAt(Field field, int indexForThisField)
+        public void InsertFieldAt(SfmFieldModel field, int indexForThisField)
         {
-            _fields.Insert(indexForThisField,field);
+            LexEntry.InsertFieldAt(field, indexForThisField);
+        }
+
+        
+        public bool Equals(Record obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj._recordID == _recordID;
+        }
+
+        public override int GetHashCode()
+        {
+            return _recordID;
+        }
+
+        public static bool operator ==(Record left, Record right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Record left, Record right)
+        {
+            return !Equals(left, right);
         }
     }
 }
