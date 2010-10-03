@@ -9,7 +9,7 @@ using SolidGui.Model;
 
 namespace SolidGui.Export
 {
-    public class LiftExporter : IExporter
+    public class ExportLift : IExporter
     {
 
         public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath)
@@ -106,5 +106,13 @@ namespace SolidGui.Export
         {
             throw new System.NotImplementedException();
         }
+
+        public static IExporter Create()
+        {
+            return new ExportLift();
+        }
+
+        public const string DriverName = "Lift";
+
     }
 }

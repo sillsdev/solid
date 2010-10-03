@@ -22,7 +22,7 @@ namespace SolidGui.Tests.Export
             foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
             {
                 var dictionary = new SfmDictionary();
-                var liftExporter = new LiftExporter();
+                var liftExporter = new ExportLift();
                 var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
                 dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
 
@@ -61,7 +61,7 @@ namespace SolidGui.Tests.Export
             foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
             {
                 var dictionary = new SfmDictionary();
-                var liftExporter = new LiftExporter();
+                var liftExporter = new ExportLift();
                 var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
                 dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
 
@@ -88,7 +88,7 @@ namespace SolidGui.Tests.Export
             var srcFilePath = srcDataPath + "/xe_WithTranslation.db";
             
             var dictionary = new SfmDictionary();
-            var liftExporter = new LiftExporter();
+            var liftExporter = new ExportLift();
             var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
             dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
 

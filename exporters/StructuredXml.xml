@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<exporter>
-<exportheader>
-<name>Structured XML</name>
-<position>30</position>
-<driver>StructuredXml</driver>
-<filter>Structured XML (*.xml)|*.xml</filter>
-</exportheader>
-</exporter>

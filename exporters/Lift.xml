@@ -3,10 +3,7 @@
 <exportheader>
 <name>LIFT</name>
 <position>10</position>
-<driver>Xsl</driver>
+<driver>Lift</driver>
 <filter>LIFT (*.lift)|*.lift</filter>
 </exportheader>
-<xsl>
-<stylesheet>solid2lift.xslt</stylesheet>
-</xsl>
 </exporter>

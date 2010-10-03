@@ -86,11 +86,11 @@ namespace SolidGui.Export
             IExporter retval = null;
             switch (header.Driver)
             {
-                //case "Lift":
-                //    retval = ExportLift.Create();
-                //    break;
+                case ExportLift.DriverName:
+                    retval = ExportLift.Create();
+                    break;
                 case ExportSummary.DriverName:
-                    retval = ExportSummary.Create(header);
+                    retval = ExportSummary.Create();
                     break;
             }
             return retval;

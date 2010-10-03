@@ -9,7 +9,7 @@ namespace SolidGui.Export
 {
     public class ExportSummary : IExporter
     {
-        public static ExportSummary Create(ExportHeader header)
+        public static ExportSummary Create()
         {
             return new ExportSummary();
         }

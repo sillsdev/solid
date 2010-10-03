@@ -96,7 +96,7 @@ namespace SolidGui.Tests.Export
             using (var e = new EnvironmentForTest(sfm))
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
-                var liftExporter = new LiftExporter();
+                var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/lexical-unit/form[@lang='en'][text='Lexeme']");
             }
@@ -113,7 +113,7 @@ namespace SolidGui.Tests.Export
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("bw", "borrowedWord", "en");
-                var liftExporter = new LiftExporter();
+                var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
             }
@@ -162,7 +162,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("gn", "gloss", "nn", "sn", false);
                 e.SetupMarker("va", "variant", "vv", "lx", false);
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
-                var liftExporter = new LiftExporter();
+                var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
             }
