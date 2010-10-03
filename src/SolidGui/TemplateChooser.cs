@@ -39,7 +39,7 @@ namespace SolidGui
             _okButton.Enabled = _templateChooser.SelectedItems.Count == 1;
         }
 
-    	private void TemplateChooser_Load(object sender, EventArgs e)
+    	private void OnTemplateChooser_Load(object sender, EventArgs e)
         {
             _templateChooser.SuspendLayout();
             _templateChooser.Items.Clear();
@@ -77,8 +77,8 @@ namespace SolidGui
                         item.Selected = true;
                     }
                 }
-				this.SuspendLayout();
-				this.ResumeLayout();
+				SuspendLayout();
+				ResumeLayout();
             }
             _templateChooser.ResumeLayout();
 

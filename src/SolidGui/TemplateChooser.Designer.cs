@@ -202,7 +202,7 @@ namespace SolidGui
 			this.Name = "TemplateChooser";
 			this.ShowInTaskbar = false;
 			this.Text = "Choose SOLID Template...";
-			this.Load += new System.EventHandler (this.TemplateChooser_Load);
+			this.Load += new System.EventHandler (this.OnTemplateChooser_Load);
 			((System.ComponentModel.ISupportInitialize) (this._warningImage)).EndInit ();
 			this._pnlWarning.ResumeLayout (false);
 			this._pnlWarning.PerformLayout ();
