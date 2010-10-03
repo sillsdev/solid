@@ -170,6 +170,10 @@ namespace SolidGui.Engine
         public static string GetSettingsFilePathFromDictionaryPath(string dataFilePath)
         {
             int lastDot = dataFilePath.LastIndexOf('.');
+            if (lastDot < 0)
+            {
+                lastDot = dataFilePath.Length;
+            }
             string retval = dataFilePath.Substring(0, lastDot) + ".solid";
             return retval;
         }
