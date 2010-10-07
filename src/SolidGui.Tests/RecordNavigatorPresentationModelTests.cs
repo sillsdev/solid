@@ -32,9 +32,8 @@ namespace SolidGui.Tests
 
         private static RecordNavigatorPM RecordNavigatorForTest(SfmDictionary dictionary)
         {
-            RecordFilter recordFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
             var navigator = new RecordNavigatorPM();
-            navigator.ActiveFilter = recordFilter;
+            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
             return navigator;
         }
 

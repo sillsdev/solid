@@ -9,7 +9,7 @@ namespace SolidGui.Model
         private readonly string _marker;
         SolidReport.EntryType _errorType;
 
-        List<string> _errorMessages = new List<string>();
+        readonly List<string> _errorMessages = new List<string>();
 
         public SolidErrorRecordFilter(SfmDictionary d, string marker,SolidReport.EntryType errorType, string name) :
             base(d, name)
@@ -30,7 +30,7 @@ namespace SolidGui.Model
 
         public override IEnumerable<string> HighlightMarkers
         {
-            get { return new string[] { _marker }; }
+            get { return new[] { _marker }; }
         }
 
         public override string Description(int index)
@@ -41,17 +41,11 @@ namespace SolidGui.Model
 
     }
 
-    public class AllRecordFilter : RecordFilter
+    public sealed class AllRecordFilter : RecordFilter
     {
-        private static AllRecordFilter _allRecordFilter;
-
         public static AllRecordFilter CreateAllRecordFilter(RecordManager rm)
         {
-            if(_allRecordFilter == null)
-            {
-                _allRecordFilter = new AllRecordFilter(rm);
-            }
-            return _allRecordFilter;
+            return new AllRecordFilter(rm);
         }
 
         private AllRecordFilter(RecordManager rm) :
@@ -76,9 +70,9 @@ namespace SolidGui.Model
 
     }
 
-    public class MarkerFilter : RecordFilter
+    public sealed class MarkerFilter : RecordFilter
     {
-        private string _marker;
+        private readonly string _marker;
 
         public MarkerFilter(RecordManager recordManager, string marker) :
             base(recordManager, String.Format("Marker {0}", marker))
@@ -102,14 +96,12 @@ namespace SolidGui.Model
 
         public override IEnumerable<string> HighlightMarkers
         {
-            get { return new string[] { _marker }; }
+            get { return new[] { _marker }; }
         }
         public override string Description(int index)
         {
             return string.Format("Records containing {0}", _marker);
         }
-       
-
     
     }
 
@@ -241,7 +233,7 @@ namespace SolidGui.Model
 
         public virtual IEnumerable<string> HighlightMarkers
         {
-            get { return new string[] {""}; }
+            get { return new[] {""}; }
         }
 
         public virtual string Description(int index)
