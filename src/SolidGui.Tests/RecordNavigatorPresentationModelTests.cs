@@ -8,119 +8,130 @@ namespace SolidGui.Tests
     [TestFixture]
     public class RecordNavigatorPresentationModelTests
     {
-        private RecordNavigatorPM _navigator;
-        private Record _recordWeGotFromRecordChangedChangedEvent;
 
-        [SetUp]
-        public void Setup()
+        private class EnvironmentForTest
         {
-            SfmDictionary dictionary = new SfmDictionary();
-            dictionary.AddRecord(new Record());
-            dictionary.AddRecord(new Record());
-            dictionary.AddRecord(new Record());
-            dictionary.AddRecord(new Record());
-            RecordFilter recordFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
-            _navigator = new RecordNavigatorPM();
+            public static SfmDictionary CreateDictionaryWith4Records()
+            {
+                var dictionary = new SfmDictionary();
+                dictionary.AddRecord(new Record());
+                dictionary.AddRecord(new Record());
+                dictionary.AddRecord(new Record());
+                dictionary.AddRecord(new Record());
+                return dictionary;
+            }
 
-            _navigator.ActiveFilter = recordFilter;
-                        
+            public void OnNavigatorRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
+            {
+                RecordWeGotFromRecordChangedChangedEvent = e.Record;
+            }
+
+            public Record RecordWeGotFromRecordChangedChangedEvent { get; private set; }
+
         }
 
-        [TearDown]
-        public void TearDown()
+        private static RecordNavigatorPM RecordNavigatorForTest(SfmDictionary dictionary)
         {
-
+            RecordFilter recordFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
+            var navigator = new RecordNavigatorPM();
+            navigator.ActiveFilter = recordFilter;
+            return navigator;
         }
 
         [Test]
-        public void NextIncreasesIndex()
+        public void MoveToNext_DictionaryHas4Records_IndexIncrease1()
         {
-            int startingIndex = _navigator.CurrentRecordIndex;
-            _navigator.MoveToNext();
-            int finishIndex = _navigator.CurrentRecordIndex;
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            int startingIndex = navigator.CurrentRecordIndex;
+            navigator.MoveToNext();
+            int finishIndex = navigator.CurrentRecordIndex;
 
             Assert.AreEqual(startingIndex, finishIndex - 1);
         }
 
-        //can I go previous no at first
         [Test]
         public void CanGoPrevious_Index0_False()
         {
-            Assert.IsFalse(_navigator.CanGoPrev());
-
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            Assert.IsFalse(navigator.CanGoPrev());
         }
 
         [Test]
         public void CanGoPrevious_IndexNot0_True()
         {
-            _navigator.MoveToNext();
-            Assert.IsTrue(_navigator.CanGoPrev());
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            navigator.MoveToNext();
+            Assert.IsTrue(navigator.CanGoPrev());
         }
 
         [Test]
         public void CanGoNext_IndexLast_False()
         {
-            for (int i = 0; i < _navigator.Count - 1; i++)
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            for (int i = 0; i < navigator.Count - 1; i++)
             {
-                _navigator.MoveToNext();
+                navigator.MoveToNext();
 
             }
-            Assert.IsFalse(_navigator.CanGoNext());
+            Assert.IsFalse(navigator.CanGoNext());
         }
 
         [Test]
         public void CanGoNext_IndexNotLast_True()
         {
-            Assert.IsTrue(_navigator.CanGoNext());
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            Assert.IsTrue(navigator.CanGoNext());
         }
 
         //current gives current
         [Test]
         public void CurrentIndex_SameIndex()
         {
-            Assert.AreEqual(_navigator.CurrentRecordIndex, _navigator.CurrentRecordIndex);
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            Assert.AreEqual(navigator.CurrentRecordIndex, navigator.CurrentRecordIndex);
         }
 
         [Test]
         public void InitialCurrentRecordIsCorrectOne()
         {
-            //!!!Record correct=_navigator.  .MasterRecordList[2];
-            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
+            //!!!Record correct=navigator.  .MasterRecordList[2];
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            Assert.AreEqual(0, navigator.CurrentRecordIndex);
         }
 
 
         [Test, Ignore("This functionality has been changed. Now current record remains")]
         public void WhenFilterChangesShowFirst()
         {
-            //_navigator.ActiveFilter = new NullRecordFilter();
-            _navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new SfmDictionary());
-            Assert.AreEqual(0, _navigator.Count);
-            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
-            Assert.IsNull(_navigator.CurrentRecord);
+            //navigator.ActiveFilter = new NullRecordFilter();
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new SfmDictionary());
+            Assert.AreEqual(0, navigator.Count);
+            Assert.AreEqual(0, navigator.CurrentRecordIndex);
+            Assert.IsNull(navigator.CurrentRecord);
         }
 
         [Test, Ignore("This functionality has been changed. Now current record remains")]
         public void WhenEmptyFilterChangesShowFirst()
         {
-            _navigator.ActiveFilter = new NullRecordFilter();
-            Assert.AreEqual(0, _navigator.Count);
-            Assert.AreEqual(0, _navigator.CurrentRecordIndex);
-            Assert.IsNull (_navigator.CurrentRecord);
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            navigator.ActiveFilter = new NullRecordFilter();
+            Assert.AreEqual(0, navigator.Count);
+            Assert.AreEqual(0, navigator.CurrentRecordIndex);
+            Assert.IsNull (navigator.CurrentRecord);
         }
         
         [Test]
         public void NavigationTriggersCurrentChanged()
         {
-            _navigator.RecordChanged += OnNavigator_RecordChanged;
-            _navigator.MoveToNext();
-            Assert.IsNotNull(_recordWeGotFromRecordChangedChangedEvent);
-            Assert.AreEqual(_navigator.CurrentRecord, _recordWeGotFromRecordChangedChangedEvent);
+            var e = new EnvironmentForTest();
+            var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
+            navigator.RecordChanged += e.OnNavigatorRecordChanged;
+            navigator.MoveToNext();
+            Assert.IsNotNull(e.RecordWeGotFromRecordChangedChangedEvent);
+            Assert.AreEqual(navigator.CurrentRecord, e.RecordWeGotFromRecordChangedChangedEvent);
         }
 
-        void OnNavigator_RecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
-        {
-            _recordWeGotFromRecordChangedChangedEvent = e.Record;
-        }
     }
 
 }
