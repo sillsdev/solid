@@ -15,7 +15,6 @@ namespace SolidGui.Tests
         public void Setup()
         {
             SfmDictionary dictionary = new SfmDictionary();
-            Record record = new Record();
             dictionary.AddRecord(new Record());
             dictionary.AddRecord(new Record());
             dictionary.AddRecord(new Record());
