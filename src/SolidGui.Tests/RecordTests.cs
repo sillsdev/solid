@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using SolidGui.Engine;
 using SolidGui.Model;
 
 namespace SolidGui.Tests
@@ -61,7 +62,7 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void FieldCountReturnsCorrectNumberOfFields()
+        public void FieldsCount_With3Fields_ReturnsCorrectCount()
         {
             var record = CreateDefaultRecord();
             record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
@@ -72,7 +73,7 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void HasMarkerIndicateItHasCorrectMarker()
+        public void HasMarker_WithTestFieldPresent_True()
         {
             var record = CreateDefaultRecord();
             record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
@@ -82,13 +83,55 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void HasMarkerIndicatesItDoesntHaveIncorrectMarker()
+        public void HasMarker_WithEmptyString_FalseNoThrow()
         {
             var record = CreateDefaultRecord();
             record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
             record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
             record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
-            Assert.IsFalse(record.HasMarker(string.Empty));   
+            Assert.IsFalse(record.HasMarker(string.Empty));
         }
+
+        [Test]
+        public void HasMarker_WithoutTestField_False()
+        {
+            var record = CreateDefaultRecord();
+            record.Fields.Add(new SfmFieldModel("lx", "foo", 0, false));
+            record.Fields.Add(new SfmFieldModel("ps", "noun", 0, false));
+            record.Fields.Add(new SfmFieldModel("ge", "bar", 0, false));
+            Assert.IsFalse(record.HasMarker("no"));
+        }
+
+        private void AssertFieldOrder(Record record, params string[] markers)
+        {
+            for (int i = 0; i < markers.Length; i++)
+            {
+                Assert.AreEqual(markers[i], record.Fields[i].Marker);                
+            }
+            Assert.AreEqual(markers.Length, record.Fields.Count);
+        }
+
+
+        [Test]
+        public void SetRecordContents_InferNeeded_UsesOutputOfProcessStructure()
+        {
+            string sfm = @"\lx
+\ps
+";
+            var settings = new SolidSettings();
+            var snSetting = settings.FindOrCreateMarkerSetting("sn");
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx"));
+            var psSetting = settings.FindOrCreateMarkerSetting("ps");
+            psSetting.InferedParent = "sn";
+            psSetting.StructureProperties.Add(new SolidStructureProperty("sn"));
+
+            var record = CreateDefaultRecord();
+            record.SetRecordContents(sfm, settings);
+
+            Assert.That(record.Fields.Count, Is.EqualTo(3));
+            AssertFieldOrder(record, new[] { "lx", "sn", "ps" });
+
+        }
+
     }
 }

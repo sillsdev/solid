@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 using NUnit.Framework;
 using Solid.Engine;
 using SolidGui.Engine;
@@ -135,9 +132,11 @@ namespace SolidGui.Tests
         public void MakeInferedMarkersReal_hasVirtualSn_Becomes_Real()
         {
             var settings = new SolidSettings();
-            SolidMarkerSetting psSetting = settings.FindOrCreateMarkerSetting("ps");
+            var psSetting = settings.FindOrCreateMarkerSetting("ps");
             psSetting.InferedParent = "sn";
             psSetting.StructureProperties.Add(new SolidStructureProperty("sn", MultiplicityAdjacency.MultipleApart));
+            var snSetting = settings.FindOrCreateMarkerSetting("sn");
+            snSetting.StructureProperties.Add(new SolidStructureProperty("lx", MultiplicityAdjacency.MultipleApart));
 
             var dict = MakeDictionary(settings, "lx", "ps");
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
@@ -264,7 +263,6 @@ namespace SolidGui.Tests
                 r.SetRecordContents(b.ToString(), settings);
                 dictionary.AddRecord(r);
             }
-
             return dictionary;
       }
 

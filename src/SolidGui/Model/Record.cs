@@ -152,7 +152,7 @@ namespace SolidGui.Model
             LexEntry = SfmLexEntry.CreateFromText(setToText);
             var report = new SolidReport();
             IProcess process = new ProcessStructure(solidSettings);
-            var xmlResult = process.Process(LexEntry, report);
+            LexEntry = process.Process(LexEntry, report);
 
             Report = report;
         }
