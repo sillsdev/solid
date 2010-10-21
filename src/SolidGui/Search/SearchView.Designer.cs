@@ -57,7 +57,7 @@ namespace SolidGui.Search
             this._findTextbox.Name = "_findTextbox";
             this._findTextbox.Size = new System.Drawing.Size(175, 20);
             this._findTextbox.TabIndex = 0;
-            this._findTextbox.TextChanged += new System.EventHandler(this._findTextbox_TextChanged);
+            this._findTextbox.TextChanged += new System.EventHandler(this.OnFindTextbox_TextChanged);
             // 
             // _findNextButton
             // 
@@ -68,7 +68,7 @@ namespace SolidGui.Search
             this._findNextButton.TabIndex = 3;
             this._findNextButton.Text = "Find &Next";
             this._findNextButton.UseVisualStyleBackColor = true;
-            this._findNextButton.Click += new System.EventHandler(this._findNextButton_Click);
+            this._findNextButton.Click += new System.EventHandler(this.OnFindNextButton_Click);
             // 
             // _cancelButton
             // 
@@ -80,7 +80,7 @@ namespace SolidGui.Search
             this._cancelButton.TabIndex = 5;
             this._cancelButton.Text = "&Close";
             this._cancelButton.UseVisualStyleBackColor = true;
-            this._cancelButton.Click += new System.EventHandler(this._cancelButton_Click);
+            this._cancelButton.Click += new System.EventHandler(this.OnCancelButton_Click);
             // 
             // _replaceTextBox
             // 
@@ -109,7 +109,7 @@ namespace SolidGui.Search
             this._replaceButton.TabIndex = 4;
             this._replaceButton.Text = "&Replace Next";
             this._replaceButton.UseVisualStyleBackColor = true;
-            this._replaceButton.Click += new System.EventHandler(this._replaceButton_Click);
+            this._replaceButton.Click += new System.EventHandler(this.OnReplaceButton_Click);
             // 
             // _scopeComboBox
             // 
@@ -121,7 +121,7 @@ namespace SolidGui.Search
             this._scopeComboBox.Name = "_scopeComboBox";
             this._scopeComboBox.Size = new System.Drawing.Size(175, 21);
             this._scopeComboBox.TabIndex = 9;
-            this._scopeComboBox.SelectedIndexChanged += new System.EventHandler(this._scopeComboBox_SelectedIndexChanged);
+            this._scopeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScopeComboBox_SelectedIndexChanged);
             // 
             // label3
             // 

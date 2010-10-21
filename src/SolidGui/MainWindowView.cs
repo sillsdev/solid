@@ -41,7 +41,7 @@ namespace SolidGui
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _filterChooserView.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
-            _mainWindowPM.SearchModel.wordFound += OnWordFound;
+            _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
             //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
 
@@ -216,7 +216,7 @@ namespace SolidGui
             _saveButton.Enabled = false;
         }
 
-        private void OnWordFound(object sender, SearchPM.SearchResultEventArgs e)
+        private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
             _mainWindowPM.FilterChooserModel.ActiveRecordFilter = e.SearchResult.Filter;
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;

@@ -30,7 +30,7 @@ namespace SolidGui
     	private readonly SfmDictionary _workingDictionary;
     	private List<Record> _masterRecordList;
     	private String _realDictionaryPath;
-    	private SearchPM _searchModel;
+    	private SearchViewModel _searchModel;
 
 
         public MainWindowPM()
@@ -42,7 +42,7 @@ namespace SolidGui
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM(_navigatorModel);
-            _searchModel = new SearchPM();
+            _searchModel = new SearchViewModel();
 
 
             _masterRecordList = WorkingDictionary.AllRecords;
@@ -63,7 +63,7 @@ namespace SolidGui
 
         public SolidSettings Settings { get; private set; }
 
-        public SearchPM SearchModel
+        public SearchViewModel SearchModel
         {
             get
             {

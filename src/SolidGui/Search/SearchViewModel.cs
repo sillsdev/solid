@@ -5,7 +5,7 @@ using SolidGui.Model;
 
 namespace SolidGui.Search
 {
-    public class SearchPM
+    public class SearchViewModel
     {
         private  SfmDictionary _dictionary;
         private int _startRecordOfWholeSearch;
@@ -13,7 +13,7 @@ namespace SolidGui.Search
         
         public class SearchResultEventArgs : EventArgs
         {
-            private SearchResult _searchResult;
+            private readonly SearchResult _searchResult;
 
             public SearchResultEventArgs(SearchResult value)
             {
@@ -29,7 +29,7 @@ namespace SolidGui.Search
             }
         }
 
-        public event EventHandler<SearchResultEventArgs> wordFound;
+        public event EventHandler<SearchResultEventArgs> WordFound;
 
         public SfmDictionary Dictionary
         {
@@ -42,6 +42,7 @@ namespace SolidGui.Search
                 _dictionary = value;
             }
         }
+
         private static void CantFindWordErrorMessage(string word)
         {
             MessageBox.Show("Cannot find\n'" + word + "'", "SOLID", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -55,7 +56,7 @@ namespace SolidGui.Search
 
             if (result != null)
             {
-                wordFound.Invoke(this, new SearchResultEventArgs(result));
+                WordFound.Invoke(this, new SearchResultEventArgs(result));
             }
             else
             {
@@ -115,13 +116,11 @@ namespace SolidGui.Search
 
         private int FindIndexOfWordInRecord(int recordIndex, RecordFilter filter, string word, int startTextIndex)
         {
-            string recordText;
-            int finalTextIndex;
             var record = filter.GetRecord(recordIndex);
             if (record == null)
                 return -1;
-            recordText = record.ToStructuredString();
-            finalTextIndex = recordText.IndexOf(word, startTextIndex);
+            string recordText = record.ToStructuredString();
+            int finalTextIndex = recordText.IndexOf(word, startTextIndex);
             return finalTextIndex;
         }
 

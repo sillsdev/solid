@@ -305,7 +305,7 @@
     <Compile Include="RecordNavigatorView.Designer.cs">
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Search\SearchPM.cs" />
+    <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="Search\SearchResult.cs" />
     <Compile Include="Search\SearchView.cs">
       <SubType>Form</SubType>

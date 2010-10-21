@@ -6,15 +6,14 @@ namespace SolidGui.Search
     public partial class SearchView : Form
     {
         private static SearchView _searchView;
-        private SearchPM _searchModel;
-        private RecordNavigatorPM _navigatorModel;
-        private SfmEditorView _sfmEditorView;
-        private int _recordIndex = 0;
-        private int _textIndex = 0;
+        private SearchViewModel _searchModel;
+        private readonly RecordNavigatorPM _navigatorModel;
+        private readonly SfmEditorView _sfmEditorView;
+        private int _textIndex;
         private int _startingTextIndex = -1;
         private int _startingRecordIndex = -1;
 
-        public SearchPM SearchModel
+        public SearchViewModel SearchModel
         {
             set
             {
@@ -39,17 +38,7 @@ namespace SolidGui.Search
             _scopeComboBox.SelectedIndex = 0;
         }
 
-        public int RecordIndex
-        {
-            set
-            {
-                _recordIndex = value;
-            }
-            get
-            {
-                return _recordIndex;
-            }
-        }
+        public int RecordIndex { get; set; }
 
         public int TextIndex
         {
@@ -66,7 +55,7 @@ namespace SolidGui.Search
             }
         }
 
-        private void _findNextButton_Click(object sender, EventArgs e)
+        private void OnFindNextButton_Click(object sender, EventArgs e)
         {
             TextIndex = _sfmEditorView._contentsBox.SelectionStart + 1;
             _startingTextIndex = (_startingTextIndex == -1) ? TextIndex-1 : _startingTextIndex;
@@ -94,16 +83,17 @@ namespace SolidGui.Search
             }
         }
 
-        private void _cancelButton_Click(object sender, EventArgs e)
+        private void OnCancelButton_Click(object sender, EventArgs e)
         {
+            // TODO Should this be Close(); CP 2010-10
             Dispose();
         }
 
-        private void _replaceButton_Click(object sender, EventArgs e)
+        private void OnReplaceButton_Click(object sender, EventArgs e)
         {
             if(_sfmEditorView._contentsBox.SelectedText != _findTextbox.Text)
             {
-                _findNextButton_Click(new object(),new EventArgs());
+                OnFindNextButton_Click(new object(),new EventArgs());
             }
             else
             {
@@ -112,12 +102,12 @@ namespace SolidGui.Search
             }
         }
 
-        private void _findTextbox_TextChanged(object sender, EventArgs e)
+        private void OnFindTextbox_TextChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
         }
 
-        private void _scopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void OnScopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
         }
