@@ -121,7 +121,7 @@ namespace SolidGui.Tests.Export
 
         [Test]
         // http://projects.palaso.org/issues/show/157
-        // TODO: Make ps (Concept:Grammi) start a new sense in the SfmLexEntryAdapter
+        // Note that we exclude variant (va) for the purpose of this test
         public void Bug157_LiftExportPartOfSpeech_IsInLift()
         {
             string sfm = @"
@@ -134,7 +134,6 @@ namespace SolidGui.Tests.Export
 \sn 1
 \ge inside
 \gn dalam
-\va ra
 \sn 2
 \ge character; emotions; heart
 \de character, seat of emotions.
@@ -155,16 +154,15 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("ph", "pronunciation", "en-fonipa", "lx", false);
                 e.SetupMarker("sd", "semanticDomain", "en", "lx", false);
                 e.SetupMarker("ps", "grammi", "en", "lx", false);
-                e.SetupMarker("pn", "grammi", "nn", "ps", false);
+                e.SetupMarker("pn", "ignore", "nn", "ps", false);
                 e.SetupMarker("sn", "sense", "en", "ps", false);
                 e.SetupMarker("ge", "gloss", "en", "sn", true);
                 e.SetupMarker("de", "definition", "en", "sn", false);
                 e.SetupMarker("gn", "gloss", "nn", "sn", false);
-                e.SetupMarker("va", "variant", "vv", "lx", false);
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
                 var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
-                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
+                AssertThatXmlIn.String(e.LiftAsString()).HasSpecifiedNumberOfMatchesForXpath("/lift/entry/sense/grammatical-info", 4);
             }
         }
 

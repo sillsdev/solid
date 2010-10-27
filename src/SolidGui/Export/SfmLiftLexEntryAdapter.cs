@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
@@ -138,6 +137,13 @@ namespace SolidGui.Export
             Example
         }
 
+        private enum PartOfSpeechModes
+        {
+            Unknown,
+            PartOfSpeechFirst,
+            SenseFirst
+        }
+
         private class LiftInfo
         {
             public string WritingSystem { get; set; }
@@ -150,6 +156,7 @@ namespace SolidGui.Export
             SfmLexEntry = entry;
             SfmID = entry.Name;
             SolidSettings = solidSettings;
+            PartOfSpeechMode = PartOfSpeechModes.Unknown;
         }
 
         private SfmLexEntry SfmLexEntry { get; set; }
@@ -164,16 +171,14 @@ namespace SolidGui.Export
 
         public void AddSolidNote(string note)
         {
-
             AddMultiTextToPalasoDataObject("SOLID NOTE: " + note, "en", LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
-
         }
 
         private class StateInfo
         {
             public int Depth;
-            public States State;
-            public LiftLexEntryAdapter LexEntryAdapter;
+            public readonly States State;
+            public readonly LiftLexEntryAdapter LexEntryAdapter;
             public LexEntry LiftLexEntry { get { return LexEntryAdapter.LiftLexEntry; } }
 
             public StateInfo(States state, int depth, LiftLexEntryAdapter lexEntryAdapter)
@@ -186,15 +191,25 @@ namespace SolidGui.Export
 
         public void PopulateEntry()
         {
-            Stack<StateInfo> states = new Stack<StateInfo>();
+            var states = new Stack<StateInfo>();
             states.Push(new StateInfo(States.LexEntry, -1, this));
             LexSense currentSense = null;
+            string currentPartOfSpeech = "";
+
             LexExampleSentence currentExample = null;
             foreach (var field in SfmLexEntry.Fields)
             {
                 var currentState = states.Peek();
                 if (field.Depth <= currentState.Depth)
                 {
+                    if (currentSense != null && currentState.State == States.Sense)
+                    {
+                        // If there's no grammatical info, and we have a current set, then put that in now.
+                        if (!currentSense.Properties.Exists(property => property.Key == LexSense.WellKnownProperties.PartOfSpeech))
+                        {
+                            currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.PartOfSpeech, new OptionRef(currentPartOfSpeech)));
+                        }
+                    }
                     states.Pop();
                     currentState = states.Peek();
                 }
@@ -293,7 +308,7 @@ namespace SolidGui.Export
                             case Concepts.LexicalRelationType:
                                 Relation relation;
                                 string targetID = "";
-                                string type = "";
+                                string type;
 
                                 // new mdf relation representation
                                 if (field.Value.Contains("="))
@@ -301,19 +316,6 @@ namespace SolidGui.Export
                                     int equalsSignPosition = field.Value.IndexOf('=');
                                     targetID = field.Value.Substring(equalsSignPosition + 1).Trim();
                                     type = field.Value.Substring(0, equalsSignPosition).Trim();
-                                    
-                                    
-                                    /*
-                                    var arrayOfStringsBetweenEqualsSign = field.Value.Split(new char[] {'='}, 2);
-                                    
-                                    if (arrayOfStringsBetweenEqualsSign.Length == 2 && !String.IsNullOrEmpty(arrayOfStringsBetweenEqualsSign[0]))
-                                    {
-                                        targetID = arrayOfStringsBetweenEqualsSign[0].Trim();
-                                    }
-                                    if (arrayOfStringsBetweenEqualsSign.Length == 2 && !String.IsNullOrEmpty(arrayOfStringsBetweenEqualsSign[1]))
-                                    {
-                                        type = arrayOfStringsBetweenEqualsSign[1].Trim();
-                                    }*/
                                 }
                                 else // old mdf relation representation
                                 {
@@ -324,7 +326,7 @@ namespace SolidGui.Export
                                     }
                                     else
                                     {
-                                        AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
+                                        AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm);
                                     }
                                 }
 
@@ -333,8 +335,15 @@ namespace SolidGui.Export
                                 currentState.LexEntryAdapter.Relations.Add(relation);
                                 break;
                                 
-                            // change state
+                            case Concepts.GrammaticalInfo_PS:
+                                PartOfSpeechMode = PartOfSpeechModes.PartOfSpeechFirst;
+                                currentPartOfSpeech = field.Value;
+                                currentSense = new LexSense();
+                                currentState.LiftLexEntry.Senses.Add(currentSense);
+                                states.Push(new StateInfo(States.Sense, field.Depth, currentState.LexEntryAdapter));
+                                break;
                             case Concepts.Sense:
+                                PartOfSpeechMode = PartOfSpeechModes.SenseFirst;
                                 currentSense = new LexSense();
                                 currentState.LiftLexEntry.Senses.Add(currentSense);
                                 states.Push(new StateInfo(States.Sense, field.Depth, currentState.LexEntryAdapter));
@@ -384,6 +393,13 @@ namespace SolidGui.Export
 
                             case Concepts.Gloss:
                                 currentSense.Gloss[liftInfo.WritingSystem] = field.Value;
+                                break;
+
+                            case Concepts.Sense:
+                                if (PartOfSpeechMode == PartOfSpeechModes.PartOfSpeechFirst)
+                                {
+                                    currentState.Depth = field.Depth;
+                                }
                                 break;
 
                             // change state
@@ -438,6 +454,8 @@ namespace SolidGui.Export
 
             }
         }
+
+        private PartOfSpeechModes PartOfSpeechMode { get; set; }
 
         public static void AddMultiTextToPalasoDataObject(string fieldValue, string writingSystem, LexEntry liftLexEntry, string propertyName)
         {
