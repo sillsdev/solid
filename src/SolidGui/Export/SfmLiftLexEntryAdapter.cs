@@ -84,7 +84,8 @@ namespace SolidGui.Export
             LexicalRelationType,
             Comment,
             SubEntry,
-            LexicalRelationLexeme
+            LexicalRelationLexeme,
+            ScientificName
         }
 
         private static readonly Dictionary<string, Concepts> _conceptMap = new Dictionary<string, Concepts>
@@ -296,6 +297,9 @@ namespace SolidGui.Export
                             case Concepts.EtymologySource:
                                 // NOTE Palaso does not support etymology-source yet
                                 AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
+                                break;
+                            case Concepts.ScientificName:
+                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "scientific-name");
                                 break;
                             case Concepts.CustomField:
                                 AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
@@ -532,6 +536,8 @@ namespace SolidGui.Export
                     return States.LexEntry;
                 case Concepts.EtymologySource:
                     return States.LexEntry;
+                case Concepts.ScientificName:
+                    return States.Sense;
                 case Concepts.CustomField:
                     return state;
                 case Concepts.LexicalRelationType:
