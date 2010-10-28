@@ -576,10 +576,10 @@ namespace SolidGui.Export
         {
             if (s == null)
             {
-                Console.WriteLine("\t### Ignoring unknown marker: " + s);
+//SLOW                Console.WriteLine("\t### Ignoring unknown marker: " + s);
                 return Concepts.Ignore;
             }
-            Console.WriteLine("\t" + s);
+//SLOW            Console.WriteLine("\t" + s);
             return _conceptMap[s];
         }
 
