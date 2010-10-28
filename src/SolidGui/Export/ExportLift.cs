@@ -20,7 +20,11 @@ namespace SolidGui.Export
             var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
             var liftLexEntries = new List<SfmLiftLexEntryAdapter>();
             var logPath = outputFilePath+ ".exportErrors.txt";
-            if(File.Exists(logPath))
+            if (File.Exists(outputFilePath))
+            {
+                File.Delete(outputFilePath);
+            }
+            if (File.Exists(logPath))
             {
                 File.Delete(logPath);
             }
