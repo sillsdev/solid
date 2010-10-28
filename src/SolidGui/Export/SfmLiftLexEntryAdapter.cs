@@ -268,7 +268,16 @@ namespace SolidGui.Export
                                 break;
                             case Concepts.DateModified:
                                 var inModTime = field.Value;
-                                currentState.LiftLexEntry.ModificationTime = DateTime.Parse(inModTime).ToUniversalTime();
+                                DateTime dateTime;
+                                if(DateTime.TryParse(inModTime, out dateTime))
+                                {
+                                    currentState.LiftLexEntry.ModificationTime =
+                                        DateTime.Parse(inModTime).ToUniversalTime();
+                                }
+                                else
+                                {
+                                    //todo: when we have a log, tell it that didn't work (but don't report when the date time is just empty)
+                                }
                                 break;
                             case Concepts.HomonymNumber:
                                 currentState.LiftLexEntry.OrderInFile = int.Parse(field.Value);
