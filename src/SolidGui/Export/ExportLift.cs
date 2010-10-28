@@ -8,6 +8,7 @@ using Palaso.DictionaryServices.Model;
 using Palaso.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
+using System.Linq;
 
 namespace SolidGui.Export
 {
@@ -84,7 +85,7 @@ namespace SolidGui.Export
                             }
                         }
 
-                        dm.SaveItem(adaptedEntry.LiftLexEntry);
+                    //    dm.SaveItem(adaptedEntry.LiftLexEntry);
 
                         foreach (var subEntry in adaptedEntry.SubEntries)
                         {
@@ -105,7 +106,7 @@ namespace SolidGui.Export
                                 }
                             }
 
-                            dm.SaveItem(subEntry.LiftLexEntry);
+                           // dm.SaveItem(subEntry.LiftLexEntry);
                         }
 
                         // Got any potential relations?
@@ -121,8 +122,10 @@ namespace SolidGui.Export
                             log.Write(adaptedEntry.SfmID + ": ");
                             log.WriteLine(error);
                         }
-                    }   
+                    }
+                    
                 }
+                dm.SaveItems(from x in dm.GetAllItems() select dm.GetItem(x));
             }
 
         }
