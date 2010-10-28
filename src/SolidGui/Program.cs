@@ -40,15 +40,7 @@ namespace SolidGui
 
         private static void SetupUsageTracking()
         {
-            if (Settings.Default.Reporting == null)
-            {
-                Settings.Default.Reporting = new ReportingSettings();
-            }
-            UsageReporter.AppReportingSettings = Settings.Default.Reporting;
-            UsageReporter.AppNameToUseInDialogs = "Solid";
-            UsageReporter.AppNameToUseInReporting = "Solid";
-            UsageReporter.RecordLaunch();
-            //UsageReporter.DoTrivialUsageReport("cambell_prince@sil.org" /*CHANGE THIS*/, "", new int[] { 1, 5, 20, 40, 60, 80, 100 });
+            Palaso.Reporting.UsageReporter.ReportLaunchesAsync();
         }
     
     }

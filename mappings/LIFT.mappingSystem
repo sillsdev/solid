@@ -243,6 +243,29 @@
         </Help>
     </Field>
 
+      <Field id="custom" uiname="Custom Field" mdf="">
+        <Help>
+            <Usage>Used for any data that is to be exported to Lift, but doesn't have an existing well defined Lift mapping.
+            </Usage>
+        <Limitations>
+          <Limitation>The custom field is exported as a field tag in Lift. The id attribute is set to the MDF marker name. Custom attributes cannot be set.
+          </Limitation>
+        </Limitations>
+        </Help>
+    </Field>
+  <Field id="ScientificName" uiname="Scientific Name" mdf="sc">
+    <Help>
+      <Usage>
+        Scientific Name.
+      </Usage>
+      <Limitations>
+        <Limitation>
+          This will be exported as a LIFT field with an id of "scientific-name". 
+        </Limitation>
+      </Limitations>
+    </Help>
+  </Field>
+  
   <Field id="lexicalRelationType" uiname="Lexical Relation Type"  mdf="lf">
       <Help>
         <Usage>
