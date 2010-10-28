@@ -260,7 +260,7 @@
       </Usage>
       <Limitations>
         <Limitation>
-          This will be exported as a custom field LIFT. 
+          This will be exported as a LIFT field with an id of "scientific-name". 
         </Limitation>
       </Limitations>
     </Help>
