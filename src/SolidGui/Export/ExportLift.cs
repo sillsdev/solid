@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
+using Palaso.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -104,7 +105,13 @@ namespace SolidGui.Export
 
         public void ExportAsync(object sender, DoWorkEventArgs args)
         {
-            throw new System.NotImplementedException();
+            var progress = (ProgressState)args.Argument;
+            var exportArguments = (ExportArguments)progress.Arguments;
+
+            var dictionary = new SfmDictionary();
+            var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(exportArguments.inputFilePath));
+            dictionary.Open(exportArguments.inputFilePath, solidSettings, new RecordFilterSet());
+            Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath);
         }
 
         public static IExporter Create()
