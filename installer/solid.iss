@@ -3,22 +3,22 @@ EnableISX=true
 
 [Setup]
 AppName=Solid
-AppVerName=Solid ${version}
-MinVersion=4.1,4.0
+AppVerName=Solid 0.0.0
+MinVersion=0,5.0
 DefaultDirName={pf}\Solid
 DefaultGroupName=Solid
 UninstallDisplayIcon={app}\Solid.exe
 Compression=lzma
 SolidCompression=true
-OutputBaseFilename=SolidSetup
-AppCopyright=2007 SIL International and Payap University
-VersionInfoVersion=${version}
+OutputBaseFilename=SolidInstaller
+AppCopyright=2010 SIL International and Payap University
+VersionInfoVersion=0.0.0
 VersionInfoCompany=palaso.org Payap Language Software Group
 VersionInfoDescription=Solid MDF Lexicon Checker
 DisableDirPage=true
 CreateUninstallRegKey=true
 AppID={{6f3075b4-e668-41e6-8e16-75503b24dfee}
-VersionInfoCopyright=2007 palaso.org
+VersionInfoCopyright=2010 palaso.org
 DisableProgramGroupPage=true
 AlwaysShowComponentsList=false
 ShowComponentSizes=false
@@ -37,23 +37,17 @@ Name: {app}\templates
 Name: {userdocs}\Solid Examples
 
 [Files]
-Source: c:\Program Files\ISTool\isxdl.dll; Flags: dontcopy
+Source: ..\installer\isxdl.dll; Flags: dontcopy
 Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SolidEngine.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\LinqBridge.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\LiftIO.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Palaso.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Palaso.Lift.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
-Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
-Source: ..\exporters\StructuredXml.xml; DestDir: {app}\exporters
-Source: ..\exporters\FlatXml.xml; DestDir: {app}\exporters
-Source: ..\exporters\solid2lift.xslt; DestDir: {app}\exporters
-Source: ..\exporters\Lift.xml; DestDir: {app}\exporters
-Source: ..\exporters\Solid2LiftAlt.xslt; DestDir: {app}\exporters
-Source: ..\exporters\LiftAlt.xml; DestDir: {app}\exporters
 Source: ..\templates\MDF Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates
@@ -75,11 +69,11 @@ var
   dotNetNeeded: boolean;
   memoDependenciesNeeded: string;
 
-procedure isxdl_AddFile(URL, Filename: PChar);
+procedure isxdl_AddFile(URL, Filename: String);
 external 'isxdl_AddFile@files:isxdl.dll stdcall';
 function isxdl_DownloadFiles(hWnd: Integer): Integer;
 external 'isxdl_DownloadFiles@files:isxdl.dll stdcall';
-function isxdl_SetOption(Option, Value: PChar): Integer;
+function isxdl_SetOption(Option, Value: String): Integer;
 external 'isxdl_SetOption@files:isxdl.dll stdcall';
 
 
@@ -165,5 +159,6 @@ begin
 
   Result := s
 end;
+
 [Run]
 Filename: {app}\Solid.exe; WorkingDir: {userdocs}\Solid Examples; Flags: nowait postinstall
