@@ -374,7 +374,7 @@ namespace SolidGui.Export
                             case Concepts.NoteRestriction:
                             case Concepts.NoteSociolinguistic:
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.Illustration:
                                 var illustration = new PictureRef();
@@ -390,13 +390,13 @@ namespace SolidGui.Export
                                 currentSense.Definition[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.SemanticDomain:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, "semantic-domain");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "semantic-domain");
                                 break;
                             case Concepts.CustomField:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, field.Marker);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, field.Marker);
                                 break;
                             case Concepts.Comment:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, PalasoDataObject.WellKnownProperties.Note);
                                 break;
 
                             case Concepts.Gloss:
@@ -421,7 +421,7 @@ namespace SolidGui.Export
                             // change state
                             case Concepts.ExampleReference:
                                 // NOTE Palaso does not support ExampleReference yet
-                                //AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "example-reference");
+                                //AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.currentSense, "example-reference");
 
                                 currentExample = new LexExampleSentence();
                                 currentSense.ExampleSentences.Add(currentExample);
@@ -446,10 +446,10 @@ namespace SolidGui.Export
                             case Concepts.NoteRestriction:
                             case Concepts.NoteSociolinguistic:
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentExample, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.CustomField:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentExample, field.Marker);
                                 break;
                             case Concepts.ExampleSentence:
                                 currentExample.Sentence[liftInfo.WritingSystem] = unicodeValue;
@@ -458,7 +458,7 @@ namespace SolidGui.Export
                                 currentExample.Translation[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.Comment:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentExample, PalasoDataObject.WellKnownProperties.Note);
                                 break;
 
                             default:
@@ -530,11 +530,11 @@ namespace SolidGui.Export
 
         private PartOfSpeechModes PartOfSpeechMode { get; set; }
 
-        public static void AddMultiTextToPalasoDataObject(string fieldValue, string writingSystem, LexEntry liftLexEntry, string propertyName)
+        public static void AddMultiTextToPalasoDataObject(string fieldValue, string writingSystem, PalasoDataObject dataObject, string propertyName)
         {
             var mt = new MultiText();
             mt[writingSystem] = fieldValue;
-            liftLexEntry.Properties.Add(new KeyValuePair<string, object>(propertyName, mt));
+            dataObject.Properties.Add(new KeyValuePair<string, object>(propertyName, mt));
         }
 
         private static States ConceptState(Concepts concept, States state)
