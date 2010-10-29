@@ -1,129 +1,135 @@
-\lx Entry
-\a x
-\u x
-\bw x
-\dt x
-\hm x
-\lc x
-\mn x
-\mr x
-\ph Pronunciation
-\va Variant
-\ve x
-\vn x
-\vr x
-\sg singular
+﻿\lx check
+\va cheque
+\lx cheque
+\mn check
+
+\lx adá
+\ge throw ; discard
+\de ...
+\sn 1
+\de throw
+\se mongadá
+\ps vt
+\ge ...
+\de throw something away; to discard
+\se paadá
+\ps vCAUS
+\de drop
+\sn 2
+\de divorce
+\se muadá
+\ps vREC
+\de divorce smb (lit. throw each other)
+
+
+
+\lx lexeme
+\hm homonym number
+\st status
+\dt datestamp
+\sn sense number
+\se subentry
+\lc lexical citation
+\ph phonetic
+\va variant form
+\ve variant comment-English
+\vn variant comment-national language
+\vr variant comment-regional language
+\a NOT MDF: alternate form (some people use this instead of \va)
+\bw borrowed word From:
+\et etymology
+\eg etymology-gloss
+\es etymology-source
+\ec etymology-comment
+\ps part of speech
+\pn part of speech-national language
+\gv gloss-vernacular
+\ge gloss-English
+\gn gloss-national language
+\gr gloss-regional lang.
+\dv definition-vernacular
+\de definition-English
+\dn definition-national language
+\dr definition-regional lang.
+\re reverse-English
+\rn reverse-national language
+\rr reverse-regional lang.
+\we word level gloss-English
+\wn word level gloss-national language
+\wr word-level gloss-regional
+\lt literal meaning
+\sc scientific name
+\uv usage-vernacular
+\ue usage-English
+\un usage-national language
+\ur usage-regional
+\nt notes-general
+\np notes-phonology
+\ng notes-grammar
+\nd notes-discourse
+\na notes-anthropology
+\ns notes-sociolinguistics
+\nq notes-questions
+\ev encyclopedic-vernacular
+\ee encyclopedic-English
+\en encyclopedic-national language
+\er encyclopedic-regional language
+\ov only (restrictions)-vernacular
+\oe only (restrictions)-English
+\on only (restrictions)-national language
+\or only (restrictions)-regional
+\tb table
+\bb bibliographic reference
+\pc picture
+\so source
+\rf reference for example
+\xv example sentence-vernacular
+\xe example sentence-English
+\xn example sentence-national language
+\xr example sent.-regional
+\lf lexical function (\lf label, e.g. 'Spec', becomes the label)
+\lv lexical function - vernacular referent
+\le lexical function-English
+\ln lexical function-national language
+\lr lexical function-regional language
+\sy synonym
+\an antonym
+\is index of semantics
+\sd semantic domain
+\th thesaurus
+\cf cross-reference
+\ce cross-reference-English gloss
+\cn cross-reference-national gloss
+\cr cross-reference-regional gloss
+\pd paradigm - basic option
+\pdl paradigm label
+\pdv paradigm - Vernacular form
+\pde paradigm - English gloss
+\pdn paradigm - National gloss
+\pdr paradigm - Regional gloss
+\sg singular form
 \pl plural form
 \rd reduplication
-\_1s 1st person singular
-\_2s 2nd person singular
-\_3s 3rd person singular
-\_4s singular non-human non-animate
-\_1d 1st person dual
-\_2d 2nd person dual
-\_3d 3rd person dual
-\_4d dual non-human non-animate
-\_1p 1st person plural-general
-\_1e 1st person plural-exclusive
-\_1i 1st person plural-inclusive
-\_2p 2nd person plural
-\_3p 3rd person plural
-\_4p plural non-human non-animate
-\se SubEntry
-\sg singular
-\pl plural form
-\rd reduplication
-\_1s 1st person singular
-\_2s 2nd person singular
-\_3s 3rd person singular
-\_4s singular non-human non-animate
-\_1d 1st person dual
-\_2d 2nd person dual
-\_3d 3rd person dual
-\_4d dual non-human non-animate
-\_1p 1st person plural-general
-\_1e 1st person plural-exclusive
-\_1i 1st person plural-inclusive
-\_2p 2nd person plural
-\_3p 3rd person plural
-\_4p plural non-human non-animate
-\bw x
-\mn x
-\mr x
-\ph Pronunciation
-\va Variant
-\ve x
-\vn x
-\vr x
-\ps x
-\sn Sense
-\an x
-\bb x
-\cf x
-\ce x
-\cn x
-\cr x
-\de x
-\dn x
-\dr x
-\dv x
-\ee x
-\en x
-\er x
-\ev x
-\ge x
-\gn x
-\gr x
-\gv x
-\lt x
-\na x
-\nd x
-\ng x
-\np x
-\nq x
-\ns x
-\nt x
-\oe x
-\on x
-\or x
-\ov x
-\pc x
-\pd x
-\pde x
-\pdl x
-\pdn x
-\pdr x
-\pdv x
-\pn x
-\re x
-\rn x
-\rr x
-\sc x
-\so x
-\st x
-\sy x
-\sd x
-\tb x
-\ue x
-\un x
-\ur x
-\uv x
-\we x
-\wn x
-\wr x
-\lf Function
-\lv x
-\le x
-\ln x
-\is Semantic Domain
-\sd x
-\th x
-\rf Example
-\xv Example
-\xe x
-\xn x
-\xr x
-\et Etymology
-\ec x
-\eg x
-\es x
+\se subentry-only fields
+\mr morphemic representation
+\u NOT MDF: underlying form (some people use this instead of \mr)
+\lx outdated MDF fields
+\1s 1st person singular 1s: 1t:
+\2s 2nd person singular 2s: 2t:
+\3s 3rd person singular 3s: 3t:
+\4s singular non-human/non-animate 3sn: 3tn:
+\1d 1st person dual 1d: 1d:
+\2d 2nd person dual 2d: 2d:
+\3d 3rd person dual 3d: 3d:
+\4d dual non-human/non-animate 3dn: 3dn:
+\1p 1st person plural-general 1p: 1j:
+\1e 1st person plural-exclusive 1px: 1j:
+\1i 1s.t person plural-inclusive 1pi: 1j:
+\2p 2nd person plural 2p: 2j:
+\3p 3rd person plural 3p: 3j:
+\4p plural non-human/non-animate 3pn: 3jn:
+\sn 
+\ps 
+\rf 
+\xv 
+\xg NOT MDF: example sentence-interlinear gloss

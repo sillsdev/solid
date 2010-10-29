@@ -1,27 +1,66 @@
 \lx check
 \va cheque
+
 \lx cheque
 \mn check
-\lx lexeme
-\hm homonym number
-\st status
-\dt datestamp
+
+\lx variant form_se2
+\mn subentry
+
+\lx lexeme-or-subentry fields_lx2
+\ph phonetic_lx2
+\va variant form_lx2
+\ve variant comment-English_lx2
+\vn variant comment-national language_lx2
+\vr variant comment-regional language_lx2
+\a NOT MDF: alternate form (some people use this instead of \va)_lx2
+\et etymology_lx2
+\eg etymology-gloss_lx2
+\es etymology-source_lx2
+\ec etymology-comment_lx2
+
+\lx lexeme_lx
+\hm 3
+\st_lx status_lx
+\lc lexical citation_lx
+\nt_lx notes-general_lx
+\va variant form_lx
+\ve variant comment-English_lx
+\vn variant comment-national language_lx
+\vr variant comment-regional language_lx
+\lt literal meaning
+\cf cross-reference
+\ce cross-reference-English gloss
+\cn cross-reference-national gloss
+\cr cross-reference-regional gloss
+\dt 01/Sep/2001
+
+\se subentry-only fields
+\mr morphemic representation
+\u NOT MDF: underlying form (some people use this instead of \mr)
+\st_se status_se
+\lc_se lexical citation_se
+\nt_se notes-general_se
+\lt_se literal meaning_se
+\cf_se cross-reference_se
+
 \se subentry
-\lc lexical citation
-\ph phonetic
-\va variant form
-\ve variant comment-English
-\vn variant comment-national language
-\vr variant comment-regional language
+\ph phonetic_se
 \a NOT MDF: alternate form (some people use this instead of \va)
 \bw borrowed word From:
 \et etymology
 \eg etymology-gloss
 \es etymology-source
 \ec etymology-comment
+\va variant form_se
+\ve variant comment-English_se
+\vn variant comment-national language_se
+\vr variant comment-regional language_se
+
+\sn sense number
+\st status
 \ps part of speech
 \pn part of speech-national language
-\sn sense number
 \gv gloss-vernacular
 \ge gloss-English
 \gn gloss-national language
@@ -36,13 +75,12 @@
 \we word level gloss-English
 \wn word level gloss-national language
 \wr word-level gloss-regional
-\lt literal meaning
 \sc scientific name
 \uv usage-vernacular
 \ue usage-English
 \un usage-national language
 \ur usage-regional
-\nt notes-general
+\nt notes-general_sn
 \np notes-phonology
 \ng notes-grammar
 \nd notes-discourse
@@ -66,7 +104,7 @@
 \xe example sentence-English
 \xn example sentence-national language
 \xr example sent.-regional
-\lf lexical function (\lf label, e.g. 'Spec', becomes the label)
+\lf Spec
 \lv lexical function - vernacular referent
 \le lexical function-English
 \ln lexical function-national language
@@ -76,10 +114,6 @@
 \is index of semantics
 \sd semantic domain
 \th thesaurus
-\cf cross-reference
-\ce cross-reference-English gloss
-\cn cross-reference-national gloss
-\cr cross-reference-regional gloss
 \pd paradigm - basic option
 \pdl paradigm label
 \pdv paradigm - Vernacular form
@@ -89,9 +123,7 @@
 \sg singular form
 \pl plural form
 \rd reduplication
-\se subentry-only fields
-\mr morphemic representation
-\u NOT MDF: underlying form (some people use this instead of \mr)
+
 \lx outdated MDF fields
 \1s 1st person singular 1s: 1t:
 \2s 2nd person singular 2s: 2t:
@@ -108,6 +140,7 @@
 \3p 3rd person plural 3p: 3j:
 \4p plural non-human/non-animate 3pn: 3jn:
 \ps 
+
 \sn 
 \rf 
 \xv 

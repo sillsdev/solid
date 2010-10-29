@@ -29,11 +29,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>se</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -42,19 +42,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -62,14 +58,14 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -85,7 +81,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -104,24 +100,20 @@
           <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
       </StructureProperties>
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>id</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -137,7 +129,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -153,7 +145,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -169,7 +161,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -233,7 +225,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -247,12 +239,7 @@
         <string>utyp</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>un</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -265,15 +252,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -287,12 +266,7 @@
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>ce</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -305,15 +279,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -338,14 +304,14 @@
     <SolidMarkerSetting>
       <WritingSystem>xmm</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -361,7 +327,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -377,7 +343,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -407,12 +373,7 @@
         <string>utyp</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>ur</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -425,7 +386,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -470,12 +431,7 @@
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>cn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -486,12 +442,7 @@
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>cr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -520,10 +471,6 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
@@ -540,10 +487,6 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -558,16 +501,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>mr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -599,10 +533,6 @@
         <string>variant</string>
       </Mappings>
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -668,7 +598,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -683,6 +613,10 @@
         <string>sense</string>
       </Mappings>
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
@@ -768,7 +702,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -784,7 +718,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -800,7 +734,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -816,7 +750,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -832,7 +766,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -848,7 +782,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -857,14 +791,14 @@
     <SolidMarkerSetting>
       <WritingSystem>tdn</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -880,7 +814,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>lx</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -896,15 +830,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -920,15 +846,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -944,15 +862,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -968,15 +878,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -992,15 +894,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1016,15 +910,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1040,7 +926,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1056,7 +942,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1072,7 +958,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1088,7 +974,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1104,15 +990,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1126,12 +1004,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1142,12 +1015,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pde</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1158,12 +1026,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pdl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1174,12 +1037,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pdn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1190,12 +1048,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pdr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1206,12 +1059,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>pdl</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pdv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1222,12 +1070,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>pl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1254,12 +1097,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>rd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1272,7 +1110,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1286,12 +1124,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>sg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1304,7 +1137,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1320,11 +1153,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1340,7 +1169,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1354,12 +1183,7 @@
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>tb</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1370,12 +1194,7 @@
         <string>utyp</string>
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>uv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1386,12 +1205,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>we</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1402,12 +1216,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>wn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1418,12 +1227,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>wr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1436,7 +1240,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1452,7 +1256,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1484,7 +1288,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1500,15 +1304,7 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1538,12 +1334,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>le</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1554,12 +1345,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>ln</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1570,16 +1356,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>u</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1744,16 +1521,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_1s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1764,16 +1532,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_2s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1784,16 +1543,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_3s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1804,16 +1554,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_4s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1824,16 +1565,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_1d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1844,16 +1576,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_2d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1864,16 +1587,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_3d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1884,16 +1598,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_4d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1904,16 +1609,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_1p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1924,16 +1620,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_1e</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1944,16 +1631,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_1i</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1964,16 +1642,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_2p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1984,16 +1653,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_3p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -2004,16 +1664,7 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <StructureProperties />
       <Marker>_4p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -2024,13 +1675,57 @@
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <StructureProperties />
+      <Marker>lr</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>tdn</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>xg</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>st_lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>lr</Marker>
+      <Marker>nt_lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>st_se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>tdn</WritingSystem>
@@ -2042,11 +1737,92 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>xv</Parent>
+          <Parent>se</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>xg</Marker>
+      <Marker>lc_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>nt_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>lt_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>tdn</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>cf_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>ce_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>id</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>cn_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>xmm</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties />
+      <Marker>cr_se</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

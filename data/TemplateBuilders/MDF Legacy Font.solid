@@ -4,7 +4,7 @@
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>en-Latn</WritingSystem>
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -20,7 +20,7 @@
       <Marker>lx</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>en-Latn</WritingSystem>
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -29,6 +29,10 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>lx</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -36,25 +40,29 @@
       <Marker>a</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -68,7 +76,7 @@
       <Marker>ge</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -84,7 +92,7 @@
       <Marker>re</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -94,15 +102,15 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -116,7 +124,7 @@
       <Marker>gn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -132,7 +140,7 @@
       <Marker>rn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -142,13 +150,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -164,7 +172,7 @@
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -180,7 +188,7 @@
       <Marker>xv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -196,7 +204,7 @@
       <Marker>xe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -212,7 +220,7 @@
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -228,7 +236,7 @@
       <Marker>ue</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -244,7 +252,7 @@
       <Marker>un</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -253,6 +261,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -260,12 +276,12 @@
       <Marker>cf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string>confer</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -276,7 +292,7 @@
       <Marker>ce</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -300,7 +316,7 @@
       <Marker>nt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -316,9 +332,9 @@
       <Marker>dt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -332,7 +348,7 @@
       <Marker>gr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -348,7 +364,7 @@
       <Marker>rr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -358,13 +374,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -380,7 +396,7 @@
       <Marker>xr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -396,15 +412,20 @@
       <Marker>ur</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string>semanticDomain</string>
       </Mappings>
-      <StructureProperties />
-      <Marker>Is</Marker>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>is</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
@@ -415,46 +436,35 @@
         <string xsi:nil="true" />
       </Mappings>
       <StructureProperties />
-      <Marker>In</Marker>
+      <Marker>in</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>geto</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>variant</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>bw</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string>confer</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -465,12 +475,12 @@
       <Marker>cn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>cref</string>
-        <string>confer</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -481,7 +491,7 @@
       <Marker>cr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -497,7 +507,7 @@
       <Marker>hm</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -506,14 +516,18 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -533,7 +547,7 @@
       <Marker>mn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -543,17 +557,17 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>mr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -563,17 +577,17 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ph</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -593,7 +607,7 @@
       <Marker>va</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -609,7 +623,7 @@
       <Marker>ve</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -625,7 +639,7 @@
       <Marker>vn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -641,12 +655,12 @@
       <Marker>vr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>subc</string>
-        <string xsi:nil="true" />
+        <string>subentry</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -657,7 +671,7 @@
       <Marker>se</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -666,18 +680,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
+          <Parent>ps</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -687,17 +697,17 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>et</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -713,23 +723,23 @@
       <Marker>ec</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string>etg</string>
-        <string>gloss</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>et</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>eg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -739,156 +749,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>et</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>es</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0031_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0031_e</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0031_i</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0031_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0031_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0032_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0032_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0032_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0033_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0033_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0033_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0034_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x0034_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -904,7 +771,7 @@
       <Marker>an</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -920,7 +787,7 @@
       <Marker>bb</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -930,13 +797,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -952,7 +819,7 @@
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -968,7 +835,7 @@
       <Marker>en</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -984,20 +851,9 @@
       <Marker>er</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>eev</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
+      <InferedParent>sn</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -1011,7 +867,7 @@
       <Marker>gv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1021,13 +877,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1051,7 +907,7 @@
       <Marker>na</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1075,7 +931,7 @@
       <Marker>nd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1084,6 +940,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1091,7 +955,7 @@
       <Marker>ng</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1115,7 +979,7 @@
       <Marker>np</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1139,7 +1003,7 @@
       <Marker>nq</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1163,7 +1027,7 @@
       <Marker>ns</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1179,7 +1043,7 @@
       <Marker>oe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1195,7 +1059,7 @@
       <Marker>on</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1211,7 +1075,7 @@
       <Marker>or</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1227,7 +1091,7 @@
       <Marker>ov</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1236,6 +1100,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>se</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1243,7 +1115,7 @@
       <Marker>pc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1259,7 +1131,7 @@
       <Marker>pd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1268,14 +1140,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>pdv</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pde</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1291,7 +1163,7 @@
       <Marker>pdl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1300,14 +1172,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>pdv</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1316,14 +1188,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>pdv</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1332,14 +1204,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>pdl</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1348,18 +1220,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1368,14 +1236,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>ps</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1384,18 +1252,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>rd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1405,13 +1269,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1420,18 +1284,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>sn</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sg</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1447,7 +1307,7 @@
       <Marker>so</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1456,14 +1316,18 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>st</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1479,7 +1343,7 @@
       <Marker>sy</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1495,7 +1359,7 @@
       <Marker>tb</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1511,7 +1375,7 @@
       <Marker>uv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1521,13 +1385,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>we</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1537,13 +1401,13 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>wn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>xmm</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1559,304 +1423,7 @@
       <Marker>wr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0031_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0031_e</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0031_i</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0031_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0031_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0032_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0032_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0032_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0033_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0033_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0033_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0034_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x0034_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0031_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0031_e</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0031_i</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0031_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0031_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0032_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0032_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0032_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0033_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0033_p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0033_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0034_d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>_x005F_x005F_x005F_x0034_s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>boo</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1888,7 +1455,7 @@
       <Marker>is</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1897,10 +1464,6 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>is</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
@@ -1908,7 +1471,7 @@
       <Marker>sd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1917,14 +1480,14 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>is</Parent>
+          <Parent>sn</Parent>
           <MultipleAdjacent>MultipleApart</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>th</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1948,7 +1511,7 @@
       <Marker>lf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -1958,89 +1521,45 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>lxt</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>gt</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>dat</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties />
-      <Marker>gg</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>lexicalRelationLexeme</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>le</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>id</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
-        <string>lexicalRelationLexeme</string>
+        <string xsi:nil="true" />
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ln</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2049,7 +1568,11 @@
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>a</Parent>
+          <Parent>se</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
           <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
@@ -2210,7 +1733,7 @@
       <Marker>4p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2230,7 +1753,7 @@
       <Marker>_1s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2250,7 +1773,7 @@
       <Marker>_2s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2270,7 +1793,7 @@
       <Marker>_3s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2290,7 +1813,7 @@
       <Marker>_4s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2300,17 +1823,17 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>_1d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2330,7 +1853,7 @@
       <Marker>_2d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2350,7 +1873,7 @@
       <Marker>_3d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2370,7 +1893,7 @@
       <Marker>_4d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2390,7 +1913,7 @@
       <Marker>_1p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2410,7 +1933,7 @@
       <Marker>_1e</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2430,7 +1953,7 @@
       <Marker>_1i</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2450,7 +1973,7 @@
       <Marker>_2p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2470,7 +1993,7 @@
       <Marker>_3p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>tdn</WritingSystem>
       <Unicode>false</Unicode>
       <InferedParent />
       <Mappings>
@@ -2488,6 +2011,38 @@
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>_4p</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>xmm</WritingSystem>
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lf</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>lr</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>tdn</WritingSystem>
+      <Unicode>false</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>xv</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>xg</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
