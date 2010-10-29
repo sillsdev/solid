@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuickFixForm));
             this.button1 = new System.Windows.Forms.Button();
             this._tbFixes = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -59,12 +60,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this._tbMakeRealMarkers = new System.Windows.Forms.TextBox();
             this._executeSaveInferred = new System.Windows.Forms.LinkLabel();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this._executeAddGuids = new System.Windows.Forms.LinkLabel();
             this._tbFixes.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -84,6 +89,7 @@
             this._tbFixes.Controls.Add(this.tabPage4);
             this._tbFixes.Controls.Add(this.tabPage1);
             this._tbFixes.Controls.Add(this.tabPage2);
+            this._tbFixes.Controls.Add(this.tabPage5);
             this._tbFixes.Location = new System.Drawing.Point(12, 9);
             this._tbFixes.Name = "_tbFixes";
             this._tbFixes.SelectedIndex = 0;
@@ -423,6 +429,39 @@
             this._executeSaveInferred.Text = "I know what I\'m doing and have backed up";
             this._executeSaveInferred.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteSaveInferred_LinkClicked);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this._executeAddGuids);
+            this.tabPage5.Controls.Add(this.label9);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(455, 409);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Add Guids";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(15, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(434, 73);
+            this.label9.TabIndex = 22;
+            this.label9.Text = resources.GetString("label9.Text");
+            // 
+            // _executeAddGuids
+            // 
+            this._executeAddGuids.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._executeAddGuids.AutoSize = true;
+            this._executeAddGuids.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._executeAddGuids.Location = new System.Drawing.Point(15, 378);
+            this._executeAddGuids.Name = "_executeAddGuids";
+            this._executeAddGuids.Size = new System.Drawing.Size(258, 16);
+            this._executeAddGuids.TabIndex = 23;
+            this._executeAddGuids.TabStop = true;
+            this._executeAddGuids.Text = "I know what I\'m doing and have backed up";
+            this._executeAddGuids.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnAddGuids);
+            // 
             // QuickFixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,6 +485,8 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -483,5 +524,8 @@
         private System.Windows.Forms.LinkLabel _executeSaveInferred;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.LinkLabel _executeAddGuids;
+        private System.Windows.Forms.Label label9;
     }
 }
