@@ -120,6 +120,42 @@ namespace SolidGui.Tests.Export
         }
 
         [Test]
+        public void DateTime_ddmmmyyyy_Ok()
+        {
+            string sfm = @"
+\lx Lexeme
+\dt 08/Oct/1969
+";
+            using (var e = new EnvironmentForTest(sfm))
+            {
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("dt", "dateModified", "en", "lx", false);
+                var liftExporter = new ExportLift();
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry[@dateCreated='1969-10-07T05:00:00Z']");
+            }
+        }
+
+        [Test]
+        public void NoteGrammer_AppearsUnderSense_ExportsUnderSense()
+        {
+            string sfm = @"
+\lx Lexeme
+\sn
+\ng Note
+";
+            using (var e = new EnvironmentForTest(sfm))
+            {
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("sn", "sense", "en", "lx", false);
+                e.SetupMarker("ng", "noteGrammar", "en", "sn", false);
+                var liftExporter = new ExportLift();
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/sense/note/form[text='Note']");
+            }
+        }
+
+        [Test]
         // http://projects.palaso.org/issues/show/157
         // Note that we exclude variant (va) for the purpose of this test
         public void Bug157_LiftExportPartOfSpeech_IsInLift()
