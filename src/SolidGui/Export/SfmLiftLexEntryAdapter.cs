@@ -216,7 +216,7 @@ namespace SolidGui.Export
             LexExampleSentence currentExample = null;
             foreach (var field in SfmLexEntry.Fields)
             {
-                var unicodeValue =GetUnicodeValueFromLatin1(field.Value);
+                var unicodeValue =GetUnicodeValueFromLatin1(field.Value).Trim();
                 var currentState = states.Peek();
                 if (field.Depth <= currentState.Depth)
                 {
