@@ -198,6 +198,20 @@ namespace SolidGui.Export
             LexSense currentSense = null;
             string currentPartOfSpeech = "";
 
+            //if the sfm already declares a guid, use that instead of a made up one
+            var existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
+            if (existingGuid != null)
+            {
+                try
+                {
+                    LiftLexEntry.Guid = new Guid(existingGuid.Value);
+                }
+                catch(Exception)
+                {
+                    //todo: tell someone that we couldn't parse that guid
+                }
+            }
+
             LexExampleSentence currentExample = null;
             foreach (var field in SfmLexEntry.Fields)
             {
