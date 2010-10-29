@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
@@ -200,6 +201,7 @@ namespace SolidGui.Export
             LexExampleSentence currentExample = null;
             foreach (var field in SfmLexEntry.Fields)
             {
+                var unicodeValue =GetUnicodeValueFromLatin1(field.Value);
                 var currentState = states.Peek();
                 if (field.Depth <= currentState.Depth)
                 {
@@ -225,13 +227,13 @@ namespace SolidGui.Export
                             case Concepts.SubEntry:
 
                                 string lexForm = "";
-                                if(String.IsNullOrEmpty(field.Value))
+                                if(String.IsNullOrEmpty(unicodeValue))
                                 {
                                     lexForm = states.Peek().LiftLexEntry.LexicalForm.ToString();
                                 }
                                 else
                                 {
-                                    lexForm = field.Value;
+                                    lexForm = unicodeValue;
                                 }
                                 var subEntry = new LiftLexEntryAdapter(liftDataMapper);
                                 states.Push(new StateInfo(States.LexEntry, field.Depth, subEntry));
@@ -242,7 +244,7 @@ namespace SolidGui.Export
                                 SubEntries.Add(subEntry); 
                                 break;
                             case Concepts.LexicalUnit:
-                                LiftLexEntry.LexicalForm[liftInfo.WritingSystem] = field.Value;
+                                LiftLexEntry.LexicalForm[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.NoteBibliographic:
                             case Concepts.NoteEncyclopedic:
@@ -255,19 +257,19 @@ namespace SolidGui.Export
                             case Concepts.NoteRestriction:
                             case Concepts.NoteSociolinguistic:
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.BorrowedWord:
                                 // NOTE Palaso does not support lift etymology as a first class element yet, so write it out as a lift trait (OptionRef).
                                 var o = new OptionRef("borrowed");
-                                o.Value = field.Value;
+                                o.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", o));
                                 break;
                             case Concepts.Confer:
                                 // TODO This is a relation, come back to this when we know how to do relations. CP 2010-09
                                 break;
                             case Concepts.DateModified:
-                                var inModTime = field.Value;
+                                var inModTime = unicodeValue;
                                 DateTime dateTime;
                                 if(DateTime.TryParse(inModTime, out dateTime))
                                 {
@@ -280,42 +282,42 @@ namespace SolidGui.Export
                                 }
                                 break;
                             case Concepts.HomonymNumber:
-                                currentState.LiftLexEntry.OrderInFile = int.Parse(field.Value);
+                                currentState.LiftLexEntry.OrderInFile = int.Parse(unicodeValue);
                                 break;
                             case Concepts.CitationForm:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, LexEntry.WellKnownProperties.Citation);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, LexEntry.WellKnownProperties.Citation);
                                 break;
                             case Concepts.Pronunciation:
                                 // NOTE Palaso does not support first class <pronunciation> element yet
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
                                 break;
                             case Concepts.Variant:
                                 // NOTE Palaso does not support first class <variant> element yet
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "variant");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "variant");
                                 break;
                             case Concepts.Reversal:
                                 // NOTE Palaso does not support first class <reversal> element yet
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "reversal");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "reversal");
                                 break;
                             case Concepts.Etymology:
                                 // NOTE Palaso does not support first class <etymology> element yet
                                 var op = new OptionRef("proto");
-                                op.Value = field.Value;
+                                op.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", op));
                                 break;
                             case Concepts.EtymologySource:
                                 // NOTE Palaso does not support etymology-source yet
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
                                 break;
                             case Concepts.ScientificName:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "scientific-name");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "scientific-name");
                                 break;
                             case Concepts.CustomField:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
                                 break;
 
                             case Concepts.Comment:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
 
                             case Concepts.LexicalRelationType:
@@ -324,15 +326,15 @@ namespace SolidGui.Export
                                 string type;
 
                                 // new mdf relation representation
-                                if (field.Value.Contains("="))
+                                if (unicodeValue.Contains("="))
                                 {
-                                    int equalsSignPosition = field.Value.IndexOf('=');
-                                    targetID = field.Value.Substring(equalsSignPosition + 1).Trim();
-                                    type = field.Value.Substring(0, equalsSignPosition).Trim();
+                                    int equalsSignPosition = unicodeValue.IndexOf('=');
+                                    targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
+                                    type = unicodeValue.Substring(0, equalsSignPosition).Trim();
                                 }
                                 else // old mdf relation representation
                                 {
-                                    type = field.Value;
+                                    type = unicodeValue;
                                     if (field.Children.Count > 0 && field.Children[0] != null)
                                     {
                                         targetID = field.Children[0].Value;
@@ -350,7 +352,7 @@ namespace SolidGui.Export
                                 
                             case Concepts.GrammaticalInfo_PS:
                                 PartOfSpeechMode = PartOfSpeechModes.PartOfSpeechFirst;
-                                currentPartOfSpeech = field.Value;
+                                currentPartOfSpeech = unicodeValue;
                                 currentSense = new LexSense();
                                 currentState.LiftLexEntry.Senses.Add(currentSense);
                                 states.Push(new StateInfo(States.Sense, field.Depth, currentState.LexEntryAdapter));
@@ -379,33 +381,33 @@ namespace SolidGui.Export
                             case Concepts.NoteRestriction:
                             case Concepts.NoteSociolinguistic:
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.Illustration:
                                 var illustration = new PictureRef();
-                                illustration.Value = field.Value;
+                                illustration.Value = unicodeValue;
                                 currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.Picture, illustration));
                                 break;
                             case Concepts.GrammaticalInfo_PS:
-                                var gi = new OptionRef(field.Value); // TODO One we could check the fieldValue against some RangeSet (OptionRefCollection)
+                                var gi = new OptionRef(unicodeValue); // TODO One we could check the fieldValue against some RangeSet (OptionRefCollection)
                                 // var optRefCollection = new OptionRefCollection();
                                 currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.PartOfSpeech, gi));
                                 break;
                             case Concepts.Definition:
-                                currentSense.Definition[liftInfo.WritingSystem] = field.Value;
+                                currentSense.Definition[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.SemanticDomain:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, LiftLexEntry, "semantic-domain");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, "semantic-domain");
                                 break;
                             case Concepts.CustomField:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, LiftLexEntry, field.Marker);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, field.Marker);
                                 break;
                             case Concepts.Comment:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
 
                             case Concepts.Gloss:
-                                currentSense.Gloss[liftInfo.WritingSystem] = field.Value;
+                                currentSense.Gloss[liftInfo.WritingSystem] = unicodeValue;
                                 break;
 
                             case Concepts.Sense:
@@ -418,7 +420,7 @@ namespace SolidGui.Export
                             // change state
                             case Concepts.ExampleReference:
                                 // NOTE Palaso does not support ExampleReference yet
-                                //AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, "example-reference");
+                                //AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "example-reference");
 
                                 currentExample = new LexExampleSentence();
                                 currentSense.ExampleSentences.Add(currentExample);
@@ -443,19 +445,19 @@ namespace SolidGui.Export
                             case Concepts.NoteRestriction:
                             case Concepts.NoteSociolinguistic:
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
                             case Concepts.CustomField:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
                                 break;
                             case Concepts.ExampleSentence:
-                                currentExample.Sentence[liftInfo.WritingSystem] = field.Value;
+                                currentExample.Sentence[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.ExampleSentenceTranslation:
-                                currentExample.Translation[liftInfo.WritingSystem] = field.Value;
+                                currentExample.Translation[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.Comment:
-                                AddMultiTextToPalasoDataObject(field.Value, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
                                 break;
 
                             default:
@@ -466,6 +468,28 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        public string GetUnicodeValueFromLatin1(string value)
+        {
+            string retval;
+                retval = string.Empty;
+                if (value.Length > 0)
+                {
+                    Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                    //Encoding byteEncoding = Encoding.Unicode;
+                    byte[] valueAsBytes = byteEncoding.GetBytes(value);
+                    Encoding stringEncoding = Encoding.UTF8;
+                    retval = stringEncoding.GetString(valueAsBytes);
+                    if (retval.Length == 0)
+                    {
+                        retval = "Non Unicode Data Found";
+                        // TODO: Need to lock this field of the current record at this point.
+                        // The editor must *never* write back to the model (for this field)
+                    }
+                }
+
+            return retval;
         }
 
         private PartOfSpeechModes PartOfSpeechMode { get; set; }
