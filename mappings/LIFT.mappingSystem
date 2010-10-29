@@ -253,7 +253,34 @@
         </Limitations>
         </Help>
     </Field>
-  <Field id="ScientificName" uiname="Scientific Name" mdf="sc">
+
+  <Field id="custom" uiname="Antonym" mdf="an">
+    <Help>
+      <Usage>
+        Antonyms are typically relations on senses.
+      </Usage>
+      <Limitations>
+        <Limitation>
+          No sense relations are yet handled by the SOLID exporter. Instead, mark the field as "custom", which will createa LIFT field element with the contents being the form of the antonym.
+        </Limitation>
+      </Limitations>
+    </Help>
+  </Field>
+
+  <Field id="custom" uiname="Synonym" mdf="sy">
+    <Help>
+      <Usage>
+        Synonyms are typically relations on senses.
+      </Usage>
+      <Limitations>
+        <Limitation>
+          No sense relations are yet handled by the SOLID exporter. Instead, mark the field as "custom", which will createa LIFT field element with the contents being the form of the antonym.
+        </Limitation>
+      </Limitations>
+    </Help>
+  </Field>
+  
+  <Field id="scientificName" uiname="Scientific Name" mdf="sc">
     <Help>
       <Usage>
         Scientific Name.

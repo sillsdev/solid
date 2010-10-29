@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RecordMarker>lx</RecordMarker>
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem>tdn</WritingSystem>
+      <WritingSystem/>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -20,7 +20,7 @@
       <Marker>lx</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tdn</WritingSystem>
+      <WritingSystem/>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -687,7 +687,7 @@
       <Marker>sn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>tdn</WritingSystem>
+      <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -760,7 +760,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string xsi:nil="true" />
+        <string>custom</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1264,7 +1264,7 @@
       <InferedParent />
       <Mappings>
         <string>sci</string>
-        <string xsi:nil="true" />
+        <string>scientificName</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -1332,7 +1332,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string xsi:nil="true" />
+        <string>custom</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
