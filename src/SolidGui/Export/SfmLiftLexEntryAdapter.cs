@@ -126,7 +126,7 @@ namespace SolidGui.Export
             { "custom", Concepts.CustomField },
             { "lexicalRelationType", Concepts.LexicalRelationType },
             { "lexicalRelationLexeme", Concepts.LexicalRelationLexeme },
-
+            { "scientificName", Concepts.ScientificName },
             { "comment", Concepts.Comment }, // NOTE added smw 13sep2010
             { "subentry", Concepts.SubEntry } // added
 
@@ -321,33 +321,7 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.LexicalRelationType:
-                                Relation relation;
-                                string targetID = "";
-                                string type;
-
-                                // new mdf relation representation
-                                if (unicodeValue.Contains("="))
-                                {
-                                    int equalsSignPosition = unicodeValue.IndexOf('=');
-                                    targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
-                                    type = unicodeValue.Substring(0, equalsSignPosition).Trim();
-                                }
-                                else // old mdf relation representation
-                                {
-                                    type = unicodeValue;
-                                    if (field.Children.Count > 0 && field.Children[0] != null)
-                                    {
-                                        targetID = field.Children[0].Value;
-                                    }
-                                    else
-                                    {
-                                        AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm);
-                                    }
-                                }
-
-                                // store in list
-                                relation = new Relation(targetID, type);
-                                currentState.LexEntryAdapter.Relations.Add(relation);
+                                HandleLexicalRelation(field, currentState, unicodeValue, "");
                                 break;
                                 
                             case Concepts.GrammaticalInfo_PS:
@@ -417,6 +391,14 @@ namespace SolidGui.Export
                                 }
                                 break;
 
+
+                            //TODO: could be a kind of relation, once a mapping allows for one concept to cover multiple markers
+//                             case Concepts.Antonym:
+                               //TODO: Palaso (in OCt 2010) does not yet support refs coming out of 
+                                //senses. So this will end up on the entry.
+//                                HandleLexicalRelation(field, currentState, unicodeValue, "antonym");
+//                                break;
+
                             // change state
                             case Concepts.ExampleReference:
                                 // NOTE Palaso does not support ExampleReference yet
@@ -468,6 +450,41 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        private void HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
+        {
+            Relation relation;
+            string targetID = "";
+
+            //used for things like \an, antonym
+            if(!string.IsNullOrEmpty(type))
+            {
+                targetID = unicodeValue.Trim();
+            }
+            // new mdf relation representation
+            else if (unicodeValue.Contains("="))
+            {
+                int equalsSignPosition = unicodeValue.IndexOf('=');
+                targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
+                type = unicodeValue.Substring(0, equalsSignPosition).Trim();
+            }
+            else // old mdf relation representation
+            {
+                type = unicodeValue;
+                if (field.Children.Count > 0 && field.Children[0] != null)
+                {
+                    targetID = field.Children[0].Value;
+                }
+                else
+                {
+                    AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm);
+                }
+            }
+
+            // store in list
+            relation = new Relation(targetID, type);
+            currentState.LexEntryAdapter.Relations.Add(relation);
         }
 
         public string GetUnicodeValueFromLatin1(string value)
@@ -577,6 +594,8 @@ namespace SolidGui.Export
                     return States.LexEntry;
                 case Concepts.LexicalRelationLexeme:
                     return States.LexEntry;
+//                case Concepts.Antonym:
+//                    return States.Sense;
                 case Concepts.SubEntry:
                     return States.LexEntry;
             }

@@ -30,6 +30,12 @@ namespace SolidGui.Export
             }
             using (var dm = new LiftDataMapper(outputFilePath))
             {
+                //REVIEW: If I'm (jh) reading this right, it will need a restructuring in order to support
+                //relations which point from a sense to... anything.  That's becuase until the index
+                //is build, we can't come up with the target id. Seems like we need to introduce a 
+                //pre-pass, which only creates the index.  Then, make senses be able to output lexical
+                //relations, at least to entries (pointing at specific senses would be harder still).
+
                 // first pass
                 foreach (var sfmLexEntry in sfmLexEntries)
                 {
