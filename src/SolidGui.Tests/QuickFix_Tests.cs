@@ -17,6 +17,25 @@ namespace SolidGui.Tests
             return new List<string>(args);
         }
 
+
+        [Test]
+        public void AddGuids_NoGuid_AddsOne()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx", "ps" );
+
+            new QuickFixer(dict).AddGuids();
+            AssertFieldOrder(dict.Records[0], "lx", "ps", "guid");
+        }
+
+        [Test]
+        public void AddGuids_HasGuid_DoesNotAddOne()
+        {
+            var dict = MakeDictionary(new SolidSettings(), "lx", "guid", "ps");
+
+            new QuickFixer(dict).AddGuids();
+            AssertFieldOrder(dict.Records[0], "lx", "guid", "ps");
+        }
+
         [Test]
         public void MoveCommonItemsUp()
         {

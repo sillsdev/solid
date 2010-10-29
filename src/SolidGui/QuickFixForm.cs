@@ -50,7 +50,20 @@ namespace SolidGui
             }
         }
 
- 
+        private void OnAddGuids(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                _fixer.AddGuids();
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                Close();
+            }
+            catch (Exception error)
+            {
+                Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+            }
+        }
+
         private void OnExecuteRemoveEmpty(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var markers = _removeEmptyMarkers.Text.SplitTrimmed(',');

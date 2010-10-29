@@ -408,5 +408,17 @@ namespace Solid.Engine
             }
             return false;
         }
+
+        public void AddGuids()
+        {
+            foreach (var record in _dictionary.Records)
+            {
+                if (record.GetFirstFieldWithMarker("guid") != null)
+                    continue;
+
+                var f = new SfmFieldModel("guid", Guid.NewGuid().ToString());
+                record.InsertFieldAt(f, record.Fields.Count);
+            }
+        }
     }
 }
