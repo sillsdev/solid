@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
@@ -283,12 +284,16 @@ namespace SolidGui.Export
                                 // TODO This is a relation, come back to this when we know how to do relations. CP 2010-09
                                 break;
                             case Concepts.DateModified:
-                                var inModTime = unicodeValue;
-                                DateTime dateTime;
-                                if(DateTime.TryParse(inModTime, out dateTime))
+                                var inModTime = unicodeValue.Trim();
+                                DateTime dateValue;
+                                if(!DateTime.TryParse(inModTime, out dateValue))
                                 {
-                                    currentState.LiftLexEntry.ModificationTime =
-                                        DateTime.Parse(inModTime).ToUniversalTime();
+                                    DateTime.TryParseExact(inModTime, "dd/MMM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue);
+                                }
+                                if(dateValue != default(DateTime))
+                                {
+                                    currentState.LiftLexEntry.CreationTime = currentState.LiftLexEntry.ModificationTime = dateValue.ToUniversalTime();
+                                    currentState.LiftLexEntry.ModifiedTimeIsLocked = true;
                                 }
                                 else
                                 {
