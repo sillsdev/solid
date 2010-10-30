@@ -24,19 +24,7 @@
             </Usage>
         </Help>
     </Field>
-    <Field id="noteBibliographic" uiname="Note Bibliography" mdf="bb">
-        <Help>
-            <Usage>Used to record any bibliographic information pertinent to the lexeme. MDF adds the label 'Read:' to this field. For basic information (to reference an entry in a more complete bibliography database) include the following: AuthorLastName, FirstName/Initials date:pp. For a more complete reference include: AuthorLastName, FirstName/Initials. date. Title. City, Publisher. pp. xxx-yyy.
-            </Usage>
-        </Help>
-    </Field>
     <Field id="noteEncyclopedic" uiname="Note Encyclopedic" mdf="enc">
-        <Help>
-            <Usage>This field crosses over with the \de, \ue, and \oe fields, but is intended for more verbose explanations of the headword (for each sense). The researcher should use this field to encode any additional information needed by a non-native speaker to understand and use this lexeme properly. Use capitalization and punctuation as needed.
-            </Usage>
-        </Help>
-    </Field>
-    <Field id="noteEncyclopedic" uiname="Encyclopedic Note" mdf="enc">
         <Help>
             <Usage>This field crosses over with the \de, \ue, and \oe fields, but is intended for more verbose explanations of the headword (for each sense). The researcher should use this field to encode any additional information needed by a non-native speaker to understand and use this lexeme properly. Use capitalization and punctuation as needed.
             </Usage>
@@ -137,7 +125,7 @@
     </Field>
     <Field id="citation" uiname="Citation Form" mdf="lc">
         <Help>
-            <Usage>This should be added only if the lexical entry form is inappropriate for the printed dictionary, and you want to substitute another form for the printed entry. When formatting a document, MDF always replaces the contents of the \lx field with the contents of the \lc field (if present).
+            <Usage>This should be added only if the lexical entry form is inappropriate for the printed dictionary, and you want to substitute another form for the printed entry. 
             </Usage>
         </Help>
     </Field>
@@ -159,18 +147,34 @@
         <Help>
             <Usage>Stores a free variant of the lexeme
             </Usage>
+          <Limitations>
+            <Limitation>
+              The ability to express a pronunciation, relation, date, sub-fields, and traits are not yet implemented.  Variants are only supported on Entries, not Senses.
+            </Limitation>
+          </Limitations>
         </Help>
     </Field>
     <Field id="reversal" uiname="Reversal" mdf="re">
         <Help>
-            <Usage>English word(s)/phrase(s); used to reverse the dictionary for an English index. If no \re field is given, the \ge field is used. If an \re * is present, the relevant entry, subentry, or sense will not be included in the reversed index.
+            <Usage>Word(s)/phrase(s), in a language of wider communication, used to look this up in a reversal dictionary.
             </Usage>
+          <Limitations>
+            <Limitation>
+              The ability to express a reversal type, a grammatical-info, and reversal hierarchy are not yet implemented. Reversals are only supported on Senses, not Entries.
+            </Limitation>
+          </Limitations>
         </Help>
-    </Field>
+
+      </Field>
     <Field id="sense" uiname="Sense" mdf="sn">
         <Help>
             <Usage>Where a lexeme has more than one sense \sn is used to mark the beginning of a new sense.
             </Usage>
+          <Limitations>
+            <Limitation>
+              Sub-senses are not yet implemented.
+            </Limitation>
+          </Limitations>
         </Help>
     </Field>
     <Field id="grammi" uiname="Grammatical Info (ps)" mdf="ps">

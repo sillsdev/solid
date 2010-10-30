@@ -353,10 +353,7 @@ namespace SolidGui.Export
                             case Concepts.Variant:
                                 AddVariant(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
-                            case Concepts.Reversal:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, so instead it will create a <field> with type='reversal'");
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "reversal");
-                                break;
+
                             case Concepts.Etymology:
                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, so instead it will create a <field> with type='etymology'");
                                  var op = new OptionRef("proto");
@@ -425,9 +422,11 @@ namespace SolidGui.Export
                                 AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "discourse");
                                 break;
 
-                            case Concepts.NotePhonology:
+                            /* NO, not on senses
+                             * case Concepts.NotePhonology:
                                 AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "phonology");
                                 break;
+                             */
                             case Concepts.NoteQuestion:
                                 AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "question");
                                 break;
@@ -486,8 +485,7 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "scientific-name");
                                 break;
                             case Concepts.Reversal:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, so instead it will create a <field> with type='reversal'");
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "reversal");
+                                AddSenseReversal(unicodeValue, liftInfo.WritingSystem, currentSense, string.Empty/*reversal type*/);
                                 break;
 
                             case Concepts.Antonym:
@@ -569,6 +567,16 @@ namespace SolidGui.Export
             var note = new LexNote(noteType);
             note.SetAlternative(writingSystem, unicodeValue);
             sense.Notes.Add(note);
+        }
+        private void AddSenseReversal(string unicodeValue, string writingSystem, LexSense sense, string reversalType)
+        {
+            var lexReversal = new LexReversal();
+            lexReversal.SetAlternative(writingSystem, unicodeValue);
+            if(!string.IsNullOrEmpty(reversalType))
+            {
+                lexReversal.Type = reversalType;
+            }
+            sense.Reversals.Add(lexReversal);
         }
 
         private void AddVariant(string form, string writingSystem, LexEntry liftLexEntry)
