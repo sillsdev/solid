@@ -320,8 +320,7 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
                                 break;
                             case Concepts.Variant:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <variant> elements, son instead it will create a <field> with type='variant'");
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "variant");
+                                AddVariant(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
                             case Concepts.Reversal:
                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, son instead it will create a <field> with type='reversal'");
@@ -494,6 +493,13 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        private void AddVariant(string form, string writingSystem, LexEntry liftLexEntry)
+        {
+            var variant = new LexVariant();
+            variant.SetAlternative(writingSystem,form);
+            liftLexEntry.Variants.Add(variant);
         }
 
         private void HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
