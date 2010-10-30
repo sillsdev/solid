@@ -132,7 +132,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
                 var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry[@dateCreated='1969-10-07T05:00:00Z']");
             }
         }
@@ -151,7 +151,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("sn", "sense", "en", "lx", false);
                 e.SetupMarker("ng", "noteGrammar", "en", "sn", false);
                 var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/sense/note/form[text='Note']");
             }
         }

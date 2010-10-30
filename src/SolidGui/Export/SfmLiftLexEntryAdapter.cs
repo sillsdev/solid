@@ -316,30 +316,28 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, LexEntry.WellKnownProperties.Citation);
                                 break;
                             case Concepts.Pronunciation:
-                                // NOTE Palaso does not support first class <pronunciation> element yet
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <pronunciation> elements, son instead it will create a <field> with type='pronunciation'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
                                 break;
                             case Concepts.Variant:
-                                // NOTE Palaso does not support first class <variant> element yet
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <variant> elements, son instead it will create a <field> with type='variant'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "variant");
                                 break;
                             case Concepts.Reversal:
-                                // NOTE Palaso does not support first class <reversal> element yet
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, son instead it will create a <field> with type='reversal'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "reversal");
                                 break;
                             case Concepts.Etymology:
-                                // NOTE Palaso does not support first class <etymology> element yet
-                                var op = new OptionRef("proto");
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, son instead it will create a <field> with type='etymology'");
+                                 var op = new OptionRef("proto");
                                 op.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", op));
                                 break;
                             case Concepts.EtymologySource:
-                                // NOTE Palaso does not support etymology-source yet
+                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology-source> elements, son instead it will create a <field> with type='etymology-source'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
                                 break;
-                            case Concepts.ScientificName:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "scientific-name");
-                                break;
+
                             case Concepts.CustomField:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, field.Marker);
                                 break;
@@ -430,6 +428,20 @@ namespace SolidGui.Export
                                 //senses. So this will end up on the entry.
 //                                HandleLexicalRelation(field, currentState, unicodeValue, "antonym");
 //                                break;
+
+                            case Concepts.ScientificName:
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "scientific-name");
+                                break;
+                            case Concepts.Reversal:
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, son instead it will create a <field> with type='reversal'");
+                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "reversal");
+                                break;
+
+                            case Concepts.LexicalRelationLexeme:
+                            case Concepts.Confer:
+                                progress.WriteWarning(unicodeEntryName + ": Currently SOLID cannot export relations coming out of sense, so this field ({0} will end up at the entry level.", field.Marker);
+                                HandleLexicalRelation(field, currentState, unicodeValue, string.Empty);
+                                break;
 
                             // change state
                             case Concepts.ExampleReference:
@@ -550,6 +562,7 @@ namespace SolidGui.Export
             dataObject.Properties.Add(new KeyValuePair<string, object>(propertyName, mt));
         }
 
+#if unused
         private static States ConceptState(Concepts concept, States state)
         {
             switch (concept)
@@ -633,6 +646,7 @@ namespace SolidGui.Export
             }
             throw new ApplicationException("boo hoo");
         }
+#endif
 
         private SolidSettings SolidSettings { get; set; }
 
