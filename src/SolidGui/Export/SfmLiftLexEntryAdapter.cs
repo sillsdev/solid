@@ -267,18 +267,45 @@ namespace SolidGui.Export
                                 LiftLexEntry.LexicalForm[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.NoteBibliographic:
-                            case Concepts.NoteEncyclopedic:
-                            case Concepts.NoteGeneral:
-                            case Concepts.NoteAnthropology:
-                            case Concepts.NoteDiscourse:
-                            case Concepts.NoteGrammer:
-                            case Concepts.NotePhonology:
-                            case Concepts.NoteQuestion:
-                            case Concepts.NoteRestriction:
-                            case Concepts.NoteSociolinguistic:
-                            case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "bibliographic");
                                 break;
+
+                            case Concepts.NoteGrammer:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "grammar");
+                                break;
+                            case Concepts.NoteEncyclopedic:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "encyclopedic");
+                                break;
+                            case Concepts.NoteGeneral:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "");
+                                break;
+                            case Concepts.NoteAnthropology:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "anthropology");
+                                break;
+                            
+                            case Concepts.NoteDiscourse:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "discourse");
+                                break;
+ 
+                            case Concepts.NotePhonology:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "phonology");
+                                break;
+                            case Concepts.NoteQuestion:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "question");
+                                break;
+
+                            case Concepts.NoteRestriction:  //nb: FLEx 6.03 Sena 3 export uses the 's' here, so that's why I did that
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "restrictions");
+                                break;
+
+                            case Concepts.NoteSociolinguistic:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "sociolinguistic");
+                                break;
+
+                            case Concepts.NoteSource:
+                                AddEntryNote(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "source");
+                                break;
+
                             case Concepts.BorrowedWord:
                                 // NOTE Palaso does not support lift etymology as a first class element yet, so write it out as a lift trait (OptionRef).
                                 var o = new OptionRef("borrowed");
@@ -374,17 +401,43 @@ namespace SolidGui.Export
                             case Concepts.Ignore: // dont add to LexEntry
                                 break;
                             case Concepts.NoteBibliographic:
-                            case Concepts.NoteEncyclopedic:
-                            case Concepts.NoteGeneral:
-                            case Concepts.NoteAnthropology:
-                            case Concepts.NoteDiscourse:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "bibliographic");
+                                break;
+
                             case Concepts.NoteGrammer:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "grammar");
+                                break;
+                            case Concepts.NoteEncyclopedic:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "encyclopedic");
+                                break;
+                            case Concepts.NoteGeneral:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "");
+                                break;
+                            case Concepts.NoteAnthropology:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "anthropology");
+                                break;
+
+                            case Concepts.NoteDiscourse:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "discourse");
+                                break;
+
                             case Concepts.NotePhonology:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "phonology");
+                                break;
                             case Concepts.NoteQuestion:
-                            case Concepts.NoteRestriction:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "question");
+                                break;
+
+                            case Concepts.NoteRestriction:  //nb: FLEx 6.03 Sena 3 export uses the 's' here, so that's why I did that
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "restrictions");
+                                break;
+
                             case Concepts.NoteSociolinguistic:
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "sociolinguistic");
+                                break;
+
                             case Concepts.NoteSource:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, PalasoDataObject.WellKnownProperties.Note);
+                                AddSenseNote(unicodeValue, liftInfo.WritingSystem, currentSense, "source");
                                 break;
                             case Concepts.Illustration:
                                 var illustration = new PictureRef();
@@ -493,6 +546,19 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        private void AddEntryNote(string unicodeValue, string writingSystem, LexEntry liftLexEntry, string noteType)
+        {
+            var note = new LexNote(noteType);
+            note.SetAlternative(writingSystem,unicodeValue);
+            liftLexEntry.Notes.Add(note);
+        }
+        private void AddSenseNote(string unicodeValue, string writingSystem, LexSense sense, string noteType)
+        {
+            var note = new LexNote(noteType);
+            note.SetAlternative(writingSystem, unicodeValue);
+            sense.Notes.Add(note);
         }
 
         private void AddVariant(string form, string writingSystem, LexEntry liftLexEntry)
