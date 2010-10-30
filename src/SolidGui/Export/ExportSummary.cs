@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Palaso.Progress;
+using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -24,7 +25,7 @@ namespace SolidGui.Export
             throw new System.NotImplementedException(); 
         }
 
-        public void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath)
+        public void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath, IProgress progress)
         {
             throw new System.NotImplementedException();
         }

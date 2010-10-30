@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;
@@ -13,14 +14,14 @@ namespace SolidGui.Export
         public string inputFilePath;
         public string outputFilePath;
         public int countHint;
-
+        public IProgress progress;
         public MarkerSettingsPM markerSettings;
     }
 
     public interface IExporter
     {
         //ExportSetting ExportSettings;
-        void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath);
+        void Export(IEnumerable<Record> records, SolidSettings solidSettings, string outputFilePath, IProgress progress);
 
         /// <summary>
         /// This runs as a background worker.
