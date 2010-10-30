@@ -67,6 +67,7 @@ namespace SolidGui.Export
             NoteSource,
             BorrowedWord,
             Confer,
+            Antonym,
             DateModified,
             HomonymNumber,
             CitationForm,
@@ -88,7 +89,8 @@ namespace SolidGui.Export
             Comment,
             SubEntry,
             LexicalRelationLexeme,
-            ScientificName
+            ScientificName,
+            Synonym
         }
 
         private static readonly Dictionary<string, Concepts> _conceptMap = new Dictionary<string, Concepts>
@@ -108,6 +110,8 @@ namespace SolidGui.Export
             { "noteSource", Concepts.NoteSource },
             { "borrowedWord", Concepts.BorrowedWord },
             { "confer", Concepts.Confer },
+            { "antonym", Concepts.Antonym },
+            { "synonym", Concepts.Synonym },
             { "dateModified", Concepts.DateModified },
             { "homonym", Concepts.HomonymNumber }, // Really homograph number CP 2010-09
             { "citation", Concepts.CitationForm },
@@ -312,9 +316,9 @@ namespace SolidGui.Export
                                 o.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", o));
                                 break;
-//                            case Concepts.Confer:
-                                // TODO This is a relation, come back to this when we know how to do relations. CP 2010-09
-//                                break;
+                            case Concepts.Confer:
+                                HandleLexicalRelation(field, currentState, unicodeValue, "confer");
+                                break;
                             case Concepts.DateModified:
                                 var inModTime = unicodeValue.Trim();
                                 DateTime dateValue;
@@ -343,24 +347,24 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, LexEntry.WellKnownProperties.Citation);
                                 break;
                             case Concepts.Pronunciation:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <pronunciation> elements, son instead it will create a <field> with type='pronunciation'");
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <pronunciation> elements, so instead it will create a <field> with type='pronunciation'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
                                 break;
                             case Concepts.Variant:
                                 AddVariant(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
                             case Concepts.Reversal:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, son instead it will create a <field> with type='reversal'");
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, so instead it will create a <field> with type='reversal'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "reversal");
                                 break;
                             case Concepts.Etymology:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, son instead it will create a <field> with type='etymology'");
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, so instead it will create a <field> with type='etymology'");
                                  var op = new OptionRef("proto");
                                 op.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", op));
                                 break;
                             case Concepts.EtymologySource:
-                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology-source> elements, son instead it will create a <field> with type='etymology-source'");
+                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology-source> elements, so instead it will create a <field> with type='etymology-source'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
                                 break;
 
@@ -474,25 +478,31 @@ namespace SolidGui.Export
                                 break;
 
 
-                            //TODO: could be a kind of relation, once a mapping allows for one concept to cover multiple markers
-//                             case Concepts.Antonym:
-                               //TODO: Palaso (in OCt 2010) does not yet support refs coming out of 
-                                //senses. So this will end up on the entry.
-//                                HandleLexicalRelation(field, currentState, unicodeValue, "antonym");
-//                                break;
+
+
+
 
                             case Concepts.ScientificName:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "scientific-name");
                                 break;
                             case Concepts.Reversal:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, son instead it will create a <field> with type='reversal'");
+                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <reversal> elements, so instead it will create a <field> with type='reversal'");
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "reversal");
                                 break;
 
+                            case Concepts.Antonym:
+                                AddRelationToSense(currentSense, unicodeValue, "antonym");//review: exactly spelling?
+                                break;
+                            case Concepts.Synonym:
+                                AddRelationToSense(currentSense, unicodeValue, "synonym");//review: exactly spelling?
+                                break;
+                            
                             case Concepts.LexicalRelationLexeme:
+                                AddRelationToSense(currentSense, unicodeValue, string.Empty);
+                                break;
+                            
                             case Concepts.Confer:
-                                progress.WriteWarning(unicodeEntryName + ": Currently SOLID cannot export relations coming out of sense, so this field ({0} will end up at the entry level.", field.Marker);
-                                HandleLexicalRelation(field, currentState, unicodeValue, string.Empty);
+                                 AddRelationToSense(currentSense, unicodeValue, "confer");
                                 break;
 
                             // change state
@@ -570,37 +580,47 @@ namespace SolidGui.Export
 
         private void HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
         {
-            Relation relation;
+            string type1 = type;
+            Relation relation1;
             string targetID = "";
 
             //used for things like \an, antonym
-            if(!string.IsNullOrEmpty(type))
+            if(!string.IsNullOrEmpty(type1))
             {
                 targetID = unicodeValue.Trim();
             }
-            // new mdf relation representation
+                // new mdf relation representation
             else if (unicodeValue.Contains("="))
             {
                 int equalsSignPosition = unicodeValue.IndexOf('=');
                 targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
-                type = unicodeValue.Substring(0, equalsSignPosition).Trim();
+                type1 = unicodeValue.Substring(0, equalsSignPosition).Trim();
             }
             else // old mdf relation representation
             {
-                type = unicodeValue;
+                type1 = unicodeValue;
                 if (field.Children.Count > 0 && field.Children[0] != null)
                 {
                     targetID = field.Children[0].Value;
                 }
                 else
                 {
-                    AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm);
+                    AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type1 + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
                 }
             }
 
             // store in list
-            relation = new Relation(targetID, type);
+            relation1 = new Relation(targetID, type1);
+            Relation relation = relation1;
             currentState.LexEntryAdapter.Relations.Add(relation);
+        }
+
+        /// <summary>
+        /// Review: note that unlike what was attempted for entry, I'm just making a relation to the form, here.
+        /// </summary>
+        private void AddRelationToSense(LexSense sense, string target, string type)
+        {
+            sense.AddRelationTarget(type, target);
         }
 
         public string GetUnicodeValueFromLatin1(string value)
