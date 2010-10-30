@@ -51,20 +51,29 @@ namespace SolidGui.Export
                         liftLexEntries.Add(adaptedEntry);
                         adaptedEntry.PopulateEntry(progress);
 
-                        if (index.ContainsKey(adaptedEntry.SfmID)) // is a duplicate
+  /* this worked for one homograph with no actual ordernumber, but would crash when you hit a second one 
+   * 
+   *                       if (index.ContainsKey(sfmId)) // is a duplicate
                         {
                             // get the duplicated entry from index and change its name to SfmID_HomonymNumber
-                            var entry = index[adaptedEntry.SfmID];
+                            var entry = index[sfmId];
                             entry.SfmID = entry.SfmID + "_" + entry.HomonymNumber;
 
                             // add the new adapted entry to the index with name SfmID_HomonymNumber
-                            index.Add(adaptedEntry.SfmID + "_" + adaptedEntry.HomonymNumber, adaptedEntry);
+                            index.Add(sfmId + "_" + adaptedEntry.HomonymNumber, adaptedEntry);
                         }
-                        else
+   */ 
+                        var sfmId = adaptedEntry.SfmID;
+                        var homograph = 0;
+                        while (index.ContainsKey(sfmId)) // is a duplicate
                         {
-                            // add to dictionary
-                            index.Add(adaptedEntry.SfmID, adaptedEntry);
+                            ++homograph;
+                            sfmId = adaptedEntry.SfmID + "_" + homograph;
                         }
+
+                        // add to dictionary
+                        index.Add(sfmId, adaptedEntry);
+                        
                     }
                     catch (Exception error)
                     {
