@@ -6,6 +6,7 @@ using System.Text;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Progress;
+using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.Model;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace SolidGui.Export
     public class ExportLift : IExporter
     {
 
-        public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath)
+        public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath, IProgress outerProgress)
         {
             var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
             var liftLexEntries = new List<SfmLiftLexEntryAdapter>();
@@ -28,6 +29,11 @@ namespace SolidGui.Export
             {
                 File.Delete(logPath);
             }
+
+            var stringBuilderProgress = new StringBuilderProgress();
+            //our overal progress reports both to the UI and to this file we want to write out
+            var progress = new MultiProgress(new IProgress[]{outerProgress, stringBuilderProgress});
+
             using (var dm = new LiftDataMapper(outputFilePath))
             {
                 //REVIEW: If I'm (jh) reading this right, it will need a restructuring in order to support
@@ -43,7 +49,7 @@ namespace SolidGui.Export
                     {
                         var adaptedEntry = new SfmLiftLexEntryAdapter(dm, sfmLexEntry.LexEntry, solidSettings);
                         liftLexEntries.Add(adaptedEntry);
-                        adaptedEntry.PopulateEntry();
+                        adaptedEntry.PopulateEntry(progress);
 
                         if (index.ContainsKey(adaptedEntry.SfmID)) // is a duplicate
                         {
@@ -62,11 +68,7 @@ namespace SolidGui.Export
                     }
                     catch (Exception error)
                     {
-                        using (var log = System.IO.File.AppendText(logPath))
-                        {
-                            log.Write(sfmLexEntry.LexEntry.Name+": ");
-                            log.WriteLine(error);
-                        }
+                        progress.WriteError(sfmLexEntry.LexEntry.Name + ": " + error);
                     }
                 }
                 SfmLiftLexEntryAdapter targetLexEntry;
@@ -127,28 +129,33 @@ namespace SolidGui.Export
                     }
                     catch (Exception error)
                     {
-                        using (var log = System.IO.File.AppendText(logPath))
-                        {
-                            log.Write(adaptedEntry.SfmID + ": ");
-                            log.WriteLine(error);
-                        }
+                        progress.WriteError(adaptedEntry.SfmID + ": "+ error);
                     }
                     
                 }
                 dm.SaveItems(from x in dm.GetAllItems() select dm.GetItem(x));
             }
 
+            if (!string.IsNullOrEmpty(stringBuilderProgress.Text))
+            {
+                using (var log = System.IO.File.AppendText(logPath))
+                {
+                    log.WriteLine(stringBuilderProgress.Text);
+                }
+            }
+            outerProgress.WriteMessage("");
+            outerProgress.WriteMessage("Done");
         }
+
 
         public void ExportAsync(object sender, DoWorkEventArgs args)
         {
-            var progress = (ProgressState)args.Argument;
-            var exportArguments = (ExportArguments)progress.Arguments;
+             var exportArguments = (ExportArguments)args.Argument;
 
             var dictionary = new SfmDictionary();
             var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(exportArguments.inputFilePath));
             dictionary.Open(exportArguments.inputFilePath, solidSettings, new RecordFilterSet());
-            Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath);
+            Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath, exportArguments.progress);
         }
 
         public static IExporter Create()

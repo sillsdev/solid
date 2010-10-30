@@ -6,6 +6,7 @@ using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
 using Palaso.Lift.Options;
+using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -192,12 +193,13 @@ namespace SolidGui.Export
             }
         }
 
-        public void PopulateEntry()
+        public void PopulateEntry(IProgress progress)
         {
             var states = new Stack<StateInfo>();
             states.Push(new StateInfo(States.LexEntry, -1, this));
             LexSense currentSense = null;
             string currentPartOfSpeech = "";
+            var unicodeEntryName = GetUnicodeValueFromLatin1(SfmLexEntry.Name).Trim();
 
             //if the sfm already declares a guid, use that instead of a made up one
             var existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
@@ -209,7 +211,7 @@ namespace SolidGui.Export
                 }
                 catch(Exception)
                 {
-                    //todo: tell someone that we couldn't parse that guid
+                   progress.WriteError(unicodeEntryName+ ": Could not parse the guid "+existingGuid.Value);
                 }
             }
 
@@ -237,6 +239,9 @@ namespace SolidGui.Export
                     case States.LexEntry:
                         switch (liftInfo.LiftConcept)
                         {
+                            default:
+                                    progress.WriteError(unicodeEntryName+ ": Could not handle the concept '{0}' in the LexEntry state .",liftInfo.LiftConcept );
+                                break;
                             case Concepts.Ignore: // dont add to LexEntry
                                 break;
                             case Concepts.SubEntry:
@@ -280,15 +285,19 @@ namespace SolidGui.Export
                                 o.Value = unicodeValue;
                                 currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", o));
                                 break;
-                            case Concepts.Confer:
+//                            case Concepts.Confer:
                                 // TODO This is a relation, come back to this when we know how to do relations. CP 2010-09
-                                break;
+//                                break;
                             case Concepts.DateModified:
                                 var inModTime = unicodeValue.Trim();
                                 DateTime dateValue;
                                 if(!DateTime.TryParse(inModTime, out dateValue))
                                 {
-                                    DateTime.TryParseExact(inModTime, "dd/MMM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue);
+                                     if (!DateTime.TryParseExact(inModTime, "dd/MMM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue))
+                                    {
+                                        DateTime.TryParseExact(inModTime, "dd/MMM/yy", CultureInfo.InvariantCulture,
+                                                               DateTimeStyles.None, out dateValue);
+                                    }
                                 }
                                 if(dateValue != default(DateTime))
                                 {
@@ -297,7 +306,7 @@ namespace SolidGui.Export
                                 }
                                 else
                                 {
-                                    //todo: when we have a log, tell it that didn't work (but don't report when the date time is just empty)
+                                    progress.WriteWarning("Could not parse the date: "+inModTime);
                                 }
                                 break;
                             case Concepts.HomonymNumber:
@@ -361,6 +370,10 @@ namespace SolidGui.Export
                     case States.Sense:
                         switch (liftInfo.LiftConcept)
                         {
+                            default:
+                                progress.WriteError(unicodeEntryName + ": Could not handle the concept '{0}' in the sense state.", liftInfo.LiftConcept);
+                                break;
+
                             case Concepts.Ignore: // dont add to LexEntry
                                 break;
                             case Concepts.NoteBibliographic:
@@ -433,6 +446,10 @@ namespace SolidGui.Export
                     case States.Example:
                         switch (liftInfo.LiftConcept)
                         {
+                            default:
+                                progress.WriteError(unicodeEntryName + ": Could not handle the concept '{0}' in the example state.", liftInfo.LiftConcept);
+                                break;
+
                             case Concepts.Ignore: // dont add to LexEntry
                                 break;
                             case Concepts.NoteBibliographic:
@@ -459,10 +476,6 @@ namespace SolidGui.Export
                                 break;
                             case Concepts.Comment:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentExample, PalasoDataObject.WellKnownProperties.Note);
-                                break;
-
-                            default:
-                                // TODO: log error
                                 break;
                         }
                         break;

@@ -381,16 +381,15 @@ namespace SolidGui
 
         public void Export(int filterIndex, string destinationFilePath)
         {
-            using (ProgressDialog dlg = new ProgressDialog())
+            using (var dlg = new ExportLogDialog())
             {
                 ExportFactory f = ExportFactory.Singleton();
                 IExporter exporter = f.CreateFromSettings(f.ExportSettings[filterIndex]);
 
-                dlg.Overview = "Please wait...";
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += exporter.ExportAsync;
                 dlg.BackgroundWorker = worker;
-                dlg.CanCancel = true;
+               // dlg.CanCancel = true;
 
                 _workingDictionary.SaveAs(_tempDictionaryPath);
                 Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
@@ -401,14 +400,16 @@ namespace SolidGui
                 exportArguments.outputFilePath = destinationFilePath;
                 exportArguments.countHint = _workingDictionary.Count;
                 exportArguments.markerSettings = _markerSettingsModel;
+                exportArguments.progress = dlg.LogBox;
 
-                dlg.ProgressState.Arguments = exportArguments;
+                dlg.Arguments = exportArguments;
+                //dlg.ProgressState.Arguments = exportArguments;
                 dlg.ShowDialog();
-                if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
-                {
-                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);
-                    return;
-                }
+//                if (dlg.ProgressStateResult != null && dlg.LogBox.ExceptionThatWasEncountered != null)
+//                {
+//                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);
+//                    return;
+//                }
 
                 //exporter.Export(sourceFilePath, destinationFilePath);
             }

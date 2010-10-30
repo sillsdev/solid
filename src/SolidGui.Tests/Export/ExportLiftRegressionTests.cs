@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 
 using NUnit.Framework;
+using Palaso.Progress.LogBox;
 using Palaso.TestUtilities;
 using SolidGui.Engine;
 using SolidGui.Export;
@@ -97,7 +98,7 @@ namespace SolidGui.Tests.Export
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/lexical-unit/form[@lang='en'][text='Lexeme']");
             }
         }
@@ -114,7 +115,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("bw", "borrowedWord", "en");
                 var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
                 AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
             }
         }
@@ -161,7 +162,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("gn", "gloss", "nn", "sn", false);
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
                 var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath);
+                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
                 AssertThatXmlIn.String(e.LiftAsString()).HasSpecifiedNumberOfMatchesForXpath("/lift/entry/sense/grammatical-info", 4);
             }
         }

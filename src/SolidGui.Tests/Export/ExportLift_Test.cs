@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Model;
@@ -44,7 +45,7 @@ namespace SolidGui.Tests.Export
                     File.Delete(outputFilePath);
                 }
 
-                liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
+                liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath, new ConsoleProgress());
 
                 string templateFilePath = Path.ChangeExtension(srcFilePath, ".tmpl");
 
@@ -73,7 +74,7 @@ namespace SolidGui.Tests.Export
                 {
                     File.Delete(outputFilePath);
                 }
-                liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
+                liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath, new ConsoleProgress());
                 
                 Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
             }
@@ -101,7 +102,7 @@ namespace SolidGui.Tests.Export
             {
                 File.Delete(outputFilePath);
             }
-            liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath);
+            liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath, new ConsoleProgress());
 
 
             Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
