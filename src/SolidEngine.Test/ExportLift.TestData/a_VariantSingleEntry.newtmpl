@@ -13,12 +13,11 @@
 				<text>TestLexeme</text>
 			</form>
 		</lexical-unit>
-		<field
-			type="variant">
+		<variant>
 			<form
 				lang="eng">
 				<text>VariantOfTestLexeme</text>
 			</form>
-		</field>
+		</variant>
 	</entry>
 </lift>

@@ -13,7 +13,10 @@
 				<text>EntryOne</text>
 			</form>
 		</lexical-unit>
-	</entry>
+    <relation
+			type="confer"
+			ref="*" />
+  </entry>
 	<entry
 		id="EntryTwo_*"
 		dateCreated="*"
