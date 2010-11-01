@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using Palaso.Progress.LogBox;
+using Palaso.TestUtilities;
 using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Model;
+using SolidGui.Tests.Engine;
 
 
 namespace SolidGui.Tests.Export
@@ -110,5 +113,18 @@ namespace SolidGui.Tests.Export
 
         }
 
+
+        [Test]
+        public void BorrowedWord_ExportedAsEtymologySource()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx Lexeme
+                            \bw English";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("bw", "borrowedWord", "en");
+                e.AssertExportsSingleInstance("/lift/entry/etymology[@type='borrowed' and @source='English']");
+            }
+        }
     }
 }

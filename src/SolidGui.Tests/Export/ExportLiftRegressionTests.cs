@@ -1,100 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Text;
 
 using NUnit.Framework;
 using Palaso.Progress.LogBox;
 using Palaso.TestUtilities;
-using SolidGui.Engine;
 using SolidGui.Export;
-using SolidGui.Model;
 
 namespace SolidGui.Tests.Export
 {
     [TestFixture]
     public class ExportLiftRegressionTests
     {
-
-        class EnvironmentForTest : IDisposable
-        {
-            private readonly TemporaryFolder _folder;
-            private readonly TempFile _sfmFile;
-            private SfmDictionary _dictionary;
-            private bool _isDictionaryOpen;
-
-
-            public EnvironmentForTest(string sfm)
-            {
-                _folder = new TemporaryFolder("ExportLiftRegressionTests");
-                _isDictionaryOpen = false;
-                Dictionary = new SfmDictionary();
-                SolidSettings = new SolidSettings();
-
-                _sfmFile = _folder.GetNewTempFile(false);
-                File.WriteAllText(_sfmFile.Path, sfm);
-
-            }
-
-            public SfmDictionary Dictionary
-            {
-                get
-                {
-                    if (!_isDictionaryOpen)
-                    {
-                        _dictionary.Open(_sfmFile.Path, SolidSettings, new RecordFilterSet());
-                        _isDictionaryOpen = true;
-                    }
-                    return _dictionary;
-                }
-                private set { _dictionary = value; }
-            }
-
-            public SolidSettings SolidSettings { get; private set; }
-
-            public string LiftPath { 
-                get {
-                    return Path.ChangeExtension(_sfmFile.Path, "lift");
-                }
-            }
-
-            public void SetupMarker(string marker, string liftConcept, string writingSystem)
-            {
-                var setting = SolidSettings.FindOrCreateMarkerSetting(marker);
-                setting.WritingSystemRfc4646 = writingSystem;
-                setting.Mappings[1] = liftConcept;
-            }
-
-            public void SetupMarker(string marker, string liftConcept, string writingSystem, string parent, bool infer)
-            {
-                var setting = SolidSettings.FindOrCreateMarkerSetting(marker);
-                setting.WritingSystemRfc4646 = writingSystem;
-                setting.Mappings[1] = liftConcept;
-                setting.StructureProperties.Add(new SolidStructureProperty(parent));
-                if (infer)
-                {
-                    setting.InferedParent = parent;
-                }
-            }
-
-            public string LiftAsString()
-            {
-                return File.ReadAllText(LiftPath);
-            }
-
-            public void Dispose()
-            {
-                _folder.Dispose();
-            }
-        }
-
         [Test]
         public void Bug148_LiftExportWithEnglish_WritesEn()
         {
             string sfm = @"
 \lx Lexeme
 ";
-            using (var e = new EnvironmentForTest(sfm))
+            using (var e = new ExportTestScenario(sfm))
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 var liftExporter = new ExportLift();
@@ -103,22 +26,7 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        [Test]
-        public void Bug150_LiftExportWithBorrowedWord_IsNotVariant()
-        {
-            string sfm = @"
-\lx Lexeme
-\bw BorrowedWord
-";
-            using (var e = new EnvironmentForTest(sfm))
-            {
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("bw", "borrowedWord", "en");
-                var liftExporter = new ExportLift();
-                liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
-                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry/trait[@name='etymology'][@value='BorrowedWord']");
-            }
-        }
+
 
         [Test]
         public void DateTime_ddmmmyyyy_Ok()
@@ -127,13 +35,14 @@ namespace SolidGui.Tests.Export
 \lx Lexeme
 \dt 08/Oct/1969
 ";
-            using (var e = new EnvironmentForTest(sfm))
+            using (var e = new ExportTestScenario(sfm))
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
                 var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
-                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry[@dateCreated='1969-10-07T05:00:00Z']");
+                //NB: don't test on the timezone part,as (at least as the code is now) that changes with the test machine time zone
+                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry[contains(@dateCreated,'1969-10-07T')]");
             }
         }
 
@@ -145,7 +54,7 @@ namespace SolidGui.Tests.Export
 \sn
 \ng Note
 ";
-            using (var e = new EnvironmentForTest(sfm))
+            using (var e = new ExportTestScenario(sfm))
             {
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("sn", "sense", "en", "lx", false);
@@ -184,7 +93,7 @@ namespace SolidGui.Tests.Export
 \gn dalam; di dalam
 \dt 19/Jan/2008
 ";
-            using (var e = new EnvironmentForTest(sfm))
+            using (var e = new ExportTestScenario(sfm))
             {
                 e.SetupMarker("lx", "lexicalUnit", "vv");
                 e.SetupMarker("hm", "homonym", "en", "lx", false);

@@ -131,6 +131,7 @@
     <Compile Include="Engine\sfmreader_read_test.cs" />
     <Compile Include="Engine\SolidReport_Test.cs" />
     <Compile Include="Engine\SolidSettings_Test.cs" />
+    <Compile Include="Export\ExportTestScenario.cs" />
     <Compile Include="Export\ExportFactory_Test.cs" />
     <Compile Include="Export\ExportLiftRegressionTests.cs" />
     <Compile Include="Export\ExportLift_Test.cs" />

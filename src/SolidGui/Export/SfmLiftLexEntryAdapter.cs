@@ -311,10 +311,7 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.BorrowedWord:
-                                // NOTE Palaso does not support lift etymology as a first class element yet, so write it out as a lift trait (OptionRef).
-                                var o = new OptionRef("borrowed");
-                                o.Value = unicodeValue;
-                                currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", o));
+                                AddEtymology(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source language*/unicodeValue);
                                 break;
                             case Concepts.Confer:
                                 HandleLexicalRelation(field, currentState, unicodeValue, "confer");
@@ -347,14 +344,17 @@ namespace SolidGui.Export
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, LexEntry.WellKnownProperties.Citation);
                                 break;
                             case Concepts.Pronunciation:
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <pronunciation> elements, so instead it will create a <field> with type='pronunciation'");
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "pronunciation");
+                                AddPronunciation(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
                             case Concepts.Variant:
                                 AddVariant(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
 
                             case Concepts.Etymology:
+                                //Note: we don't yet provide a way to indicate the form of the source word, just the language of it
+                                AddEtymology(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source*/unicodeValue);
+                                break;
+
                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, so instead it will create a <field> with type='etymology'");
                                  var op = new OptionRef("proto");
                                 op.Value = unicodeValue;
@@ -554,6 +554,18 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        private void AddEtymology(LexEntry liftLexEntry, string type, string sourcLanguage)
+        {
+            liftLexEntry.Etymologies.Add(new LexEtymology(type, sourcLanguage));
+        }
+
+        private void AddPronunciation(string unicodeValue, string writingSystem, LexEntry liftLexEntry)
+        {
+            var phonetic = new LexPhonetic();
+            phonetic.SetAlternative(writingSystem, unicodeValue);
+            liftLexEntry.Pronunciations.Add(phonetic);
         }
 
         private void AddEntryNote(string unicodeValue, string writingSystem, LexEntry liftLexEntry, string noteType)
