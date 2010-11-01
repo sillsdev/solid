@@ -745,7 +745,7 @@
       <InferedParent />
       <Mappings>
         <string>etg</string>
-        <string xsi:nil="true" />
+        <string>etymologyGloss</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
@@ -777,7 +777,7 @@
       <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>custom</string>
+        <string>antonym</string>
       </Mappings>
       <StructureProperties>
         <SolidStructureProperty>

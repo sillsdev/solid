@@ -173,7 +173,7 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        [Test] //todo souce
+        [Test]
         public void Etymology_ProtoAndSourceAndGloss_ExportedToEtymologyElementWithTypeOfProto()
         {
             using (var e = new ExportTestScenario())
@@ -186,6 +186,21 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("eg", "etymologyGloss", "en");
                 e.SetupMarker("es", "etymologySource", "en");
                 e.AssertExportsSingleInstance("/lift/entry/etymology[@type='proto' and @source='English']");
+            }
+        }
+
+
+        [Test]
+        public void Variant_2FreeVariants()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx form
+                            \va 1
+                           \va 2";
+                e.SetupMarker("va", "variant", "en");
+                e.AssertExportsSingleInstance("/lift/entry/variant/form[text='1']");
+                e.AssertExportsSingleInstance("/lift/entry/variant/form[text='2']");
             }
         }
     }
