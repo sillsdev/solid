@@ -21,7 +21,7 @@ namespace SolidGui.Tests.Export
         public void LiftExporter_CompareOutputToLiftSpecTemplate_GeneratedMatchesTemplate()
         {
 
-            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidGui.Tests/Export/ExportLift.TestData";
             
             foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
             {
@@ -30,7 +30,7 @@ namespace SolidGui.Tests.Export
                 var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(srcFilePath));
                 dictionary.Open(srcFilePath, solidSettings, new RecordFilterSet());
 
-                //string outputFilePath = "C:/src/sil/solid/src/SolidEngine.Test/ExportLift.TestData/TestOutput/test.txt";//Path.GetTempPath() + Path.GetRandomFileName();
+                //string outputFilePath = "C:/src/sil/solid/src/SolidGui.Tests/Export/ExportLift.TestData/TestOutput/test.txt";//Path.GetTempPath() + Path.GetRandomFileName();
 
 
 
@@ -60,7 +60,7 @@ namespace SolidGui.Tests.Export
         [Test]
         public void LiftExporter_CompareOutputToSOLIDfriendlyTemplateWithCustomFields_GeneratedMatchesTemplate()
         {
-            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidGui.Tests/Export/ExportLift.TestData";
 
             foreach (var srcFilePath in Directory.GetFiles(srcDataPath, "*.db"))
             {
@@ -87,7 +87,7 @@ namespace SolidGui.Tests.Export
         [Test]
         public void LiftExporter_IndividualFile_GeneratedMatchesTemplate()
         {
-            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidEngine.Test/ExportLift.TestData";
+            string srcDataPath = EngineEnvironment.PathOfBase + "/src/SolidGui.Tests/Export/ExportLift.TestData";
 
             var srcFilePath = srcDataPath + "/xe_WithTranslation.db";
             
