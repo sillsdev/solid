@@ -56,8 +56,6 @@ namespace SolidGui.Tests.Export
 ";
             using (var e = new ExportTestScenario(sfm))
             {
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("sn", "sense", "en", "lx", false);
                 e.SetupMarker("ng", "noteGrammar", "en", "sn", false);
                 var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());

@@ -121,9 +121,71 @@ namespace SolidGui.Tests.Export
             {
                 e.Input = @"\lx Lexeme
                             \bw English";
-                e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("bw", "borrowedWord", "en");
                 e.AssertExportsSingleInstance("/lift/entry/etymology[@type='borrowed' and @source='English']");
+            }
+        }
+        [Test]
+        public void Pronunciation_ExportedAsPronunciation()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \pr bot";
+                e.SetupMarker("pr", "pronunciation", "en");
+                e.AssertExportsSingleInstance("/lift/entry/pronunciation/form[text='bot']");
+            }
+        }
+        [Test]
+        public void GrammarNote_ExportedAsNoteWithGrammarType()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \ng about grammar";
+                e.SetupMarker("ng", "noteGrammar", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/note[@type='grammar']/form[text='about grammar']");
+            }
+        }
+        [Test]
+        public void Note_ExportedAsNoteWithNoType()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \nt blah blah";
+                e.SetupMarker("nt", "note", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/note[not(@type)]/form[text='blah blah']");
+            }
+        }
+        [Test]
+        public void Reversal_ExportedAsReversal()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \re ship";
+                e.SetupMarker("re", "reversal", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/reversal/form[text='ship']");
+            }
+        }
+
+        [Test] //todo souce
+        public void Etymology_ProtoAndSourceAndGloss_ExportedToEtymologyElementWithTypeOfProto()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx form
+                            \et proto
+                            \eg gloss
+                            \es English";
+                e.SetupMarker("et", "etymology", "en");
+                e.SetupMarker("eg", "etymologyGloss", "en");
+                e.SetupMarker("es", "etymologySource", "en");
+                e.AssertExportsSingleInstance("/lift/entry/etymology[@type='proto' and @source='English']");
             }
         }
     }

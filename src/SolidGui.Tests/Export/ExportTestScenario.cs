@@ -30,6 +30,9 @@ namespace SolidGui.Tests.Export
             _isDictionaryOpen = false;
             Dictionary = new SfmDictionary();
             SolidSettings = new SolidSettings();
+            SetupMarker("lx", "lexicalUnit", "en");
+            SetupMarker("sn", "sense", "en", "lx", false);
+
           }
         public string Input
         {

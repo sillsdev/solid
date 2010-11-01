@@ -226,17 +226,51 @@
     <!-- Etymology -->
     <Field id="etymology" uiname="Etymology" mdf="et">
         <Help>
-            <Usage>The etymology for the lexeme is put here, e.g.: \et *babuy
+            <Usage>The etymology (proto form) for the lexeme is put here, e.g.: \et *babuy
             </Usage>
+          <Limitations>
+            <Limitation>
+              SOLID currenty only supports exporting a single etymology per entry.
+            </Limitation>
+          </Limitations>
         </Help>
     </Field>
     <Field id="etymologySource" uiname="Etymology Source" mdf="es">
         <Help>
-            <Usage>The reference or source abbreviation for etymology of the lexeme is given here.
+            <Usage>The reference or source abbreviation for the etymology.
             </Usage>
+          <Limitations>
+            <Limitation>
+              SOLID currenty only supports exporting a single etymology per entry.
+            </Limitation>
+          </Limitations>
         </Help>
     </Field>
-    <Field id="custom" uiname="Custom Field" mdf="">
+  <Field id="etymologyGloss" uiname="Etymology Gloss" mdf="eg">
+    <Help>
+      <Usage>
+        Gloss of the etymology (proto form) in one or more languages (set the writings system of the gloss for each unique sfm marker)
+      </Usage>
+      <Limitations>
+        <Limitation>
+          SOLID currenty only supports exporting a single etymology per entry.
+        </Limitation>
+      </Limitations>
+    </Help>
+  </Field>
+  <Field id="etymologyComment" uiname="Etymology Comment" mdf="ec">
+    <Help>
+      <Usage>
+        Comment on the etymology (proto form).
+      </Usage>
+      <Limitations>
+        <Limitation>
+          SOLID does not currently support this.
+        </Limitation>
+      </Limitations>
+    </Help>
+  </Field>
+  <Field id="custom" uiname="Custom Field" mdf="">
         <Help>
             <Usage>Used for any data that is to be exported to Lift, but doesn't have an existing well defined Lift mapping.
             </Usage>

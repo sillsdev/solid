@@ -7,6 +7,7 @@ using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
 using Palaso.Lift.Options;
 using Palaso.Progress.LogBox;
+using Palaso.Text;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -83,6 +84,7 @@ namespace SolidGui.Export
             ExampleSentence,
             ExampleSentenceTranslation,
             Etymology,
+            EtymologyGloss,
             EtymologySource,
             CustomField,
             LexicalRelationType,
@@ -128,6 +130,7 @@ namespace SolidGui.Export
             { "exampleSentence", Concepts.ExampleSentence },
             { "exampleSentenceTranslation", Concepts.ExampleSentenceTranslation },
             { "etymology", Concepts.Etymology },
+            { "etymologyGloss", Concepts.EtymologyGloss },
             { "etymologySource", Concepts.EtymologySource },
             { "custom", Concepts.CustomField },
             { "lexicalRelationType", Concepts.LexicalRelationType },
@@ -220,6 +223,7 @@ namespace SolidGui.Export
             }
 
             LexExampleSentence currentExample = null;
+            LexEtymology _currentEtymology =null;
             foreach (var field in SfmLexEntry.Fields)
             {
                 var unicodeValue =GetUnicodeValueFromLatin1(field.Value).Trim();
@@ -311,7 +315,7 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.BorrowedWord:
-                                AddEtymology(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source language*/unicodeValue);
+                                AddBorrowedWord(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source language*/unicodeValue);
                                 break;
                             case Concepts.Confer:
                                 HandleLexicalRelation(field, currentState, unicodeValue, "confer");
@@ -350,19 +354,45 @@ namespace SolidGui.Export
                                 AddVariant(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry);
                                 break;
 
-                            case Concepts.Etymology:
-                                //Note: we don't yet provide a way to indicate the form of the source word, just the language of it
-                                AddEtymology(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source*/unicodeValue);
-                                break;
 
-                                progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology> elements, so instead it will create a <field> with type='etymology'");
-                                 var op = new OptionRef("proto");
-                                op.Value = unicodeValue;
-                                currentState.LiftLexEntry.Properties.Add(new KeyValuePair<string, object>("etymology", op));
+                                //NB: this is only going to handle a single etymology
+                            case Concepts.Etymology:
+
+                                /* MDF has:
+                                    \eg etymology gloss
+                                    \es etymology source
+                                    \et etymology (proto form) 
+                                 
+                                 Note that LIFT also has "type", but since MDF doesn't have it, I haven't supported it here*/
+                                
+                                if(_currentEtymology==null)
+                                {
+                                    _currentEtymology=new LexEtymology("proto", string.Empty);
+                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
+                                }
+                                _currentEtymology.Form = new LanguageForm(unicodeValue,liftInfo.WritingSystem, null);
                                 break;
                             case Concepts.EtymologySource:
-                                 progress.WriteWarning(unicodeEntryName + ": SOLID cannot yet create real LIFT <etymology-source> elements, so instead it will create a <field> with type='etymology-source'");
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentState.LiftLexEntry, "etymology-source");
+                                if(_currentEtymology==null)
+                                {
+                                    _currentEtymology = new LexEtymology("proto", unicodeValue);
+                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
+                                }
+                                else
+                                {
+                                    _currentEtymology.Source = unicodeValue;
+                                }
+                                break;
+                            case Concepts.EtymologyGloss:
+                                if (_currentEtymology == null)
+                                {
+                                    _currentEtymology = new LexEtymology("proto", string.Empty);
+                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
+                                }
+                                else
+                                {
+                                    _currentEtymology.Gloss.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+                                }
                                 break;
 
                             case Concepts.CustomField:
@@ -556,9 +586,19 @@ namespace SolidGui.Export
             }
         }
 
-        private void AddEtymology(LexEntry liftLexEntry, string type, string sourcLanguage)
+
+//        private LexEtymology AddEtymology(LexEntry liftLexEntry, string type, string sourceLanguage)
+//        {
+//            var etymology = new LexEtymology(type, sourceLanguage);
+//            liftLexEntry.Etymologies.Add(etymology);
+//            return etymology;
+//        }
+//        
+        private LexEtymology AddBorrowedWord(LexEntry liftLexEntry, string type, string sourceLanguage)
         {
-            liftLexEntry.Etymologies.Add(new LexEtymology(type, sourcLanguage));
+            var etymology = new LexEtymology(type, sourceLanguage);
+            liftLexEntry.Etymologies.Add(etymology);
+            return etymology;
         }
 
         private void AddPronunciation(string unicodeValue, string writingSystem, LexEntry liftLexEntry)
@@ -767,7 +807,13 @@ namespace SolidGui.Export
             var result = new LiftInfo();
             var setting = SolidSettings.FindOrCreateMarkerSetting(field.Marker);
 
-            result.LiftConcept = StringToConcept(setting.Mappings[(int)SolidMarkerSetting.MappingType.Lift]);
+            var mappingConceptId = setting.GetMappingConceptId( SolidMarkerSetting.MappingType.Lift);
+            if (string.IsNullOrEmpty(mappingConceptId))
+            {
+                throw new ApplicationException("The field \\"+field.Marker+"' is not mapped to LIFT");
+            }
+
+            result.LiftConcept = StringToConcept(mappingConceptId);
             result.WritingSystem = setting.WritingSystemRfc4646;
 
             return result;
@@ -775,12 +821,16 @@ namespace SolidGui.Export
 
         private static Concepts StringToConcept(string s)
         {
-            if (s == null)
+//            if (string.IsNullOrEmpty(s))
+//            {
+//                return Concepts.Ignore;
+//            }
+
+
+            if(!_conceptMap.ContainsKey(s))
             {
-//SLOW                Console.WriteLine("\t### Ignoring unknown marker: " + s);
-                return Concepts.Ignore;
+                throw new ApplicationException("The concept map does not contain the key '"+s+"'");
             }
-//SLOW            Console.WriteLine("\t" + s);
             return _conceptMap[s];
         }
 
