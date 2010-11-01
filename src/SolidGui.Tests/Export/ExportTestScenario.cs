@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using Palaso.Progress.LogBox;
@@ -49,11 +49,21 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        public void AssertExportsSingleInstance(string xpath)
+        public void Export()
         {
             var liftExporter = new ExportLift();
             liftExporter.Export(Dictionary.AllRecords, SolidSettings, LiftPath, new ConsoleProgress());
+        }
+
+        public void AssertExportsSingleInstance(string xpath)
+        {
+            Export();
             AssertThatXmlIn.String(LiftAsString()).HasSpecifiedNumberOfMatchesForXpath(xpath,1);
+        }
+
+        public void AssertHasSingleInstance(string xpath)
+        {
+            AssertThatXmlIn.String(LiftAsString()).HasSpecifiedNumberOfMatchesForXpath(xpath, 1);
         }
 
         public SfmDictionary Dictionary

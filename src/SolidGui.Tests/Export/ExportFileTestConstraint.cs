@@ -8,14 +8,14 @@ using NUnit.Framework.Constraints;
 namespace SolidGui.Tests.Export
 {
 
-    public class ExportTestConstraint : NUnit.Framework.Constraints.Constraint
+    public class ExportFileTestConstraint : NUnit.Framework.Constraints.Constraint
     {
         private string _templateFilePath;
         private string _message;
         private string _templateLine;
         private string _outputLine;
 
-        public ExportTestConstraint(string filePath)
+        public ExportFileTestConstraint(string filePath)
         {
             _templateFilePath = filePath;
         }

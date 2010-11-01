@@ -52,7 +52,7 @@ namespace SolidGui.Tests.Export
 
                 string templateFilePath = Path.ChangeExtension(srcFilePath, ".tmpl");
 
-                Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
+                Assert.That(outputFilePath, new ExportFileTestConstraint(templateFilePath));
              
             }
         }
@@ -79,7 +79,7 @@ namespace SolidGui.Tests.Export
                 }
                 liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath, new ConsoleProgress());
                 
-                Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
+                Assert.That(outputFilePath, new ExportFileTestConstraint(templateFilePath));
             }
 
         }
@@ -108,7 +108,7 @@ namespace SolidGui.Tests.Export
             liftExporter.Export(dictionary.AllRecords, solidSettings, outputFilePath, new ConsoleProgress());
 
 
-            Assert.That(outputFilePath, new ExportTestConstraint(templateFilePath));
+            Assert.That(outputFilePath, new ExportFileTestConstraint(templateFilePath));
             
 
         }
