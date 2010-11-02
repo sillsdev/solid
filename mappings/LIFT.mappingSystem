@@ -263,11 +263,6 @@
       <Usage>
         Comment on the etymology (proto form).
       </Usage>
-      <Limitations>
-        <Limitation>
-          SOLID does not currently support this.
-        </Limitation>
-      </Limitations>
     </Help>
   </Field>
   <Field id="custom" uiname="Custom Field" mdf="">

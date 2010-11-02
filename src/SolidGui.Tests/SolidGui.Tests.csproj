@@ -135,7 +135,6 @@
     <Compile Include="Export\ExportTestScenario.cs" />
     <Compile Include="Export\ExportFactory_Test.cs" />
     <Compile Include="Export\ExportLiftRegressionTests.cs" />
-    <Compile Include="Export\ExportLift_Test.cs" />
     <Compile Include="DictionaryTest.cs" />
     <Compile Include="Export\ExportFileTestConstraint.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />

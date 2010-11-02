@@ -86,6 +86,7 @@ namespace SolidGui.Export
             Etymology,
             EtymologyGloss,
             EtymologySource,
+            EtymologyComment,
             CustomField,
             LexicalRelationType,
             Comment,
@@ -132,6 +133,7 @@ namespace SolidGui.Export
             { "etymology", Concepts.Etymology },
             { "etymologyGloss", Concepts.EtymologyGloss },
             { "etymologySource", Concepts.EtymologySource },
+            { "etymologyComment", Concepts.EtymologyComment },
             { "custom", Concepts.CustomField },
             { "lexicalRelationType", Concepts.LexicalRelationType },
             { "lexicalRelationLexeme", Concepts.LexicalRelationLexeme },
@@ -365,34 +367,35 @@ namespace SolidGui.Export
                                  
                                  Note that LIFT also has "type", but since MDF doesn't have it, I haven't supported it here*/
                                 
-                                if(_currentEtymology==null)
-                                {
-                                    _currentEtymology=new LexEtymology("proto", string.Empty);
-                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
-                                }
-                                _currentEtymology.Form = new LanguageForm(unicodeValue,liftInfo.WritingSystem, null);
+                                //notice, we start a new Etymology whenever we hit this field (but multiple are allowed)
+                                _currentEtymology=new LexEtymology("proto", string.Empty);
+                                currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);                             
+                                _currentEtymology.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+
                                 break;
                             case Concepts.EtymologySource:
                                 if(_currentEtymology==null)
                                 {
-                                    _currentEtymology = new LexEtymology("proto", unicodeValue);
-                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
+                                    progress.WriteError("Cannot handle an etymology source before an etymology (proto form)");
+                                    break;
                                 }
-                                else
-                                {
-                                    _currentEtymology.Source = unicodeValue;
-                                }
+                                _currentEtymology.Source = unicodeValue;
                                 break;
                             case Concepts.EtymologyGloss:
                                 if (_currentEtymology == null)
                                 {
-                                    _currentEtymology = new LexEtymology("proto", string.Empty);
-                                    currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);
+                                    progress.WriteError("Cannot handle an etymology gloss before an etymology (proto form)");
+                                    break;
                                 }
-                                else
-                                {
                                     _currentEtymology.Gloss.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+                                break;
+                            case Concepts.EtymologyComment:
+                                if (_currentEtymology == null)
+                                {
+                                    progress.WriteError("Cannot handle an etymology comment before an etymology (proto form)");
+                                    break;
                                 }
+                                _currentEtymology.Comment.SetAlternative(liftInfo.WritingSystem, unicodeValue);
                                 break;
 
                             case Concepts.CustomField:
@@ -587,13 +590,6 @@ namespace SolidGui.Export
         }
 
 
-//        private LexEtymology AddEtymology(LexEntry liftLexEntry, string type, string sourceLanguage)
-//        {
-//            var etymology = new LexEtymology(type, sourceLanguage);
-//            liftLexEntry.Etymologies.Add(etymology);
-//            return etymology;
-//        }
-//        
         private LexEtymology AddBorrowedWord(LexEntry liftLexEntry, string type, string sourceLanguage)
         {
             var etymology = new LexEtymology(type, sourceLanguage);

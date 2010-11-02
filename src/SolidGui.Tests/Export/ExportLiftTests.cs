@@ -24,6 +24,20 @@ namespace SolidGui.Tests.Export
             }
         }
 
+
+        [Test]
+        public void Variant_2FreeVariants()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx form
+                            \va 1
+                           \va 2";
+                e.SetupMarker("va", "variant", "en");
+                e.AssertExportsSingleInstance("/lift/entry/variant/form[text='1']");
+                e.AssertExportsSingleInstance("/lift/entry/variant/form[text='2']");
+            }
+        }
         [Test]
         public void BorrowedWord_bwInSingleEntry_ExportsEtymology()
         {
@@ -176,29 +190,7 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        [Test]
-        public void Etymology_SingleEntryGlossAndComment_ExportsEtymology()
-        {
-            using (var e = new ExportTestScenario())
-            {
-                e.Input = @"
-\lx TestLexeme
-\et Etymology data
-\es Etymology Source
-\eg English gloss
-\ec A comment
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("et", "etymology", "en");
-                e.SetupMarker("es", "etymologySource", "en", "et", false);
-                e.SetupMarker("eg", "gloss", "en", "et", false);
-                e.SetupMarker("ec", "comment", "en", "et", false);
-                e.Export();
-                e.AssertHasSingleInstance("/lift/entry/etymology[@type='proto' and @source='Etymology Source']/form[@lang='en' and text='Etymology data']");
-                e.AssertHasSingleInstance("/lift/entry/etymology[@type='proto' and @source='Etymology Source']/gloss[@lang='en' and text='English gloss']");
-                Assert.Fail("What about the comment? CP 2010-11");
-            }
-        }
+     
 
         [Test]
         public void Gloss_SingleEntryOneForm_ExportsGloss()
@@ -272,113 +264,99 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        [Test]
-        public void Notes_AllNotesAtSenseLevel_ExportEachNoteUnderSense()
+        public void Pronunciation_ExportedAsPronunciation()
         {
             using (var e = new ExportTestScenario())
             {
-                e.Input = @"
-\lx TestLexeme
-\sn 
-\na Anthropology note
-\ng Grammar note
-\nd Discourse note
-\en Encyclopedic note
-\bb Bibliographic note
-\nq Questions
-\ns Sociolinguistic note
-\nt General note
-\so Source note
-\oe Restrictions
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("sn", "sense", "en", "lx", false);
-                e.SetupMarker("na", "noteAnthropology", "en", "sn", false);
-                e.SetupMarker("ng", "noteGrammar", "en", "sn", false);
-                e.SetupMarker("nd", "noteDiscourse", "en", "sn", false);
-                e.SetupMarker("en", "noteEncyclopedic", "en", "sn", false);
-                e.SetupMarker("bb", "noteBibliographic", "en", "sn", false);
-                e.SetupMarker("nq", "noteQuestion", "en", "sn", false);
-                e.SetupMarker("ns", "noteSociolinguistic", "en", "sn", false);
-                e.SetupMarker("nt", "note", "en", "sn", false);
-                e.SetupMarker("so", "noteSource", "en", "sn", false);
-                e.SetupMarker("oe", "noteRestriction", "en", "sn", false);
-                e.Export();
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='anthropology']/form[@lang='en' and text='Anthropology note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='grammar']/form[@lang='en' and text='Grammar note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='discourse']/form[@lang='en' and text='Discourse note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='encyclopedic']/form[@lang='en' and text='Encyclopedic note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='bibliographic']/form[@lang='en' and text='Bibliographic note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='question']/form[@lang='en' and text='Questions']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='sociolinguistic']/form[@lang='en' and text='Sociolinguistic note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note/form[@lang='en' and text='General note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='source']/form[@lang='en' and text='Source note']");
-                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='restrictions']/form[@lang='en' and text='Restrictions']");
+                e.Input = @"\lx boat
+                            \pr bot";
+                e.SetupMarker("pr", "pronunciation", "en");
+                e.AssertExportsSingleInstance("/lift/entry/pronunciation/form[text='bot']");
+            }
+        }
+        [Test]
+        public void GrammarNote_ExportedAsNoteWithGrammarType()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \ng about grammar";
+                e.SetupMarker("ng", "noteGrammar", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/note[@type='grammar']/form[text='about grammar']");
+            }
+        }
+        [Test]
+        public void Note_ExportedAsNoteWithNoType()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \nt blah blah";
+                e.SetupMarker("nt", "note", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/note[not(@type)]/form[text='blah blah']");
+            }
+        }
+        [Test]
+        public void Reversal_ExportedAsReversal()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx boat
+                            \sn
+                            \re ship";
+                e.SetupMarker("re", "reversal", "en", "sn", true);
+                e.AssertExportsSingleInstance("/lift/entry/sense/reversal/form[text='ship']");
             }
         }
 
         [Test]
-        public void Notes_AllNotesAtEntryLevel_ExportEachNoteUnderEntry()
+        public void Etymology_2Etymologies()
         {
             using (var e = new ExportTestScenario())
             {
-                e.Input = @"
-\lx TestLexeme
-\na Anthropology note
-\ng Grammar note
-\nd Discourse note
-\np Phonology note
-\en Encyclopedic note
-\bb Bibliographic note
-\nq Questions
-\ns Sociolinguistic note
-\nt General note
-\so Source note
-\oe Restrictions
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("na", "noteAnthropology", "en", "lx", false);
-                e.SetupMarker("ng", "noteGrammar", "en", "lx", false);
-                e.SetupMarker("nd", "noteDiscourse", "en", "lx", false);
-                e.SetupMarker("np", "notePhonology", "en", "lx", false);
-                e.SetupMarker("en", "noteEncyclopedic", "en", "lx", false);
-                e.SetupMarker("bb", "noteBibliographic", "en", "lx", false);
-                e.SetupMarker("nq", "noteQuestion", "en", "lx", false);
-                e.SetupMarker("ns", "noteSociolinguistic", "en", "lx", false);
-                e.SetupMarker("nt", "note", "en", "lx", false);
-                e.SetupMarker("so", "noteSource", "en", "lx", false);
-                e.SetupMarker("oe", "noteRestriction", "en", "lx", false);
-                e.Export();
-                e.AssertHasSingleInstance("/lift/entry/note[@type='anthropology']/form[@lang='en' and text='Anthropology note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='grammar']/form[@lang='en' and text='Grammar note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='discourse']/form[@lang='en' and text='Discourse note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='encyclopedic']/form[@lang='en' and text='Encyclopedic note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='bibliographic']/form[@lang='en' and text='Bibliographic note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='phonology']/form[@lang='en' and text='Phonology note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='question']/form[@lang='en' and text='Questions']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='sociolinguistic']/form[@lang='en' and text='Sociolinguistic note']");
-                e.AssertHasSingleInstance("/lift/entry/note/form[@lang='en' and text='General note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='source']/form[@lang='en' and text='Source note']");
-                e.AssertHasSingleInstance("/lift/entry/note[@type='restrictions']/form[@lang='en' and text='Restrictions']");
+                e.Input = @"\lx form
+                            \et proto1
+                            \eg g1
+                            \et proto2
+                            \eg g2";
+                e.SetupMarker("et", "etymology", "en");
+                e.SetupMarker("eg", "etymologyGloss", "en");
+                e.AssertExportsSingleInstance("/lift/entry/etymology/form[text='proto1']");
+                e.AssertExportsSingleInstance("/lift/entry/etymology/form[text='proto2']");
             }
         }
 
         [Test]
-        public void Pronunciation_SingleEntry_ExportsPronunciation()
+        public void Etymology_ProtoAndSourceAndGloss_ExportedToEtymologyElementWithTypeOfProto()
         {
             using (var e = new ExportTestScenario())
             {
-                e.Input = @"
-\lx TestLexeme
-\ph Pronunciation
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("ph", "pronunciation", "en");
-                e.AssertExportsSingleInstance("/lift/entry/pronunciation/form[@lang='en' and text='Pronunciation']");
+                e.Input = @"\lx form
+                            \et proto
+                            \eg gloss
+                            \es English";
+                e.SetupMarker("et", "etymology", "en");
+                e.SetupMarker("eg", "etymologyGloss", "en");
+                e.SetupMarker("es", "etymologySource", "en");
+                e.AssertExportsSingleInstance("/lift/entry/etymology[@type='proto' and @source='English']");
+                e.AssertExportsSingleInstance("/lift/entry/etymology/form[@lang='en' and text='proto']");
             }
         }
 
-
-
+        [Test, Ignore("Etymology Comment Not implemented")]
+        public void Etymology_HadComment_Exports()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx form
+                            \et proto
+                            \ec comment";
+                e.SetupMarker("et", "etymology", "en");
+                e.SetupMarker("ec", "etymologyComment", "en");
+                e.AssertExportsSingleInstance("/lift/entry/etymology/field[@type='comment']/form[@lang='en' and text='comment']");
+            }
+        }
     }
 }
