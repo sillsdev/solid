@@ -363,6 +363,21 @@ namespace SolidGui.Tests.Export
             }
         }
 
+        [Test]
+        public void Pronunciation_SingleEntry_ExportsPronunciation()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx TestLexeme
+\ph Pronunciation
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("ph", "pronunciation", "en");
+                e.AssertExportsSingleInstance("/lift/entry/pronunciation/form[@lang='en' and text='Pronunciation']");
+            }
+        }
+
 
 
     }
