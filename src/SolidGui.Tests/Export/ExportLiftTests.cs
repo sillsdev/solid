@@ -345,7 +345,7 @@ namespace SolidGui.Tests.Export
             }
         }
 
-        [Test, Ignore("Etymology Comment Not implemented")]
+        [Test]
         public void Etymology_HadComment_Exports()
         {
             using (var e = new ExportTestScenario())
