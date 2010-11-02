@@ -272,6 +272,97 @@ namespace SolidGui.Tests.Export
             }
         }
 
+        [Test]
+        public void Notes_AllNotesAtSenseLevel_ExportEachNoteUnderSense()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx TestLexeme
+\sn 
+\na Anthropology note
+\ng Grammar note
+\nd Discourse note
+\en Encyclopedic note
+\bb Bibliographic note
+\nq Questions
+\ns Sociolinguistic note
+\nt General note
+\so Source note
+\oe Restrictions
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("sn", "sense", "en", "lx", false);
+                e.SetupMarker("na", "noteAnthropology", "en", "sn", false);
+                e.SetupMarker("ng", "noteGrammar", "en", "sn", false);
+                e.SetupMarker("nd", "noteDiscourse", "en", "sn", false);
+                e.SetupMarker("en", "noteEncyclopedic", "en", "sn", false);
+                e.SetupMarker("bb", "noteBibliographic", "en", "sn", false);
+                e.SetupMarker("nq", "noteQuestion", "en", "sn", false);
+                e.SetupMarker("ns", "noteSociolinguistic", "en", "sn", false);
+                e.SetupMarker("nt", "note", "en", "sn", false);
+                e.SetupMarker("so", "noteSource", "en", "sn", false);
+                e.SetupMarker("oe", "noteRestriction", "en", "sn", false);
+                e.Export();
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='anthropology']/form[@lang='en' and text='Anthropology note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='grammar']/form[@lang='en' and text='Grammar note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='discourse']/form[@lang='en' and text='Discourse note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='encyclopedic']/form[@lang='en' and text='Encyclopedic note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='bibliographic']/form[@lang='en' and text='Bibliographic note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='question']/form[@lang='en' and text='Questions']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='sociolinguistic']/form[@lang='en' and text='Sociolinguistic note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note/form[@lang='en' and text='General note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='source']/form[@lang='en' and text='Source note']");
+                e.AssertHasSingleInstance("/lift/entry/sense/note[@type='restrictions']/form[@lang='en' and text='Restrictions']");
+            }
+        }
+
+        [Test]
+        public void Notes_AllNotesAtEntryLevel_ExportEachNoteUnderEntry()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx TestLexeme
+\na Anthropology note
+\ng Grammar note
+\nd Discourse note
+\np Phonology note
+\en Encyclopedic note
+\bb Bibliographic note
+\nq Questions
+\ns Sociolinguistic note
+\nt General note
+\so Source note
+\oe Restrictions
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("na", "noteAnthropology", "en", "lx", false);
+                e.SetupMarker("ng", "noteGrammar", "en", "lx", false);
+                e.SetupMarker("nd", "noteDiscourse", "en", "lx", false);
+                e.SetupMarker("np", "notePhonology", "en", "lx", false);
+                e.SetupMarker("en", "noteEncyclopedic", "en", "lx", false);
+                e.SetupMarker("bb", "noteBibliographic", "en", "lx", false);
+                e.SetupMarker("nq", "noteQuestion", "en", "lx", false);
+                e.SetupMarker("ns", "noteSociolinguistic", "en", "lx", false);
+                e.SetupMarker("nt", "note", "en", "lx", false);
+                e.SetupMarker("so", "noteSource", "en", "lx", false);
+                e.SetupMarker("oe", "noteRestriction", "en", "lx", false);
+                e.Export();
+                e.AssertHasSingleInstance("/lift/entry/note[@type='anthropology']/form[@lang='en' and text='Anthropology note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='grammar']/form[@lang='en' and text='Grammar note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='discourse']/form[@lang='en' and text='Discourse note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='encyclopedic']/form[@lang='en' and text='Encyclopedic note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='bibliographic']/form[@lang='en' and text='Bibliographic note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='phonology']/form[@lang='en' and text='Phonology note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='question']/form[@lang='en' and text='Questions']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='sociolinguistic']/form[@lang='en' and text='Sociolinguistic note']");
+                e.AssertHasSingleInstance("/lift/entry/note/form[@lang='en' and text='General note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='source']/form[@lang='en' and text='Source note']");
+                e.AssertHasSingleInstance("/lift/entry/note[@type='restrictions']/form[@lang='en' and text='Restrictions']");
+            }
+        }
+
 
 
     }
