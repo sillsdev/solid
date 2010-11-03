@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
+using Palaso.Xml;
 using SolidGui.Engine;
 
 namespace SolidGui.Mapping
@@ -170,13 +171,11 @@ namespace SolidGui.Mapping
         public class Concept
         {
             private readonly XmlNode _node;
-            private XmlHelper _helper;
             public Concept(XmlNode node)
             {
                 if (node != null)
                 {
                     _node = node;
-                    _helper = new XmlHelper(_node);
                 }
             }
 
@@ -190,12 +189,12 @@ namespace SolidGui.Mapping
 
             public override string ToString()
             {
-                return (_helper != null) ? _helper.GetAttribute("uiname") : null;
+                return _node.GetOptionalStringAttribute("uiname", null);
             }
             
             public string GetId()
             {
-                return (_helper != null) ? _helper.GetAttribute("id") : null;
+                return _node.GetOptionalStringAttribute("id", null);
             }
         }
     }

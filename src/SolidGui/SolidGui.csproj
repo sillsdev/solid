@@ -139,7 +139,6 @@
     <Compile Include="AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Engine\customxmlreader.cs" />
     <Compile Include="Engine\EngineEnvironment.cs" />
     <Compile Include="Engine\ReportEntry.cs" />
     <Compile Include="Export\Exporter.cs" />
@@ -171,8 +170,6 @@
     <Compile Include="Engine\SolidSettings.cs" />
     <Compile Include="Engine\SolidStructureProperty.cs" />
     <Compile Include="Engine\StructurePropertiesPM.cs" />
-    <Compile Include="Engine\XmlHelper.cs" />
-    <Compile Include="Engine\XmlReaderDecorator.cs" />
     <Compile Include="QuickFixer.cs" />
     <Compile Include="Model\SfmDictionary.cs" />
     <Compile Include="EXListView.cs">
@@ -245,6 +242,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Export\ExportLogDialog.resx">
       <DependentUpon>ExportLogDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FilterChooserView.resx">
       <SubType>Designer</SubType>
