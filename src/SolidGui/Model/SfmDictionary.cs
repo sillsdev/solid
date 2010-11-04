@@ -322,15 +322,19 @@ namespace SolidGui.Model
 					}
                     foreach (var record in _recordList)
                     {
+						writer.Write("\r\n");
                         foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
                             {
                                 writer.Write("\\");
                                 writer.Write(field.Marker.TrimStart('_'));
-                                writer.Write(" ");
-                                writer.Write(field.Value);
-                                writer.Write("\r\n");
+								if (field.HasValue)
+								{
+									writer.Write(" ");
+									writer.Write(field.Value);
+								}
+                            	writer.Write("\r\n");
                             }
                         }
                     }

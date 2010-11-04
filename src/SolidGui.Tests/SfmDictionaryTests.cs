@@ -145,14 +145,33 @@ namespace SolidGui.Tests
 			}
         }
 
-		[Test]
+		[Test] // See http://projects.palaso.org/issues/261
 		public void Save_SfmWithHeader_SavedFileKeepsHeader()
 		{
 			using (var e = new EnvironmentForTest())
 			{
 				const string sfm = @"\_sh Some Header
+
 \lx a
+
 \lx b
+";
+				e.CreateDictionary(sfm);
+				var dictionary = e.OpenDictionary();
+				dictionary.Save();
+				var dictionaryText = File.ReadAllText(e.DictionaryFilePath);
+				Assert.That(dictionaryText, Is.EqualTo(sfm));
+			}
+		}
+
+		[Test]
+		public void Save_SfmWithEmptyMarker_SavedFileDoesntHaveTrailingSpaces()
+		{
+			using (var e = new EnvironmentForTest())
+			{
+				const string sfm = @"
+\lx a
+\ge
 ";
 				e.CreateDictionary(sfm);
 				var dictionary = e.OpenDictionary();

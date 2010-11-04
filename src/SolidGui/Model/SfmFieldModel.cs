@@ -42,8 +42,6 @@ namespace SolidGui.Model
 
         private SfmFieldModel _parent;
 
-
-
         public IEnumerable<ReportEntry> ReportEntries
         {
             get { return _reportEntries; }
@@ -132,8 +130,12 @@ namespace SolidGui.Model
             get { return _reportEntries.Count > 0; }
         }
 
+    	public bool HasValue
+    	{
+    		get { return !String.IsNullOrEmpty(Value); }
+    	}
 
-        public SfmFieldModel this[int i]
+    	public SfmFieldModel this[int i]
         {
             get { return _children[i]; }
         }
