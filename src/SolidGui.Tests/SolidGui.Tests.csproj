@@ -135,13 +135,12 @@
     <Compile Include="Export\ExportTestScenario.cs" />
     <Compile Include="Export\ExportFactory_Test.cs" />
     <Compile Include="Export\ExportLiftRegressionTests.cs" />
-    <Compile Include="DictionaryTest.cs" />
+    <Compile Include="SfmDictionaryTests.cs" />
     <Compile Include="Export\ExportFileTestConstraint.cs" />
     <Compile Include="FilterListPresentationModelTests.cs" />
     <Compile Include="MainWindowPMTest.cs" />
     <Compile Include="Model\SfmFieldModelTests.cs" />
     <Compile Include="Model\SfmLexEntryTests.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="QuickFix_Tests.cs" />
     <Compile Include="RecordTests.cs" />
     <Compile Include="StructurePropertiesPMTest.cs" />
