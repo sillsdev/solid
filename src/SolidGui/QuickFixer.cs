@@ -349,8 +349,7 @@ namespace Solid.Engine
 
                 //in the format we're changing to, \ps comes after \sn, so 
                 //we should remove one which appears before the first sn (it will have been copied in)
-                var indexOfPsFieldToRemoveAtEnd = 0;
-
+            	var psFieldsToRemoveAtEnd = new List<int>();
                 SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
@@ -359,7 +358,7 @@ namespace Solid.Engine
                     {
                         if (!encounteredSn)
                         {
-                            indexOfPsFieldToRemoveAtEnd = i;
+                        	psFieldsToRemoveAtEnd.Add(i);
                         }
                         fieldToCopy = field;
                         continue;
@@ -370,7 +369,7 @@ namespace Solid.Engine
                         encounteredSn = true;
                         if (fieldToCopy != null)
                         {
-                            if (!LevelHasMarker(record, i, "ps", "sn"))
+                            if (!LevelHasMarker(record, i, "ps", new[] { "sn", "se" }))
                             {
                                 var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
                                 record.InsertFieldAt(f, i+1);
@@ -379,27 +378,37 @@ namespace Solid.Engine
                             }
                         }
                     }
+					else if (field.Marker == "se")
+					{
+						encounteredSn = false;
+					}
                 }
-                if(encounteredSn && indexOfPsFieldToRemoveAtEnd>0)
+                if(encounteredSn && psFieldsToRemoveAtEnd.Count > 0)
                 {
-                    Debug.Assert(record.Fields[indexOfPsFieldToRemoveAtEnd].Marker == "ps");
-                    //just one last sanity check
-                    if (record.Fields[indexOfPsFieldToRemoveAtEnd].Marker == "ps")
-                    {
-                        record.RemoveField(indexOfPsFieldToRemoveAtEnd);
-                    }
+					// Remove from last to first to ensure that the index to delete remains valid.
+					for (int i = psFieldsToRemoveAtEnd.Count - 1; i >= 0; --i)
+					{
+						int index = psFieldsToRemoveAtEnd[i];
+						Debug.Assert(record.Fields[index].Marker == "ps");
+						//just one last sanity check
+						if (record.Fields[index].Marker == "ps")
+						{
+							record.RemoveField(index);
+						}
+					}
                 }
             }
             logBuilder.AppendFormat("ps was copied to {0} senses.", sensesEffected);
             return logBuilder.ToString();
         }
 
-        public bool LevelHasMarker(Record record, int startBelowMarkerIndex, string markerToFind, string markerToStopAt)
+        public bool LevelHasMarker(Record record, int startBelowMarkerIndex, string markerToFind, string[] markersToStopAt)
         {
             for (int i = startBelowMarkerIndex+1; i < record.Fields.Count; i++)
             {
                 var field = record.Fields[i];
-                if (field.Marker == markerToStopAt)
+            	if (markersToStopAt.Contains(field.Marker))
+                //if (field.Marker == markerToStopAt)
                 {
                     return false;
                 }

@@ -9,7 +9,7 @@ using SolidGui.Model;
 namespace SolidGui.Tests
 {
     [TestFixture]
-    public class QuickFix_Tests
+    public class QuickFixTests
     {
 
         private List<string> M(params string[] args)
@@ -357,9 +357,9 @@ namespace SolidGui.Tests
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \sn 1 \ge cat \ps foo \sn 2 \ge goo \s3 zz");
-            Assert.IsTrue(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 1,  "ps", "sn"));
-            Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 4, "ps", "sn"));
-            Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 6, "ps", "sn"));
+			Assert.IsTrue(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 1, "ps", new[] { "sn", "se" }));
+			Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 4, "ps", new[] { "sn", "se" }));
+			Assert.IsFalse(new QuickFixer(dict).LevelHasMarker(dict.Records[0], 6, "ps", new[] { "sn", "se" }));
         }
 
         [Test]
@@ -407,5 +407,15 @@ namespace SolidGui.Tests
             new QuickFixer(dict).PropogatePartOfSpeech();
             AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge foo  \ps verb");
         }
-    }
+
+		[Test] // http://projects.palaso.org/issues/514
+		public void PropogatePartOfSpeech_WithSubEntry_PsPropagatesToLexemeLevelSense()
+		{
+			var dict = MakeDictionary(new SolidSettings(),
+						@"\lx a \ps noun \sn 1 \ge cat \se aa \ps verb \sn 2 \ge foo");
+			new QuickFixer(dict).PropogatePartOfSpeech();
+			AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \se aa \sn 2 \ps verb \ge foo");
+		}
+
+	}
 }

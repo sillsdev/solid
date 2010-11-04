@@ -141,7 +141,7 @@
     <Compile Include="MainWindowPMTest.cs" />
     <Compile Include="Model\SfmFieldModelTests.cs" />
     <Compile Include="Model\SfmLexEntryTests.cs" />
-    <Compile Include="QuickFix_Tests.cs" />
+    <Compile Include="QuickFixTests.cs" />
     <Compile Include="RecordTests.cs" />
     <Compile Include="StructurePropertiesPMTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
