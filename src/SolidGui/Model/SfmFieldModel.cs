@@ -73,7 +73,26 @@ namespace SolidGui.Model
         public string Marker { get; private set; }
         public string Mapping { get; set; }
 
-
+        public string ValueAsUnicode()
+        {
+            string retval = string.Empty;
+            string value = Value;
+            if (value.Length > 0)
+            {
+                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                //Encoding byteEncoding = Encoding.Unicode;
+                byte[] valueAsBytes = byteEncoding.GetBytes(value);
+                Encoding stringEncoding = Encoding.UTF8;
+                retval = stringEncoding.GetString(valueAsBytes);
+                if (retval.Length == 0)
+                {
+                    retval = "Non Unicode Data Found";
+                    // TODO: Need to lock this field of the current record at this point.
+                    // The editor must *never* write back to the model (for this field)
+                }
+            }
+            return retval;
+        }
 
         public void AppendChild(SfmFieldModel node)
         {
@@ -127,6 +146,16 @@ namespace SolidGui.Model
             }
             return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
         }
+
+    	public string DecodedValue(SolidSettings solidSettings)
+    	{
+    		var markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
+			if (markerSetting.Unicode)
+			{
+				return ValueAsUnicode();
+			}
+    		return Value;
+    	}
     }
 
 

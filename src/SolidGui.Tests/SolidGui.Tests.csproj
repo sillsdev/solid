@@ -124,7 +124,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encoding_Test.cs" />
+    <Compile Include="EncodingTests.cs" />
     <Compile Include="Engine\EngineEnvironment_Test.cs" />
     <Compile Include="Engine\ProcessEncoding_Test.cs" />
     <Compile Include="Engine\ProcessStructure_Test.cs" />

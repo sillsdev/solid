@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Palaso.Code;
 using SolidGui.Engine;
 
 namespace SolidGui.Model
@@ -34,16 +35,21 @@ namespace SolidGui.Model
             get { return _fields[0]; }
         }
 
+		public string GetName(SolidSettings solidSettings)
+		{
+			// Assume that the lx is first, it always will be.
+			Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
+			return _fields[0].DecodedValue(solidSettings);
+		}
+
+		[Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name
         {
-            // Return the lx data value
             get
             {
-                if(_fields.Count>0)
-                {
-                    return _fields[0].Value;
-                }
-                return "";
+                // Assume that the lx is first, it always will be.
+                Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
+                return _fields[0].Value;
             }
         }
 
@@ -111,7 +117,7 @@ namespace SolidGui.Model
 
         public string GetField(int id)
         {
-            SfmFieldModel field = _fields.Find(delegate(SfmFieldModel aField) { return aField.Id == id; });
+            SfmFieldModel field = _fields.Find(aField => aField.Id == id);
             return field.ToString();
         }
 

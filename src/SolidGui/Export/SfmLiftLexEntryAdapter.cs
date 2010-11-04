@@ -167,7 +167,7 @@ namespace SolidGui.Export
             base(dm)
         {
             SfmLexEntry = entry;
-            SfmID = entry.Name;
+            SfmID = entry.GetName(solidSettings);
             SolidSettings = solidSettings;
             PartOfSpeechMode = PartOfSpeechModes.Unknown;
         }
@@ -208,7 +208,8 @@ namespace SolidGui.Export
             states.Push(new StateInfo(States.LexEntry, -1, this));
             LexSense currentSense = null;
             string currentPartOfSpeech = "";
-            var unicodeEntryName = GetUnicodeValueFromLatin1(SfmLexEntry.Name).Trim();
+
+            var unicodeEntryName = SfmLexEntry.GetName(SolidSettings).Trim();
 
             //if the sfm already declares a guid, use that instead of a made up one
             var existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
@@ -225,11 +226,11 @@ namespace SolidGui.Export
             }
 
             LexExampleSentence currentExample = null;
-            LexEtymology _currentEtymology =null;
+            LexEtymology currentEtymology = null;
             foreach (var field in SfmLexEntry.Fields)
             {
-                var unicodeValue =GetUnicodeValueFromLatin1(field.Value).Trim();
-                var currentState = states.Peek();
+				var unicodeValue = field.DecodedValue(SolidSettings).Trim();
+				var currentState = states.Peek();
                 if (field.Depth <= currentState.Depth)
                 {
                     if (currentSense != null && currentState.State == States.Sense)
@@ -368,34 +369,34 @@ namespace SolidGui.Export
                                  Note that LIFT also has "type", but since MDF doesn't have it, I haven't supported it here*/
                                 
                                 //notice, we start a new Etymology whenever we hit this field (but multiple are allowed)
-                                _currentEtymology=new LexEtymology("proto", string.Empty);
-                                currentState.LiftLexEntry.Etymologies.Add(_currentEtymology);                             
-                                _currentEtymology.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+                                currentEtymology=new LexEtymology("proto", string.Empty);
+                                currentState.LiftLexEntry.Etymologies.Add(currentEtymology);                             
+                                currentEtymology.SetAlternative(liftInfo.WritingSystem, unicodeValue);
 
                                 break;
                             case Concepts.EtymologySource:
-                                if(_currentEtymology==null)
+                                if(currentEtymology==null)
                                 {
                                     progress.WriteError("Cannot handle an etymology source before an etymology (proto form)");
                                     break;
                                 }
-                                _currentEtymology.Source = unicodeValue;
+                                currentEtymology.Source = unicodeValue;
                                 break;
                             case Concepts.EtymologyGloss:
-                                if (_currentEtymology == null)
+                                if (currentEtymology == null)
                                 {
                                     progress.WriteError("Cannot handle an etymology gloss before an etymology (proto form)");
                                     break;
                                 }
-                                    _currentEtymology.Gloss.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+                                    currentEtymology.Gloss.SetAlternative(liftInfo.WritingSystem, unicodeValue);
                                 break;
                             case Concepts.EtymologyComment:
-                                if (_currentEtymology == null)
+                                if (currentEtymology == null)
                                 {
                                     progress.WriteError("Cannot handle an etymology comment before an etymology (proto form)");
                                     break;
                                 }
-                                _currentEtymology.Comment.SetAlternative(liftInfo.WritingSystem, unicodeValue);
+                                currentEtymology.Comment.SetAlternative(liftInfo.WritingSystem, unicodeValue);
                                 break;
 
                             case Concepts.CustomField:
@@ -677,28 +678,6 @@ namespace SolidGui.Export
         private void AddRelationToSense(LexSense sense, string target, string type)
         {
             sense.AddRelationTarget(type, target);
-        }
-
-        public string GetUnicodeValueFromLatin1(string value)
-        {
-            string retval;
-                retval = string.Empty;
-                if (value.Length > 0)
-                {
-                    Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-                    //Encoding byteEncoding = Encoding.Unicode;
-                    byte[] valueAsBytes = byteEncoding.GetBytes(value);
-                    Encoding stringEncoding = Encoding.UTF8;
-                    retval = stringEncoding.GetString(valueAsBytes);
-                    if (retval.Length == 0)
-                    {
-                        retval = "Non Unicode Data Found";
-                        // TODO: Need to lock this field of the current record at this point.
-                        // The editor must *never* write back to the model (for this field)
-                    }
-                }
-
-            return retval;
         }
 
         private PartOfSpeechModes PartOfSpeechMode { get; set; }

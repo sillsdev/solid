@@ -21,7 +21,7 @@ namespace SolidGui.Engine
             _entryType = type;
             if (entry != null)
             {
-                _entryName = entry.Name; //??? TODO what's a good name for this entry???
+                _entryName = entry.Name; // TODO This is bogus, it needs decoding first.  What's a good name for this entry???
                 _recordID = entry.RecordId;
                 //_recordStartLine = Convert.ToInt32(entry.Attributes["startline"].Value);
                 //_recordEndLine = Convert.ToInt32(entry.Attributes["endline"].Value);
@@ -68,11 +68,6 @@ namespace SolidGui.Engine
         public string Description
         {
             get { return _description; }
-        }
-
-        public string Name
-        {
-            get { return _entryName; }
         }
 
         public override string ToString()

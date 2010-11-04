@@ -116,31 +116,17 @@ namespace SolidGui
             return new Font(FontFamily.GenericSansSerif, 12);
         }
 
-        public string GetUnicodeValueFromLatin1(string marker, string value)
+        public string GetUnicodeValueFromLatin1(SfmFieldModel field)
         {
             string retval;
-            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(marker);
+            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(field.Marker);
             if (setting != null && setting.Unicode)
             {
-                retval = string.Empty;
-                if (value.Length > 0)
-                {
-                    Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
-                    //Encoding byteEncoding = Encoding.Unicode;
-                    byte[] valueAsBytes = byteEncoding.GetBytes(value);
-                    Encoding stringEncoding = Encoding.UTF8;
-                    retval = stringEncoding.GetString(valueAsBytes);
-                    if (retval.Length == 0)
-                    {
-                        retval = "Non Unicode Data Found";
-						// TODO: Need to lock this field of the current record at this point.
-						// The editor must *never* write back to the model (for this field)
-                    }
-                }
+                retval = field.ValueAsUnicode();
             }
             else
             {
-                retval = value;
+                retval = field.Value;
             }
             return retval;
         }

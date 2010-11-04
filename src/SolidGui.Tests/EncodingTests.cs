@@ -1,11 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
 
-namespace Solid.EngineTests {
+namespace SolidGui.Tests {
 	[TestFixture]
-	public class Encoding_Test
+	public class EncodingTests
 	{
 		[Test]
 		public void Store0x00To0xFFInString_Correct()
