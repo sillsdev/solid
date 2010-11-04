@@ -88,7 +88,7 @@
     />
 
     <FileUpdate File="$(teamcity_build_checkoutDir)\installer\setup-tmp.iss" Regex='#define MyAppVersion.*'
-                ReplacementText ="#define MyAppVersion \"$(Version)\"" />
+                ReplacementText = '#define MyAppVersion "$(Version)"' />
 
     <Message Text="Making Installer Version: $(Version)" Importance="high"  />
 
