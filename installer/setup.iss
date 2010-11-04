@@ -1,34 +1,38 @@
 [_ISTool]
 EnableISX=true
 
+#define MyAppName "Solid"
+#define MyAppVersion "0.0.0"
+#define MyAppPublisher "Payap Language Software"
+#define MyAppURL "http://solid.palaso.org"
+#define MyAppExeName "Solid.exe"
+
 [Setup]
-AppName=Solid
-AppVerName=Solid 0.0.0
-MinVersion=0,5.0
-DefaultDirName={pf}\Solid
-DefaultGroupName=Solid
-UninstallDisplayIcon={app}\Solid.exe
-Compression=lzma
-SolidCompression=true
+; NOTE: The value of AppId uniquely identifies this application.
+; Do not use the same AppId value in installers for other applications.
+; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
+AppId={{4AE9E6FF-434D-4465-BB07-ADC3673461AC}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+;AppVerName={#MyAppName} {#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={pf}\{#MyAppName}
+DisableDirPage=yes
+DisableReadyPage=yes
+DefaultGroupName={#MyAppName}
+DisableProgramGroupPage=yes
+LicenseFile=C:\src\sil\solid\installer\license.rtf
 OutputBaseFilename=SolidInstaller
-AppCopyright=2010 SIL International and Payap University
-VersionInfoVersion=0.0.0
-VersionInfoCompany=palaso.org Payap Language Software Group
-VersionInfoDescription=Solid MDF Lexicon Checker
-DisableDirPage=true
+Compression=lzma
+SolidCompression=yes
+WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP 
 CreateUninstallRegKey=true
-AppID={{6f3075b4-e668-41e6-8e16-75503b24dfee}
-VersionInfoCopyright=2010 palaso.org
-DisableProgramGroupPage=true
-AlwaysShowComponentsList=false
-ShowComponentSizes=false
-FlatComponentsList=false
-UsePreviousSetupType=false
-AlwaysShowDirOnReadyPage=false
-AlwaysShowGroupOnReadyPage=false
-TerminalServicesAware=false
-DisableStartupPrompt=true
-DisableReadyPage=true
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Dirs]
 Name: {app}\mappings
@@ -56,11 +60,11 @@ Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Example
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 
 [Messages]
-WinVersionTooLowError=Solid requires Windows NT4, Windows 98 or later.
+WinVersionTooLowError=Solid requires Windows 2000 or later.
 
 [Icons]
-Name: {group}\Solid; Filename: {app}\Solid.exe
-Name: {group}\Uninstall Solid; Filename: {uninstallexe}
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 [Code]
 var
@@ -161,4 +165,9 @@ begin
 end;
 
 [Run]
-Filename: {app}\Solid.exe; WorkingDir: {userdocs}\Solid Examples; Flags: nowait postinstall
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Flags: nowait postinstall skipifsilent
+
+
+[InnoIDE_Settings]
+LogFileOverwrite=false
+
