@@ -8,26 +8,24 @@ using System.Windows.Forms;
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
-using SolidGui.Model;
 using SolidGui.Processes;
 
 namespace SolidGui.Model
 {
     public struct DictionaryOpenArguments
     {
-        public SolidSettings solidSettings;
-        public RecordFilterSet filterSet;
+        public SolidSettings SolidSettings;
+        public RecordFilterSet FilterSet;
     }
 
     public class SfmDictionary : RecordManager
     {
         private List<Record> _recordList;
         private string _filePath;
-        private Dictionary<string, int> _markerFrequencies;
-        private Dictionary<string, int> _markerErrors;
-        private DateTime _lastWrittenTo;
+        private readonly Dictionary<string, int> _markerFrequencies;
+        private readonly Dictionary<string, int> _markerErrors;
 
-        private int _currentIndex;
+    	private int _currentIndex;
 
         public SfmDictionary()
         {
@@ -36,7 +34,7 @@ namespace SolidGui.Model
             _markerFrequencies = new Dictionary<string, int>();
             _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
-            _lastWrittenTo = File.GetLastWriteTime(_filePath);
+            File.GetLastWriteTime(_filePath);
         }
         /*
         public Dictionary(string path)
@@ -154,7 +152,7 @@ namespace SolidGui.Model
         public void AddRecord(SfmLexEntry entry, SolidReport report)
         {
 //            _recordList.Add(new Record(entry, report));
-            Record record = new Record(entry, report);
+            var record = new Record(entry, report);
             UpdateMarkerStatistics(record);
             _recordList.Add(record);
         }
@@ -192,9 +190,9 @@ namespace SolidGui.Model
 
         private void OnDoOpenWork(Object sender, DoWorkEventArgs args)
         {
-            ProgressState progressState = (ProgressState)args.Argument;
-            DictionaryOpenArguments openArguments = (DictionaryOpenArguments)progressState.Arguments;
-            openArguments.filterSet.BeginBuild(this);
+            var progressState = (ProgressState)args.Argument;
+            var openArguments = (DictionaryOpenArguments)progressState.Arguments;
+            openArguments.FilterSet.BeginBuild(this);
 
             var sfmDataSet = new SfmDictionary();//SfmDataSet();
 
@@ -202,16 +200,16 @@ namespace SolidGui.Model
             progressState.TotalNumberOfSteps = sfmDataSet.Count;
             progressState.NumberOfStepsCompleted = 1;
             
-            ReadDictionary(progressState, openArguments, sfmDataSet);
+            ReadDictionary(progressState, openArguments);
 
-            openArguments.filterSet.EndBuild();
+            openArguments.FilterSet.EndBuild();
         }
 
-        private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments, SfmDictionary sfmDataSet)
+        private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments)
         {
-            List<IProcess> processes = new List<IProcess>();
-            processes.Add(new ProcessEncoding(openArguments.solidSettings));
-            processes.Add(new ProcessStructure(openArguments.solidSettings));
+            var processes = new List<IProcess>();
+            processes.Add(new ProcessEncoding(openArguments.SolidSettings));
+            processes.Add(new ProcessStructure(openArguments.SolidSettings));
 
             using (var reader = SfmRecordReader.CreateFromFilePath(_filePath))
             {
@@ -225,40 +223,43 @@ namespace SolidGui.Model
                     {
                         lexEntry = process.Process(lexEntry, recordReport);
                     }
-                    //XmlNode xmlResult = process.Process(xmldoc.DocumentElement, recordReport);
                     AddRecord(lexEntry, recordReport);
-                    if (openArguments.filterSet != null)
+                    if (openArguments.FilterSet != null)
                     {
-                        openArguments.filterSet.AddRecord(Count - 1, recordReport);
+                        openArguments.FilterSet.AddRecord(Count - 1, recordReport);
                     }
                 }
+            	SfmHeader = reader.Header;
             }
+
         }
 
-        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
+    	private SfmRecord SfmHeader { get; set; }
+
+    	public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
             Palaso.Reporting.Logger.WriteEvent("Openning {0}",path);
 
 
             _filePath = path;
-            _lastWrittenTo = File.GetLastWriteTime(_filePath);
+            File.GetLastWriteTime(_filePath);
 
             _recordList.Clear();
             _markerFrequencies.Clear();
             _markerErrors.Clear();
 
-            using (ProgressDialog dlg = new ProgressDialog())
+            using (var dlg = new ProgressDialog())
             {
                 dlg.Overview = "Opening file...";
 
-                BackgroundWorker worker = new BackgroundWorker();
+                var worker = new BackgroundWorker();
                 worker.DoWork += OnDoOpenWork;
                 dlg.BackgroundWorker = worker;
                 dlg.CanCancel = true;
 
-                DictionaryOpenArguments openArguments = new DictionaryOpenArguments();
-                openArguments.filterSet = filterSet;
-                openArguments.solidSettings = solidSettings;
+                var openArguments = new DictionaryOpenArguments();
+                openArguments.FilterSet = filterSet;
+                openArguments.SolidSettings = solidSettings;
 
                 dlg.ProgressState.Arguments = openArguments;
                 dlg.ShowDialog();
@@ -304,11 +305,24 @@ namespace SolidGui.Model
             _filePath = path;
             try
             {
-                using (StreamWriter writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
+                using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
                 {
-                    foreach (Record record in _recordList)
+					/* TODO One day it might be nice to refactor this to use a (say) SfmRecordWriter, then 
+					 * we could keep more info from the SfmRecordReader for use by the writer and do a
+					 * better job of 'doing no harm' to the file, by detecting characteristics such as
+					 * trailing white space on empty markers, lines between lx, headers etc.
+					 */
+                	foreach (var field in SfmHeader)
+                	{
+						writer.Write("\\");
+                		writer.Write(field.Marker);
+						writer.Write(" ");
+						writer.Write(field.Value);
+						writer.Write("\r\n");
+					}
+                    foreach (var record in _recordList)
                     {
-                        foreach (SfmFieldModel field in record.Fields)
+                        foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
                             {

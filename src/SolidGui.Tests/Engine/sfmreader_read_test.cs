@@ -34,10 +34,10 @@ namespace SolidGui.Tests.Engine
             bool result = r.Read();
             Assert.AreEqual(false, result);
             Assert.AreEqual(2, r.Header.Count);
-            Assert.AreEqual("_sh", r.Header[0].key);
-            Assert.AreEqual("v3.0  269  MDF 4.0 (alternate hierarchy)", r.Header[0].value);
-            Assert.AreEqual("_DateStampHasFourDigitYear", r.Header[1].key);
-            Assert.AreEqual("", r.Header[1].value);
+            Assert.AreEqual("_sh", r.Header[0].Marker);
+            Assert.AreEqual("v3.0  269  MDF 4.0 (alternate hierarchy)", r.Header[0].Value);
+            Assert.AreEqual("_DateStampHasFourDigitYear", r.Header[1].Marker);
+            Assert.AreEqual("", r.Header[1].Value);
         }
 
         [Test]

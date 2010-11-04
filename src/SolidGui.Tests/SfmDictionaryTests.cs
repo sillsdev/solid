@@ -144,5 +144,22 @@ namespace SolidGui.Tests
 				Assert.That(result, Is.Not.Null);
 			}
         }
+
+		[Test]
+		public void Save_SfmWithHeader_SavedFileKeepsHeader()
+		{
+			using (var e = new EnvironmentForTest())
+			{
+				const string sfm = @"\_sh Some Header
+\lx a
+\lx b
+";
+				e.CreateDictionary(sfm);
+				var dictionary = e.OpenDictionary();
+				dictionary.Save();
+				var dictionaryText = File.ReadAllText(e.DictionaryFilePath);
+				Assert.That(dictionaryText, Is.EqualTo(sfm));
+			}
+		}
     }
 }

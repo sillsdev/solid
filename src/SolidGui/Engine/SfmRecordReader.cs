@@ -154,7 +154,7 @@ namespace SolidGui.Engine
             SfmField currentField = new SfmField();
             if (_stateLex == StateLex.StartOfRecord)
             {
-                currentField.key = _startKey;
+                currentField.Marker = _startKey;
                 _stateLex = StateLex.BuildValue;
             }
             StringBuilder sb = new StringBuilder(1024);
@@ -183,15 +183,15 @@ namespace SolidGui.Engine
                         if (_stateLex == StateLex.BuildValue)
                         {
                             // Store the key and value.
-                            currentField.value = sb.ToString();
+                            currentField.Value = sb.ToString();
                             char[] trim = { ' ', '\t', '\x0a', '\x0d' };
-                            currentField.value = currentField.value.TrimEnd(trim);
+                            currentField.Value = currentField.Value.TrimEnd(trim);
                             onField(currentField);
                             currentField = new SfmField();
                         }
                         _stateLex = StateLex.BuildKey;
                         sb.Length = 0;
-                        currentField.sourceLine = _line;
+                        currentField.SourceLine = _line;
                     }
                     _backslashCount++;
                 }
@@ -206,10 +206,10 @@ namespace SolidGui.Engine
                         if (c0 == ' ' || c0 == 0x09 || isEOL(c0))
                         {
                             // push into sb and then store
-                            currentField.key = sb.ToString();
+                            currentField.Marker = sb.ToString();
                             _stateLex = StateLex.BuildValue;
                             sb.Length = 0;
-                            if (currentField.key == _startKey)
+                            if (currentField.Marker == _startKey)
                             {
                                 _stateLex = StateLex.StartOfRecord;
                                 _recordEndLine = _line - 1; //??? -2?
@@ -239,11 +239,11 @@ namespace SolidGui.Engine
 					 */
                         break;
                     case StateLex.EOF:
-                        if (currentField.key != String.Empty)
+                        if (currentField.Marker != String.Empty)
                         {
-                            currentField.value = sb.ToString();
+                            currentField.Value = sb.ToString();
                             char [] trim = { ' ', '\t', '\x0a', '\x0d' };
-                            currentField.value = currentField.value.TrimEnd (trim);
+                            currentField.Value = currentField.Value.TrimEnd (trim);
                             onField(currentField);
                             currentField = new SfmField();
                             _recordEndLine = _line - 1; //??? -2?
@@ -325,22 +325,22 @@ namespace SolidGui.Engine
 
         public string Key(int i)
         {
-            return _record[i].key;
+            return _record[i].Marker;
         }
 
         public string Value(int i)
         {
-            return _record[i].value;
+            return _record[i].Value;
         }
 
         public string Value(string key)
         {
-            SfmField result = _record.Find(delegate(SfmField item) { return item.key == key; });
+            SfmField result = _record.Find(delegate(SfmField item) { return item.Marker == key; });
             if (result == null)
             {
                 throw new ArgumentOutOfRangeException("key");
             }
-            return result.value;
+            return result.Value;
         }
 
         char ReadChar()

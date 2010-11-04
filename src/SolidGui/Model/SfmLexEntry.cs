@@ -21,7 +21,7 @@ namespace SolidGui.Model
         {
             foreach (var f in fields)
             {
-                _fields.Add(new SfmFieldModel(f.key, f.value));
+                _fields.Add(new SfmFieldModel(f.Marker, f.Value));
             }
         }
 

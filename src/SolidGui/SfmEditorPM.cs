@@ -72,11 +72,11 @@ namespace SolidGui
                 StringBuilder sb = new StringBuilder();
                 foreach (SfmField field in sfmRecord)
                 {
-                    field.value = GetLatin1ValueFromUnicode(field.key, field.value);
+                    field.Value = GetLatin1ValueFromUnicode(field.Marker, field.Value);
                     sb.Append("\\");
-                    sb.Append(field.key);
+                    sb.Append(field.Marker);
                     sb.Append(" ");
-                    sb.Append(field.value);
+                    sb.Append(field.Value);
                     sb.Append("\n");
                 }
                 record.SetRecordContents(sb.ToString(), _solidSettings);
@@ -89,7 +89,7 @@ namespace SolidGui
 
         private static void RemoveInferredFields(List<SfmField> sfmRecord)
         {
-            sfmRecord.RemoveAll(rhs => rhs.key.StartsWith("+"));
+            sfmRecord.RemoveAll(rhs => rhs.Marker.StartsWith("+"));
         }
 
         public Font FontForMarker(string marker)
