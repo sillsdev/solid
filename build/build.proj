@@ -72,9 +72,9 @@
   </Target>
   
   <Target Name="Upload" DependsOnTargets="VersionNumbers; Installer" >
-    <Message Text="Attempting rsync of $(ApplicationName)Installer.$(Version).msi" Importance="high"/>
+    <Message Text="Attempting rsync of $(ApplicationName)Installer.$(Version).exe" Importance="high"/>
 
-    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/$(ApplicationName)Installer.$(Version).msi" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/$(ApplicationName)Installer.$(Version).msi' /> 
+    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/$(ApplicationName)Installer.$(Version).exe" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/$(ApplicationName)Installer.$(Version).exe' /> 
 
     <CallTarget Targets ='MakeDownloadPointers'/>
   </Target>
@@ -103,7 +103,7 @@
     <Delete Files="$(teamcity_build_checkoutDir)\installer\setup-tmp.iss" TreatErrorsAsWarnings="false" />
 
     <!-- remove an existing one with the same name, if necessary -->
-    <Delete Files="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).msi" TreatErrorsAsWarnings="false" />
+    <Delete Files="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).exe" TreatErrorsAsWarnings="false" />
     <Copy SourceFiles="$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe"
           DestinationFiles="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).exe" />
 
