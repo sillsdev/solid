@@ -6,6 +6,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Xsl;
+using Palaso.Code;
 using Palaso.Xml;
 using SolidGui.Engine;
 
@@ -189,11 +190,19 @@ namespace SolidGui.Mapping
 
             public override string ToString()
             {
+				if (_node == null)
+				{
+					return "";
+				}
                 return _node.GetOptionalStringAttribute("uiname", null);
             }
             
             public string GetId()
             {
+				if (_node == null)
+				{
+					return "";
+				}
                 return _node.GetOptionalStringAttribute("id", null);
             }
         }
