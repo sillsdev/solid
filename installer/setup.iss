@@ -52,10 +52,13 @@ Source: ..\output\release\Palaso.DictionaryServices.dll; DestDir: {app}; Flags: 
 Source: ..\output\release\Palaso.Lift.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
+Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\templates\MDF Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Unicode.solid; DestDir: {app}\templates
+Source: ..\templates\FLEx-friendly MDF Unicode.solid; DestDir: {app}\templates
+Source: ..\templates\FLEx-friendly MDF Legacy Font.solid; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 
