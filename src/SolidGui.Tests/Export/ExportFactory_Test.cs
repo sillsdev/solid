@@ -15,7 +15,6 @@ namespace SolidGui.Tests.Export
         public void Init()
         {
             _f = ExportFactory.Singleton();
-            _f.Path = Path.Combine(EngineEnvironment.PathOfBase, "exporters");
         }
 
         [Test]
@@ -28,11 +27,11 @@ namespace SolidGui.Tests.Export
         [Test]
         public void ExportSettingsCount_1()
         {
-            Assert.AreEqual(1, _f.ExportSettings.Count);
+            Assert.AreEqual(2, _f.ExportSettings.Count);
         }
 
         [Test]
-        public void ExportSetting0_LiftCorrect()
+        public void ExportSetting_FirstOneIsLift()
         {
             Assert.Greater(_f.ExportSettings.Count, 0);
             var h = _f.ExportSettings[0];
@@ -41,23 +40,15 @@ namespace SolidGui.Tests.Export
             Assert.AreEqual("LIFT (*.lift)|*.lift", h.FileNameFilter);
         }
 
-        [Test]
-        public void CreateFromFileFilter_NotNull()
-        {
-            Assert.Greater(_f.ExportSettings.Count, 0);
-            var h = _f.ExportSettings[0];
-            var exporter = _f.CreateFromFileFilter(h.FileNameFilter);
-            Assert.IsNotNull(exporter);
-        }
+		[Test]
+		public void ExportSetting_SecondOneIsSummary()
+		{
+			Assert.Greater(_f.ExportSettings.Count, 1);
+			var h = _f.ExportSettings[1];
+			Assert.AreEqual("Field Summary", h.Name);
+			Assert.AreEqual(ExportSummary.DriverName, h.Driver);
+			Assert.AreEqual("SFM Field Summary (*.txt)|*.txt", h.FileNameFilter);
+		}
 
-        [Test]
-        public void CreateFromFileFilterFail_IsNull()
-        {
-            Assert.Greater(_f.ExportSettings.Count, 0);
-            var h = _f.ExportSettings[0];
-            var exporter = _f.CreateFromFileFilter("nodriver");
-            Assert.IsNull(exporter);
-        }
-
-    }
+	}
 }

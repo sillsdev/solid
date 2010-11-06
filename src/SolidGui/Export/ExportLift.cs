@@ -171,5 +171,10 @@ namespace SolidGui.Export
 
 		public const string DriverName = "Lift";
 
+		public static ExportHeader GetHeader()
+		{
+			return new ExportHeader { Driver = DriverName, FileNameFilter = "LIFT (*.lift)|*.lift", Name = "LIFT" };
+		}
+
 	}
 }

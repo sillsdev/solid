@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<exporter>
-<exportheader>
-<name>LIFT</name>
-<position>10</position>
-<driver>Lift</driver>
-<filter>LIFT (*.lift)|*.lift</filter>
-</exportheader>
-</exporter>
