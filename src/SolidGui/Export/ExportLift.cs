@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.Progress.LogBox;
 using SolidGui.Engine;
@@ -151,6 +152,7 @@ namespace SolidGui.Export
 			}
 			outerProgress.WriteMessage("");
 			outerProgress.WriteMessage("Done");
+			Validator.CheckLiftWithPossibleThrow(outputFilePath);
 		}
 
 
