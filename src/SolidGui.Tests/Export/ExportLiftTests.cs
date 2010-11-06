@@ -117,18 +117,22 @@ namespace SolidGui.Tests.Export
 ";
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en");
-                DateTime dateValue;
-                DateTime.TryParseExact(                    
-                    "27/Nov/2007", "dd/MMM/yyyy",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue
-                );
-                string expectedTime = dateValue.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
-                e.AssertExportsSingleInstance(String.Format("/lift/entry[@dateCreated='{0}' and @dateModified='{0}']", expectedTime));
+            	e.AssertExportsSingleInstance(String.Format("/lift/entry[@dateCreated='{0}' and @dateModified='{0}']", ExpectedTime("27/Nov/2007")));
             }
 
         }
 
-        [Test]
+    	private string ExpectedTime(string dateAsString)
+    	{
+    		DateTime dateValue;
+    		DateTime.TryParseExact(                    
+    			dateAsString, "dd/MMM/yyyy",
+    			CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue
+    			);
+    		return dateValue.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
+    	}
+
+    	[Test]
         public void DateModified_NoLeadingZero_Exports()
         {
             using (var e = new ExportTestScenario())
@@ -139,14 +143,8 @@ namespace SolidGui.Tests.Export
 ";
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en");
-                DateTime dateValue;
-                DateTime.TryParseExact(
-                    "04/Nov/2007", "dd/MMM/yyyy",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue
-                    );
-                string expectedTime = dateValue.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
                 e.AssertExportsSingleInstance(String.Format("/lift/entry[@dateCreated='{0}' and @dateModified='{0}']",
-                                                            expectedTime));
+                                                            ExpectedTime("04/Nov/2007")));
             }
         }
 
@@ -161,14 +159,8 @@ namespace SolidGui.Tests.Export
 ";
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en");
-                DateTime dateValue;
-                DateTime.TryParseExact(
-                    "04/Nov/2007", "dd/MMM/yyyy",
-                    CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue
-                );
-                string expectedTime = dateValue.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
                 e.AssertExportsSingleInstance(
-                    String.Format("/lift/entry[@dateCreated='{0}' and @dateModified='{0}']", expectedTime)
+					String.Format("/lift/entry[@dateCreated='{0}' and @dateModified='{0}']", ExpectedTime("04/Nov/2007"))
                 );
             }
         }
@@ -358,5 +350,29 @@ namespace SolidGui.Tests.Export
                 e.AssertExportsSingleInstance("/lift/entry/etymology/field[@type='comment']/form[@lang='en' and text='comment']");
             }
         }
-    }
+
+		[Test] // http://projects.palaso.org/issues/520
+		public void DateTime_NestedStructure_Exports()
+		{
+			using (var e = new ExportTestScenario())
+			{
+				e.Input = @"
+\lx form
+\sn
+\rf 
+\xe example
+\dt 1/Nov/2010
+";
+				e.SetupMarker("sn", "sense", "en", "lx", false);
+				e.SetupMarker("rf", "example", "en", "sn", false);
+				e.SetupMarker("xe", "exampleSentence", "en", "rf", false);
+				e.SetupMarker("dt", "dateModified", "en", "lx", false);
+				e.AssertExportsSingleInstance(String.Format(
+					"/lift/entry[@dateCreated='{0}' and @dateModified='{0}']",
+				    ExpectedTime("01/Nov/2010")
+				));
+			}
+		}
+
+	}
 }

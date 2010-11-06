@@ -10,7 +10,6 @@ namespace SolidGui.Export
     {
         private List<ExportHeader> _exportSettings = new List<ExportHeader>();
         private static ExportFactory _instance = null;
-        private string _exportersPath;
 
         public List<ExportHeader> ExportSettings
         {

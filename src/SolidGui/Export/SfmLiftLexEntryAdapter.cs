@@ -231,7 +231,7 @@ namespace SolidGui.Export
             {
 				var unicodeValue = field.DecodedValue(SolidSettings).Trim();
 				var currentState = states.Peek();
-                if (field.Depth <= currentState.Depth)
+                while (field.Depth <= currentState.Depth)
                 {
                     if (currentSense != null && currentState.State == States.Sense)
                     {
