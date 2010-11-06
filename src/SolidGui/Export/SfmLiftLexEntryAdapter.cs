@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using Palaso.Code;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
@@ -490,7 +491,7 @@ namespace SolidGui.Export
                                 currentSense.Definition[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.SemanticDomain:
-                                AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "semantic-domain");
+								currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.SemanticDomainDdp4, new OptionRef(unicodeValue)));
                                 break;
                             case Concepts.CustomField:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, field.Marker);

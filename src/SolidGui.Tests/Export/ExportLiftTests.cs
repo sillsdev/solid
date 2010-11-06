@@ -374,5 +374,39 @@ namespace SolidGui.Tests.Export
 			}
 		}
 
+		[Test] // http://projects.palaso.org/issues/521
+		public void SemanticDomain_WithOneDomain_ExportsTraitUnderSense()
+		{
+			using (var e = new ExportTestScenario())
+			{
+				e.Input = @"
+\lx form
+\sn
+\sd 1 Universe
+";
+				e.SetupMarker("sn", "sense", "en", "lx", false);
+				e.SetupMarker("sd", "semanticDomain", "en", "sn", false);
+				e.AssertExportsSingleInstance("/lift/entry/sense/trait[@name='semantic-domain-ddp4' and @value='1 Universe']");
+			}
+		}
+
+		[Test] // http://projects.palaso.org/issues/521
+		public void SemanticDomain_WithTwoDomains_ExportsTwoTraitUnderSense()
+		{
+			using (var e = new ExportTestScenario())
+			{
+				e.Input = @"
+\lx form
+\sn
+\sd 1 Universe
+\sd 2 Sky
+";
+				e.SetupMarker("sn", "sense", "en", "lx", false);
+				e.SetupMarker("sd", "semanticDomain", "en", "sn", false);
+				e.AssertExportsSingleInstance("/lift/entry/sense/trait[@name='semantic-domain-ddp4' and @value='1 Universe']");
+				e.AssertExportsSingleInstance("/lift/entry/sense/trait[@name='semantic-domain-ddp4' and @value='2 Sky']");
+			}
+		}
+
 	}
 }
