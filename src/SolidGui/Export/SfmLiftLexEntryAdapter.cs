@@ -491,6 +491,7 @@ namespace SolidGui.Export
                                 currentSense.Definition[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.SemanticDomain:
+								// TODO #522 need to do some sort of range check, going from the loose anything goes \sd to the defined (hah) DDP4 rangeset. CP 2010-11
 								currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.SemanticDomainDdp4, new OptionRef(unicodeValue)));
                                 break;
                             case Concepts.CustomField:

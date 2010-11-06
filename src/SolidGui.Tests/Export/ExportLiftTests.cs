@@ -84,6 +84,25 @@ namespace SolidGui.Tests.Export
             }
         }
 
+		[Test]
+		public void Custom_TwoEntry_ExportsTwoSiblings()
+		{
+			using (var e = new ExportTestScenario())
+			{
+				e.Input = @"
+\lx TestLexeme
+\sn
+\zx Custom Field1
+\zx Custom Field2
+";
+				e.SetupMarker("lx", "lexicalUnit", "en");
+				e.SetupMarker("sn", "sense", "en", "lx", false);
+				e.SetupMarker("zx", "custom", "en", "sn", false);
+				e.AssertExportsSingleInstance("/lift/entry/sense/field[@type='zx']/form[@lang='en' and text='Custom Field1']");
+				e.AssertExportsSingleInstance("/lift/entry/sense/field[@type='zx']/form[@lang='en' and text='Custom Field2']");
+			}
+		}
+
         [Test]
         public void Definition_EnglishAndNational_ExportsTwoForms()
         {
