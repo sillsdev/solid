@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
 using SolidGui.Model;
 using SolidGui.Processes;
 
-
-namespace SolidGui.Tests.Engine
+namespace SolidGui.Tests.Processes
 {
     [TestFixture]
     public class ProcessStructureTest
@@ -1817,8 +1815,37 @@ namespace SolidGui.Tests.Engine
                 Assert.AreEqual(SolidReport.EntryType.StructureParentNotFound, report.Entries[0].EntryType);
                 Assert.AreEqual("sn", report.Entries[0].Marker);
            }
+        }
 
+        [Test]
+        public void ProcessStructure_MarkerCannotBePlacedWithMultipleEntries_HasMultpleEntriesInReport()
+        {
+            const string sfmIn1 = @"
+\lx Head1
+\xx b1";
+            const string sfmIn2 = @"
+\lx Head2
+\xx b2";
 
+            using (var environment = new EnvironmentForTest())
+            {
+                var entries = new List<SfmLexEntry>();
+                entries.Add(SfmLexEntry.CreateFromText(sfmIn1));
+                entries.Add(SfmLexEntry.CreateFromText(sfmIn2));
+
+                var settings = new SolidSettings();
+                var process = new ProcessStructure(settings);
+                var report = environment.CreateReportForTest();
+                foreach (var entry in entries)
+                {
+                    process.Process(entry, report);
+                }
+
+                Assert.AreEqual(2, report.Count);
+
+                Assert.AreEqual(SolidReport.EntryType.StructureParentNotFound, report.Entries[0].EntryType);
+                Assert.AreEqual(SolidReport.EntryType.StructureParentNotFound, report.Entries[1].EntryType);
+            }
         }
     }
 }

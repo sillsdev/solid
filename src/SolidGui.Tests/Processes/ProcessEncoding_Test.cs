@@ -1,11 +1,9 @@
-using System.Xml;
 using NUnit.Framework;
 using SolidGui.Engine;
 using SolidGui.Model;
 using SolidGui.Processes;
 
-
-namespace SolidGui.Tests.Engine
+namespace SolidGui.Tests.Processes
 {
     [TestFixture]
     public class ProcessEncodingTest
