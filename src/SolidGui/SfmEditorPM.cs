@@ -100,7 +100,7 @@ namespace SolidGui
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-                Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
+                var definition = repository.Get(writingSystemId);
                 if (null != definition)
                 {
                     var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;

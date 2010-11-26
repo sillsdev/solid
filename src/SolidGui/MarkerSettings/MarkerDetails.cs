@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
+using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Mapping;
 using SolidGui.MarkerSettings;
@@ -115,10 +116,8 @@ namespace SolidGui.MarkerSettings
                 return "??";
             }
             
-            Palaso.WritingSystems.LdmlInFolderWritingSystemStore repository =
-                new Palaso.WritingSystems.LdmlInFolderWritingSystemStore();
-
-            Palaso.WritingSystems.WritingSystemDefinition definition = repository.LoadDefinition(writingSystemId);
+            var repository = new LdmlInFolderWritingSystemStore();
+            var definition = repository.Get(writingSystemId);
 
             return (definition != null) ? definition.DisplayLabel : "??";
         }
