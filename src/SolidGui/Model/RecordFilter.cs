@@ -20,11 +20,11 @@ namespace SolidGui.Model
         }
 
 
-        public void AddEntry(ReportEntry entry)
+        public void AddEntry(int sfmLexEntryIndex)
         {
-            if (!_indexesOfRecords.Contains(entry.RecordID))
+            if (!_indexesOfRecords.Contains(sfmLexEntryIndex))
             {
-                _indexesOfRecords.Add(entry.RecordID);
+                _indexesOfRecords.Add(sfmLexEntryIndex);
             }
         }
 

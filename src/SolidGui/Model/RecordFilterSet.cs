@@ -124,7 +124,7 @@ namespace SolidGui.Model
                 {
                     filter.Add(entry.Marker, CreateSolidErrorRecordFilter(entry.EntryType, entry.Marker));
                 }
-                filter[entry.Marker].AddEntry(entry);
+                filter[entry.Marker].AddEntry(record);
             }
         }
     }

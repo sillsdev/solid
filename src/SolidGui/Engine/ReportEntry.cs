@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Palaso.Code;
 using SolidGui.Model;
 
 namespace SolidGui.Engine
@@ -18,6 +19,7 @@ namespace SolidGui.Engine
 
         public ReportEntry(SolidReport.EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
         {
+            Guard.Against(entry.RecordId == 0, "RecordID shouldn't be 0");
             _entryType = type;
             if (entry != null)
             {

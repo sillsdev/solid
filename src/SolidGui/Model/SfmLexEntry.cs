@@ -10,10 +10,12 @@ namespace SolidGui.Model
     {
         private readonly List<SfmFieldModel> _fields;
         public int RecordId { get; private set; }
+        private static int _recordID = 1;
 
         public SfmLexEntry()
         {
             _fields = new List<SfmFieldModel>();
+            RecordId = _recordID++;
         }
 
         private SfmLexEntry(IEnumerable<SfmField> fields) :
