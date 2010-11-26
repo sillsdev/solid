@@ -21,17 +21,6 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual(0, r.Count);
         }
 
-        [Test]
-        public void SolidReport_AddNullEntry_Correct()
-        {
-            var r = new SolidReport();
-            var field = new SfmFieldModel("test");
-            Assert.AreEqual(0, r.Count);
-            r.AddEntry(
-                SolidReport.EntryType.StructureParentNotFound, null, field, "Test"
-                );
-            Assert.AreEqual(1, r.Count);
-        }
         /*
         [Test]
         public void SolidReport_AddEntry_Correct()

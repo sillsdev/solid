@@ -19,6 +19,7 @@ namespace SolidGui.Engine
 
         public ReportEntry(SolidReport.EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
         {
+            Guard.AgainstNull(entry, "entry");
             Guard.Against(entry.RecordId == 0, "RecordID shouldn't be 0");
             _entryType = type;
             if (entry != null)
