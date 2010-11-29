@@ -7,8 +7,6 @@ using System.Windows.Forms;
 using GlacialComponents.Controls;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
-using SolidGui.Mapping;
-using SolidGui.MarkerSettings;
 using SolidGui.Model;
 
 
@@ -20,7 +18,7 @@ namespace SolidGui.MarkerSettings
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
         private FilterChooserPM _filterChooserPM;
-        private MarkerFilter _filter = null;
+        private MarkerFilter _filter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
@@ -32,7 +30,7 @@ namespace SolidGui.MarkerSettings
 
             var frequencyCount = (from GLColumn c in _listView.Columns where c.Text == "Count" select c).First();
             frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));
-            this._listView.GridLineStyle = GLGridLineStyles.gridNone;
+            _listView.GridLineStyle = GLGridLineStyles.gridNone;
             _listView.SelectionColor = Color.LightYellow;
             _listView.SelectedTextColor = Color.Black;
         }
@@ -89,7 +87,6 @@ namespace SolidGui.MarkerSettings
             SelectMarker(previouslySelectedMarker);
         }
 
-
         private void FillInCheckedColumn(ListViewItem item, int errorCount)
         {
             if(errorCount > 0)
@@ -102,14 +99,12 @@ namespace SolidGui.MarkerSettings
             }
         }
 
-        private void FillInFrequencyColumn(GLItem item, string frequency)
+        private static void FillInFrequencyColumn(GLItem item, string frequency)
         {
-            GLSubItem x = new GLSubItem();
-            x.Text = frequency;
-            item.SubItems.Add(x);
+            item.SubItems.Add(new GLSubItem {Text = frequency} );
         }
 
-        private string MakeWritingSystemLinkLabel(string writingSystemId)
+        private static string MakeWritingSystemLinkLabel(string writingSystemId)
         {
             if (string.IsNullOrEmpty(writingSystemId))
             {
@@ -117,27 +112,30 @@ namespace SolidGui.MarkerSettings
             }
             
             var repository = new LdmlInFolderWritingSystemStore();
+            if (!repository.Exists(writingSystemId))
+            {
+                return writingSystemId;
+            }
             var definition = repository.Get(writingSystemId);
-
             return (definition != null) ? definition.DisplayLabel : "??";
         }
 
         private string MakeMappingLinkLabel(SolidMarkerSetting.MappingType type, SolidMarkerSetting markerSetting)
         {
             string conceptId = markerSetting.GetMappingConceptId(type);
-            MappingPM.MappingSystem mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
+            var mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
             
-            MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId);
+            var concept = mappingSystem.GetConceptById(conceptId);
 
             string mapping = (concept != null) ? concept.ToString() : null;
             
             return mapping ?? "??";
         }
 
-        private string MakeStructureLinkLabel(IList<SolidStructureProperty> properties)
+        private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties)
         {
             string parents = "";
-            foreach (SolidStructureProperty property in properties)
+            foreach (var property in properties)
             {
                 if (!string.IsNullOrEmpty(property.Parent))
                 {
@@ -155,15 +153,15 @@ namespace SolidGui.MarkerSettings
             return parents;
         }
 
-        private void AddLinkSubItem(GLItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
+        private static void AddLinkSubItem(GLItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
         {
-            LinkLabel label = new LinkLabel();
+            var label = new LinkLabel();
             label.Text = text;
             label.AutoEllipsis = true;
-            label.LinkColor = System.Drawing.Color.Black;
+            label.LinkColor = Color.Black;
             if (text == "???")
             {
-                label.LinkColor = System.Drawing.Color.Red;
+                label.LinkColor = Color.Red;
             }
 
             label.Tag = item;
@@ -228,12 +226,12 @@ namespace SolidGui.MarkerSettings
             {
                 return;
             }
-            if (area == null || area == "")
+            if (String.IsNullOrEmpty(area))
             {
                 area = "structure";
             }
             string marker = _listView.SelectedItems[0].Text;
-            MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
+            var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
             if (MarkerSettingPossiblyChanged != null)
@@ -248,7 +246,7 @@ namespace SolidGui.MarkerSettings
                 return;
             }
             string marker = _listView.SelectedItems[0].Text;
-            MarkerSettingsDialog dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
+            var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.MappingType = mappingType;
             dialog.ShowDialog();
@@ -263,16 +261,9 @@ namespace SolidGui.MarkerSettings
         {
             foreach(GLItem a in _listView.Items)
             {
-                if(a.Text == marker)
-                {
-                    a.Selected = true;
-                }
-                else
-                {
-                    a.Selected = false;
-                }
+                a.Selected = (a.Text == marker);
             }
-            if(string.IsNullOrEmpty(marker) && _listView.Items.Count >0)
+            if(String.IsNullOrEmpty(marker) && _listView.Items.Count > 0)
             {
                 _listView.Items[0].Selected = true;
                 //hack for a bug in Glacial List
