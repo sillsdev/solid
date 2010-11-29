@@ -94,18 +94,18 @@ namespace SolidGui
 
         public Font FontForMarker(string marker)
         {
-            var repository = new LdmlInFolderWritingSystemStore();
             string writingSystemId = _solidSettings.FindOrCreateMarkerSetting(marker).WritingSystemRfc4646;
 
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-                var definition = repository.Get(writingSystemId);
-                if (null != definition)
-                {
-                    var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
-                    return new Font(definition.DefaultFontName, fontSize);
-                }
+				var repository = new LdmlInFolderWritingSystemStore();
+				if (repository.Exists(writingSystemId))
+				{
+					var definition = repository.Get(writingSystemId);
+					var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
+					return new Font(definition.DefaultFontName, fontSize);
+				}
             }
             // Failing that use Doulos if it's installed.
             if (FontIsInstalled("Doulos SIL"))
