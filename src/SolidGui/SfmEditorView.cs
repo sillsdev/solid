@@ -4,8 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Elsehemy;
-using SolidGui.Engine;
+using Palaso.UI.WindowsForms.SuperToolTip;
 using SolidGui.Model;
 
 

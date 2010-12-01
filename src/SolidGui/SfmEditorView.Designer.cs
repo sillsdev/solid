@@ -31,7 +31,7 @@ namespace SolidGui
 			this.components = new System.ComponentModel.Container();
 			this._contentsBox = new System.Windows.Forms.RichTextBox();
 			this._timer = new System.Windows.Forms.Timer(this.components);
-			this.superToolTip1 = new Elsehemy.SuperToolTip(this.components);
+            this.superToolTip1 = new Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip(this.components);
 			this.SuspendLayout();
 			// 
 			// _contentsBox
@@ -76,7 +76,7 @@ namespace SolidGui
 
         public System.Windows.Forms.RichTextBox _contentsBox;
         private System.Windows.Forms.Timer _timer;
-        private Elsehemy.SuperToolTip superToolTip1;
+        private Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip superToolTip1;
 
     }
 }
