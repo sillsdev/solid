@@ -1,4 +1,4 @@
-using SolidGui.Model;
+using SolidGui.Filter;
 
 namespace SolidGui.Search
 {

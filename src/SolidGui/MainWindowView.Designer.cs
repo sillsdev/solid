@@ -1,3 +1,4 @@
+using SolidGui.Filter;
 using SolidGui.Search;
 using MarkerDetails=SolidGui.MarkerSettings.MarkerDetails;
 
@@ -51,7 +52,7 @@ namespace SolidGui
             this._recheckButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._markerDetails = new MarkerDetails();
-            this._filterChooserView = new SolidGui.FilterChooserView();
+            this._filterChooserView = new FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();

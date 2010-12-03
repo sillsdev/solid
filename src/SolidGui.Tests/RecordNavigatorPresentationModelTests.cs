@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using SolidGui.Filter;
 using SolidGui.Model;
 
 namespace SolidGui.Tests

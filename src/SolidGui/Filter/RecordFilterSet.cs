@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using SolidGui.Engine;
+using SolidGui.Model;
 
-namespace SolidGui.Model
+namespace SolidGui.Filter
 {
     public class RecordFilterSet : List<RecordFilter>
     {

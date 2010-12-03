@@ -9,6 +9,7 @@ using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
 using SolidGui.Export;
+using SolidGui.Filter;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;
 using SolidGui.Search;

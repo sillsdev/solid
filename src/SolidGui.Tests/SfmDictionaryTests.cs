@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using SolidGui.Engine;
+using SolidGui.Filter;
 using SolidGui.Model;
 using Palaso.TestUtilities;
 

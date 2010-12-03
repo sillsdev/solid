@@ -1,8 +1,7 @@
 using System;
 using System.Windows.Forms;
-using SolidGui.Model;
 
-namespace SolidGui
+namespace SolidGui.Filter
 {
     /// <summary>
     /// The filter chooser is the list of filters the user can click on.

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using GlacialComponents.Controls;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
+using SolidGui.Filter;
 using SolidGui.Model;
 
 

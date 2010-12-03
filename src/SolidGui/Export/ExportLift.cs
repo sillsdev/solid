@@ -6,6 +6,7 @@ using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.Progress.LogBox;
 using SolidGui.Engine;
+using SolidGui.Filter;
 using SolidGui.Model;
 using System.Linq;
 

@@ -5,6 +5,7 @@ using Palaso.Progress.LogBox;
 using Palaso.TestUtilities;
 using SolidGui.Engine;
 using SolidGui.Export;
+using SolidGui.Filter;
 using SolidGui.Model;
 
 namespace SolidGui.Tests.Export

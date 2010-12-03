@@ -1,6 +1,7 @@
 using System;
 using System.Media;
 using System.Windows.Forms;
+using SolidGui.Filter;
 using SolidGui.Model;
 
 namespace SolidGui.Search
