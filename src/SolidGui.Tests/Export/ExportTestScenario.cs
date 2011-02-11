@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using Palaso.IO;
 using Palaso.Progress.LogBox;
 using Palaso.TestUtilities;
 using SolidGui.Engine;
