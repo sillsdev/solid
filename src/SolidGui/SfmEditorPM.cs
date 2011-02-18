@@ -83,7 +83,7 @@ namespace SolidGui
             }
             else
             {
-                throw new Exception("Current record is not readable sfm");
+                throw new Exception("Solid was trying to update a record in a form which could not be read back in:"+newContents);
             }
         }
 
