@@ -22,19 +22,32 @@ namespace SolidGui.Export
         public List<Relation> Relations { get; private set; }
         public List<LiftLexEntryAdapter> SubEntries { get; private set; }
 
+        /// <summary>
+        /// This is a bit of awkward, I admit. But it allows us to gather and resolve sense relations the same as entry relations
+        /// </summary>
+        public List<KeyValuePair<LexSense, Relation> > SenseRelations {get; private set;}
+
         public LiftLexEntryAdapter(LiftDataMapper dm)
         {
             liftDataMapper = dm;
             LiftLexEntry = dm.CreateItem();
             Relations = new List<Relation>();
             SubEntries = new List<LiftLexEntryAdapter>();
+            SenseRelations = new List<KeyValuePair<LexSense, Relation>>();
         }
 
-        public void MakeRelation(string guid, string type)
+        public void MakeRelationFromEntryToEntry(string guid, string type)
         {
             LiftLexEntry.AddRelationTarget(type, guid); // string relationName?, string targetID
         }
 
+        public void MakeRelationFromSenseToEntry(LexSense sense, string guid, string type)
+        {
+            var i = LiftLexEntry.Senses.IndexOf(sense);
+            if(i<0)
+                throw new ArgumentOutOfRangeException("Programming error: Could not find sense");
+            LiftLexEntry.Senses[i].AddRelationTarget(type, guid);
+        }
         
     }
 
@@ -322,7 +335,7 @@ namespace SolidGui.Export
                                 AddBorrowedWord(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source language*/unicodeValue);
                                 break;
                             case Concepts.Confer:
-                                HandleLexicalRelation(field, currentState, unicodeValue, "confer");
+                                currentState.LexEntryAdapter.Relations.Add(HandleLexicalRelation(field, currentState, unicodeValue, "confer"));
                                 break;
                             case Concepts.DateModified:
                                 var inModTime = unicodeValue.Trim();
@@ -409,7 +422,7 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.LexicalRelationType:
-                                HandleLexicalRelation(field, currentState, unicodeValue, "");
+                               currentState.LexEntryAdapter.Relations.Add(HandleLexicalRelation(field, currentState, unicodeValue, ""));
                                 break;
                                 
                             case Concepts.GrammaticalInfo_PS:
@@ -432,6 +445,11 @@ namespace SolidGui.Export
                         {
                             default:
                                 progress.WriteError(unicodeEntryName + ": Could not handle the concept '{0}' in the sense state.", liftInfo.LiftConcept);
+                                break;
+
+
+                            case Concepts.LexicalRelationType:
+                                currentState.LexEntryAdapter.SenseRelations.Add(new KeyValuePair<LexSense, Relation>(currentSense, HandleLexicalRelation(field, currentState, unicodeValue, string.Empty)));
                                 break;
 
                             case Concepts.Ignore: // dont add to LexEntry
@@ -512,11 +530,6 @@ namespace SolidGui.Export
                                 }
                                 break;
 
-
-
-
-
-
                             case Concepts.ScientificName:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, "scientific-name");
                                 break;
@@ -525,18 +538,18 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.Antonym:
-                                AddRelationToSense(currentSense, unicodeValue, "antonym");//review: exactly spelling?
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "antonym");
                                 break;
                             case Concepts.Synonym:
-                                AddRelationToSense(currentSense, unicodeValue, "synonym");//review: exactly spelling?
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "synonym");
                                 break;
                             
                             case Concepts.LexicalRelationLexeme:
-                                AddRelationToSense(currentSense, unicodeValue, string.Empty);
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "----");//TODO
                                 break;
                             
                             case Concepts.Confer:
-                                 AddRelationToSense(currentSense, unicodeValue, "confer");
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "confer");
                                 break;
 
                             // change state
@@ -592,6 +605,11 @@ namespace SolidGui.Export
             }
         }
 
+        private void AddSenseRelation(StateInfo currentState, LexSense currentSense, string unicodeValue, string relationType)
+        {
+            currentState.LexEntryAdapter.SenseRelations.Add(new KeyValuePair<LexSense, Relation>(currentSense, new Relation(unicodeValue,relationType)));
+        }
+
 
         private LexEtymology AddBorrowedWord(LexEntry liftLexEntry, string type, string sourceLanguage)
         {
@@ -637,10 +655,9 @@ namespace SolidGui.Export
             liftLexEntry.Variants.Add(variant);
         }
 
-        private void HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
+        private Relation HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
         {
             string type1 = type;
-            Relation relation1;
             string targetID = "";
 
             //used for things like \an, antonym
@@ -668,19 +685,12 @@ namespace SolidGui.Export
                 }
             }
 
-            // store in list
-            relation1 = new Relation(targetID, type1);
-            Relation relation = relation1;
-            currentState.LexEntryAdapter.Relations.Add(relation);
+            Relation relation1 = new Relation(targetID, type1);
+            Relation relation = relation1;//review: huh?
+            return relation;
         }
 
-        /// <summary>
-        /// Review: note that unlike what was attempted for entry, I'm just making a relation to the form, here.
-        /// </summary>
-        private void AddRelationToSense(LexSense sense, string target, string type)
-        {
-            sense.AddRelationTarget(type, target);
-        }
+
 
         private PartOfSpeechModes PartOfSpeechMode { get; set; }
 

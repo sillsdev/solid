@@ -126,6 +126,7 @@
   <ItemGroup>
     <Compile Include="EncodingTests.cs" />
     <Compile Include="Engine\EngineEnvironment_Test.cs" />
+    <Compile Include="Export\ExportLift_RelationsTests.cs" />
     <Compile Include="Processes\ProcessEncoding_Test.cs" />
     <Compile Include="Processes\ProcessStructure_Test.cs" />
     <Compile Include="Engine\sfmreader_read_test.cs" />

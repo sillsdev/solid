@@ -55,22 +55,6 @@ namespace SolidGui.Tests.Export
         }
 
         [Test]
-        public void Confer_cfInFirstEntry_ExportsRelationInFirstEntry()
-        {
-            using (var e = new ExportTestScenario())
-            {
-                e.Input = @"
-\lx EntryOne
-\cf EntryTwo
-\lx EntryTwo
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("cf", "confer", "en");
-                e.AssertExportsSingleInstance("/lift/entry/relation[@type='confer']"); // I (CP) don't (yet) know how to test the target guid in xpath 2010-11
-            }
-        }
-
-        [Test]
         public void Custom_SingleEntry_ExportsField()
         {
             using (var e = new ExportTestScenario())
@@ -84,28 +68,7 @@ namespace SolidGui.Tests.Export
                 e.AssertExportsSingleInstance("/lift/entry/field[@type='zx']/form[@lang='en' and text='Custom Field']");
             }
         }
-
-        [Test]
-        public void SubEntry_MakesToLiftEntriesWithSubPointedAtBase()
-        {
-            using (var e = new ExportTestScenario())
-            {
-                e.Input = @"
-\lx tired
-\se dog tired
-";
-                e.SetupMarker("lx", "lexicalUnit", "en");
-                e.SetupMarker("se", "subentry", "en");
-                e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='tired']");
-                 e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='dog tired']");
-                var dom = new XmlDocument();
-                dom.LoadXml(e.LiftAsString());
-                var n = dom.SelectSingleNode("/lift/entry[lexical-unit/form[text='tired']]");
-                var guid = n.Attributes["guid"].Value;
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='BaseForm' and @ref='{0}']",guid), 1);
-            }
-        }
-
+      
 		[Test]
 		public void Custom_TwoEntry_ExportsTwoSiblings()
 		{

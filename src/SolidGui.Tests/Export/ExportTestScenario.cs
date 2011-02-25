@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using NUnit.Framework;
 using Palaso.IO;
 using Palaso.Progress.LogBox;
 using Palaso.TestUtilities;
@@ -17,8 +18,16 @@ namespace SolidGui.Tests.Export
         private readonly TempFile _sfmFile;
         private SfmDictionary _dictionary;
         private bool _isDictionaryOpen;
+         private StringBuilderProgress _progress = new StringBuilderProgress();
 
-
+        public string ProgressOutput
+        {
+            get
+            {
+                return _progress.Text;
+            }
+        }
+            
         public ExportTestScenario(string sfm):this()
         {          
             Input = sfm;
@@ -35,6 +44,7 @@ namespace SolidGui.Tests.Export
             SetupMarker("lx", "lexicalUnit", "en");
             SetupMarker("sn", "sense", "en", "lx", false);
 
+       
           }
         public string Input
         {
@@ -54,7 +64,7 @@ namespace SolidGui.Tests.Export
         public void Export()
         {
             var liftExporter = new ExportLift();
-            liftExporter.Export(Dictionary.AllRecords, SolidSettings, LiftPath, new ConsoleProgress());
+            liftExporter.Export(Dictionary.AllRecords, SolidSettings, LiftPath, new MultiProgress(new IProgress[] {_progress, new ConsoleProgress()}));;
         }
 
         public void AssertExportsSingleInstance(string xpath)
@@ -117,6 +127,15 @@ namespace SolidGui.Tests.Export
         public void Dispose()
         {
             _folder.Dispose();
+        }
+
+        public void AssertNoErrorWasReported()
+        {
+            Assert.False(ProgressOutput.ToLower().Contains("error"));
+        }
+        public void AssertErrorWasReported()
+        {
+            Assert.That(ProgressOutput.ToLower(), Contains.Substring("error"));
         }
     }
 }

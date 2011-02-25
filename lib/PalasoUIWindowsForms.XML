@@ -55,6 +55,85 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ScannerAcquire.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ScannerAcquire.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ScannerAcquire.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxControl.ImageInfo">
+            <summary>
+            This is the main input/output of this dialog
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.Cropping.ImageCropper._startOfDrag">
+            <summary>
+            Used to mark the spot where the user first started dragging the mouse, when he clicks somewhere other than one of the grips.
+            We use this to create the new crop rectangle as he continues the drag.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.Cropping.ImageCropper.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.Cropping.ImageCropper.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.Cropping.ImageCropper.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="M:Palaso.UI.WindowsForms.HotSpot.HotSpotProvider.HotSpotPainter.GetHotSpotsFromOffset(System.Int32)">
             <summary>
             Find the first HotArea that contains the offset
@@ -584,18 +663,18 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:WeSay.LexicalTools.AddPictures.PictureChooser.components">
+        <member name="F:Palaso.UI.WindowsForms.ImageGallery.PictureChooser.components">
             <summary> 
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WeSay.LexicalTools.AddPictures.PictureChooser.Dispose(System.Boolean)">
+        <member name="M:Palaso.UI.WindowsForms.ImageGallery.PictureChooser.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WeSay.LexicalTools.AddPictures.PictureChooser.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.ImageGallery.PictureChooser.InitializeComponent">
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
@@ -656,6 +735,23 @@
             a label which describes what we are busy doing
             </summary>
         </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.GetImageFromFileSystemControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.GetImageFromFileSystemControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.GetImageFromFileSystemControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox.components">
             <summary> 
             Required designer variable.
@@ -684,59 +780,93 @@
             </summary>
             <param name="model"></param>
         </member>
-        <member name="P:Elsehemy.SuperToolTipInfo.OffsetForWhereToDisplay">
+        <member name="P:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipInfo.OffsetForWhereToDisplay">
             <summary>
             Set this when you need to control just where the tt is going to display
             </summary>
         </member>
-        <member name="F:Elsehemy.SuperToolTipWindowData.components">
+        <member name="F:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipWindowData.components">
             <summary> 
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Elsehemy.SuperToolTipWindowData.Dispose(System.Boolean)">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipWindowData.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Elsehemy.SuperToolTipWindowData.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipWindowData.InitializeComponent">
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:Elsehemy.SuperToolTip.components">
+        <member name="F:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Elsehemy.SuperToolTip.Dispose(System.Boolean)">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Elsehemy.SuperToolTip.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:Elsehemy.dlgSuperToolTipEditor.components">
+        <member name="F:Palaso.UI.WindowsForms.SuperToolTip.dlgSuperToolTipEditor.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Elsehemy.dlgSuperToolTipEditor.Dispose(System.Boolean)">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.dlgSuperToolTipEditor.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Elsehemy.dlgSuperToolTipEditor.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.SuperToolTip.dlgSuperToolTipEditor.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ImageLicenseControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageLicenseControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageLicenseControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ArtOfReadingChooser.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ArtOfReadingChooser.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ArtOfReadingChooser.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
         </member>
@@ -821,6 +951,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ImageCreditsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageCreditsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageCreditsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="M:Palaso.UI.WindowsForms.ImageGallery.IImageCollection.GetThumbNail(System.Object)">
             <summary>
             The imageTOken here could be a path or whatever, the client doesn't need to know or care
@@ -844,19 +991,19 @@
             but which are unlikely to be the study of language documentation efforst
             </summary>
         </member>
-        <member name="T:Elsehemy.SuperToolTipInfoWrapper">
+        <member name="T:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipInfoWrapper">
             <summary>
             Class to wrap SuperToolTipInfo with a Boolean variable to use the 
             SuperToolTip or not.
             </summary>
         </member>
-        <member name="P:Palaso.UI.WindowsForms.Progress.ProgressDialogHandler.TestEverythingClosedUp">
+        <member name="P:Palaso.UI.WindowsForms.Progress.Commands.ProgressDialogHandler.TestEverythingClosedUp">
             <summary>
             tests (or anything else that is rapidly chaining these things together)
             should use this to make sure we're ready to go on to the next activity
             </summary>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.Progress.ProgressDialogHandler.ExceptionMethodInvoker">
+        <member name="T:Palaso.UI.WindowsForms.Progress.Commands.ProgressDialogHandler.ExceptionMethodInvoker">
             <summary>
             A delegate for a method which takes an exception as its only parmeter
             </summary>
@@ -942,6 +1089,11 @@
             to its events
             </summary>
         </member>
+        <member name="P:Palaso.UI.WindowsForms.Progress.ProgressDialog.BarStyle">
+            <summary>
+            Gets or sets the manner in which progress should be indicated on the progress bar.
+            </summary>
+        </member>
         <member name="P:Palaso.UI.WindowsForms.Progress.ProgressDialog.ProgressState">
             <summary>
             Optional; one will be created (of some class or subclass) if you don't set it.
@@ -953,6 +1105,22 @@
         <member name="E:Palaso.UI.WindowsForms.Progress.ProgressDialog.CancelRequested">
             <summary>
             Raised when the cancel button is clicked
+            </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.ImageToolbox.SampleImages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.SampleImages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.SampleImages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
         <member name="M:Palaso.UI.WindowsForms.WritingSystems.WritingSystemSetupDialog.#ctor(Palaso.UI.WindowsForms.WritingSystems.WritingSystemSetupModel)">
@@ -1221,6 +1389,22 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
         <member name="F:Palaso.UI.WindowsForms.WritingSystems.WSSortControl.components">
             <summary> 
             Required designer variable.
@@ -1310,31 +1494,31 @@
              Basically just handles selecting from likely options, based on what you type
             </summary>
         </member>
-        <member name="F:Palaso.UI.Widgets.ControlListBox.components">
+        <member name="F:Palaso.UI.WindowsForms.Widgets.ControlListBox.components">
             <summary> 
             Required designer variable.
             </summary>
         </member>
-        <member name="M:Palaso.UI.Widgets.ControlListBox.Dispose(System.Boolean)">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.ControlListBox.Dispose(System.Boolean)">
             <summary> 
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:Palaso.UI.Widgets.ControlListBox.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.ControlListBox.InitializeComponent">
             <summary> 
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:Palaso.UI.Widgets.ControlListBox.AddControl(System.Windows.Forms.Control,System.Int32)">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.ControlListBox.AddControl(System.Windows.Forms.Control,System.Int32)">
             <summary>
             Callers: consider control.AutoSizeMode = AutoSizeMode.GrowAndShrink if the control supports it.
             </summary>
             <param name="control"></param>
             <param name="insertAtRow"></param>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.WritingSystems.GroupTreeItem">
+        <member name="T:Palaso.UI.WindowsForms.WritingSystems.WSTree.GroupTreeItem">
             <summary>
             this is used when it would be confusing to make one of the WS's primary above the others.
             related to http://projects.palaso.org/issues/show/482
@@ -1374,13 +1558,13 @@
             this runs in a worker thread
             </summary>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.WritingSystems.WritingSystemTreeModel">
+        <member name="T:Palaso.UI.WindowsForms.WritingSystems.WSTree.WritingSystemTreeModel">
             <summary>
             This is the Presentation Model (e.g., logic, no UI) for the list
             of existing writing systems and ones the user might want to add.
             </summary>
         </member>
-        <member name="P:Palaso.UI.WindowsForms.WritingSystems.WritingSystemTreeModel.Suggestor">
+        <member name="P:Palaso.UI.WindowsForms.WritingSystems.WSTree.WritingSystemTreeModel.Suggestor">
             <summary>
             Given some existing writiting system definitions for a language, what other ones might they want ot add?
             </summary>

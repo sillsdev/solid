@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
+using Palaso.DictionaryServices.Model;
 using Palaso.Progress.LogBox;
 using SolidGui.Engine;
 using SolidGui.Filter;
@@ -17,7 +18,7 @@ namespace SolidGui.Export
 
 		public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath, IProgress outerProgress)
 		{
-			var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
+			
 			var liftLexEntries = new List<SfmLiftLexEntryAdapter>();
 			var logPath = outputFilePath + ".exportErrors.txt";
 			if (File.Exists(outputFilePath))
@@ -35,110 +36,11 @@ namespace SolidGui.Export
 
 			using (var dm = new LiftDataMapper(outputFilePath))
 			{
-				//REVIEW: If I'm (jh) reading this right, it will need a restructuring in order to support
-				//relations which point from a sense to... anything.  That's becuase until the index
-				//is build, we can't come up with the target id. Seems like we need to introduce a 
-				//pre-pass, which only creates the index.  Then, make senses be able to output lexical
-				//relations, at least to entries (pointing at specific senses would be harder still).
-
 				// first pass
-				foreach (var sfmLexEntry in sfmLexEntries)
-				{
-					try
-					{
-						var adaptedEntry = new SfmLiftLexEntryAdapter(dm, sfmLexEntry.LexEntry, solidSettings);
-						liftLexEntries.Add(adaptedEntry);
-						adaptedEntry.PopulateEntry(progress);
-
-						/* this worked for one homograph with no actual ordernumber, but would crash when you hit a second one 
-						 *
-						 * if (index.ContainsKey(sfmId)) // is a duplicate
-						  {
-							  // get the duplicated entry from index and change its name to SfmID_HomonymNumber
-							  var entry = index[sfmId];
-							  entry.SfmID = entry.SfmID + "_" + entry.HomonymNumber;
-
-							  // add the new adapted entry to the index with name SfmID_HomonymNumber
-							  index.Add(sfmId + "_" + adaptedEntry.HomonymNumber, adaptedEntry);
-						  }
-						  */
-						var sfmId = adaptedEntry.SfmID;
-						var homograph = 0;
-						while (index.ContainsKey(sfmId)) // is a duplicate
-						{
-							++homograph;
-							sfmId = adaptedEntry.SfmID + "_" + homograph;
-						}
-
-						// add to dictionary
-						index.Add(sfmId, adaptedEntry);
-
-					}
-					catch (Exception error)
-					{
-						progress.WriteError(sfmLexEntry.LexEntry.GetName(solidSettings) + ": " + error);
-					}
-				}
-				SfmLiftLexEntryAdapter targetLexEntry;
+				var index = ConvertAllEntriesToLift(sfmLexEntries, dm, solidSettings, liftLexEntries, progress);
 
 				// second pass
-				foreach (var adaptedEntry in liftLexEntries)
-				{
-					try
-					{
-						foreach (var relation in adaptedEntry.Relations)
-						{
-							// if the target is in the dictionary, add the relation, else post a note
-							if (index.ContainsKey(relation.TargetID))
-							{
-								targetLexEntry = index[relation.TargetID];
-								string guidOfTargetEntry = targetLexEntry.GUID;
-								adaptedEntry.MakeRelation(guidOfTargetEntry, relation.Type);
-
-							}
-							else
-							{
-								adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetID));
-                                progress.WriteError("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetID, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
-							}
-						}
-
-						//    dm.SaveItem(adaptedEntry.LiftLexEntry);
-
-						foreach (var subEntry in adaptedEntry.SubEntries)
-						{
-							foreach (var relation in subEntry.Relations)
-							{
-								// if the target is in the dictionary, add the relation, else post a note
-								if (index.ContainsKey(relation.TargetID))
-								{
-									targetLexEntry = index[relation.TargetID];
-									string guidOfTargetEntry = targetLexEntry.GUID;
-									adaptedEntry.MakeRelation(guidOfTargetEntry, relation.Type);
-
-								}
-								else
-								{
-                                    adaptedEntry.AddSolidNote(String.Format("Cannot find subentry target: {0}", relation.TargetID));
-                                    progress.WriteError("Cannot find subentry target: {0}, referenced from {1}", relation.TargetID, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
-								}
-							}
-
-							// dm.SaveItem(subEntry.LiftLexEntry);
-						}
-
-						// Got any potential relations?
-						// if so
-						// foreach one find your target in the index, get it's id, and make the relation
-
-
-					}
-					catch (Exception error)
-					{
-						progress.WriteError(adaptedEntry.SfmID + ": " + error);
-					}
-
-				}
+				ResolveTargetsOfRelations(liftLexEntries, progress, index);
 				dm.SaveItems(from x in dm.GetAllItems() select dm.GetItem(x));
 			}
 
@@ -154,8 +56,133 @@ namespace SolidGui.Export
 			Validator.CheckLiftWithPossibleThrow(outputFilePath);
 		}
 
+	    private Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
+	    {
+            var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
+	        foreach (var sfmLexEntry in sfmLexEntries)
+	        {
+	            try
+	            {
+	                var adaptedEntry = new SfmLiftLexEntryAdapter(dm, sfmLexEntry.LexEntry, solidSettings);
+	                liftLexEntries.Add(adaptedEntry);
+	                adaptedEntry.PopulateEntry(progress);
 
-		public void ExportAsync(object sender, DoWorkEventArgs args)
+	                /* this worked for one homograph with no actual ordernumber, but would crash when you hit a second one 
+						 *
+						 * if (index.ContainsKey(sfmId)) // is a duplicate
+						  {
+							  // get the duplicated entry from index and change its name to SfmID_HomonymNumber
+							  var entry = index[sfmId];
+							  entry.SfmID = entry.SfmID + "_" + entry.HomonymNumber;
+
+							  // add the new adapted entry to the index with name SfmID_HomonymNumber
+							  index.Add(sfmId + "_" + adaptedEntry.HomonymNumber, adaptedEntry);
+						  }
+						  */
+	                var sfmId = adaptedEntry.SfmID;
+	                var homograph = 0;
+	                while (index.ContainsKey(sfmId)) // is a duplicate
+	                {
+	                    ++homograph;
+	                    sfmId = adaptedEntry.SfmID + "_" + homograph;
+	                }
+
+	                // add to dictionary
+	                index.Add(sfmId, adaptedEntry);
+
+	            }
+	            catch (Exception error)
+	            {
+	                progress.WriteError(sfmLexEntry.LexEntry.GetName(solidSettings) + ": " + error);
+	            }
+	        }
+	        return index;
+	    }
+
+            private void ResolveTargetsOfRelations(List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress, Dictionary<string, SfmLiftLexEntryAdapter> index)
+            {
+                foreach (var adaptedEntry in liftLexEntries)
+                {
+                    try
+                    {
+                        foreach (var relation in adaptedEntry.Relations)
+                        {
+                            ResolveTargetOfRelation(index, relation, adaptedEntry, progress);
+                        }
+                        
+                        foreach (var senseAndRelation in adaptedEntry.SenseRelations)
+                        {
+                            ResolveTargetOfSenseRelation(index, senseAndRelation.Key, senseAndRelation.Value, adaptedEntry, progress);
+                        }
+
+                        ProcessSubentryRelations(adaptedEntry, index, progress);
+                    }
+                    catch (Exception error)
+                    {
+                        progress.WriteError(adaptedEntry.SfmID + ": " + error);
+                    }
+                }
+            }
+
+	    private void ResolveTargetOfRelation(Dictionary<string, SfmLiftLexEntryAdapter> index,  Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
+	    {
+	        SfmLiftLexEntryAdapter targetLexEntry;
+	        if (index.ContainsKey(relation.TargetForm))
+	        {
+	            targetLexEntry = index[relation.TargetForm];
+	            string guidOfTargetEntry = targetLexEntry.GUID;
+	            adaptedEntry.MakeRelationFromEntryToEntry(guidOfTargetEntry, relation.Type);
+	        }
+	        else
+	        {
+	            adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetForm));
+	            progress.WriteWarning("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
+	        }
+	    }
+
+        private void ResolveTargetOfSenseRelation(Dictionary<string, SfmLiftLexEntryAdapter> index, LexSense sense, Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
+        {
+            SfmLiftLexEntryAdapter targetLexEntry;
+            if (index.ContainsKey(relation.TargetForm))
+            {
+                targetLexEntry = index[relation.TargetForm];
+                string guidOfTargetEntry = targetLexEntry.GUID;
+                adaptedEntry.MakeRelationFromSenseToEntry(sense, guidOfTargetEntry, relation.Type);
+            }
+            else
+            {
+                adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetForm));
+                progress.WriteWarning("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
+            }
+        }
+	    private void ProcessSubentryRelations(SfmLiftLexEntryAdapter adaptedEntry, Dictionary<string, SfmLiftLexEntryAdapter> index, MultiProgress progress)
+	    {
+	        SfmLiftLexEntryAdapter targetLexEntry;
+	        foreach (var subEntry in adaptedEntry.SubEntries)
+	        {
+	            foreach (var relation in subEntry.Relations)
+	            {
+	                // if the target is in the dictionary, add the relation, else post a note
+	                if (index.ContainsKey(relation.TargetForm))
+	                {
+	                    targetLexEntry = index[relation.TargetForm];
+	                    string guidOfTargetEntry = targetLexEntry.GUID;
+	                    adaptedEntry.MakeRelationFromEntryToEntry(guidOfTargetEntry, relation.Type);
+
+	                }
+	                else
+	                {
+	                    adaptedEntry.AddSolidNote(String.Format("Cannot find subentry target: {0}", relation.TargetForm));
+	                    progress.WriteWarning("Cannot find subentry target: {0}, referenced from {1}", relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
+	                }
+	            }
+
+	            // dm.SaveItem(subEntry.LiftLexEntry);
+	        }
+	    }
+
+
+	    public void ExportAsync(object sender, DoWorkEventArgs args)
 		{
 			var exportArguments = (ExportArguments)args.Argument;
 
