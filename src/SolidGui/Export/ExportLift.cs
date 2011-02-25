@@ -98,10 +98,8 @@ namespace SolidGui.Export
 							}
 							else
 							{
-								// add an error note
 								adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetID));
-								// add a note
-								//adaptedEntry.LiftLexEntry.
+                                progress.WriteError("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetID, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
 							}
 						}
 
@@ -121,8 +119,8 @@ namespace SolidGui.Export
 								}
 								else
 								{
-									// add a note
-									//adaptedEntry.LiftLexEntry.
+                                    adaptedEntry.AddSolidNote(String.Format("Cannot find subentry target: {0}", relation.TargetID));
+                                    progress.WriteError("Cannot find subentry target: {0}, referenced from {1}", relation.TargetID, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
 								}
 							}
 
