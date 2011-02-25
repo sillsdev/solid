@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Xml;
 using NUnit.Framework;
 using Palaso.TestUtilities;
 
@@ -81,6 +82,27 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("zx", "custom", "en");
                 e.AssertExportsSingleInstance("/lift/entry/field[@type='zx']/form[@lang='en' and text='Custom Field']");
+            }
+        }
+
+        [Test]
+        public void SubEntry_MakesToLiftEntriesWithSubPointedAtBase()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx tired
+\se dog tired
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("se", "subentry", "en");
+                e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='tired']");
+                 e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='dog tired']");
+                var dom = new XmlDocument();
+                dom.LoadXml(e.LiftAsString());
+                var n = dom.SelectSingleNode("/lift/entry[lexical-unit/form[text='tired']]");
+                var guid = n.Attributes["guid"].Value;
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='BaseForm' and @ref='{0}']",guid), 1);
             }
         }
 
