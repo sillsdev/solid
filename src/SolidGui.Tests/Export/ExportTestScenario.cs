@@ -131,11 +131,16 @@ namespace SolidGui.Tests.Export
 
         public void AssertNoErrorWasReported()
         {
-            Assert.False(ProgressOutput.ToLower().Contains("error"));
+            Assert.False(ProgressOutput.ToLower().Contains("error"),"The exporter produced an error message, but none was expected");
         }
         public void AssertErrorWasReported()
         {
-            Assert.That(ProgressOutput.ToLower(), Contains.Substring("error"));
+            Assert.That(ProgressOutput.ToLower(), Contains.Substring("error"),"Expected an error but there was none");
+        }
+
+        public void AssertWarningWasReported()
+        {
+            Assert.That(ProgressOutput.ToLower(), Contains.Substring("warning"), "Expected a warning but there was none");
         }
     }
 }

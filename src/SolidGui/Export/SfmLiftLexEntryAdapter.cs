@@ -222,6 +222,7 @@ namespace SolidGui.Export
             states.Push(new StateInfo(States.LexEntry, -1, this));
             LexSense currentSense = null;
             string currentPartOfSpeech = "";
+            bool alreadyReadyTargetOfRelation = false;
 
             var unicodeEntryName = SfmLexEntry.GetName(SolidSettings).Trim();
 
@@ -423,8 +424,16 @@ namespace SolidGui.Export
 
                             case Concepts.LexicalRelationType:
                                currentState.LexEntryAdapter.Relations.Add(HandleLexicalRelation(field, currentState, unicodeValue, ""));
+                                alreadyReadyTargetOfRelation = true;
                                 break;
-                                
+
+                            case Concepts.LexicalRelationLexeme:
+                                if (!alreadyReadyTargetOfRelation)
+                                    progress.WriteError("Program ended up in an unexpected state with respect to a lexical relation marker at entry level: " + field);
+                                alreadyReadyTargetOfRelation = false;
+                                break;
+                            
+
                             case Concepts.GrammaticalInfo_PS:
                                 PartOfSpeechMode = PartOfSpeechModes.PartOfSpeechFirst;
                                 currentPartOfSpeech = unicodeValue;
@@ -445,11 +454,6 @@ namespace SolidGui.Export
                         {
                             default:
                                 progress.WriteError(unicodeEntryName + ": Could not handle the concept '{0}' in the sense state.", liftInfo.LiftConcept);
-                                break;
-
-
-                            case Concepts.LexicalRelationType:
-                                currentState.LexEntryAdapter.SenseRelations.Add(new KeyValuePair<LexSense, Relation>(currentSense, HandleLexicalRelation(field, currentState, unicodeValue, string.Empty)));
                                 break;
 
                             case Concepts.Ignore: // dont add to LexEntry
@@ -537,16 +541,24 @@ namespace SolidGui.Export
                                 AddSenseReversal(unicodeValue, liftInfo.WritingSystem, currentSense, string.Empty/*reversal type*/);
                                 break;
 
-                            case Concepts.Antonym:
-                                AddSenseRelation(currentState, currentSense, unicodeValue, "antonym");
+                            case Concepts.LexicalRelationType:
+                                currentState.LexEntryAdapter.SenseRelations.Add(new KeyValuePair<LexSense, Relation>(currentSense, HandleLexicalRelation(field, currentState, unicodeValue, string.Empty)));
+                                alreadyReadyTargetOfRelation = true;
                                 break;
-                            case Concepts.Synonym:
-                                AddSenseRelation(currentState, currentSense, unicodeValue, "synonym");
+ 
+                            case Concepts.LexicalRelationLexeme:
+                                if (!alreadyReadyTargetOfRelation)
+                                    progress.WriteError("Program ended up in an unexpected state with respect to a lexical relation marker: " + field);
+                                alreadyReadyTargetOfRelation = false;
                                 break;
                             
-                            case Concepts.LexicalRelationLexeme:
-                                AddSenseRelation(currentState, currentSense, unicodeValue, "----");//TODO
+                            case Concepts.Antonym:
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "Antonym");//the exact spelling/case here is what FLEx ships with
                                 break;
+                            case Concepts.Synonym:
+                                AddSenseRelation(currentState, currentSense, unicodeValue, "Synonyms"); //the exact spelling/case here is what FLEx ships with
+                                break;
+
                             
                             case Concepts.Confer:
                                 AddSenseRelation(currentState, currentSense, unicodeValue, "confer");
@@ -657,11 +669,10 @@ namespace SolidGui.Export
 
         private Relation HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
         {
-            string type1 = type;
             string targetID = "";
 
             //used for things like \an, antonym
-            if(!string.IsNullOrEmpty(type1))
+            if(!string.IsNullOrEmpty(type))
             {
                 targetID = unicodeValue.Trim();
             }
@@ -670,26 +681,44 @@ namespace SolidGui.Export
             {
                 int equalsSignPosition = unicodeValue.IndexOf('=');
                 targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
-                type1 = unicodeValue.Substring(0, equalsSignPosition).Trim();
+                type = GetCannonicalRelationName(unicodeValue.Substring(0, equalsSignPosition).Trim());
             }
             else // old mdf relation representation
             {
-                type1 = unicodeValue;
+                type = GetCannonicalRelationName(unicodeValue.Trim());
                 if (field.Children.Count > 0 && field.Children[0] != null)
                 {
                     targetID = field.Children[0].Value;
                 }
                 else
                 {
-                    AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type1 + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
+                    AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
                 }
             }
 
-            Relation relation1 = new Relation(targetID, type1);
-            Relation relation = relation1;//review: huh?
-            return relation;
+            return new Relation(targetID, type);
         }
 
+        private string GetCannonicalRelationName(string type)
+        {
+            foreach (var alias in new[] {"syn", "synonym", "synonyms"})
+            {
+                if (type.ToLower() == alias)
+                {
+                    type = "Synonyms";  //the type name FLEx ships with
+                    break;
+                }
+            }
+            foreach (var alias in new[] { "ant", "antonym"})
+            {
+                if (type.ToLower() == alias)
+                {
+                    type = "Antonym"; //the type name FLEx ships with
+                    break;
+                }
+            }
+            return type;
+        }
 
 
         private PartOfSpeechModes PartOfSpeechMode { get; set; }

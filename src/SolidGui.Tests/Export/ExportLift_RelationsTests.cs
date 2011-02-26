@@ -82,7 +82,8 @@ namespace SolidGui.Tests.Export
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var target = GetGuidOfLexeme(dom, "tired");
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='SYN' and @ref='{0}']", target), 1);
+                //note, FLEx uses "Synonyms", plural.
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Synonyms' and @ref='{0}']", target), 1);
 
                 e.AssertNoErrorWasReported();
             }
@@ -107,6 +108,29 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lv", "lexicalRelationLexeme", "en", "lf", false);
                 e.Export();
                 e.AssertErrorWasReported();
+            }
+        }
+
+        [Test]
+        public void RelationFromEntryLevel_OK()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx blue
+
+\lx red
+\lf PointToThisEntry
+\lv blue";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("lf", "lexicalRelationType", "en", "lx", true);
+                e.SetupMarker("lv", "lexicalRelationLexeme", "en", "lf", false);
+                e.Export();
+                var dom = new XmlDocument();
+                dom.LoadXml(e.LiftAsString());
+                var target = GetGuidOfLexeme(dom, "blue");
+                e.AssertNoErrorWasReported();
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='PointToThisEntry' and @ref='{0}']", target), 1);
             }
         }
 
@@ -148,7 +172,8 @@ namespace SolidGui.Tests.Export
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var target = GetGuidOfLexeme(dom, "tired");
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='synonym' and @ref='{0}']", target), 1);
+                //note, FLEx uses "Synonyms", plural.
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Synonyms' and @ref='{0}']", target), 1);
 
                 e.AssertNoErrorWasReported();
             }
@@ -162,7 +187,7 @@ namespace SolidGui.Tests.Export
                 e.Input = @"
 \lx sleepy
 \sn
-\lf Syn=tired
+\lf Ant=tired
 
 \lx tired
 ";
@@ -173,12 +198,65 @@ namespace SolidGui.Tests.Export
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var target = GetGuidOfLexeme(dom, "tired");
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Syn' and @ref='{0}']", target), 1);
+                //note, FLEx uses "Antonym", singular
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Antonym' and @ref='{0}']", target), 1);
 
                 e.AssertNoErrorWasReported();
             }
         }
 
+
+        [Test]
+        public void SpecificMarkerAntonym_HasMatchingEntry_MakesCorrectRelation()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx sleepy
+\sn
+\ant tired
+
+\lx tired
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("sn", "sense", "en", "lx", false);
+                e.SetupMarker("ant", "antonym", "en", "sn", true);
+                e.Export();
+                var dom = new XmlDocument();
+                dom.LoadXml(e.LiftAsString());
+                var target = GetGuidOfLexeme(dom, "tired");
+                //note, FLEx uses "Antonym", singular
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Antonym' and @ref='{0}']", target), 1);
+
+                e.AssertNoErrorWasReported();
+            }
+        }
+
+        [Test]
+        public void SynonymSpecificMarker_HasMatchingEntry_MakesCorrectRelation()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx sleepy
+\sn
+\th tired
+
+\lx tired
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("sn", "sense", "en", "lx", false);
+                e.SetupMarker("th", "synonym", "en", "sn", true);
+                e.Export();
+                var dom = new XmlDocument();
+                dom.LoadXml(e.LiftAsString());
+                var target = GetGuidOfLexeme(dom, "tired");
+                //note, FLEx uses "Synonyms", plural
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Synonyms' and @ref='{0}']", target), 1);
+
+                e.AssertNoErrorWasReported();
+            }
+        }
         [Test]
         public void LexicalFunctionWithNoMatchingEntry_OutputsError()
         {
@@ -193,7 +271,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lf", "lexicalRelationType", "en");
                 e.SetupMarker("lv", "lexicalRelationLexeme", "en");
                 e.Export();
-                e.AssertErrorWasReported();
+                e.AssertWarningWasReported();
              }
         }
 
