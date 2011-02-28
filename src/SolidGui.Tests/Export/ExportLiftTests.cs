@@ -13,6 +13,9 @@ namespace SolidGui.Tests.Export
         [Test]
         public void Variant_aInSingleEntry_ExportsVariant()
         {
+
+            //NB:, as of FLEx 7 beta 2, it ignores <variant> anyways.
+
             using (var e = new ExportTestScenario())
             {
                 e.Input = @"

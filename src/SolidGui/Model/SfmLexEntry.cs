@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Palaso.Code;
 using SolidGui.Engine;
+using SolidGui.Mapping;
 
 namespace SolidGui.Model
 {
@@ -37,12 +38,32 @@ namespace SolidGui.Model
             get { return _fields[0]; }
         }
 
-		public string GetName(SolidSettings solidSettings)
+		public string GetLexemeForm(SolidSettings solidSettings)
 		{
 			// Assume that the lx is first, it always will be.
 			Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
 			return _fields[0].DecodedValue(solidSettings);
 		}
+
+        /// <summary>
+        /// Citation form or if it doesn't exist, a Lexeme Form
+        /// </summary>
+        /// <param name="solidSettings"></param>
+        /// <returns></returns>
+        public string GetHeadWord(SolidSettings solidSettings)
+        {
+             Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
+            var citationFormSetting = solidSettings.MarkerSettings.Find(s => "citationForm"== s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
+            if (citationFormSetting == null)
+                return GetLexemeForm(solidSettings);
+
+            var citationField = _fields.Find(f => f.Marker == citationFormSetting.Marker);
+
+            if(citationField == null)
+                return GetLexemeForm(solidSettings);
+
+            return citationField.DecodedValue(solidSettings);
+        }
 
 		[Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name

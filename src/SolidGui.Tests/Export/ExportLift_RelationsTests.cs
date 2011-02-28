@@ -26,7 +26,8 @@ namespace SolidGui.Tests.Export
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var target = GetGuidOfLexeme(dom, "EntryTwo");
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='confer' and @ref='{0}']", target), 1);
+                //"Compare" is the FLEx precedent for this relation name.
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='Compare' and @ref='{0}']", target), 1);
 
                 e.AssertNoErrorWasReported();
 
@@ -51,7 +52,7 @@ namespace SolidGui.Tests.Export
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var guid = GetGuidOfLexeme(dom, "tired");
-                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='BaseForm' and @ref='{0}']",guid), 1);
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='_component-lexeme' and @ref='{0}']", guid), 1);
             }
         }
 
@@ -89,6 +90,34 @@ namespace SolidGui.Tests.Export
             }
         }
 
+        [Test]
+        public void LexicalFunctionWithMatchingEntryInCitationForm_MakesCorrectRelation()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"
+\lx sleepy
+\sn
+\lf SYN
+\lv tired
+
+\lx tire
+\lc tired
+";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                e.SetupMarker("lf", "lexicalRelationType", "en", "sn", true);
+                e.SetupMarker("lv", "lexicalRelationLexeme", "en", "lf", false);
+                e.SetupMarker("lc", "citationForm", "en", "lx", false);
+                e.Export();
+                var dom = new XmlDocument();
+                dom.LoadXml(e.LiftAsString());
+                var target = GetGuidOfLexeme(dom, "tired");
+                //note, FLEx uses "Synonyms", plural.
+                AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Synonyms' and @ref='{0}']", target), 1);
+
+                e.AssertNoErrorWasReported();
+            }
+        }
 
         [Test]
         public void LexicalTargetWithoutPreceedingFunction_ErrorOutput()

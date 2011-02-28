@@ -93,7 +93,7 @@ namespace SolidGui.Export
 	            }
 	            catch (Exception error)
 	            {
-	                progress.WriteError(sfmLexEntry.LexEntry.GetName(solidSettings) + ": " + error);
+	                progress.WriteError(sfmLexEntry.LexEntry.GetLexemeForm(solidSettings) + ": " + error);
 	            }
 	        }
 	        return index;

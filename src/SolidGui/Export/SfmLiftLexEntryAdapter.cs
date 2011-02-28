@@ -181,7 +181,7 @@ namespace SolidGui.Export
             base(dm)
         {
             SfmLexEntry = entry;
-            SfmID = entry.GetName(solidSettings);
+            SfmID = entry.GetLexemeForm(solidSettings);
             SolidSettings = solidSettings;
             PartOfSpeechMode = PartOfSpeechModes.Unknown;
         }
@@ -224,7 +224,7 @@ namespace SolidGui.Export
             string currentPartOfSpeech = "";
             bool alreadyReadyTargetOfRelation = false;
 
-            var unicodeEntryName = SfmLexEntry.GetName(SolidSettings).Trim();
+            var unicodeEntryName = SfmLexEntry.GetLexemeForm(SolidSettings).Trim();
 
             //if the sfm already declares a guid, use that instead of a made up one
             var existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
@@ -285,7 +285,7 @@ namespace SolidGui.Export
                                 states.Push(new StateInfo(States.LexEntry, field.Depth, subEntry));
                                 currentState = states.Peek();
                                 currentState.LiftLexEntry.LexicalForm[liftInfo.WritingSystem] = lexForm;
-                                currentState.LiftLexEntry.AddRelationTarget("BaseForm", LiftLexEntry.Guid.ToString());
+                                currentState.LiftLexEntry.AddRelationTarget("_component-lexeme", LiftLexEntry.Guid.ToString());
                                 
                                 SubEntries.Add(subEntry); 
                                 break;
@@ -714,6 +714,14 @@ namespace SolidGui.Export
                 if (type.ToLower() == alias)
                 {
                     type = "Antonym"; //the type name FLEx ships with
+                    break;
+                }
+            }
+            foreach (var alias in new[] { "confer"})
+            {
+                if (type.ToLower() == alias)
+                {
+                    type = "Compare"; //the type name FLEx ships with
                     break;
                 }
             }

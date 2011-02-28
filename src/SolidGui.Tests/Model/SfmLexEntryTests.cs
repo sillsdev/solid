@@ -11,23 +11,67 @@ namespace SolidGui.Tests.Model
 	public class SfmLexEntryTests
 	{
 		[Test]
-		public void GetName_Default_Throws()
+		public void GetLexemeForm_Default_Throws()
 		{
 			var entry = new SfmLexEntry();
 			var solidSettings = new SolidSettings();
-			Assert.Throws<InvalidOperationException>(() => entry.GetName(solidSettings));
+			Assert.Throws<InvalidOperationException>(() => entry.GetLexemeForm(solidSettings));
 		}
 
 		[Test]
-		public void Name_FromSFM_MatchesLxFieldValue()
+        public void GetLexemeForm_FromSFM_MatchesLxFieldValue()
 		{
 			const string sfmIn = @"\lx test1";
 
 			SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
 			var solidSettings = new SolidSettings();
 
-			Assert.AreEqual("test1", entry.GetName(solidSettings));
+			Assert.AreEqual("test1", entry.GetLexemeForm(solidSettings));
 		}
+
+        [Test]
+        public void GetHeadWord_HasCitationForm_GivesCitationForm()
+        {
+            const string sfmIn = @"
+\lx foo
+\lc foobar";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            var solidSettings = new SolidSettings();
+            SetupMarker(solidSettings, "lc", "citationForm", "en");
+            Assert.AreEqual("foobar", entry.GetHeadWord(solidSettings));
+        }
+
+
+        public void SetupMarker(SolidSettings settings, string marker, string liftConcept, string writingSystem)
+        {
+            var setting = settings.FindOrCreateMarkerSetting(marker);
+            setting.WritingSystemRfc4646 = writingSystem;
+            setting.Mappings[1] = liftConcept;
+        }
+
+        [Test]
+        public void GetHeadWord_NoCitationForm_GivesLexemeForm()
+        {
+            const string sfmIn = @"\lx foo";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            var solidSettings = new SolidSettings();
+            SetupMarker(solidSettings, "lc", "citationForm", "en");
+
+            Assert.AreEqual("foo", entry.GetHeadWord(solidSettings));
+        }
+
+	    [Test]
+        public void GetHeadWord_NoCitationFormMapping_GivesLexemeForm()
+        {
+            const string sfmIn = @"\lx foo
+\lc DontGiveMe";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+
+	        Assert.AreEqual("foo", entry.GetHeadWord(new SolidSettings()));
+        }
 
 		[Test]
 		public void FirstField_WithValidLx_ReturnsFirstField()
