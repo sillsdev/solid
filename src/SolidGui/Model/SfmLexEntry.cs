@@ -42,7 +42,7 @@ namespace SolidGui.Model
 		{
 			// Assume that the lx is first, it always will be.
 			Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-			return _fields[0].DecodedValue(solidSettings);
+			return _fields[0].DecodedValue(solidSettings).Trim();
 		}
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace SolidGui.Model
             if(citationField == null)
                 return GetLexemeForm(solidSettings);
 
-            return citationField.DecodedValue(solidSettings);
+            return citationField.DecodedValue(solidSettings).Trim();
         }
 
 		[Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]

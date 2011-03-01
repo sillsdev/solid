@@ -336,7 +336,7 @@ namespace SolidGui.Export
                                 AddBorrowedWord(currentState.LiftLexEntry, /*type*/ "borrowed",  /*source language*/unicodeValue);
                                 break;
                             case Concepts.Confer:
-                                currentState.LexEntryAdapter.Relations.Add(HandleLexicalRelation(field, currentState, unicodeValue, "confer"));
+                                currentState.LexEntryAdapter.Relations.AddRange(ProduceRelationsFromField(field, currentState, unicodeValue, "confer"));
                                 break;
                             case Concepts.DateModified:
                                 var inModTime = unicodeValue.Trim();
@@ -423,7 +423,7 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.LexicalRelationType:
-                               currentState.LexEntryAdapter.Relations.Add(HandleLexicalRelation(field, currentState, unicodeValue, ""));
+                               currentState.LexEntryAdapter.Relations.AddRange(ProduceRelationsFromField(field, currentState, unicodeValue, ""));
                                 alreadyReadyTargetOfRelation = true;
                                 break;
 
@@ -542,7 +542,12 @@ namespace SolidGui.Export
                                 break;
 
                             case Concepts.LexicalRelationType:
-                                currentState.LexEntryAdapter.SenseRelations.Add(new KeyValuePair<LexSense, Relation>(currentSense, HandleLexicalRelation(field, currentState, unicodeValue, string.Empty)));
+                                var relations = ProduceRelationsFromField(field, currentState, unicodeValue, string.Empty);
+                                foreach (var relation in relations)
+                                {
+                                    currentState.LexEntryAdapter.SenseRelations.Add(
+                                        new KeyValuePair<LexSense, Relation>(currentSense, relation));
+                                }
                                 alreadyReadyTargetOfRelation = true;
                                 break;
  
@@ -667,21 +672,22 @@ namespace SolidGui.Export
             liftLexEntry.Variants.Add(variant);
         }
 
-        private Relation HandleLexicalRelation(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
+        private IEnumerable<Relation> ProduceRelationsFromField(SfmFieldModel field, StateInfo currentState, string unicodeValue, string type)
         {
-            string targetID = "";
+            //can be a comma or semicolon-separated list
+            string targetIdList = "";
 
             //used for things like \an, antonym
             if(!string.IsNullOrEmpty(type))
             {
-                targetID = unicodeValue.Trim();
+                targetIdList = unicodeValue.Trim();
                 type = GetCannonicalRelationName(type);
             }
                 // new mdf relation representation
             else if (unicodeValue.Contains("="))
             {
                 int equalsSignPosition = unicodeValue.IndexOf('=');
-                targetID = unicodeValue.Substring(equalsSignPosition + 1).Trim();
+                targetIdList = unicodeValue.Substring(equalsSignPosition + 1).Trim();
                 type = GetCannonicalRelationName(unicodeValue.Substring(0, equalsSignPosition).Trim());
             }
             else // old mdf relation representation
@@ -689,15 +695,17 @@ namespace SolidGui.Export
                 type = GetCannonicalRelationName(unicodeValue.Trim());
                 if (field.Children.Count > 0 && field.Children[0] != null)
                 {
-                    targetID = field.Children[0].Value;
+                    targetIdList = field.Children[0].Value;
                 }
                 else
                 {
                     AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
                 }
             }
-
-            return new Relation(targetID, type);
+            foreach (var id in targetIdList.Split(new char[]{',',';'}))
+            {
+                yield return new Relation(id.Trim(), type);
+            }
         }
 
         private string GetCannonicalRelationName(string type)
