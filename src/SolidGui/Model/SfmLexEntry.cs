@@ -53,7 +53,7 @@ namespace SolidGui.Model
         public string GetHeadWord(SolidSettings solidSettings)
         {
              Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-            var citationFormSetting = solidSettings.MarkerSettings.Find(s => "citationForm"== s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
+            var citationFormSetting = solidSettings.MarkerSettings.Find(s => "citation"== s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
             if (citationFormSetting == null)
                 return GetLexemeForm(solidSettings);
 

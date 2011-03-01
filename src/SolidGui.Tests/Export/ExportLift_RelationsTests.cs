@@ -107,11 +107,13 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("lf", "lexicalRelationType", "en", "sn", true);
                 e.SetupMarker("lv", "lexicalRelationLexeme", "en", "lf", false);
-                e.SetupMarker("lc", "citationForm", "en", "lx", false);
+                e.SetupMarker("lc", "citation", "en", "lx", false);
                 e.Export();
+
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
-                var target = GetGuidOfLexeme(dom, "tired");
+
+                var target = GetGuidOfLexeme(dom, "tire"); //nb: the lx, not the lc
                 //note, FLEx uses "Synonyms", plural.
                 AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/sense/relation[@type='Synonyms' and @ref='{0}']", target), 1);
 

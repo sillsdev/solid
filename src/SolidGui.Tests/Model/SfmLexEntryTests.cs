@@ -38,7 +38,7 @@ namespace SolidGui.Tests.Model
 
             SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
             var solidSettings = new SolidSettings();
-            SetupMarker(solidSettings, "lc", "citationForm", "en");
+            SetupMarker(solidSettings, "lc", "citation", "en");
             Assert.AreEqual("foobar", entry.GetHeadWord(solidSettings));
         }
 
@@ -57,7 +57,7 @@ namespace SolidGui.Tests.Model
 
             SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
             var solidSettings = new SolidSettings();
-            SetupMarker(solidSettings, "lc", "citationForm", "en");
+            SetupMarker(solidSettings, "lc", "citation", "en");
 
             Assert.AreEqual("foo", entry.GetHeadWord(solidSettings));
         }

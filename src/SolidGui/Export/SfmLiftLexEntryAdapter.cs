@@ -181,7 +181,7 @@ namespace SolidGui.Export
             base(dm)
         {
             SfmLexEntry = entry;
-            SfmID = entry.GetLexemeForm(solidSettings);
+            SfmID = entry.GetHeadWord(solidSettings); //jh switched 1 March 2011 entry.GetLexemeForm(solidSettings);
             SolidSettings = solidSettings;
             PartOfSpeechMode = PartOfSpeechModes.Unknown;
         }
@@ -675,6 +675,7 @@ namespace SolidGui.Export
             if(!string.IsNullOrEmpty(type))
             {
                 targetID = unicodeValue.Trim();
+                type = GetCannonicalRelationName(type);
             }
                 // new mdf relation representation
             else if (unicodeValue.Contains("="))

@@ -135,8 +135,8 @@ namespace SolidGui.Export
 	        }
 	        else
 	        {
-	            adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetForm));
-	            progress.WriteWarning("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
+                adaptedEntry.AddSolidNote(String.Format("Cannot find the {0} lexical relation target: {1}", relation.Type, relation.TargetForm));
+	            progress.WriteWarning("Cannot find the {0} lexical relation target: {1}, referenced from {2}",relation.Type, relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
 	        }
 	    }
 
@@ -151,8 +151,8 @@ namespace SolidGui.Export
             }
             else
             {
-                adaptedEntry.AddSolidNote(String.Format("Cannot find target: {0}", relation.TargetForm));
-                progress.WriteWarning("Cannot find lexical relation target: {0}, referenced from {1}", relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
+                adaptedEntry.AddSolidNote(String.Format("Cannot find the {0} lexical relation target: {1}",  relation.Type,relation.TargetForm));
+                progress.WriteWarning("Cannot find {0} lexical relation target: {1}, referenced from {2}", relation.Type, relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
             }
         }
 	    private void ProcessSubentryRelations(SfmLiftLexEntryAdapter adaptedEntry, Dictionary<string, SfmLiftLexEntryAdapter> index, MultiProgress progress)
