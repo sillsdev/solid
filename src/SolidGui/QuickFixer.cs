@@ -288,6 +288,7 @@ namespace Solid.Engine
         private Record FindRecordByCitationFormOrLexemeForm(string form, out string switchToCitationForm)
         {
             switchToCitationForm = null;
+            form = form.Trim();
 
 
             foreach (var record in _dictionary.Records)
@@ -295,16 +296,18 @@ namespace Solid.Engine
                 if (record.HasMarker("lc"))
                 {
                     var citationField = record.GetFirstFieldWithMarker("lc");
-                    if (citationField != null && citationField.Value == form)
+                    if (citationField != null && citationField.Value.Trim() == form)
                     {
                         return record;
                     }
                 }
             }
 
+            //not found? Now look at the \lx's
+
             foreach (var record in _dictionary.Records)
             {
-                if (record.Fields[0].Value == form)
+                if (record.Fields[0].Value.Trim() == form)
                 {
                     //do we need to switch to the lc so it links?
                     if (record.HasMarker("lc"))
@@ -312,7 +315,7 @@ namespace Solid.Engine
                         var citationField = record.GetFirstFieldWithMarker("lc");
                         if (citationField != null)
                         {
-                            switchToCitationForm = citationField.Value;
+                            switchToCitationForm = citationField.Value.Trim();
                         }
                     }
                     return record;

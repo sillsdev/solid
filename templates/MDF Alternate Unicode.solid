@@ -2064,5 +2064,21 @@
       </StructureProperties>
       <Marker>xg</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>true</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string>custom</string>
+      </Mappings>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>MultipleApart</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>CheckMe</Marker>
+    </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
