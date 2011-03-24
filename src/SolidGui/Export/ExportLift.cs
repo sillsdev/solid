@@ -52,8 +52,11 @@ namespace SolidGui.Export
 				}
 			}
 			outerProgress.WriteMessage("");
-			outerProgress.WriteMessage("Done");
-			Validator.CheckLiftWithPossibleThrow(outputFilePath);
+			outerProgress.WriteMessage("Checking result to make sure it is valid LIFT XML...");
+            var result = Validator.GetAnyValidationErrors(outputFilePath);
+            if(!string.IsNullOrEmpty(result))
+                outerProgress.WriteError(result);
+            outerProgress.WriteMessage("Done");
 		}
 
 	    private Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
