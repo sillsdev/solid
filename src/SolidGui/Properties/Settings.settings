@@ -5,7 +5,7 @@
     <Setting Name="PreviousPathToDictionary" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Reporting" Type="System.String" Scope="User">
+    <Setting Name="Reporting" Type="Palaso.Reporting.ReportingSettings" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

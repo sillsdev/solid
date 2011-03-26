@@ -14,10 +14,11 @@ namespace SolidGui
         [STAThread]
         static void Main(params string[]args)
         {
-            SetupErrorHandling();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            SetupErrorHandling(); 
+            
             SetupUsageTracking();
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
@@ -32,10 +33,21 @@ namespace SolidGui
 
         private static void SetupErrorHandling()
         {
+            ExceptionHandler.Init();
             Logger.Init();
             ErrorReport.EmailAddress = "solid@projects.palaso.org";
+
+
+            if (Settings.Default.Reporting == null)
+            {
+                Settings.Default.Reporting = new ReportingSettings();
+                Settings.Default.Save();
+            }
+            UsageReporter.AppReportingSettings = Settings.Default.Reporting;
+            UsageReporter.GetUserIdentifierIfNeeded();//todo this should be automatic
             ErrorReport.AddStandardProperties();
-            ExceptionHandler.Init();
+
+
         }
 
         private static void SetupUsageTracking()

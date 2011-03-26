@@ -37,10 +37,9 @@ namespace SolidGui.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Reporting {
+        public global::Palaso.Reporting.ReportingSettings Reporting {
             get {
-                return ((string)(this["Reporting"]));
+                return ((global::Palaso.Reporting.ReportingSettings)(this["Reporting"]));
             }
             set {
                 this["Reporting"] = value;
