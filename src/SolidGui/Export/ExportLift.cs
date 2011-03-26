@@ -6,6 +6,7 @@ using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Progress.LogBox;
+using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Model;
@@ -56,8 +57,40 @@ namespace SolidGui.Export
             var result = Validator.GetAnyValidationErrors(outputFilePath);
             if(!string.IsNullOrEmpty(result))
                 outerProgress.WriteError(result);
-            outerProgress.WriteMessage("Done");
+            WriteWritingSystemFolder(outputFilePath, solidSettings.MarkerSettings, outerProgress);
+		    outerProgress.WriteMessage("Done");
 		}
+
+	    private void WriteWritingSystemFolder(string outputFilePath, IEnumerable<SolidMarkerSetting> markerSettings, IProgress outerProgress)
+	    {
+	        outerProgress.WriteMessage("Copying Writing System files...");
+	        try
+	        {
+	            var repository = new LdmlInFolderWritingSystemStore();
+	            var dir = Path.GetDirectoryName(outputFilePath);
+	            var writingSystemsPath = Path.Combine(dir, "WritingSystems");
+	            if (!Directory.Exists(writingSystemsPath))
+	            {
+	                Directory.CreateDirectory(writingSystemsPath);
+	            }
+                
+                //only copy the ones being used
+	            foreach (var definition in repository.WritingSystemDefinitions)
+	            {
+	                WritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
+	                if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.RFC5646))
+                    {
+                        var existing = repository.FilePathToWritingSystem(definition);
+                        var path = Path.Combine(writingSystemsPath, Path.GetFileName(existing));
+                        File.Copy(existing, path, true);
+                    }
+	            }
+	        }
+	        catch(Exception e)
+	        {
+	            outerProgress.WriteError(e.Message);
+	        }
+	    }
 
 	    private Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
 	    {

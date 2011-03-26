@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Xml;
 using NUnit.Framework;
 using Palaso.TestUtilities;
@@ -415,5 +416,42 @@ namespace SolidGui.Tests.Export
 			}
 		}
 
+        [Test]
+        public void WritingSystems_WSFolderNotThere_CreatesItAndCopiesWritingSystemsToWritingSystemFolder()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx TestLexeme";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+
+                //this isn't much of a test... I don't bother to get some non-english ldml in the repository
+                //nor do I prove that markers not used won't be copied over
+                //but it shows that at least english is copied over.
+
+                e.Export(); 
+                var dir = Path.GetDirectoryName(e.LiftPath);
+	            var writingSystemsFolderPath = Path.Combine(dir, "WritingSystems");
+
+                Assert.IsTrue(Directory.Exists(writingSystemsFolderPath));
+                Assert.IsTrue(File.Exists(Path.Combine(writingSystemsFolderPath, "en.ldml")));
+            }
+        }
+        [Test]
+        public void WritingSystems_WSFolderAlreadyExists_CopiesWritingSystemsToWritingSystemFolder()
+        {
+            using (var e = new ExportTestScenario())
+            {
+                e.Input = @"\lx TestLexeme";
+                e.SetupMarker("lx", "lexicalUnit", "en");
+                var dir = Path.GetDirectoryName(e.LiftPath);         
+                var writingSystemsFolderPath = Path.Combine(dir, "WritingSystems");
+                Directory.CreateDirectory(writingSystemsFolderPath);
+                e.Export();
+
+                Assert.IsTrue(File.Exists(Path.Combine(writingSystemsFolderPath, "en.ldml")));
+            }
+        }
+      
+      
 	}
 }
