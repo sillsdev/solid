@@ -28,5 +28,6 @@ namespace SolidGui.Export
         /// </summary>
         void ExportAsync(object sender, DoWorkEventArgs args);
 
+        string ModifyDestinationIfNeeded(string destinationFilePath);
     }
 }

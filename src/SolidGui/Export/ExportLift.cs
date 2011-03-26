@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Forms;
 using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
@@ -228,7 +229,47 @@ namespace SolidGui.Export
 			Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath, exportArguments.progress);
 		}
 
-		public static IExporter Create()
+	    public string ModifyDestinationIfNeeded(string destinationFilePath)
+	    {
+	        var destDirectory = Path.GetDirectoryName(destinationFilePath);
+	        bool foundUnknown = false;
+            foreach(var file in Directory.GetFiles(destDirectory))
+            {
+                if (file == destinationFilePath)
+                    continue;
+                if(Path.GetExtension(file)==".WeSayConfig")
+                    return destinationFilePath;//this is already a wesay lift folder, so go ahead.
+                foundUnknown = true;
+            }
+            foreach (var dir in Directory.GetDirectories(destDirectory))
+            {
+                if (Path.GetFileName(dir) == "WritingSystems")
+                    continue;
+                if (Path.GetFileName(dir) == "export")
+                    continue; 
+                if (Path.GetFileName(dir) == "audio")
+                    continue; 
+
+                foundUnknown = true;
+            }
+            if(!foundUnknown)
+                return destinationFilePath;
+
+            var suggested = Path.Combine(destDirectory, Path.GetFileNameWithoutExtension(destinationFilePath));
+	        var s = string.Format("The folder you've selected has other files in it. Would you rather SOLID export all the lift files into their own folder at {0}?", suggested);
+	        if(DialogResult.Yes == MessageBox.Show(s, "Destination check", MessageBoxButtons.YesNo))
+	        {
+	            if(!Directory.Exists(suggested))
+                    Directory.CreateDirectory(suggested);
+	            return Path.Combine(suggested, Path.GetFileName(destinationFilePath));
+	        }
+	        else
+	        {
+	            return destinationFilePath;
+	        }          
+	    }
+
+	    public static IExporter Create()
 		{
 			return new ExportLift();
 		}

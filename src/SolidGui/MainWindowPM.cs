@@ -392,6 +392,8 @@ namespace SolidGui
                 dlg.BackgroundWorker = worker;
                // dlg.CanCancel = true;
 
+                destinationFilePath = exporter.ModifyDestinationIfNeeded(destinationFilePath);
+
                 _workingDictionary.SaveAs(_tempDictionaryPath);
                 Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
                 string sourceFilePath = _tempDictionaryPath;
@@ -404,15 +406,8 @@ namespace SolidGui
                 exportArguments.progress = dlg.LogBox;
 
                 dlg.Arguments = exportArguments;
-                //dlg.ProgressState.Arguments = exportArguments;
                 dlg.ShowDialog();
-//                if (dlg.ProgressStateResult != null && dlg.LogBox.ExceptionThatWasEncountered != null)
-//                {
-//                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);
-//                    return;
-//                }
 
-                //exporter.Export(sourceFilePath, destinationFilePath);
             }
         }
 

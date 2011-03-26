@@ -341,10 +341,12 @@ namespace SolidGui
                 return;
             }
             _filterIndex = saveDialog.FilterIndex;
+            var destinationFilePath = saveDialog.FileName;
 
             try
             {
-                _mainWindowPM.Export(saveDialog.FilterIndex - 1, saveDialog.FileName);
+                
+                _mainWindowPM.Export(saveDialog.FilterIndex - 1, destinationFilePath);
             }
             catch (Exception exception)
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -177,6 +178,11 @@ xv,Example (v)";
                     w.WriteLine();
                 }
             }
+        }
+
+        public string ModifyDestinationIfNeeded(string destinationFilePath)
+        {
+            return destinationFilePath;
         }
 
         public static ExportHeader GetHeader()
