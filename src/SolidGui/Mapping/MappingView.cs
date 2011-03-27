@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using Palaso.Reporting;
 using SolidGui.Engine;
 
 namespace SolidGui.Mapping
@@ -36,6 +37,8 @@ namespace SolidGui.Mapping
             {
                 return;
             }
+
+            UsageReporter.SendNavigationNotice("MappingDialog");
 
             _targetCombo.SelectedIndex = (int)_model.Type;
             //LoadConceptList();

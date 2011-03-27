@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
+using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
@@ -231,6 +232,9 @@ namespace SolidGui.MarkerSettings
             {
                 area = "structure";
             }
+
+            UsageReporter.SendNavigationNotice("Settings/"+area);
+
             string marker = _listView.SelectedItems[0].Text;
             var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;

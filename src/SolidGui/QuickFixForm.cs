@@ -31,6 +31,7 @@ namespace SolidGui
                 
             try
             {
+                UsageReporter.SendNavigationNotice("QuickFix/MoveUp");
                 var moveMarkers = _moveUpMarkers.Text.SplitTrimmed(',');
                 var rootMarkers = _moveUpRoots.Text.SplitTrimmed(',');
                 if (moveMarkers.Count > 0 && rootMarkers.Count > 0)
@@ -54,6 +55,7 @@ namespace SolidGui
         {
             try
             {
+                UsageReporter.SendNavigationNotice("QuickFix/AddGuids");
                 _fixer.AddGuids();
                 DialogResult = System.Windows.Forms.DialogResult.OK;
                 Close();
@@ -69,6 +71,7 @@ namespace SolidGui
             var markers = _removeEmptyMarkers.Text.SplitTrimmed(',');
             try
             {
+                UsageReporter.SendNavigationNotice("QuickFix/RemoveEmtpy");
                 _fixer.RemoveEmptyFields(markers);
             }
             catch (Exception error)
@@ -100,6 +103,7 @@ namespace SolidGui
             }
             if (_createReferredToItems.Checked)
             {
+                UsageReporter.SendNavigationNotice("QuickFix/CreateReferredToItems");
                 var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
                 var path = Path.GetTempFileName()+".txt";
                 File.WriteAllText(path, log);
@@ -111,6 +115,7 @@ namespace SolidGui
 
             if (_pushPsDownToSns.Checked)
             {
+                UsageReporter.SendNavigationNotice("QuickFix/PushPOSDOwnToSense");
                 var log = _fixer.PropogatePartOfSpeech();
                 var path = Path.GetTempFileName() + ".txt";
                 File.WriteAllText(path, log);

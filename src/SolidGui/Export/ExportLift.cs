@@ -7,6 +7,7 @@ using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Progress.LogBox;
+using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
@@ -20,7 +21,8 @@ namespace SolidGui.Export
 
 		public void Export(IEnumerable<Record> sfmLexEntries, SolidSettings solidSettings, string outputFilePath, IProgress outerProgress)
 		{
-			
+            UsageReporter.SendNavigationNotice("QuickFix/MoveUp");
+
 			var liftLexEntries = new List<SfmLiftLexEntryAdapter>();
 			var logPath = outputFilePath + ".exportErrors.txt";
 			if (File.Exists(outputFilePath))

@@ -2,6 +2,7 @@ using System;
 
 using System.Windows.Forms;
 using System.Reflection;
+using Palaso.Reporting;
 
 namespace SolidGui
 {
@@ -18,6 +19,8 @@ namespace SolidGui
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+
+            UsageReporter.SendNavigationNotice("AboutBox");
         }
 
         #region Assembly Attribute Accessors

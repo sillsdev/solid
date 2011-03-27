@@ -29,6 +29,7 @@ namespace SolidGui.Export
 
         private void ExportLogDialog_Load(object sender, EventArgs e)
         {
+
             BackgroundWorker.RunWorkerAsync(Arguments);
         }
 

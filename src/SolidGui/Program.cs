@@ -35,25 +35,17 @@ namespace SolidGui
         {
             ExceptionHandler.Init();
             Logger.Init();
-            ErrorReport.EmailAddress = "solid@projects.palaso.org";
+            ErrorReport.Init("solid@projects.palaso.org");
+        }
 
-
+        private static void SetupUsageTracking()
+        {
             if (Settings.Default.Reporting == null)
             {
                 Settings.Default.Reporting = new ReportingSettings();
                 Settings.Default.Save();
             }
-            UsageReporter.AppReportingSettings = Settings.Default.Reporting;
-            UsageReporter.GetUserIdentifierIfNeeded();//todo this should be automatic
-            ErrorReport.AddStandardProperties();
-
-
+           UsageReporter.Init(Settings.Default.Reporting, "solid.palaso.org", "UA-22170471-4");
         }
-
-        private static void SetupUsageTracking()
-        {
-            Palaso.Reporting.UsageReporter.ReportLaunchesAsync();
-        }
-    
     }
 }
