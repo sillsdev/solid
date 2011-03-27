@@ -244,7 +244,7 @@ namespace SolidGui.Export
             LexEtymology currentEtymology = null;
             foreach (var field in SfmLexEntry.Fields)
             {
-				var unicodeValue = field.DecodedValue(SolidSettings).Trim();
+				var unicodeValue = MakeSingleLine(field.DecodedValue(SolidSettings).Trim());
 				var currentState = states.Peek();
                 while (field.Depth <= currentState.Depth)
                 {
@@ -620,6 +620,17 @@ namespace SolidGui.Export
                 }
 
             }
+        }
+
+        private string MakeSingleLine(string s)
+        {
+            var combined = new StringBuilder();
+            foreach(var line in s.Split(new char[] {'\r', '\n'}))
+            {
+                if(line.Trim().Length>0)
+                    combined.Append(line.Trim() + " ");
+            }
+            return combined.ToString().Trim();
         }
 
         private void AddSenseRelation(StateInfo currentState, LexSense currentSense, string unicodeValue, string relationType)

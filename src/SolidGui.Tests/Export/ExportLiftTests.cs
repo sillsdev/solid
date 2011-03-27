@@ -459,7 +459,26 @@ namespace SolidGui.Tests.Export
                 Assert.IsTrue(File.Exists(Path.Combine(writingSystemsFolderPath, "en.ldml")));
             }
         }
-      
-      
+
+
+        /// <summary>
+        /// While not actually bad lift, newlines are currently problematic in some receiving programs,
+        /// which expect to get a single line.  But toolbox actuall wraps lines just to show them on screen,
+        /// so they often have no real meaning. For now, we just remove them all (and insert spaces as needed)
+        /// </summary>
+        [Test]
+        public void NoteWithNewLines_ReplacesWithSpacesAsNeeded()
+        {
+            using (var e = new ExportTestScenario())
+            {
+               e.SetupMarker("nt", "note", "en", "sn", true);
+               e.Input = @"\lx boat
+                            \sn
+                            \nt one"+Environment.NewLine+@"two
+                            \nt a   " + Environment.NewLine + Environment.NewLine + @"   b";
+                e.AssertExportsSingleInstance("/lift/entry/sense/note/form[text='one two']");
+                e.AssertExportsSingleInstance("/lift/entry/sense/note/form[text='a b']");
+            }
+        }      
 	}
 }
