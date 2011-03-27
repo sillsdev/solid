@@ -108,7 +108,7 @@
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent>sn</InferedParent>
       <Mappings>
@@ -124,7 +124,7 @@
       <Marker>gn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -140,7 +140,7 @@
       <Marker>rn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -204,7 +204,7 @@
       <Marker>xe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -220,7 +220,7 @@
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -236,7 +236,7 @@
       <Marker>ue</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -332,7 +332,6 @@
       <Marker>dt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
       <Unicode>true</Unicode>
       <InferedParent>sn</InferedParent>
       <Mappings>
@@ -348,7 +347,7 @@
       <Marker>gr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -364,7 +363,7 @@
       <Marker>rr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -380,7 +379,7 @@
       <Marker>dr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent>rf</InferedParent>
       <Mappings>
@@ -396,7 +395,7 @@
       <Marker>xr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -459,7 +458,7 @@
       <Marker>bw</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -475,7 +474,7 @@
       <Marker>cn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -604,7 +603,7 @@
       <Marker>ph</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -640,7 +639,7 @@
       <Marker>ve</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -656,7 +655,7 @@
       <Marker>vn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -836,7 +835,7 @@
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -852,7 +851,7 @@
       <Marker>en</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -900,7 +899,7 @@
       <Marker>lt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1060,7 +1059,7 @@
       <Marker>oe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1076,7 +1075,7 @@
       <Marker>on</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1180,7 +1179,7 @@
       <Marker>pdl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1196,7 +1195,7 @@
       <Marker>pdn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1244,7 +1243,7 @@
       <Marker>pl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1392,7 +1391,7 @@
       <Marker>uv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1408,7 +1407,7 @@
       <Marker>we</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1424,7 +1423,7 @@
       <Marker>wn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -1560,7 +1559,7 @@
       <Marker>le</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>id</WritingSystem>
+      
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
@@ -2030,7 +2029,7 @@
       <Marker>_4p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>xmm</WritingSystem>
+
       <Unicode>true</Unicode>
       <InferedParent />
       <Mappings>
