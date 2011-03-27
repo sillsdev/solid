@@ -416,7 +416,11 @@ namespace SolidGui.Tests.Export
 			}
 		}
 
-        [Test]
+
+        /// <summary>
+        /// this test is half-baked... if there's no english ldml on the machine, it won't work (e.g. on teamcity)
+        /// </summary>
+        [Test, Category("SkipOnTeamCity")]
         public void WritingSystems_WSFolderNotThere_CreatesItAndCopiesWritingSystemsToWritingSystemFolder()
         {
             using (var e = new ExportTestScenario())
@@ -436,7 +440,11 @@ namespace SolidGui.Tests.Export
                 Assert.IsTrue(File.Exists(Path.Combine(writingSystemsFolderPath, "en.ldml")));
             }
         }
-        [Test]
+
+        /// <summary>
+        /// this test is half-baked... if there's no english ldml on the machine, it won't work (e.g. on teamcity)
+        /// </summary>
+        [Test, Category("SkipOnTeamCity")]
         public void WritingSystems_WSFolderAlreadyExists_CopiesWritingSystemsToWritingSystemFolder()
         {
             using (var e = new ExportTestScenario())
