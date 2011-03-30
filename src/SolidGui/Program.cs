@@ -17,9 +17,20 @@ namespace SolidGui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            if (Settings.Default.Reporting == null)
+                Settings.Default.Reporting = new ReportingSettings();
+            //bring in settings from any previous version
+            if (Settings.Default.NeedUpgrade)
+            {
+                //see http://stackoverflow.com/questions/3498561/net-applicationsettingsbase-should-i-call-upgrade-every-time-i-load
+                Settings.Default.Upgrade();
+                Settings.Default.NeedUpgrade = false;
+                Settings.Default.Save();
+            }
+
             SetupErrorHandling(); 
-            
             SetupUsageTracking();
+
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
            if(args.Length > 0 && args[0].EndsWith(".solid"))
