@@ -55,7 +55,13 @@ namespace SolidGui
                 Settings.Default.Reporting = new ReportingSettings();
                 Settings.Default.Save();
             }
-           UsageReporter.Init(Settings.Default.Reporting, "solid.palaso.org", "UA-22170471-4");
+           UsageReporter.Init(Settings.Default.Reporting, "solid.palaso.org", "UA-22170471-4",
+#if DEBUG
+ true
+#else
+                false
+#endif
+);
         }
     }
 }
