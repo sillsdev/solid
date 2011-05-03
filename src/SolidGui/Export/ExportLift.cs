@@ -69,7 +69,7 @@ namespace SolidGui.Export
 	        outerProgress.WriteMessage("Copying Writing System files...");
 	        try
 	        {
-	            var repository = new LdmlInFolderWritingSystemStore();
+                var repository = new LdmlInFolderWritingSystemRepository();
 	            var dir = Path.GetDirectoryName(outputFilePath);
 	            var writingSystemsPath = Path.Combine(dir, "WritingSystems");
 	            if (!Directory.Exists(writingSystemsPath))

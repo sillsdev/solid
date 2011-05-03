@@ -10,12 +10,12 @@ namespace SolidGui.MarkerSettings
     {
         private SolidMarkerSetting _currentMarkerSetting;
         private WritingSystemSetupModel _wsModel;
-        private LdmlInFolderWritingSystemStore _store;
+        private LdmlInFolderWritingSystemRepository _store;
 
         public MarkerSettingsView()
         {
             InitializeComponent();
-            _store = new LdmlInFolderWritingSystemStore();
+            _store = new LdmlInFolderWritingSystemRepository();
             _wsModel = new WritingSystemSetupModel(_store);
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             this.wsPickerUsingComboBox1.BindToModel(_wsModel);

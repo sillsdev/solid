@@ -99,7 +99,7 @@ namespace SolidGui
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-				var repository = new LdmlInFolderWritingSystemStore();
+                var repository = new LdmlInFolderWritingSystemRepository();
 				if (repository.Exists(writingSystemId))
 				{
 					var definition = repository.Get(writingSystemId);

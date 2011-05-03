@@ -112,8 +112,8 @@ namespace SolidGui.MarkerSettings
             {
                 return "??";
             }
-            
-            var repository = new LdmlInFolderWritingSystemStore();
+
+            var repository = new LdmlInFolderWritingSystemRepository();
             if (!repository.Exists(writingSystemId))
             {
                 return writingSystemId;
