@@ -1,40 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RecordMarker>lx</RecordMarker>
   <Version>1.0</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
-      <WritingSystem/>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>lex</string>
         <string>lexicalUnit</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>entry</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lx</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem/>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>allo</string>
         <string>variant</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>a</Marker>
@@ -42,19 +42,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ps</Marker>
@@ -62,15 +66,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
+      <InferedParent>ps</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ge</Marker>
@@ -78,15 +82,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>re</Marker>
@@ -94,67 +98,67 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>def</string>
         <string>definition</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>de</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
+      <InferedParent>ps</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>gn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>rn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>def</string>
         <string>definition</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dn</Marker>
@@ -162,31 +166,31 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>ref</string>
         <string>example</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>rf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
         <string>exampleSentence</string>
       </Mappings>
+      <InferedParent>rf</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>rf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>xv</Marker>
@@ -194,87 +198,119 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
       </Mappings>
+      <InferedParent>rf</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>rf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>xe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>rf</InferedParent>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
       </Mappings>
+      <InferedParent>rf</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>rf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ue</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>un</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
+      <Mappings>
+        <string>utyp</string>
+        <string xsi:nil="true" />
+      </Mappings>
       <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>ur</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>vern</WritingSystem>
+      <Unicode>true</Unicode>
+      <Mappings>
+        <string>utyp</string>
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>uv</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>vern</WritingSystem>
+      <Unicode>true</Unicode>
       <Mappings>
         <string>cref</string>
         <string>confer</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>cf</Marker>
@@ -282,15 +318,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ce</Marker>
@@ -298,23 +334,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>com</string>
         <string>note</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>nt</Marker>
@@ -322,111 +358,95 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>mod</string>
         <string>dateModified</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
+      <InferedParent>ps</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>gr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>rr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>def</string>
         <string>definition</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>rf</InferedParent>
       <Mappings>
         <string>sent</string>
         <string>exampleSentenceTranslation</string>
       </Mappings>
+      <InferedParent>rf</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>rf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>xr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string>utyp</string>
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ur</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string>semanticDomain</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>is</Marker>
@@ -434,62 +454,62 @@
     <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>in</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>bw</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>cn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>cf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>cr</Marker>
@@ -497,35 +517,35 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>hom</string>
         <string>homonym</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>hm</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>cit</string>
         <string>citation</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lc</Marker>
@@ -533,55 +553,55 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>guid</string>
         <string>guid</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>guid</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>mn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>mr</Marker>
@@ -589,39 +609,39 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>prnf</string>
         <string>pronunciation</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ph</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>vars</string>
         <string>variant</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>va</Marker>
@@ -629,63 +649,63 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>vars</string>
         <string>variant</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>va</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ve</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>vars</string>
         <string>variant</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>va</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>vn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>vars</string>
         <string>variant</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>va</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>vr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>subc</string>
         <string>subentry</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>se</Marker>
@@ -693,35 +713,35 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>sn</string>
         <string>sense</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>etf</string>
         <string>etymology</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>et</Marker>
@@ -729,15 +749,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>etc</string>
         <string>comment</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>et</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ec</Marker>
@@ -745,15 +765,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>etg</string>
         <string>etymologyGloss</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>et</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>eg</Marker>
@@ -761,31 +781,31 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>ets</string>
         <string>etymologySource</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>et</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>es</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string>antonym</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Parent>ps</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>an</Marker>
@@ -793,31 +813,31 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>ebib</string>
         <string>noteBibliographic</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>bb</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>def</string>
         <string>definition</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>dv</Marker>
@@ -825,63 +845,79 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ee</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>en</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>er</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent>ps</InferedParent>
+      <Mappings>
+        <string>enc</string>
+        <string>noteEncyclopedic</string>
+      </Mappings>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>ev</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>vern</WritingSystem>
+      <Unicode>true</Unicode>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
       </Mappings>
+      <InferedParent>ps</InferedParent>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>gv</Marker>
@@ -889,39 +925,39 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>litm</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lt</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>anote</string>
         <string>noteAnthropology</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>na</Marker>
@@ -929,23 +965,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>dnote</string>
         <string>noteDiscourse</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>nd</Marker>
@@ -953,23 +989,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>grnote</string>
         <string>noteGrammar</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ng</Marker>
@@ -977,23 +1013,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>pnote</string>
         <string>notePhonology</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>np</Marker>
@@ -1001,23 +1037,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>com</string>
         <string>noteQuestion</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>nq</Marker>
@@ -1025,23 +1061,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>slnote</string>
         <string>noteSociolinguistic</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ns</Marker>
@@ -1049,63 +1085,63 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>oe</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>on</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>or</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ov</Marker>
@@ -1113,23 +1149,23 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>picf</string>
         <string>illustration</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pc</Marker>
@@ -1137,15 +1173,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pd</Marker>
@@ -1153,15 +1189,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pde</Marker>
@@ -1169,111 +1205,111 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>pdv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>pdl</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pdv</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pl</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>pn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>rd</Marker>
@@ -1281,31 +1317,31 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>sci</string>
         <string>scientificName</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sg</Marker>
@@ -1313,15 +1349,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>src</string>
         <string>noteSource</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>so</Marker>
@@ -1329,19 +1365,19 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>stat</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>st</Marker>
@@ -1349,15 +1385,15 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
-        <string>custom</string>
+        <string>synonym</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sy</Marker>
@@ -1365,111 +1401,79 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>tb</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string>utyp</string>
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>uv</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      
-      <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>we</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>wn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>wr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string>enc</string>
-        <string>noteEncyclopedic</string>
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ev</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>sem</string>
         <string>semanticDomain</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>is</Marker>
@@ -1477,71 +1481,71 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>seme</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>is</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>sd</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>semv</string>
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>th</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>func</string>
         <string>lexicalRelationType</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
+          <Multiplicity>MultipleTogether</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lf</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string>lex</string>
         <string>lexicalRelationLexeme</string>
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lv</Marker>
@@ -1549,536 +1553,235 @@
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>le</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      
+      <WritingSystem>nat</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>ln</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>u</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>1s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>2s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>3s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>4s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>1d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>2d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>3d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>4d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>1p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>1e</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>1i</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>2p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>3p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
+      <InferedParent />
       <StructureProperties />
       <Marker>4p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>reg</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_1s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
       <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_2s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_3s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_4s</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_1d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_2d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_3d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_4d</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_1p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_1e</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_1i</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_2p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_3p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>_4p</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      
-      <Unicode>true</Unicode>
-      <InferedParent />
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lf</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem></WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>true</Unicode>
-      <InferedParent />
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>xv</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
+      <InferedParent />
+      <StructureProperties />
       <Marker>xg</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>CheckMe</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>
