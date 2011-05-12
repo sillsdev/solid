@@ -164,6 +164,8 @@
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
+    <Compile Include="Migration\SolidSettingsMigrator.cs" />
+    <Compile Include="Migration\XslFromResourceMigrator.cs" />
     <Compile Include="Model\SfmFieldModel.cs" />
     <Compile Include="Model\SfmLexEntry.cs" />
     <Compile Include="Processes\Process.cs" />
@@ -378,6 +380,7 @@
     <Content Include="Resources\Recheck.png" />
     <Content Include="Resources\RecheckRecord.png" />
     <Content Include="Resources\Search.png" />
+    <EmbeddedResource Include="Migration\SolidSettings1To2.xslt" />
     <None Include="Resources\solid.ico" />
     <None Include="Resources\Search1.png" />
   </ItemGroup>

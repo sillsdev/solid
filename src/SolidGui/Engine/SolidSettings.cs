@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace SolidGui.Engine
@@ -9,8 +10,8 @@ namespace SolidGui.Engine
     {
         private readonly List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
-        private string _version = "1.0";
-        private const string _newestVersion = "1.0";
+        private string _version = "1";
+        public const int LatestVersion = 2;
 
         public SolidSettings()
         {
@@ -32,12 +33,9 @@ namespace SolidGui.Engine
 
         public IEnumerable<string> Markers
         {
-            get
+            get 
             {
-                foreach (var item in _markerSettings)
-                {
-                    yield return item.Marker;
-                }
+                return _markerSettings.Select(item => item.Marker);
             }
         }
 
@@ -120,14 +118,14 @@ namespace SolidGui.Engine
         public static SolidSettings OpenSolidFile(string filePath, bool defaultEncodingUnicode)
         {
             SolidSettings settings;
-            XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
+            var xs = new XmlSerializer(typeof(SolidSettings));
             
             if(!File.Exists(filePath))
             {
                 using(File.Create(filePath))
                 {}
             }
-            using (StreamReader reader = new StreamReader(filePath))
+            using (var reader = new StreamReader(filePath))
             {
                 settings = (SolidSettings) xs.Deserialize(reader);
             }
@@ -152,18 +150,10 @@ namespace SolidGui.Engine
 
         public void SaveAs(string filePath)
         {
-            XmlSerializer xs = new XmlSerializer(typeof(SolidSettings));
-            using (StreamWriter writer = new StreamWriter(filePath))
+            var xs = new XmlSerializer(typeof(SolidSettings));
+            using (var writer = new StreamWriter(filePath))
             {
                 xs.Serialize(writer, this);
-            }
-        }
-
-        private void UpdateVersion()
-        {
-            if(_version != _newestVersion)
-            {
-                //do a transform from the old version to the new one
             }
         }
 
