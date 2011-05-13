@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Xml;
 using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
@@ -258,9 +259,16 @@ namespace SolidGui
 				}
 				catch (InvalidOperationException e)
 				{
-					Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
+					ErrorReport.NotifyUserOfProblem(
 						String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
 					);
+				}
+				catch (XmlException e)
+				{
+					ErrorReport.NotifyUserOfProblem(
+						String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+					);
+					
 				}
 				result = solidSettings == null;
 			}

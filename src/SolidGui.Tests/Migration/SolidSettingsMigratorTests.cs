@@ -5,7 +5,7 @@ using System.Text;
 
 using Palaso.TestUtilities;
 using Palaso.IO;
-
+using SolidGui.Engine;
 using SolidGui.Migration;
 
 using NUnit.Framework;
@@ -16,7 +16,7 @@ namespace SolidGui.Tests.Migration
     public class SolidSettingsMigratorTests
     {
         [Test]
-        public void Migrate_FromVersion1_ChangesFileToNew()
+        public void Migrate_FromVersion1_ChangesFileToLatest()
         {
             string oldContent = @"<?xml version='1.0' encoding='utf-8'?>
 <SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
@@ -45,8 +45,10 @@ namespace SolidGui.Tests.Migration
             {
                 var migrator = new SolidSettingsMigrator(f.Path);
                 migrator.Migrate();
-                AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("/SolidSettings/Version[text()='2']");
-                AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath(
+					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
+				);
+				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
             }
         }
     }

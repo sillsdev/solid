@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using SolidGui.Migration;
 
 namespace SolidGui.Engine
 {
@@ -10,13 +11,13 @@ namespace SolidGui.Engine
     {
         private readonly List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
-        private string _version = "1";
-        public const int LatestVersion = 2;
+    	public const int LatestVersion = 2;
 
         public SolidSettings()
         {
-            _markerSettings = new List<SolidMarkerSetting>();
-            DefaultEncodingUnicode = false;
+        	Version = LatestVersion.ToString();
+			DefaultEncodingUnicode = false;
+			_markerSettings = new List<SolidMarkerSetting>();
         }
 
         public string RecordMarker
@@ -25,13 +26,9 @@ namespace SolidGui.Engine
             set { _recordMarker = value; }
         }
 
-        public string Version
-        {
-            get { return _version; }
-            set { _version = value; }
-        }
+    	public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
 
-        public IEnumerable<string> Markers
+    	public IEnumerable<string> Markers
         {
             get 
             {
@@ -117,19 +114,28 @@ namespace SolidGui.Engine
         /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
         public static SolidSettings OpenSolidFile(string filePath, bool defaultEncodingUnicode)
         {
-            SolidSettings settings;
-            var xs = new XmlSerializer(typeof(SolidSettings));
+			// Migrate before we load the model.
+			var migrator = new SolidSettingsMigrator(filePath);
+			if (migrator.NeedsMigration())
+			{
+				migrator.Migrate();
+			}
             
+			// Review: Why do we create a file if it doesn't exist? CP 2011-05
             if(!File.Exists(filePath))
             {
                 using(File.Create(filePath))
                 {}
             }
-            using (var reader = new StreamReader(filePath))
+			// Deserialize 
+			SolidSettings settings;
+			var settingsDataMapper = new XmlSerializer(typeof(SolidSettings));
+			using (var reader = new StreamReader(filePath))
             {
-                settings = (SolidSettings) xs.Deserialize(reader);
+                settings = (SolidSettings) settingsDataMapper.Deserialize(reader);
             }
 
+			// Set properties that aren't serialized.
             settings.FilePath = filePath;
             settings.DefaultEncodingUnicode = defaultEncodingUnicode;
             // Fix settings for the record marker.

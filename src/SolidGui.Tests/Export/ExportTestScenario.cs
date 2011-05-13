@@ -18,7 +18,7 @@ namespace SolidGui.Tests.Export
         private readonly TempFile _sfmFile;
         private SfmDictionary _dictionary;
         private bool _isDictionaryOpen;
-         private StringBuilderProgress _progress = new StringBuilderProgress();
+		private readonly StringBuilderProgress _progress = new StringBuilderProgress();
 
         public string ProgressOutput
         {

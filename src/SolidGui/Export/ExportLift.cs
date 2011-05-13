@@ -36,7 +36,7 @@ namespace SolidGui.Export
 
 			var stringBuilderProgress = new StringBuilderProgress();
 			//our overal progress reports both to the UI and to this file we want to write out
-			var progress = new MultiProgress(new IProgress[] { outerProgress, stringBuilderProgress });
+			var progress = new MultiProgress(new[] { outerProgress, stringBuilderProgress });
 
 			using (var dm = new LiftDataMapper(outputFilePath))
 			{
@@ -64,12 +64,13 @@ namespace SolidGui.Export
 		    outerProgress.WriteMessage("Done");
 		}
 
-	    private void WriteWritingSystemFolder(string outputFilePath, IEnumerable<SolidMarkerSetting> markerSettings, IProgress outerProgress)
+	    private static void WriteWritingSystemFolder(string outputFilePath, IEnumerable<SolidMarkerSetting> markerSettings, IProgress outerProgress)
 	    {
 	        outerProgress.WriteMessage("Copying Writing System files...");
 	        try
 	        {
-                var repository = new LdmlInFolderWritingSystemRepository();
+				// ReSharper disable AssignNullToNotNullAttribute
+				var repository = new LdmlInFolderWritingSystemRepository();
 	            var dir = Path.GetDirectoryName(outputFilePath);
 	            var writingSystemsPath = Path.Combine(dir, "WritingSystems");
 	            if (!Directory.Exists(writingSystemsPath))
@@ -78,7 +79,7 @@ namespace SolidGui.Export
 	            }
                 
                 //only copy the ones being used
-	            foreach (var definition in repository.WritingSystemDefinitions)
+	            foreach (var definition in repository.AllWritingSystems)
 	            {
 	                WritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
 	                if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.RFC5646))
@@ -88,14 +89,15 @@ namespace SolidGui.Export
                         File.Copy(existing, path, true);
                     }
 	            }
-	        }
+				// ReSharper restore AssignNullToNotNullAttribute
+			}
 	        catch(Exception e)
 	        {
 	            outerProgress.WriteError(e.Message);
 	        }
 	    }
 
-	    private Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
+	    private static Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
 	    {
             var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
 	        foreach (var sfmLexEntry in sfmLexEntries)
@@ -138,7 +140,7 @@ namespace SolidGui.Export
 	        return index;
 	    }
 
-            private void ResolveTargetsOfRelations(List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress, Dictionary<string, SfmLiftLexEntryAdapter> index)
+            private static void ResolveTargetsOfRelations(IEnumerable<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress, Dictionary<string, SfmLiftLexEntryAdapter> index)
             {
                 foreach (var adaptedEntry in liftLexEntries)
                 {
@@ -163,7 +165,7 @@ namespace SolidGui.Export
                 }
             }
 
-	    private void ResolveTargetOfRelation(Dictionary<string, SfmLiftLexEntryAdapter> index,  Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
+	    private static void ResolveTargetOfRelation(Dictionary<string, SfmLiftLexEntryAdapter> index,  Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
 	    {
 	        SfmLiftLexEntryAdapter targetLexEntry;
 	        if (index.ContainsKey(relation.TargetForm))
@@ -179,7 +181,7 @@ namespace SolidGui.Export
 	        }
 	    }
 
-        private void ResolveTargetOfSenseRelation(Dictionary<string, SfmLiftLexEntryAdapter> index, LexSense sense, Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
+        private static void ResolveTargetOfSenseRelation(Dictionary<string, SfmLiftLexEntryAdapter> index, LexSense sense, Relation relation, SfmLiftLexEntryAdapter adaptedEntry, MultiProgress progress)
         {
             SfmLiftLexEntryAdapter targetLexEntry;
             if (index.ContainsKey(relation.TargetForm))
@@ -194,7 +196,7 @@ namespace SolidGui.Export
                 progress.WriteWarning("Cannot find {0} lexical relation target: {1}, referenced from {2}", relation.Type, relation.TargetForm, adaptedEntry.LiftLexEntry.GetSimpleFormForLogging());
             }
         }
-	    private void ProcessSubentryRelations(SfmLiftLexEntryAdapter adaptedEntry, Dictionary<string, SfmLiftLexEntryAdapter> index, MultiProgress progress)
+	    private static void ProcessSubentryRelations(SfmLiftLexEntryAdapter adaptedEntry, Dictionary<string, SfmLiftLexEntryAdapter> index, MultiProgress progress)
 	    {
 	        SfmLiftLexEntryAdapter targetLexEntry;
 	        foreach (var subEntry in adaptedEntry.SubEntries)
@@ -233,7 +235,8 @@ namespace SolidGui.Export
 
 	    public string ModifyDestinationIfNeeded(string destinationFilePath)
 	    {
-	        var destDirectory = Path.GetDirectoryName(destinationFilePath);
+			// ReSharper disable AssignNullToNotNullAttribute
+			var destDirectory = Path.GetDirectoryName(destinationFilePath);
 	        bool foundUnknown = false;
             foreach(var file in Directory.GetFiles(destDirectory))
             {
@@ -265,11 +268,9 @@ namespace SolidGui.Export
                     Directory.CreateDirectory(suggested);
 	            return Path.Combine(suggested, Path.GetFileName(destinationFilePath));
 	        }
-	        else
-	        {
-	            return destinationFilePath;
-	        }          
-	    }
+	    	return destinationFilePath;
+			// ReSharper restore AssignNullToNotNullAttribute
+		}
 
 	    public static IExporter Create()
 		{

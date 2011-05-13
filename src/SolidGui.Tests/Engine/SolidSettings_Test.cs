@@ -1,5 +1,8 @@
 using NUnit.Framework;
+using Palaso.IO;
+using Palaso.TestUtilities;
 using SolidGui.Engine;
+using SolidGui.Migration;
 
 
 namespace SolidGui.Tests.Engine
@@ -7,11 +10,6 @@ namespace SolidGui.Tests.Engine
     [TestFixture]
     public class SolidSettingsTest
     {
-
-        [TestFixtureSetUp]
-        public void Init()
-        {
-        }
 
         [Test]
         public void SolidSettings_FindOrCreateMarkerSetting_CreatesMarker()
@@ -49,6 +47,61 @@ namespace SolidGui.Tests.Engine
             string result = SolidSettings.GetSettingsFilePathFromDictionaryPath("mydatafile");
             Assert.AreEqual("mydatafile.solid", result);
         }
+
+		[Test]
+		public void SaveAs_CurrentModel_WritesLatestVersion()
+		{
+			using (var f = new TempFile())
+			{
+				var settings = new SolidSettings();
+				settings.SaveAs(f.Path);
+				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath(
+					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
+				);
+			}
+		}
+
+		[Test]
+		// http://projects.palaso.org/issues/612
+		public void OpenSolidFile_FileVersion1_MigratesToLatest()
+		{
+			string oldContent = @"<?xml version='1.0' encoding='utf-8'?>
+<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <RecordMarker>lx</RecordMarker>
+  <Version>1.0</Version>
+  <MarkerSettings>
+    <SolidMarkerSetting>
+      <WritingSystem>lbw</WritingSystem>
+      <Unicode>true</Unicode>
+      <InferedParent />
+      <Mappings>
+        <string>lex</string>
+        <string>lexicalUnit</string>
+      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <MultipleAdjacent>Once</MultipleAdjacent>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>lx</Marker>
+    </SolidMarkerSetting>
+  </MarkerSettings>
+</SolidSettings>".Replace('\'', '"');
+			using (var f = new TempFile(oldContent))
+			{
+				var settings = SolidSettings.OpenSolidFile(f.Path);
+
+				Assert.That(settings.Version, Is.EqualTo("2"));
+				var markerSettings = settings.FindOrCreateMarkerSetting("lx");
+				Assert.That(markerSettings.StructureProperties[0].Multiplicity, Is.EqualTo(MultiplicityAdjacency.Once));
+
+				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath(
+					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
+				);
+				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+			}
+		}
 
     }
 }
