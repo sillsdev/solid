@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using System.Xml;
 using SolidGui.Engine;
 using SolidGui.Model;
@@ -16,6 +17,8 @@ namespace SolidGui.Processes
 
         public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)
         {
+            var utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
+            var iso88591Encoding = Encoding.GetEncoding("iso-8859-1");
             // Iterate through each (flat) node in the src d
             foreach (var sfmField in lexEntry.Fields)
             {
@@ -27,37 +30,13 @@ namespace SolidGui.Processes
                     if (value.Length > 0)
                     {
                         bool isValid = true;
-                        int remaining = 0;
-                        for (int i = 0; i < value.Length && isValid; ++i)
+                        try
                         {
-                            if (remaining > 0)
-                            {
-                                isValid = (value[i] & 0xC0) == 0x80;
-                                --remaining;
-                            }
-                            else
-                            {
-                                if ((value[i] & 0xF8) == 0xF0)
-                                {
-                                    remaining = 3;
-                                }
-                                else if ((value[i] & 0xF0) == 0xE0)
-                                {
-                                    remaining = 2;
-                                }
-                                else if ((value[i] & 0xE0) == 0xC0)
-                                {
-                                    remaining = 1;
-                                }
-                                else if ((value[i] & 0x80) == 0x00)
-                                {
-                                    remaining = 0;
-                                }
-                                else
-                                {
-                                    isValid = false;
-                                }
-                            }
+                            var convertedString = utf8Encoding.GetString(iso88591Encoding.GetBytes(value));
+                        }
+                        catch(Exception e)
+                        {
+                            isValid = false;
                         }
 
                         if (!isValid)

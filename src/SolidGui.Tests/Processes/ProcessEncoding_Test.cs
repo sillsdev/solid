@@ -109,5 +109,18 @@ namespace SolidGui.Tests.Processes
             Assert.AreEqual("Marker \\gu contains bad unicode data", report.Entries[0].Description);
         }
 
+        [Test]
+        public void OtherBadUnicode_ReportError()
+        {
+            const string sfmIn = "\\lx 1\n\\gu กอ�";
+
+            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            var report = new SolidReport();
+            _p.Process(entry, report);
+
+            Assert.AreEqual(1, report.Count);
+            Assert.AreEqual("Marker \\gu contains bad unicode data", report.Entries[0].Description);
+        }
+
     }
 }
