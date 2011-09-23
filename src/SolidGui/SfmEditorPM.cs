@@ -6,6 +6,7 @@ using System.Text;
 
 using Palaso.WritingSystems;
 using SolidGui.Engine;
+using SolidGui.MarkerSettings;
 using SolidGui.Model;
 
 
@@ -99,8 +100,8 @@ namespace SolidGui
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-                var repository = new LdmlInFolderWritingSystemRepository();
-				if (repository.Exists(writingSystemId))
+                var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+                if (repository.Contains(writingSystemId))
 				{
 					var definition = repository.Get(writingSystemId);
 					var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;

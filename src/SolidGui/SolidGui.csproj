@@ -162,6 +162,7 @@
     <Compile Include="Filter\MarkerFilter.cs" />
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
+    <Compile Include="MarkerSettings\AppWritingSystems.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
     <Compile Include="Migration\SolidSettingsMigrator.cs" />

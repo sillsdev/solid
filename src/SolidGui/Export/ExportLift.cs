@@ -11,6 +11,7 @@ using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
+using SolidGui.MarkerSettings;
 using SolidGui.Model;
 using System.Linq;
 
@@ -70,8 +71,8 @@ namespace SolidGui.Export
 	        try
 	        {
 				// ReSharper disable AssignNullToNotNullAttribute
-				var repository = new LdmlInFolderWritingSystemRepository();
-	            var dir = Path.GetDirectoryName(outputFilePath);
+                var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+                var dir = Path.GetDirectoryName(outputFilePath);
 	            var writingSystemsPath = Path.Combine(dir, "WritingSystems");
 	            if (!Directory.Exists(writingSystemsPath))
 	            {
@@ -82,9 +83,9 @@ namespace SolidGui.Export
 	            foreach (var definition in repository.AllWritingSystems)
 	            {
 	                WritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
-	                if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.RFC5646))
+	                if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.Bcp47Tag))
                     {
-                        var existing = repository.FilePathToWritingSystem(definition);
+                        var existing = repository.GetFilePathFromIdentifier(definition.StoreID);
                         var path = Path.Combine(writingSystemsPath, Path.GetFileName(existing));
                         File.Copy(existing, path, true);
                     }

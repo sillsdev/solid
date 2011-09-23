@@ -113,8 +113,8 @@ namespace SolidGui.MarkerSettings
                 return "??";
             }
 
-            var repository = new LdmlInFolderWritingSystemRepository();
-            if (!repository.Exists(writingSystemId))
+            var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+            if (!repository.Contains(writingSystemId))
             {
                 return writingSystemId;
             }
