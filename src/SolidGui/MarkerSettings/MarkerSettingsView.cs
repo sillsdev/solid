@@ -15,7 +15,7 @@ namespace SolidGui.MarkerSettings
         public MarkerSettingsView()
         {
             InitializeComponent();
-            _store = new LdmlInFolderWritingSystemRepository();
+            _store = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
             _wsModel = new WritingSystemSetupModel(_store);
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             this.wsPickerUsingComboBox1.BindToModel(_wsModel);
