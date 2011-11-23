@@ -68,13 +68,13 @@
     <!-- push up to the web so that on our downloads page, we can give a link to the latest version -->
      
     <Message Text="Attempting rsync of DownloadPointers.htm" Importance="high"/>
-    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/DownloadPointers.htm" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/DownloadPointers.htm' /> 
+    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw,o+r -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/DownloadPointers.htm" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/DownloadPointers.htm' /> 
   </Target>
   
   <Target Name="Upload" DependsOnTargets="VersionNumbers; Installer" >
     <Message Text="Attempting rsync of $(ApplicationName)Installer.$(Version).exe" Importance="high"/>
 
-    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/$(ApplicationName)Installer.$(Version).exe" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/$(ApplicationName)Installer.$(Version).exe' /> 
+    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vz -p --chmod=ug+rw,o+r -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=C:\BuildAgent\conf\bob.key -l bob"  "../output/installer/$(ApplicationName)Installer.$(Version).exe" bob@palaso.org:/var/www/virtual/palaso.org/solid/htdocs/files/$(ApplicationName)Installer.$(Version).exe' /> 
 
     <CallTarget Targets ='MakeDownloadPointers'/>
   </Target>
