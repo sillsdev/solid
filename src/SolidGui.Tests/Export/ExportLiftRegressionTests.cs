@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 using NUnit.Framework;
@@ -37,12 +38,15 @@ namespace SolidGui.Tests.Export
 ";
             using (var e = new ExportTestScenario(sfm))
             {
+				DateTime expectedDateTime = DateTime.Parse("08/Oct/1969");
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("dt", "dateModified", "en", "lx", false);
                 var liftExporter = new ExportLift();
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
-                //NB: don't test on the timezone part,as (at least as the code is now) that changes with the test machine time zone
-                AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath("/lift/entry[contains(@dateCreated,'1969-10-07T')]");
+				AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath(
+					String.Format("/lift/entry[contains(@dateCreated,'{0}')]",
+					expectedDateTime.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ"))
+				);
             }
         }
 
