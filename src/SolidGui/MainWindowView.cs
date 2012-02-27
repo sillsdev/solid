@@ -7,6 +7,7 @@ using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Properties;
 using SolidGui.Search;
+using SolidGui.Setup;
 
 namespace SolidGui
 {
@@ -203,6 +204,7 @@ namespace SolidGui
         private void UpdateDisplay()
         {
             _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
+        	_changeWritingSystems.Enabled = _mainWindowPM.CanProcessLexicon;
             _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
             _exportButton.Enabled = _mainWindowPM.CanProcessLexicon;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
@@ -377,5 +379,16 @@ namespace SolidGui
             _saveButton.Enabled = true;
             
         }
+
+		private void OnChangeWritingSystems_Click(object sender, EventArgs e)
+		{
+			var dialog = new WritingSystemsConfigDialog();
+			var presenter = new WritingSystemsConfigPresenter(_mainWindowPM.Settings, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
+			dialog.ShowDialog(this);
+			_markerDetails.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
+			_markerDetails.Refresh();
+			OnMarkerSettingPossiblyChanged(null, null); // TODO make conditional on dialog result
+
+		}
     }
 }

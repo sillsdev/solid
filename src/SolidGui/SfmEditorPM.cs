@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
+using System.Linq;
 using System.Text;
-
-using Palaso.WritingSystems;
 using SolidGui.Engine;
-using SolidGui.MarkerSettings;
 using SolidGui.Model;
 
 
@@ -15,15 +12,15 @@ namespace SolidGui
     public class SfmEditorPM
     {
         private SolidSettings _solidSettings;
-    	private RecordNavigatorPM _navigatorModel;
+    	private readonly RecordNavigatorPM _navigatorModel;
 
     	public class RecordEditedEventArgs:EventArgs
         {
-            public string _record;
+            public string Record;
 
             public RecordEditedEventArgs(string record)
             {
-                _record = record;
+                Record = record;
             }
         }
 
@@ -70,7 +67,7 @@ namespace SolidGui
             {
                 SfmRecord sfmRecord = reader.Record;
                 RemoveInferredFields(sfmRecord);
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 foreach (SfmField field in sfmRecord)
                 {
                     field.Value = GetLatin1ValueFromUnicode(field.Marker, field.Value);
@@ -100,7 +97,7 @@ namespace SolidGui
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-                var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+                var repository = AppWritingSystems.WritingSystems;
                 if (repository.Contains(writingSystemId))
 				{
 					var definition = repository.Get(writingSystemId);
@@ -148,13 +145,7 @@ namespace SolidGui
 
         private static bool FontIsInstalled(string name)
         {
-            foreach (FontFamily family in FontFamily.Families)
-            {
-                if (family.Name == name)
-                    return true;
-            }
-            return false;
+        	return FontFamily.Families.Any(family => family.Name == name);
         }
-
     }
 }

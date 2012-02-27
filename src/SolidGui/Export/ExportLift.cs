@@ -11,7 +11,6 @@ using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
-using SolidGui.MarkerSettings;
 using SolidGui.Model;
 using System.Linq;
 
@@ -71,7 +70,7 @@ namespace SolidGui.Export
 	        try
 	        {
 				// ReSharper disable AssignNullToNotNullAttribute
-                var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+                var repository = AppWritingSystems.WritingSystems as LdmlInFolderWritingSystemRepository;
                 var dir = Path.GetDirectoryName(outputFilePath);
 	            var writingSystemsPath = Path.Combine(dir, "WritingSystems");
 	            if (!Directory.Exists(writingSystemsPath))

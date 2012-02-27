@@ -120,9 +120,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Palaso.Lift.dll</HintPath>
     </Reference>
-    <Reference Include="PalasoUIWindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\lib\PalasoUIWindowsForms.dll</HintPath>
+    <Reference Include="PalasoUIWindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\PalasoUIWindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -162,7 +162,7 @@
     <Compile Include="Filter\MarkerFilter.cs" />
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
-    <Compile Include="MarkerSettings\AppWritingSystems.cs" />
+    <Compile Include="AppWritingSystems.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
     <Compile Include="Migration\SolidSettingsMigrator.cs" />
@@ -237,6 +237,19 @@
       <DependentUpon>QuickFixForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="Setup\WritingSystemsConfigDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\WritingSystemsConfigDialog.Designer.cs">
+      <DependentUpon>WritingSystemsConfigDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setup\WritingSystemsConfigPresenter.cs" />
+    <Compile Include="Setup\WritingSystemsConfigView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Setup\WritingSystemsConfigView.Designer.cs">
+      <DependentUpon>WritingSystemsConfigView.cs</DependentUpon>
+    </Compile>
     <Compile Include="StructurePropertiesView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -382,6 +395,14 @@
     <Content Include="Resources\RecheckRecord.png" />
     <Content Include="Resources\Search.png" />
     <EmbeddedResource Include="Migration\SolidSettings1To2.xslt" />
+    <EmbeddedResource Include="Setup\WritingSystemsConfigDialog.resx">
+      <DependentUpon>WritingSystemsConfigDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\WritingSystemsConfigView.resx">
+      <DependentUpon>WritingSystemsConfigView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Resources\solid.ico" />
     <None Include="Resources\Search1.png" />
   </ItemGroup>

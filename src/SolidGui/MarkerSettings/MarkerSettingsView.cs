@@ -9,17 +9,17 @@ namespace SolidGui.MarkerSettings
     public partial class MarkerSettingsView : UserControl
     {
         private SolidMarkerSetting _currentMarkerSetting;
-        private WritingSystemSetupModel _wsModel;
-        private LdmlInFolderWritingSystemRepository _store;
+        private readonly WritingSystemSetupModel _wsModel;
+        private readonly IWritingSystemRepository _store;
 
         public MarkerSettingsView()
         {
             InitializeComponent();
-            _store = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+        	_store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
-            this.wsPickerUsingComboBox1.BindToModel(_wsModel);
-            wsPickerUsingComboBox1.SelectedComboIndexChanged += new EventHandler(wsPickerUsingComboBox1_SelectedComboIndexChanged);
+            wsPickerUsingComboBox1.BindToModel(_wsModel);
+            wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
         }
 
         void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace SolidGui.MarkerSettings
         {
             if(!string.IsNullOrEmpty(initialArea))
             {
-                foreach (TabPage  page in this._structureTabControl.TabPages )
+                foreach (TabPage  page in _structureTabControl.TabPages )
                 {
                     if(page.Name.Contains(initialArea))
                     {
@@ -120,7 +120,7 @@ namespace SolidGui.MarkerSettings
             {
                 if (_wsModel.HasCurrentSelection)
                 {
-                    System.Windows.Forms.Cursor.Current = Cursors.WaitCursor;
+                    Cursor.Current = Cursors.WaitCursor;
                     d.ShowDialog(_wsModel.CurrentRFC4646);
                 }
                 else

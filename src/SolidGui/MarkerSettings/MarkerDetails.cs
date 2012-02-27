@@ -113,7 +113,7 @@ namespace SolidGui.MarkerSettings
                 return "??";
             }
 
-            var repository = GlobalWritingSystemRepository.Initialize(AppWritingSystems.MigrationHandler);
+        	var repository = AppWritingSystems.WritingSystems;
             if (!repository.Contains(writingSystemId))
             {
                 return writingSystemId;

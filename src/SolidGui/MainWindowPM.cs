@@ -34,8 +34,7 @@ namespace SolidGui
     	private String _realDictionaryPath;
     	private SearchViewModel _searchModel;
 
-
-        public MainWindowPM()
+    	public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
             _workingDictionary = new SfmDictionary();
@@ -166,7 +165,7 @@ namespace SolidGui
     		}
     	}
 
-    	public string PathToFactoryTemplatesDirectory
+    	public static string PathToFactoryTemplatesDirectory
     	{
     		get
     		{

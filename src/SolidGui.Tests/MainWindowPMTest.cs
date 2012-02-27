@@ -63,7 +63,7 @@ namespace SolidGui.Tests
 
         private static string PathToMDFTemplate(MainWindowPM pm)
         {
-            return Path.Combine(pm.PathToFactoryTemplatesDirectory, "MDF Unicode.solid");
+            return Path.Combine(MainWindowPM.PathToFactoryTemplatesDirectory, "MDF Unicode.solid");
         }
 
         [Test]
@@ -186,8 +186,8 @@ namespace SolidGui.Tests
             using (var e = new EnvironmentForTest())
             {
                 var pm = new MainWindowPM();
-                string one = Path.Combine(pm.PathToFactoryTemplatesDirectory, "testTemplate1.solid");
-                string two = Path.Combine(pm.PathToFactoryTemplatesDirectory, "testTemplate2.solid");
+                string one = Path.Combine(MainWindowPM.PathToFactoryTemplatesDirectory, "testTemplate1.solid");
+                string two = Path.Combine(MainWindowPM.PathToFactoryTemplatesDirectory, "testTemplate2.solid");
                 File.WriteAllText(one, "test");
                 File.WriteAllText(two, "test");
                 Assert.IsTrue(pm.TemplatePaths.Contains(one));
