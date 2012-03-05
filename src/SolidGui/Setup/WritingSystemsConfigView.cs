@@ -27,21 +27,6 @@ namespace SolidGui.Setup
 
 		private WritingSystemsConfigPresenter Presenter { get; set; }
 
-		public void NationalWritingSystemBindPresenter(WritingSystemSetupModel model)
-		{
-			_wscNational.BindToModel(model);
-		}
-
-		public void RegionalWritingSystemBindPresenter(WritingSystemSetupModel model)
-		{
-			_wscRegional.BindToModel(model);
-		}
-
-		public void VernacularWritingSystemBindPresenter(WritingSystemSetupModel model)
-		{
-			_wscVernacular.BindToModel(model);
-		}
-
 		public void ToWritingSystemBindPresenter(WritingSystemSetupModel model)
 		{
 			_wscTo.BindToModel(model);
@@ -51,6 +36,12 @@ namespace SolidGui.Setup
 		{
 			get { return _tbFieldsMatching.Text; }
 			set { _tbFieldsMatching.Text = value; }
+		}
+
+		public string FromWritingSystem
+		{
+			get { return _cbFrom.SelectedItem as string; }
+			set { _cbFrom.SelectedItem = value; }
 		}
 
 		public void ShowAdvanced()
@@ -63,6 +54,11 @@ namespace SolidGui.Setup
 			throw new NotImplementedException();
 		}
 
+		public void SetFromItems(string[] items)
+		{
+			_cbFrom.Items.AddRange(items);
+		}
+
 		public void CloseForm()
 		{
 			var form = ParentForm;
@@ -70,6 +66,12 @@ namespace SolidGui.Setup
 			{
 				form.Close();
 			}
+		}
+
+		public void ShowWritingSystemSetupDialog(WritingSystemSetupModel model)
+		{
+			var dialog = new WritingSystemSetupDialog(model);
+			dialog.ShowDialog(ParentForm);
 		}
 
 		private void OnApply_Click(object sender, EventArgs e)
@@ -80,6 +82,11 @@ namespace SolidGui.Setup
 		private void OnAdvanced_Click(object sender, EventArgs e)
 		{
 			Presenter.OnAdvancedClick();
+		}
+
+		private void OnSetupWritingSystems_Click(object sender, EventArgs e)
+		{
+			Presenter.OnSetupWritingSystemsClick();
 		}
 	}
 }

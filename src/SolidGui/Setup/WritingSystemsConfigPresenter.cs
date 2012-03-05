@@ -14,22 +14,19 @@ namespace SolidGui.Setup
 		{
 			void BindToPresenter(WritingSystemsConfigPresenter presenter);
 
-			void NationalWritingSystemBindPresenter(WritingSystemSetupModel model);
-			void RegionalWritingSystemBindPresenter(WritingSystemSetupModel model);
-			void VernacularWritingSystemBindPresenter(WritingSystemSetupModel model);
 			void ToWritingSystemBindPresenter(WritingSystemSetupModel model);
 
 			string FromMatching { get; set; }
+			string FromWritingSystem { get; set; }
+			void SetFromItems(string[] items);
 
 			void ShowAdvanced();
 			void HideAdvanced();
 
 			void CloseForm();
+			void ShowWritingSystemSetupDialog(WritingSystemSetupModel model);
 		}
 
-		private readonly WritingSystemSetupModel _nationalWritingSystemSetupModel;
-		private readonly WritingSystemSetupModel _regionalWritingSystemSetupModel;
-		private readonly WritingSystemSetupModel _vernacularWritingSystemSetupModel;
 		private readonly WritingSystemSetupModel _toWritingSystemSetupModel;
 
 		public WritingSystemsConfigPresenter(SolidSettings solidSettings, IWritingSystemRepository writingSystemRepository, IView view)
@@ -37,44 +34,41 @@ namespace SolidGui.Setup
 			View = view;
 			View.BindToPresenter(this);
 			SolidSettings = solidSettings;
-			_nationalWritingSystemSetupModel = new WritingSystemSetupModel(writingSystemRepository);
-			View.NationalWritingSystemBindPresenter(_nationalWritingSystemSetupModel);
-			_regionalWritingSystemSetupModel = new WritingSystemSetupModel(writingSystemRepository);
-			View.RegionalWritingSystemBindPresenter(_regionalWritingSystemSetupModel);
-			_vernacularWritingSystemSetupModel = new WritingSystemSetupModel(writingSystemRepository);
-			View.VernacularWritingSystemBindPresenter(_vernacularWritingSystemSetupModel);
+			WritingSystemRepository = writingSystemRepository;
 			_toWritingSystemSetupModel = new WritingSystemSetupModel(writingSystemRepository);
 			View.ToWritingSystemBindPresenter(_toWritingSystemSetupModel);
+			View.SetFromItems(FromWritingSystems());
 		}
+
+		private IWritingSystemRepository WritingSystemRepository { get; set; }
 
 		private SolidSettings SolidSettings { get; set; }
 
 		private IView View { get; set; }
 
+		public string[] FromWritingSystems()
+		{
+			return SolidSettings.MarkerSettings.Select(markerSetting => markerSetting.WritingSystemRfc4646).Distinct().ToArray();
+		}
+
+		public void OnSetupWritingSystemsClick()
+		{
+			View.ShowWritingSystemSetupDialog(_toWritingSystemSetupModel);
+		}
+
 		public void OnApplyClick()
 		{
+			string fromWritingSystem = View.FromWritingSystem;
 
-			// TODO
-			// Load up the template
-			// Find markers for nat, reg, and vern
-			// Rename each marker as per the view
-			// or
-			// Rename markers as per the advance view
+			// TODO Rename markers as per the advance view
 			foreach (var markerSetting in SolidSettings.MarkerSettings)
 			{
-				if (markerSetting.WritingSystemRfc4646 == "nat")
+				if (markerSetting.WritingSystemRfc4646 == fromWritingSystem)
 				{
-					markerSetting.WritingSystemRfc4646 = _nationalWritingSystemSetupModel.CurrentRFC4646;
-				} else if (markerSetting.WritingSystemRfc4646 == "reg")
-				{
-					markerSetting.WritingSystemRfc4646 = _regionalWritingSystemSetupModel.CurrentRFC4646;
-				} else if (markerSetting.WritingSystemRfc4646 == "vern")
-				{
-					markerSetting.WritingSystemRfc4646 = _vernacularWritingSystemSetupModel.CurrentRFC4646;
+					markerSetting.WritingSystemRfc4646 = _toWritingSystemSetupModel.CurrentRFC4646;
 				}
 			}
 			View.CloseForm();
-
 		}
 
 		public void OnAdvancedClick()
