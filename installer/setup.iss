@@ -47,9 +47,9 @@ Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesamevers
 Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\LiftIO.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.Lift.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Enchant.Net.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
