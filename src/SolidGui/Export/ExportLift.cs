@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using LiftIO.Validation;
 using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
-using Palaso.Progress.LogBox;
+using Palaso.Lift.Validation;
+using Palaso.Progress;
 using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
@@ -57,7 +57,7 @@ namespace SolidGui.Export
 			}
 			outerProgress.WriteMessage("");
 			outerProgress.WriteMessage("Checking result to make sure it is valid LIFT XML...");
-            var result = Validator.GetAnyValidationErrors(outputFilePath);
+            var result = Validator.GetAnyValidationErrors(outputFilePath, new NullValidationProgress(), ValidationOptions.All);
             if(!string.IsNullOrEmpty(result))
                 outerProgress.WriteError(result);
             WriteWritingSystemFolder(outputFilePath, solidSettings.MarkerSettings, outerProgress);

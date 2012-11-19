@@ -2,6 +2,7 @@ using System;
 using Palaso.Reporting;
 
 using System.Windows.Forms;
+using Palaso.UI.WindowsForms.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 

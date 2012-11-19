@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using NUnit.Framework;
-using Palaso.Progress.LogBox;
+using Palaso.Progress;
 using Palaso.TestUtilities;
 using SolidGui.Export;
 
@@ -45,7 +42,7 @@ namespace SolidGui.Tests.Export
                 liftExporter.Export(e.Dictionary.AllRecords, e.SolidSettings, e.LiftPath, new ConsoleProgress());
 				AssertThatXmlIn.String(e.LiftAsString()).HasAtLeastOneMatchForXpath(
 					String.Format("/lift/entry[contains(@dateCreated,'{0}')]",
-					expectedDateTime.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ"))
+					expectedDateTime.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ"))
 				);
             }
         }

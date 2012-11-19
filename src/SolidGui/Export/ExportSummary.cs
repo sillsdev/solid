@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using Palaso.Progress;
-using Palaso.Progress.LogBox;
+using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
 

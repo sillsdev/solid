@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using Palaso.Progress.LogBox;
+using Palaso.Progress;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;

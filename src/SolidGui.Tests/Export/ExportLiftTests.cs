@@ -137,7 +137,8 @@ namespace SolidGui.Tests.Export
     			dateAsString, "dd/MMM/yyyy",
     			CultureInfo.InvariantCulture, DateTimeStyles.None, out dateValue
     			);
-    		return dateValue.ToUniversalTime().ToString("yyyy-MM-ddThh:mm:ssZ");
+    		var universaltime = dateValue.ToUniversalTime();
+            return universaltime.ToString("yyyy-MM-ddTHH:mm:ssZ");
     	}
 
     	[Test]

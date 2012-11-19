@@ -7,7 +7,8 @@ using Palaso.DictionaryServices.Lift;
 using Palaso.DictionaryServices.Model;
 using Palaso.Lift;
 using Palaso.Lift.Options;
-using Palaso.Progress.LogBox;
+using Palaso.Progress;
+using Palaso.UI.WindowsForms.Progress;
 using Palaso.Text;
 using SolidGui.Engine;
 using SolidGui.Model;
@@ -253,7 +254,7 @@ namespace SolidGui.Export
                         // If there's no grammatical info, and we have a current set, then put that in now.
                         if (!currentSense.Properties.Exists(property => property.Key == LexSense.WellKnownProperties.PartOfSpeech))
                         {
-                            currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.PartOfSpeech, new OptionRef(currentPartOfSpeech)));
+                            currentSense.Properties.Add(new KeyValuePair<string, IPalasoDataObjectProperty>(LexSense.WellKnownProperties.PartOfSpeech, new OptionRef(currentPartOfSpeech)));
                         }
                     }
                     states.Pop();
@@ -502,19 +503,19 @@ namespace SolidGui.Export
                             case Concepts.Illustration:
                                 var illustration = new PictureRef();
                                 illustration.Value = unicodeValue;
-                                currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.Picture, illustration));
+                                currentSense.Properties.Add(new KeyValuePair<string, IPalasoDataObjectProperty>(LexSense.WellKnownProperties.Picture, illustration));
                                 break;
                             case Concepts.GrammaticalInfo_PS:
                                 var gi = new OptionRef(unicodeValue); // TODO One we could check the fieldValue against some RangeSet (OptionRefCollection)
                                 // var optRefCollection = new OptionRefCollection();
-                                currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.PartOfSpeech, gi));
+                                currentSense.Properties.Add(new KeyValuePair<string, IPalasoDataObjectProperty>(LexSense.WellKnownProperties.PartOfSpeech, gi));
                                 break;
                             case Concepts.Definition:
                                 currentSense.Definition[liftInfo.WritingSystem] = unicodeValue;
                                 break;
                             case Concepts.SemanticDomain:
 								// TODO #522 need to do some sort of range check, going from the loose anything goes \sd to the defined (hah) DDP4 rangeset. CP 2010-11
-								currentSense.Properties.Add(new KeyValuePair<string, object>(LexSense.WellKnownProperties.SemanticDomainDdp4, new OptionRef(unicodeValue)));
+                                currentSense.Properties.Add(new KeyValuePair<string, IPalasoDataObjectProperty>(LexSense.WellKnownProperties.SemanticDomainDdp4, new OptionRef(unicodeValue)));
                                 break;
                             case Concepts.CustomField:
                                 AddMultiTextToPalasoDataObject(unicodeValue, liftInfo.WritingSystem, currentSense, field.Marker);
@@ -755,7 +756,7 @@ namespace SolidGui.Export
         {
             var mt = new MultiText();
             mt[writingSystem] = fieldValue;
-            dataObject.Properties.Add(new KeyValuePair<string, object>(propertyName, mt));
+            dataObject.Properties.Add(new KeyValuePair<string, IPalasoDataObjectProperty>(propertyName, mt));
         }
 
 #if unused
