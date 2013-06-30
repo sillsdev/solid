@@ -627,7 +627,7 @@
       <Marker>ph</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>reg</WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
@@ -751,7 +751,7 @@
       <Unicode>false</Unicode>
       <Mappings>
         <string>etc</string>
-        <string>comment</string>
+        <string>etymologyComment</string>
       </Mappings>
       <InferedParent />
       <StructureProperties>
@@ -932,7 +932,11 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
           <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1783,5 +1787,22 @@
       <StructureProperties />
       <Marker>xg</Marker>
     </SolidMarkerSetting>
-  </MarkerSettings>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string>custom</string>
+      </Mappings>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>CheckMe</Marker>
+    </SolidMarkerSetting>
+
+	</MarkerSettings>
 </SolidSettings>

@@ -151,6 +151,7 @@ With out this FLEx  just generates errors, and it takes a lot of work to create 
             string s = _tbMakeRealMarkers.Text;
             var tokens = s.SplitTrimmed(',');
             _fixer.MakeInferedMarkersReal(tokens);
+            Close();
         }
     }
 }

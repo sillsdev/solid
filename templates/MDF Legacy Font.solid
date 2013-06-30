@@ -603,7 +603,7 @@
       <Marker>ph</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>reg</WritingSystem>
+      <WritingSystem>vern</WritingSystem>
       <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
@@ -611,6 +611,10 @@
       </Mappings>
       <InferedParent />
       <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>se</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
@@ -727,7 +731,7 @@
       <Unicode>false</Unicode>
       <Mappings>
         <string>etc</string>
-        <string>comment</string>
+        <string>etymologyComment</string>
       </Mappings>
       <InferedParent />
       <StructureProperties>
@@ -908,7 +912,11 @@
       <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
           <Multiplicity>Once</Multiplicity>
         </SolidStructureProperty>
       </StructureProperties>
@@ -1602,7 +1610,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>1s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1613,7 +1626,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>2s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1624,7 +1642,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>3s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1635,7 +1658,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>4s</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1646,7 +1674,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>1d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1657,7 +1690,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>2d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1668,7 +1706,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>3d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1679,7 +1722,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>4d</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1690,7 +1738,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>1p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1701,7 +1754,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>1e</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1712,7 +1770,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>1i</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1723,7 +1786,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>2p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1734,7 +1802,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>3p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1745,7 +1818,12 @@
         <string xsi:nil="true" />
       </Mappings>
       <InferedParent />
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
       <Marker>4p</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -1775,5 +1853,111 @@
       <StructureProperties />
       <Marker>xg</Marker>
     </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>st_lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>nt_lx</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>st_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lc_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>nt_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>lt_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>cf_se</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string xsi:nil="true" />
+      </Mappings>
+      <InferedParent />
+      <StructureProperties />
+      <Marker>cf_sn</Marker>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <Mappings>
+        <string xsi:nil="true" />
+        <string>custom</string>
+      </Mappings>
+      <InferedParent />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <Marker>CheckMe</Marker>
+    </SolidMarkerSetting>
+	
   </MarkerSettings>
+  
 </SolidSettings>
