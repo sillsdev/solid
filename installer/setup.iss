@@ -59,6 +59,9 @@ Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates
 Source: ..\templates\MDF Alternate Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\FLEx-friendly MDF Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\FLEx-friendly MDF Legacy Font.solid; DestDir: {app}\templates
+Source: ..\templates\No Assumptions.solid; DestDir: {app}\templates
+Source: ..\templates\PLB SFM Unicode.solid; DestDir: {app}\templates
+Source: ..\templates\PLB SFM Legacy Font.solid; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 
