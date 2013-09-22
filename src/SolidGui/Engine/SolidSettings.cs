@@ -1,23 +1,54 @@
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Palaso.Reporting;
 using SolidGui.Migration;
 
 namespace SolidGui.Engine
 {
     public class SolidSettings
     {
+
         private readonly List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
-    	public const int LatestVersion = 2;
+        private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };
+        public const int LatestVersion = 2; // JMC: Safer to use readonly here?
 
         public SolidSettings()
         {
         	Version = LatestVersion.ToString();
 			DefaultEncodingUnicode = false;
 			_markerSettings = new List<SolidMarkerSetting>();
+        }
+
+
+        public static List<string> FileExtensions  // added by JMC 2013-09
+        {
+            get { return _fileExtensions; }
+        }
+
+        public static string extsAsString(IEnumerable<string> exts) // added by JMC 2013-09
+        {
+            var x = new StringBuilder();
+            foreach (var extension in exts)
+            {
+                x.Append(extension + " ");
+            }
+            return x.ToString().Trim();
+        }
+
+        // Returns the known dictionary extensions as a mask; baseFileName can simply be "*"
+        public static string extsAsMask(IEnumerable<string> exts, string baseFileName) // added by JMC 2013-09
+        {
+            var x2 = new StringBuilder();
+            foreach (var extension in exts)
+            {
+                x2.Append(baseFileName + extension + ";");
+            }
+            return x2.ToString();
         }
 
         public string RecordMarker
@@ -87,7 +118,7 @@ namespace SolidGui.Engine
             }
             catch (Exception e)
             {
-                Palaso.Reporting.ErrorReport.NotifyUserOfProblem(
+                ErrorReport.NotifyUserOfProblem(
                     "There was a problem opening that settings file.  The error was\r\n" + e.Message);
                 return null;
             }
@@ -121,7 +152,7 @@ namespace SolidGui.Engine
 				migrator.Migrate();
 			}
             
-			// Review: Why do we create a file if it doesn't exist? CP 2011-05
+			// Review: Why do we create a file if it doesn't exist? CP 2011-05 ; JMC: delete this?
             if(!File.Exists(filePath))
             {
                 using(File.Create(filePath))
@@ -172,6 +203,59 @@ namespace SolidGui.Engine
             }
             string retval = dataFilePath.Substring(0, lastDot) + ".solid";
             return retval;
+        }
+        
+        // Assuming some file.solid exists and was passed in, return any other file.* that exists; 
+        // Return just one path, preferring certain extensions. Created by JMC 2013-09
+        public static string GetDictionaryFilePathFromSettingsPath(string settingsFilePath)
+        {
+
+            var fileInfo = new FileInfo(settingsFilePath);
+            var dirInfo = fileInfo.Directory;
+
+            string f = fileInfo.Name;
+            string ext = fileInfo.Extension; //Path.GetExtension(settingsFilePath);
+            if (ext.Length > 0)
+            {
+                f = f.Substring(0, f.Length - ext.Length); //get the base filename without the extension
+            }
+            else
+            {
+                throw new ArgumentException("The settings file path ought to end in .solid");
+            }
+
+            var extensions = FileExtensions; // was: new string[]{".db", ".sfm", ".mdf", ".dic", ".txt"};
+            string mask = extsAsMask(extensions, f);
+            FileInfo[] matches = dirInfo.GetFiles(mask, SearchOption.TopDirectoryOnly); //find likely matches
+            if (matches.Length < 1)
+            {
+                matches = dirInfo.GetFiles(f + ".*"); //nothing yet; find all possible matches
+
+                if (matches.Length < 2)
+                {
+                    //still nothing beyond the .solid file; fail
+                    var x = new StringBuilder();
+                    x.AppendFormat("SOLID could not find a matching dictionary for {0}. ", settingsFilePath);
+                    ErrorReport.NotifyUserOfProblem(x.ToString());
+                    return ""; 
+                }
+
+            }
+
+            foreach (var match in matches)   // pick the first (or only) match
+            {
+                if (match.Extension != ".solid")
+                {
+                    if (!extensions.Contains(match.Extension))
+                    {
+                        extensions.Add(match.Extension); // adaptive: makes the next File Open dialog friendlier (not saved) -JMC
+                    }
+                    return Path.Combine(dirInfo.ToString(), match.ToString());
+                }
+                
+            }
+
+            return ""; // fail
         }
 
     }

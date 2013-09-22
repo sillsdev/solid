@@ -124,12 +124,15 @@ namespace SolidGui
             dlg.Title = "Open Dictionary File...";
             dlg.DefaultExt = ".db";
             dlg.FileName = Settings.Default.PreviousPathToDictionary;
-            dlg.Filter = "Toolbox Database (.db .txt .lex .sfm)|*.db;*.txt;*.lex;*.sfm|All Files (*.*)|*.*";
+            string exts = SolidSettings.extsAsString(SolidSettings.FileExtensions);
+            string mask = SolidSettings.extsAsMask(SolidSettings.FileExtensions, "*");
+            dlg.Filter = "SFM Lexicon (" + exts + ")|" + mask + "|All Files (*.*)|*.*";
+            // the above produces something like this: "SFM Lexicon (.db .txt .lex .sfm)|*.db;*.txt;*.lex;*.sfm|All Files (*.*)|*.*" -JMC
             dlg.Multiselect = false;
             dlg.InitialDirectory = initialDirectory;
             if (DialogResult.OK != dlg.ShowDialog(this))
             {
-                return;
+                return; //they cancelled
             }
 
             Settings.Default.PreviousPathToDictionary = dlg.FileName;
@@ -144,9 +147,18 @@ namespace SolidGui
                     return; //they cancelled
                 }
             }
+            // At this point we s/b guaranteed to have a template file with a matching name. -JMC
+
             Cursor = Cursors.WaitCursor;
             _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
             OnFileLoaded(dlg.FileName);
+            Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
+            string ext = Path.GetExtension(dlg.FileName);
+            if (!SolidSettings.FileExtensions.Contains(ext))
+            {
+                SolidSettings.FileExtensions.Add(ext); // adaptive: makes the next File Open dialog friendlier (not saved) -JMC
+            }
+
             Cursor = Cursors.Default;
         }
 
@@ -264,7 +276,7 @@ namespace SolidGui
             }
         }
 
-        private string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)
+        public string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)  //Made public for the sake of Program.cs -JMC
         {
             TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings);
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));

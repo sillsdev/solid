@@ -42,7 +42,7 @@ namespace SolidGui.Tests
 
             public string DictionaryPath
             {
-                get { return _projectFolder + "dictionary.db"; }
+                get { return Path.Combine(_projectFolder, "dictionary.db"); }
             }
 
             public void WriteTwoEntryDictionary()

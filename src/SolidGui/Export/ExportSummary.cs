@@ -151,7 +151,7 @@ xv,Example (v)";
             var exportArguments = (ExportArguments)progress.Arguments;
             using (var w = new StreamWriter(exportArguments.outputFilePath))
             {
-                foreach (var rawMarker in exportArguments.markerSettings.MarkersInDictioanary)
+                foreach (var rawMarker in exportArguments.markerSettings.MarkersInDictionary)
                 {
                     var setting = exportArguments.markerSettings.GetMarkerSetting(rawMarker);
 

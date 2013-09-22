@@ -107,7 +107,16 @@
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.#ctor">
             ------------------------------------------------------------------------------------
         </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.#ctor(System.Func{System.DateTime},Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.UserAction)">
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.InitializeEditingControl(System.Int32,System.Object,System.Windows.Forms.DataGridViewCellStyle)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.OnEnter(System.Int32,System.Boolean)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.Clone">
             ------------------------------------------------------------------------------------
         </member>
         <member name="P:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.EditType">
@@ -118,6 +127,28 @@
         </member>
         <member name="P:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.DefaultNewRowValue">
             ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pathToAboutBoxHtml">For example, use FileLocator.GetFileDistributedWithApplication("distfiles", "aboutBox.htm")</param>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.SIL.SILAboutBox.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Palaso.UI.WindowsForms.Progress.TransformWithProgressDialog" -->
         <member name="M:Palaso.UI.WindowsForms.Progress.TransformWithProgressDialog.Transform(System.Boolean)">
@@ -137,6 +168,64 @@
             this runs in a worker thread
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            Encapsulates a class to manage the list of most recently used project paths.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.Initialize(System.Collections.Specialized.StringCollection)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.Initialize(System.Collections.Specialized.StringCollection,System.Int32)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.RemoveStalePaths">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Removes non existant paths from the MRU list.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.AddNewPath(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Adds the specified file path to top of list of most recently used files if it 
+            exists (returns false if it doesn't exist)
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.AddNewPath(System.String,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Adds the specified file path to top of list of most recently used files if it 
+            exists (returns false if it doesn't exist)
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.Latest">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the path to the most recently used (i.e. opened) project.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.MruFiles.Paths">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the list of most recently used files as a string array.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="T:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -151,6 +240,46 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.browse">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.camera">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.camera64x64">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.credits">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.crop">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.scanner">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.scanner64x64">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxButtons.searchFolder">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
         <member name="T:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxControl">
@@ -462,6 +591,200 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.Widgets.EnhancedPanel">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            Encapsulates a simple panel whose border, by default is 3D if visual styles aren't
+            enabled and is a single line (painted using visual styles) when visual styles are
+            enabled. It also supports text, including text containing mnemonic specifiers.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.#ctor">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnHandleCreated(System.EventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.WndProc(System.Windows.Forms.Message@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Catch the non client area paint message so we can paint a border that isn't black.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.ProcessMnemonic(System.Char)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Make sure the text in the header label acts like a normal label in that it
+            responds to Alt+letter keys to send focus to the next control in the tab order.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.CalculateTextRectangle">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calculates the rectangle of the text when there are child controls. This method
+            assumes that controls to the right of the text should clip the text. However, if
+            the controls are above and below the text, this method will probably screw up
+            the text drawing.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.SetBoundsCore(System.Int32,System.Int32,System.Int32,System.Int32,System.Windows.Forms.BoundsSpecified)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnControlRemoved(System.Windows.Forms.ControlEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.HandleChildControlLocationChanged(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.HandleChildControlResize(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnClientSizeChanged(System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            After the panel has been resized, force the border to be repainted. I found that
+            often, after resizing the panel at runtime (e.g. when it's docked inside a
+            splitter panel and the splitter moved), the portion of the border that was newly
+            repainted didn't show the overriden border color handled by the WndProc above.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Paint the text on the panel, if there is any.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.DrawBottomBorder(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.DrawTopBorder(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="E:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.BeforeDrawText">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Allows the subscribers to return text to be drawn in the panel. The panel's Text
+            property is unaffected by the return value from this delegate.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.DoubleBuffered">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.Text">
+             ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the text.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.MnemonicGeneratesClick">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the control process the keyboard
+            mnemonic as a click (like a button) or passes control on to the next control in
+            the tab order (like a label).
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.ControlReceivingFocusOnMnemonic">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the control that receives focus when the label's text is contains a
+            mnumonic specifier. When this value is null, then focus is given to the next
+            control in the tab order.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.ClipTextForChildControls">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.TextFormatFlags">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the text format flags used to draw the header label's text.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.BorderStyle">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.BorderColor">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the color of the border (only valid when border drawing is
+            overridden).
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.PaintExplorerBarBackground">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the background of the panel will
+            be painted using the visual style's explorer bar element.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.DrawOnlyBottomBorder">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the only border to draw is on the
+            bottom edge. For this property to work, the BorderStyle property must be set to
+            None and a border color must be specified.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.DrawOnlyTopBorder">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the only border to draw is on the
+            top edge. For this property to work, the BorderStyle property must be set to
+            None and a border color must be specified.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.AutoHeightPadding">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.AutoHeight">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Widgets.EnhancedPanel.BeforeDrawTextHandler">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Allows the subscribers to return text to be drawn in the panel. The panel's Text
+            property is unaffected by the return value from this delegate.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.HeaderLabel.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draw a background that looks like a list view header.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.HeaderLabel.ShowWindowBackgroudOnTopAndRightEdge">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not a one pixel line on the top and
+            right edge of the panel is painted the window background color. This is they
+            way a list view header is drawn... believe it or not.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="T:Palaso.UI.WindowsForms.Widgets.BetterGrid.CheckBoxColumnHeaderHandler">
             ----------------------------------------------------------------------------------------
             <summary>
@@ -596,6 +919,28 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.ReleaseNotes.ShowReleaseNotesDialog">
+            <summary>
+            Shows a dialog for release notes; accepts html and markdown
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ReleaseNotes.ShowReleaseNotesDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.ShowReleaseNotesDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.ShowReleaseNotesDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <!-- Badly formed XML comment ignored for member "T:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionHelper" -->
         <member name="F:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionHelper.components">
             <summary>
@@ -705,17 +1050,6 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="T:Palaso.UI.WindowsForms.i18n.LocalizationHelperDesigner">
-            <summary>
-              Designer object used to set the Parent property. 
-            </summary>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.i18n.LocalizationHelperDesigner.OnSetComponentDefaults">
-              <summary>
-              Sets the Parent property to "this" - 
-              the Form/UserControl where the component is being dropped. 
-              </summary>
         </member>
         <member name="F:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.MetadataEditorDialog.components">
             <summary>
@@ -843,6 +1177,69 @@
             But if you're a dialog using and you can't rely on your caller disposing
             of you, just call this when you're done with this controll
             </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Widgets.CustomDropDown">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            This class extends ToolStripDropDown by providing a means to easily host custom
+            controls on a drop-down, whether the custom control is dropped down from a toolbar
+            button, menu, or just by calling the Show() method.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.#ctor">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.Dispose(System.Boolean)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AddHost(System.Windows.Forms.ToolStripControlHost)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Adds a host to the drop-down.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleHostedControlResize(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Adjust the size of the popup as the size of the hosted control changes. This
+            is necessary in case the hosted control can be resized by the user at runtime.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AddControl(System.Windows.Forms.Control)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.OnVisibleChanged(System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Start and stop the timer when the owning drop-down's visibility changes.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.InitializeMouseMonitorTimer">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleTimerMouseMonitorTick(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.InitializeVisibilityTimeoutTimer">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleTimerVisibilityTimeoutTick(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.OnOpening(System.ComponentModel.CancelEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AutoCloseWhenMouseLeaves">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the drop down will automatically
+            close several seconds after the mouse is no longer over the drop-down.
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="F:Palaso.UI.WindowsForms.SettingProtection.SettingProtectionDialog.components">
             <summary>
@@ -1122,6 +1519,41 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.cc_BY_88x31">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.DeleteMessageBoxButtonImage">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.lockClosed16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.lockClosed48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.lockOpen16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.lockOpen48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.MenuButtonArrow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
         <member name="P:Palaso.UI.WindowsForms.Properties.Resources.OlacRoles">
              <summary>
                Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -1138,6 +1570,102 @@
                   Core now discourages the use of the Creator element, recommending that all Role information be
                   [rest of string was truncated]&quot;;.
              </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.RecycleBin">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.RemoveGridRowHot">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.RemoveGridRowNormal">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.search18x18">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.search22x22">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.settings16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.SILLogoBlue132x184">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.spy16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.#ctor">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.Create(System.Windows.Forms.Form)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.InitializeForm(System.Windows.Forms.Form)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.HandleFormLocationChanged(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.HandleFormResizeEnd(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.HandleFormHandleDestroyed(System.Object,System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.FormSettings.Bounds">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.ImageToolbox.ImageToolboxDialog.#ctor(Palaso.UI.WindowsForms.ImageToolbox.PalasoImage,System.String)">
             <summary>
@@ -1681,6 +2209,158 @@
             <p>In C#, this property is the indexer of the PropertyTable class.</p>
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            This class is a settings provider that allows applications to specify in what file and
+            where in a file system it's settings will be stored. It's good for portable apps.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.#ctor">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.Initialize(System.String,System.Collections.Specialized.NameValueCollection)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetFullSettingsFilePath">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the full path to the application's settings file (includes the path and file
+            name).
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetSettingsFileFolder">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the path to the application settings file, not including the file name.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetSettingsFileName">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the name of the application settings file, not including the path.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetPropertyValues(System.Configuration.SettingsContext,System.Configuration.SettingsPropertyCollection)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets a collection of property values.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetValue(System.Configuration.SettingsProperty)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets from the XML the value for the specified property.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetStringCollection(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetFormSettings(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetGridSettings(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SetPropertyValues(System.Configuration.SettingsContext,System.Configuration.SettingsPropertyValueCollection)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Sets the values for the specified properties and saves the XML file in which
+            they're stored.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SetPropNodeValue(System.Xml.XmlNode,System.Configuration.SettingsPropertyValue)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Sets the value of a node to that found in the specified property. This method
+            specially handles various types of properties (e.g. string collections).
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SetStringCollection(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SetFormSettings(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SetGridSettings(System.Configuration.SettingsPropertyValue,System.Xml.XmlNode)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetStringFromIntArray(System.Int32[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets a comma-delimited string from an array of integers.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.GetIntArrayFromString(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets an int array from a comma-delimited string of numbers.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SettingsFileFolder">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Path to the settings file folder (does not include file name.) This can be
+            specified when the default is not desired. It also allows tests to specify a
+            temp. location which can be deleted on test cleanup.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.SettingsFileName">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Settings file name (not including path). This can be specified when the default is
+            not desired (which is the application's name). It also allows tests to specify a
+            temp. location which can be deleted on test cleanup.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.PortableSettingsProvider.ApplicationName">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the name of the currently running application.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.PortableSettingsProvider.GridSettings">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.GridSettings.#ctor">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.GridSettings.Create(System.Windows.Forms.DataGridView)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.GridSettings.InitializeGrid(System.Windows.Forms.DataGridView)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.PortableSettingsProvider.GridSettings.SortOrder">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.PortableSettingsProvider.GridColumnSettings">
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PortableSettingsProvider.GridColumnSettings.#ctor">
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="T:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.ContributorsListControl">
             ----------------------------------------------------------------------------------------
         </member>
@@ -1720,6 +2400,9 @@
             ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.ContributorsListControl.HandleGridMouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.ContributorsListControl.GetIsValidContribution(Palaso.UI.WindowsForms.ClearShare.Contribution)">
             ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.ContributorsListControl.HandleGridLeave(System.Object,System.EventArgs)">
@@ -1992,6 +2675,46 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by_nc">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by_nc_nd">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by_nc_sa">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by_nd">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.by_sa">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.cc_BY_88x31">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ClearShare.LicenseLogos.srr">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
         <member name="T:Palaso.UI.WindowsForms.ClearShare.LicenseInfo">
             <summary>
             !!!!!!!!!!!!!! To keep from losing edits (having the owning metaccess not know that changes should be saved) these need to be immutable
@@ -2224,6 +2947,14 @@
             ----------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.BetterGrid.#ctor">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.BetterGrid.CalculateContrastiveGridLineColorComponent(System.Int32)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets a R, G, or B value that is noticeably distinct (somewhat lighter or darker)
+            from the given value.
+            </summary>
             ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.BetterGrid.OnSizeChanged(System.EventArgs)">
@@ -2502,6 +3233,13 @@
             ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.BetterGrid.CreateCalendarControlColumn(System.String,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Creates a calendar control grid column that hosts calendar (date) cells.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.BetterGrid.CreateCalendarControlColumn(System.String,System.String,System.Func{System.DateTime},Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.UserAction)">
             ------------------------------------------------------------------------------------
             <summary>
             Creates a calendar control grid column that hosts calendar (date) cells.
@@ -2789,6 +3527,110 @@
             a label which describes what we are busy doing
             </summary>
         </member>
+        <member name="T:Palaso.UI.WindowsForms.PaintState">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Possible painting states for DrawHotBackground
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.PaintingHelper">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            Contains misc. static methods for various customized painting.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.MakeHotImage(System.Drawing.Image)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a darkened version of the specified image.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawCustomBorder(System.Windows.Forms.Control)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draws around the specified control, a fixed single border the color of text
+            boxes in a themed environment. If themes are not enabled, the border is black.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawCustomBorder(System.Windows.Forms.Control,System.Drawing.Color)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draws around the specified control, a fixed single border of the specified color.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawHotBackground(System.Drawing.Graphics,System.Drawing.Rectangle,Palaso.UI.WindowsForms.PaintState)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draws a background in the specified rectangle that looks like a toolbar button
+            when the mouse is over it, with consideration for whether the look should be like
+            the mouse is down or not. Note, when a PaintState of normal is specified, this
+            method does nothing. Normal background painting is up to the caller.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.CanPaintVisualStyle(System.Windows.Forms.VisualStyles.VisualStyleElement)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a value indicating whether or not visual style rendering is supported
+            in the application and if the specified element can be rendered.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.CanPaintVisualStyle">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a value indicating whether or not visual style rendering is supported
+            in the application.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.PaintDropDownContainer(System.IntPtr,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Because the popup containers forces a little padding above and below, we need to get
+            the popup's parent (which is the popup container) and paint its background to match
+            the menu color.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawGradientBackground(System.Drawing.Graphics,System.Drawing.Rectangle)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Fills the specified rectangle with a gradient background consistent with the
+            current system's color scheme. 
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawGradientBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Fills the specified rectangle with a gradient background consistent with the
+            current system's color scheme. 
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawGradientBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Fills the specified rectangle with a gradient background using the specified
+            colors.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawGradientBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Boolean)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.PaintingHelper.DrawGradientBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Drawing2D.Blend)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.NoToolStripBorderRenderer">
+            ----------------------------------------------------------------------------------------
+        </member>
         <member name="T:Palaso.UI.WindowsForms.ImageToolbox.AcquireImageControl">
             <summary>
             Provides 4 ways to get an image: Gallery (art of reading), scanner, camera, or file system.
@@ -2955,6 +3797,9 @@
             Raised when the cancel button is clicked
             </summary>
         </member>
+        <member name="M:Palaso.UI.WindowsForms.Extensions.FormExtensions.CenterFormInScreen(System.Windows.Forms.Form)">
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="M:Palaso.UI.WindowsForms.Reporting.WinFormsExceptionHandler.#ctor">
             ------------------------------------------------------------------------------------
             <summary>
@@ -2981,18 +3826,6 @@
             </summary>
             ------------------------------------------------------------------------------------
         </member>
-        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor">
-            ----------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.Show">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.Hide">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.ToggleWaitCursorState(System.Boolean)">
-            ------------------------------------------------------------------------------------
-        </member>
         <member name="T:Palaso.UI.WindowsForms.Progress.LogBoxResources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -3008,6 +3841,87 @@
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
             </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Progress.LogBoxResources.menuButton">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Progress.LogBoxResources.MenuButtonArrow">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel">
+            ----------------------------------------------------------------------------------------
+            <summary>
+            This class extends the label control to provide 2 extra features. 1) Allows left and
+            right margins to be set so when the label is docked, text can still be indented.
+            2) Automatically adjusts the height of the label to accomodate all the text in the
+            control. Then it can be added to a stacked group of controls in a flow layout panel
+            and the controls below the label will automatically get pushed down as the label grows.
+            </summary>
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.#ctor">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Initializes a new instance of the <see cref="T:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel"/> class.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.AdjustHeight">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Adjusts the height of the label to accomodate all the text within the current
+            width of the control, less the left and right margins.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.OnSizeChanged(System.EventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.SizeChanged"/> event.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.Text">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.Font">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.Image">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.LeftMargin">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the left margin in pixels.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.RightMargin">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets the right margin.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.AutoHeightLabel.TextsXOffset">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the X offset where the labels text will be drawn within the control's client
+            area.
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="F:Palaso.UI.WindowsForms.SuperToolTip.SuperToolTipWindowData.components">
             <summary> 
@@ -3025,6 +3939,235 @@
             Required method for Designer support - do not modify 
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.LoadAssembly(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Loads a DLL.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CreateClassInstance(System.Reflection.Assembly,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CreateClassInstance(System.Reflection.Assembly,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetStrResult(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a string value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An array of arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetStrResult(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a string value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An single arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetIntResult(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a integer value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An single arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetIntResult(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a integer value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An array of arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetFloatResult(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a float value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An single arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetFloatResult(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a float value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An array of arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetBoolResult(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a boolean value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An single arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetBoolResult(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a boolean value returned from a call to a private method.
+            </summary>
+            <param name="binding">This is either the Type of the object on which the method
+            is called or an instance of that type of object. When the method being called
+            is static then binding should be a type.</param>
+            <param name="methodName">Name of the method to call.</param>
+            <param name="args">An array of arguments to pass to the method call.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String,System.Object,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String,System.Object,System.Object,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String,System.Object,System.Object,System.Object,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethod(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetResult(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns the result of calling a method on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetResult(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns the result of calling a method on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.SetProperty(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Sets the specified property on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.SetField(System.Object,System.String,System.Object)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Sets the specified field (i.e. member variable) on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetProperty(System.Object,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the specified property on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.GetField(System.Object,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the specified field (i.e. member variable) on the specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.Invoke(System.Object,System.String,System.Object[],System.Reflection.BindingFlags)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Sets the specified member variable or property (specified by name) on the
+            specified binding.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReflectionHelper.CallMethodWithThrow(System.Object,System.String,System.Object[])">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Calls a method specified on the specified binding, throwing any exceptions that
+            may occur.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor">
+            ----------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.Show">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.Hide">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.WaitCursor.ToggleWaitCursorState(System.Boolean)">
+            ------------------------------------------------------------------------------------
         </member>
         <member name="T:Palaso.UI.WindowsForms.SerializableFont">
             ----------------------------------------------------------------------------------------
@@ -3175,67 +4318,141 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog">
-            <summary>
-            Summary description for UsageEmailDialog.
-            </summary>
+        <member name="T:Palaso.UI.WindowsForms.Widgets.XButton">
+            ----------------------------------------------------------------------------------------
         </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.components">
-            <summary>
-            Required designer variable.
-            </summary>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.#ctor">
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.CheckDisposed">
-            <summary>
-            Check to see if the object has been disposed.
-            All public Properties and Methods should call this
-            before doing anything else.
-            </summary>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.PerformClick">
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnSystemColorsChanged(System.EventArgs)">
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.InitializeComponent">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnMouseLeave(System.EventArgs)">
+            ------------------------------------------------------------------------------------
             <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            Repaint the button when the mouse isn't over it.
             </summary>
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="P:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.TopLineText">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnMouseDown(System.Windows.Forms.MouseEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Change appearance when mouse is pressed.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Change appearance when the mouse button is released.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Track when the mouse leaves the control when a mouse button is pressed.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
             <summary>
             
             </summary>
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.SafeInvoke(System.Windows.Forms.Control,System.Action)">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
             <summary>
-            This is an attempt to avoid a mysterious crash (B. Waters) where the invoke was
-            happening before the window's handle had been created
             </summary>
+            ------------------------------------------------------------------------------------
         </member>
-        <member name="F:Palaso.UI.WindowsForms.Progress.LogBox.components">
-            <summary> 
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.Dispose(System.Boolean)">
-            <summary> 
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.InitializeComponent">
-            <summary> 
-            Required method for Designer support - do not modify 
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="P:Palaso.UI.WindowsForms.Progress.LogBox.GetDiagnosticsMethod">
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.DrawText(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
             <summary>
-            This is a callback the client can set to soemthing which will then generate
-            Write() calls.  If it is set, the user sees a "Run diagnostics" menu item.
+            Draws the button's text.
             </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.DrawWithX(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draw the button with text.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.DrawWithImage(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draws the button with an image.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.DrawArrow(System.Windows.Forms.PaintEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Draws the button with an image.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.XButton.GetCorrectVisualStyleArrowElement">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets the correct visual style arrow button and in the correct state.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.CanBeChecked">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the button's checked state changes
+            when clicked.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.FormatFlags">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.Checked">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the button is checked.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.DrawEmpty">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not an X is drawn on the button when no
+            image, text or arrow direction is specified. By default, when no image, text or
+            arrow direction is specified, the button is drawn with an X (like a close window-
+            type of X). However, when DrawEmtpy is true, nothing will be drawn except the
+            highlighted look given when the mouse is over or down or when the button is checked.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.Image">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.DrawLeftArrowButton">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the button should be drawn with a
+            left pointing arrow (like the left button of a horizontal scrollbar).
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Widgets.XButton.DrawRightArrowButton">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets or sets a value indicating whether or not the button should be drawn with a
+            right pointing arrow (like the right button of a horizontal scrollbar).
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="T:Palaso.UI.WindowsForms.Widgets.BetterGrid.CellCustomDropDownList">
             ----------------------------------------------------------------------------------------
@@ -3287,6 +4504,109 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockClosed16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockClosed48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockClosedHidden16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockClosedHidden48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockOpen16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockOpen48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockOpenHidden16x16">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.SettingProtection.SettingsProtectionIcons.lockOpenHidden48x48">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:Palaso.UI.WindowsForms.Progress.LogBox" -->
+        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.SafeInvoke(System.Windows.Forms.Control,System.Action)">
+            <summary>
+            This is an attempt to avoid a mysterious crash (B. Waters) where the invoke was
+            happening before the window's handle had been created
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Progress.LogBox.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Progress.LogBox.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Progress.LogBox.GetDiagnosticsMethod">
+            <summary>
+            This is a callback the client can set to soemthing which will then generate
+            Write() calls.  If it is set, the user sees a "Run diagnostics" menu item.
+            </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog">
+            <summary>
+            Summary description for UsageEmailDialog.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.CheckDisposed">
+            <summary>
+            Check to see if the object has been disposed.
+            All public Properties and Methods should call this
+            before doing anything else.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Miscellaneous.UsageEmailDialog.TopLineText">
+            <summary>
+            
             </summary>
         </member>
         <member name="F:Palaso.UI.WindowsForms.ImageToolbox.PalasoImage._pathForSavingMetadataChanges">
@@ -3375,19 +4695,39 @@
             </summary>
         </member>
         <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.DesignModeAtAll(System.Windows.Forms.Control)">
+            ------------------------------------------------------------------------------------
             <summary>
             the built-in "DesignMode" doesn't work when the control is in someone else's design
             </summary>
             <param name="control"></param>
             <returns></returns>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.InvokeIfRequired(System.Windows.Forms.Control,System.Action)">
+            ------------------------------------------------------------------------------------
             <summary>
             If the method might be in a different thread, this will do an invoke,
             otherwise it just invokes the action
             </summary>
             <example>InvokeIfRequired(()=>BackgroundColor=Color.Blue);</example>
             <example>((Control)this).InvokeIfRequired(()=>SetChoices(languages));</example>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.SetWindowRedraw(System.Windows.Forms.Control,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Turns window redrawing on or off. After turning on, the window will be invalidated.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.SetWindowRedraw(System.Windows.Forms.Control,System.Boolean,System.Boolean)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.SendMessage(System.Windows.Forms.Control,System.Int32,System.Int32,System.Int32)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Extensions.ControlExtensions.UpdateWindow(System.Windows.Forms.Control)">
+            ------------------------------------------------------------------------------------
         </member>
         <member name="F:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.FadingMessageForm.components">
             <summary>
@@ -3468,6 +4808,11 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ImageToolbox.SampleImages.sampleScan">
+            <summary>
+              Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
         <member name="P:Palaso.UI.WindowsForms.WritingSystems.WSTree.WritingSystemSuggestor.SuggestIpa">
@@ -3593,6 +4938,357 @@
         <member name="M:Palaso.UI.WindowsForms.ClearShare.WinFormsUI.FadingMessageWindow.Close">
             ------------------------------------------------------------------------------------
         </member>
+        <member name="T:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.AutoHyperlink">
+            <summary>
+            when true, (most) bare plain URLs are auto-hyperlinked  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.AutoNewlines">
+            <summary>
+            when true, RETURN becomes a literal newline  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.EmptyElementSuffix">
+            <summary>
+            use ">" for HTML output, or " />" for XHTML output
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.EncodeProblemUrlCharacters">
+            <summary>
+            when true, problematic URL characters like [, ], (, and so forth will be encoded
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.LinkEmails">
+            <summary>
+            when false, email addresses will never be auto-linked  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions.StrictBoldItalic">
+            <summary>
+            when true, bold and italic require non-word characters on either side  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.ReleaseNotes.Markdown">
+            <summary>
+            Markdown is a text-to-HTML conversion tool for web writers.
+            Markdown allows you to write using an easy-to-read, easy-to-write plain text format,
+            then convert it to structurally valid XHTML (or HTML).
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ReleaseNotes.Markdown._nestDepth">
+            <summary>
+            maximum nested depth of [] and () supported by the transform; implementation detail
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.ReleaseNotes.Markdown._tabWidth">
+            <summary>
+            Tabs are automatically converted to spaces as part of the transform  
+            this constant determines how "wide" those tabs become in spaces  
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.#ctor">
+            <summary>
+            Create a new Markdown instance using default options
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.#ctor(System.Boolean)">
+             <summary>
+             Create a new Markdown instance and optionally load options from a configuration
+             file. There they should be stored in the appSettings section, available options are:
+            
+                 Markdown.StrictBoldItalic (true/false)
+                 Markdown.EmptyElementSuffix (">" or " />" without the quotes)
+                 Markdown.LinkEmails (true/false)
+                 Markdown.AutoNewLines (true/false)
+                 Markdown.AutoHyperlink (true/false)
+                 Markdown.EncodeProblemUrlCharacters (true/false)
+                 
+             </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.#ctor(Palaso.UI.WindowsForms.ReleaseNotes.MarkdownOptions)">
+            <summary>
+            Create a new Markdown instance and set the options from the MarkdownOptions object.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.#cctor">
+            <summary>
+            In the static constuctor we'll initialize what stays the same across all transforms.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.Transform(System.String)">
+            <summary>
+            Transforms the provided Markdown-formatted text to HTML;  
+            see http://en.wikipedia.org/wiki/Markdown
+            </summary>
+            <remarks>
+            The order in which other subs are called here is
+            essential. Link and image substitutions need to happen before
+            EscapeSpecialChars(), so that any *'s or _'s in the a
+            and img tags get encoded.
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.RunBlockGamut(System.String,System.Boolean)">
+            <summary>
+            Perform transformations that form block-level tags like paragraphs, headers, and list items.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.RunSpanGamut(System.String)">
+            <summary>
+            Perform transformations that occur *within* block-level tags like paragraphs, headers, and list items.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.FormParagraphs(System.String,System.Boolean)">
+            <summary>
+            splits on two or more newlines, to form "paragraphs";    
+            each paragraph is then unhashed (if it is a hash and unhashing isn't turned off) or wrapped in HTML p tag
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.GetNestedBracketsPattern">
+            <summary>
+            Reusable pattern to match balanced [brackets]. See Friedl's
+            "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.GetNestedParensPattern">
+            <summary>
+            Reusable pattern to match balanced (parens). See Friedl's
+            "Mastering Regular Expressions", 2nd Ed., pp. 328-331.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.StripLinkDefinitions(System.String)">
+            <summary>
+            Strips link definitions from text, stores the URLs and titles in hash references.
+            </summary>
+            <remarks>
+            ^[id]: url "optional title"
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.GetBlockPattern">
+            <summary>
+            derived pretty much verbatim from PHP Markdown
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.HashHTMLBlocks(System.String)">
+            <summary>
+            replaces any block-level HTML blocks with hash entries
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.TokenizeHTML(System.String)">
+            <summary>
+            returns an array of HTML tokens comprising the input string. Each token is
+            either a tag (possibly with nested, tags contained therein, such
+            as &lt;a href="&lt;MTFoo&gt;"&gt;, or a run of text between tags. Each element of the
+            array is a two-element array; the first is either 'tag' or 'text'; the second is
+            the actual value.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoAnchors(System.String)">
+            <summary>
+            Turn Markdown link shortcuts into HTML anchor tags
+            </summary>
+            <remarks>
+            [link text](url "title")
+            [link text][id]
+            [id]
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoImages(System.String)">
+            <summary>
+            Turn Markdown image shortcuts into HTML img tags.
+            </summary>
+            <remarks>
+            ![alt text][id]
+            ![alt text](url "optional title")
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoHeaders(System.String)">
+             <summary>
+             Turn Markdown headers into HTML header tags
+             </summary>
+             <remarks>
+             Header 1  
+             ========  
+            
+             Header 2  
+             --------  
+            
+             # Header 1  
+             ## Header 2  
+             ## Header 2 with closing hashes ##  
+             ...  
+             ###### Header 6  
+             </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoHorizontalRules(System.String)">
+            <summary>
+            Turn Markdown horizontal rules into HTML hr tags
+            </summary>
+            <remarks>
+            ***  
+            * * *  
+            ---
+            - - -
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoLists(System.String)">
+            <summary>
+            Turn Markdown lists into HTML ul and ol and li tags
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.ProcessListItems(System.String,System.String)">
+            <summary>
+            Process the contents of a single ordered or unordered list, splitting it
+            into individual list items.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoCodeBlocks(System.String)">
+            <summary>
+            /// Turn Markdown 4-space indented code into HTML pre code blocks
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoCodeSpans(System.String)">
+            <summary>
+            Turn Markdown `code spans` into HTML code tags
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoItalicsAndBold(System.String)">
+            <summary>
+            Turn Markdown *italics* and **bold** into HTML strong and em tags
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoHardBreaks(System.String)">
+            <summary>
+            Turn markdown line breaks (two space at end of line) into HTML break tags
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoBlockQuotes(System.String)">
+            <summary>
+            Turn Markdown > quoted blocks into HTML blockquote blocks
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.DoAutoLinks(System.String)">
+            <summary>
+            Turn angle-delimited URLs into HTML anchor tags
+            </summary>
+            <remarks>
+            &lt;http://www.example.com&gt;
+            </remarks>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.Outdent(System.String)">
+            <summary>
+            Remove one level of line-leading spaces
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EncodeEmailAddress(System.String)">
+            <summary>
+            encodes email address randomly  
+            roughly 10% raw, 45% hex, 45% dec
+            note that @ is always encoded and : never is
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EncodeCode(System.String)">
+            <summary>
+            Encode/escape certain Markdown characters inside code blocks and spans where they are literals
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EncodeAmpsAndAngles(System.String)">
+            <summary>
+            Encode any ampersands (that aren't part of an HTML entity) and left or right angle brackets
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EscapeBackslashes(System.String)">
+            <summary>
+            Encodes any escaped characters such as \`, \*, \[ etc
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.Unescape(System.String)">
+            <summary>
+            swap back in all the special characters we've hidden
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EscapeBoldItalic(System.String)">
+            <summary>
+            escapes Bold [ * ] and Italic [ _ ] characters
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EncodeProblemUrlChars(System.String)">
+            <summary>
+            hex-encodes some unusual "problem" chars in URLs to avoid URL detection problems
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EscapeSpecialCharsWithinTagAttributes(System.String)">
+            <summary>
+            Within tags -- meaning between &lt; and &gt; -- encode [\ ` * _] so they
+            don't conflict with their use in Markdown for code, italics and strong.
+            We're replacing each such character with its corresponding hash
+            value; this is likely overkill, but it should prevent us from colliding
+            with the escape values by accident.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.Normalize(System.String)">
+            <summary>
+            convert all tabs to _tabWidth spaces;
+            standardizes line endings from DOS (CR LF) or Mac (CR) to UNIX (LF);
+            makes sure text ends with a couple of newlines;
+            removes any blank lines (only spaces) in the text
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.RepeatString(System.String,System.Int32)">
+            <summary>
+            this is to emulate what's evailable in PHP
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EmptyElementSuffix">
+            <summary>
+            use ">" for HTML output, or " />" for XHTML output
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.LinkEmails">
+            <summary>
+            when false, email addresses will never be auto-linked  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.StrictBoldItalic">
+            <summary>
+            when true, bold and italic require non-word characters on either side  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.AutoNewLines">
+            <summary>
+            when true, RETURN becomes a literal newline  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.AutoHyperlink">
+            <summary>
+            when true, (most) bare plain URLs are auto-hyperlinked  
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.EncodeProblemUrlCharacters">
+            <summary>
+            when true, problematic URL characters like [, ], (, and so forth will be encoded
+            WARNING: this is a significant deviation from the markdown spec
+            </summary>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ReleaseNotes.Markdown.Version">
+            <summary>
+            current version of MarkdownSharp;  
+            see http://code.google.com/p/markdownsharp/ for the latest code or to contribute
+            </summary>
+        </member>
         <member name="F:Palaso.UI.WindowsForms.ImageToolbox.ArtOfReadingChooser.components">
             <summary> 
             Required designer variable.
@@ -3672,99 +5368,10 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher">
+        <member name="P:Palaso.UI.WindowsForms.WritingSystems.LookupISOCodeDialog.ShowDesiredLanguageNameField">
             <summary>
-            Used to bring the user's attention to the program when there is a problem
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_STOP">
-            <summary>
-            Stop flashing. The system restores the window to its original stae.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_CAPTION">
-            <summary>
-            Flash the window caption.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TRAY">
-            <summary>
-            Flash the taskbar button.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_ALL">
-            <summary>
-            Flash both the window caption and taskbar button.
-            This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TIMER">
-            <summary>
-            Flash continuously, until the FLASHW_STOP flag is set.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TIMERNOFG">
-            <summary>
-            Flash continuously until the window comes to the foreground.
-            </summary>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FlashTaskBarButtonUntilFocussed(System.Windows.Forms.Form)">
-            <summary>
-            Flash the spacified Window (Form) until it recieves focus.
-            </summary>
-            <param name="form">The Form (Window) to Flash.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Flash(System.Windows.Forms.Form,System.UInt32)">
-            <summary>
-            Flash the specified Window (form) for the specified number of times
-            </summary>
-            <param name="form">The Form (Window) to Flash.</param>
-            <param name="count">The number of times to Flash.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Start(System.Windows.Forms.Form)">
-            <summary>
-            Start Flashing the specified Window (form)
-            </summary>
-            <param name="form">The Form (Window) to Flash.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Stop(System.Windows.Forms.Form)">
-            <summary>
-            Stop Flashing the specified Window (form)
-            </summary>
-            <param name="form"></param>
-            <returns></returns>
-        </member>
-        <member name="P:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Win2000OrLater">
-            <summary>
-            A boolean value indicating whether the application is running on Windows 2000 or later.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.cbSize">
-            <summary>
-            The size of the structure in bytes.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.hwnd">
-            <summary>
-            A Handle to the Window to be Flashed. The window can be either opened or minimized.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.dwFlags">
-            <summary>
-            The Flash Status.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.uCount">
-            <summary>
-            The number of times to Flash the window.
-            </summary>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.dwTimeout">
-            <summary>
-            The rate at which the Window is to be flashed, in milliseconds. If Zero, the function uses the default cursor blink rate.
+            If you wouldn't be paying attention to their requested name, and are only going to look at the code, then
+            set this to default so that they aren't fooled into thinking they can modify the name they'll see in your application.
             </summary>
         </member>
         <member name="T:Palaso.UI.WindowsForms.Widgets.BtnState">
@@ -4248,8 +5855,106 @@
         <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarColumn.#ctor">
             ------------------------------------------------------------------------------------
         </member>
+        <member name="M:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarColumn.#ctor(System.Func{System.DateTime},Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.UserAction)">
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="P:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarColumn.CellTemplate">
             ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher">
+            <summary>
+            Used to bring the user's attention to the program when there is a problem
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_STOP">
+            <summary>
+            Stop flashing. The system restores the window to its original stae.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_CAPTION">
+            <summary>
+            Flash the window caption.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TRAY">
+            <summary>
+            Flash the taskbar button.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_ALL">
+            <summary>
+            Flash both the window caption and taskbar button.
+            This is equivalent to setting the FLASHW_CAPTION | FLASHW_TRAY flags.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TIMER">
+            <summary>
+            Flash continuously, until the FLASHW_STOP flag is set.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHW_TIMERNOFG">
+            <summary>
+            Flash continuously until the window comes to the foreground.
+            </summary>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FlashTaskBarButtonUntilFocussed(System.Windows.Forms.Form)">
+            <summary>
+            Flash the spacified Window (Form) until it recieves focus.
+            </summary>
+            <param name="form">The Form (Window) to Flash.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Flash(System.Windows.Forms.Form,System.UInt32)">
+            <summary>
+            Flash the specified Window (form) for the specified number of times
+            </summary>
+            <param name="form">The Form (Window) to Flash.</param>
+            <param name="count">The number of times to Flash.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Start(System.Windows.Forms.Form)">
+            <summary>
+            Start Flashing the specified Window (form)
+            </summary>
+            <param name="form">The Form (Window) to Flash.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Stop(System.Windows.Forms.Form)">
+            <summary>
+            Stop Flashing the specified Window (form)
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.Win2000OrLater">
+            <summary>
+            A boolean value indicating whether the application is running on Windows 2000 or later.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.cbSize">
+            <summary>
+            The size of the structure in bytes.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.hwnd">
+            <summary>
+            A Handle to the Window to be Flashed. The window can be either opened or minimized.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.dwFlags">
+            <summary>
+            The Flash Status.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.uCount">
+            <summary>
+            The number of times to Flash the window.
+            </summary>
+        </member>
+        <member name="F:Palaso.UI.WindowsForms.Miscellaneous.TaskBarFlasher.FLASHWINFO.dwTimeout">
+            <summary>
+            The rate at which the Window is to be flashed, in milliseconds. If Zero, the function uses the default cursor blink rate.
+            </summary>
         </member>
         <member name="T:Palaso.UI.WindowsForms.i18n.ILocalizableControl">
             <summary>
@@ -4708,69 +6413,6 @@
             Use this one if you need to customize the dialog, e.g. to setup an alternate button
             </summary>
         </member>
-        <member name="T:Palaso.UI.WindowsForms.Widgets.CustomDropDown">
-            ----------------------------------------------------------------------------------------
-            <summary>
-            This class extends ToolStripDropDown by providing a means to easily host custom
-            controls on a drop-down, whether the custom control is dropped down from a toolbar
-            button, menu, or just by calling the Show() method.
-            </summary>
-            ----------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.#ctor">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.Dispose(System.Boolean)">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AddHost(System.Windows.Forms.ToolStripControlHost)">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Adds a host to the drop-down.
-            </summary>
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleHostedControlResize(System.Object,System.EventArgs)">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Adjust the size of the popup as the size of the hosted control changes. This
-            is necessary in case the hosted control can be resized by the user at runtime.
-            </summary>
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AddControl(System.Windows.Forms.Control)">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.OnVisibleChanged(System.EventArgs)">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Start and stop the timer when the owning drop-down's visibility changes.
-            </summary>
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.InitializeMouseMonitorTimer">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleTimerMouseMonitorTick(System.Object,System.EventArgs)">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.InitializeVisibilityTimeoutTimer">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.HandleTimerVisibilityTimeoutTick(System.Object,System.EventArgs)">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.Widgets.CustomDropDown.OnOpening(System.ComponentModel.CancelEventArgs)">
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="P:Palaso.UI.WindowsForms.Widgets.CustomDropDown.AutoCloseWhenMouseLeaves">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Gets or sets a value indicating whether or not the drop down will automatically
-            close several seconds after the mouse is no longer over the drop-down.
-            </summary>
-            ------------------------------------------------------------------------------------
-        </member>
         <member name="T:Palaso.UI.WindowsForms.ClearShare.OlacSystem">
             -----------------------------------------------------------------------------------------
              <summary>
@@ -4965,6 +6607,37 @@
             Find the first HotArea that contains the offset
             </summary>
             <returns>null when no HotArea contains the offset</returns>
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ColorHelper.CalculateColor(System.Drawing.Color,System.Drawing.Color,System.Int32)">
+            -------------------------------------------------------------------------------------
+             <summary>
+             Calculates a color by applying the specified alpha value to the specified front
+             color, assuming the color behind the front color is the specified back color. The
+             returned color has the alpha channel set to completely opaque, but whose alpha
+             channel value appears to be the one specified.
+             </summary>
+            -------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.UI.WindowsForms.ColorHelper.MakeDisabledImage(System.Drawing.Image,System.Drawing.Color)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Takes and image and converts it to a disabled-looking image.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ColorHelper.LightHighlight">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a lightened up version of the system's hightlight color.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.UI.WindowsForms.ColorHelper.LightLightHighlight">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Returns a very lightened up version of the system's hightlight color.
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
     </members>
 </doc>

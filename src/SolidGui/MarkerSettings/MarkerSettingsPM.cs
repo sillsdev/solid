@@ -11,7 +11,7 @@ namespace SolidGui.MarkerSettings
         public MarkerSettingsPM()
         {
             Root = "";
-            MarkersInDictioanary = new List<string>();
+            MarkersInDictionary = new List<string>();
             StructurePropertiesModel = new StructurePropertiesPM();
             MappingModel = new MappingPM();
         }
@@ -29,13 +29,13 @@ namespace SolidGui.MarkerSettings
             return SolidSettings.FindOrCreateMarkerSetting(marker);
         }
 
-        public IEnumerable<string> MarkersInDictioanary { get; set; }
+        public IEnumerable<string> MarkersInDictionary { get; set; }
 
         public IList<string> GetValidMarkers()
         {
             List<string> allValidMarkers = new List<string>();
 
-            allValidMarkers.AddRange(MarkersInDictioanary);
+            allValidMarkers.AddRange(MarkersInDictionary);
 
             foreach (var marker in SolidSettings.Markers)
             {

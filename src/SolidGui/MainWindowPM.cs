@@ -34,7 +34,7 @@ namespace SolidGui
     	private String _realDictionaryPath;
     	private SearchViewModel _searchModel;
 
-    	public MainWindowPM()
+        public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
             _workingDictionary = new SfmDictionary();
@@ -51,7 +51,7 @@ namespace SolidGui
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();
-            _markerSettingsModel.MarkersInDictioanary = WorkingDictionary.AllMarkers;
+            _markerSettingsModel.MarkersInDictionary = WorkingDictionary.AllMarkers;
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -242,7 +242,7 @@ namespace SolidGui
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public bool ShouldAskForTemplateBeforeOpening(string filePath)
+        public bool ShouldAskForTemplateBeforeOpening(string filePath)  //JMC: Could this be static?
         {
         	bool result = true;
         	string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(filePath);
@@ -269,13 +269,21 @@ namespace SolidGui
 					);
 					
 				}
+                catch (ApplicationException e) // Added because MigratorBase.cs has changed (Palaso lib, changeset 2103 (51be8122f653) ~Mar 2013). -JMC
+                {
+                    ErrorReport.NotifyUserOfProblem(
+                        String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+                    );
+
+                }
+                
 				result = solidSettings == null;
 			}
 			return result;
         }
 
         /// <summary>
-        /// Caller should first call ShouldAskForTemplateBeforeOpening, and supply a templatePath iff that returns true
+        /// Caller should first call ShouldAskForTemplateBeforeOpening, and supply a non-null templatePath iff that returns true
         /// </summary>
         /// <param name="dictionaryPath"></param>
         /// <param name="templatePath"></param>
@@ -346,7 +354,7 @@ namespace SolidGui
                 Settings.Save();
             }
 
-            return true; //todo: let the user cancel if the dictionary was changed
+            return true; //todo: let the user cancel if the dictionary was changed (JMC: e.g. http://projects.palaso.org/issues/1149)
         }
 
         public void ProcessLexicon()
@@ -418,28 +426,6 @@ namespace SolidGui
             }
         }
 
-
-        public void OpenDictionary(string solidPath)
-        {
-            string[] extensions = new string[]{".db", ".sfm", ".mdf", ".dic", ".txt"};
-            foreach (var extension in extensions)
-            {
-                var path = solidPath.Replace(".solid", extension);
-                if(File.Exists(path))
-                {
-                    OpenDictionary(path, solidPath);
-                    return;
-                }
-            }
-            var x = new StringBuilder();
-            x.AppendFormat("SOLID could not find a matching dictionary for {0}. ", solidPath);
-            x.AppendFormat("It checks for dictionaries ending in: ");
-            foreach (var extension in extensions)
-            {
-                x.Append(extension + " ");
-            }
-            ErrorReport.NotifyUserOfProblem(x.ToString());
-        }
     }
 
 

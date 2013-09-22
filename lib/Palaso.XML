@@ -243,6 +243,12 @@
             <param name="otherWritingsystemIds"></param>
             <returns></returns>
         </member>
+        <member name="M:Palaso.WritingSystems.WritingSystemDefinition.GetDefaultFontSizeOrMinimum">
+            <summary>
+            enforcing a minimum on _defaultFontSize, while reasonable, just messed up too many IO unit tests
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Palaso.WritingSystems.WritingSystemDefinition.SortUsingOtherLanguage(System.String)">
             <summary>
             A convenience method for sorting like anthoer language
@@ -697,6 +703,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Palaso.IO.FileLocator.LocateOptionalFile(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <returns>null if not found</returns>
+        </member>
+        <member name="M:Palaso.IO.FileLocator.LocateFileWithThrow(System.String)">
+            <summary>
+            Throws ApplicationException if not found.
+            </summary>
+        </member>
         <member name="M:Palaso.IO.FileLocator.GetFileDistributedWithApplication(System.Boolean,System.String[])">
             <summary>
             Find a file which, on a development machine, lives in [solution]/[distFileFolderName]/[subPath],
@@ -758,10 +776,13 @@
             	  (sub folders) is searched.
             	- If fallBackToDeepSearch is false, then only the top-level program files
             	  folder is searched.
+            
+            Note: For Mono the deep search and shallow search are the same because there
+            	normally are no sub-directories in the program files directories.
+            
+            Note: For Mono the subFoldersToSearch parameter is ignored.
+            
             </summary>
-            ------------------------------------------------------------------------------------
-        </member>
-        <member name="M:Palaso.IO.FileLocator.LocateInProgramFilesUsingShallowSearch(System.String,System.String[])">
             ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.IO.FileLocator.LocateInProgramFilesUsingDeepSearch(System.String,System.String[])">
@@ -1078,7 +1099,7 @@
             <example>SendEvent("dictionary/browseView", "Command", "DeleteWord", "","")</example>
             <example>SendEvent("dictionary/browseView", "Error", "DeleteWord", "some error message we got","")</example>
         </member>
-        <member name="M:Palaso.Reporting.UsageReporter.ReportException(System.Boolean,System.String,System.Exception)">
+        <member name="M:Palaso.Reporting.UsageReporter.ReportException(System.Boolean,System.String,System.Exception,System.String)">
             <summary>
             Send an error to Google Analytics, if BeginGoogleAnalytics was previously called
             </summary>
@@ -1350,6 +1371,21 @@
             <param name="prefix">The prefix of the sort-key attribute</param>
             <param name="attribute">The sort key attribute</param>
             <param name="namespaceUri">The namespace of the sortkey attribute</param>
+        </member>
+        <member name="T:Palaso.UsbDrive.UsbDriveInfoForTests">
+            <summary>
+            This class allows tests to set up pretend usb drives, in order to test situations like
+            1) no drives found
+            2) multiple drives
+            3) full drives
+            4) locked drives(not today, but maybe soon)
+            </summary>
+            
+        </member>
+        <member name="T:Palaso.UsbDrive.RetrieveUsbDriveInfoForTests">
+            <summary>
+            This class allows tests to set up pretend usb drives
+            </summary>
         </member>
         <member name="T:Spart.Parsers.Prims">
             <summary>
@@ -1763,132 +1799,6 @@
         <member name="P:Spart.Debug.DebugContext.Tab">
             <summary>
             A string with the current indentation suitable for prepending to output that should be nested
-            </summary>
-        </member>
-        <member name="T:Palaso.Resource">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Palaso.Resource.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Palaso.Resource.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Palaso.Resource.languageCodes">
-             <summary>
-               Looks up a localized string similar to Id	Part2B	Part2T	Part1	Scope	Type	Ref_Name
-            aaa				I	L	Ghotuo
-            aab				I	L	Alumu-Tesu
-            aac				I	L	Ari
-            aad				I	L	Amal
-            aae				I	L	Arbëreshë Albanian
-            aaf				I	L	Aranadan
-            aag				I	L	Ambrak
-            aai				I	L	Arifama-Miniafia
-            aak				I	L	Ankave
-            aal				I	L	Afade
-            aam				I	L	Aramanik
-            aan				I	L	Anambé
-            aao				I	L	Algerian Saharan Arabic
-            aap				I	L	Pará Arára
-            aaq				I	E	Eastern Abnaki
-            aar	aar	aar	aa	I	L	Afar
-            aas				I	L	Aasáx
-            aat				I	L	Arvanitika Albanian
-            aau				I	L	Abau
-            aaw				I	L	Solong
-            aax				I	L	Mandobo  [rest of string was truncated]&quot;;.
-             </summary>
-        </member>
-        <member name="P:Palaso.Resource.scriptNames">
-             <summary>
-               Looks up a localized string similar to #
-            # Language 15924 - Codes for the representation of names of scripts
-            #             Codes pour la représentation des noms d’écritures
-            # Format: 
-            #             Code;N°;English Name;Nom français;PVA;Date
-            #
-            
-            Arab;160;Arabic;arabe;Arabic;2004-05-01
-            Armn;230;Armenian;arménien;Armenian;2004-05-01
-            Avst;134;Avestan;avestique;;2007-07-15
-            Bali;360;Balinese;balinais;Balinese;2006-10-10
-            Batk;365;Batak;batak;;2004-05-01
-            Beng;325;Bengali;bengalî;Bengali;2004-05-01
-            Blis;550;Blissymbols;symboles Bliss;;2004-05-01
-             [rest of string was truncated]&quot;;.
-             </summary>
-        </member>
-        <member name="P:Palaso.Resource.IanaSubtags">
-             <summary>
-               Looks up language subtags
-            
-             Type: language
-            Subtag: aa
-            Description: Afar
-            Added: 2005-10-16
-            %%
-            Type: language
-            Subtag: ab
-            Description: Abkhazian
-            Added: 2005-10-16
-            Suppress-Script: Cyrl
-            %%
-            Type: language
-            Subtag: ae
-            Description: Avestan
-            Added: 2005-10-16
-            %%
-             </summary>
-        </member>
-        <member name="P:Palaso.Resource.TwoToThreeCodes">
-            <summary>
-              Looks up file containing mappings from two to (old) three letter codes
-            </summary>
-        </member>
-        <member name="T:Palaso.Reporting.ReportingStrings">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.ks_Ok">
-            <summary>
-              Looks up a localized string similar to &amp;Ok.
-            </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.ksPleaseEMailThisToUs">
-             <summary>
-               Looks up a localized string similar to Please e-mail this to {0} 
-            
-            {1}.
-             </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.kstidFieldWorksErrorCaption">
-            <summary>
-              Looks up a localized string similar to Error.
-            </summary>
-        </member>
-        <member name="P:Palaso.Reporting.ReportingStrings.kstidFieldWorksErrorExitInfo">
-            <summary>
-              Looks up a localized string similar to This application must exit..
             </summary>
         </member>
         <member name="M:Palaso.Reporting.ILogger.WriteConciseHistoricalEvent(System.String,System.Object[])">
@@ -2334,6 +2244,213 @@
             <param name="to">SubTag to move matching parts to</param>
             <param name="moveAllMatching">predicate matching parts to move</param>
             <param name="keepFirstMatching">predicate matching part to keep</param>
+        </member>
+        <member name="T:Palaso.WritingSystems.LanguageRegistryResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.CountryCodes">
+             <summary>
+               Looks up a localized string similar to CountryID	Name	Area
+            AD	Andorra	Europe
+            AE	United Arab Emirates	Asia
+            AF	Afghanistan	Asia
+            AG	Antigua and Barbuda	Americas
+            AI	Anguilla	Americas
+            AL	Albania	Europe
+            AM	Armenia	Asia
+            AO	Angola	Africa
+            AR	Argentina	Americas
+            AS	American Samoa	Pacific
+            AT	Austria	Europe
+            AU	Australia	Pacific
+            AW	Aruba	Americas
+            AZ	Azerbaijan	Asia
+            BA	Bosnia and Herzegovina	Europe
+            BB	Barbados	Americas
+            BD	Bangladesh	Asia
+            BE	Belgium	Europe
+            BF	Burkina Faso	Africa
+            BG	Bulgaria	Europe
+            BH	Bahrain	Asia
+            BI	Burundi	Africa
+            BJ	Beni [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.ianaSubtagRegistry">
+             <summary>
+               Looks up a localized string similar to File-Date: 2011-01-11
+            %%
+            Type: language
+            Subtag: aa
+            Description: Afar
+            Added: 2005-10-16
+            %%
+            Type: language
+            Subtag: ab
+            Description: Abkhazian
+            Added: 2005-10-16
+            Suppress-Script: Cyrl
+            %%
+            Type: language
+            Subtag: ae
+            Description: Avestan
+            Added: 2005-10-16
+            %%
+            Type: language
+            Subtag: af
+            Description: Afrikaans
+            Added: 2005-10-16
+            Suppress-Script: Latn
+            %%
+            Type: language
+            Subtag: ak
+            Description: Akan
+            Added: 2005-10-16
+            Scope: macrolanguage
+            %%
+            Type: language
+            Subtag: am
+            Description: Amharic
+            Adde [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.LanguageCodes">
+             <summary>
+               Looks up a localized string similar to LangID	CountryID	LangStatus	Name
+            aaa	NG	L	Ghotuo
+            aab	NG	L	Alumu-Tesu
+            aac	PG	L	Ari
+            aad	PG	L	Amal
+            aae	IT	L	Albanian, Arbëreshë
+            aaf	IN	L	Aranadan
+            aag	PG	L	Ambrak
+            aah	PG	L	Arapesh, Abu&apos;
+            aai	PG	L	Arifama-Miniafia
+            aak	PG	L	Ankave
+            aal	NG	L	Afade
+            aam	TZ	X	Aramanik
+            aan	BR	L	Anambé
+            aao	DZ	L	Arabic, Algerian Saharan Spoken
+            aap	BR	L	Arára, Pará
+            aaq	US	L	Abenaki, Eastern
+            aar	ET	L	Afar
+            aas	TZ	L	Aasáx
+            aat	GR	L	Albanian, Arvanitika
+            aau	PG	L	Abau
+            aaw	PG	L	Solong
+            aax	ID	L	Mandobo Atas
+            aaz	ID	L	Amarasi
+             [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.LanguageIndex">
+             <summary>
+               Looks up a localized string similar to LangID	CountryID	NameType	Name
+            aaa	NG 	L	Ghotuo
+            aab	NG 	D	Alumu
+            aab	NG 	D	Tesu
+            aab	NG 	DA	Arum
+            aab	NG 	L	Alumu-Tesu
+            aab	NG 	LA	Alumu
+            aab	NG 	LA	Arum-Cesu
+            aab	NG 	LA	Arum-Chessu
+            aab	NG 	LA	Arum-Tesu
+            aac	PG 	D	Serea
+            aac	PG 	L	Ari
+            aad	PG 	L	Amal
+            aad	PG 	LA	Alai
+            aae	IT 	D	Calabrian Albanian
+            aae	IT 	D	Campo Marino Albanian
+            aae	IT 	D	Central Mountain Albanian
+            aae	IT 	D	Molise Albanian
+            aae	IT 	D	Sicilian Albanian
+            aae	IT 	L	Albanian, Arbëreshë
+            aae	IT 	LA	Arbëreshë
+            aaf	IN 	L	Aranadan
+            aaf	IN 	LA [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageRegistryResources.TwoToThreeCodes">
+             <summary>
+               Looks up a localized string similar to aa	aar
+            ab	abk
+            af	afr
+            ak	aka
+            am	amh
+            ar	arb
+            an	arg
+            as	asm
+            av	ava
+            ae	ave
+            ay	aym
+            az	aze
+            ba	bak
+            bm	bam
+            be	bel
+            bn	ben
+            bi	bis
+            bo	bod
+            bs	bos
+            br	bre
+            bg	bul
+            ca	cat
+            cs	ces
+            ch	cha
+            ce	che
+            cu	chu
+            cv	chv
+            kw	cor
+            co	cos
+            cr	cre
+            cy	cym
+            da	dan
+            de	deu
+            dv	div
+            dz	dzo
+            el	ell
+            en	eng
+            eo	epo
+            et	est
+            eu	eus
+            ee	ewe
+            fo	fao
+            fa	pes
+            fj	fij
+            fi	fin
+            fr	fra
+            fy	fry
+            ff	ful
+            gd	gla
+            ga	gle
+            gl	glg
+            gv	glv
+            gn	grn
+            gu	guj
+            ht	hat
+            ha	hau
+            sh	hbs
+            he	heb
+            hz	her
+            hi	hin
+            ho	hmo
+            hr	hrv
+            hu	hun
+            hy	hye
+             [rest of string was truncated]&quot;;.
+             </summary>
         </member>
         <member name="T:Palaso.WritingSystems.WritingSystemCompatibility">
             <summary>
@@ -2845,6 +2962,272 @@
             <param name="element"></param>
             <param name="suppressIndentingChildren"></param>
         </member>
+        <member name="M:Palaso.Xml.XmlUtils.SanitizeString(System.String)">
+            <summary>
+            Remove illegal XML characters from a string.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.XmlUtils.IsLegalXmlChar(System.Int32)">
+            <summary>
+            Whether a given character is allowed by XML 1.0.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToByteArray``1(``0)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to an XML represented in an array of UTF-8 bytes.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToByteArray``1(``0,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to an XML represented in an array of UTF-8 bytes.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToString``1(``0)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to an XML string.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToString``1(``0,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to an XML string. (Of course, the string is a UTF-16 string.)
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToFile``1(System.String,``0)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToFile``1(System.String,``0,System.Exception@)">
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToFile``1(System.String,``0,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to a the specified file.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeToFile``1(System.String,``0,System.String,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes an object to a the specified file.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.SerializeDataAndWriteAsNode``1(System.Xml.XmlWriter,``0)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Serializes the specified data to a string and writes that XML using the specified
+            writer. Since strings in .Net are UTF16, the serialized XML data string is, of
+            course, UTF16. Before the string is written it is converted to UTF8. So the
+            assumption is the writer is expecting UTF8 data.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromString``1(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified string to an object of the specified type.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromString``1(System.String,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified string to an object of the specified type.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromString``1(System.String,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified string to an object of the specified type.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromString``1(System.String,System.Boolean,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified string to an object of the specified type.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.String,System.Boolean)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="rootElementName">Name to expect for the root element. This is
+            good when T is a generic list of some type (e.g. List of strings).</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="e">The exception generated during the deserialization.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.String,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="rootElementName">Name to expect for the root element. This is
+            good when T is a generic list of some type (e.g. List of string).</param>
+            <param name="e">The exception generated during the deserialization.</param>
+            <returns></returns>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.Boolean,System.Exception@)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            <param name="e">The exception generated during the deserialization.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeFromFile``1(System.String,System.String,System.Boolean,System.Exception@)">
+            --------------------------------------------------------------------------------
+            <summary>
+            Deserializes XML from the specified file to an object of the specified type.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="filename">The filename from which to load</param>
+            <param name="rootElementName">Name to expect for the root element. This is
+            good when T is a generic list of some type (e.g. List of strings).</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            <param name="e">The exception generated during the deserialization.</param>
+            <returns></returns>
+            --------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.DeserializeInternal``1(System.Xml.XmlReader,System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Deserializes an object using the specified reader.
+            </summary>
+            <typeparam name="T">The type of object to deserialize</typeparam>
+            <param name="reader">The reader.</param>
+            <param name="rootElementName">Name to expect for the of the root element.</param>
+            <returns>The deserialized object</returns>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.deserializer_UnknownAttribute(System.Object,System.Xml.Serialization.XmlAttributeEventArgs)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Handles the UnknownAttribute event of the deserializer control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Xml.Serialization.XmlAttributeEventArgs"/>
+            instance containing the event data.</param>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="T:Palaso.Xml.XmlSerializationHelper.InternalXmlReader">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Custom XmlTextReader that can preserve whitespace characters (spaces, tabs, etc.) 
+            that are in XML elements. This allows us to properly handle deserialization of
+            paragraph runs that contain runs that contain only whitespace characters.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.InternalXmlReader.#ctor(System.IO.TextReader,System.Boolean)">
+            --------------------------------------------------------------------------------
+            <summary>
+            Initializes a new instance of the <see cref="T:Palaso.Xml.XmlSerializationHelper.InternalXmlReader"/> class.
+            </summary>
+            <param name="reader">The stream reader.</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            --------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.InternalXmlReader.#ctor(System.String,System.Boolean)">
+            --------------------------------------------------------------------------------
+            <summary>
+            Initializes a new instance of the <see cref="T:Palaso.Xml.XmlSerializationHelper.InternalXmlReader"/> class.
+            </summary>
+            <param name="filename">The filename.</param>
+            <param name="fKeepWhitespaceInElements">if set to <c>true</c>, the reader
+            will preserve and return elements that contain only whitespace, otherwise
+            these elements will be ignored during a deserialization.</param>
+            --------------------------------------------------------------------------------
+        </member>
+        <member name="M:Palaso.Xml.XmlSerializationHelper.InternalXmlReader.Read">
+            --------------------------------------------------------------------------------
+            <summary>
+            Reads the next node from the stream.
+            </summary>
+            --------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.Xml.XmlSerializationHelper.InternalXmlReader.NamespaceURI">
+            --------------------------------------------------------------------------------
+            <summary>
+            Gets the namespace URI (as defined in the W3C Namespace specification) of the 
+            node on which the reader is positioned.
+            </summary>
+            <value></value>
+            <returns>The namespace URI of the current node; otherwise an empty string.</returns>
+            --------------------------------------------------------------------------------
+        </member>
+        <member name="P:Palaso.Xml.XmlSerializationHelper.InternalXmlReader.NodeType">
+            --------------------------------------------------------------------------------
+            <summary>
+            Gets the type of the current node.
+            </summary>
+            --------------------------------------------------------------------------------
+        </member>
         <member name="M:Palaso.Xml.XmlNodeExtensions.SafeSelectNodesWithParms(System.Xml.XmlNode,System.String,System.Object[])">
             <summary>
             this is safe to use with foreach, unlike SelectNodes
@@ -3038,6 +3421,21 @@
             <param name="filePath"></param>
             <param name="ws"></param>
             <param name="oldFile"></param>
+        </member>
+        <member name="T:Palaso.WritingSystems.EthnologueLookup">
+            <summary>
+            Lets you find a language using data from the Ethnologue. Currently doesn't do any live-lookup, just reads files stored in the LanguageRegistryResources
+            </summary>
+        </member>
+        <member name="M:Palaso.WritingSystems.EthnologueLookup.SuggestLanguages(System.String)">
+            <summary>
+            Get an list of languages that match the given string in some way (code, name, country)
+            </summary>
+        </member>
+        <member name="P:Palaso.WritingSystems.LanguageInfo.DesiredName">
+            <summary>
+            People sometimes don't want use the Ethnologue-supplied name
+            </summary>
         </member>
         <member name="M:Palaso.WritingSystems.Collation.IcuRulesCollator.Compare(System.String,System.String)">
             <summary>Compares two strings and returns a value indicating whether one is less than, 
@@ -3294,6 +3692,27 @@
             Action handler delegate
             </summary>
         </member>
+        <member name="M:Palaso.Network.HttpUtilityFromMono.HtmlDecode(System.String)">
+            <summary>
+            Decodes an HTML-encoded string and returns the decoded string.
+            </summary>
+            <param name="s">The HTML string to decode. </param>
+            <returns>The decoded text.</returns>
+        </member>
+        <member name="M:Palaso.Network.HttpUtilityFromMono.HtmlDecode(System.String,System.IO.TextWriter)">
+            <summary>
+            Decodes an HTML-encoded string and sends the resulting output to a TextWriter output stream.
+            </summary>
+            <param name="s">The HTML string to decode</param>
+            <param name="output">The TextWriter output stream containing the decoded string. </param>
+        </member>
+        <member name="M:Palaso.Network.HttpUtilityFromMono.HtmlEncode(System.String,System.IO.TextWriter)">
+            <summary>
+            HTML-encodes a string and sends the resulting output to a TextWriter output stream.
+            </summary>
+            <param name="s">The string to encode. </param>
+            <param name="output">The TextWriter output stream containing the encoded string. </param>
+        </member>
         <member name="T:Palaso.Migration.XslMigrationStrategy">
             <summary>
             </summary>
@@ -3310,6 +3729,13 @@
             </summary>
             <param name="source"></param>
             <param name="destinationFilePath"></param>
+        </member>
+        <member name="M:Palaso.Extensions.StringExtensions.ToIntArray(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Gets an int array from a comma-delimited string of numbers.
+            </summary>
+            ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.Extensions.StringExtensions.FormatWithErrorStringInsteadOfException(System.String,System.Object[])">
             <summary>
@@ -3342,6 +3768,13 @@
             Make the first letter of the string upper-case, and the rest lower case. Does not consider words.
             </summary>
         </member>
+        <member name="M:Palaso.Extensions.StringExtensions.RemoveAcceleratorPrefix(System.String)">
+            ------------------------------------------------------------------------------------
+            <summary>
+            Removes the ampersand accerlerator prefix from the specified text.
+            </summary>
+            ------------------------------------------------------------------------------------
+        </member>
         <member name="M:Palaso.Extensions.ByteArrayExtensions.IndexOfSubArray(System.Byte[],System.Byte[])">
             <summary>
             Like string.IndexOf, returns the place where the subsequence occurs (or -1).
@@ -3351,6 +3784,12 @@
         <member name="M:Palaso.Extensions.ByteArrayExtensions.SubArray(System.Byte[],System.Int32,System.Int32)">
             <summary>
             Return the subarray from start for count items.
+            </summary>
+        </member>
+        <member name="M:Palaso.Extensions.ByteArrayExtensions.AreByteArraysEqual(System.Byte[],System.Byte[])">
+            <summary>
+            Return 'true', if the two byte arrays are the same exact array, or contain the same bytes.
+            Otherwise, return 'false'.
             </summary>
         </member>
         <member name="T:Rhino.Commons.DisposableAction`1">
@@ -3654,6 +4093,24 @@
             <summary>
              Responsible to read a file which has a sequence of similar elements
              and return byte arrays of each element for further processing.
+             This version works entirely with byte arrays, except for the GetSecondLevelElementStrings
+             methods, which should only be used for testing or small files.
+             
+             Enhance JohnT: This version still uses twice as much memory as necessary, in that it
+             loads the whole file into an array as well as making a byte array for each chunk.
+             It could be enhanced so that we never load the whole file.
+             One approach would be to replace every occurrence of _inputBytes[x] with a method call,
+             InputByte(n). Then we write an implementation of that which reads a chunk of the file
+             into a buffer. It can answer immediately if the current index is in the buffer, otherwise, reload it.
+             If we kept two buffers we would scarcely ever read the same section of the file twice.
+             
+             Enhance JohnT: this is now smart enough to match markers. It could easily be enhanced
+             to make the recordMarker parameter optional, and return all second-level elements of any type.
+            </summary>
+        </member>
+        <member name="F:Palaso.Xml.FastXmlElementSplitter.Terminators">
+            <summary>
+            Characters that may follow a marker and indicate the end of it (for a successful match).
             </summary>
         </member>
         <member name="M:Palaso.Xml.FastXmlElementSplitter.#ctor(System.String)">
@@ -3673,9 +4130,9 @@
              <paramref name="recordMarker"/> should not contain the angle brackets that start/end an xml element.
              </para>
              <para>
-             The input file can contain child elements of the main root element, which are not the same elements
-             as those marked with <paramref name="recordMarker"/>, but if the file has them, they must be before the
-             other <paramref name="recordMarker"/> elments.
+             The input file can contain one child element of the main root element, before the elements
+             marked with <paramref name="recordMarker"/>, but if the file has them, you must use another overload
+             and specify the marker for that optional element.
              </para>
              </remarks>
              <exception cref="T:System.ArgumentException">
@@ -3696,9 +4153,8 @@
              <paramref name="recordMarker"/> should not contain the angle brackets that start/end an xml element.
              </para>
              <para>
-             The input file can contain child elements of the main root element, which are not the same elements
-             as those marked with <paramref name="recordMarker"/>, but if the file has them, they must be before the
-             other <paramref name="recordMarker"/> elments.
+             The input file can contain one child elements of the main root element before this, but if so, you must
+             call the appropriate overload and specify the first element marker.
              </para>
              </remarks>
              <exception cref="T:System.ArgumentException">
@@ -3711,11 +4167,92 @@
         <member name="M:Palaso.Xml.FastXmlElementSplitter.GetSecondLevelElementBytes(System.String,System.String,System.Boolean@)">
             <summary>
             Return the second level elements that are in the input file, including an optional first element.
+            Provides a boolean to indicate whether the optional first element was found.
+            Note that the overload without this out param is an iterator and can return the results
+            without creating a collection of all of them.
             </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.GetSecondLevelElementBytes(System.String,System.String)">
+            <summary>
+            Return the second level elements that are in the input file, including an optional first element.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.MakeElement(System.Byte[])">
+            <summary>
+            Given that _currentInput is at the first character of the marker of the opening XML tag
+            of an element, return the byte array that is the complete element.
+            </summary>
+            <param name="firstElementMarkerAsBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.MatchMarker(System.Byte[])">
+            <summary>
+            Return true if the bytes starting at _currentPosition match the specified marker.
+            The following character must not be part of a marker name.
+            
+            Enhance JohnT: technically I think there could be white space between the opening angle bracket and the
+            marker. We can make that enhancement if we need it.
+            </summary>
+            <param name="marker"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.Match(System.Byte[])">
+            <summary>
+            Return true if the bytes starting at _currentPosition match the specified marker. No termination is required.
+            </summary>
+            <param name="marker"></param>
+            <returns></returns>
         </member>
         <member name="M:Palaso.Xml.FastXmlElementSplitter.GetSecondLevelElementStrings(System.String,System.String,System.Boolean@)">
             <summary>
             Return the second level elements that are in the input file, including an optional first element.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.InitializeOffsets">
+            <summary>
+            This method adjusts _currentPosition to the offset of the first record,
+            and adjusts _endOfRecordsOffset to the end of the last record.
+            If there are no records they will end up equal, at the index of the last open angle bracket
+            in the file. Throws exception if there is no top-level element in the file.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.AdvanceToAngleBracket">
+            <summary>
+            Move _currentOffset to the character following the next angle bracket of either type, or to _endOfRecordOffset if that comes first.
+            Answer true if what we got was an opening bracket
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.AdvanceToOpenAngleBracket">
+            <summary>
+            Move _currentOffset to the character following the next angle bracket, or to _endOfRecordOffset if that comes first.
+            Skip comments.
+            </summary>
+        </member>
+        <member name="M:Palaso.Xml.FastXmlElementSplitter.AdvanceToClosingAngleBracket">
+            <summary>
+            Move _currentOffset to the character following the next closing angle bracket, or to _endOfRecordOffset if that comes first.
+            </summary>
+        </member>
+        <member name="T:Palaso.Xml.AsyncFileReader">
+            <summary>
+            Class responsible to manage access to the content of a file. The interface is mostly a subset of byte array,
+            and in general it replaces input = File.ReadAllBytes(pathname) with input = new AsyncFileReader(pathname),
+            and input can be used much like the array. One difference is that the AsyncFileReader should be closed.
+            The benefit of using this is that it is not necessary to allocate an array as big as the file.
+            Also, if the file is mainly accessed sequentially, some of the data reading will be overlapped with
+            processing it, at least for a large file.
+            </summary>
+        </member>
+        <member name="P:Palaso.Xml.AsyncFileReader.Item(System.Int32)">
+            <summary>
+            This makes the class function like a byte array, allowing [n] to get the nth byte.
+            </summary>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Palaso.Xml.AsyncFileReader.Length">
+            <summary>
+            Initialized to length of file in constructor.
             </summary>
         </member>
         <member name="T:Palaso.WritingSystems.StandardTags">
@@ -3804,9 +4341,8 @@
         <member name="M:Palaso.Reporting.ErrorReport.SetErrorReporter(Palaso.Reporting.IErrorReporter)">
             <summary>
             Use this method if you want to override the default IErrorReporter.
-            This method should be called only once at application startup.
+            This method should normally be called only once at application startup.
             </summary>
-            <param name="handler"></param>
         </member>
         <member name="F:Palaso.Reporting.ErrorReport.s_properties">
             <summary>
@@ -3907,7 +4443,7 @@
         </member>
         <member name="M:Palaso.IO.DirectoryUtilities.CopyDirectoryToTempDirectory(System.String)">
             <summary>
-            Makes a full copies of the specified directory in the system's temporary directory.
+            Makes a full copy of the specified directory in the system's temporary directory.
             If the copy fails at any point in the process, the user is notified of the
             problem and an attempt is made to remove the destination directory if the failure
             happened part way through the process.
@@ -4186,6 +4722,15 @@
             Leave it up to this method to insert things like the fact that you are in DEBUG mode, or what version is being used, etc.
             </summary>
             <example>SendNavigationNotice("aboutBox"), SendNavigationNotice("dictionary/browseView")</example>
+        </member>
+        <member name="M:Palaso.Reporting.AnalyticsEventSender.GetUserId(System.Guid)">
+            <summary>
+            Return a value suitable for the user ID part of a __utma cookie based on the given guid.
+            We want something reasonably dependent on the guid and somewhat scattered over the range 1000000000,2147483647.
+            This is not a very clever hash function but we expect guids to be pretty well distributed to begin with.
+            </summary>
+            <param name="guid"></param>
+            <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "T:Palaso.Progress.XslTransformWithProgress" -->
         <member name="T:Palaso.Progress.XslTransformWithProgress.CancelingException">

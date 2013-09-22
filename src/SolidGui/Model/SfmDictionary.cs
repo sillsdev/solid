@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
+using Palaso.Reporting;
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
 using SolidGui.Engine;
@@ -35,7 +36,7 @@ namespace SolidGui.Model
             _markerFrequencies = new Dictionary<string, int>();
             _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
-            File.GetLastWriteTime(_filePath);
+            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
         }
         /*
         public Dictionary(string path)
@@ -200,8 +201,16 @@ namespace SolidGui.Model
            
             progressState.TotalNumberOfSteps = sfmDataSet.Count;
             progressState.NumberOfStepsCompleted = 1;
-            
-            ReadDictionary(progressState, openArguments);
+            try
+            {
+                ReadDictionary(progressState, openArguments);                
+            }
+            catch (FileNotFoundException e)
+            {
+                ErrorReport.NotifyUserOfProblem(
+                    "The specified file was not found. The error was\r\n" + e.Message);
+                return;
+            }
 
             openArguments.FilterSet.EndBuild();
         }
@@ -243,7 +252,7 @@ namespace SolidGui.Model
 
 
             _filePath = path;
-            File.GetLastWriteTime(_filePath);
+            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
 
             _recordList.Clear();
             _markerFrequencies.Clear();

@@ -50,13 +50,14 @@ namespace Solid.Engine
         {
             if (_markerSetting != null)
             {
-                if(comboBoxText == "Report Error")
+                if(comboBoxText == "Report Error")  // JMC: add constant? where?
                 {
                     _markerSetting.InferedParent = "";
                 }
                 else
                 {
-                    _markerSetting.InferedParent = comboBoxText.Substring(6);
+                    int len = "infer ".Length;  // JMC: create a constant for "infer"?
+                    _markerSetting.InferedParent = comboBoxText.Substring(len);
                 }
             }
         }

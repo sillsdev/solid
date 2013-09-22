@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Palaso.Reporting;
 using SolidGui.Properties;
+using SolidGui.Engine;
 
 namespace SolidGui
 {
@@ -10,6 +11,7 @@ namespace SolidGui
     {
         /// <summary>
         /// The main entry point for the application.
+        /// Can optionally take one command-line argument, representing either the dictionary file itself, or its .solid file. -JMC
         /// </summary>
         [STAThread]
         static void Main(params string[]args)
@@ -32,10 +34,26 @@ namespace SolidGui
 
             MainWindowPM model = new MainWindowPM();
             MainWindowView form = new MainWindowView(model);
-           if(args.Length > 0 && args[0].EndsWith(".solid"))
+            if(args.Length > 0)
             {
-                model.OpenDictionary(args[0]);
-               form.OnFileLoaded(args[0]);
+                string fileName = args[0];
+                //string solidFileName = "";
+                if (fileName.EndsWith(".solid"))
+                {
+                    //solidFileName = fileName;
+                    fileName = SolidSettings.GetDictionaryFilePathFromSettingsPath(fileName);
+                }
+                string templatePath = null;
+                if (model.ShouldAskForTemplateBeforeOpening(fileName))  //check validity of .solid file
+                {
+                    templatePath = form.RequestTemplatePath(fileName, false);
+                    if (string.IsNullOrEmpty(templatePath))
+                    {
+                        return; //they cancelled
+                    }
+                }
+                model.OpenDictionary(fileName, templatePath);
+                form.OnFileLoaded(fileName);
             }            
             Application.Run(form);
             Settings.Default.Save();

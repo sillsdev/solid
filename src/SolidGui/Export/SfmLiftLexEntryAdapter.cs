@@ -693,18 +693,18 @@ namespace SolidGui.Export
             if(!string.IsNullOrEmpty(type))
             {
                 targetIdList = unicodeValue.Trim();
-                type = GetCannonicalRelationName(type);
+                type = GetCanonicalRelationName(type);
             }
                 // new mdf relation representation
             else if (unicodeValue.Contains("="))
             {
                 int equalsSignPosition = unicodeValue.IndexOf('=');
                 targetIdList = unicodeValue.Substring(equalsSignPosition + 1).Trim();
-                type = GetCannonicalRelationName(unicodeValue.Substring(0, equalsSignPosition).Trim());
+                type = GetCanonicalRelationName(unicodeValue.Substring(0, equalsSignPosition).Trim());
             }
             else // old mdf relation representation
             {
-                type = GetCannonicalRelationName(unicodeValue.Trim());
+                type = GetCanonicalRelationName(unicodeValue.Trim());
                 if (field.Children.Count > 0 && field.Children[0] != null)
                 {
                     targetIdList = field.Children[0].Value;
@@ -720,7 +720,7 @@ namespace SolidGui.Export
             }
         }
 
-        private string GetCannonicalRelationName(string type)
+        private string GetCanonicalRelationName(string type)
         {
             foreach (var alias in new[] {"syn", "synonym", "synonyms"})
             {

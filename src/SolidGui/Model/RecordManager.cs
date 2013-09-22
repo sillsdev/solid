@@ -3,10 +3,11 @@ using System.Collections.Generic;
 namespace SolidGui.Model
 {
     public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
+	// JMC: (Jon Coombs) Should this class be declared abstract? Maybe even reduced to an interface?
     {
-        public virtual void Reset()
-        {
-        }
+        //public virtual void Reset()  // JMC: commented this; delete it? Delete MoveNext() too?
+        //{
+        //}
 
         public virtual Record GetRecord(int index)
         {
