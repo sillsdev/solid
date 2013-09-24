@@ -72,7 +72,7 @@ namespace SolidGui.MarkerSettings
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
+                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);  //JMC: add call to user-interaction code for newly-added markers here
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              

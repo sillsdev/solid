@@ -150,13 +150,16 @@ namespace SolidGui
             // At this point we s/b guaranteed to have a template file with a matching name. -JMC
 
             Cursor = Cursors.WaitCursor;
-            _mainWindowPM.OpenDictionary(dlg.FileName, templatePath );
-            OnFileLoaded(dlg.FileName);
-            Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
-            string ext = Path.GetExtension(dlg.FileName);
-            if (!SolidSettings.FileExtensions.Contains(ext))
+            if (_mainWindowPM.OpenDictionary(dlg.FileName, templatePath))
             {
-                SolidSettings.FileExtensions.Add(ext); // adaptive: makes the next File Open dialog friendlier (not saved) -JMC
+                OnFileLoaded(dlg.FileName);
+                Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
+                string ext = Path.GetExtension(dlg.FileName);
+                if (!SolidSettings.FileExtensions.Contains(ext))
+                {
+                    SolidSettings.FileExtensions.Add(ext);
+                        // adaptive: makes the next File Open dialog friendlier (not saved) -JMC
+                }
             }
 
             Cursor = Cursors.Default;
@@ -402,5 +405,6 @@ namespace SolidGui
 			OnMarkerSettingPossiblyChanged(null, null); // TODO make conditional on dialog result
 
 		}
+
     }
 }

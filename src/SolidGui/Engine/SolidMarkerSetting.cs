@@ -22,7 +22,7 @@ namespace SolidGui.Engine
         {
         }
 
-        public SolidMarkerSetting(string marker) : this(marker, false)
+        public SolidMarkerSetting(string marker) : this(marker, false) //JMC: defaults to legacy rather than unicode
         {
         }
 

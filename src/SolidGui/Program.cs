@@ -52,8 +52,10 @@ namespace SolidGui
                         return; //they cancelled
                     }
                 }
-                model.OpenDictionary(fileName, templatePath);
-                form.OnFileLoaded(fileName);
+                if (model.OpenDictionary(fileName, templatePath))
+                {
+                    form.OnFileLoaded(fileName);
+                }
             }            
             Application.Run(form);
             Settings.Default.Save();

@@ -254,7 +254,7 @@ namespace SolidGui
 				SolidSettings solidSettings = null;
 				try
 				{
-					solidSettings = LoadSettingsFromExistingFile(solidFilePath);
+					solidSettings = LoadSettingsFromExistingFile(solidFilePath);  // A dry run. If it succeeds, we'll reload later. -JMC
 				}
 				catch (InvalidOperationException e)
 				{
@@ -287,11 +287,12 @@ namespace SolidGui
         /// </summary>
         /// <param name="dictionaryPath"></param>
         /// <param name="templatePath"></param>
-        public void OpenDictionary(string dictionaryPath, string templatePath)
+        /// <returns>True if successful; false otherwise.</returns>
+        public bool OpenDictionary(string dictionaryPath, string templatePath)
         {
-            if (!SaveOffOpenModifiedStuff())
+            if (!SaveOffOpenModifiedStuff())  //JMC: Side effect; split this out? E.g. doesn't make sense for command-line launch
             {
-                return;
+                return false;
             }
 
             _realDictionaryPath = dictionaryPath;
@@ -311,8 +312,9 @@ namespace SolidGui
             if (DictionaryProcessed != null)
             {
                 DictionaryProcessed.Invoke(this, null);
+                return true;
             }
-
+            return false; //JMC: correct??
         }
 
     	private void GiveSolidSettingsToModels()
@@ -325,7 +327,7 @@ namespace SolidGui
 		private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
             Palaso.Reporting.Logger.WriteEvent("Loading Solid file from Template from {0}", templatePath);
-            Debug.Assert(!string.IsNullOrEmpty(templatePath));
+            Debug.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder."); //JMC: Use Trace.Assert instead?
             return SolidSettings.CreateSolidFileFromTemplate(
 				templatePath, 
 				SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)
@@ -336,7 +338,7 @@ namespace SolidGui
         {
 			Palaso.Reporting.Logger.WriteEvent("Loading Solid file from {0}", solidFilePath);
 			return SolidSettings.OpenSolidFile(
-				Path.Combine(WorkingDictionary.GetDirectoryPath(), solidFilePath)
+				Path.Combine(WorkingDictionary.GetDirectoryPath(), solidFilePath) //The first half will only be used if solidFilePath is not absolute -JMC
 			);
         }
 

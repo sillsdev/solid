@@ -37,7 +37,7 @@ namespace SolidGui.MarkerSettings
 
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
-            _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker);
+            _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker); //JMC: add call to user-interaction code for newly-added markers here
 
             _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646);
             

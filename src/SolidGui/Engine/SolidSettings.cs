@@ -14,7 +14,6 @@ namespace SolidGui.Engine
 
         private readonly List<SolidMarkerSetting> _markerSettings;
         private string _recordMarker = "lx";
-        private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };
         public const int LatestVersion = 2; // JMC: Safer to use readonly here?
 
         public SolidSettings()
@@ -24,8 +23,11 @@ namespace SolidGui.Engine
 			_markerSettings = new List<SolidMarkerSetting>();
         }
 
+        // Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
 
-        public static List<string> FileExtensions  // added by JMC 2013-09
+        private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
+
+        public static List<string> FileExtensions  // added by JMC 2013-09; note that it's not read-only
         {
             get { return _fileExtensions; }
         }
@@ -94,6 +96,7 @@ namespace SolidGui.Engine
             SolidMarkerSetting result = FindMarkerSetting(marker);
             if (result == null)
             {
+                // JMC: Hmm, in some cases, the calling code should notify the user of "new fields detected". Use an out parameter? (A list of strings, to add marker names to if non-null.)
                 result = new SolidMarkerSetting(marker, DefaultEncodingUnicode);
                 _markerSettings.Add(result);
             }
@@ -123,18 +126,21 @@ namespace SolidGui.Engine
                 return null;
             }
 
-            bool defaultEncodingUnicode = String.Compare(templateFilePath, "unicode", true) == 0;
+            //JMC: The following is a side effect; move it out?
+            bool defaultEncodingUnicode = String.Compare(templateFilePath, "unicode", true) == 0; //JMC: Won't this always be false?
             return OpenSolidFile(outputFilePath, defaultEncodingUnicode);
         }
 
         /// <summary>
-        /// Open existing file
+        /// Open existing file. Defaults to legacy rather than unicode.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
         public static SolidSettings OpenSolidFile(string filePath)
         {
-            return OpenSolidFile(filePath, false);
+            // JMC: insert smart code here for determining default encoding (based on majority of markers?)
+
+            return OpenSolidFile(filePath, false);  //Assumes legacy rather than unicode by default. -JMC:
         }
 
         /// <summary>
@@ -185,6 +191,10 @@ namespace SolidGui.Engine
             SaveAs(FilePath);
         }
 
+        /// <summary>
+        /// Saves the .solid settings file. Overwrites without prompting if the file exists.
+        /// </summary>
+        /// <param name="filePath"></param>
         public void SaveAs(string filePath)
         {
             var xs = new XmlSerializer(typeof(SolidSettings));
