@@ -59,6 +59,7 @@ namespace SolidGui
             }            
             Application.Run(form);
             Settings.Default.Save();
+            model.Settings.NotifyIfNewMarkers();
         }
 
         private static void SetupErrorHandling()

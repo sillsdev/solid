@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using SolidGui.Engine;
@@ -19,6 +20,7 @@ namespace SolidGui.Processes
         {
             var utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
             var iso88591Encoding = Encoding.GetEncoding("iso-8859-1");
+            
             // Iterate through each (flat) node in the src d
             foreach (var sfmField in lexEntry.Fields)
             {

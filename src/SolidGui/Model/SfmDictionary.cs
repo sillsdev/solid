@@ -248,7 +248,7 @@ namespace SolidGui.Model
 
     	public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
-            Palaso.Reporting.Logger.WriteEvent("Openning {0}",path);
+            Palaso.Reporting.Logger.WriteEvent("Opening {0}",path);
 
 
             _filePath = path;
@@ -284,7 +284,7 @@ namespace SolidGui.Model
             {
                 _currentIndex = 0;
             }
-            Palaso.Reporting.Logger.WriteEvent("Done Openning.");
+            Palaso.Reporting.Logger.WriteEvent("Done Opening.");
         }
 
         public bool Save()

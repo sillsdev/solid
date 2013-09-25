@@ -1,8 +1,10 @@
 using System;
+using System.Diagnostics;
 using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 using Palaso.Reporting;
 using SolidGui.Migration;
@@ -13,21 +15,23 @@ namespace SolidGui.Engine
     {
 
         private readonly List<SolidMarkerSetting> _markerSettings;
+        private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
         public const int LatestVersion = 2; // JMC: Safer to use readonly here?
 
         public SolidSettings()
         {
-        	Version = LatestVersion.ToString();
-			DefaultEncodingUnicode = false;
-			_markerSettings = new List<SolidMarkerSetting>();
+            Version = LatestVersion.ToString();
+            DefaultEncodingUnicode = false;
+            _markerSettings = new List<SolidMarkerSetting>();
+            _newlyAdded = new List<SolidMarkerSetting>();
         }
 
-        // Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
+        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
 
         private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
 
-        public static List<string> FileExtensions  // added by JMC 2013-09; note that it's not read-only
+        public static List<string> FileExtensions  // added by JMC 2013-09; note that it's not read-only; might perhaps have made more sense to have this property under MainWindowPM?
         {
             get { return _fileExtensions; }
         }
@@ -59,9 +63,9 @@ namespace SolidGui.Engine
             set { _recordMarker = value; }
         }
 
-    	public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
+        public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
 
-    	public IEnumerable<string> Markers
+        public IEnumerable<string> Markers
         {
             get 
             {
@@ -90,17 +94,64 @@ namespace SolidGui.Engine
             return _markerSettings.Find(item => item.Marker == marker);
         }
 
-        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker)
+        /// <summary>
+        /// Look for the marker. If necessary, add it.
+        /// </summary>
+        /// <param name="marker">The marker to search for.</param>
+        /// <returns>Returns an existing setting if possible; otherwise a newly created one.</returns>
+        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker) //JMC: I think this is overused and could perhaps mask error conditions; replace some with plain FindMarkerSetting()?
         {
             // Search for the marker. If not found return default marker settings.
             SolidMarkerSetting result = FindMarkerSetting(marker);
             if (result == null)
             {
-                // JMC: Hmm, in some cases, the calling code should notify the user of "new fields detected". Use an out parameter? (A list of strings, to add marker names to if non-null.)
                 result = new SolidMarkerSetting(marker, DefaultEncodingUnicode);
                 _markerSettings.Add(result);
+                _newlyAdded.Add(result);  // In some cases, the calling code should notify the user of new fields detected.
             }
             return result;
+        }
+
+        public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: Not sure if this belongs in a "View" class instead, since it uses MessageBox
+        {
+            if (_newlyAdded == null || _newlyAdded.Count < 1) return;            
+            var sb = new StringBuilder("New marker(s) added: ");
+            foreach (var marker in _newlyAdded)
+            {
+                sb.Append(string.Format("{0} ({1}) ", marker.Marker, marker.Unicode ? "u" : "Legacy!")); 
+            }
+            sb.Append(". Will appear upon Recheck.\n");
+            MessageBox.Show(sb.ToString(), "New Marker(s) Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            _newlyAdded = new List<SolidMarkerSetting>(); //clear it out (don't keep notifying)
+
+            // Also seems like the best time to detect whether there are any mixed encodings -JMC
+            NotifyIfMixedEncodings();
+
+        }
+
+        private void NotifyIfMixedEncodings()
+        {
+            int uni = 0;
+            var legacy = new List<string>();
+            foreach (var marker in _markerSettings)
+            {
+                if (marker.Unicode)
+                {
+                    uni++;
+                }
+                else
+                {
+                    legacy.Add(marker.Marker);
+                }
+            }
+            if (uni > 0 && uni < _markerSettings.Count)  // all or nothing, ideally
+            {
+                string msg = string.Join(" ", legacy);
+                msg = "Warning: the marker settings have a mix of unicode and legacy specified."
+                    + "\nLegacy markers: " + msg 
+                    + "\nNote: settings are invisible for markers not currently in use.";
+                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
@@ -126,55 +177,79 @@ namespace SolidGui.Engine
                 return null;
             }
 
-            //JMC: The following is a side effect; move it out?
-            bool defaultEncodingUnicode = String.Compare(templateFilePath, "unicode", true) == 0; //JMC: Won't this always be false?
-            return OpenSolidFile(outputFilePath, defaultEncodingUnicode);
+            return OpenSolidFile(outputFilePath);
         }
 
         /// <summary>
-        /// Open existing file. Defaults to legacy rather than unicode.
+        /// Determine the default encoding, based on record marker if possible; otherwise based on the majority of markers (tiebreaker goes false)
+        /// </summary>
+        /// <param name="settings">A valid, already loaded set of settings, preferably including the record marker.</param>
+        /// <returns>true (unicode) or false (legacy)</returns>
+        public static bool DetermineDefaultEncoding(SolidSettings settings) // Added by JMC 2013-09
+        {
+            SolidMarkerSetting recordMarker = settings.FindMarkerSetting(settings.RecordMarker);
+            if (!(recordMarker == null))
+            {
+                return recordMarker.Unicode;
+            }
+            else
+            {
+                int countTrue = 0;
+                int countFalse = 0;
+                foreach (string m in settings.Markers)
+                {
+                    if (settings.FindMarkerSetting(m).Unicode)
+                    {
+                        countTrue++;
+                    }
+                    else
+                    {
+                        countFalse++;
+                    }
+                }
+                if (countTrue > countFalse)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Open existing .solid file.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
         public static SolidSettings OpenSolidFile(string filePath)
         {
-            // JMC: insert smart code here for determining default encoding (based on majority of markers?)
 
-            return OpenSolidFile(filePath, false);  //Assumes legacy rather than unicode by default. -JMC:
-        }
-
-        /// <summary>
-        /// Open existing file
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="defaultEncodingUnicode"></param>
-        /// <returns>Notifies user and returns null if file can't be opened for any reason</returns>
-        public static SolidSettings OpenSolidFile(string filePath, bool defaultEncodingUnicode)
-        {
-			// Migrate before we load the model.
-			var migrator = new SolidSettingsMigrator(filePath);
-			if (migrator.NeedsMigration())
-			{
-				migrator.Migrate();
-			}
+            // Migrate before we load the model.
+            var migrator = new SolidSettingsMigrator(filePath);
+            if (migrator.NeedsMigration())
+            {
+                migrator.Migrate();
+            }
             
-			// Review: Why do we create a file if it doesn't exist? CP 2011-05 ; JMC: delete this?
+            // Review: Why do we create a file if it doesn't exist? CP 2011-05 ; JMC: delete this?
             if(!File.Exists(filePath))
             {
                 using(File.Create(filePath))
                 {}
             }
-			// Deserialize 
-			SolidSettings settings;
-			var settingsDataMapper = new XmlSerializer(typeof(SolidSettings));
-			using (var reader = new StreamReader(filePath))
+            // Deserialize 
+            SolidSettings settings;
+            var settingsDataMapper = new XmlSerializer(typeof(SolidSettings));
+            using (var reader = new StreamReader(filePath))
             {
                 settings = (SolidSettings) settingsDataMapper.Deserialize(reader);
             }
 
-			// Set properties that aren't serialized.
+            // Set properties that aren't serialized.
             settings.FilePath = filePath;
-            settings.DefaultEncodingUnicode = defaultEncodingUnicode;
+            settings.DefaultEncodingUnicode = DetermineDefaultEncoding(settings);
             // Fix settings for the record marker.
             SolidMarkerSetting markerSetting = settings.FindOrCreateMarkerSetting(settings.RecordMarker);
             //!!! Assert if null

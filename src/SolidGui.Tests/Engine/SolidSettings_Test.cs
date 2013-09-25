@@ -21,6 +21,33 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
+        public void SolidSettings_DetectsDefaultEncoding() // lx rules. Added by JMC 2013-09
+        {
+            var f = new SolidSettings();
+            var s = f.FindOrCreateMarkerSetting("lx");
+            s.Unicode = true;
+            var s2 = f.FindOrCreateMarkerSetting("gn");
+            s2.Unicode = false;
+            var s3 = f.FindOrCreateMarkerSetting("dn");
+            s3.Unicode = false;
+            Assert.IsTrue(f.RecordMarker == "lx");
+            Assert.IsTrue(SolidSettings.DetermineDefaultEncoding(f));
+        }
+
+        [Test]
+        public void SolidSettings_DetectsDefaultEncoding2() // if no lx, majority rules. Added by JMC 2013-09
+        {
+            var f = new SolidSettings();
+            var s = f.FindOrCreateMarkerSetting("lex");
+            s.Unicode = true;
+            var s2 = f.FindOrCreateMarkerSetting("gn");
+            s2.Unicode = false;
+            var s3 = f.FindOrCreateMarkerSetting("dn");
+            s3.Unicode = false;
+            Assert.IsFalse(f.RecordMarker == "lex");
+            Assert.IsFalse(SolidSettings.DetermineDefaultEncoding(f));
+        }
+        [Test]
         public void SolidSettings_WriteRead_HasMarker()
         {
             var f = new SolidSettings();

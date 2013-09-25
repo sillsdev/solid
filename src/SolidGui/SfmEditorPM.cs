@@ -32,9 +32,9 @@ namespace SolidGui
 		public SolidSettings SolidSettings
         {
             set
-            {
-                _solidSettings = value; 
-            }
+            { _solidSettings = value; }
+            get  // added it; missing get seemed like a simple oversight, and I needed it. -JMC 2013-09
+            { return _solidSettings; }
         }
 
 		public void MoveToFirst()

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
@@ -72,7 +73,7 @@ namespace SolidGui.MarkerSettings
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);  //JMC: add call to user-interaction code for newly-added markers here
+                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
@@ -81,6 +82,7 @@ namespace SolidGui.MarkerSettings
 
                 _listView.Items.Add(item);
             }
+
             //           _listView.Sorting = SortOrder.Ascending;
             //          _listView.Sort();
 

@@ -126,6 +126,7 @@ namespace SolidGui
                 _model.UpdateCurrentRecord(_currentRecord, _contentsBox.Text);
             }
             _isDirty = false;
+            _model.SolidSettings.NotifyIfNewMarkers();
             //_contentsBox.SelectionStart = currentIndex;
         }
 

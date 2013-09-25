@@ -95,6 +95,8 @@ namespace SolidGui
                 }
             }
             ChooseProject();
+            _mainWindowPM.Settings.NotifyIfNewMarkers();
+
         }
 
         private void ChooseProject()

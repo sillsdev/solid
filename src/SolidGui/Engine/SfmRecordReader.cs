@@ -130,7 +130,7 @@ namespace SolidGui.Engine
                     _stateParse = StateParse.Records;
                     retval = ReadRecord();
                     // Store the header regardless of what is returned. May only be a header in the file.
-                    _header = new SfmRecord(_record);
+                    _header = new SfmRecord(_record); // JMC: but the header-preserving piece is broken; start looking here...
                     if (retval)
                     {
                         retval = ReadRecord();
