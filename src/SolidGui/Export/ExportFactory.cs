@@ -27,7 +27,7 @@ namespace SolidGui.Export
 
         private ExportFactory()
         {
-			_exportSettings.Add(ExportLift.GetHeader());
+            _exportSettings.Add(ExportLift.GetHeader());
             _exportSettings.Add(ExportSummary.GetHeader());
         }
 

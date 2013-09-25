@@ -12,9 +12,9 @@ namespace SolidGui
     public class SfmEditorPM
     {
         private SolidSettings _solidSettings;
-    	private readonly RecordNavigatorPM _navigatorModel;
+        private readonly RecordNavigatorPM _navigatorModel;
 
-    	public class RecordEditedEventArgs:EventArgs
+        public class RecordEditedEventArgs:EventArgs
         {
             public string Record;
 
@@ -24,12 +24,12 @@ namespace SolidGui
             }
         }
 
-		public SfmEditorPM(RecordNavigatorPM navigatorModel)
-		{
-			_navigatorModel = navigatorModel;
-		}
+        public SfmEditorPM(RecordNavigatorPM navigatorModel)
+        {
+            _navigatorModel = navigatorModel;
+        }
 
-		public SolidSettings SolidSettings
+        public SolidSettings SolidSettings
         {
             set
             { _solidSettings = value; }
@@ -37,25 +37,25 @@ namespace SolidGui
             { return _solidSettings; }
         }
 
-		public void MoveToFirst()
-		{
-			_navigatorModel.MoveToFirst();
-		}
+        public void MoveToFirst()
+        {
+            _navigatorModel.MoveToFirst();
+        }
 
-		public void MoveToLast()
-		{
-			_navigatorModel.MoveToLast();
-		}
+        public void MoveToLast()
+        {
+            _navigatorModel.MoveToLast();
+        }
 
-		public void MoveToPrevious()
-		{
-			_navigatorModel.MoveToPrevious();
-		}
+        public void MoveToPrevious()
+        {
+            _navigatorModel.MoveToPrevious();
+        }
 
-		public void MoveToNext()
-		{
-			_navigatorModel.MoveToNext();
-		}
+        public void MoveToNext()
+        {
+            _navigatorModel.MoveToNext();
+        }
 
         public void UpdateCurrentRecord(Record record, string newContents)
         {
@@ -99,11 +99,11 @@ namespace SolidGui
             {
                 var repository = AppWritingSystems.WritingSystems;
                 if (repository.Contains(writingSystemId))
-				{
-					var definition = repository.Get(writingSystemId);
-					var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
-					return new Font(definition.DefaultFontName, fontSize);
-				}
+                {
+                    var definition = repository.Get(writingSystemId);
+                    var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
+                    return new Font(definition.DefaultFontName, fontSize);
+                }
             }
             // Failing that use Doulos if it's installed.
             if (FontIsInstalled("Doulos SIL"))
@@ -145,7 +145,7 @@ namespace SolidGui
 
         private static bool FontIsInstalled(string name)
         {
-        	return FontFamily.Families.Any(family => family.Name == name);
+            return FontFamily.Families.Any(family => family.Name == name);
         }
     }
 }

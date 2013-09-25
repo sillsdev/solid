@@ -38,12 +38,12 @@ namespace SolidGui.Model
             get { return _fields[0]; }
         }
 
-		public string GetLexemeForm(SolidSettings solidSettings)
-		{
-			// Assume that the lx is first, it always will be.
-			Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-			return _fields[0].DecodedValue(solidSettings).Trim();
-		}
+        public string GetLexemeForm(SolidSettings solidSettings)
+        {
+            // Assume that the lx is first, it always will be.
+            Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
+            return _fields[0].DecodedValue(solidSettings).Trim();
+        }
 
         /// <summary>
         /// Citation form or if it doesn't exist, a Lexeme Form
@@ -65,7 +65,7 @@ namespace SolidGui.Model
             return citationField.DecodedValue(solidSettings).Trim();
         }
 
-		[Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
+        [Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name
         {
             get

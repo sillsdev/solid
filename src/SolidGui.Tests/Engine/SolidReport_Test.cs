@@ -47,7 +47,7 @@ namespace SolidGui.Tests.Engine
         }
          */
 
-        [Test, Ignore] //!!! TODO Streaming isn't working yet. But currently we don't need to save it anyway.
+        [Test, Ignore] // TODO !!! Streaming isn't working yet. But currently we don't need to save it anyway.
         public void SolidReport_SaveOpen_Correct()
         {
             var save = new SolidReport();

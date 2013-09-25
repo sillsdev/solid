@@ -115,7 +115,7 @@ namespace SolidGui.MarkerSettings
                 return "??";
             }
 
-        	var repository = AppWritingSystems.WritingSystems;
+            var repository = AppWritingSystems.WritingSystems;
             if (!repository.Contains(writingSystemId))
             {
                 return writingSystemId;

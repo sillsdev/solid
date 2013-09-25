@@ -15,7 +15,7 @@ namespace SolidGui.MarkerSettings
         public MarkerSettingsView()
         {
             InitializeComponent();
-        	_store = AppWritingSystems.WritingSystems;
+            _store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             wsPickerUsingComboBox1.BindToModel(_wsModel);
@@ -37,7 +37,7 @@ namespace SolidGui.MarkerSettings
 
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
-            _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker); //JMC: add call to user-interaction code for newly-added markers here
+            _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker); 
 
             _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646);
             

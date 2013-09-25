@@ -225,8 +225,8 @@ namespace EXControls {
 //                            ((EXImageListViewItem) _clickeditem).MyImage = imgitem.MyImage;
 //                        } else if (_clickeditem.GetType() == typeof(EXMultipleImagesListViewItem)) {
 //                            EXMultipleImagesListViewItem imglstvitem = (EXMultipleImagesListViewItem) _clickeditem;
-//			                imglstvitem.MyImages.Clear();
-//			                imglstvitem.MyImages.AddRange(new object[] {imgitem.MyImage});
+//                            imglstvitem.MyImages.Clear();
+//                            imglstvitem.MyImages.AddRange(new object[] {imgitem.MyImage});
 //                        }
 //                    //another column than the first one is clicked, so we have a ListViewSubItem
 //                    } else {
@@ -237,7 +237,7 @@ namespace EXControls {
 //                            EXMultipleImagesListViewSubItem imgsub = (EXMultipleImagesListViewSubItem) _clickedsubitem;
 //                            imgsub.MyImages.Clear();
 //                            imgsub.MyImages.Add(imgitem.MyImage);
-//			                imgsub.MyValue = imgitem.MyValue;
+//                            imgsub.MyValue = imgitem.MyValue;
 //                        }
 //                    }
 //                    //or is this a combobox item with multiple images?
@@ -248,8 +248,8 @@ namespace EXControls {
 //                            ((EXImageListViewItem) _clickeditem).MyImage = (Image) imgitem.MyImages[0];
 //                        } else if (_clickeditem.GetType() == typeof(EXMultipleImagesListViewItem)) {
 //                            EXMultipleImagesListViewItem imglstvitem = (EXMultipleImagesListViewItem) _clickeditem;
-//			                imglstvitem.MyImages.Clear();
-//			                imglstvitem.MyImages.AddRange(imgitem.MyImages);
+//                            imglstvitem.MyImages.Clear();
+//                            imglstvitem.MyImages.AddRange(imgitem.MyImages);
 //                        }
 //                    } else {
 //                        if (_clickedsubitem.GetType() == typeof(EXImageListViewSubItem)) {
@@ -260,8 +260,8 @@ namespace EXControls {
 //                        } else if (_clickedsubitem.GetType() == typeof(EXMultipleImagesListViewSubItem)) {
 //                            EXMultipleImagesListViewSubItem imgsub = (EXMultipleImagesListViewSubItem) _clickedsubitem;
 //                            imgsub.MyImages.Clear();
-//			                imgsub.MyImages.AddRange(imgitem.MyImages);
-//			                imgsub.MyValue = imgitem.MyValue;
+//                            imgsub.MyImages.AddRange(imgitem.MyImages);
+//                            imgsub.MyValue = imgitem.MyValue;
 //                        }
 //                    }
 //                }
@@ -421,8 +421,8 @@ namespace EXControls {
             }
         
         }
-	
-	    class ListViewSubItemComparerValue : System.Collections.IComparer {
+    
+        class ListViewSubItemComparerValue : System.Collections.IComparer {
             
             private int _col;
             private SortOrder _order;
@@ -460,8 +460,8 @@ namespace EXControls {
             }
         
         }
-	
-	    class ListViewItemComparerText : System.Collections.IComparer {
+    
+        class ListViewItemComparerText : System.Collections.IComparer {
             
             private int _col;
             private SortOrder _order;
@@ -499,8 +499,8 @@ namespace EXControls {
             }
         
         }
-	
-	    class ListViewItemComparerValue : System.Collections.IComparer {
+    
+        class ListViewItemComparerValue : System.Collections.IComparer {
             
             private int _col;
             private SortOrder _order;
@@ -726,12 +726,12 @@ namespace EXControls {
         public EXImageListViewSubItem(Image image) {
             _image = image;
         }
-	
+    
         public EXImageListViewSubItem(Image image, string value) {
             _image = image;
             this.MyValue = value;
         }
-	
+    
         public EXImageListViewSubItem(string text, Image image, string value) {
             this.Text = text;
             _image = image;
@@ -770,7 +770,7 @@ namespace EXControls {
         public EXMultipleImagesListViewSubItem(ArrayList images) {
             _images = images;
         }
-	
+    
         public EXMultipleImagesListViewSubItem(ArrayList images, string value) {
             _images = images;
             this.MyValue = value;
@@ -811,15 +811,15 @@ namespace EXControls {
         
         public EXBoolListViewSubItem(bool val) {
             _value = val;
-	        this.MyValue = val.ToString();
+            this.MyValue = val.ToString();
         }
         
         public bool BoolValue {
             get {return _value;}
             set {
-		        _value = value;
-		        this.MyValue = value.ToString();
-	        }
+                _value = value;
+                this.MyValue = value.ToString();
+            }
         }
         
         public override int DoDraw(DrawListViewSubItemEventArgs e, int x, EXColumnHeader ch) {    
@@ -839,8 +839,8 @@ namespace EXControls {
     }
     
     public class EXListViewItem : ListViewItem {
-	
-	    private string _value;
+    
+        private string _value;
         
         public EXListViewItem() {
             
@@ -849,7 +849,7 @@ namespace EXControls {
         public EXListViewItem(string text) {
             this.Text = text;
         }
-	
+    
         public string MyValue {
             get {return _value;}
             set {_value = value;}
@@ -872,16 +872,16 @@ namespace EXControls {
         public EXImageListViewItem(Image image) {
             _image = image;
         }
-	
+    
         public EXImageListViewItem(string text, Image image) {
             _image = image;
             this.Text = text;
         }
-	
-	    public EXImageListViewItem(string text, Image image, string value) {
+    
+        public EXImageListViewItem(string text, Image image, string value) {
             this.Text = text;
             _image = image;
-	        this.MyValue = value;
+            this.MyValue = value;
         }
         
         public Image MyImage {
@@ -906,16 +906,16 @@ namespace EXControls {
         public EXMultipleImagesListViewItem(ArrayList images) {
             _images = images;
         }
-	
-	    public EXMultipleImagesListViewItem(string text, ArrayList images) {
+    
+        public EXMultipleImagesListViewItem(string text, ArrayList images) {
             this.Text = text;
             _images = images;
         }
-	
-	    public EXMultipleImagesListViewItem(string text, ArrayList images, string value) {
+    
+        public EXMultipleImagesListViewItem(string text, ArrayList images, string value) {
             this.Text = text;
             _images = images;
-	        this.MyValue = value;
+            this.MyValue = value;
         }
         
         public ArrayList MyImages {

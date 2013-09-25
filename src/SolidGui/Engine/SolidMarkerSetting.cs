@@ -18,11 +18,7 @@ namespace SolidGui.Engine
         private bool _isUnicode;
         private List<SolidStructureProperty> _structureProperties;
         
-        public SolidMarkerSetting() : this("")
-        {
-        }
-
-        public SolidMarkerSetting(string marker) : this(marker, false) //JMC: defaults to legacy rather than unicode
+        public SolidMarkerSetting() : this("", false) // defaults to legacy rather than unicode -JMC
         {
         }
 
@@ -60,7 +56,7 @@ namespace SolidGui.Engine
         {
             return Mappings[(int) mappingType];
         }
-	
+
         public bool ParentExists(string marker)
         {
             SolidStructureProperty result = _structureProperties.Find(

@@ -225,18 +225,18 @@ namespace SolidGui.Engine
                         // See http://projects.palaso.org/issues/show/244
                         sb.Append (c0);
                         /*
-						if (!isEOL(c0))
+                        if (!isEOL(c0))
                         {
                             sb.Append(c0);
                         }
-						else
-						{
-                        	if (!isEOL(c1))
-							{
-                        		sb.Append (' ');
-                        	}
+                        else
+                        {
+                            if (!isEOL(c1))
+                            {
+                                sb.Append (' ');
+                            }
                         }
-					 */
+                     */
                         break;
                     case StateLex.EOF:
                         if (currentField.Marker != String.Empty)

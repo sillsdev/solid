@@ -2,23 +2,16 @@ using System.Collections.Generic;
 
 namespace SolidGui.Model
 {
-    public class RecordManager /*: IEnumerator<Record>, IEnumerable<Record> */
-	// JMC: (Jon Coombs) Should this class be declared abstract? Maybe even reduced to an interface?
+    // Decided this class could be declared abstract. -JMC (Jon Coombs) 
+    // JMC: Maybe could even be reduced to an interface? That would seem better than returning nulls. 
+    public abstract class RecordManager
     {
-        //public virtual void Reset()  // JMC: commented this; delete it? Delete MoveNext() too?
-        //{
-        //}
 
         public virtual Record GetRecord(int index)
         {
             return null;
         }
              
-        public virtual bool MoveNext()
-        {
-            return false;
-        }
-
         public virtual IEnumerator < Record > GetEnumerator()
         {
             return null; // this; //!!! SHould return a dummy implementation.

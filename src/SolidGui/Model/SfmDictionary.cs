@@ -27,7 +27,7 @@ namespace SolidGui.Model
         private readonly Dictionary<string, int> _markerFrequencies;
         private readonly Dictionary<string, int> _markerErrors;
 
-    	private int _currentIndex;
+        private int _currentIndex;
 
         public SfmDictionary()
         {
@@ -36,17 +36,8 @@ namespace SolidGui.Model
             _markerFrequencies = new Dictionary<string, int>();
             _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
-            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
+//            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
         }
-        /*
-        public Dictionary(string path)
-        {
-            _recordList = new List<Record>();
-            _allMarkers = new List<string>();
-            
-            Open(path);
-        }
-        */
        
         public List<Record> Records
         {
@@ -57,12 +48,6 @@ namespace SolidGui.Model
         {
             get { return _recordList.Count; }
         }
-        /*
-        public override IEnumerator<Record> GetEnumerator()
-        {
-            return _recordList.GetEnumerator();
-        }
-        */
 
         public override Record Current
         {
@@ -115,13 +100,6 @@ namespace SolidGui.Model
             return retval;
         }
 
-        /*
-        public Record Get(int index)
-        {
-            return _recordList[index];
-        }
-        */
-
         public override bool MoveTo(int index)
         {
             bool retval = false;
@@ -138,13 +116,6 @@ namespace SolidGui.Model
             return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));
         }
  
-        /*
-        public string GetFileNameNoExtension()
-        {
-            return Path.GetFileNameWithoutExtension(_filePath);
-        }
-        */
-
         public void Clear()
         {
             _recordList.Clear();
@@ -239,20 +210,20 @@ namespace SolidGui.Model
                         openArguments.FilterSet.AddRecord(Count - 1, recordReport);
                     }
                 }
-            	SfmHeader = reader.Header;
+                SfmHeader = reader.Header;
             }
 
         }
 
-    	private SfmRecord SfmHeader { get; set; }
+        private SfmRecord SfmHeader { get; set; }
 
-    	public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
+        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
             Palaso.Reporting.Logger.WriteEvent("Opening {0}",path);
 
 
             _filePath = path;
-            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
+//            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
 
             _recordList.Clear();
             _markerFrequencies.Clear();
@@ -290,6 +261,7 @@ namespace SolidGui.Model
         public bool Save()
         {
             SaveAs(_filePath);
+            // JMC: resurrect or delete the following old code?
             //if (_lastWrittenTo == File.GetLastWriteTime(_filePath) ||
             //    !File.Exists(_filePath))
             //{
@@ -317,34 +289,34 @@ namespace SolidGui.Model
             {
                 using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
                 {
-					/* TODO One day it might be nice to refactor this to use a (say) SfmRecordWriter, then 
-					 * we could keep more info from the SfmRecordReader for use by the writer and do a
-					 * better job of 'doing no harm' to the file, by detecting characteristics such as
-					 * trailing white space on empty markers, lines between lx, headers etc.
-					 */
-                	foreach (var field in SfmHeader)
-                	{
-						writer.Write("\\");
-                		writer.Write(field.Marker);
-						writer.Write(" ");
-						writer.Write(field.Value);
-						writer.Write("\r\n");
-					}
+                    /* // TODO One day it might be nice to refactor this to use a (say) SfmRecordWriter, then 
+                     * we could keep more info from the SfmRecordReader for use by the writer and do a
+                     * better job of 'doing no harm' to the file, by detecting characteristics such as
+                     * trailing white space on empty markers, lines between lx, headers etc.
+                     */
+                    foreach (var field in SfmHeader)
+                    {
+                        writer.Write("\\");
+                        writer.Write(field.Marker);
+                        writer.Write(" ");
+                        writer.Write(field.Value);
+                        writer.Write("\r\n");
+                    }
                     foreach (var record in _recordList)
                     {
-						writer.Write("\r\n");
+                        writer.Write("\r\n");
                         foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
                             {
                                 writer.Write("\\");
                                 writer.Write(field.Marker.TrimStart('_'));
-								if (field.HasValue)
-								{
-									writer.Write(" ");
-									writer.Write(field.Value);
-								}
-                            	writer.Write("\r\n");
+                                if (field.HasValue)
+                                {
+                                    writer.Write(" ");
+                                    writer.Write(field.Value);
+                                }
+                                writer.Write("\r\n");
                             }
                         }
                     }

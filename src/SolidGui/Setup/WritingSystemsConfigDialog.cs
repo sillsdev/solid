@@ -9,18 +9,18 @@ using System.Windows.Forms;
 
 namespace SolidGui.Setup
 {
-	public partial class WritingSystemsConfigDialog : Form
-	{
+    public partial class WritingSystemsConfigDialog : Form
+    {
 
-		public WritingSystemsConfigDialog()
-		{
-			InitializeComponent();
-		}
+        public WritingSystemsConfigDialog()
+        {
+            InitializeComponent();
+        }
 
-		public WritingSystemsConfigPresenter.IView WritingSystemsConfigView
-		{
-			get { return _writingSystemsConfigView; }
-		}
+        public WritingSystemsConfigPresenter.IView WritingSystemsConfigView
+        {
+            get { return _writingSystemsConfigView; }
+        }
 
-	}
+    }
 }

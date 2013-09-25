@@ -10,21 +10,21 @@ namespace SolidGui
 {
     public partial class TemplateChooser : Form
     {
-    	private readonly SolidSettings _solidSettings;
+        private readonly SolidSettings _solidSettings;
 
-		public TemplateChooser (SolidSettings solidSettings)
+        public TemplateChooser (SolidSettings solidSettings)
         {
             InitializeComponent();
             _solidSettings = solidSettings;
-        	PathToChosenTemplate = "";
-        	WouldBeReplacingExistingSettings = false;
+            PathToChosenTemplate = "";
+            WouldBeReplacingExistingSettings = false;
         }
 
-		public List<string> TemplatePaths { get; set; }
+        public List<string> TemplatePaths { get; set; }
 
-		public string PathToChosenTemplate { get; private set; }
+        public string PathToChosenTemplate { get; private set; }
 
-		public bool WouldBeReplacingExistingSettings { get; set; }
+        public bool WouldBeReplacingExistingSettings { get; set; }
 
         public string CustomizedSolidDestinationName
         {
@@ -39,7 +39,7 @@ namespace SolidGui
             _okButton.Enabled = _templateChooser.SelectedItems.Count == 1;
         }
 
-    	private void OnTemplateChooser_Load(object sender, EventArgs e)
+        private void OnTemplateChooser_Load(object sender, EventArgs e)
         {
             _templateChooser.SuspendLayout();
             _templateChooser.Items.Clear();
@@ -50,35 +50,35 @@ namespace SolidGui
                 item.ToolTipText = path;
                 _templateChooser.Items.Add(item);
 
-            	int listViewBottom = _okButton.Location.Y - 8;
+                int listViewBottom = _okButton.Location.Y - 8;
                 if (WouldBeReplacingExistingSettings)
                 {
-                	_lblInstructions.Visible = false;
-                	_pnlWarning.Visible = true;
-                	_pnlListView.Location = new Point
-                	{
-						X = _pnlListView.Location.X,
-                		Y = (_pnlWarning.Location.Y + _pnlWarning.Height)
-                	};
-                	_pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
+                    _lblInstructions.Visible = false;
+                    _pnlWarning.Visible = true;
+                    _pnlListView.Location = new Point
+                    {
+                        X = _pnlListView.Location.X,
+                        Y = (_pnlWarning.Location.Y + _pnlWarning.Height)
+                    };
+                    _pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
                 }
                 else
                 {
-					_lblInstructions.Visible = true;
-					_pnlWarning.Visible = false;
-					_pnlListView.Location = new Point
-                	{
-						X = _pnlListView.Location.X,
-						Y = (_lblInstructions.Location.Y + _lblInstructions.Height)
-                	};
-					_pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
-					if (path.ToLower ().Contains ("mdf.solid"))
+                    _lblInstructions.Visible = true;
+                    _pnlWarning.Visible = false;
+                    _pnlListView.Location = new Point
+                    {
+                        X = _pnlListView.Location.X,
+                        Y = (_lblInstructions.Location.Y + _lblInstructions.Height)
+                    };
+                    _pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
+                    if (path.ToLower ().Contains ("mdf.solid"))
                     {
                         item.Selected = true;
                     }
                 }
-				SuspendLayout();
-				ResumeLayout();
+                SuspendLayout();
+                ResumeLayout();
             }
             _templateChooser.ResumeLayout();
 
@@ -125,7 +125,7 @@ namespace SolidGui
             {
                 _solidSettings.SaveAs(dlg.FileName);
             }
-		}
+        }
 
     }
 }

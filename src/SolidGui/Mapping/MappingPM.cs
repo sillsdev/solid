@@ -190,19 +190,19 @@ namespace SolidGui.Mapping
 
             public override string ToString()
             {
-				if (_node == null)
-				{
-					return "";
-				}
+                if (_node == null)
+                {
+                    return "";
+                }
                 return _node.GetOptionalStringAttribute("uiname", null);
             }
             
             public string GetId()
             {
-				if (_node == null)
-				{
-					return "";
-				}
+                if (_node == null)
+                {
+                    return "";
+                }
                 return _node.GetOptionalStringAttribute("id", null);
             }
         }

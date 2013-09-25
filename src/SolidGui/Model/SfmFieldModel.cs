@@ -130,12 +130,12 @@ namespace SolidGui.Model
             get { return _reportEntries.Count > 0; }
         }
 
-    	public bool HasValue
-    	{
-    		get { return !String.IsNullOrEmpty(Value); }
-    	}
+        public bool HasValue
+        {
+            get { return !String.IsNullOrEmpty(Value); }
+        }
 
-    	public SfmFieldModel this[int i]
+        public SfmFieldModel this[int i]
         {
             get { return _children[i]; }
         }
@@ -149,15 +149,15 @@ namespace SolidGui.Model
             return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
         }
 
-    	public string DecodedValue(SolidSettings solidSettings)
-    	{
-    		var markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
-			if (markerSetting.Unicode)
-			{
-				return ValueAsUnicode();
-			}
-    		return Value;
-    	}
+        public string DecodedValue(SolidSettings solidSettings)
+        {
+            var markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
+            if (markerSetting.Unicode)
+            {
+                return ValueAsUnicode();
+            }
+            return Value;
+        }
     }
 
 

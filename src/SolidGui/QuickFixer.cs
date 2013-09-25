@@ -352,7 +352,7 @@ namespace Solid.Engine
 
                 //in the format we're changing to, \ps comes after \sn, so 
                 //we should remove one which appears before the first sn (it will have been copied in)
-            	var psFieldsToRemoveAtEnd = new List<int>();
+                var psFieldsToRemoveAtEnd = new List<int>();
                 SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
@@ -361,7 +361,7 @@ namespace Solid.Engine
                     {
                         if (!encounteredSn)
                         {
-                        	psFieldsToRemoveAtEnd.Add(i);
+                            psFieldsToRemoveAtEnd.Add(i);
                         }
                         fieldToCopy = field;
                         continue;
@@ -381,24 +381,24 @@ namespace Solid.Engine
                             }
                         }
                     }
-					else if (field.Marker == "se")
-					{
-						encounteredSn = false;
-					}
+                    else if (field.Marker == "se")
+                    {
+                        encounteredSn = false;
+                    }
                 }
                 if(encounteredSn && psFieldsToRemoveAtEnd.Count > 0)
                 {
-					// Remove from last to first to ensure that the index to delete remains valid.
-					for (int i = psFieldsToRemoveAtEnd.Count - 1; i >= 0; --i)
-					{
-						int index = psFieldsToRemoveAtEnd[i];
-						Debug.Assert(record.Fields[index].Marker == "ps");
-						//just one last sanity check
-						if (record.Fields[index].Marker == "ps")
-						{
-							record.RemoveField(index);
-						}
-					}
+                    // Remove from last to first to ensure that the index to delete remains valid.
+                    for (int i = psFieldsToRemoveAtEnd.Count - 1; i >= 0; --i)
+                    {
+                        int index = psFieldsToRemoveAtEnd[i];
+                        Debug.Assert(record.Fields[index].Marker == "ps");
+                        //just one last sanity check
+                        if (record.Fields[index].Marker == "ps")
+                        {
+                            record.RemoveField(index);
+                        }
+                    }
                 }
             }
             logBuilder.AppendFormat("ps was copied to {0} senses.", sensesEffected);
@@ -410,7 +410,7 @@ namespace Solid.Engine
             for (int i = startBelowMarkerIndex+1; i < record.Fields.Count; i++)
             {
                 var field = record.Fields[i];
-            	if (markersToStopAt.Contains(field.Marker))
+                if (markersToStopAt.Contains(field.Marker))
                 //if (field.Marker == markerToStopAt)
                 {
                     return false;
