@@ -3730,13 +3730,6 @@
             <param name="source"></param>
             <param name="destinationFilePath"></param>
         </member>
-        <member name="M:Palaso.Extensions.StringExtensions.ToIntArray(System.String)">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Gets an int array from a comma-delimited string of numbers.
-            </summary>
-            ------------------------------------------------------------------------------------
-        </member>
         <member name="M:Palaso.Extensions.StringExtensions.FormatWithErrorStringInsteadOfException(System.String,System.Object[])">
             <summary>
             normal string.format will throw if it can't do the format; this is dangerous if you're, for example
@@ -3767,13 +3760,6 @@
             <summary>
             Make the first letter of the string upper-case, and the rest lower case. Does not consider words.
             </summary>
-        </member>
-        <member name="M:Palaso.Extensions.StringExtensions.RemoveAcceleratorPrefix(System.String)">
-            ------------------------------------------------------------------------------------
-            <summary>
-            Removes the ampersand accerlerator prefix from the specified text.
-            </summary>
-            ------------------------------------------------------------------------------------
         </member>
         <member name="M:Palaso.Extensions.ByteArrayExtensions.IndexOfSubArray(System.Byte[],System.Byte[])">
             <summary>
@@ -4341,7 +4327,7 @@
         <member name="M:Palaso.Reporting.ErrorReport.SetErrorReporter(Palaso.Reporting.IErrorReporter)">
             <summary>
             Use this method if you want to override the default IErrorReporter.
-            This method should normally be called only once at application startup.
+            This method should be called only once at application startup.
             </summary>
         </member>
         <member name="F:Palaso.Reporting.ErrorReport.s_properties">

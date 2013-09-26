@@ -128,28 +128,6 @@
         <member name="P:Palaso.UI.WindowsForms.Widgets.BetterGrid.CalendarCell.DefaultNewRowValue">
             ------------------------------------------------------------------------------------
         </member>
-        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.#ctor(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="pathToAboutBoxHtml">For example, use FileLocator.GetFileDistributedWithApplication("distfiles", "aboutBox.htm")</param>
-        </member>
-        <member name="F:Palaso.UI.WindowsForms.SIL.SILAboutBox.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-        </member>
-        <member name="M:Palaso.UI.WindowsForms.SIL.SILAboutBox.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
         <!-- Badly formed XML comment ignored for member "T:Palaso.UI.WindowsForms.Progress.TransformWithProgressDialog" -->
         <member name="M:Palaso.UI.WindowsForms.Progress.TransformWithProgressDialog.Transform(System.Boolean)">
             <summary>
@@ -1549,11 +1527,6 @@
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
         </member>
-        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.MenuButtonArrow">
-            <summary>
-              Looks up a localized resource of type System.Drawing.Bitmap.
-            </summary>
-        </member>
         <member name="P:Palaso.UI.WindowsForms.Properties.Resources.OlacRoles">
              <summary>
                Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot;?&gt;
@@ -1597,16 +1570,6 @@
             </summary>
         </member>
         <member name="P:Palaso.UI.WindowsForms.Properties.Resources.settings16x16">
-            <summary>
-              Looks up a localized resource of type System.Drawing.Bitmap.
-            </summary>
-        </member>
-        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.SILLogoBlue132x184">
-            <summary>
-              Looks up a localized resource of type System.Drawing.Bitmap.
-            </summary>
-        </member>
-        <member name="P:Palaso.UI.WindowsForms.Properties.Resources.spy16x16">
             <summary>
               Looks up a localized resource of type System.Drawing.Bitmap.
             </summary>
