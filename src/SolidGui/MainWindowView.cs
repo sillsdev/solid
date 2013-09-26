@@ -75,8 +75,10 @@ namespace SolidGui
                 _mainWindowPM.WorkingDictionary,
                 _mainWindowPM.Settings
             );
-            _filterChooserView.UpdateDisplay();
             _markerDetails.UpdateDisplay();
+            _filterChooserView.Model.ActiveRecordFilter = _filterChooserView.Model.RecordFilters[0];  //Choose the "All Records" filter
+            _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274)
+            _filterChooserView.UpdateDisplay();
             UpdateDisplay();
         }
 
@@ -174,9 +176,10 @@ namespace SolidGui
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
             _sfmEditorView.Enabled = true;
-            _markerDetails.SelectMarker("lx");
+            //_markerDetails.SelectMarker("lx");  //JMC: doesn't work anyway; disabled it
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _sfmEditorView.Focus();
+            _sfmEditorView.Reload(); //JMC: fixes __?
         }
 
         public bool NeedsSave()

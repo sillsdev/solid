@@ -34,7 +34,7 @@ namespace SolidGui.Tests
         private static RecordNavigatorPM RecordNavigatorForTest(SfmDictionary dictionary)
         {
             var navigator = new RecordNavigatorPM();
-            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(dictionary);
+            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(dictionary, null);
             return navigator;
         }
 
@@ -105,7 +105,7 @@ namespace SolidGui.Tests
         {
             //navigator.ActiveFilter = new NullRecordFilter();
             var navigator = RecordNavigatorForTest(EnvironmentForTest.CreateDictionaryWith4Records());
-            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new SfmDictionary());
+            navigator.ActiveFilter = AllRecordFilter.CreateAllRecordFilter(new SfmDictionary(), null);
             Assert.AreEqual(0, navigator.Count);
             Assert.AreEqual(0, navigator.CurrentRecordIndex);
             Assert.IsNull(navigator.CurrentRecord);

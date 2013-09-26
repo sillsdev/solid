@@ -13,7 +13,7 @@ namespace SolidGui.Filter
         private bool _changingFilter = false;
 
         //??? Would be nice if we didn't need to expose this. CJP
-        public FilterChooserPM Model
+        public FilterChooserPM Model  //JMC: unused? delete?
         {
             get { return _model; }
         }

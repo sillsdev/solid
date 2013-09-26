@@ -385,7 +385,7 @@ namespace SolidGui
                 _state = State.ScanBackslash;
             }
 
-            public bool ProcessKey(int c)
+            public bool ProcessKey(int c)  //JMC: Dead code? Delete it?
             {
                 bool retval = false;
                 switch (_state)

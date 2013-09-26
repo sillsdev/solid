@@ -66,7 +66,7 @@ namespace SolidGui.Search
         }
         public void FindNext(string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
         {
-            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary), word, recordIndex, textIndex, startingRecord, startingIndex);
+            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary, null), word, recordIndex, textIndex, startingRecord, startingIndex);
         }
 
         private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int searchStartIndex)

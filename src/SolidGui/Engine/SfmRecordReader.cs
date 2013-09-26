@@ -21,6 +21,7 @@ namespace SolidGui.Engine
 
         enum StateParse
         {
+            StartFile,
             Header,
             Records
         }
@@ -46,7 +47,7 @@ namespace SolidGui.Engine
         // Reading state
         private int _line = 1;
         private int _col = 1;
-        private int _backslashCount = 0;
+        private int _backslashCount = 0;  //JMC: delete?
 
         private int _bufferSize = 4096;
 
@@ -86,7 +87,7 @@ namespace SolidGui.Engine
             get { return _recordStartLine; }
         }
 
-        public int RecordEndLine
+        public int RecordEndLine  //JMC: unused except in tests? delete?
         {
             get { return _recordEndLine; }
         }
@@ -126,6 +127,7 @@ namespace SolidGui.Engine
             // Check parse state
             switch (_stateParse)
             {
+                case StateParse.StartFile:
                 case StateParse.Header:
                     _stateParse = StateParse.Records;
                     retval = ReadRecord();
@@ -155,7 +157,7 @@ namespace SolidGui.Engine
             if (_stateLex == StateLex.StartOfRecord)
             {
                 currentField.Marker = _startKey;
-                _stateLex = StateLex.BuildValue;
+                _stateLex = StateLex.BuildValue;  //JMC: seems false; maybe this is the source of bug 665 ??
             }
             StringBuilder sb = new StringBuilder(1024);
             char c1 = '\0';
@@ -167,9 +169,10 @@ namespace SolidGui.Engine
                 c1 = c0;
                 c0 = ReadChar();
 
-                // Update the line and column statistics
+                // First, deal with boundary conditions (EOL, backslash, leading whitespace)
+
                 if (isEOL(c0) && !isEOL(c1))
-                {
+                { // the beginning of the end (of the line); update the line and column statistics
                     _line++;
                     _col = 1;
                     _backslashCount = 0;
@@ -184,9 +187,11 @@ namespace SolidGui.Engine
                         {
                             // Store the key and value.
                             currentField.Value = sb.ToString();
-                            char[] trim = { ' ', '\t', '\x0a', '\x0d' };
-                            currentField.Value = currentField.Value.TrimEnd(trim);
+                            char[] trim = { ' ', '\t', '\x0a', '\x0d' };  //JMC: bad perf.; move to const or readonly (under SfmField?)
+                              //JMC: add constants for x0a (0x0a \n) and x0d (\r)
+                            currentField.Value = currentField.Value.TrimEnd(trim); //JMC: disable this? Or better, add a Trailing property to SfmField
                             onField(currentField);
+                            // Start fresh
                             currentField = new SfmField();
                         }
                         _stateLex = StateLex.BuildKey;
@@ -195,30 +200,31 @@ namespace SolidGui.Engine
                     }
                     _backslashCount++;
                 }
-                else if (stillWhite && c0 != ' ' && c0 != 0x09)
+                else if (stillWhite && c0 != ' ' && c0 != 0x09)  // end of leading whitespace ; JMC: need to add: public const char Tab = 0x09;
                 {
                     stillWhite = false;
                 }
+
                 // Scan for the start of record and update state if found
+
                 switch (_stateLex)
                 {
                     case StateLex.BuildKey:
-                        if (c0 == ' ' || c0 == 0x09 || isEOL(c0))
+                        if (c0 == ' ' || c0 == 0x09 || isEOL(c0))  //end of key
                         {
-                            // push into sb and then store
                             currentField.Marker = sb.ToString();
                             _stateLex = StateLex.BuildValue;
                             sb.Length = 0;
-                            if (currentField.Marker == _startKey)
+                            if (currentField.Marker == _startKey) //done reading header, or done reading previous record
                             {
                                 _stateLex = StateLex.StartOfRecord;
-                                _recordEndLine = _line - 1; //??? -2?
+                                _recordEndLine = _line - 1; 
                                 retval = true;
                             }
                         }
                         else if (c0 != '\\')
                         {
-                            sb.Append(c0);
+                            sb.Append(c0);  //store character (any backslashes found inside a key are dropped)
                         }
                         break;
                     case StateLex.BuildValue:
@@ -241,12 +247,12 @@ namespace SolidGui.Engine
                     case StateLex.EOF:
                         if (currentField.Marker != String.Empty)
                         {
-                            currentField.Value = sb.ToString();
+                            currentField.Value = sb.ToString();  //JMC: refactor, since this is duplicate code (see above)
                             char [] trim = { ' ', '\t', '\x0a', '\x0d' };
                             currentField.Value = currentField.Value.TrimEnd (trim);
                             onField(currentField);
                             currentField = new SfmField();
-                            _recordEndLine = _line - 1; //??? -2?
+                            _recordEndLine = _line - 1; 
                             retval = true;
                         }
                         break;
@@ -255,9 +261,10 @@ namespace SolidGui.Engine
                 {
                     _col++;
                 }
-                // If there are two consequtive EOL then 'reset' c0 so that subsequent EOL are counted correctly.
-                if (isEOL(c0) && isEOL(c1))
+                if (isEOL(c0) && isEOL(c1))  
                 {
+                    // two consecutive EOL; 'reset' c0 so that subsequent EOL are counted correctly.
+                    // JMC: Hmm, consecutive EOL. Start looking here for bug 619 http://projects.palaso.org/issues/619
                     c0 = '\0';
                 }
 
@@ -350,7 +357,7 @@ namespace SolidGui.Engine
                 _pos = 0;
                 _used = _r.Read(_buffer, 0, _buffer.Length);
             }
-            if (_pos == _used) //??? Is their a better test for effectively EOF here?
+            if (_pos == _used) //??? Is there a better test for effectively EOF here?
             {
                 _buffer[_pos] = '\0';
                 _stateLex = StateLex.EOF;

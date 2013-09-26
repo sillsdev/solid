@@ -61,7 +61,7 @@ namespace SolidGui
         {
             // Remove the inferred markers from the text
             // Encode the value correctly as per the solid marker settings (either utf-8 or iso-8859-1)
-            SfmRecordReader reader = SfmRecordReader.CreateFromText(newContents);
+            var reader = SfmRecordReader.CreateFromText(newContents);
             reader.AllowLeadingWhiteSpace = true;
             if (reader.Read())
             {

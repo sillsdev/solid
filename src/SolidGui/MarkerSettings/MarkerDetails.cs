@@ -76,7 +76,7 @@ namespace SolidGui.MarkerSettings
                 SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);              
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);  //JMC: add another (checkbox) column here for Unic ?          
                 //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
                 //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
@@ -87,7 +87,7 @@ namespace SolidGui.MarkerSettings
             //          _listView.Sort();
 
             _listView.Columns[0].LastSortState = SortDirections.SortAscending;
-            _listView.SortColumn(0);//review... how to keep the old order?
+            _listView.SortColumn(0); // TODO: review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
         }
 
@@ -266,15 +266,16 @@ namespace SolidGui.MarkerSettings
 
         public void SelectMarker(string marker)
         {
-            foreach(GLItem a in _listView.Items)
+            foreach(GLItem a in _listView.Items)  //JMC: move this down
             {
                 a.Selected = (a.Text == marker);
             }
             if(String.IsNullOrEmpty(marker) && _listView.Items.Count > 0)
             {
-                _listView.Items[0].Selected = true;
+                _listView.Items[0].Selected = true; //JMC: This is what initially sets the active filter to, say, \a 
                 //hack for a bug in Glacial List
                 _listView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
+                return;
             }
         }
 
@@ -292,7 +293,7 @@ namespace SolidGui.MarkerSettings
             string marker = _listView.Items[e.ItemIndex].Text;
 
             _filter = new MarkerFilter(_dictionary, marker);
-            _filterChooserPM.ActiveRecordFilter = _filter;
+            _filterChooserPM.ActiveRecordFilter = _filter;  
         }
 
         private void _listView_DoubleClick(object sender, EventArgs e)

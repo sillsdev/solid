@@ -86,8 +86,9 @@ namespace SolidGui.Filter
         {
             if (_currentDictionary != null)
             {
-                // Error Filters
                 int filterCount = 0;
+
+                // Error Filters
                 foreach (ErrorFilterForType filter in _solidErrors)
                 {
                     if (filter != null)
@@ -102,12 +103,16 @@ namespace SolidGui.Filter
                         }
                     }
                 }
-                // If no errors add the all filter.
+
+                // Add the All Records filter in first position--this will be the default when first opening the file. Moved this to the top -JMC 2013-09 (see issue #274)
                 if (filterCount == 0)
                 {
-                    Add(AllRecordFilter.CreateAllRecordFilter(_currentDictionary));
+                    Insert(0, AllRecordFilter.CreateAllRecordFilter(_currentDictionary, "All Records (No issues found)"));
                 }
-
+                else
+                {
+                    Insert(0, AllRecordFilter.CreateAllRecordFilter(_currentDictionary, "All Records"));
+                }
 
                 //Add(new RegExRecordFilter("Has Note", @"\\nt\s\w", _currentDictionary));
                 //Add(new RegExRecordFilter("Missing N Gloss", @"\\gn\s\w", true, _currentDictionary));

@@ -4,13 +4,14 @@ namespace SolidGui.Filter
 {
     public sealed class AllRecordFilter : RecordFilter
     {
-        public static AllRecordFilter CreateAllRecordFilter(RecordManager rm)
+        public static AllRecordFilter CreateAllRecordFilter(RecordManager rm, string label)
         {
-            return new AllRecordFilter(rm);
+            label = (label == null || label == "") ? "All Records" : label;
+            return new AllRecordFilter(rm, label);
         }
 
-        private AllRecordFilter(RecordManager rm) :
-            base(rm, "No issues found - All Records")
+        private AllRecordFilter(RecordManager rm, string label) :
+            base(rm, label)
         {
             UpdateFilter();
         }
