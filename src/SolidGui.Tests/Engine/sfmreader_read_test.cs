@@ -194,12 +194,36 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("lx", r.Key(0));
         }
 
+
+        [Test]
+        public void SplitWhiteSpaceSimple()
+        {
+            string val = "value\r\n";
+            var f = new SfmField();
+            f.SetSplitValue(val);
+            Assert.AreEqual(f.Value, "value");
+            Assert.AreEqual(f.Trailing, "\r\n");
+        }
+
+        [Test]
+        public void SplitWhiteSpaceLots()
+        {
+            string val = "long long \r\n wrapped field. . .  \r \r\n\r\n\t\r\n";
+            var f = new SfmField();
+            f.SetSplitValue(val);
+            Assert.AreEqual(f.Value, "long long \r\n wrapped field. . .");
+            Assert.AreEqual(f.Trailing, "  \r \r\n\r\n\t\r\n");
+        }
+
         [Test]
         public void OneSFMRecordReadToNextMarker_Correct()
         {
             var r = ReadTwoRecordData();
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("ge", r.Key(1));
+            r.Read();
+            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual("gn", r.Key(1));
         }
 
         [Test]

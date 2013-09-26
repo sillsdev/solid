@@ -184,7 +184,7 @@ namespace SolidGui
                 // 1) Indentation
                 _contentsBoxDB.AppendText(indentation);
 
-                // 2) Marker
+                // 2) Marker + tab
                 string marker = field.Marker.Trim(new[] { '_' });
                 if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
                 {
@@ -196,11 +196,13 @@ namespace SolidGui
                 }
                 _contentsBoxDB.AppendText(markerPrefix + marker + "\t");
 
-                // 3) Value
+                // 3) Value + Trailing Whitespace 
                 _contentsBoxDB.SelectionColor = _defaultTextColor;
                 _contentsBoxDB.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
                 string displayValue = _model.GetUnicodeValueFromLatin1(field);
-                _contentsBoxDB.AppendText(displayValue + "\n");
+                _contentsBoxDB.AppendText(displayValue + field.Trailing);
+
+
 
                 lineNumber++;
             }

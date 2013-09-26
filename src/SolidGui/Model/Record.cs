@@ -88,8 +88,6 @@ namespace SolidGui.Model
         }
 
         
-
-        
         // dont move to SfmLexEntry
         public void SetFieldValue(int id, string value)
         {
@@ -136,7 +134,7 @@ namespace SolidGui.Model
             StringBuilder record = new StringBuilder();
             foreach (SfmFieldModel field in LexEntry.Fields)
             {
-                record.Append(field.ToStructuredString() + "\n");
+                record.Append(field.ToStructuredString() + SfmField.DefaultTrailing);
             }
             return record.ToString();
         }

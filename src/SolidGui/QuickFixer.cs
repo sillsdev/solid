@@ -178,7 +178,7 @@ namespace Solid.Engine
                     {
                         if(fieldToCopy !=null)
                         {
-                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
+                            var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Trailing, fieldToCopy.Depth, false);
                             record.InsertFieldAt(f, i); 
                             ++i;//skip the next line, since not is is preceded by this field
                         }
@@ -233,8 +233,8 @@ namespace Solid.Engine
                     b.AppendLine("\\lx " + addition.targetHeadWord);
                     b.AppendLine("\\ps " + addition.pos); //without this, flex balks
                     b.AppendFormat(
-                        "\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.\r\n",
-                        addition.fromHeadWord, addition.fromMarker);
+                        "\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.{2}",
+                        addition.fromHeadWord, addition.fromMarker, SfmField.DefaultTrailing);
 
 
                     r.SetRecordContents(b.ToString(), nullSettings);
@@ -275,7 +275,7 @@ namespace Solid.Engine
                             log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
                             foreach (var headword in parts)
                             {
-                                var f = new SfmFieldModel(field.Marker, headword, field.Depth, false);
+                                var f = new SfmFieldModel(field.Marker, headword, field.Trailing, field.Depth, false);
                                 record.InsertFieldAt(f, i);
                             }
                         }
@@ -374,7 +374,7 @@ namespace Solid.Engine
                         {
                             if (!LevelHasMarker(record, i, "ps", new[] { "sn", "se" }))
                             {
-                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Depth, false);
+                                var f = new SfmFieldModel(fieldToCopy.Marker, fieldToCopy.Value, fieldToCopy.Trailing, fieldToCopy.Depth, false);
                                 record.InsertFieldAt(f, i+1);
                                 ++i;//skip over what we just inserted
                                 sensesEffected++;

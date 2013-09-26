@@ -24,7 +24,7 @@ namespace SolidGui.Model
         {
             foreach (var f in fields)
             {
-                _fields.Add(new SfmFieldModel(f.Marker, f.Value));
+                _fields.Add(new SfmFieldModel(f.Marker, f.Value, f.Trailing, 0, false));
             }
         }
 
@@ -88,7 +88,7 @@ namespace SolidGui.Model
                 throw new ArgumentException("text cannot be null or empty");
             }
 
-            text += "\n"; //hack to fix bug in RecordReader (not reading last line of entries) smw 2sep2010
+            text += SfmField.DefaultTrailing; //hack to fix bug in RecordReader (not reading last line of entries) smw 2sep2010
 
             var reader = SfmRecordReader.CreateFromText(text);
             reader.Read();

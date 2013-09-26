@@ -24,10 +24,16 @@ namespace SolidGui.Model
         {
         }
 
-        public SfmFieldModel(string markerNoSlash, string value, int depth, bool inferred)
+        public SfmFieldModel(string marker, string value, int depth, bool inferred) :
+            this(marker, value, SfmField.DefaultTrailing, depth, inferred)
+        {
+        }
+
+        public SfmFieldModel(string markerNoSlash, string value, string trailing, int depth, bool inferred)
         {
             Marker = markerNoSlash;
             Value = value;
+            Trailing = trailing;
             Depth = depth;
             Inferred = inferred;
             _id = _fieldId++;
@@ -35,9 +41,9 @@ namespace SolidGui.Model
             _reportEntries = new List<ReportEntry>();
         }
 
-        public List<SfmFieldModel> Children 
+        public List<SfmFieldModel> Children
         {
-            get { return _children;  }
+            get { return _children; }
         }
 
         private SfmFieldModel _parent;
@@ -99,23 +105,19 @@ namespace SolidGui.Model
             node.Depth = Depth + 1;
         }
 
-        
+
 
 
 
         public string ToStructuredString() // TODO Move to UI Adapter CP 2010-08
         {
             int spacesInIndentation = 4;
-                
-            string indentation = new string(' ', Depth*spacesInIndentation);
-                
-            if(!Inferred)
-                return indentation + "\\" + Marker + " " + Value;
-            else
-                return indentation + "\\+" + Marker + " " + Value;
 
+            string indentation = new string(' ', Depth*spacesInIndentation);
+            string slash = (Inferred) ? "\\+" : "\\";
+            return indentation + slash + Marker + " " + Value + Trailing;
         }
-            
+
         public int Id
         {
             get { return _id; }
@@ -123,7 +125,15 @@ namespace SolidGui.Model
 
         public string Value { get; set; }
 
-        public int Depth { get; set; }
+        private string _trailing;
+        public string Trailing 
+        {
+            get { return String.IsNullOrEmpty(_trailing) ? SfmField.DefaultTrailing : _trailing; }
+            set { _trailing = value; }
+        }
+
+
+    public int Depth { get; set; }
 
         public bool HasReportEntry
         {

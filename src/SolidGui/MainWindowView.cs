@@ -179,7 +179,7 @@ namespace SolidGui
             //_markerDetails.SelectMarker("lx");  //JMC: doesn't work anyway; disabled it
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _sfmEditorView.Focus();
-            _sfmEditorView.Reload(); //JMC: fixes __?
+            _sfmEditorView.Reload(); 
         }
 
         public bool NeedsSave()

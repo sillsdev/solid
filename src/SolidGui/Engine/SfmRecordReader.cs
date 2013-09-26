@@ -21,7 +21,6 @@ namespace SolidGui.Engine
 
         enum StateParse
         {
-            StartFile,
             Header,
             Records
         }
@@ -127,12 +126,11 @@ namespace SolidGui.Engine
             // Check parse state
             switch (_stateParse)
             {
-                case StateParse.StartFile:
                 case StateParse.Header:
                     _stateParse = StateParse.Records;
                     retval = ReadRecord();
                     // Store the header regardless of what is returned. May only be a header in the file.
-                    _header = new SfmRecord(_record); // JMC: but the header-preserving piece is broken; start looking here...
+                    _header = new SfmRecord(_record); 
                     if (retval)
                     {
                         retval = ReadRecord();
@@ -146,7 +144,7 @@ namespace SolidGui.Engine
             return retval;
         }
 
-        private bool ReadRecord()
+        private bool ReadRecord()  // JMC: Need to rewrite this method, relying less on the \r\n sequence, and maybe using peek
         {
             _record.Clear();
 
@@ -157,7 +155,7 @@ namespace SolidGui.Engine
             if (_stateLex == StateLex.StartOfRecord)
             {
                 currentField.Marker = _startKey;
-                _stateLex = StateLex.BuildValue;  //JMC: seems false; maybe this is the source of bug 665 ??
+                _stateLex = StateLex.BuildValue;  //JMC: seems false
             }
             StringBuilder sb = new StringBuilder(1024);
             char c1 = '\0';
@@ -180,16 +178,20 @@ namespace SolidGui.Engine
                 }
                 else if (c0 == '\\')
                 {
-                    // This allows \ in the value - but constrains the sfm to toolbox lexicon format.
+                    // See if we've bumped into the beginning of the next field.
+                    // (This allows \ in the value - but constrains the sfm to toolbox lexicon format.)
                     if (_col == 1 || (_allowLeadingWhiteSpace && stillWhite))
                     {
+                        // Yep, new field ahead, so save the current one's value.
                         if (_stateLex == StateLex.BuildValue)
                         {
-                            // Store the key and value.
-                            currentField.Value = sb.ToString();
-                            char[] trim = { ' ', '\t', '\x0a', '\x0d' };  //JMC: bad perf.; move to const or readonly (under SfmField?)
-                              //JMC: add constants for x0a (0x0a \n) and x0d (\r)
-                            currentField.Value = currentField.Value.TrimEnd(trim); //JMC: disable this? Or better, add a Trailing property to SfmField
+                            currentField.SetSplitValue(sb.ToString());
+
+                            // char[] trim = { ' ', '\t', '\x0a', '\x0d' };  //JMC: bad perf.; move to const or readonly (under SfmField?)
+                            //JMC: add constants for x0a (0x0a \n) and x0d (\r)
+                            // currentField.Value = currentField.Value.TrimEnd(trim); //JMC: disable this? Or better, add a Trailing property to SfmField
+                            //JMC: fix the duplicate code below too
+
                             onField(currentField);
                             // Start fresh
                             currentField = new SfmField();
@@ -202,7 +204,7 @@ namespace SolidGui.Engine
                 }
                 else if (stillWhite && c0 != ' ' && c0 != 0x09)  // end of leading whitespace ; JMC: need to add: public const char Tab = 0x09;
                 {
-                    stillWhite = false;
+                    stillWhite = false;  // c0 isn't space or tab (but might be newline)
                 }
 
                 // Scan for the start of record and update state if found
@@ -227,6 +229,7 @@ namespace SolidGui.Engine
                             sb.Append(c0);  //store character (any backslashes found inside a key are dropped)
                         }
                         break;
+                    case StateLex.StartFile:
                     case StateLex.BuildValue:
                         // See http://projects.palaso.org/issues/show/244
                         sb.Append (c0);
@@ -247,9 +250,11 @@ namespace SolidGui.Engine
                     case StateLex.EOF:
                         if (currentField.Marker != String.Empty)
                         {
-                            currentField.Value = sb.ToString();  //JMC: refactor, since this is duplicate code (see above)
-                            char [] trim = { ' ', '\t', '\x0a', '\x0d' };
-                            currentField.Value = currentField.Value.TrimEnd (trim);
+                            currentField.SetSplitValue(sb.ToString());
+
+//                            currentField.Value = sb.ToString();  //JMC: refactor, since this is duplicate code (see above)
+//                            char [] trim = { ' ', '\t', '\x0a', '\x0d' };
+//                            currentField.Value = currentField.Value.TrimEnd (trim);
                             onField(currentField);
                             currentField = new SfmField();
                             _recordEndLine = _line - 1; 
@@ -257,7 +262,7 @@ namespace SolidGui.Engine
                         }
                         break;
                 }
-                if (!isEOL(c0))
+                if (!isEOL(c0))  //JMC: remove the if? (Would have to change the other _col behavior above)
                 {
                     _col++;
                 }
@@ -350,7 +355,7 @@ namespace SolidGui.Engine
             return result.Value;
         }
 
-        char ReadChar()
+        char ReadChar() // side effect: can set _stateLex to EOF
         {
             if (_pos == _used)
             {

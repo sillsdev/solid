@@ -298,25 +298,30 @@ namespace SolidGui.Model
                     {
                         writer.Write("\\");
                         writer.Write(field.Marker);
-                        writer.Write(" ");
-                        writer.Write(field.Value);
-                        writer.Write("\r\n");
+                        // if (!string.IsNullOrEmpty(field.Value))  //JMC: reenable this once parser is fixed wrt newlines
+                        {
+                            writer.Write(" ");
+                            writer.Write(field.Value);
+                        }
+                        writer.Write(field.Trailing);
+                        //writer.Write("\r\n");
                     }
                     foreach (var record in _recordList)
                     {
-                        writer.Write("\r\n");
+                        //writer.Write("\r\n");
                         foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
                             {
                                 writer.Write("\\");
-                                writer.Write(field.Marker.TrimStart('_'));
+                                writer.Write(field.Marker.TrimStart('_')); //JMC: why are we stripping this off??
                                 if (field.HasValue)
                                 {
                                     writer.Write(" ");
                                     writer.Write(field.Value);
                                 }
-                                writer.Write("\r\n");
+                                writer.Write(field.Trailing);
+                                //writer.Write("\r\n");  //JMC: replace this line with writer.Write(field.Trailing);
                             }
                         }
                     }

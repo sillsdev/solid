@@ -75,7 +75,7 @@ namespace SolidGui
                     sb.Append(field.Marker);
                     sb.Append(" ");
                     sb.Append(field.Value);
-                    sb.Append("\n");
+                    sb.Append(field.Trailing);
                 }
                 record.SetRecordContents(sb.ToString(), _solidSettings);
             }
