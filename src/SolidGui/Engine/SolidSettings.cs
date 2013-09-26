@@ -146,7 +146,7 @@ namespace SolidGui.Engine
             }
             if (uni > 0 && uni < _markerSettings.Count)  // all or nothing, ideally
             {
-                string msg = string.Join(" ", legacy);
+                string msg = string.Join(" ", legacy.ToArray());
                 msg = "Warning: the marker settings have a mix of unicode and legacy specified."
                     + "\nLegacy markers: " + msg 
                     + "\nNote: settings are invisible for markers not currently in use.";
