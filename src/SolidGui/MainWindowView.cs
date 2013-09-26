@@ -387,11 +387,11 @@ namespace SolidGui
         {
             QuickFixer fixer = new QuickFixer(_mainWindowPM.WorkingDictionary);
             var dlg = new QuickFixForm(fixer);
-            if (dlg.ShowDialog() != DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.Cancel)
             {
                 return;
             }
-            _mainWindowPM.ProcessLexicon();
+            _mainWindowPM.ProcessLexicon(); 
             _sfmEditorView.Reload();
             _saveButton.Enabled = true;
             

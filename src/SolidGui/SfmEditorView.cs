@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -297,6 +298,7 @@ namespace SolidGui
             }
         }
 
+        [DebuggerStepThrough] // JMC: for now anyway
         public void OnTick(object sender, EventArgs e)
         {
             _markerTipDisplayDelay--;
@@ -438,6 +440,7 @@ namespace SolidGui
 
             public bool Showing
             {
+                [DebuggerStepThrough]
                 get { return _showing; }
             }
 
@@ -484,6 +487,7 @@ namespace SolidGui
                 _lineMessage.Clear();
             }
 
+            [DebuggerStepThrough] 
             public void ShowMessageForLine(int line)
             {
                 if(_lineMessage.ContainsKey(line))
@@ -492,6 +496,7 @@ namespace SolidGui
                     Hide();
             }
 
+            [DebuggerStepThrough]
             public void Hide()
             {
                 if (_showing)
@@ -501,11 +506,13 @@ namespace SolidGui
                 }
             }
 
+            [DebuggerStepThrough]
             protected override void MouseEntered(object sender, EventArgs e)
             {
                 
             }
 
+            [DebuggerStepThrough]
             protected override void MouseLeft(object sender, EventArgs e)
             {
                 

@@ -460,7 +460,7 @@
             this._executeAddGuids.TabIndex = 23;
             this._executeAddGuids.TabStop = true;
             this._executeAddGuids.Text = "I know what I\'m doing and have backed up";
-            this._executeAddGuids.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnAddGuids);
+            this._executeAddGuids.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteAddGuids);
             // 
             // QuickFixForm
             // 

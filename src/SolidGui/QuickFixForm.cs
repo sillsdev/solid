@@ -26,6 +26,21 @@ namespace SolidGui
             Close();
         }
 
+        private void OnExecuteAddGuids(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                UsageReporter.SendNavigationNotice("QuickFix/AddGuids");
+                _fixer.AddGuids();
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                Close();
+            }
+            catch (Exception error)
+            {
+                Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+            }
+        }
+
         private void OnExecuteMoveUp(object sender, LinkLabelLinkClickedEventArgs e)
         {
                 
@@ -51,21 +66,6 @@ namespace SolidGui
             }
         }
 
-        private void OnAddGuids(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try
-            {
-                UsageReporter.SendNavigationNotice("QuickFix/AddGuids");
-                _fixer.AddGuids();
-                DialogResult = System.Windows.Forms.DialogResult.OK;
-                Close();
-            }
-            catch (Exception error)
-            {
-                Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
-            }
-        }
-
         private void OnExecuteRemoveEmpty(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var markers = _removeEmptyMarkers.Text.SplitTrimmed(',');
@@ -82,18 +82,15 @@ namespace SolidGui
             Close();
         }
 
-
-
-        private void OnPremadeLabelClick(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OnExecuteSaveInferred_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Label l = (Label) sender;
-            var x = l.Text.Replace(") to under (", "|");
-            x = x.Replace("(", "");
-            x = x.Replace(")", "");
-            var z = x.Split(new char[] {'|'});
-            _moveUpMarkers.Text = z[0];
-            _moveUpRoots.Text = z[1];
+            string s = _tbMakeRealMarkers.Text;
+            var tokens = s.SplitTrimmed(',');
+            _fixer.MakeInferedMarkersReal(tokens);
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+            Close();
         }
+
 
         private void OnExecuteFLExFixes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -127,6 +124,17 @@ namespace SolidGui
 
         }
 
+        private void OnPremadeLabelClick(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Label l = (Label)sender;
+            var x = l.Text.Replace(") to under (", "|");
+            x = x.Replace("(", "");
+            x = x.Replace(")", "");
+            var z = x.Split(new char[] { '|' });
+            _moveUpMarkers.Text = z[0];
+            _moveUpRoots.Text = z[1];
+        }
+
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show(
@@ -146,12 +154,5 @@ With out this FLEx  just generates errors, and it takes a lot of work to create 
             MessageBox.Show(@"Many dictionary entries have a single \ps, followed by multipe senses which share that part of speech. FLEx import does not handle this.  This fix attempts to move \ps down under all subsequent \sn's which are lacking their own \ps.  Your SOLID structure should have ps as a child of sn.");
         }
 
-        private void OnExecuteSaveInferred_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string s = _tbMakeRealMarkers.Text;
-            var tokens = s.SplitTrimmed(',');
-            _fixer.MakeInferedMarkersReal(tokens);
-            Close();
-        }
     }
 }
