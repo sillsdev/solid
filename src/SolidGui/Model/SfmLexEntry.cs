@@ -76,9 +76,9 @@ namespace SolidGui.Model
             }
         }
 
-        public static SfmLexEntry CreateFromReader(SfmRecordReader reader)
+        public static SfmLexEntry CreateFromReaderFields(IEnumerable<SfmField> fields)
         {
-            return new SfmLexEntry(reader.Fields);
+            return new SfmLexEntry(fields);
         }
 
         public static SfmLexEntry CreateFromText(string text)

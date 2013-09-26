@@ -34,6 +34,7 @@ namespace SolidGui.Engine
         StateLex _stateLex = StateLex.StartFile;
         StateParse _stateParse = StateParse.Header;
 
+        private long _size = 0;
         private int _recordStartLine;
         private int _recordEndLine;
         private int _recordID = 0;
@@ -59,6 +60,12 @@ namespace SolidGui.Engine
         {
             get { return _allowLeadingWhiteSpace; }
             set { _allowLeadingWhiteSpace = value; }
+        }
+
+        public int SizeEstimate
+        {
+            // JMC: a rough attempt at scaling most longs down to ints (not guaranteed)
+            get { return _size > int.MaxValue ? int.MaxValue : (int)(_size / 160); } 
         }
 
         public int BufferSize
@@ -91,13 +98,6 @@ namespace SolidGui.Engine
             get { return _recordEndLine; }
         }
 
-        public TextReader Reader
-        {
-            get
-            {
-                return _r;
-            }
-        }
         #endregion
 
         #region Constructors
@@ -111,6 +111,8 @@ namespace SolidGui.Engine
         {  // the location of the file
             _r = new StreamReader(filePath, _encoding, false);
             _buffer = new char[_bufferSize];
+            var fi = new FileInfo(filePath);
+            _size = fi.Length;
         }
         #endregion
 
@@ -355,7 +357,7 @@ namespace SolidGui.Engine
             return result.Value;
         }
 
-        char ReadChar() // side effect: can set _stateLex to EOF
+        private char ReadChar() // side effect: can set _stateLex to EOF
         {
             if (_pos == _used)
             {

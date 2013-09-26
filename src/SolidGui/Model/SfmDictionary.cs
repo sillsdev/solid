@@ -194,11 +194,12 @@ namespace SolidGui.Model
 
             using (var reader = SfmRecordReader.CreateFromFilePath(_filePath))
             {
+                progressState.TotalNumberOfSteps = reader.SizeEstimate;
                 while (reader.Read())
                 {
                     progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08 
 
-                    var lexEntry = SfmLexEntry.CreateFromReader(reader);
+                    SfmLexEntry lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
                     var recordReport = new SolidReport();
                     foreach (IProcess process in processes)
                     {
