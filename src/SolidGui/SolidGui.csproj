@@ -142,6 +142,7 @@
     </Compile>
     <Compile Include="Engine\EngineEnvironment.cs" />
     <Compile Include="Engine\ReportEntry.cs" />
+    <Compile Include="Engine\SfmField.cs" />
     <Compile Include="Export\Exporter.cs" />
     <Compile Include="Export\ExportFactory.cs" />
     <Compile Include="Export\ExportHeader.cs" />
