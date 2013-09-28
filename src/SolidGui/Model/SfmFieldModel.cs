@@ -88,7 +88,7 @@ namespace SolidGui.Model
                 byte[] valueAsBytes = byteEncoding.GetBytes(value);
                 Encoding stringEncoding = Encoding.UTF8;
                 retval = stringEncoding.GetString(valueAsBytes);
-                if (retval.Length == 0)
+                if (retval.Length == 0)  // JMC: Is this sufficient error detection?
                 {
                     retval = "Non Unicode Data Found";
                     // TODO: Need to lock this field of the current record at this point.

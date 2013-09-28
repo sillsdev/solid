@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -10,34 +11,27 @@ namespace SolidGui.Engine
 {
     public class SfmRecordReader : IDisposable
     {
-        enum StateLex
-        {
-            StartFile,
-            StartOfRecord, // Holding startkey from previous scan.
-            BuildKey,
-            BuildValue,
-            EOF
-        }
 
         enum StateParse
         {
             Header,
-            Records
+            GotLx,
+            BuildValue,
+            BuildKey,
         }
-
-        SfmRecord _record = new SfmRecord();
-        SfmRecord _header = new SfmRecord();
-
-        string _startKey = "lx";
-
-        TextReader _r;
-        StateLex _stateLex = StateLex.StartFile;
+        
         StateParse _stateParse = StateParse.Header;
+        TextReader _r;
+        private SfmRecord _record;
+        private string _header = ""; // new SfmRecord();  // JMC: A string would be safer
+
+        string _startKey = "lx";  // JMC: use global setting!
+        private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
 
         private long _size = 0;
         private int _recordStartLine;
         private int _recordEndLine;
-        private int _recordID = 0;
+        private int _recordID = -1;
 
         // Internal buffer state
         private char[] _buffer;
@@ -62,7 +56,7 @@ namespace SolidGui.Engine
             set { _allowLeadingWhiteSpace = value; }
         }
 
-        public int SizeEstimate
+        public int SizeEstimate  // file size estimate
         {
             // JMC: a rough attempt at scaling most longs down to ints (not guaranteed)
             get { return _size > int.MaxValue ? int.MaxValue : (int)(_size / 160); } 
@@ -105,6 +99,8 @@ namespace SolidGui.Engine
         {  // the location of the file
             _r = stream;
             _buffer = new char[_bufferSize];
+            _size = 1024; // a wild guess -JMC
+            _record = new SfmRecord();
         }
 
         private SfmRecordReader(string filePath)
@@ -113,6 +109,7 @@ namespace SolidGui.Engine
             _buffer = new char[_bufferSize];
             var fi = new FileInfo(filePath);
             _size = fi.Length;
+            _record = new SfmRecord();
         }
         #endregion
 
@@ -121,177 +118,220 @@ namespace SolidGui.Engine
             _r.Close();
         }
 
-        // Read a record.
-        public bool Read()
+        public static char simplifyNewline(TextReader _r , char curr)
         {
-            bool retval = false;
-            // Check parse state
-            switch (_stateParse)
+            // For now, guarantee that we see all newlines as a single \n
+            // (that is, replace all \r\n with \n, and then all \r with \n)
+            if (curr == '\r')
             {
-                case StateParse.Header:
-                    _stateParse = StateParse.Records;
-                    retval = ReadRecord();
-                    // Store the header regardless of what is returned. May only be a header in the file.
-                    _header = new SfmRecord(_record); 
-                    if (retval)
-                    {
-                        retval = ReadRecord();
-                    }
-                    break;
-                case StateParse.Records:
-                    retval = ReadRecord();
-                    _recordID++;
-                    break;
+                if (_r.Peek() == '\n')
+                {
+                    // skip the \r
+                    curr = (char)_r.Read(); 
+                }
+                else
+                {
+                    // convert \r to \n
+                    curr = '\n';
+                }
             }
-            return retval;
+            return curr;
         }
 
-        private bool ReadRecord()  // JMC: Need to rewrite this method, relying less on the \r\n sequence, and maybe using peek
+        /// <summary>
+        /// Goes through the stream copying it into the header until the record marker is encountered.
+        /// </summary>
+        /// <returns>left-overs that were read in but aren't header chars; typically @"\lx", or an empty string if entire stream was the header.</returns>
+        private string ReadHeader()
         {
-            _record.Clear();
+            string ret = "";
+            string stopAt = "\\" + _startKey;   // typically @"\lx"
+            int len = stopAt.Length;            // typically 3
+            var sbMatch = new StringBuilder();
+            var sbHeader = new StringBuilder();
+            int tmp; // it's so annoying that we need this
+            char c;
+            int L = 0;
+            while (true)
+            {
+                tmp = _r.Read();
+                if (tmp == -1)
+                {
+                    break; // EOF
+                }
+                c = simplifyNewline(_r, (char) tmp);
 
+                // Append what we find; though we'll have to back out the last (len) chars
+                if (c == '\n')
+                {
+                    _col = 1;
+                    _line++;
+                    sbHeader.Append(SolidSettings.NewLine); // JMC: use a global setting!
+                }
+                else
+                {
+                    sbHeader.Append(c); 
+                }
+
+                L = sbMatch.Length;  // the current length of a possible match
+                if (c == stopAt[L])
+                {
+                    sbMatch.Append(c); // still matches
+                }
+                else
+                {
+                    sbMatch.Clear(); // no match; start over
+                }
+
+                if (sbMatch.Length == len) // we've found \lx but does it end?
+                {
+                    if ( _enders.Contains((char)_r.Peek()) ) 
+                    {
+                        // yes, end of marker (key)
+
+                        sbHeader.Remove(sbHeader.Length - len, len);
+                        ret = stopAt;
+/*
+                        string s = sbHeader.ToString();
+                        int split = s.Length - len;
+                        _header = s.Substring(0, split);
+                        ret = s.Substring(split);
+
+*/
+                        _stateParse = StateParse.GotLx;
+                        _r.Read(); // discard separator (usually the space in @"\lx ")
+                        break;
+                    }
+                    // no match; start over (e.g. @"\lxhaha" isn't a match
+                    sbMatch.Clear();
+                }
+                         
+            }
+            _header = sbHeader.ToString();
+            return ret;
+        }
+
+        // Read in ONE record from the text stream (into the Record property); returns false if no more records in stream
+        // Calling code should also check whether the Header property is non-empty after calling this.
+        public bool ReadRecord()
+        {
             bool retval = false;
-            //!!!            int startMatch = 0;
-            //            int startLimit = _startKey.Length;
+            _record.Clear();  // but don't clear the header!
+
+            if (_stateParse == StateParse.Header)
+            {
+                ReadHeader();
+            }
+
             SfmField currentField = new SfmField();
-            if (_stateLex == StateLex.StartOfRecord)
+            if (_stateParse == StateParse.GotLx)
             {
                 currentField.Marker = _startKey;
-                _stateLex = StateLex.BuildValue;  //JMC: seems false
+                _recordStartLine = _line;
+                _recordEndLine = -1;
+                _recordID++;
+                _stateParse = StateParse.BuildValue;
             }
-            StringBuilder sb = new StringBuilder(1024);
-            char c1 = '\0';
-            char c0 = '\0';
-            _recordStartLine = _line;
-            bool stillWhite = true;
-            while (_stateLex != StateLex.StartOfRecord && _stateLex != StateLex.EOF)
+            else if (_r.Peek() == -1) //EOF
             {
-                c1 = c0;
-                c0 = ReadChar();
+                return false;
+            }
+            else
+            {
+                Debug.Assert(_r.Read() == 0, "BUG: bad parser state");
+                return false;
+            }
 
-                // First, deal with boundary conditions (EOL, backslash, leading whitespace)
+            StringBuilder sb = new StringBuilder(2048);
 
-                if (isEOL(c0) && !isEOL(c1))
-                { // the beginning of the end (of the line); update the line and column statistics
-                    _line++;
-                    _col = 1;
-                    _backslashCount = 0;
-                    stillWhite = true;
-                }
-                else if (c0 == '\\')
+            int temp = -1;
+            char curr = '\0';
+            string stemp = "";
+            _recordStartLine = _line;
+            _col = 1;
+            bool eol = false;
+            bool eof = false;  // can also mean "end of record"
+            bool initialSlash;
+
+            while (true)  // most often, we'll break upon hitting another lx
+            {
+                temp = _r.Read();
+                eol = eof = temp == -1;
+                curr = (char)temp;
+
+                if ( (!eof) && (!_enders.Contains(curr)) )  // the typical case
                 {
-                    // See if we've bumped into the beginning of the next field.
-                    // (This allows \ in the value - but constrains the sfm to toolbox lexicon format.)
-                    if (_col == 1 || (_allowLeadingWhiteSpace && stillWhite))
-                    {
-                        // Yep, new field ahead, so save the current one's value.
-                        if (_stateLex == StateLex.BuildValue)
-                        {
-                            currentField.SetSplitValue(sb.ToString());
-
-                            // char[] trim = { ' ', '\t', '\x0a', '\x0d' };  //JMC: bad perf.; move to const or readonly (under SfmField?)
-                            //JMC: add constants for x0a (0x0a \n) and x0d (\r)
-                            // currentField.Value = currentField.Value.TrimEnd(trim); //JMC: disable this? Or better, add a Trailing property to SfmField
-                            //JMC: fix the duplicate code below too
-
-                            onField(currentField);
-                            // Start fresh
-                            currentField = new SfmField();
-                        }
-                        _stateLex = StateLex.BuildKey;
-                        sb.Length = 0;
-                        currentField.SourceLine = _line;
-                    }
-                    _backslashCount++;
-                }
-                else if (stillWhite && c0 != ' ' && c0 != 0x09)  // end of leading whitespace ; JMC: need to add: public const char Tab = 0x09;
-                {
-                    stillWhite = false;  // c0 isn't space or tab (but might be newline)
-                }
-
-                // Scan for the start of record and update state if found
-
-                switch (_stateLex)
-                {
-                    case StateLex.BuildKey:
-                        if (c0 == ' ' || c0 == 0x09 || isEOL(c0))  //end of key
-                        {
-                            currentField.Marker = sb.ToString();
-                            _stateLex = StateLex.BuildValue;
-                            sb.Length = 0;
-                            if (currentField.Marker == _startKey) //done reading header, or done reading previous record
-                            {
-                                _stateLex = StateLex.StartOfRecord;
-                                _recordEndLine = _line - 1; 
-                                retval = true;
-                            }
-                        }
-                        else if (c0 != '\\')
-                        {
-                            sb.Append(c0);  //store character (any backslashes found inside a key are dropped)
-                        }
-                        break;
-                    case StateLex.StartFile:
-                    case StateLex.BuildValue:
-                        // See http://projects.palaso.org/issues/show/244
-                        sb.Append (c0);
-                        /*
-                        if (!isEOL(c0))
-                        {
-                            sb.Append(c0);
-                        }
-                        else
-                        {
-                            if (!isEOL(c1))
-                            {
-                                sb.Append (' ');
-                            }
-                        }
-                     */
-                        break;
-                    case StateLex.EOF:
-                        if (currentField.Marker != String.Empty)
-                        {
-                            currentField.SetSplitValue(sb.ToString());
-
-//                            currentField.Value = sb.ToString();  //JMC: refactor, since this is duplicate code (see above)
-//                            char [] trim = { ' ', '\t', '\x0a', '\x0d' };
-//                            currentField.Value = currentField.Value.TrimEnd (trim);
-                            onField(currentField);
-                            currentField = new SfmField();
-                            _recordEndLine = _line - 1; 
-                            retval = true;
-                        }
-                        break;
-                }
-                if (!isEOL(c0))  //JMC: remove the if? (Would have to change the other _col behavior above)
-                {
+                    sb.Append(curr);
                     _col++;
+                    continue;
                 }
-                if (isEOL(c0) && isEOL(c1))  
+
+                // It's a tab, space, newline, slash, or EOF; proceed...
+
+                curr = simplifyNewline(_r, curr);
+                if (curr == '\n')
                 {
-                    // two consecutive EOL; 'reset' c0 so that subsequent EOL are counted correctly.
-                    // JMC: Hmm, consecutive EOL. Start looking here for bug 619 http://projects.palaso.org/issues/619
-                    c0 = '\0';
+                    _col = 1;
+                    _line++;
+                    eol = true;
+                }
+
+                switch (_stateParse)
+                {
+                    case StateParse.BuildValue:
+                        initialSlash = ((_col == 1) && (curr == '\\'));
+                        if (curr == '\n')
+                        {
+                            sb.Append(SolidSettings.NewLine); 
+                        }
+                        else if (!eof && !initialSlash) // a rarely-needed check (see test ReadEmptyKey_Correct)
+                        {
+                            sb.Append(curr);
+                        }
+                        if (eof || (eol && (char)_r.Peek() == '\\') || initialSlash)  
+                        {
+                            // end of field value
+                            currentField.SetSplitValue(sb.ToString());
+                            currentField.SourceLine = _line;
+                            _record.Add(currentField);
+                            retval = true;
+                            sb.Clear();
+                            currentField = new SfmField(); // clear
+                            _stateParse = StateParse.BuildKey;
+                            if (!initialSlash)
+                            {
+                                _r.Read(); //toss the upcoming slash
+                            }
+                        }
+                        break;
+
+                    case StateParse.BuildKey:
+                        // end of field marker (note that we drop curr)
+                        stemp = sb.ToString();
+                        if (stemp == _startKey)
+                        {
+                            _stateParse = StateParse.GotLx;
+                            goto DoubleBreak;  // Yeah, shoot me... :) I didn't want the overhead of nested method calls or extra booleans) -JMC
+                        }
+                        currentField.Marker = stemp;
+                        sb.Clear();
+                        _stateParse = StateParse.BuildValue;
+                        break;
+                }
+
+                if (eof || _stateParse == StateParse.GotLx)
+                {
+                    _recordEndLine = _line;
+                    break;
                 }
 
             }
+            DoubleBreak: ;
+
+            _recordEndLine = _line - 1; // JMC: Or maybe = (_stateParse == StateParse.GotLx) ? _line - 1 : _line;
+            _recordEndLine = (_stateParse == StateParse.GotLx) ? _line - 1 : _line;
 
             return retval;
-        }
-
-        bool isEOL(char c)
-        {
-            if (c == 0x0d || c == 0x0a)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        void onField(SfmField field)
-        {
-            _record.Add(field);
         }
 
         public int FieldCount
@@ -310,7 +350,7 @@ namespace SolidGui.Engine
             }
         }
 
-        public SfmRecord Header
+        public string Header
         {
             get
             {
@@ -357,6 +397,7 @@ namespace SolidGui.Engine
             return result.Value;
         }
 
+/*
         private char ReadChar() // side effect: can set _stateLex to EOF
         {
             if (_pos == _used)
@@ -371,6 +412,7 @@ namespace SolidGui.Engine
             }
             return _buffer[_pos++];
         }
+*/
 
         public static SfmRecordReader CreateFromText(string text)
         {

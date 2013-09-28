@@ -194,10 +194,10 @@ namespace SolidGui.Model
 
             using (var reader = SfmRecordReader.CreateFromFilePath(_filePath))
             {
-                progressState.TotalNumberOfSteps = reader.SizeEstimate;
-                while (reader.Read())
+                progressState.TotalNumberOfSteps = reader.SizeEstimate;  // added -JMC 2013-09
+                while (reader.ReadRecord())
                 {
-                    progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08 
+                    progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08  Partly done -JMC 2013-09
 
                     SfmLexEntry lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
                     var recordReport = new SolidReport();
@@ -216,7 +216,7 @@ namespace SolidGui.Model
 
         }
 
-        private SfmRecord SfmHeader { get; set; }
+        private string SfmHeader { get; set; }
 
         public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
@@ -295,6 +295,10 @@ namespace SolidGui.Model
                      * better job of 'doing no harm' to the file, by detecting characteristics such as
                      * trailing white space on empty markers, lines between lx, headers etc.
                      */
+
+                    writer.Write(SfmHeader);
+                    
+/*
                     foreach (var field in SfmHeader)
                     {
                         writer.Write("\\");
@@ -307,6 +311,7 @@ namespace SolidGui.Model
                         writer.Write(field.Trailing);
                         //writer.Write("\r\n");
                     }
+*/
                     foreach (var record in _recordList)
                     {
                         //writer.Write("\r\n");
