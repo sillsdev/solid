@@ -151,7 +151,7 @@ namespace SolidGui.Tests
 		{
 			using (var e = new EnvironmentForTest())
 			{
-                // Note: test might fail if not for the trailing space on second header line
+                // JMC: Note: test might fail if not for the trailing space on second header line
 				const string sfm = @"\_sh Some Header
 \_DateStampHasFourDigitYear 
 
@@ -167,7 +167,7 @@ namespace SolidGui.Tests
 			}
 		}
 
-		[Test, Ignore("Temporarily disabled. Partly failing due to initial and final newlines. -JMC")]
+		[Test] 
 		public void Save_SfmWithEmptyMarker_SavedFileDoesntHaveTrailingSpaces()
 		{
 			using (var e = new EnvironmentForTest())

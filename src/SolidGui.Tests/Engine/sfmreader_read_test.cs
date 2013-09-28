@@ -20,24 +20,29 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = @"";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
-            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual("", r.Header);
+//            Assert.AreEqual(0, r.Header.Count);
         }
 
         [Test]
         public void HeaderOnly_Header_Correct()
         {
-            const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
-                               "\\_DateStampHasFourDigitYear\n";
+            const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\r\n" +
+                               "\\_DateStampHasFourDigitYear\r\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
+            Assert.AreEqual(sfm, r.Header);
+
+/*
             Assert.AreEqual(2, r.Header.Count);
             Assert.AreEqual("_sh", r.Header[0].Marker);
             Assert.AreEqual("v3.0  269  MDF 4.0 (alternate hierarchy)", r.Header[0].Value);
             Assert.AreEqual("_DateStampHasFourDigitYear", r.Header[1].Marker);
             Assert.AreEqual("", r.Header[1].Value);
+ */
         }
 
         [Test]
@@ -45,7 +50,7 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = @"";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
         }
 
@@ -55,7 +60,7 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                                "\\_DateStampHasFourDigitYear\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
         }
 
@@ -65,12 +70,16 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\lx a\n" +
                                "\\ge b\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
+            Assert.AreEqual("", r.Header);
+
+/*
             Assert.AreEqual(0, r.Header.Count);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
+*/
         }
 
         [Test]
@@ -79,9 +88,9 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\lx\ta\n" +
                                "\\ge\tb\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual("", r.Header);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -93,9 +102,9 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\lx a\n" +
                                "\\ge\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual("", r.Header);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("", r.Value("ge"));
@@ -106,15 +115,19 @@ namespace SolidGui.Tests.Engine
         {
             const string sfm = "\\lx a\n" +
                                "\\\n" +
-                               "\\ge b";
+                               "\\ge b\n" +
+                               "\\\n" +
+                               "\\\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(0, r.Header.Count);
-            Assert.AreEqual(3, r.FieldCount);
+            Assert.AreEqual("", r.Header);
+            Assert.AreEqual(5, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
             Assert.AreEqual("", r.Key(1));
+            Assert.AreEqual("", r.Key(3));
+            Assert.AreEqual("", r.Key(4));
         }
 
         [Test]
@@ -124,9 +137,9 @@ namespace SolidGui.Tests.Engine
                                "  \\ge b\n";
             var r = SfmRecordReader.CreateFromText(sfm);
             r.AllowLeadingWhiteSpace = true;
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual("", r.Header);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -136,14 +149,14 @@ namespace SolidGui.Tests.Engine
         public void ReadBackslashInValue_Correct()
         {
             const string sfm = "\\lx a\n" +
-                               "\\ge \\b\n";
+                               "\\ge \\b \\zblah\\z\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(0, r.Header.Count);
+            Assert.AreEqual("", r.Header);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
-            Assert.AreEqual("\\b", r.Value("ge"));
+            Assert.AreEqual("\\b \\zblah\\z", r.Value("ge"));
         }
 
         [Test]
@@ -152,12 +165,12 @@ namespace SolidGui.Tests.Engine
             const string sfm = "\\lx a\n" +
                                "\\ge b\nc";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read ();
+            bool result = r.ReadRecord ();
             Assert.IsTrue (result);
-            Assert.AreEqual (0, r.Header.Count);
-            Assert.AreEqual (2, r.FieldCount);
+            Assert.AreEqual("", r.Header);
+            Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual ("a", r.Value ("lx"));
-            Assert.AreEqual ("b\nc", r.Value ("ge"));
+            Assert.AreEqual ("b\r\nc", r.Value ("ge"));
         }
 
         private SfmRecordReader ReadOneRecordData ()
@@ -167,7 +180,7 @@ namespace SolidGui.Tests.Engine
                                "\\lx a\n" +
                                "\\ge b\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(true, result);
             return r;
         }
@@ -181,9 +194,26 @@ namespace SolidGui.Tests.Engine
                                "\\lx c\n" +
                                "\\gn d\n";
             var r = SfmRecordReader.CreateFromText(sfm);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.AreEqual(true, result);
             return r;
+        }
+
+        [Test]
+        public void EqualizeNewlines()
+        {
+            string sfm = "header Windows 1\r\nLinux 2\n\nOldMac 2\r\rCombo \r\r\n\n\r";
+            string h = "header Windows 1\r\nLinux 2\r\n\r\nOldMac 2\r\n\r\nCombo \r\n\r\n\r\n\r\n";
+            sfm += "\\lx   Windows 1\r\nLinux 2\n\nOldMac 2\r\rCombo \r\r\n\n\r";
+            string val = "  Windows 1\r\nLinux 2\r\n\r\nOldMac 2\r\n\r\nCombo";
+            string trail = " \r\n\r\n\r\n\r\n";
+
+            var r = SfmRecordReader.CreateFromText(sfm);
+            bool result = r.ReadRecord();
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(h, r.Header);
+            Assert.AreEqual(val, r.Value("lx"));
+            //Assert.AreEqual(trail, r.Fields. );  //JMC: unfinished
         }
 
         [Test]
@@ -196,7 +226,7 @@ namespace SolidGui.Tests.Engine
 
 
         [Test]
-        public void SplitWhiteSpaceSimple()
+        public void SplitTrailingSpaceSimple()
         {
             string val = "value\r\n";
             var f = new SfmField();
@@ -206,7 +236,7 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
-        public void SplitWhiteSpaceLots()
+        public void SplitTrailingSpaceLots()
         {
             string val = "long long \r\n wrapped field. . .  \r \r\n\r\n\t\r\n";
             var f = new SfmField();
@@ -221,7 +251,7 @@ namespace SolidGui.Tests.Engine
             var r = ReadTwoRecordData();
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("ge", r.Key(1));
-            r.Read();
+            r.ReadRecord();
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("gn", r.Key(1));
         }
@@ -245,6 +275,8 @@ namespace SolidGui.Tests.Engine
         {
             var r = ReadTwoRecordData();
             Assert.AreEqual(3, r.RecordStartLine);
+            r.ReadRecord();
+            Assert.AreEqual(5, r.RecordStartLine);
         }
 
         [Test]
@@ -252,15 +284,17 @@ namespace SolidGui.Tests.Engine
         {
             var r = ReadTwoRecordData();
             Assert.AreEqual(4, r.RecordEndLine);
+            r.ReadRecord();
+            Assert.AreEqual(7, r.RecordEndLine);
         }
 
         [Test]
         public void Record_EOF_Correct()
         {
             var r = ReadTwoRecordData(); // Reads the first record for us.
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            result = r.Read();
+            result = r.ReadRecord();
             Assert.IsFalse(result);
         }
 
@@ -269,7 +303,7 @@ namespace SolidGui.Tests.Engine
         {
             var r = ReadTwoRecordData();
             Assert.AreEqual(0, r.RecordID);
-            bool result = r.Read();
+            bool result = r.ReadRecord();
             Assert.IsTrue(result); // Should be for two records.
             Assert.AreEqual(1, r.RecordID);
         }
@@ -285,7 +319,11 @@ namespace SolidGui.Tests.Engine
 \sn
 \cc foo
 \sn
-\cc bar";
+\cc bar
+\lx test2
+
+
+\lx test3";
 
                 using (var writer = new StreamWriter(e.TempFilePath))
                 {
@@ -300,6 +338,8 @@ namespace SolidGui.Tests.Engine
                 }
             }
         }
+
+
 
         public class EnvironmentForTest : IDisposable
         {

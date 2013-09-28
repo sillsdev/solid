@@ -91,7 +91,7 @@ namespace SolidGui.Model
             text += SfmField.DefaultTrailing; //hack to fix bug in RecordReader (not reading last line of entries) smw 2sep2010
 
             var reader = SfmRecordReader.CreateFromText(text);
-            reader.Read();
+            reader.ReadRecord();  // JMC: need a loop here!
 
             var entry = new SfmLexEntry(reader.Fields);
 

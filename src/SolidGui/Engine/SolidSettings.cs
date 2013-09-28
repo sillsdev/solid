@@ -17,7 +17,7 @@ namespace SolidGui.Engine
         private readonly List<SolidMarkerSetting> _markerSettings;
         private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
-        public const int LatestVersion = 2; // JMC: Safer to use readonly here?
+        public const int LatestVersion = 2; // JMC: Safer to use readonly rather than const here?
 
         public SolidSettings()
         {
@@ -83,6 +83,9 @@ namespace SolidGui.Engine
 
         [XmlIgnore]
         public bool DefaultEncodingUnicode { get; private set; }
+
+        [XmlIgnore]
+        public static readonly string NewLine = "\r\n";  //static for now -JMC
 
         public bool HasMarker(string marker)
         {

@@ -6,7 +6,7 @@ namespace SolidGui.Engine
 {
     public class SfmField
     {
-        public static readonly string DefaultTrailing = "\r\n"; // "\r\n";  //JMC: wouldn't need to be readonly; might be fun to try "\n" now and then, now that it's a central setting
+        public static readonly string DefaultTrailing = SolidSettings.NewLine; // "\r\n";  //JMC: wouldn't need to be readonly; might be fun to try "\n" now and then, now that it's a central setting
         private static string Pat = @"[\t \r\n]+$";
         private static Regex Reggie = new Regex(
             Pat, RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -30,6 +30,7 @@ namespace SolidGui.Engine
             set { _trailing = value; }
         }
 
+        // Set both the value and the trailing-space value using a single string
         public void SetSplitValue(string val)  // JMC: write tests for this
         {
             MatchCollection m = Reggie.Matches(val);
