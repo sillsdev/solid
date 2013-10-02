@@ -24,7 +24,7 @@ namespace SolidGui.MarkerSettings
         private MarkerFilter _markerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
-        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
+        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  //JMC:! This was already commented out (as WarningFilterChanged); I suspect MarkerSettingsPM is the better place?
 
 
         public MarkerDetails()
@@ -296,10 +296,26 @@ namespace SolidGui.MarkerSettings
             _filterChooserPM.ActiveWarningFilter = _markerFilter;  
         }
 
+        // JMC:! need a Click (or on change?) method here too, wired up to the same code as click/change (i.e. selectedIndexChanged ?) for FilterChooserView
+
         private void _listView_DoubleClick(object sender, EventArgs e)
         {
             OpenSettingsDialog(null);
         }
+
+        private void _markerListView_Click(object sender, EventArgs e)
+        {
+            //JMC:! unfinished
+/*
+            if (_markerListView.SelectedItems != null && _markerListView.SelectedItems.Count > 0 && !_changingFilter)
+            {
+                _markerSettingsPM.
+                _model.ActiveRecordFilter = (RecordFilter)_filterListBox.SelectedItem;
+            }
+*/
+
+        }
+
     }
 
 }

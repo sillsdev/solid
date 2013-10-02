@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Solid.Engine;
 using SolidGui.Engine;
+using SolidGui.Filter;
 using SolidGui.Mapping;
 
 namespace SolidGui.MarkerSettings
@@ -15,6 +17,8 @@ namespace SolidGui.MarkerSettings
             StructurePropertiesModel = new StructurePropertiesPM();
             MappingModel = new MappingPM();
         }
+
+        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  // JMC:! test! ; Added to fix issue #1196  -JMC 2013-09
 
         public SolidSettings SolidSettings { get; set; }
 

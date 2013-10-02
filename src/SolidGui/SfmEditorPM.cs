@@ -123,12 +123,13 @@ namespace SolidGui
                 }
                 record.SetRecordContents(sb.ToString(), _solidSettings);
 
-                // JMC: need to also update the right pane display (e.g. to reflect bogus removed leading spaces, etc.)
+                // JMC: the UI will now need to update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
             }
             else
             {
-                int x;
+                ;
                 //throw new Exception("Solid was trying to update a record in a form which could not be read back in:"+newContents);
+                // JMC: This is no longer an issue because we're now dealing with deletions and fragments; remove the else block?
             }
         }
 
