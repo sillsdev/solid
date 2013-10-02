@@ -15,7 +15,7 @@ using SolidGui.Model;
 
 namespace SolidGui.MarkerSettings
 {
-    public partial class MarkerDetails : UserControl
+    public partial class MarkerSettingsListView : UserControl
     {
         private SfmDictionary _dictionary;
         private SolidSettings _settings;
@@ -27,7 +27,7 @@ namespace SolidGui.MarkerSettings
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
 
 
-        public MarkerDetails()
+        public MarkerSettingsListView()
         {
             InitializeComponent();
 

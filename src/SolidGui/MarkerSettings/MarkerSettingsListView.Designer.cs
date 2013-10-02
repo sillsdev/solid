@@ -1,6 +1,6 @@
 namespace SolidGui.MarkerSettings
 {
-    partial class MarkerDetails
+    partial class MarkerSettingsListView
     {
         /// <summary> 
         /// Required designer variable.
@@ -130,12 +130,12 @@ namespace SolidGui.MarkerSettings
             // this._markerListView.Click += new System.EventHandler(this._markerListView_Click);  // JMC:! to add
             this._markerListView.DoubleClick += new System.EventHandler(this._listView_DoubleClick);
             // 
-            // MarkerDetails
+            // MarkerSettingsListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._markerListView);
-            this.Name = "MarkerDetails";
+            this.Name = "MarkerSettingsListView";
             this.Size = new System.Drawing.Size(421, 213);
             this.ResumeLayout(false);
 
