@@ -35,6 +35,11 @@ namespace SolidGui.MarkerSettings
 
         public MarkerSettingsPM MarkerModel{get;set;}
 
+        public void UpdateDisplay()
+        {
+            UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Lift);
+        }
+
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
             _currentMarkerSetting = MarkerModel.GetMarkerSetting(selectedMarker); 
@@ -67,11 +72,6 @@ namespace SolidGui.MarkerSettings
                     }
                 }
             }
-        }
-
-        public void UpdateDisplay()
-        {
-            UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Lift);
         }
 
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)

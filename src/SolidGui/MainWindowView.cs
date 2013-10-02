@@ -228,12 +228,13 @@ namespace SolidGui
 
         private void UpdateDisplay()
         {
-            _filterChooserView.Enabled = _mainWindowPM.CanProcessLexicon;
-            _changeWritingSystems.Enabled = _mainWindowPM.CanProcessLexicon;
-            _changeTemplate.Enabled = _mainWindowPM.CanProcessLexicon;
-            _exportButton.Enabled = _mainWindowPM.CanProcessLexicon;
+            bool canProcess = _mainWindowPM.CanProcessLexicon;
+            _filterChooserView.Enabled = canProcess;
+            _changeWritingSystems.Enabled = canProcess;
+            _changeTemplate.Enabled = canProcess;
+            _exportButton.Enabled = canProcess;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
-            _quickFixButton.Enabled = _mainWindowPM.CanProcessLexicon;
+            _quickFixButton.Enabled = canProcess;
         }
 
         private void OnSaveClick(object sender, EventArgs e)
