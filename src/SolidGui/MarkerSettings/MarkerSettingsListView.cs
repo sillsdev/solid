@@ -15,7 +15,7 @@ using SolidGui.Model;
 
 namespace SolidGui.MarkerSettings
 {
-    public partial class MarkerDetails : UserControl
+    public partial class MarkerSettingsListView : UserControl
     {
         private SfmDictionary _dictionary;
         private SolidSettings _settings;
@@ -27,7 +27,7 @@ namespace SolidGui.MarkerSettings
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  //JMC:! This was already commented out (as WarningFilterChanged); I suspect MarkerSettingsPM is the better place?
 
 
-        public MarkerDetails()
+        public MarkerSettingsListView()
         {
             InitializeComponent();
 

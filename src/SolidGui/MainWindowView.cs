@@ -41,21 +41,21 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             _mainWindowPM.FilterChooserModel.WarningFilterChanged += _filterChooserView.OnWarningFilterChanged;
-            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _markerDetails.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _markerSettingsList.OnFilterChanged;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
-            //_markerDetails.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnWarningFilterChanged;
-            // JMC:! Verify these lines fixing #1196. Not sure when the preceding was disabled, but I think we needed to hook up _markerDetails.Click with something like _recordNavigatorView.OnWarningFilterChanged;
+            //_markerSettingsList.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnWarningFilterChanged;
+            // JMC:! Verify these lines fixing #1196. Not sure when the preceding was disabled, but I think we needed to hook up _markerSettingsList.Click with something like _recordNavigatorView.OnWarningFilterChanged;
             //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
             //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _filterChooserView.OnWarningFilterChanged;
-            //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerDetails.OnFilterChanged;
-            _mainWindowPM.NavigatorModel.FilterChanged += _markerDetails.OnFilterChanged;
+            //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerSettingsList.OnFilterChanged;
+            _mainWindowPM.NavigatorModel.FilterChanged += _markerSettingsList.OnFilterChanged;
 
             // Event wiring for child views.
             _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
 
             // Event wiring for the main view.
-            _markerDetails.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
+            _markerSettingsList.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
 
@@ -74,13 +74,13 @@ namespace SolidGui
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
             //wire up the change of record event to our record display widget
-            _markerDetails.BindModel(
+            _markerSettingsList.BindModel(
                 _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.FilterChooserModel,
                 _mainWindowPM.WorkingDictionary,
                 _mainWindowPM.Settings
             );
-            _markerDetails.UpdateDisplay();
+            _markerSettingsList.UpdateDisplay();
             _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  //Choose the "All Records" filter
             _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274)
             _filterChooserView.UpdateDisplay();
@@ -181,7 +181,7 @@ namespace SolidGui
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
             _sfmEditorView.Enabled = true;
-            //_markerDetails.SelectMarker("lx");  //JMC: doesn't work anyway; disabled it
+            //_markerSettingsList.SelectMarker("lx");  //JMC: doesn't work anyway; disabled it
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _sfmEditorView.Focus();
             _sfmEditorView.Reload(); 
@@ -390,7 +390,7 @@ namespace SolidGui
 
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
-            _markerDetails.OpenSettingsDialog(null);
+            _markerSettingsList.OpenSettingsDialog(null);
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -412,8 +412,8 @@ namespace SolidGui
             var dialog = new WritingSystemsConfigDialog();
             var presenter = new WritingSystemsConfigPresenter(_mainWindowPM.Settings, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
             dialog.ShowDialog(this);
-            _markerDetails.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
-            _markerDetails.Refresh();
+            _markerSettingsList.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
+            _markerSettingsList.Refresh();
             OnMarkerSettingPossiblyChanged(null, null); // TODO make conditional on dialog result
 
         }
