@@ -100,6 +100,7 @@ namespace SolidGui.Tests
         }
 
 
+/*
         [Test, Ignore("This functionality has been changed. Now current record remains")]
         public void WhenFilterChangesShowFirst()
         {
@@ -120,6 +121,7 @@ namespace SolidGui.Tests
             Assert.AreEqual(0, navigator.CurrentRecordIndex);
             Assert.IsNull (navigator.CurrentRecord);
         }
+*/
         
         [Test]
         public void NavigationTriggersCurrentChanged()

@@ -199,7 +199,7 @@ namespace SolidGui.Export
 
         public void AddSolidNote(string note)
         {
-            AddMultiTextToPalasoDataObject("SOLID NOTE: " + note, "en", LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
+            AddMultiTextToPalasoDataObject("Solid note: " + note, "en", LiftLexEntry, PalasoDataObject.WellKnownProperties.Note);
         }
 
         private class StateInfo

@@ -34,31 +34,34 @@ namespace SolidGui.Filter
         }
 
         //when someone changes the filter in our PM
-        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        public void OnWarningFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
-            _changingFilter = true;
+            _changingFilter = true; // lock
             bool foundFilter = false;
-            foreach (RecordFilter filter in _filterListBox.Items)
+            foreach (RecordFilter filter in _warningFilterListBox.Items)
             {
-                if (filter == e._recordFilter)
+                if (filter == e.RecordFilter)
                 {
                     foundFilter = true;
-                    _filterListBox.SelectedIndex = _filterListBox.Items.IndexOf(filter);
+                    _warningFilterListBox.SelectedIndex = _warningFilterListBox.Items.IndexOf(filter);
                     break;
                 }
             }
             if (!foundFilter)
             {
-                _filterListBox.SelectedIndex = -1;
+                _warningFilterListBox.SelectedIndex = -1;
             }
-            _changingFilter = false;
+            _changingFilter = false; // unlock
         }
 
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_filterListBox.SelectedItems != null && _filterListBox.SelectedItems.Count > 0 && !_changingFilter)
+            
+            var sel = _warningFilterListBox.SelectedItems;
+            // JMC: Just in case, maybe add a wait, if/while _changingFilter is true
+            if (sel != null && sel.Count > 0 && !_changingFilter)
             {
-                _model.ActiveRecordFilter = (RecordFilter) _filterListBox.SelectedItem;
+                _model.ActiveWarningFilter = (RecordFilter)_warningFilterListBox.SelectedItem;
             }
         }
 
@@ -69,11 +72,11 @@ namespace SolidGui.Filter
                 return;
             }
 
-            _filterListBox.Items.Clear();
+            _warningFilterListBox.Items.Clear();
 
             foreach (RecordFilter filter in _model.RecordFilters)
             {
-                _filterListBox.Items.Add(filter);
+                _warningFilterListBox.Items.Add(filter);
             }
         }
     }

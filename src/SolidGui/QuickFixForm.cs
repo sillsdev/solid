@@ -138,7 +138,7 @@ namespace SolidGui
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show(
-                @"This will create new records as needed. They will have a \CheckMe field, so they are easy to find.  SOLID will guess at a \ps for the new entry based on the current one, or use 'FIXME' if it hasn't encountered a ps by the time it hits the referring field. (FLEx importer will only connect the entry if some sense exists on the new entry).
+                @"This will create new records as needed. They will have a \CheckMe field, so they are easy to find.  Solid will guess at a \ps for the new entry based on the current one, or use 'FIXME' if it hasn't encountered a ps by the time it hits the referring field. (FLEx importer will only connect the entry if some sense exists on the new entry).
 
 \lf's which are followed by more than one \lv will be copied to the position just before each \lv, as required by FLEx.
 
@@ -151,7 +151,7 @@ With out this FLEx  just generates errors, and it takes a lot of work to create 
 
         private void _showPushPSInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show(@"Many dictionary entries have a single \ps, followed by multipe senses which share that part of speech. FLEx import does not handle this.  This fix attempts to move \ps down under all subsequent \sn's which are lacking their own \ps.  Your SOLID structure should have ps as a child of sn.");
+            MessageBox.Show(@"Many dictionary entries have a single \ps, followed by multiple senses which share that part of speech. FLEx import does not handle this.  This fix attempts to move \ps down under all subsequent \sn's which are lacking their own \ps.  Your Solid structure should have ps as a child of sn.");
         }
 
     }

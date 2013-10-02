@@ -53,7 +53,8 @@ namespace SolidGui.Model
         public string GetHeadWord(SolidSettings solidSettings)
         {
              Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-            var citationFormSetting = solidSettings.MarkerSettings.Find(s => "citation"== s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
+            var citationFormSetting = 
+                solidSettings.MarkerSettings.Find(s => "citation" == s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
             if (citationFormSetting == null)
                 return GetLexemeForm(solidSettings);
 
@@ -83,15 +84,14 @@ namespace SolidGui.Model
 
         public static SfmLexEntry CreateFromText(string text)
         {
+
             if (String.IsNullOrEmpty(text))
             {
                 throw new ArgumentException("text cannot be null or empty");
             }
 
-            text += SfmField.DefaultTrailing; //hack to fix bug in RecordReader (not reading last line of entries) smw 2sep2010
-
             var reader = SfmRecordReader.CreateFromText(text);
-            reader.ReadRecord();  // JMC: need a loop here!
+            reader.ReadRecord(); 
 
             var entry = new SfmLexEntry(reader.Fields);
 
@@ -133,7 +133,7 @@ namespace SolidGui.Model
             _fields.Insert(indexForThisField, field);
         }
 
-        public SfmFieldModel GetFirstFieldWithMarker(string marker)
+        public SfmFieldModel GetFirstFieldWithMarker(string marker)  // JMC: can we also auto-scroll the UI to this marker?
         {
             return _fields.FirstOrDefault(f => f.Marker == marker);
         }
@@ -146,9 +146,7 @@ namespace SolidGui.Model
 
         public bool IsMarkerNotEmpty(string marker)
         {
-            return _fields.Find(
-                       f => f.Marker == marker && f.Value != string.Empty
-                       ) != null;
+            return _fields.Find( f => f.Marker == marker && f.Value != string.Empty ) != null;
         }
 
         public bool HasMarker(string marker)

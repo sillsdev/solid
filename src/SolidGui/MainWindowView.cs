@@ -39,9 +39,9 @@ namespace SolidGui
             _mainWindowPM.DictionaryProcessed += this.OnDictionaryProcessed;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
-            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
-            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _filterChooserView.OnFilterChanged;
-            _mainWindowPM.FilterChooserModel.RecordFilterChanged += _markerDetails.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _filterChooserView.OnWarningFilterChanged;
+            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _markerDetails.OnFilterChanged;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
             //_markerDetails.RecordFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
@@ -76,7 +76,7 @@ namespace SolidGui
                 _mainWindowPM.Settings
             );
             _markerDetails.UpdateDisplay();
-            _filterChooserView.Model.ActiveRecordFilter = _filterChooserView.Model.RecordFilters[0];  //Choose the "All Records" filter
+            _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  //Choose the "All Records" filter
             _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274)
             _filterChooserView.UpdateDisplay();
             UpdateDisplay();
@@ -162,7 +162,7 @@ namespace SolidGui
                 if (!SolidSettings.FileExtensions.Contains(ext))
                 {
                     SolidSettings.FileExtensions.Add(ext);
-                        // adaptive: makes the next File Open dialog friendlier (not saved) -JMC
+                        // adaptive: makes the next File Open dialog friendlier (during this run; lost on exit) -JMC
                 }
             }
 
@@ -171,7 +171,7 @@ namespace SolidGui
 
         public void OnFileLoaded(string name)
         {
-            Text = "SOLID " + name;
+            Text = "Solid: " + name;
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
@@ -182,9 +182,9 @@ namespace SolidGui
             _sfmEditorView.Reload(); 
         }
 
-        public bool NeedsSave()
+        public bool NeedsSave() //HACK this is so stupid to use the ui as the dirty bit, but it's all over  
         {
-            return _saveButton.Enabled;
+            return _saveButton.Enabled;  // JMC: consolidated the calls (all three) to here; fix the hack?
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -236,11 +236,13 @@ namespace SolidGui
             _sfmEditorView.UpdateModel();
             _mainWindowPM.DictionaryAndSettingsSave();
             _saveButton.Enabled = false;
+            _sfmEditorView.Reload();  // fixed (this works for Ctrl+S too) -JMC
+            _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 
         private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
-            _mainWindowPM.FilterChooserModel.ActiveRecordFilter = e.SearchResult.Filter;
+            _mainWindowPM.FilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
@@ -256,9 +258,9 @@ namespace SolidGui
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if(_saveButton.Enabled)//HACK this is so stupid to use the ui as the dirty bit, but it's all over
+            if(NeedsSave()) 
             {
-                var answer = MessageBox.Show("Save changes before quitting?", "SOLID: Save first?", MessageBoxButtons.YesNoCancel,
+                var answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
                                 MessageBoxIcon.Question);
                 switch (answer)
                 {
@@ -324,7 +326,7 @@ namespace SolidGui
             }
             if (e.Control == true && e.KeyCode == Keys.S)
             {
-                if (_saveButton.Enabled)
+                if (NeedsSave())
                 {
                     OnSaveClick(this, new EventArgs());
                 }

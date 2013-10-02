@@ -59,12 +59,7 @@ namespace SolidGui.Engine
 
         public bool ParentExists(string marker)
         {
-            SolidStructureProperty result = _structureProperties.Find(
-                delegate(SolidStructureProperty item)
-                    {
-                        return item.Parent == marker;
-                    }
-                );
+            SolidStructureProperty result = _structureProperties.Find(item => item.Parent == marker);
             return result != null;
         }
 

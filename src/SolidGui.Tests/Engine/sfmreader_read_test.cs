@@ -65,6 +65,20 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
+        public void ReadTinyRecord_Correct()
+        {
+            const string sfm = "\\lx";
+            var r = SfmRecordReader.CreateFromText(sfm);
+            bool result = r.ReadRecord();
+            Assert.IsTrue(result);
+            Assert.AreEqual("", r.Header);
+            Assert.AreEqual(1, r.FieldCount);
+            Assert.AreEqual("", r.Value("lx"));
+            result = r.ReadRecord();
+            Assert.IsFalse(result);
+        }
+
+        [Test]
         public void ReadNoHeader_Correct()
         {
             const string sfm = "\\lx a\n" +
@@ -80,6 +94,19 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
 */
+        }
+
+        [Test]
+        public void ReadHeaderConfusing_Correct()
+        {
+            const string header = "\\lxh\r\n" +
+                                  " \\lx not \\lx\r\n" +
+                                  "\\lxHaha\r\n";
+            const string sfm = header + "\\lx finally!";
+            var r = SfmRecordReader.CreateFromText(sfm);
+            bool result = r.ReadRecord();
+            Assert.IsTrue(result);
+            Assert.AreEqual(header, r.Header);
         }
 
         [Test]
@@ -99,15 +126,18 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ReadEmptyValue_Correct()
         {
-            const string sfm = "\\lx a\n" +
-                               "\\ge\n";
+            const string sfm = "\\lx a\r\n" +
+                               "\\ge\n" +
+                               "\\de\r\n \r\n" +
+                               "\\dt";
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
             Assert.AreEqual("", r.Header);
-            Assert.AreEqual(2, r.FieldCount);
+            Assert.AreEqual(4, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("", r.Value("ge"));
+            Assert.AreEqual("", r.Value("de"));
         }
 
         [Test]
@@ -131,6 +161,33 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
+        public void ReadEmptyLxEmptyKey_Correct()
+        {
+            const string sfm = "head\r\n" +
+                               "\\lx\n" +
+                               "\\\n" +
+                               "\\ge b\n" +
+                               "\\lx"
+                               ;
+            var r = SfmRecordReader.CreateFromText(sfm);
+            bool result = r.ReadRecord();
+            Assert.IsTrue(result);
+            Assert.AreEqual("head\r\n", r.Header);
+            Assert.AreEqual(3, r.FieldCount);
+            Assert.AreEqual("", r.Value("lx"));
+            Assert.AreEqual("b", r.Value("ge"));
+            Assert.AreEqual("lx", r.Key(0));
+            Assert.AreEqual("", r.Key(1));
+            Assert.AreEqual("ge", r.Key(2));
+            result = r.ReadRecord();
+            Assert.IsTrue(result);
+            Assert.AreEqual("head\r\n", r.Header);
+            Assert.AreEqual(1, r.FieldCount);
+            Assert.AreEqual("", r.Value("lx"));
+        }
+
+        [Test]
+        [Ignore("No longer the job of the main parser; will handle with regex in the UI. -JMC 2013-09")]
         public void ReadIndentedMarker_Correct()
         {
             const string sfm = "\\lx a\n" +
@@ -173,7 +230,37 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual ("b\r\nc", r.Value ("ge"));
         }
 
-        private SfmRecordReader ReadOneRecordData ()
+        [Test]
+        public void ReadNewlinesPreserved_Correct()
+        {
+            const string sfm1 = "\\lx a\n" +
+                               "b\n\n\r" +
+                               "\\ge c\n\n" +
+                               "\\rf\nd\n\n" +
+                               "\\dt\n\n" +
+                               "\\lx f";  //note that \dt is both final and empty, plus extra trailing
+            const string sfm = "\\lx a\n" +
+                               "\\dt\n\n" +
+                               "\\lx f";  //note that \dt is both final and empty, plus extra trailing
+            var r = SfmRecordReader.CreateFromText(sfm);
+            bool result = r.ReadRecord();
+            Assert.IsTrue(result);
+            Assert.AreEqual("", r.Header);
+/*
+            Assert.AreEqual(4, r.FieldCount);
+            Assert.AreEqual("a\r\nb", r.Value("lx"));
+            Assert.AreEqual("\r\n\r\n\r\n", r.Trailing("lx"));
+            Assert.AreEqual("\r\n\r\n", r.Trailing("ge"));
+            Assert.AreEqual("\r\n\r\n", r.Trailing("rf"));
+*/
+            Assert.AreEqual("\r\n\r\n", r.Trailing("dt"));
+            r.ReadRecord();
+            Assert.AreEqual(1, r.FieldCount);
+            Assert.AreEqual("\r\n", r.Trailing("lx"));
+        }
+
+
+        private SfmRecordReader ReadOneRecordData()
         {
             const string sfm = "\\_sh v3.0  269  MDF 4.0 (alternate hierarchy)\n" +
                                "\\_DateStampHasFourDigitYear\n" +

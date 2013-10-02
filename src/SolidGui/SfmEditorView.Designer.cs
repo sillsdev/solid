@@ -29,30 +29,30 @@ namespace SolidGui
         private void InitializeComponent()
         {
 			this.components = new System.ComponentModel.Container();
-			this._contentsBox = new System.Windows.Forms.RichTextBox();
+			this.ContentsBox = new System.Windows.Forms.RichTextBox();
 			this._timer = new System.Windows.Forms.Timer(this.components);
             this.superToolTip1 = new Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip(this.components);
 			this.SuspendLayout();
 			// 
-			// _contentsBox
+			// ContentsBox
 			// 
-			this._contentsBox.AcceptsTab = true;
-			this._contentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-			this._contentsBox.EnableAutoDragDrop = true;
-			this._contentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this._contentsBox.HideSelection = false;
-			this._contentsBox.Location = new System.Drawing.Point(0, 0);
-			this._contentsBox.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-			this._contentsBox.Name = "_contentsBox";
-			this._contentsBox.Size = new System.Drawing.Size(225, 277);
-			this._contentsBox.TabIndex = 0;
-			this._contentsBox.Text = "";
-			this._contentsBox.WordWrap = false;
-			this._contentsBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this._contentsBox_KeyDown);
-			this._contentsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseMove);
-			this._contentsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseDown);
-			this._contentsBox.TextChanged += new System.EventHandler(this._contentsBox_TextChanged);
-			this._contentsBox.MouseLeave += new System.EventHandler(this._contentsBox_MouseLeave);
+			this.ContentsBox.AcceptsTab = true;
+			this.ContentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.ContentsBox.EnableAutoDragDrop = true;
+			this.ContentsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ContentsBox.HideSelection = false;
+			this.ContentsBox.Location = new System.Drawing.Point(0, 0);
+			this.ContentsBox.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+			this.ContentsBox.Name = "ContentsBox";
+			this.ContentsBox.Size = new System.Drawing.Size(225, 277);
+			this.ContentsBox.TabIndex = 0;
+			this.ContentsBox.Text = "";
+			this.ContentsBox.WordWrap = false;
+			this.ContentsBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this._contentsBox_KeyDown);
+			this.ContentsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseMove);
+			this.ContentsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseDown);
+			this.ContentsBox.TextChanged += new System.EventHandler(this._contentsBox_TextChanged);
+			this.ContentsBox.MouseLeave += new System.EventHandler(this._contentsBox_MouseLeave);
 			// 
 			// superToolTip1
 			// 
@@ -63,7 +63,7 @@ namespace SolidGui
 			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.AutoScroll = true;
-			this.Controls.Add(this._contentsBox);
+			this.Controls.Add(this.ContentsBox);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
 			this.Name = "SfmEditorView";
@@ -74,7 +74,7 @@ namespace SolidGui
 
         #endregion
 
-        public System.Windows.Forms.RichTextBox _contentsBox;
+        public System.Windows.Forms.RichTextBox ContentsBox;
         private System.Windows.Forms.Timer _timer;
         private Palaso.UI.WindowsForms.SuperToolTip.SuperToolTip superToolTip1;
 

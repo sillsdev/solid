@@ -204,8 +204,8 @@ namespace Solid.Engine
                     if(markers.Contains(field.Marker))
                     {
                         var headword = field.Value.Trim();
-                        if(!string.IsNullOrEmpty(headword) &&
-                            !additions.Any(x=>x.targetHeadWord == headword))
+                        if( !string.IsNullOrEmpty(headword) &&
+                            !additions.Any( x => x.targetHeadWord == headword) )
                         {
                             additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker, lastPOS, field));
                         }
@@ -217,7 +217,7 @@ namespace Solid.Engine
 
         private void AddNewEntries(List<RecordAdddition> additions, StringBuilder log)
         {
-            SolidSettings nullSettings = new SolidSettings();
+            SolidSettings nullSettings = new SolidSettings();  // JMC: why a new bunch?
             foreach (var addition in additions)
             {
                 string switchToCitationForm;
@@ -230,10 +230,10 @@ namespace Solid.Engine
                 {
                     Record r = new Record();
                     var b = new StringBuilder();
-                    b.AppendLine("\\lx " + addition.targetHeadWord);
+                    b.AppendLine("\\" + nullSettings.RecordMarker + " " + addition.targetHeadWord); // JMC: Will this Record marker necessarily match?? 
                     b.AppendLine("\\ps " + addition.pos); //without this, flex balks
                     b.AppendFormat(
-                        "\\CheckMe Created by SOLID Quickfix because '{0}' referred to it in the \\{1} field.{2}",
+                        "\\CheckMe Created by Solid Quickfix because '{0}' referred to it in the \\{1} field.{2}",
                         addition.fromHeadWord, addition.fromMarker, SfmField.DefaultTrailing);
 
 

@@ -6,7 +6,7 @@ using SolidGui.Model;
 namespace SolidGui
 {
     /// <summary>
-    /// The record navigator the control that shows the user the description of the current
+    /// The record navigator, the control that shows the user the description of the current
     /// filter and lets them say "next" and "previous".
     /// This class is the Presentation Model(ui-agnostic) half of this control
     /// </summary>
@@ -50,7 +50,7 @@ namespace SolidGui
 
                 _recordFilter = value;
                 
-                if(currentRecordId == 0 ||!_recordFilter.MoveToByID(currentRecordId))
+                if ( currentRecordId == 0 || !_recordFilter.MoveToByID(currentRecordId) )
                 {
                     _recordFilter.MoveToFirst();
                 }
@@ -189,7 +189,7 @@ namespace SolidGui
 
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
-            ActiveFilter = e._recordFilter;
+            ActiveFilter = e.RecordFilter;
         }
     }
 }    

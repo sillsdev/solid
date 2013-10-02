@@ -27,7 +27,8 @@ namespace SolidGui.Engine
             _newlyAdded = new List<SolidMarkerSetting>();
         }
 
-        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
+        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error", "iso-8859-1" (s/b win1252??)
+        // e.g. public static readonly string DotSolid = ".solid"
 
         private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
 
@@ -323,7 +324,7 @@ namespace SolidGui.Engine
                 {
                     //still nothing beyond the .solid file; fail
                     var x = new StringBuilder();
-                    x.AppendFormat("SOLID could not find a matching dictionary for {0}. ", settingsFilePath);
+                    x.AppendFormat("Solid could not find a matching dictionary for {0}. ", settingsFilePath);
                     ErrorReport.NotifyUserOfProblem(x.ToString());
                     return ""; 
                 }

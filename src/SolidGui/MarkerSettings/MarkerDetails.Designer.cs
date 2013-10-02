@@ -33,18 +33,18 @@ namespace SolidGui.MarkerSettings
             GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn5 = new GlacialComponents.Controls.GLColumn();
-            this._listView = new GlacialComponents.Controls.GlacialList();
+            this._markerListView = new GlacialComponents.Controls.GlacialList();
             this.SuspendLayout();
             // 
-            // _listView
+            // _markerListView
             // 
-            this._listView.AllowColumnResize = true;
-            this._listView.AllowMultiselect = false;
-            this._listView.AlternateBackground = System.Drawing.Color.DarkGreen;
-            this._listView.AlternatingColors = false;
-            this._listView.AutoHeight = true;
-            this._listView.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this._listView.BackgroundStretchToFit = true;
+            this._markerListView.AllowColumnResize = true;
+            this._markerListView.AllowMultiselect = false;
+            this._markerListView.AlternateBackground = System.Drawing.Color.DarkGreen;
+            this._markerListView.AlternatingColors = false;
+            this._markerListView.AutoHeight = true;
+            this._markerListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this._markerListView.BackgroundStretchToFit = true;
             glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn1.CheckBoxes = false;
             glColumn1.ComparisonFunction = null;
@@ -90,50 +90,51 @@ namespace SolidGui.MarkerSettings
             glColumn5.Text = "LIFT";
             glColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             glColumn5.Width = 100;
-            this._listView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
-                                                                                          glColumn1,
-                                                                                          glColumn2,
-                                                                                          glColumn3,
-                                                                                          glColumn4,
-                                                                                          glColumn5});
-            this._listView.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
-            this._listView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._listView.FullRowSelect = true;
-            this._listView.GridColor = System.Drawing.Color.LightGray;
-            this._listView.GridLines = GlacialComponents.Controls.GLGridLines.gridBoth;
-            this._listView.GridLineStyle = GlacialComponents.Controls.GLGridLineStyles.gridSolid;
-            this._listView.GridTypes = GlacialComponents.Controls.GLGridTypes.gridOnExists;
-            this._listView.HeaderHeight = 22;
-            this._listView.HeaderVisible = true;
-            this._listView.HeaderWordWrap = false;
-            this._listView.HotColumnTracking = false;
-            this._listView.HotItemTracking = false;
-            this._listView.HotTrackingColor = System.Drawing.Color.LightGray;
-            this._listView.HoverEvents = false;
-            this._listView.HoverTime = 1;
-            this._listView.ImageList = null;
-            this._listView.ItemHeight = 17;
-            this._listView.ItemWordWrap = false;
-            this._listView.Location = new System.Drawing.Point(0, 0);
-            this._listView.Name = "_listView";
-            this._listView.Selectable = true;
-            this._listView.SelectedTextColor = System.Drawing.Color.White;
-            this._listView.SelectionColor = System.Drawing.Color.DarkBlue;
-            this._listView.ShowBorder = true;
-            this._listView.ShowFocusRect = false;
-            this._listView.Size = new System.Drawing.Size(421, 213);
-            this._listView.SortType = GlacialComponents.Controls.SortTypes.InsertionSort;
-            this._listView.SuperFlatHeaderColor = System.Drawing.Color.White;
-            this._listView.TabIndex = 0;
-            this._listView.Text = "glacialList1";
-            this._listView.DoubleClick += new System.EventHandler(this._listView_DoubleClick);
-            this._listView.SelectedIndexChanged += new GlacialComponents.Controls.GlacialList.ClickedEventHandler(this._listView_SelectedIndexChanged);
+            this._markerListView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
+            glColumn1,
+            glColumn2,
+            glColumn3,
+            glColumn4,
+            glColumn5});
+            this._markerListView.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
+            this._markerListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerListView.FullRowSelect = true;
+            this._markerListView.GridColor = System.Drawing.Color.LightGray;
+            this._markerListView.GridLines = GlacialComponents.Controls.GLGridLines.gridBoth;
+            this._markerListView.GridLineStyle = GlacialComponents.Controls.GLGridLineStyles.gridSolid;
+            this._markerListView.GridTypes = GlacialComponents.Controls.GLGridTypes.gridOnExists;
+            this._markerListView.HeaderHeight = 22;
+            this._markerListView.HeaderVisible = true;
+            this._markerListView.HeaderWordWrap = false;
+            this._markerListView.HotColumnTracking = false;
+            this._markerListView.HotItemTracking = false;
+            this._markerListView.HotTrackingColor = System.Drawing.Color.LightGray;
+            this._markerListView.HoverEvents = false;
+            this._markerListView.HoverTime = 1;
+            this._markerListView.ImageList = null;
+            this._markerListView.ItemHeight = 17;
+            this._markerListView.ItemWordWrap = false;
+            this._markerListView.Location = new System.Drawing.Point(0, 0);
+            this._markerListView.Name = "_markerListView";
+            this._markerListView.Selectable = true;
+            this._markerListView.SelectedTextColor = System.Drawing.Color.White;
+            this._markerListView.SelectionColor = System.Drawing.Color.DarkBlue;
+            this._markerListView.ShowBorder = true;
+            this._markerListView.ShowFocusRect = false;
+            this._markerListView.Size = new System.Drawing.Size(421, 213);
+            this._markerListView.SortType = GlacialComponents.Controls.SortTypes.InsertionSort;
+            this._markerListView.SuperFlatHeaderColor = System.Drawing.Color.White;
+            this._markerListView.TabIndex = 0;
+            this._markerListView.Text = "glacialList1";
+            this._markerListView.SelectedIndexChanged += new GlacialComponents.Controls.GlacialList.ClickedEventHandler(this._listView_SelectedIndexChanged);
+            // this._markerListView.Click += new System.EventHandler(this._markerListView_Click);  // JMC:! to add
+            this._markerListView.DoubleClick += new System.EventHandler(this._listView_DoubleClick);
             // 
             // MarkerDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._listView);
+            this.Controls.Add(this._markerListView);
             this.Name = "MarkerDetails";
             this.Size = new System.Drawing.Size(421, 213);
             this.ResumeLayout(false);
@@ -142,7 +143,7 @@ namespace SolidGui.MarkerSettings
 
         #endregion
 
-        private GlacialComponents.Controls.GlacialList _listView;
+        private GlacialComponents.Controls.GlacialList _markerListView;
 
     }
 }

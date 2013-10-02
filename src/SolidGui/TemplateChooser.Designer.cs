@@ -201,7 +201,7 @@ namespace SolidGui
 			this.Controls.Add (this._cancelButton);
 			this.Name = "TemplateChooser";
 			this.ShowInTaskbar = false;
-			this.Text = "Choose SOLID Template...";
+			this.Text = "Choose Solid Template...";
 			this.Load += new System.EventHandler (this.OnTemplateChooser_Load);
 			((System.ComponentModel.ISupportInitialize) (this._warningImage)).EndInit ();
 			this._pnlWarning.ResumeLayout (false);

@@ -56,8 +56,8 @@ namespace Solid.Engine
                 }
                 else
                 {
-                    int len = "infer ".Length;  // JMC: create a constant for "infer"?
-                    _markerSetting.InferedParent = comboBoxText.Substring(len);
+                    int space = comboBoxText.LastIndexOf(' '); // Or, create a constant for "infer " and use it here and in the dialog. -JMC
+                    _markerSetting.InferedParent = comboBoxText.Substring(space+1);  // E.g. extract just the "sn" in "infer sn" or "infer an sn"
                 }
             }
         }

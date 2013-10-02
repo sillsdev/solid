@@ -1604,9 +1604,8 @@ namespace SolidGui.Tests.Processes
 
 
 
-        // TODO This is an example of another axis of testing. Tests the NoInfer with bad input expecting an error for each Multiplicity
+        // TODO This is an example of another axis of testing. Need to also test the NoInfer with bad input expecting an error for each Multiplicity ??
         [Test]
-        [Ignore("asserts are not valid")]
         public void ProcessStructure_NoInferMultiplicityTogether_SecondFieldReportsError()
         {
             const string sfmIn = @"
@@ -1621,31 +1620,32 @@ namespace SolidGui.Tests.Processes
              * \lx test
              *    \aa
              *      \bb
-             *      \spacer
+             * \spacer
              * \bb
              */
 
             var settings = new SolidSettings();
 
             SetMarkerSettings(settings, "aa", "lx", "", MultiplicityAdjacency.MultipleApart);
-            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "spacer", "aa", "", MultiplicityAdjacency.MultipleApart);
+            SetMarkerSettings(settings, "bb", "aa", "", MultiplicityAdjacency.MultipleTogether);
 
-            SfmLexEntry entry = SfmLexEntry.CreateFromText(sfmIn);
+            SfmLexEntry outputEntry = SfmLexEntry.CreateFromText(sfmIn);
 
             var process = new ProcessStructure(settings);
             var report = new SolidReport();
-            SfmLexEntry outputEntry = process.Process(entry, report);
+            process.Process(outputEntry, report);
 
             Assert.AreEqual("lx", outputEntry[0].Marker);
             Assert.AreEqual("aa", outputEntry[1].Marker);
             Assert.AreEqual("bb", outputEntry[2].Marker);
-            Assert.AreEqual("aa", outputEntry[3].Marker);
+            Assert.AreEqual("spacer", outputEntry[3].Marker);
             Assert.AreEqual("bb", outputEntry[4].Marker);
 
             Assert.AreEqual("lx", ParentMarkerForField(outputEntry[1]));
             Assert.AreEqual("aa", ParentMarkerForField(outputEntry[2]));
-            Assert.AreEqual("lx", ParentMarkerForField(outputEntry[3]));
-            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[4]));
+            Assert.AreEqual("aa", ParentMarkerForField(outputEntry[3]));
+            Assert.AreEqual(null, ParentMarkerForField(outputEntry[4]));
         }
 
         [Test]

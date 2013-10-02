@@ -95,15 +95,15 @@ namespace SolidGui.Tests.Model
 		public void CreateFromText_ValidEntry()
 		{
 			const string sfmIn = @"
-\lx test1
-\cc fire";
+\lx a1
+\cc b2";
 			var entry = SfmLexEntry.CreateFromText(sfmIn);
 
 			Assert.AreEqual("lx", entry[0].Marker);
-			Assert.AreEqual("test1", entry[0].Value);
+			Assert.AreEqual("a1", entry[0].Value);
 
 			Assert.AreEqual("cc", entry[1].Marker);
-			Assert.AreEqual("fire", entry[1].Value);
+			Assert.AreEqual("b2", entry[1].Value);
 		}
 
 		[Test]

@@ -194,8 +194,8 @@ namespace SolidGui.Tests
             new QuickFixer(dict).MakeEntriesForReferredItems(M("sy"));
             AssertFieldContents(dict.Records[0], "lx a", "ps noun");
             AssertFieldContents(dict.Records[1], "lx y", "ps verb", "sy x", "sy y", "sy z");
-            AssertFieldContents(dict.Records[2], "lx x", "ps verb", "CheckMe Created by SOLID Quickfix because 'y' referred to it in the \\sy field.");
-            AssertFieldContents(dict.Records[3], "lx z", "ps verb", "CheckMe Created by SOLID Quickfix because 'y' referred to it in the \\sy field.");
+            AssertFieldContents(dict.Records[2], "lx x", "ps verb", "CheckMe Created by Solid Quickfix because 'y' referred to it in the \\sy field.");
+            AssertFieldContents(dict.Records[3], "lx z", "ps verb", "CheckMe Created by Solid Quickfix because 'y' referred to it in the \\sy field.");
         }
 
         [Test]
@@ -215,7 +215,7 @@ namespace SolidGui.Tests
             var dict = MakeDictionary(new SolidSettings(), "lx a", "ps verb", "cf b");
              new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
              AssertFieldContents(dict.Records[0], "lx a", "ps verb", "cf b");
-            AssertFieldContents(dict.Records[1], "lx b", "ps verb", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+            AssertFieldContents(dict.Records[1], "lx b", "ps verb", "CheckMe Created by Solid Quickfix because 'a' referred to it in the \\cf field.");
         }
 
         [Test]
@@ -224,7 +224,7 @@ namespace SolidGui.Tests
             var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b");
             new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
             AssertFieldContents(dict.Records[0], "lx a", "cf b");
-            AssertFieldContents(dict.Records[1], "lx b", "ps FIXME", "CheckMe Created by SOLID Quickfix because 'a' referred to it in the \\cf field.");
+            AssertFieldContents(dict.Records[1], "lx b", "ps FIXME", "CheckMe Created by Solid Quickfix because 'a' referred to it in the \\cf field.");
         }
 
         [Test]

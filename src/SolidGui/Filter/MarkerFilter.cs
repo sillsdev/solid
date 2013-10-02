@@ -18,10 +18,13 @@ namespace SolidGui.Filter
         public override void UpdateFilter()
         {
             _indexesOfRecords.Clear();
+            SfmFieldModel f;
             for (int i = 0; i < _recordManager.Count; i++)
             {
                 _recordManager.MoveTo(i);
-                if (_recordManager.Current.IsMarkerNotEmpty(_marker))
+                f = _recordManager.Current.GetFirstFieldWithMarker(_marker);
+                if (f != null)
+                // if (_recordManager.Current.IsMarkerNotEmpty(_marker))  // fixed #1201 by checking for null instead -JMC 2013-09
                 {
                     _indexesOfRecords.Add(i);
                 }

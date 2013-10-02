@@ -15,7 +15,7 @@ namespace SolidGui
     {
         private const int _leftMarigin = 20;
         private const int _spacesInIndentation = 4;
-        private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the _contentsBox
+        private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the ContentsBox
         private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
         private readonly Color _defaultTextColor = Color.Black;
         private readonly Color _errorTextColor = Color.Red;
@@ -39,13 +39,13 @@ namespace SolidGui
             InitializeComponent();
             _contentsBoxDB = new RichTextBox();
             _contentsBoxDB.Visible = false;
-            _contentsBox.TextChanged -= _contentsBox_TextChanged;
-            _contentsBox.SelectionIndent = _leftMarigin;
-            _markerTip = new MarkerTip(_contentsBox, components);
+            ContentsBox.TextChanged -= _contentsBox_TextChanged;
+            ContentsBox.SelectionIndent = _leftMarigin;
+            _markerTip = new MarkerTip(ContentsBox, components);
             _timer.Tick += OnTick;
             _timer.Start();
-            _contentsBox.DragEnter += _contentsBox_DragEnter;
-            _contentsBox.TextChanged += _contentsBox_TextChanged;
+            ContentsBox.DragEnter += _contentsBox_DragEnter;
+            ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
         public int Indent
@@ -79,7 +79,7 @@ namespace SolidGui
         public void OnRecheckClicked(object sender, EventArgs e)
         {
             Recheck();
-            _contentsBox.Focus();
+            ContentsBox.Focus();
         }
 
         private void Recheck()
@@ -95,9 +95,9 @@ namespace SolidGui
 
         public void Highlight(int startIndex, int length)
         {
-            _contentsBox.TextChanged -= _contentsBox_TextChanged;
-            _contentsBox.Select(startIndex, length);
-            _contentsBox.TextChanged += _contentsBox_TextChanged;
+            ContentsBox.TextChanged -= _contentsBox_TextChanged;
+            ContentsBox.Select(startIndex, length);
+            ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -116,33 +116,33 @@ namespace SolidGui
                 UpdateView();
                 _keyScanner.Reset();
             }
-            _contentsBox.Focus();
+            ContentsBox.Focus();
         }
        
         public void UpdateModel()
         {
-            //int currentIndex = _contentsBox.SelectionStart;
-            if (_currentRecord != null && _isDirty && _contentsBox.Text.Length > 0)
+            //int currentIndex = ContentsBox.SelectionStart;
+            if (_currentRecord != null && _isDirty)  // && ContentsBox.Text.Length > 0)  // We now allow clearing to delete a record -JMC 2013-09
             {
-                _model.UpdateCurrentRecord(_currentRecord, _contentsBox.Text);
+                _model.UpdateCurrentRecord(_currentRecord, ContentsBox.Text);
             }
             _isDirty = false;
             _model.SolidSettings.NotifyIfNewMarkers();
-            //_contentsBox.SelectionStart = currentIndex;
+            //ContentsBox.SelectionStart = currentIndex;
         }
 
         public void ClearContentsOfTextBox()
         {
-            _contentsBox.TextChanged -= _contentsBox_TextChanged;
-            _contentsBox.Clear();
-            _contentsBox.TextChanged += _contentsBox_TextChanged;
+            ContentsBox.TextChanged -= _contentsBox_TextChanged;
+            ContentsBox.Clear();
+            ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
         public void DisplayEachFieldInCurrentRecord()
         {
             // Note: This uses a non visible control to render in, and then copies the RTF to the visible control.
             // This prevents undesirable visual effects caused by moving the selection point in the visible control.
-            _contentsBox.TextChanged -= _contentsBox_TextChanged;
+            ContentsBox.TextChanged -= _contentsBox_TextChanged;
 
             _markerTip.ClearLineMessages();
             _contentsBoxDB.Clear();
@@ -202,8 +202,6 @@ namespace SolidGui
                 string displayValue = _model.GetUnicodeValueFromLatin1(field);
                 _contentsBoxDB.AppendText(displayValue + field.Trailing);
 
-
-
                 lineNumber++;
             }
 
@@ -212,9 +210,9 @@ namespace SolidGui
             _contentsBoxDB.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
 
             // Copy the buffer to the real control.
-            _contentsBox.Rtf = _contentsBoxDB.Rtf;
+            ContentsBox.Rtf = _contentsBoxDB.Rtf;
 
-            _contentsBox.TextChanged += _contentsBox_TextChanged;
+            ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
 
@@ -223,7 +221,7 @@ namespace SolidGui
         {
             if (_keyScanner.ProcessKey(e.KeyValue))
             {
-                _contentsBox.SelectedText = _processingMark;
+                ContentsBox.SelectedText = _processingMark;
                 UpdateContentsOfTextBox();
                 _keyScanner.Reset();
             }
@@ -244,21 +242,23 @@ namespace SolidGui
             DisplayEachFieldInCurrentRecord();
         }
 
-        private bool CursorIsAboveLastLine()
+        [DebuggerStepThrough]
+        private bool CursorIsAboveLastLine()  //JMC: What's the purpose here? AFAIK this always returns true. Maybe it's due to the multiplication below?
         {
-            Point cursorPositionRelativeToContentsBox = _contentsBox.PointToClient(MousePosition);
-            int YpositionOfLastLineOfText = _contentsBox.Lines.Length*_contentsBox.Font.Height;
+            Point cursorPositionRelativeToContentsBox = ContentsBox.PointToClient(MousePosition);
+            int YpositionOfLastLineOfText = ContentsBox.Lines.Length * ContentsBox.Font.Height;
             return cursorPositionRelativeToContentsBox.Y < YpositionOfLastLineOfText;
         }
 
+        [DebuggerStepThrough]
         private bool CursorIsOnMarker()
         {
-            Point positionOfCursor = _contentsBox.PointToClient(MousePosition);
+            Point positionOfCursor = ContentsBox.PointToClient(MousePosition);
 
             if (positionOfCursor.X < 120 && CursorIsAboveLastLine())
             {
-                int indexOfNearestCharacter = _contentsBox.GetCharIndexFromPosition(positionOfCursor);
-                Point positionOfNearestCharacter = _contentsBox.GetPositionFromCharIndex(indexOfNearestCharacter);
+                int indexOfNearestCharacter = ContentsBox.GetCharIndexFromPosition(positionOfCursor);
+                Point positionOfNearestCharacter = ContentsBox.GetPositionFromCharIndex(indexOfNearestCharacter);
                 int xCursorDistanceFromNearestCharacter = Math.Abs(positionOfCursor.X - positionOfNearestCharacter.X);
                 int yCursorDistanceFromNearestCharacter = Math.Abs(positionOfCursor.Y - positionOfNearestCharacter.Y);
                 return xCursorDistanceFromNearestCharacter < 5;
@@ -268,6 +268,7 @@ namespace SolidGui
             
         }
 
+        [DebuggerStepThrough]
         private void _contentsBox_MouseLeave(object sender, EventArgs e)
         {
             if (_markerTip != null)
@@ -278,13 +279,14 @@ namespace SolidGui
             }
         }
 
+        [DebuggerStepThrough] // JMC: for now anyway (might remove later; see the "fixed #1201" revision of SfmEditorView, just after rev 33c506d54a74)
         private void _contentsBox_MouseMove(object sender, MouseEventArgs e)
         {
             int index = GetIndex();
 
             if (index != -1)
             {
-                int newLineNumber = _contentsBox.GetLineFromCharIndex(index);
+                int newLineNumber = ContentsBox.GetLineFromCharIndex(index);
 
                 if (_lineNumber != newLineNumber)
                 {
@@ -310,13 +312,14 @@ namespace SolidGui
             }
         }
 
+        [DebuggerStepThrough]
         private int GetIndex()
         {
             int nearestCharacterIndex = -1;
 
             if (CursorIsOnMarker())
             {
-                nearestCharacterIndex = _contentsBox.GetCharIndexFromPosition(_contentsBox.PointToClient(MousePosition));
+                nearestCharacterIndex = ContentsBox.GetCharIndexFromPosition(ContentsBox.PointToClient(MousePosition));
             }
             return nearestCharacterIndex;
         }

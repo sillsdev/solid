@@ -58,7 +58,7 @@ namespace SolidGui
         public void UpdateDisplay()
         {
             if (_model == null)
-                return; //JMC: But shouldn't we clear ourself out first so as to not show old data?
+                return; //JMC: Would it help at all to call ClearContentsOfTextBox() here? Probably w/b redundant.
             _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
             _previousButton.Enabled = _model.CanGoPrev();

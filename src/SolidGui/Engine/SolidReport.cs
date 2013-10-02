@@ -46,10 +46,7 @@ namespace SolidGui.Engine
 
         public ReportEntry GetEntryById(int id)
         {
-            var retVal =Entries.Find(
-                entry => entry.FieldID == id
-            );
-
+            var retVal = Entries.Find( entry => entry.FieldID == id );
             return retVal;
         }
 

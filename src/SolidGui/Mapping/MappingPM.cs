@@ -160,12 +160,7 @@ namespace SolidGui.Mapping
 
             public Concept GetConceptById(string id)
             {
-                return _concepts.Find(
-                    delegate(Concept concept)
-                        {
-                            return concept.GetId() == id;
-                        }
-                    );
+                return _concepts.Find(concept => concept.GetId() == id);
             }
         }
 

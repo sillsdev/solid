@@ -42,7 +42,7 @@ namespace SolidGui
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
-            _sfmEditorModel = new SfmEditorPM(_navigatorModel);
+            _sfmEditorModel = new SfmEditorPM(_navigatorModel, _workingDictionary);  // JMC:! Is _workingDictionary correct and sufficient?  // passing the dict will help fix issue #173 etc. -JMC
             _searchModel = new SearchViewModel();
 
 

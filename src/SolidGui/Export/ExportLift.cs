@@ -261,7 +261,7 @@ namespace SolidGui.Export
                 return destinationFilePath;
 
             var suggested = Path.Combine(destDirectory, Path.GetFileNameWithoutExtension(destinationFilePath));
-            var s = string.Format("The folder you've selected has other files in it. Would you rather SOLID export all the lift files into their own folder at {0}?", suggested);
+            var s = string.Format("The folder you've selected has other files in it. Would you rather Solid export all the lift files into their own folder at {0}?", suggested);
             if(DialogResult.Yes == MessageBox.Show(s, "Destination check", MessageBoxButtons.YesNo))
             {
                 if(!Directory.Exists(suggested))

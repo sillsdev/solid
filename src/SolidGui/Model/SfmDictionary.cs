@@ -130,6 +130,18 @@ namespace SolidGui.Model
             _recordList.Add(record);
         }
 
+        public void AddRecord(Record record)
+        {
+            _recordList.Add(record);
+        }
+
+        /* not used ???
+        public void AddRecord(List<string> fieldValues)
+        {
+            _recordList.Add(new Record(fieldValues));
+        }
+        */
+
         private void UpdateMarkerStatistics(Record record)
         {
             foreach (SfmFieldModel field in record.Fields)
@@ -148,18 +160,6 @@ namespace SolidGui.Model
                 }
             }
         }
-
-        public void AddRecord(Record record)
-        {
-            _recordList.Add(record);
-        }
-
-        /* not used ???
-        public void AddRecord(List<string> fieldValues)
-        {
-            _recordList.Add(new Record(fieldValues));
-        }
-        */
 
         private void OnDoOpenWork(Object sender, DoWorkEventArgs args)
         {
@@ -380,6 +380,12 @@ namespace SolidGui.Model
         public override Record GetRecord(int index)
         {
             return _recordList[index];
+        }
+
+        internal bool DeleteRecord(Record rec)
+        {
+            //int i = FindRecord(id);
+            return _recordList.Remove(rec);
         }
     }
 }

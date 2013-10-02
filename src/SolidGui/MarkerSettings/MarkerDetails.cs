@@ -21,7 +21,7 @@ namespace SolidGui.MarkerSettings
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
         private FilterChooserPM _filterChooserPM;
-        private MarkerFilter _filter;
+        private MarkerFilter _markerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> RecordFilterChanged;
@@ -31,16 +31,16 @@ namespace SolidGui.MarkerSettings
         {
             InitializeComponent();
 
-            var frequencyCount = (from GLColumn c in _listView.Columns where c.Text == "Count" select c).First();
-            frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));
-            _listView.GridLineStyle = GLGridLineStyles.gridNone;
-            _listView.SelectionColor = Color.LightYellow;
-            _listView.SelectedTextColor = Color.Black;
+            var frequencyCount = (from GLColumn c in _markerListView.Columns where c.Text == "Count" select c).First();
+            frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));   // JMC: Consider doing the same to make other columns sortable too
+            _markerListView.GridLineStyle = GLGridLineStyles.gridNone;
+            _markerListView.SelectionColor = Color.LightYellow;
+            _markerListView.SelectedTextColor = Color.Black;
         }
 
         public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, SfmDictionary dictionary, SolidSettings settings)
         {
-            _listView.SuspendLayout();
+            _markerListView.SuspendLayout();
             _markerSettingsPM = markerSettingsPM;
             _filterChooserPM = filterChooserPM;
             _settings = settings;
@@ -52,19 +52,19 @@ namespace SolidGui.MarkerSettings
         {
             string previouslySelectedMarker = string.Empty;
             
-            if(_listView.SelectedItems.Count > 0)
+            if(_markerListView.SelectedItems.Count > 0)
             {
-                previouslySelectedMarker = _listView.SelectedItems[0].Text;
+                previouslySelectedMarker = _markerListView.SelectedItems[0].Text;
             }
 
-            _listView.Items.Clear();
-            //_listView.MySortBrush  = null;
-            // _listView.MySortBrush = Brushes.Coral;
-            // _listView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
+            _markerListView.Items.Clear();
+            //_markerListView.MySortBrush  = null;
+            // _markerListView.MySortBrush = Brushes.Coral;
+            // _markerListView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
 
 //            ImageList colimglst = new ImageList();
 //            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
-//            _listView.SmallImageList = colimglst;
+//            _markerListView.SmallImageList = colimglst;
 
             foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
             {
@@ -80,14 +80,14 @@ namespace SolidGui.MarkerSettings
                 //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
                 //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
-                _listView.Items.Add(item);
+                _markerListView.Items.Add(item);
             }
 
-            //           _listView.Sorting = SortOrder.Ascending;
-            //          _listView.Sort();
+            //           _markerListView.Sorting = SortOrder.Ascending;
+            //          _markerListView.Sort();
 
-            _listView.Columns[0].LastSortState = SortDirections.SortAscending;
-            _listView.SortColumn(0); // TODO: review... how to keep the old order?
+            _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
+            _markerListView.SortColumn(0); // TODO: review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
         }
 
@@ -128,8 +128,8 @@ namespace SolidGui.MarkerSettings
         {
             string conceptId = markerSetting.GetMappingConceptId(type);
             var mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
-            
-            var concept = mappingSystem.GetConceptById(conceptId);
+
+            var concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
 
             string mapping = (concept != null) ? concept.ToString() : null;
             
@@ -206,12 +206,12 @@ namespace SolidGui.MarkerSettings
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
             //_changingFilter = true;
-            if (_filter != e._recordFilter)
+            if (_markerFilter != e.RecordFilter)
             {
                 // Remove the selection
-                for (int i = 0; i < _listView.Items.Count; i++)
+                for (int i = 0; i < _markerListView.Items.Count; i++)
                 {
-                    _listView.Items[i].Selected = false;
+                    _markerListView.Items[i].Selected = false;
                 }
             }
             //_changingFilter = false;
@@ -219,14 +219,14 @@ namespace SolidGui.MarkerSettings
 
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
-            _listView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
-            _listView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
-            _listView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+            _markerListView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
+            _markerListView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
+            _markerListView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
         }
 
         public void OpenSettingsDialog(string area)
         {
-            if(_listView.SelectedItems.Count == 0)
+            if(_markerListView.SelectedItems.Count == 0)
             {
                 return;
             }
@@ -237,7 +237,7 @@ namespace SolidGui.MarkerSettings
 
             UsageReporter.SendNavigationNotice("Settings/"+area);
 
-            string marker = _listView.SelectedItems[0].Text;
+            string marker = _markerListView.SelectedItems[0].Text;
             var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
@@ -248,11 +248,11 @@ namespace SolidGui.MarkerSettings
 
         private void OpenSettingsDialog(string area, SolidMarkerSetting.MappingType mappingType)
         {
-            if (_listView.SelectedItems.Count == 0)
+            if (_markerListView.SelectedItems.Count == 0)
             {
                 return;
             }
-            string marker = _listView.SelectedItems[0].Text;
+            string marker = _markerListView.SelectedItems[0].Text;
             var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
             dialog.SelectedArea = area;
             dialog.MappingType = mappingType;
@@ -266,13 +266,13 @@ namespace SolidGui.MarkerSettings
 
         public void SelectMarker(string marker)
         {
-            foreach(GLItem a in _listView.Items)  //JMC: move this down
+            foreach(GLItem a in _markerListView.Items)  //JMC: move this down
             {
                 a.Selected = (a.Text == marker);
             }
-            if(String.IsNullOrEmpty(marker) && _listView.Items.Count > 0)
+            if(String.IsNullOrEmpty(marker) && _markerListView.Items.Count > 0)
             {
-                _listView.Items[0].Selected = true; //JMC: This is what initially sets the active filter to, say, \a 
+                _markerListView.Items[0].Selected = true; //JMC: This is what initially sets the active filter to, say, \a 
                 //hack for a bug in Glacial List
                 _listView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
                 return;
@@ -286,14 +286,14 @@ namespace SolidGui.MarkerSettings
 
         private void _listView_SelectedIndexChanged(object source, ClickEventArgs e)
         {
-            if (_listView.SelectedItems.Count == 0)
+            if (_markerListView.SelectedItems.Count == 0)
             {
                 return;
             }
-            string marker = _listView.Items[e.ItemIndex].Text;
+            string marker = _markerListView.Items[e.ItemIndex].Text;
 
-            _filter = new MarkerFilter(_dictionary, marker);
-            _filterChooserPM.ActiveRecordFilter = _filter;  
+            _markerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
+            _filterChooserPM.ActiveWarningFilter = _markerFilter;  
         }
 
         private void _listView_DoubleClick(object sender, EventArgs e)
@@ -301,4 +301,5 @@ namespace SolidGui.MarkerSettings
             OpenSettingsDialog(null);
         }
     }
+
 }

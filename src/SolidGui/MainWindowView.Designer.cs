@@ -339,7 +339,7 @@ namespace SolidGui
 			this.Controls.Add(this.splitContainer1);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainWindowView";
-			this.Text = "SOLID";
+			this.Text = "Solid";
 			this.Load += new System.EventHandler(this.MainWindowView_Load);
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);

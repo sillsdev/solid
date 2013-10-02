@@ -164,17 +164,19 @@ namespace SolidGui.Engine
                 // Append what we find; though we'll have to back out the last (len) chars
                 if (c == '\n')
                 {
+                    sbMatch.Clear(); // no match; start over
                     _col = 1;
                     _line++;
-                    sbHeader.Append(SolidSettings.NewLine); // JMC: use a global setting!
+                    sbHeader.Append(SolidSettings.NewLine);
                 }
                 else
                 {
-                    sbHeader.Append(c); 
+                    sbHeader.Append(c);
+                    _col++;
                 }
 
                 L = sbMatch.Length;  // the current length of a possible match
-                if (c == stopAt[L])
+                if (c == stopAt[L] && _col-1 == L+1)
                 {
                     sbMatch.Append(c); // still matches
                 }
@@ -183,21 +185,16 @@ namespace SolidGui.Engine
                     sbMatch.Clear(); // no match; start over
                 }
 
-                if (sbMatch.Length == len) // we've found \lx but does it end?
+                if (sbMatch.Length == len) 
                 {
-                    if ( _enders.Contains((char)_r.Peek()) ) 
+                    // we've found \lx, but does it end?
+                    tmp = _r.Peek();
+                    if ( tmp == -1 || _enders.Contains((char)tmp) ) 
                     {
                         // yes, end of marker (key)
 
                         sbHeader.Remove(sbHeader.Length - len, len);
                         ret = stopAt;
-/*
-                        string s = sbHeader.ToString();
-                        int split = s.Length - len;
-                        _header = s.Substring(0, split);
-                        ret = s.Substring(split);
-
-*/
                         _stateParse = StateParse.GotLx;
                         _r.Read(); // discard separator (usually the space in @"\lx ")
                         break;
@@ -211,7 +208,7 @@ namespace SolidGui.Engine
             return ret;
         }
 
-        // Read in ONE record from the text stream (into the Record property); returns false if no more records in stream
+        // Read in ONE record from the text stream (into the Record property), OR returns false if no more records in stream.
         // Calling code should also check whether the Header property is non-empty after calling this.
         public bool ReadRecord()
         {
@@ -226,6 +223,7 @@ namespace SolidGui.Engine
             SfmField currentField = new SfmField();
             if (_stateParse == StateParse.GotLx)
             {
+                retval = true;
                 currentField.Marker = _startKey;
                 _recordStartLine = _line;
                 _recordEndLine = -1;
@@ -249,14 +247,13 @@ namespace SolidGui.Engine
             string stemp = "";
             _recordStartLine = _line;
             _col = 1;
-            bool eol = false;
-            bool eof = false;  // can also mean "end of record"
+            bool eof = false;
             bool initialSlash;
 
-            while (true)  // most often, we'll break upon hitting another lx
+            while (true)  // look at one char or one \r\n sequence; we'll break upon hitting another lx, or on EOF
             {
                 temp = _r.Read();
-                eol = eof = temp == -1;
+                eof = temp == -1;
                 curr = (char)temp;
 
                 if ( (!eof) && (!_enders.Contains(curr)) )  // the typical case
@@ -267,56 +264,78 @@ namespace SolidGui.Engine
                 }
 
                 // It's a tab, space, newline, slash, or EOF; proceed...
-
-                curr = simplifyNewline(_r, curr);
-                if (curr == '\n')
+                
+                if ( (curr == '\n') || (curr == '\r') )
                 {
+                    curr = simplifyNewline(_r, curr);
                     _col = 1;
                     _line++;
-                    eol = true;
+                    initialSlash = false;
+                }
+                else
+                {
+                    initialSlash = ((_col == 1) && (curr == '\\'));
+                    _col++;
                 }
 
-                switch (_stateParse)
+                if (_stateParse == StateParse.BuildKey)
                 {
-                    case StateParse.BuildValue:
-                        initialSlash = ((_col == 1) && (curr == '\\'));
-                        if (curr == '\n')
+                    // end of field marker (note that we simply drop curr, unless it's \n)
+                    stemp = sb.ToString();
+                    if (stemp == _startKey)
+                    {
+                        _stateParse = StateParse.GotLx;
+                        _recordEndLine = _line - 1;
+                        break;
+                    }
+                    currentField.Marker = stemp;
+                    currentField.SourceLine = _line;
+                    sb.Clear();
+                    _stateParse = StateParse.BuildValue;
+                    if (eof)
+                    {
+                        _record.Add(currentField);
+                        _recordEndLine = _line;
+                        break;
+                    }
+                    if (curr == '\n')
+                    {
+                        sb.Append(SolidSettings.NewLine);
+                        if ((char) _r.Peek() == '\\') // no data
                         {
-                            sb.Append(SolidSettings.NewLine); 
-                        }
-                        else if (!eof && !initialSlash) // a rarely-needed check (see test ReadEmptyKey_Correct)
-                        {
-                            sb.Append(curr);
-                        }
-                        if (eof || (eol && (char)_r.Peek() == '\\') || initialSlash)  
-                        {
-                            // end of field value
+                            // end of field value (duplicate code below)
                             currentField.SetSplitValue(sb.ToString());
-                            currentField.SourceLine = _line;
                             _record.Add(currentField);
-                            retval = true;
                             sb.Clear();
                             currentField = new SfmField(); // clear
                             _stateParse = StateParse.BuildKey;
-                            if (!initialSlash)
-                            {
-                                _r.Read(); //toss the upcoming slash
-                            }
-                        }
-                        break;
 
-                    case StateParse.BuildKey:
-                        // end of field marker (note that we drop curr)
-                        stemp = sb.ToString();
-                        if (stemp == _startKey)
-                        {
-                            _stateParse = StateParse.GotLx;
-                            goto DoubleBreak;  // Yeah, shoot me... :) I didn't want the overhead of nested method calls or extra booleans) -JMC
+                            _r.Read(); //toss the upcoming slash
+                            _col = 2;
                         }
-                        currentField.Marker = stemp;
+                    }
+                }
+
+                else if (_stateParse == StateParse.BuildValue)
+                {
+                    if (curr == '\n')
+                    {
+                        sb.Append(SolidSettings.NewLine); 
+                    }
+                    else if (!eof && !initialSlash)
+                    {
+                        sb.Append(curr);
+                    }
+                    if (initialSlash || eof) 
+                    {
+                        // end of field value (duplicate code above)
+                        currentField.SetSplitValue(sb.ToString());
+                        _record.Add(currentField);
                         sb.Clear();
-                        _stateParse = StateParse.BuildValue;
-                        break;
+                        currentField = new SfmField(); // clear
+                        _stateParse = StateParse.BuildKey;
+                    }
+
                 }
 
                 if (eof || _stateParse == StateParse.GotLx)
@@ -326,9 +345,8 @@ namespace SolidGui.Engine
                 }
 
             }
-            DoubleBreak: ;
 
-            _recordEndLine = _line - 1; // JMC: Or maybe = (_stateParse == StateParse.GotLx) ? _line - 1 : _line;
+            // _recordEndLine = _line - 1; // JMC: Or maybe = (_stateParse == StateParse.GotLx) ? _line - 1 : _line;
             _recordEndLine = (_stateParse == StateParse.GotLx) ? _line - 1 : _line;
 
             return retval;
@@ -389,7 +407,7 @@ namespace SolidGui.Engine
 
         public string Value(string key)
         {
-            SfmField result = _record.Find(delegate(SfmField item) { return item.Marker == key; });
+            SfmField result = _record.Find( (SfmField item) => { return item.Marker == key; });
             if (result == null)
             {
                 throw new ArgumentOutOfRangeException("key");
@@ -397,22 +415,15 @@ namespace SolidGui.Engine
             return result.Value;
         }
 
-/*
-        private char ReadChar() // side effect: can set _stateLex to EOF
+        public string Trailing(string key)
         {
-            if (_pos == _used)
+            SfmField result = _record.Find( (SfmField item) => { return item.Marker == key; });
+            if (result == null)
             {
-                _pos = 0;
-                _used = _r.Read(_buffer, 0, _buffer.Length);
+                throw new ArgumentOutOfRangeException("key");
             }
-            if (_pos == _used) //??? Is there a better test for effectively EOF here?
-            {
-                _buffer[_pos] = '\0';
-                _stateLex = StateLex.EOF;
-            }
-            return _buffer[_pos++];
+            return result.Trailing;
         }
-*/
 
         public static SfmRecordReader CreateFromText(string text)
         {

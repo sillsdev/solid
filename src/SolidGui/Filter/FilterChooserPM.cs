@@ -5,25 +5,26 @@ namespace SolidGui.Filter
 {
 
     /// <summary>
-    /// The filter chooser is the list of filters the user can click on.
+    /// The filter chooser is the list of error/warning filters the user can click on.
     /// This class is the Presentation Model(ui-agnostic) half of this control
+    /// See also MarkerDetails, since the user can only select an item from one list at a time.
     /// </summary>
     public class FilterChooserPM
     {
         private IList<RecordFilter> _recordFilters;
-        private RecordFilter _activeRecordFilter;
+        private RecordFilter _activeWarningFilter;
 
         public class RecordFilterChangedEventArgs : System.EventArgs
         {
-            public RecordFilter _recordFilter;
+            public RecordFilter RecordFilter;
 
             public RecordFilterChangedEventArgs(RecordFilter recordFilter)
             {
-                _recordFilter = recordFilter;
+                RecordFilter = recordFilter;
             }
         }
 
-        public event EventHandler<RecordFilterChangedEventArgs> RecordFilterChanged;
+        public event EventHandler<RecordFilterChangedEventArgs> WarningFilterChanged;
 
         public FilterChooserPM()
         {
@@ -45,18 +46,18 @@ namespace SolidGui.Filter
         public void OnDictionaryProcessed()
         {}
 
-        public RecordFilter ActiveRecordFilter
+        public RecordFilter ActiveWarningFilter
         {
             get
             {
-                return _activeRecordFilter;
+                return _activeWarningFilter;
             }
             set
             {
-                _activeRecordFilter = value;
-                if (RecordFilterChanged != null)
+                _activeWarningFilter = value;
+                if (WarningFilterChanged != null)
                 {
-                    RecordFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeRecordFilter));
+                    WarningFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeWarningFilter));
                 }
             }
         }

@@ -46,7 +46,7 @@ namespace SolidGui.Search
 
         private static void CantFindWordErrorMessage(string word)
         {
-            MessageBox.Show("Cannot find\n'" + word + "'", "SOLID", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Cannot find\n'" + word + "'", "Solid", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void FindNext( RecordFilter filter, string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)

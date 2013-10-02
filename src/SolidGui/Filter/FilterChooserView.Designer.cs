@@ -28,26 +28,26 @@ namespace SolidGui.Filter
         /// </summary>
         private void InitializeComponent()
         {
-            this._filterListBox = new System.Windows.Forms.ListBox();
+            this._warningFilterListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
-            // _filterListBox
+            // _warningFilterListBox
             // 
-            this._filterListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._warningFilterListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this._filterListBox.FormattingEnabled = true;
-            this._filterListBox.Location = new System.Drawing.Point(0, 0);
-            this._filterListBox.Name = "_filterListBox";
-            this._filterListBox.Size = new System.Drawing.Size(150, 147);
-            this._filterListBox.TabIndex = 1;
-            this._filterListBox.SelectedIndexChanged += new System.EventHandler(this._filterList_SelectedIndexChanged);
+            this._warningFilterListBox.FormattingEnabled = true;
+            this._warningFilterListBox.Location = new System.Drawing.Point(0, 0);
+            this._warningFilterListBox.Name = "_warningFilterListBox";
+            this._warningFilterListBox.Size = new System.Drawing.Size(150, 147);
+            this._warningFilterListBox.TabIndex = 1;
+            this._warningFilterListBox.SelectedIndexChanged += new System.EventHandler(this._filterList_SelectedIndexChanged);
             // 
             // FilterChooserView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._filterListBox);
+            this.Controls.Add(this._warningFilterListBox);
             this.Name = "FilterChooserView";
             this.Load += new System.EventHandler(this.FilterChooserView_Load);
             this.ResumeLayout(false);
@@ -56,7 +56,7 @@ namespace SolidGui.Filter
 
         #endregion
 
-        private System.Windows.Forms.ListBox _filterListBox;
+        private System.Windows.Forms.ListBox _warningFilterListBox;
 
     }
 }

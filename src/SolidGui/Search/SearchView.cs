@@ -44,7 +44,7 @@ namespace SolidGui.Search
         {
             set
             {
-                if (value < _sfmEditorView._contentsBox.Text.Length)
+                if (value < _sfmEditorView.ContentsBox.Text.Length)
                 {
                     _textIndex = value;
                 }
@@ -57,10 +57,10 @@ namespace SolidGui.Search
 
         private void OnFindNextButton_Click(object sender, EventArgs e)
         {
-            TextIndex = _sfmEditorView._contentsBox.SelectionStart + 1;
+            TextIndex = _sfmEditorView.ContentsBox.SelectionStart + 1;
             _startingTextIndex = (_startingTextIndex == -1) ? TextIndex-1 : _startingTextIndex;
 
-            if (_scopeComboBox.SelectedIndex == 0)
+            if (_scopeComboBox.SelectedIndex == 0)  // "Check Result"
             {
                 RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
                 _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
@@ -71,7 +71,7 @@ namespace SolidGui.Search
                                       _startingRecordIndex,
                                       _startingTextIndex);
             }
-            else
+            else  // "Entire Dictionary"
             {
                 RecordIndex = _navigatorModel.CurrentRecordID;
                 _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
@@ -91,13 +91,13 @@ namespace SolidGui.Search
 
         private void OnReplaceButton_Click(object sender, EventArgs e)
         {
-            if(_sfmEditorView._contentsBox.SelectedText != _findTextbox.Text)
+            if(_sfmEditorView.ContentsBox.SelectedText != _findTextbox.Text)
             {
                 OnFindNextButton_Click(new object(),new EventArgs());
             }
             else
             {
-                _sfmEditorView._contentsBox.SelectedText = _replaceTextBox.Text;
+                _sfmEditorView.ContentsBox.SelectedText = _replaceTextBox.Text;
                 _sfmEditorView.UpdateModel();
             }
         }
