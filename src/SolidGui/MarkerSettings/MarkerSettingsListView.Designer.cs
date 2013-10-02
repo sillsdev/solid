@@ -126,9 +126,8 @@ namespace SolidGui.MarkerSettings
             this._markerListView.SuperFlatHeaderColor = System.Drawing.Color.White;
             this._markerListView.TabIndex = 0;
             this._markerListView.Text = "glacialList1";
-            this._markerListView.SelectedIndexChanged += new GlacialComponents.Controls.GlacialList.ClickedEventHandler(this._listView_SelectedIndexChanged);
-            // this._markerListView.Click += new System.EventHandler(this._markerListView_Click);  // JMC:! to add
-            this._markerListView.DoubleClick += new System.EventHandler(this._listView_DoubleClick);
+            this._markerListView.SelectedIndexChanged += new GlacialComponents.Controls.GlacialList.ClickedEventHandler(this._markerListView_SelectedIndexChanged);
+            this._markerListView.DoubleClick += new System.EventHandler(this._markerListView_DoubleClick);
             // 
             // MarkerSettingsListView
             // 

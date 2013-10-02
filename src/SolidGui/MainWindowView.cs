@@ -45,11 +45,6 @@ namespace SolidGui
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
             //_markerSettingsList.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnWarningFilterChanged;
-            // JMC:! Verify these lines fixing #1196. Not sure when the preceding was disabled, but I think we needed to hook up _markerSettingsList.Click with something like _recordNavigatorView.OnWarningFilterChanged;
-            //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
-            //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _filterChooserView.OnWarningFilterChanged;
-            //_mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerSettingsList.OnFilterChanged;
-            _mainWindowPM.NavigatorModel.FilterChanged += _markerSettingsList.OnFilterChanged;
 
             // Event wiring for child views.
             _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;

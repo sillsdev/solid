@@ -274,7 +274,7 @@ namespace SolidGui.MarkerSettings
             {
                 _markerListView.Items[0].Selected = true; //JMC: This is what initially sets the active filter to, say, \a 
                 //hack for a bug in Glacial List
-                _listView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
+                _markerListView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
                 return;
             }
         }
@@ -284,37 +284,27 @@ namespace SolidGui.MarkerSettings
             OpenSettingsDialog(null);
         }
 
-        private void _listView_SelectedIndexChanged(object source, ClickEventArgs e)
+        private void _markerListView_SelectedIndexChanged(object source, ClickEventArgs e)
         {
+            // Disabled this check, as it was causing issue #1196 (extra click required to apply marker filter)  -JMC 2013-09
+/*          
             if (_markerListView.SelectedItems.Count == 0)
             {
                 return;
             }
+*/
+
             string marker = _markerListView.Items[e.ItemIndex].Text;
 
             _markerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
-            _filterChooserPM.ActiveWarningFilter = _markerFilter;  
+            _filterChooserPM.ActiveWarningFilter = _markerFilter;
         }
 
-        // JMC:! need a Click (or on change?) method here too, wired up to the same code as click/change (i.e. selectedIndexChanged ?) for FilterChooserView
-
-        private void _listView_DoubleClick(object sender, EventArgs e)
+        private void _markerListView_DoubleClick(object sender, EventArgs e)
         {
             OpenSettingsDialog(null);
         }
 
-        private void _markerListView_Click(object sender, EventArgs e)
-        {
-            //JMC:! unfinished
-/*
-            if (_markerListView.SelectedItems != null && _markerListView.SelectedItems.Count > 0 && !_changingFilter)
-            {
-                _markerSettingsPM.
-                _model.ActiveRecordFilter = (RecordFilter)_filterListBox.SelectedItem;
-            }
-*/
-
-        }
 
     }
 
