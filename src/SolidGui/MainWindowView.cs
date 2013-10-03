@@ -259,7 +259,7 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (_searchView != null) {_searchView.Dispose();}  // may be helpful now that cancel Find only hides rather than closing. -JMC
             if(NeedsSave()) 
             {
                 var answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
@@ -305,7 +305,7 @@ namespace SolidGui
         private void OnSearchClick(object sender, EventArgs e)
         {
             _searchView = SearchView.CreateSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
-            _searchView.TopMost = true;
+            _searchView.TopMost = true; // means that this form should always be in front of all others
             _searchView.SearchModel = _mainWindowPM.SearchModel;
             _searchView.Show();
             _searchView.Focus();

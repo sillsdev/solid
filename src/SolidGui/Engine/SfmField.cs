@@ -20,21 +20,25 @@ namespace SolidGui.Engine
         }
 
         public string Marker;
-        public string Value;  // JMC: on set, auto-chop1 any trailing white space and move it to the beginning of Trailing
+        public string Value;  
         public int SourceLine;  // was here already; could be useful for logging, reporting "error on line __", displaying line number (as of last Recheck), etc. -JMC
 
         private string _trailing;
         public string Trailing // (for trailing white space); added -JMC 2013-09
         {
             get { return String.IsNullOrEmpty(_trailing) ? DefaultTrailing : _trailing; }
-            set { _trailing = value; }
+            set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
         // Set both the value and the trailing-space value using a single string
         public void SetSplitValue(string val)  // JMC: write tests for this
         {
             MatchCollection m = Reggie.Matches(val);
-            if (m.Count > 0)
+            if (m.Count > 2)
+            {
+                throw new ArgumentException("Bug: a single field shouldn't be able to end in whitespace twice.");
+            }
+            else if (m.Count == 1)
             {
                 int i = m[0].Index;
                 Value = val.Substring(0, i);
@@ -46,10 +50,6 @@ namespace SolidGui.Engine
                 Trailing = DefaultTrailing;
             }
 
-            if (m.Count > 2)
-            {
-                throw new ArgumentException("Bug: a single field shouldn't be able to end in whitespace twice.");
-            }
 
         }
     

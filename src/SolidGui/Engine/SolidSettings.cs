@@ -86,7 +86,7 @@ namespace SolidGui.Engine
         public bool DefaultEncodingUnicode { get; private set; }
 
         [XmlIgnore]
-        public static readonly string NewLine = "\r\n";  //static for now -JMC
+        public static string NewLine = "\r\n";  //static for now; maybe shouldn't be -JMC
 
         public bool HasMarker(string marker)
         {

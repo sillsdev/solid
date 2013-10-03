@@ -115,7 +115,8 @@ namespace SolidGui.Model
 
             string indentation = new string(' ', Depth*spacesInIndentation);
             string slash = (Inferred) ? "\\+" : "\\";
-            return indentation + slash + Marker + " " + Value + Trailing;
+            string val = (Value == "") ? "" : " " + Value;
+            return indentation + slash + Marker + val + Trailing;
         }
 
         public int Id
@@ -129,7 +130,7 @@ namespace SolidGui.Model
         public string Trailing 
         {
             get { return String.IsNullOrEmpty(_trailing) ? SfmField.DefaultTrailing : _trailing; }
-            set { _trailing = value; }
+            set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
 

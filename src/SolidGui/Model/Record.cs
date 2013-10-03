@@ -134,7 +134,7 @@ namespace SolidGui.Model
             StringBuilder record = new StringBuilder();
             foreach (SfmFieldModel field in LexEntry.Fields)
             {
-                record.Append(field.ToStructuredString() + SfmField.DefaultTrailing);
+                record.Append(field.ToStructuredString());
             }
             return record.ToString();
         }

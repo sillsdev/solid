@@ -47,26 +47,26 @@ namespace SolidGui.Search
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Find";
+            this.label1.Text = "&Find";
             // 
             // _findTextbox
             // 
-            this._findTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                                                             | System.Windows.Forms.AnchorStyles.Right)));
+            this._findTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._findTextbox.Location = new System.Drawing.Point(59, 47);
             this._findTextbox.Name = "_findTextbox";
-            this._findTextbox.Size = new System.Drawing.Size(175, 20);
-            this._findTextbox.TabIndex = 0;
+            this._findTextbox.Size = new System.Drawing.Size(186, 20);
+            this._findTextbox.TabIndex = 1;
             this._findTextbox.TextChanged += new System.EventHandler(this.OnFindTextbox_TextChanged);
             // 
             // _findNextButton
             // 
             this._findNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._findNextButton.Location = new System.Drawing.Point(244, 12);
+            this._findNextButton.Location = new System.Drawing.Point(251, 12);
             this._findNextButton.Name = "_findNextButton";
-            this._findNextButton.Size = new System.Drawing.Size(81, 30);
-            this._findNextButton.TabIndex = 3;
-            this._findNextButton.Text = "Find &Next";
+            this._findNextButton.Size = new System.Drawing.Size(85, 30);
+            this._findNextButton.TabIndex = 4;
+            this._findNextButton.Text = "&Find Next";
             this._findNextButton.UseVisualStyleBackColor = true;
             this._findNextButton.Click += new System.EventHandler(this.OnFindNextButton_Click);
             // 
@@ -74,22 +74,22 @@ namespace SolidGui.Search
             // 
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(244, 86);
+            this._cancelButton.Location = new System.Drawing.Point(251, 86);
             this._cancelButton.Name = "_cancelButton";
-            this._cancelButton.Size = new System.Drawing.Size(81, 30);
-            this._cancelButton.TabIndex = 5;
+            this._cancelButton.Size = new System.Drawing.Size(85, 30);
+            this._cancelButton.TabIndex = 6;
             this._cancelButton.Text = "&Close";
             this._cancelButton.UseVisualStyleBackColor = true;
             this._cancelButton.Click += new System.EventHandler(this.OnCancelButton_Click);
             // 
             // _replaceTextBox
             // 
-            this._replaceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                                                                                | System.Windows.Forms.AnchorStyles.Right)));
+            this._replaceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._replaceTextBox.Location = new System.Drawing.Point(59, 78);
             this._replaceTextBox.Name = "_replaceTextBox";
-            this._replaceTextBox.Size = new System.Drawing.Size(175, 20);
-            this._replaceTextBox.TabIndex = 1;
+            this._replaceTextBox.Size = new System.Drawing.Size(186, 20);
+            this._replaceTextBox.TabIndex = 3;
             // 
             // label2
             // 
@@ -97,17 +97,17 @@ namespace SolidGui.Search
             this.label2.Location = new System.Drawing.Point(6, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Replace";
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Re&place";
             // 
             // _replaceButton
             // 
             this._replaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._replaceButton.Location = new System.Drawing.Point(244, 49);
+            this._replaceButton.Location = new System.Drawing.Point(251, 49);
             this._replaceButton.Name = "_replaceButton";
-            this._replaceButton.Size = new System.Drawing.Size(81, 30);
-            this._replaceButton.TabIndex = 4;
-            this._replaceButton.Text = "&Replace Next";
+            this._replaceButton.Size = new System.Drawing.Size(85, 30);
+            this._replaceButton.TabIndex = 5;
+            this._replaceButton.Text = "&Replace/Next";
             this._replaceButton.UseVisualStyleBackColor = true;
             this._replaceButton.Click += new System.EventHandler(this.OnReplaceButton_Click);
             // 
@@ -115,12 +115,12 @@ namespace SolidGui.Search
             // 
             this._scopeComboBox.FormattingEnabled = true;
             this._scopeComboBox.Items.AddRange(new object[] {
-                                                                "Check Result",
-                                                                "Entire Dictionary"});
+            "Check Result",
+            "Entire Dictionary"});
             this._scopeComboBox.Location = new System.Drawing.Point(59, 16);
             this._scopeComboBox.Name = "_scopeComboBox";
-            this._scopeComboBox.Size = new System.Drawing.Size(175, 21);
-            this._scopeComboBox.TabIndex = 9;
+            this._scopeComboBox.Size = new System.Drawing.Size(186, 21);
+            this._scopeComboBox.TabIndex = 8;
             this._scopeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScopeComboBox_SelectedIndexChanged);
             // 
             // label3
@@ -129,8 +129,8 @@ namespace SolidGui.Search
             this.label3.Location = new System.Drawing.Point(0, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Search In";
+            this.label3.TabIndex = 7;
+            this.label3.Text = "&Search In";
             // 
             // SearchView
             // 
@@ -138,7 +138,7 @@ namespace SolidGui.Search
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancelButton;
-            this.ClientSize = new System.Drawing.Size(335, 129);
+            this.ClientSize = new System.Drawing.Size(346, 129);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._scopeComboBox);
             this.Controls.Add(this._replaceButton);

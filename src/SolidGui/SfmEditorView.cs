@@ -122,7 +122,7 @@ namespace SolidGui
         public void UpdateModel()
         {
             //int currentIndex = ContentsBox.SelectionStart;
-            if (_currentRecord != null && _isDirty)  // && ContentsBox.Text.Length > 0)  // We now allow clearing to delete a record -JMC 2013-09
+            if (_currentRecord != null && _isDirty)  // && ContentsBox.Text.Length > 0)  // We now allow clearing to delete a record, so zero length is fine. -JMC 2013-09
             {
                 _model.UpdateCurrentRecord(_currentRecord, ContentsBox.Text);
             }
@@ -149,9 +149,11 @@ namespace SolidGui
             _contentsBoxDB.SelectAll();
             _contentsBoxDB.SelectionTabs = new[] { _indent };
 
-            const int currentPosition = 0;
-            const bool foundProcessingMark = false;
+            //const int currentPosition = 0;
+            //const bool foundProcessingMark = false;
             int lineNumber = 0;
+
+            // JMC:! Most or all of the following needs to go into into a method (see ToStructuredString), perhaps in SfmLexEntry or SfmEditorPM
 
             foreach (SfmFieldModel field in _currentRecord.Fields)
             {
@@ -184,7 +186,7 @@ namespace SolidGui
                 // 1) Indentation
                 _contentsBoxDB.AppendText(indentation);
 
-                // 2) Marker + tab
+                // 2) Marker
                 string marker = field.Marker.Trim(new[] { '_' });
                 if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
                 {
@@ -194,20 +196,24 @@ namespace SolidGui
                 {
                     _contentsBoxDB.SelectionFont = _defaultFont;
                 }
-                _contentsBoxDB.AppendText(markerPrefix + marker + "\t");
+                _contentsBoxDB.AppendText(markerPrefix + marker);
 
-                // 3) Value + Trailing Whitespace 
+                // 3) (tab + Value) + Trailing Whitespace 
                 _contentsBoxDB.SelectionColor = _defaultTextColor;
                 _contentsBoxDB.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
                 string displayValue = _model.GetUnicodeValueFromLatin1(field);
-                _contentsBoxDB.AppendText(displayValue + field.Trailing);
-
+                if (displayValue != "")
+                {
+                    _contentsBoxDB.AppendText("\t" + displayValue);
+                }
+                _contentsBoxDB.AppendText(field.Trailing);
+                
                 lineNumber++;
             }
 
             _contentsBoxDB.SelectionFont = _defaultFont;
             _contentsBoxDB.SelectionColor = _defaultTextColor;
-            _contentsBoxDB.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0;
+            _contentsBoxDB.SelectionStart = 0;  // = (foundProcessingMark) ? currentPosition - 1 : 0;
 
             // Copy the buffer to the real control.
             ContentsBox.Rtf = _contentsBoxDB.Rtf;
@@ -241,6 +247,12 @@ namespace SolidGui
             ClearContentsOfTextBox();
             DisplayEachFieldInCurrentRecord();
         }
+
+        public void Reload()
+        {
+            ClearContentsOfTextBox();
+            DisplayEachFieldInCurrentRecord();
+        }    
 
         [DebuggerStepThrough]
         private bool CursorIsAboveLastLine()  //JMC: What's the purpose here? AFAIK this always returns true. Maybe it's due to the multiplication below?
@@ -526,10 +538,5 @@ namespace SolidGui
 
         #endregion
 
-        public void Reload()
-        {
-            ClearContentsOfTextBox();
-            DisplayEachFieldInCurrentRecord();
-        }    
     }
 }

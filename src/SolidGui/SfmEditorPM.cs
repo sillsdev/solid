@@ -108,20 +108,10 @@ namespace SolidGui
             {
                 SfmRecord sfmRecord = reader.Record;
                 RemoveInferredFields(sfmRecord);
-                var sb = new StringBuilder();
-                foreach (SfmField field in sfmRecord)
-                {
-                    field.Value = GetLatin1ValueFromUnicode(field.Marker, field.Value);
-                    sb.Append("\\");
-                    sb.Append(field.Marker);
-                    if (field.Value != "")  // (issue #1206) don't insert trailing spaces that weren't in the file. -JMC 2013-09
-                    {
-                        sb.Append(" ");
-                        sb.Append(field.Value);
-                    }
-                    sb.Append(field.Trailing);
-                }
-                record.SetRecordContents(sb.ToString(), _solidSettings);
+
+                string s = AsString(sfmRecord);
+
+                record.SetRecordContents(s, _solidSettings);
 
                 // JMC: the UI will now need to update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
             }
@@ -131,6 +121,26 @@ namespace SolidGui
                 //throw new Exception("Solid was trying to update a record in a form which could not be read back in:"+newContents);
                 // JMC: This is no longer an issue because we're now dealing with deletions and fragments; remove the else block?
             }
+        }
+
+        private string AsString(SfmRecord sfmRecord)
+        {
+            var sb = new StringBuilder();
+            foreach (SfmField field in sfmRecord)
+            {
+                string s = GetLatin1ValueFromUnicode(field.Marker, field.Value);
+                field.Value = s; // JMC:! Do we really want this side effect? Couldn't running this method twice on a record double decode the unicode values?
+                // JMC: I've added a local variable so we can test without it
+                sb.Append("\\");
+                sb.Append(field.Marker);
+                if (s != "") // (issue #1206) don't insert trailing spaces that weren't in the file. -JMC 2013-09
+                {
+                    sb.Append(" ");
+                    sb.Append(s);
+                }
+                sb.Append(field.Trailing);
+            }
+            return sb.ToString();
         }
 
         private static void RemoveInferredFields(List<SfmField> sfmRecord)
