@@ -307,7 +307,7 @@ namespace SolidGui
             }
             GiveSolidSettingsToModels();
             _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
-            _filterChooserModel.OnDictionaryProcessed();
+            _filterChooserModel.OnDictionaryProcessed();  // JMC: does nothing? delete?
 
             if (DictionaryProcessed != null)
             {
@@ -364,7 +364,7 @@ namespace SolidGui
             WorkingDictionary.SaveAs(_tempDictionaryPath);
 
             _workingDictionary.Open(_tempDictionaryPath, Settings, _recordFilters);
-            _filterChooserModel.OnDictionaryProcessed();
+            _filterChooserModel.OnDictionaryProcessed(); // JMC: does nothing? delete?
 
             if (DictionaryProcessed != null)
             {

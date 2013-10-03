@@ -50,9 +50,6 @@ namespace SolidGui
         {
             _model = model;
             _model.RecordChanged += OnRecordChanged;
-                //if (_model == null)//happens at design time
-                //    return;
-                //UpdateDisplay();
         }
 
         public void UpdateDisplay()

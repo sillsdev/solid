@@ -24,7 +24,8 @@ namespace SolidGui.MarkerSettings
         private MarkerFilter _markerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
-        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  //JMC:! This was already commented out (as WarningFilterChanged); I suspect MarkerSettingsPM is the better place?
+        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  
+        //The above was already commented out; if needed, I suspect MarkerSettingsPM w/b the better place? -JMC
 
 
         public MarkerSettingsListView()

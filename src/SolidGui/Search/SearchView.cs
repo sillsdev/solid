@@ -85,8 +85,9 @@ namespace SolidGui.Search
 
         private void OnCancelButton_Click(object sender, EventArgs e)
         {
-            // TODO Should this be Close(); CP 2010-10
-            Dispose();
+            Close(); // TODO Should this be Close(); CP 2010-10
+            // Dispose();  // Added Close() and disabled Dispose()  -JMC 2013-09
+            // JMC: Could perhaps dispose this from within MainWindowView_FormClosing() but it seems unnecessary.
         }
 
         private void OnReplaceButton_Click(object sender, EventArgs e)

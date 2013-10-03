@@ -44,8 +44,6 @@ namespace SolidGui
             _mainWindowPM.FilterChooserModel.WarningFilterChanged += _markerSettingsList.OnFilterChanged;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
-            //_markerSettingsList.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnWarningFilterChanged;
-
             // Event wiring for child views.
             _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
 
@@ -179,7 +177,7 @@ namespace SolidGui
             //_markerSettingsList.SelectMarker("lx");  //JMC: doesn't work anyway; disabled it
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _sfmEditorView.Focus();
-            _sfmEditorView.Reload(); 
+            _sfmEditorView.Reload();
         }
 
         public bool NeedsSave() //HACK this is so stupid to use the ui as the dirty bit, but it's all over  
@@ -243,7 +241,10 @@ namespace SolidGui
 
         private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
-            _mainWindowPM.FilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
+            if (e.SearchResult.Filter != _mainWindowPM.FilterChooserModel.ActiveWarningFilter)
+            {
+                _mainWindowPM.FilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
+            }
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
             _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);

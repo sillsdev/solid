@@ -18,7 +18,7 @@ namespace SolidGui.MarkerSettings
             MappingModel = new MappingPM();
         }
 
-        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  // JMC:! test! ; Added to fix issue #1196  -JMC 2013-09
+        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  // JMC: started adding to fix issue #1196 but wasn't necessary after all; might be good later though. -JMC 2013-09
 
         public SolidSettings SolidSettings { get; set; }
 

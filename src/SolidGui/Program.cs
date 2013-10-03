@@ -55,6 +55,8 @@ namespace SolidGui
                 if (model.OpenDictionary(fileName, templatePath))
                 {
                     form.OnFileLoaded(fileName);
+                    // model.NavigatorModel.MoveToFirst(); // JMC: attempt to fix issue #1200 (right pane's top labels empty on command-line launch)
+                    // JMC: FAILED, search for this... //Choose the "All Records" filter
                 }
             }            
             Application.Run(form);
