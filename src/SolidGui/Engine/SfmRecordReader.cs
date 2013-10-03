@@ -9,6 +9,7 @@ using SolidGui.Engine;
 
 namespace SolidGui.Engine
 {
+
     public class SfmRecordReader : IDisposable
     {
 
@@ -164,7 +165,7 @@ namespace SolidGui.Engine
                 // Append what we find; though we'll have to back out the last (len) chars
                 if (c == '\n')
                 {
-                    sbMatch.Clear(); // no match; start over
+                    sbMatch.Length=0; // no match; start over
                     _col = 1;
                     _line++;
                     sbHeader.Append(SolidSettings.NewLine);
@@ -182,7 +183,7 @@ namespace SolidGui.Engine
                 }
                 else
                 {
-                    sbMatch.Clear(); // no match; start over
+                    sbMatch.Length=0; // no match; start over
                 }
 
                 if (sbMatch.Length == len) 
@@ -200,7 +201,7 @@ namespace SolidGui.Engine
                         break;
                     }
                     // no match; start over (e.g. @"\lxhaha" isn't a match
-                    sbMatch.Clear();
+                    sbMatch.Length=0;
                 }
                          
             }
@@ -290,7 +291,7 @@ namespace SolidGui.Engine
                     }
                     currentField.Marker = stemp;
                     currentField.SourceLine = _line;
-                    sb.Clear();
+                    sb.Length=0;
                     _stateParse = StateParse.BuildValue;
                     if (eof)
                     {
@@ -306,7 +307,7 @@ namespace SolidGui.Engine
                             // end of field value (duplicate code below)
                             currentField.SetSplitValue(sb.ToString());
                             _record.Add(currentField);
-                            sb.Clear();
+                            sb.Length=0;
                             currentField = new SfmField(); // clear
                             _stateParse = StateParse.BuildKey;
 
@@ -331,7 +332,7 @@ namespace SolidGui.Engine
                         // end of field value (duplicate code above)
                         currentField.SetSplitValue(sb.ToString());
                         _record.Add(currentField);
-                        sb.Clear();
+                        sb.Length=0;
                         currentField = new SfmField(); // clear
                         _stateParse = StateParse.BuildKey;
                     }
