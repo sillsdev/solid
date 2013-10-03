@@ -43,7 +43,7 @@ namespace SolidGui.Filter
             }
         }
 
-        public void OnDictionaryProcessed()
+        public void OnDictionaryProcessed()  // JMC: does nothing? delete?
         {}
 
         public RecordFilter ActiveWarningFilter

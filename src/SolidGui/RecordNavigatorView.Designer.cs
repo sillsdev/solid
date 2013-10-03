@@ -36,7 +36,7 @@ namespace SolidGui
             this._firstButton = new System.Windows.Forms.Button();
             this._findButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._recheckButton = new System.Windows.Forms.Button();
+            this._refreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // _descriptionLabel
@@ -126,24 +126,24 @@ namespace SolidGui
             this.label2.TabIndex = 7;
             this.label2.Text = "Lexicon";
             // 
-            // _recheckButton
+            // _refreshButton
             // 
-            this._recheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._recheckButton.FlatAppearance.BorderSize = 0;
-            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._recheckButton.Image = global::SolidGui.Properties.Resources.RecheckRecord;
-            this._recheckButton.Location = new System.Drawing.Point(435, 4);
-            this._recheckButton.Name = "_recheckButton";
-            this._recheckButton.Size = new System.Drawing.Size(25, 25);
-            this._recheckButton.TabIndex = 8;
-            this._recheckButton.UseVisualStyleBackColor = true;
+            this._refreshButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._refreshButton.FlatAppearance.BorderSize = 0;
+            this._refreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._refreshButton.Image = global::SolidGui.Properties.Resources.RecheckRecord;
+            this._refreshButton.Location = new System.Drawing.Point(435, 4);
+            this._refreshButton.Name = "_refreshButton";
+            this._refreshButton.Size = new System.Drawing.Size(25, 25);
+            this._refreshButton.TabIndex = 8;
+            this._refreshButton.UseVisualStyleBackColor = true;
             // 
             // RecordNavigatorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.Controls.Add(this._recheckButton);
+            this.Controls.Add(this._refreshButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._findButton);
             this.Controls.Add(this._firstButton);
@@ -168,6 +168,6 @@ namespace SolidGui
         private System.Windows.Forms.Button _firstButton;
         private System.Windows.Forms.Button _findButton;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Button _recheckButton;
+        public System.Windows.Forms.Button _refreshButton;
     }
 }

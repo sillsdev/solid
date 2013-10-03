@@ -56,6 +56,7 @@ namespace SolidGui
 
         public IEnumerable<string> HighlightMarkers{ get; set;}
         public event EventHandler RecordTextChanged;
+        public event EventHandler RecheckKeystroke;
 
         void _contentsBox_DragEnter(object sender, DragEventArgs e)
         {
@@ -76,16 +77,16 @@ namespace SolidGui
             }
         }
 
-        public void OnRecheckClicked(object sender, EventArgs e)
+        public void OnRefreshClicked(object sender, EventArgs e)
         {
-            Recheck();
-            ContentsBox.Focus();
+            RefreshRecord();
         }
 
-        private void Recheck()
+        private void RefreshRecord()
         {
             UpdateModel();
             UpdateView();
+            ContentsBox.Focus();
         }
 
         public void BindModel(SfmEditorPM model)
@@ -380,8 +381,15 @@ namespace SolidGui
                     }
                     break;
                 case Keys.F5:
-                    Recheck();
-                    e.Handled = true;
+                    if (e.Control)
+                    {
+                        RecheckKeystroke.Invoke(this, new EventArgs());
+                    }
+                    else
+                    {
+                        RefreshRecord();
+                    }
+                        e.Handled = true;
                     break;
             }
         }

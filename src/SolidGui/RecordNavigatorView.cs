@@ -38,7 +38,7 @@ namespace SolidGui
             _ttFind = new ToolTip();
             _ttFind.SetToolTip(_findButton, "Find (Ctrl+F)");
             _ttRefresh = new ToolTip();
-            _ttRefresh.SetToolTip(_recheckButton, "Refresh (F5)");
+            _ttRefresh.SetToolTip(_refreshButton, "Refresh (F5)");
         }
 
         private bool ReturnFalse()

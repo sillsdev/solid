@@ -45,12 +45,14 @@ namespace SolidGui
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
             // Event wiring for child views.
-            _recordNavigatorView._recheckButton.Click += _sfmEditorView.OnRecheckClicked;
+            _recordNavigatorView._refreshButton.Click += _sfmEditorView.OnRefreshClicked;
 
             // Event wiring for the main view.
             _markerSettingsList.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
+            _sfmEditorView.RecheckKeystroke += OnRecheckKeystroke;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
+
 
             splitContainer1.Panel1.Enabled = false;
             splitContainer2.Panel1.Enabled = false;
@@ -178,6 +180,7 @@ namespace SolidGui
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _sfmEditorView.Focus();
             _sfmEditorView.Reload();
+            _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         }
 
         public bool NeedsSave() //HACK this is so stupid to use the ui as the dirty bit, but it's all over  
@@ -207,6 +210,16 @@ namespace SolidGui
         }
 
         private void OnRecheckButtonClick(object sender, EventArgs e)
+        {
+            Recheck();
+        }
+
+        private void OnRecheckKeystroke(object sender, EventArgs e)
+        {
+            Recheck();
+        }
+
+        public void Recheck()
         {
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModel();

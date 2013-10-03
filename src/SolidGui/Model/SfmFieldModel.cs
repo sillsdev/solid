@@ -106,9 +106,6 @@ namespace SolidGui.Model
         }
 
 
-
-
-
         public string ToStructuredString() // TODO Move to UI Adapter CP 2010-08
         {
             int spacesInIndentation = 4;
