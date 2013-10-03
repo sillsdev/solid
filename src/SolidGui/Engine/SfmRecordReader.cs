@@ -165,7 +165,7 @@ namespace SolidGui.Engine
                 // Append what we find; though we'll have to back out the last (len) chars
                 if (c == '\n')
                 {
-                    sbMatch.Length=0; // no match; start over
+                    sbMatch.Clear(); // no match; start over
                     _col = 1;
                     _line++;
                     sbHeader.Append(SolidSettings.NewLine);
