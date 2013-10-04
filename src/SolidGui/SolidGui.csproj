@@ -158,6 +158,7 @@
     <Compile Include="Export\SfmLiftLexEntryAdapter.cs" />
     <Compile Include="Filter\AllRecordFilter.cs" />
     <Compile Include="Filter\MarkerFilter.cs" />
+    <Compile Include="Filter\RecordFilterChangedEventArgs.cs" />
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="AppWritingSystems.cs" />

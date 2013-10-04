@@ -14,17 +14,17 @@ namespace SolidGui.Filter
         private IList<RecordFilter> _recordFilters;
         private RecordFilter _activeWarningFilter;
 
-        public class RecordFilterChangedEventArgs : System.EventArgs
-        {
-            public RecordFilter RecordFilter;
+        public event EventHandler<RecordFilterChangedEventArgs> WarningFilterChanged;
 
-            public RecordFilterChangedEventArgs(RecordFilter recordFilter)
+        public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)  // added -JMC 2013-10
+        {
+            var filter = e.RecordFilter;
+            if (filter != ActiveWarningFilter)
             {
-                RecordFilter = recordFilter;
+                // The nav filter just changed, and it wasn't me.
+                ActiveWarningFilter = null;
             }
         }
-
-        public event EventHandler<RecordFilterChangedEventArgs> WarningFilterChanged;
 
         public FilterChooserPM()
         {
@@ -54,6 +54,7 @@ namespace SolidGui.Filter
             }
             set
             {
+                if (_activeWarningFilter == value) return;
                 _activeWarningFilter = value;
                 if (WarningFilterChanged != null)
                 {

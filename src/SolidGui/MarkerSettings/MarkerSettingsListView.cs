@@ -21,13 +21,8 @@ namespace SolidGui.MarkerSettings
         private SfmDictionary _dictionary;
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
-        private FilterChooserPM _filterChooserPM;
         private MarkerFilter _activeMarkerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
-
-        //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  
-        //The above was already commented out; if needed, I suspect MarkerSettingsPM w/b the better place? -JMC
-
 
         public MarkerSettingsListView()
         {
@@ -40,12 +35,11 @@ namespace SolidGui.MarkerSettings
             _markerListView.SelectedTextColor = Color.Black;
         }
 
-        public void BindModel(MarkerSettingsPM markerSettingsPM, FilterChooserPM filterChooserPM, SfmDictionary dictionary, SolidSettings settings)
+        public void BindModel(MarkerSettingsPM markerSettingsPM, SfmDictionary dictionary)
         {
             _markerListView.SuspendLayout();
             _markerSettingsPM = markerSettingsPM;
-            _filterChooserPM = filterChooserPM;
-            _settings = settings;
+            _settings = markerSettingsPM.SolidSettings;
             _dictionary = dictionary;
             //UpdateDisplay();
         }
@@ -205,22 +199,24 @@ namespace SolidGui.MarkerSettings
         }
 
         // When someone changes the filter in the PM
-        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        public void OnMarkerFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-            if (_markerSettingsPM.ActiveMarkerFilter == e.RecordFilter) 
-            {
-                return; // already selected; done
-            }
 
-            _changingFilter = true;
+            _changingFilter = true; // prevents event-firing loops -JMC
 
             // Remove the selection (start with blank slate)
+            _markerListView.Items.ClearSelection();
+            /*
             for (int i = 0; i < _markerListView.Items.Count; i++)
             {
                 _markerListView.Items[i].Selected = false;
             }
+            */
 
-            // If the new filter is in our list, select it
+            // Alas, one item may still be invisibly selected, so we need to clear that too:
+            _markerListView.FocusedItem = null;
+
+            // Find the new filter in our list and select it
             int n = 0;
             foreach (var filter in _markerListView.Items)
             {
@@ -284,16 +280,11 @@ namespace SolidGui.MarkerSettings
 
         public void SelectMarker(string marker)
         {
+            if (_markerListView.Items.Count > 0) return;
+
             foreach(GLItem a in _markerListView.Items)  //JMC: move this down
             {
                 a.Selected = (a.Text == marker);
-            }
-            if(String.IsNullOrEmpty(marker) && _markerListView.Items.Count > 0)
-            {
-                _markerListView.Items[0].Selected = true; //JMC: This is what initially sets the active filter to, say, \a 
-                //hack for a bug in Glacial List
-                _markerListView_SelectedIndexChanged(null, new ClickEventArgs(0, 0));
-                return;
             }
         }
 
@@ -311,10 +302,11 @@ namespace SolidGui.MarkerSettings
                 return;
             }
 */
-
-            string marker = _markerListView.Items[e.ItemIndex].Text;
-            _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
-            _filterChooserPM.ActiveWarningFilter = _markerSettingsPM.ActiveMarkerFilter;  // JMC:! delete this line??
+            if (!_changingFilter)
+            {
+                string marker = _markerListView.Items[e.ItemIndex].Text;
+                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
+            }
         }
 
         private void _markerListView_DoubleClick(object sender, EventArgs e)

@@ -50,7 +50,7 @@ namespace SolidGui
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = new NullRecordFilter();
+            _navigatorModel.ActiveFilter = new NullRecordFilter();  // JMC: remove?
             _markerSettingsModel.MarkersInDictionary = WorkingDictionary.AllMarkers;
         }
 

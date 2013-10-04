@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SolidGui.Filter;
+using SolidGui.MarkerSettings;
 using SolidGui.Model;
 
 namespace SolidGui
@@ -31,13 +32,12 @@ namespace SolidGui
         }
 
         public event EventHandler<RecordChangedEventArgs> RecordChanged;
-        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> FilterChanged;
-        
+        public event EventHandler<RecordFilterChangedEventArgs> NavFilterChanged;
 
         public RecordNavigatorPM()
         {
         }
-        
+
         public RecordFilter ActiveFilter
         {
             get
@@ -54,16 +54,12 @@ namespace SolidGui
                 {
                     _recordFilter.MoveToFirst();
                 }
-                
-                if (FilterChanged != null)
-                {
 
-                    FilterChanged.Invoke(
-                        this,
-                        new FilterChooserPM.RecordFilterChangedEventArgs(_recordFilter)
-                    );
+                // SendRecordChangedEvent();  // Currently redundant with the next event; disabled. -JMC 2013-10
+                if (NavFilterChanged != null)
+                {
+                    NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
                 }
-                SendRecordChangedEvent();
             }
         }
         
@@ -187,9 +183,17 @@ namespace SolidGui
             _recordFilter.MoveToFirst();
         }
 
-        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        public void OnFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-            ActiveFilter = e.RecordFilter;
+            var filter = e.RecordFilter;
+            if (filter == null)
+            {
+                ;
+            }
+            else
+            {
+                ActiveFilter = filter;
+            }
         }
     }
 }    

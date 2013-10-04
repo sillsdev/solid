@@ -3,7 +3,7 @@ using SolidGui.Model;
 
 namespace SolidGui.Filter
 {
-    public class NullRecordFilter : RecordFilter
+    public class NullRecordFilter : RecordFilter  // JMC: if this really serves a purpose, I should document it
     {
         public NullRecordFilter()
             : base(null, "None")

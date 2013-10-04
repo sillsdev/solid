@@ -4,6 +4,7 @@ using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Mapping;
+using SolidGui.Model;
 
 namespace SolidGui.MarkerSettings
 {
@@ -18,9 +19,24 @@ namespace SolidGui.MarkerSettings
             MappingModel = new MappingPM();
         }
 
-        public MarkerFilter ActiveMarkerFilter { get; set; }
+        private MarkerFilter _activeMarkerFilter = null;
 
-        public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  // JMC: started adding to fix issue #1196 but wasn't necessary after all; might be good later though. -JMC 2013-09
+        public MarkerFilter ActiveMarkerFilter
+        {
+            get
+            {
+                return _activeMarkerFilter;
+            }
+            set
+            {
+                if (_activeMarkerFilter == value) return;
+                _activeMarkerFilter = value;
+                if (MarkerFilterChanged != null)
+                {
+                    MarkerFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeMarkerFilter));
+                }
+            }
+        }
 
         public SolidSettings SolidSettings { get; set; }
 
@@ -54,6 +70,17 @@ namespace SolidGui.MarkerSettings
             return allValidMarkers;
         }
 
+        public event EventHandler<RecordFilterChangedEventArgs> MarkerFilterChanged;  // added -JMC 2013-09
+
+        public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)  // added -JMC 2013-10
+        {
+            var filter = e.RecordFilter;
+            if (filter != ActiveMarkerFilter)
+            {
+                // The nav filter just changed, and it wasn't me.
+                ActiveMarkerFilter = null;
+            }
+        }
 
     }
 }

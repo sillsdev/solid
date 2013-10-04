@@ -55,7 +55,7 @@ namespace SolidGui
         public void UpdateDisplay()
         {
             if (_model == null)
-                return; //JMC: Would it help at all to call ClearContentsOfTextBox() here? Probably w/b redundant.
+                return; // When does this happen? During initial program launch? Never? -JMC
             _descriptionLabel.Text = _model.Description;
             _nextButton.Enabled = _model.CanGoNext();
             _previousButton.Enabled = _model.CanGoPrev();
@@ -63,7 +63,7 @@ namespace SolidGui
             _recordNumber.Text = string.Format("{0}", _model.CurrentRecordIndex+1);
         }
 
-        public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
             UpdateDisplay();
         }

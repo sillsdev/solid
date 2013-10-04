@@ -34,19 +34,27 @@ namespace SolidGui.Filter
         }
 
         //when someone changes the filter in our PM
-        public void OnWarningFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
+        public void OnWarningFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
+/*
             if (_model.ActiveWarningFilter == e.RecordFilter) 
             {
-                return; // already selected; done
+                return; // already selected; done ; JMC: Should this probably not happen?
             }
+*/
 
-            _changingFilter = true; // lock
+            _changingFilter = true; // prevents event-firing loops -JMC
 
             // Remove the selection (start with blank slate)
             _warningFilterListBox.SelectedIndex = -1;
 
-            // If the new filter is in our list, select it
+            // Find the new filter in our list and select it
+            if (e.RecordFilter != null)
+            {
+                _warningFilterListBox.SelectedIndex = _warningFilterListBox.Items.IndexOf(e.RecordFilter);
+            }
+
+/*
             foreach (RecordFilter filter in _warningFilterListBox.Items)
             {
                 if (filter == e.RecordFilter)
@@ -55,19 +63,20 @@ namespace SolidGui.Filter
                     break;
                 }
             }
+*/
 
-            _changingFilter = false; // unlock
+            _changingFilter = false; 
         }
 
         private void _filterList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            var sel = _warningFilterListBox.SelectedItems;
-            // JMC: Just in case, maybe add a wait, if/while _changingFilter is true
-            if (sel != null && sel.Count > 0 && !_changingFilter)
+            if (!_changingFilter)
             {
-                _model.ActiveWarningFilter = (RecordFilter)_warningFilterListBox.SelectedItem;
-                // JMC:! This is where we would also set MarkerSettingsPM's ActiveMarkerFilter to the same, but we don't have that handle (and I dislike this approach)
+                var sel = _warningFilterListBox.SelectedItems;
+                if (sel != null && sel.Count > 0)
+                {
+                    _model.ActiveWarningFilter = (RecordFilter)_warningFilterListBox.SelectedItem;
+                }
             }
         }
 

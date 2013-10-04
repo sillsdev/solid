@@ -36,12 +36,12 @@ namespace SolidGui
 
             this.KeyPreview = true;
             
-            _mainWindowPM.DictionaryProcessed += this.OnDictionaryProcessed;
+            // Wire the views to listen to the models
+            _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
-            _mainWindowPM.NavigatorModel.FilterChanged += _recordNavigatorView.OnFilterChanged;
-            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _mainWindowPM.NavigatorModel.OnFilterChanged;
+            _mainWindowPM.NavigatorModel.NavFilterChanged += _recordNavigatorView.OnNavFilterChanged;
             _mainWindowPM.FilterChooserModel.WarningFilterChanged += _filterChooserView.OnWarningFilterChanged;
-            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _markerSettingsList.OnFilterChanged;
+            _mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerSettingsList.OnMarkerFilterChanged;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
 
             // Event wiring for child views.
@@ -71,9 +71,7 @@ namespace SolidGui
             //wire up the change of record event to our record display widget
             _markerSettingsList.BindModel(
                 _mainWindowPM.MarkerSettingsModel,
-                _mainWindowPM.FilterChooserModel,
-                _mainWindowPM.WorkingDictionary,
-                _mainWindowPM.Settings
+                _mainWindowPM.WorkingDictionary
             );
             _markerSettingsList.UpdateDisplay();
             _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  //Choose the "All Records" filter
@@ -97,7 +95,10 @@ namespace SolidGui
                 }
             }
             ChooseProject();
-            _mainWindowPM.Settings.NotifyIfNewMarkers();
+            if (_mainWindowPM.Settings != null)
+            {
+                _mainWindowPM.Settings.NotifyIfNewMarkers();
+            }
 
         }
 
