@@ -380,9 +380,8 @@ namespace SolidGui
 
         public bool DictionaryAndSettingsSave()
         {
-            Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
-            _workingDictionary.SaveAs(_realDictionaryPath);
-            return true; // TODO: can't fail.
+            bool success = Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
+            return success && _workingDictionary.SaveAs(_realDictionaryPath);
         }
 
         public void UseSolidSettingsTemplate(string path)

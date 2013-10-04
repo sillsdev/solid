@@ -282,9 +282,9 @@ namespace SolidGui.Model
             return false;
         }
 
-        public void SaveAs(string path)
+        public bool SaveAs(string path)
         {
-            Palaso.Reporting.Logger.WriteEvent("Saving {0}", path);
+            Logger.WriteEvent("Saving {0}", path);
             _filePath = path;
             try
             {
@@ -298,23 +298,8 @@ namespace SolidGui.Model
 
                     writer.Write(SfmHeader);
                     
-/*
-                    foreach (var field in SfmHeader)
-                    {
-                        writer.Write("\\");
-                        writer.Write(field.Marker);
-                        // if (!string.IsNullOrEmpty(field.Value))  //JMC: reenable this once parser is fixed wrt newlines
-                        {
-                            writer.Write(" ");
-                            writer.Write(field.Value);
-                        }
-                        writer.Write(field.Trailing);
-                        //writer.Write("\r\n");
-                    }
-*/
                     foreach (var record in _recordList)
                     {
-                        //writer.Write("\r\n");
                         foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
@@ -327,7 +312,6 @@ namespace SolidGui.Model
                                     writer.Write(field.Value);
                                 }
                                 writer.Write(field.Trailing);
-                                //writer.Write("\r\n");  //JMC: replace this line with writer.Write(field.Trailing);
                             }
                         }
                     }
@@ -336,9 +320,11 @@ namespace SolidGui.Model
             }
             catch (Exception exception)
             {
-                MessageBox.Show(null, exception.Message, "Solid Save Error");
+                MessageBox.Show(null, exception.Message, "Error on saving data file");
+                return false;
             }
-            Palaso.Reporting.Logger.WriteEvent("Done Saving.");
+            Palaso.Reporting.Logger.WriteEvent("Done saving data file.");
+            return true;
         }
 
         public IEnumerable<string> AllMarkers

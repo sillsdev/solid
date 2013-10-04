@@ -240,12 +240,14 @@ namespace SolidGui
             _saveButton.Enabled = _mainWindowPM.needsSave;
         }
 
-        private void OnSaveClick(object sender, EventArgs e)
+        private void OnSaveClick(object sender, EventArgs e) // (this works for Ctrl+S too) -JMC
         {
             _sfmEditorView.UpdateModel();
-            _mainWindowPM.DictionaryAndSettingsSave();
-            _saveButton.Enabled = _mainWindowPM.needsSave = false;
-            _sfmEditorView.Reload();  // fixed (this works for Ctrl+S too) -JMC
+            if (_mainWindowPM.DictionaryAndSettingsSave())
+            {
+                _saveButton.Enabled = _mainWindowPM.needsSave = false;
+            }
+            _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 

@@ -274,13 +274,24 @@ namespace SolidGui.Engine
         /// Saves the .solid settings file. Overwrites without prompting if the file exists.
         /// </summary>
         /// <param name="filePath"></param>
-        public void SaveAs(string filePath)
+        public bool SaveAs(string filePath)
         {
-            var xs = new XmlSerializer(typeof(SolidSettings));
-            using (var writer = new StreamWriter(filePath))
+            Logger.WriteEvent("Saving {0}", filePath);
+            try
             {
-                xs.Serialize(writer, this);
+                var xs = new XmlSerializer(typeof(SolidSettings));
+                using (var writer = new StreamWriter(filePath))
+                {
+                    xs.Serialize(writer, this);
+                }
             }
+            catch (Exception exception)
+            {
+                MessageBox.Show(null, exception.Message, "Error on saving settings file");
+                return false;
+            }
+            Logger.WriteEvent("Done saving settings file.");
+            return true;
         }
 
         public static string GetSettingsFilePathFromDictionaryPath(string dataFilePath)
