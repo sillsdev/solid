@@ -82,7 +82,7 @@ namespace SolidGui
 
         private void OnOpenClick(object sender, EventArgs e)
         {
-            if (NeedsSave())
+            if (_mainWindowPM.needsSave)
             {
                 DialogResult result = MessageBox.Show(this, "Changes may have been made to your current work. Before opening a new file would you like to save your work?", "Solid", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Cancel)
@@ -184,11 +184,6 @@ namespace SolidGui
             _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         }
 
-        public bool NeedsSave() //HACK this is so stupid to use the ui as the dirty bit, but it's all over  
-        {
-            return _saveButton.Enabled;  // JMC: consolidated the calls (all three) to here; fix the hack?
-        }
-
         private void MainWindowView_Load(object sender, EventArgs e)
         {
             if (DesignMode)
@@ -201,12 +196,12 @@ namespace SolidGui
 
         private void OnRecordTextChanged(object sender, EventArgs e)
         {
-            _saveButton.Enabled = true;
+            _saveButton.Enabled = _mainWindowPM.needsSave = true;
         }
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
-            _saveButton.Enabled = true;
+            _saveButton.Enabled = _mainWindowPM.needsSave = true;
             _sfmEditorView.OnSolidSettingsChange();
         }
 
@@ -242,13 +237,14 @@ namespace SolidGui
             _exportButton.Enabled = canProcess;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
             _quickFixButton.Enabled = canProcess;
+            _saveButton.Enabled = _mainWindowPM.needsSave;
         }
 
         private void OnSaveClick(object sender, EventArgs e)
         {
             _sfmEditorView.UpdateModel();
             _mainWindowPM.DictionaryAndSettingsSave();
-            _saveButton.Enabled = false;
+            _saveButton.Enabled = _mainWindowPM.needsSave = false;
             _sfmEditorView.Reload();  // fixed (this works for Ctrl+S too) -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
@@ -274,7 +270,7 @@ namespace SolidGui
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_searchView != null) {_searchView.Dispose();}  // may be helpful now that cancel Find only hides rather than closing. -JMC
-            if(NeedsSave()) 
+            if (_mainWindowPM.needsSave) 
             {
                 var answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
                                 MessageBoxIcon.Question);
@@ -342,7 +338,7 @@ namespace SolidGui
             }
             if (e.Control == true && e.KeyCode == Keys.S)
             {
-                if (NeedsSave())
+                if (_mainWindowPM.needsSave)
                 {
                     OnSaveClick(this, new EventArgs());
                 }
@@ -414,8 +410,7 @@ namespace SolidGui
             }
             _mainWindowPM.ProcessLexicon(); 
             _sfmEditorView.Reload();
-            _saveButton.Enabled = true;
-            
+            _saveButton.Enabled = _mainWindowPM.needsSave = true;
         }
 
         private void OnChangeWritingSystems_Click(object sender, EventArgs e)

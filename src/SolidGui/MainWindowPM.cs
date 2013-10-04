@@ -33,6 +33,7 @@ namespace SolidGui
         private List<Record> _masterRecordList;
         private String _realDictionaryPath;
         private SearchViewModel _searchModel;
+        public bool needsSave = false;
 
         public MainWindowPM()
         {
