@@ -36,6 +36,7 @@ namespace SolidGui
             this.goWeb = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.reportProblem = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,27 +48,29 @@ namespace SolidGui
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
+            this.tableLayoutPanel.Controls.Add(this.okButton, 1, 6);
             this.tableLayoutPanel.Controls.Add(this.goWeb, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.label1, 1, 3);
+            this.tableLayoutPanel.Controls.Add(this.label1, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.pictureBox1, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.reportProblem, 1, 3);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 6;
+            this.tableLayoutPanel.RowCount = 7;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(418, 288);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(418, 295);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // labelProductName
             // 
-            this.labelProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelProductName.Location = new System.Drawing.Point(126, 0);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 17);
@@ -79,8 +82,8 @@ namespace SolidGui
             // 
             // labelVersion
             // 
-            this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelVersion.Location = new System.Drawing.Point(126, 38);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(0, 17);
@@ -94,7 +97,7 @@ namespace SolidGui
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(340, 262);
+            this.okButton.Location = new System.Drawing.Point(340, 269);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
@@ -102,8 +105,8 @@ namespace SolidGui
             // 
             // goWeb
             // 
-            this.goWeb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.goWeb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.goWeb.AutoSize = true;
             this.goWeb.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
             this.goWeb.Location = new System.Drawing.Point(123, 76);
@@ -117,9 +120,9 @@ namespace SolidGui
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(123, 114);
+            this.label1.Location = new System.Drawing.Point(123, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(280, 104);
+            this.label1.Size = new System.Drawing.Size(287, 104);
             this.label1.TabIndex = 26;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -134,11 +137,25 @@ namespace SolidGui
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
+            // reportProblem
+            // 
+            this.reportProblem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportProblem.AutoSize = true;
+            this.reportProblem.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
+            this.reportProblem.Location = new System.Drawing.Point(123, 114);
+            this.reportProblem.Name = "reportProblem";
+            this.reportProblem.Size = new System.Drawing.Size(292, 13);
+            this.reportProblem.TabIndex = 28;
+            this.reportProblem.TabStop = true;
+            this.reportProblem.Text = "Report a problem/suggestion";
+            this.reportProblem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reportProblem_LinkClicked);
+            // 
             // AboutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 306);
+            this.ClientSize = new System.Drawing.Size(436, 313);
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -165,5 +182,6 @@ namespace SolidGui
         private System.Windows.Forms.LinkLabel goWeb;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel reportProblem;
     }
 }

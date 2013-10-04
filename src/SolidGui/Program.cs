@@ -67,6 +67,8 @@ namespace SolidGui
                     model.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
                 }
             }            
+
+
             Application.Run(form);
             Settings.Default.Save();
             if (model.Settings != null)

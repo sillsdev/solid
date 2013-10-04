@@ -1,5 +1,5 @@
 using System;
-
+using System.ComponentModel.Design;
 using System.Windows.Forms;
 using System.Reflection;
 using Palaso.Reporting;
@@ -114,7 +114,15 @@ namespace SolidGui
 
         private void goWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://palaso.org/solid");   
+            System.Diagnostics.Process.Start("http://projects.palaso.org/projects/solid");
         }
+
+        private void reportProblem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // (#249) I added this second link to trigger the yellow (non-fatal) Palaso error report. -JMC 2013-10
+            var tmp = new Palaso.UI.WindowsForms.Reporting.WinFormsErrorReporter();
+            tmp.ReportNonFatalException(new Exception("I would like to make a suggestion."), new ShowAlwaysPolicy());
+        }
+
     }
 }
