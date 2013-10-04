@@ -36,21 +36,26 @@ namespace SolidGui.Filter
         //when someone changes the filter in our PM
         public void OnWarningFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
+            if (_model.ActiveWarningFilter == e.RecordFilter) 
+            {
+                return; // already selected; done
+            }
+
             _changingFilter = true; // lock
-            bool foundFilter = false;
+
+            // Remove the selection (start with blank slate)
+            _warningFilterListBox.SelectedIndex = -1;
+
+            // If the new filter is in our list, select it
             foreach (RecordFilter filter in _warningFilterListBox.Items)
             {
                 if (filter == e.RecordFilter)
                 {
-                    foundFilter = true;
                     _warningFilterListBox.SelectedIndex = _warningFilterListBox.Items.IndexOf(filter);
                     break;
                 }
             }
-            if (!foundFilter)
-            {
-                _warningFilterListBox.SelectedIndex = -1;
-            }
+
             _changingFilter = false; // unlock
         }
 
@@ -62,6 +67,7 @@ namespace SolidGui.Filter
             if (sel != null && sel.Count > 0 && !_changingFilter)
             {
                 _model.ActiveWarningFilter = (RecordFilter)_warningFilterListBox.SelectedItem;
+                // JMC:! This is where we would also set MarkerSettingsPM's ActiveMarkerFilter to the same, but we don't have that handle (and I dislike this approach)
             }
         }
 

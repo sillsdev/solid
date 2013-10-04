@@ -17,11 +17,12 @@ namespace SolidGui.MarkerSettings
 {
     public partial class MarkerSettingsListView : UserControl
     {
+        private bool _changingFilter = false;
         private SfmDictionary _dictionary;
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
         private FilterChooserPM _filterChooserPM;
-        private MarkerFilter _markerFilter;
+        private MarkerFilter _activeMarkerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
         //public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  
@@ -206,16 +207,32 @@ namespace SolidGui.MarkerSettings
         // When someone changes the filter in the PM
         public void OnFilterChanged(object sender, FilterChooserPM.RecordFilterChangedEventArgs e)
         {
-            //_changingFilter = true;
-            if (_markerFilter != e.RecordFilter)
+            if (_markerSettingsPM.ActiveMarkerFilter == e.RecordFilter) 
             {
-                // Remove the selection
-                for (int i = 0; i < _markerListView.Items.Count; i++)
-                {
-                    _markerListView.Items[i].Selected = false;
-                }
+                return; // already selected; done
             }
-            //_changingFilter = false;
+
+            _changingFilter = true;
+
+            // Remove the selection (start with blank slate)
+            for (int i = 0; i < _markerListView.Items.Count; i++)
+            {
+                _markerListView.Items[i].Selected = false;
+            }
+
+            // If the new filter is in our list, select it
+            int n = 0;
+            foreach (var filter in _markerListView.Items)
+            {
+                if (filter == e.RecordFilter)
+                {
+                    _markerListView.Items[n].Selected = true;
+                    break;
+                }
+                n++;
+            }
+
+            _changingFilter = false;
         }
 
         private void UpdateSelectedItems(SolidMarkerSetting setting)
@@ -296,9 +313,8 @@ namespace SolidGui.MarkerSettings
 */
 
             string marker = _markerListView.Items[e.ItemIndex].Text;
-
-            _markerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
-            _filterChooserPM.ActiveWarningFilter = _markerFilter;
+            _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
+            _filterChooserPM.ActiveWarningFilter = _markerSettingsPM.ActiveMarkerFilter;  // JMC:! delete this line??
         }
 
         private void _markerListView_DoubleClick(object sender, EventArgs e)

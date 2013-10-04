@@ -18,6 +18,8 @@ namespace SolidGui.MarkerSettings
             MappingModel = new MappingPM();
         }
 
+        public MarkerFilter ActiveMarkerFilter { get; set; }
+
         public event EventHandler<FilterChooserPM.RecordFilterChangedEventArgs> MarkerFilterChanged;  // JMC: started adding to fix issue #1196 but wasn't necessary after all; might be good later though. -JMC 2013-09
 
         public SolidSettings SolidSettings { get; set; }
@@ -51,6 +53,7 @@ namespace SolidGui.MarkerSettings
 
             return allValidMarkers;
         }
+
 
     }
 }
