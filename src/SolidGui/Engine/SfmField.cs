@@ -31,13 +31,8 @@ namespace SolidGui.Engine
         }
 
 
-        public void SetSplitValue(string val) // JMC: write tests for this
-        {
-            SetSplitValue(val, " ");
-        }
-
         // Set both the value and the trailing-space value using a single string
-        public void SetSplitValue(string val, string separator)
+        public void SetSplitValue(string val, string separator = " ")
         {
             if (val.Trim() == "")
             {
