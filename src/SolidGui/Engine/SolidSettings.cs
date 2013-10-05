@@ -85,7 +85,9 @@ namespace SolidGui.Engine
         [XmlIgnore]
         public bool DefaultEncodingUnicode { get; private set; }
 
-        [XmlIgnore]
+        [XmlIgnore]  // JMC: Or, should we save this into the (next version of the) .solid file? Or make it a global user preference?
+        // NewLine s/b "\r\n" but it is not readonly. We could make it a user preference now that it's centralized here. -JMC 2013-10
+        // JMC: but it would be good to first do full testing using "\n" as the value.
         public static string NewLine = "\r\n";  //static for now; maybe shouldn't be -JMC
 
         public bool HasMarker(string marker)

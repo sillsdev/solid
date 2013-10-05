@@ -6,7 +6,7 @@ namespace SolidGui.Engine
 {
     public class SfmField
     {
-        public static readonly string DefaultTrailing = SolidSettings.NewLine; // "\r\n";  //JMC: wouldn't need to be readonly; might be fun to try "\n" now and then, now that it's a central setting
+        public static readonly string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
         private static string Pat = @"[\t \r\n]+$";
         private static Regex Reggie = new Regex(
             Pat, RegexOptions.Compiled | RegexOptions.CultureInvariant);
@@ -30,21 +30,37 @@ namespace SolidGui.Engine
             set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
-        // Set both the value and the trailing-space value using a single string
-        public void SetSplitValue(string val)  // JMC: write tests for this
+
+        public void SetSplitValue(string val) // JMC: write tests for this
         {
+            SetSplitValue(val, " ");
+        }
+
+        // Set both the value and the trailing-space value using a single string
+        public void SetSplitValue(string val, string separator)
+        {
+            if (val.Trim() == "")
+            {
+                // for empty fields, remember the first trailing whitespace (the separator) too
+                separator = (separator == "\n") ? SolidSettings.NewLine : separator;
+                Value = "";
+                Trailing = separator + val;
+                return;
+            }
+
             MatchCollection m = Reggie.Matches(val);
             if (m.Count > 2)
             {
                 throw new ArgumentException("Bug: a single field shouldn't be able to end in whitespace twice.");
             }
-            else if (m.Count == 1)
+
+            if (m.Count == 1)
             {
                 int i = m[0].Index;
                 Value = val.Substring(0, i);
                 Trailing = val.Substring(i);
             }
-            else
+            else  // no trailing whitespace found
             {
                 Value = val;
                 Trailing = DefaultTrailing;

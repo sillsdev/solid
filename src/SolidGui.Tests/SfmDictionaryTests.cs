@@ -151,9 +151,8 @@ namespace SolidGui.Tests
 		{
 			using (var e = new EnvironmentForTest())
 			{
-                // JMC: Note: test might fail if not for the trailing space on second header line
 				const string sfm = @"\_sh Some Header
-\_DateStampHasFourDigitYear 
+\_DateStampHasFourDigitYear
 
 \lx a
 

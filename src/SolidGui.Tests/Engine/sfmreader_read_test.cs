@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using SolidGui.Engine;
+using SolidGui.Model;
 
 
 namespace SolidGui.Tests.Engine
@@ -14,6 +15,102 @@ namespace SolidGui.Tests.Engine
         public void Init()
         {
         }
+
+        public string InputProduces (string input)
+        {
+            string result = "";
+            using (var e = new EnvironmentForTest())
+            {
+                // parse the input
+                var reader = SfmRecordReader.CreateFromText(input);
+                var dict = new SfmDictionary();
+                SfmLexEntry lexEntry;
+                while (true)
+                {
+                    if (!reader.ReadRecord()) break;
+                    lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
+                    dict.AddRecord(lexEntry, null);
+                }
+                dict.SfmHeader = reader.Header;
+
+                // save it to a file
+                dict.SaveAs(e.TempFilePath);
+
+                // read it back in
+                using (var r = new StreamReader(e.TempFilePath))
+                {
+                    result = r.ReadToEnd();
+                    r.Close();
+                }
+            }
+            return result;
+        }
+
+        [Test]
+        public void ReadTabAsSpace_Correct()
+        {
+            const string sfm = "header\t header\r\n" +
+                                "\\lx\ta\tb\t \tc\t\r\n" +
+                               "\\ge d\t\r\n\t" +
+                               "\\lx e";
+            const string sfm2 = "header  header\r\n" +
+                                "\\lx a b   c \r\n" +
+                               "\\ge d \r\n " +
+                               "\\lx e\r\n";
+            var result = InputProduces(sfm);
+            Assert.AreEqual(sfm2, result);
+        }
+
+        [Test]
+        // [Ignore] // I'm not sure how important this is, but otherwise those last two lines will take three saves to "settle down". -JMC
+        public void ReadPreserveSeparatorBeforeEmpty_Correct()
+        {
+            string sfm = "hh\r\n" +
+                                "\\lx a\r\n" +
+                               "\\ge b\r\n" +
+                               "\\lx  \r\n" +
+                               "\\ge \r\n" +
+                               "\\ge   \r\n" +
+                               "\\lx\r\n   \r\n";
+            //string sfm = "\\lx a\r\n\\lx  \r\n\\ge   \r\n";
+            var result = InputProduces(sfm);
+            var result2 = InputProduces(result); // chain it
+            Assert.AreEqual(sfm, result);
+            Assert.AreEqual(result2, result);
+        }
+
+        [Test]
+        public void CreateFromFilePath_ExistingFile_ReadsOk()
+        {
+            using (var e = new EnvironmentForTest())
+            {
+                const string input = @"
+\lx test1
+\cc fire
+\sn
+\cc foo
+\sn
+\cc bar
+\lx test2
+
+
+\lx test3";
+
+                using (var writer = new StreamWriter(e.TempFilePath))
+                {
+                    writer.Write(input);
+                    writer.Close();
+                }
+                using (var reader = new StreamReader(e.TempFilePath))
+                {
+                    var output = reader.ReadToEnd();
+                    reader.Close();
+                    Assert.AreEqual(input, output);
+                }
+            }
+        }
+
+
 
         [Test]
         public void EmptySFM_HeaderCount_0()
@@ -233,12 +330,13 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ReadNewlinesPreserved_Correct()
         {
-            const string sfm = "\\lx a\n" +
+            string sfm = "\\lx a\n" +
                                "b\n\n\r" +
                                "\\ge c\n\n" +
                                "\\rf\nd\n\n" +
                                "\\dt\n\n" +
                                "\\lx f";  //note that \dt is both final and empty, plus extra trailing
+            //string sfm = "\\lx a\n\\dt\n\n\\lx f";
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
@@ -248,7 +346,9 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("\r\n\r\n\r\n", r.Trailing("lx"));
             Assert.AreEqual("\r\n\r\n", r.Trailing("ge"));
             Assert.AreEqual("\r\n\r\n", r.Trailing("rf"));
-            Assert.AreEqual("\r\n\r\n", r.Trailing("dt"));
+            var tmp = r.Trailing("dt");
+            Assert.IsTrue("\r\n\r\n" == tmp);
+            // Assert.IsTrue( ("\r\n\r\n" == tmp || " \r\n\r\n" == tmp) );  // either is acceptable
             r.ReadRecord();
             Assert.AreEqual(1, r.FieldCount);
             Assert.AreEqual("\r\n", r.Trailing("lx"));
@@ -320,11 +420,25 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void SplitTrailingSpaceLots()
         {
-            string val = "long long \r\n wrapped field. . .  \r \r\n\r\n\t\r\n";
+            string val = "long long \r\n wrapped field. . .";
+            string val2 = "  \r \r\n\r\n\t\r\n";
+            var f = new SfmField();
+            f.SetSplitValue(val + val2);
+            Assert.AreEqual(f.Value, val);
+            Assert.AreEqual(f.Trailing, val2);
+        }
+
+        [Test]
+        public void SplitTrailingEmptyData()
+        {
+            string val = "  \r \r\n\r\n\t\r\n";
             var f = new SfmField();
             f.SetSplitValue(val);
-            Assert.AreEqual(f.Value, "long long \r\n wrapped field. . .");
-            Assert.AreEqual(f.Trailing, "  \r \r\n\r\n\t\r\n");
+            Assert.AreEqual(f.Value, "");
+            Assert.AreEqual(f.Trailing, " " + val);
+            f.SetSplitValue(val, "\n");
+            Assert.AreEqual(f.Value, "");
+            Assert.AreEqual(f.Trailing, "\r\n" + val);
         }
 
         [Test]
@@ -389,38 +503,6 @@ namespace SolidGui.Tests.Engine
             Assert.IsTrue(result); // Should be for two records.
             Assert.AreEqual(1, r.RecordID);
         }
-
-        [Test]
-        public void CreateFromFilePath_ExistingFile_ReadsOk()
-        {
-            using (var e = new EnvironmentForTest())
-            {
-                const string input = @"
-\lx test1
-\cc fire
-\sn
-\cc foo
-\sn
-\cc bar
-\lx test2
-
-
-\lx test3";
-
-                using (var writer = new StreamWriter(e.TempFilePath))
-                {
-                    writer.Write(input);
-                    writer.Close();
-                }
-                using (var reader = new StreamReader(e.TempFilePath))
-                {
-                    var output = reader.ReadToEnd();
-                    reader.Close();
-                    Assert.AreEqual(input, output);
-                }
-            }
-        }
-
 
 
         public class EnvironmentForTest : IDisposable

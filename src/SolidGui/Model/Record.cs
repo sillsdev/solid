@@ -52,7 +52,7 @@ namespace SolidGui.Model
         public Record(SfmLexEntry entry, SolidReport report)
         {
             LexEntry = entry;
-            Report = new SolidReport(report);
+            Report = (report == null) ? null : new SolidReport(report);
             _recordID = _recordIdCounter++;
         }
 

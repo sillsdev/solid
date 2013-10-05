@@ -216,7 +216,7 @@ namespace SolidGui.Model
 
         }
 
-        private string SfmHeader { get; set; }
+        public string SfmHeader { get; set; }
 
         public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
@@ -290,11 +290,6 @@ namespace SolidGui.Model
             {
                 using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
                 {
-                    /* // TODO One day it might be nice to refactor this to use a (say) SfmRecordWriter, then 
-                     * we could keep more info from the SfmRecordReader for use by the writer and do a
-                     * better job of 'doing no harm' to the file, by detecting characteristics such as
-                     * trailing white space on empty markers, lines between lx, headers etc.
-                     */
 
                     writer.Write(SfmHeader);
                     
