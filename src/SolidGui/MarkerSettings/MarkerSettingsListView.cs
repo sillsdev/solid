@@ -21,7 +21,6 @@ namespace SolidGui.MarkerSettings
         private SfmDictionary _dictionary;
         private SolidSettings _settings;
         private MarkerSettingsPM _markerSettingsPM;
-        private MarkerFilter _activeMarkerFilter;
         public event EventHandler MarkerSettingPossiblyChanged;
 
         public MarkerSettingsListView()

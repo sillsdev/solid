@@ -34,17 +34,9 @@ namespace SolidGui.Engine
         private int _recordEndLine;
         private int _recordID = -1;
 
-        // Internal buffer state
-        private char[] _buffer;
-        private int _pos;
-        private int _used;
-
         // Reading state
         private int _line = 1;
         private int _col = 1;
-        private int _backslashCount = 0;  //JMC: delete?
-
-        private int _bufferSize = 4096;
 
         Encoding _encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -61,21 +53,6 @@ namespace SolidGui.Engine
         {
             // JMC: a rough attempt at scaling most longs down to ints (not guaranteed)
             get { return _size > int.MaxValue ? int.MaxValue : (int)(_size / 160); } 
-        }
-
-        public int BufferSize
-        {
-            get 
-            { 
-                return _bufferSize; 
-            }
-            set 
-            {
-                _bufferSize = value;
-                _buffer = new char[_bufferSize];
-                _pos = 0;
-                _used = 0;
-            }
         }
 
         public int RecordID
@@ -99,7 +76,6 @@ namespace SolidGui.Engine
         private SfmRecordReader(TextReader stream)
         {  // the location of the file
             _r = stream;
-            _buffer = new char[_bufferSize];
             _size = 1024; // a wild guess -JMC
             _record = new SfmRecord();
         }
@@ -107,7 +83,6 @@ namespace SolidGui.Engine
         private SfmRecordReader(string filePath)
         {  // the location of the file
             _r = new StreamReader(filePath, _encoding, false);
-            _buffer = new char[_bufferSize];
             var fi = new FileInfo(filePath);
             _size = fi.Length;
             _record = new SfmRecord();

@@ -66,7 +66,8 @@ namespace SolidGui.Model
             return citationField.DecodedValue(solidSettings).Trim();
         }
 
-        [Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
+        // JMC:! Temporarily avoiding all build warnings; don't forget to uncomment the following later
+        // [Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name
         {
             get

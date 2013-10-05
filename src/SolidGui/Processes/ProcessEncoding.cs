@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using Palaso.Reporting;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -38,7 +39,8 @@ namespace SolidGui.Processes
                         }
                         catch(Exception e)
                         {
-                            isValid = false;
+                            Logger.WriteEvent(String.Format("  ProcessEncoding: ignoring exception: {0}", e)); // JMC: is this a safe exception to ignore? Temporarily logging it.
+                            isValid = false;  
                         }
 
                         if (!isValid)

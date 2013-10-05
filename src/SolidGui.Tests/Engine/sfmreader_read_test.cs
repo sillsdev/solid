@@ -233,26 +233,21 @@ namespace SolidGui.Tests.Engine
         [Test]
         public void ReadNewlinesPreserved_Correct()
         {
-            const string sfm1 = "\\lx a\n" +
+            const string sfm = "\\lx a\n" +
                                "b\n\n\r" +
                                "\\ge c\n\n" +
                                "\\rf\nd\n\n" +
-                               "\\dt\n\n" +
-                               "\\lx f";  //note that \dt is both final and empty, plus extra trailing
-            const string sfm = "\\lx a\n" +
                                "\\dt\n\n" +
                                "\\lx f";  //note that \dt is both final and empty, plus extra trailing
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
             Assert.AreEqual("", r.Header);
-/*
             Assert.AreEqual(4, r.FieldCount);
             Assert.AreEqual("a\r\nb", r.Value("lx"));
             Assert.AreEqual("\r\n\r\n\r\n", r.Trailing("lx"));
             Assert.AreEqual("\r\n\r\n", r.Trailing("ge"));
             Assert.AreEqual("\r\n\r\n", r.Trailing("rf"));
-*/
             Assert.AreEqual("\r\n\r\n", r.Trailing("dt"));
             r.ReadRecord();
             Assert.AreEqual(1, r.FieldCount);
@@ -300,7 +295,7 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual(true, result);
             Assert.AreEqual(h, r.Header);
             Assert.AreEqual(val, r.Value("lx"));
-            //Assert.AreEqual(trail, r.Fields. );  //JMC: unfinished
+            Assert.AreEqual(trail, r.Field(0).Trailing);
         }
 
         [Test]
