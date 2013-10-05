@@ -209,8 +209,6 @@ namespace SolidGui.Engine
             {
                 retval = true;
                 currentField.Marker = _startKey;
-                _recordStartLine = _line;
-                _recordEndLine = -1;
                 _recordID++;
                 _stateParse = StateParse.BuildValue;
             }
@@ -230,6 +228,7 @@ namespace SolidGui.Engine
             char curr = '\0';
             string stemp = "";
             _recordStartLine = _line;
+            _recordEndLine = -1;
             _col = 1;
             bool eof = false;
             bool initialSlash;
@@ -321,10 +320,7 @@ namespace SolidGui.Engine
 
                 }
 
-                if (eof || _stateParse == StateParse.GotLx)
-                {
-                    break;
-                }
+                if (eof) break;
 
             }
 
