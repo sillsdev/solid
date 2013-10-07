@@ -71,7 +71,7 @@ namespace SolidGui.MarkerSettings
                 SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);  //JMC: add another (checkbox) column here for Unic ?          
+                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);  //JMC:! add another (checkbox) column here for Unic ?          
                 //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
                 //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
 
@@ -281,7 +281,7 @@ namespace SolidGui.MarkerSettings
         {
             if (_markerListView.Items.Count > 0) return;
 
-            foreach(GLItem a in _markerListView.Items)  //JMC: move this down
+            foreach(GLItem a in _markerListView.Items)
             {
                 a.Selected = (a.Text == marker);
             }

@@ -39,7 +39,11 @@ namespace SolidGui.Processes
                         }
                         catch(Exception e)
                         {
-                            Logger.WriteEvent(String.Format("  ProcessEncoding: ignoring exception: {0}", e)); // JMC: is this a safe exception to ignore? Temporarily logging it.
+                            // string tmp = String.Format("  ProcessEncoding: ignoring exception: {0}", e);
+                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
+                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
+                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
+                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
                             isValid = false;  
                         }
 

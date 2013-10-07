@@ -322,7 +322,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>ValidateView.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram3.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

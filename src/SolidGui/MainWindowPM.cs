@@ -43,7 +43,7 @@ namespace SolidGui
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
             _filterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
-            _sfmEditorModel = new SfmEditorPM(_navigatorModel, _workingDictionary);  // JMC:! Is _workingDictionary correct and sufficient?  // passing the dict will help fix issue #173 etc. -JMC
+            _sfmEditorModel = new SfmEditorPM(_navigatorModel, _workingDictionary);  // JMC:! Is _workingDictionary correct and sufficient?  // passing the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
             _searchModel = new SearchViewModel();
 
 
@@ -51,7 +51,7 @@ namespace SolidGui
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = new NullRecordFilter();  // JMC: remove?
+            _navigatorModel.ActiveFilter = new NullRecordFilter();  // JMC: remove? (try setting to null first and fixing what breaks)
             _markerSettingsModel.MarkersInDictionary = WorkingDictionary.AllMarkers;
         }
 
@@ -243,7 +243,7 @@ namespace SolidGui
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public bool ShouldAskForTemplateBeforeOpening(string filePath)  //JMC: Could this be static?
+        public bool ShouldAskForTemplateBeforeOpening(string filePath)
         {
             bool result = true;
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(filePath);
@@ -308,7 +308,6 @@ namespace SolidGui
             }
             GiveSolidSettingsToModels();
             _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
-            _filterChooserModel.OnDictionaryProcessed();  // JMC: does nothing? delete?
 
             if (DictionaryProcessed != null)
             {
@@ -328,7 +327,7 @@ namespace SolidGui
         private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
             Palaso.Reporting.Logger.WriteEvent("Loading Solid file from Template from {0}", templatePath);
-            Debug.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder."); //JMC: Use Trace.Assert instead?
+            Trace.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder.");
             return SolidSettings.CreateSolidFileFromTemplate(
                 templatePath, 
                 SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)
@@ -357,7 +356,7 @@ namespace SolidGui
                 Settings.Save();
             }
 
-            return true; // TODO: let the user cancel if the dictionary was changed (JMC: e.g. http://projects.palaso.org/issues/1149)
+            return true; // TODO: let the user cancel if the dictionary was changed (JMC:! e.g. http://projects.palaso.org/issues/1149)
         }
 
         public void ProcessLexicon()
@@ -365,7 +364,6 @@ namespace SolidGui
             WorkingDictionary.SaveAs(_tempDictionaryPath);
 
             _workingDictionary.Open(_tempDictionaryPath, Settings, _recordFilters);
-            _filterChooserModel.OnDictionaryProcessed(); // JMC: does nothing? delete?
 
             if (DictionaryProcessed != null)
             {

@@ -24,7 +24,7 @@ namespace SolidGui.Engine
         StateParse _stateParse = StateParse.Header;
         TextReader _r;
         private SfmRecord _record;
-        private string _header = ""; // new SfmRecord();  // JMC: A string would be safer
+        private string _header = ""; 
 
         string _startKey = "lx";  // JMC: use global setting!
         private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
@@ -52,7 +52,7 @@ namespace SolidGui.Engine
 
         public int SizeEstimate  // file size estimate
         {
-            // JMC: a rough attempt at scaling most longs down to ints (not guaranteed)
+            // JMC: a rough attempt at scaling most longs down to ints (not guaranteed to work well; might wrap around)
             get { return _size > int.MaxValue ? int.MaxValue : (int)(_size / 160); } 
         }
 
@@ -66,7 +66,7 @@ namespace SolidGui.Engine
             get { return _recordStartLine; }
         }
 
-        public int RecordEndLine  //JMC: unused except in tests? delete?
+        public int RecordEndLine  
         {
             get { return _recordEndLine; }
         }
@@ -218,7 +218,7 @@ namespace SolidGui.Engine
             }
             else
             {
-                Debug.Assert(_r.Read() == 0, "BUG: bad parser state");
+                Trace.Assert(_r.Read() == 0, "There is a bug in ReadRecord; please let the developers know.");
                 return false;
             }
 

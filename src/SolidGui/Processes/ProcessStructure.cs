@@ -226,8 +226,8 @@ namespace SolidGui.Processes
                         InferNode(sfmField, report, scope, outputEntry, ref recurseCount);
                     }
                 }
-                // JMC: Here is where we need something like an else to handle cases where the user inserted an lx
-                // JMC: Can we also handle a deleted lx somehow?? Probably like this: "Deleting lx isn't supported; an \lx zz dummy field has been created for you temporarily"
+                // JMC:! Here is where we need something like an else to handle cases where the user inserted an lx
+                // JMC:! Can we also handle a deleted lx somehow?? Probably like this: "Deleting lx isn't supported; an \lx zz dummy field has been created for you temporarily"
 
                 
             }

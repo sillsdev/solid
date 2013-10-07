@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace SolidGui.Model
 {
     // Decided this class could be declared abstract. -JMC (Jon Coombs) 
-    // JMC: Maybe could even be reduced to an interface? That would seem better than returning nulls. 
+    // JMC:? Maybe could even be reduced to an interface? That would seem better than returning nulls. 
     public abstract class RecordManager
     {
 

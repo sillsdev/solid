@@ -50,13 +50,13 @@ namespace Solid.Engine
         {
             if (_markerSetting != null)
             {
-                if(comboBoxText == "Report Error")  // JMC: add constant? where?
+                if(comboBoxText == "Report Error")
                 {
                     _markerSetting.InferedParent = "";
                 }
                 else
                 {
-                    int space = comboBoxText.LastIndexOf(' '); // Or, create a constant for "infer " and use it here and in the dialog. -JMC
+                    int space = comboBoxText.LastIndexOf(' '); 
                     _markerSetting.InferedParent = comboBoxText.Substring(space+1);  // E.g. extract just the "sn" in "infer sn" or "infer an sn"
                 }
             }

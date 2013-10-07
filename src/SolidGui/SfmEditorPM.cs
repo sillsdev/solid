@@ -15,7 +15,7 @@ namespace SolidGui
     {
         private SolidSettings _solidSettings;
         private readonly RecordNavigatorPM _navigatorModel;
-        private SfmDictionary _dictionary;   // JMC:! working toward fixing #173 etc.
+        private SfmDictionary _dictionary;   // working toward fixing #173 etc. (adding/deleting entries) -JMC 2013-09
         public class RecordEditedEventArgs:EventArgs
         {
             public string Record;
@@ -68,7 +68,7 @@ namespace SolidGui
         public void UpdateCurrentRecord(Record record, string newContents)
         {
             newContents = newContents.TrimStart(null);
-            if (newContents.TrimEnd(null) == "")  // the DELETE case
+            if (newContents.TrimEnd(null) == "")  // the DELETE case (issue #174)
             {
                 // user cleared it; delete the record that was there, then return -JMC
                 if (_dictionary.DeleteRecord(record))
@@ -84,7 +84,7 @@ namespace SolidGui
                 }
                 return;
             }
-            else if (!newContents.StartsWith("\\" + _solidSettings.RecordMarker))  // the FRAGMENT ABOVE case
+            else if (!newContents.StartsWith("\\" + _solidSettings.RecordMarker))  // the FRAGMENT ABOVE case (an edge case under issue #173)
             {
                 // user edits resulted in an initial fragment; insert an "\\lx FRAGMENT line" -JMC 2013-09
                 newContents = "\\" + _solidSettings.RecordMarker + " FRAGMENT!" + SolidSettings.NewLine + newContents;
@@ -94,10 +94,13 @@ namespace SolidGui
 
 
             // regex cleanup to remove tabs, and leading spaces -JMC 2013-09
-            newContents = ReggieLeading.Replace(newContents, "");  // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting)
+
+            // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
+            //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
+            newContents = ReggieLeading.Replace(newContents, "");  
             newContents = ReggieTab.Replace(newContents, " ");
 
-            // JMC:! check for multiple \lx; i.e. make newContents into a string[] and put the following in a loop. (Issue #173 etc.)
+            // JMC:! check for multiple \lx (issue #173) ; i.e. make newContents into a string[] and put the following in a loop.
 
             
             // Remove the inferred markers from the text
@@ -113,7 +116,7 @@ namespace SolidGui
 
                 record.SetRecordContents(s, _solidSettings);
 
-                // JMC: the UI will now need to update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
+                // JMC: the UI will now update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
             }
             else
             {

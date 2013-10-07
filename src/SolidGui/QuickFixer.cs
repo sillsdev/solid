@@ -39,7 +39,7 @@ namespace Solid.Engine
                     }
                     if (indexToMoveAfter>-1 && markers.Contains(record.Fields[i].Marker))
                     {
-                        Debug.Assert(i > indexToMoveAfter);
+                        Debug.Assert(i > indexToMoveAfter, "There is a bug in MoveCommonItemsUp; please let the developers know.");
 
                         record.MoveField(record.Fields[i], indexToMoveAfter);
                         
@@ -392,7 +392,7 @@ namespace Solid.Engine
                     for (int i = psFieldsToRemoveAtEnd.Count - 1; i >= 0; --i)
                     {
                         int index = psFieldsToRemoveAtEnd[i];
-                        Debug.Assert(record.Fields[index].Marker == "ps");
+                        Debug.Assert(record.Fields[index].Marker == "ps", "There is a bug in PropagatePartOfSpeech; please let the developers know.");
                         //just one last sanity check
                         if (record.Fields[index].Marker == "ps")
                         {

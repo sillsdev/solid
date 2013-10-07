@@ -36,7 +36,7 @@ namespace SolidGui.Model
             _markerFrequencies = new Dictionary<string, int>();
             _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
-//            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
+//            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
         }
        
         public List<Record> Records
@@ -224,7 +224,7 @@ namespace SolidGui.Model
 
 
             _filePath = path;
-//            File.GetLastWriteTime(_filePath);  //JMC: does this do anything (side effect)? If not, remove it?
+            //            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
 
             _recordList.Clear();
             _markerFrequencies.Clear();
@@ -262,7 +262,7 @@ namespace SolidGui.Model
         public bool Save()
         {
             SaveAs(_filePath);
-            // JMC: resurrect or delete the following old code?
+            // JMC: resurrect or delete the following old code? (First, search for other calls to GetLastWriteTime
             //if (_lastWrittenTo == File.GetLastWriteTime(_filePath) ||
             //    !File.Exists(_filePath))
             //{
@@ -300,7 +300,7 @@ namespace SolidGui.Model
                             if (!field.Inferred)
                             {
                                 writer.Write("\\");
-                                writer.Write(field.Marker.TrimStart('_')); //JMC: why are we stripping this off??
+                                writer.Write(field.Marker); // .TrimStart('_')); //I think this was being trimmed off because the old parser detected the header based on leading underscores. -JMC 2013-10
                                 if (field.HasValue)
                                 {
                                     writer.Write(" ");

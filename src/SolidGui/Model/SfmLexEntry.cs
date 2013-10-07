@@ -66,7 +66,7 @@ namespace SolidGui.Model
             return citationField.DecodedValue(solidSettings).Trim();
         }
 
-        // JMC:! Temporarily avoiding all build warnings; don't forget to uncomment the following later
+        // JMC:? Temporarily avoiding all build warnings; don't forget to uncomment the following later
         // [Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name
         {
@@ -134,7 +134,7 @@ namespace SolidGui.Model
             _fields.Insert(indexForThisField, field);
         }
 
-        public SfmFieldModel GetFirstFieldWithMarker(string marker)  // JMC: can we also auto-scroll the UI to this marker?
+        public SfmFieldModel GetFirstFieldWithMarker(string marker)  // JMC: can we also auto-scroll the UI to this marker? (#284)
         {
             return _fields.FirstOrDefault(f => f.Marker == marker);
         }

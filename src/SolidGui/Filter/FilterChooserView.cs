@@ -13,7 +13,7 @@ namespace SolidGui.Filter
         private bool _changingFilter = false;
 
         //??? Would be nice if we didn't need to expose this. CJP
-        public FilterChooserPM Model  //JMC: unused? delete?
+        public FilterChooserPM Model
         {
             get { return _model; }
         }
@@ -36,12 +36,6 @@ namespace SolidGui.Filter
         //when someone changes the filter in our PM
         public void OnWarningFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-/*
-            if (_model.ActiveWarningFilter == e.RecordFilter) 
-            {
-                return; // already selected; done ; JMC: Should this probably not happen?
-            }
-*/
 
             _changingFilter = true; // prevents event-firing loops -JMC
 

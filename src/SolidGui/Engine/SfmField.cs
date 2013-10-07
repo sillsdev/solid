@@ -6,7 +6,7 @@ namespace SolidGui.Engine
 {
     public class SfmField
     {
-        public static readonly string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
+        public static string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
         private static string Pat = @"[\t \r\n]+$";
         private static Regex Reggie = new Regex(
             Pat, RegexOptions.Compiled | RegexOptions.CultureInvariant);

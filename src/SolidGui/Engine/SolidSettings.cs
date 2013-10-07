@@ -17,7 +17,7 @@ namespace SolidGui.Engine
         private readonly List<SolidMarkerSetting> _markerSettings;
         private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
-        public const int LatestVersion = 2; // JMC: Safer to use readonly rather than const here?
+        public static readonly int LatestVersion = 2; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
 
         public SolidSettings()
         {
@@ -87,7 +87,7 @@ namespace SolidGui.Engine
 
         [XmlIgnore]  // JMC: Or, should we save this into the (next version of the) .solid file? Or make it a global user preference?
         // NewLine s/b "\r\n" but it is not readonly. We could make it a user preference now that it's centralized here. -JMC 2013-10
-        // JMC: but it would be good to first do full testing using "\n" as the value.
+        // JMC: but it would be good to first do full testing (both unit and UI) using "\n" as the value.
         public static string NewLine = "\r\n";  //static for now; maybe shouldn't be -JMC
 
         public bool HasMarker(string marker)
@@ -105,7 +105,7 @@ namespace SolidGui.Engine
         /// </summary>
         /// <param name="marker">The marker to search for.</param>
         /// <returns>Returns an existing setting if possible; otherwise a newly created one.</returns>
-        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker) //JMC: I think this is overused and could perhaps mask error conditions; replace some with plain FindMarkerSetting()?
+        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker) //JMC: I think this is maybe overused and could likely mask error conditions; replace some calls with plain FindMarkerSetting()?
         {
             // Search for the marker. If not found return default marker settings.
             SolidMarkerSetting result = FindMarkerSetting(marker);
@@ -118,7 +118,7 @@ namespace SolidGui.Engine
             return result;
         }
 
-        public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: Not sure if this belongs in a "View" class instead, since it uses MessageBox
+        public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
         {
             if (_newlyAdded == null || _newlyAdded.Count < 1) return;            
             var sb = new StringBuilder("New marker(s) added: ");
@@ -135,6 +135,7 @@ namespace SolidGui.Engine
 
         }
 
+        // JMC: This should probably be called once after every File Open (*not* each Recheck), since Solid used to silently create mixed-encoding situations for any new marker identified in a unicode file.
         private void NotifyIfMixedEncodings()
         {
             int uni = 0;
