@@ -37,12 +37,9 @@ namespace SolidGui.Processes
                         {
                             var convertedString = utf8Encoding.GetString(iso88591Encoding.GetBytes(value));
                         }
-                        catch(Exception e)
+                        catch  // (Exception e)
                         {
                             // string tmp = String.Format("  ProcessEncoding: ignoring exception: {0}", e);
-                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
-                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
-                            // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
                             // Logger.WriteEvent(tmp); // Started to log this... never mind; looks like this is this a safe exception to ignore... -JMC
                             isValid = false;  
                         }

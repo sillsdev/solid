@@ -35,7 +35,14 @@ namespace SolidGui.Model
 
         public SfmFieldModel FirstField
         {
-            get { return _fields[0]; }
+            get
+            {
+                if (_fields != null && _fields.Count > 0)
+                {
+                    return _fields[0];
+                }
+                return null;
+            }
         }
 
         public string GetLexemeForm(SolidSettings solidSettings)
@@ -88,7 +95,8 @@ namespace SolidGui.Model
 
             if (String.IsNullOrEmpty(text))
             {
-                throw new ArgumentException("text cannot be null or empty");
+                // throw new ArgumentException("text cannot be null or empty");
+                text = "";
             }
 
             var reader = SfmRecordReader.CreateFromText(text);

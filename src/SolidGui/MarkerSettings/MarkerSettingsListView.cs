@@ -304,7 +304,8 @@ namespace SolidGui.MarkerSettings
             if (!_changingFilter)
             {
                 string marker = _markerListView.Items[e.ItemIndex].Text;
-                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  // JMC:! need to do something like this upon deleting a record
+                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  
+                // JMC:! why did we create a new one here, but not for the same situation in FilterChooserView, _filterList_SelectedIndexChanged() ?
             }
         }
 

@@ -5,7 +5,7 @@ using SolidGui.Model;
 
 namespace SolidGui
 {
-    public class RecordManagerDecorator : RecordManager
+    public abstract class RecordManagerDecorator : RecordManager  // Decided this class could be declared abstract. -JMC
     {
         protected RecordManager _recordManager;
 
@@ -40,6 +40,8 @@ namespace SolidGui
             get { return (_recordManager != null) ? _recordManager.CurrentIndex : base.CurrentIndex; }
             set { MoveTo(value); }
         }
+
+        public abstract bool Remove();
 
         public override bool HasPrevious()
         {

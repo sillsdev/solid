@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SolidGui.Engine;
 using SolidGui.Filter;
 
@@ -19,6 +20,10 @@ namespace SolidGui.Model
             _name = name;
         }
 
+        public override void UpdateFilter()
+        {
+            throw new NotImplementedException("Not yet able to self-update");
+        }
 
         public void AddEntry(int sfmLexEntryIndex)
         {
@@ -37,6 +42,7 @@ namespace SolidGui.Model
         {
             return _errorMessages[index];
         }
+
 
 
     }

@@ -82,6 +82,11 @@ namespace SolidGui
             RefreshRecord();
         }
 
+        public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)
+        {
+            Reload();
+        }
+
         private void RefreshRecord()
         {
             UpdateModel();
@@ -157,10 +162,19 @@ namespace SolidGui
             //const bool foundProcessingMark = false;
             int lineNumber = 0;
 
+            if (_currentRecord == null || _currentRecord.Fields.Count < 1 || _currentRecord.Fields[0] == null)
+            {
+                ContentsBox.Text = "";
+                ContentsBox.Visible = false; // Don't let the user edit--the data wouldn't be saveable. -JMC
+                return;
+            }
+            ContentsBox.Visible = true;
+
             // JMC:! Most or all of the following needs to go into into a method (see ToStructuredString), perhaps in SfmLexEntry or SfmEditorPM
 
             foreach (SfmFieldModel field in _currentRecord.Fields)
             {
+                if (field == null) break;
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
 /*

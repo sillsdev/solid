@@ -164,7 +164,7 @@ namespace SolidGui.Engine
                 }
                 else
                 {
-                    sbMatch.Length=0; // no match; start over
+                    sbMatch.Length = 0; // no match; start over; equivalent to sbMatch.Clear();
                 }
 
                 if (sbMatch.Length == len) 

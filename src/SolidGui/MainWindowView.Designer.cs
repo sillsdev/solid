@@ -48,14 +48,14 @@ namespace SolidGui
             this.panel2 = new System.Windows.Forms.Panel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._markerSettingsList = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._markerSettingsList = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -94,7 +94,7 @@ namespace SolidGui
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
             this._openButton.Size = new System.Drawing.Size(104, 22);
-            this._openButton.Text = "Open Lexicon...";
+            this._openButton.Text = "&Open Lexicon...";
             this._openButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._openButton.ToolTipText = "Open Lexicon... Ctrl+O";
             this._openButton.Click += new System.EventHandler(this.OnOpenClick);
@@ -106,7 +106,7 @@ namespace SolidGui
             this._saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._saveButton.Name = "_saveButton";
             this._saveButton.Size = new System.Drawing.Size(51, 22);
-            this._saveButton.Text = "Save";
+            this._saveButton.Text = "&Save";
             this._saveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._saveButton.ToolTipText = "Save Ctrl+S";
             this._saveButton.Click += new System.EventHandler(this.OnSaveClick);
@@ -117,7 +117,7 @@ namespace SolidGui
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
             this._exportButton.Size = new System.Drawing.Size(71, 22);
-            this._exportButton.Text = "Export...";
+            this._exportButton.Text = "&Export...";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // toolStripSeparator2
@@ -131,7 +131,7 @@ namespace SolidGui
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
             this._changeTemplate.Size = new System.Drawing.Size(123, 22);
-            this._changeTemplate.Text = "Change Template...";
+            this._changeTemplate.Text = "&Change Template...";
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
             // _changeWritingSystems
@@ -140,7 +140,7 @@ namespace SolidGui
             this._changeWritingSystems.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeWritingSystems.Name = "_changeWritingSystems";
             this._changeWritingSystems.Size = new System.Drawing.Size(156, 22);
-            this._changeWritingSystems.Text = "Change Writing Systems...";
+            this._changeWritingSystems.Text = "Change &Writing Systems...";
             this._changeWritingSystems.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
             // _quickFixButton
@@ -150,7 +150,7 @@ namespace SolidGui
             this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._quickFixButton.Name = "_quickFixButton";
             this._quickFixButton.Size = new System.Drawing.Size(77, 22);
-            this._quickFixButton.Text = "Quick Fixes...";
+            this._quickFixButton.Text = "&Quick Fixes...";
             this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // _aboutBoxButton
@@ -160,7 +160,7 @@ namespace SolidGui
             this._aboutBoxButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._aboutBoxButton.Name = "_aboutBoxButton";
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
-            this._aboutBoxButton.Text = "About Solid...";
+            this._aboutBoxButton.Text = "&About Solid...";
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
             // 
             // splitContainer1
@@ -245,16 +245,6 @@ namespace SolidGui
             this.label2.TabIndex = 5;
             this.label2.Text = "Marker Settings";
             // 
-            // _markerSettingsList
-            // 
-            this._markerSettingsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsList.Location = new System.Drawing.Point(0, 38);
-            this._markerSettingsList.Name = "_markerSettingsList";
-            this._markerSettingsList.Size = new System.Drawing.Size(435, 228);
-            this._markerSettingsList.TabIndex = 0;
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -290,11 +280,21 @@ namespace SolidGui
             this._recheckButton.Name = "_recheckButton";
             this._recheckButton.Size = new System.Drawing.Size(85, 31);
             this._recheckButton.TabIndex = 4;
-            this._recheckButton.Text = "Recheck";
+            this._recheckButton.Text = "&Recheck";
             this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this._recheckButton, "Recheck all records (Ctrl+F5)");
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            // 
+            // _markerSettingsList
+            // 
+            this._markerSettingsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._markerSettingsList.Location = new System.Drawing.Point(0, 38);
+            this._markerSettingsList.Name = "_markerSettingsList";
+            this._markerSettingsList.Size = new System.Drawing.Size(435, 228);
+            this._markerSettingsList.TabIndex = 0;
             // 
             // _filterChooserView
             // 

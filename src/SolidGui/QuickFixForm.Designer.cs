@@ -61,8 +61,8 @@
             this._tbMakeRealMarkers = new System.Windows.Forms.TextBox();
             this._executeSaveInferred = new System.Windows.Forms.LinkLabel();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
             this._executeAddGuids = new System.Windows.Forms.LinkLabel();
+            this.label9 = new System.Windows.Forms.Label();
             this._tbFixes.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,7 +79,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Cancel";
+            this.button1.Text = "&Cancel";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this._cancelButton_Click);
             // 
@@ -328,7 +328,7 @@
             this.label5.Size = new System.Drawing.Size(250, 26);
             this.label5.TabIndex = 18;
             this.label5.Text = "Increases the chance that FLEx has the same idea about the structure as your SOLI" +
-                "D rules.";
+    "D rules.";
             // 
             // _exectueFLExFixes
             // 
@@ -394,8 +394,8 @@
             this.label8.Size = new System.Drawing.Size(434, 73);
             this.label8.TabIndex = 21;
             this.label8.Text = "Enter a comma separated list of markers in the text box above.  Wherever these ma" +
-                "rkers are \'inferred\', they will be made real. i.e. The + sign will be removed an" +
-                "d they will be saved.";
+    "rkers are \'inferred\', they will be made real. i.e. The + sign will be removed an" +
+    "d they will be saved.";
             // 
             // label2
             // 
@@ -408,8 +408,8 @@
             // 
             // _tbMakeRealMarkers
             // 
-            this._tbMakeRealMarkers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this._tbMakeRealMarkers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._tbMakeRealMarkers.Location = new System.Drawing.Point(127, 15);
             this._tbMakeRealMarkers.Name = "_tbMakeRealMarkers";
             this._tbMakeRealMarkers.Size = new System.Drawing.Size(322, 20);
@@ -441,14 +441,6 @@
             this.tabPage5.Text = "Add Guids";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(15, 35);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(434, 73);
-            this.label9.TabIndex = 22;
-            this.label9.Text = resources.GetString("label9.Text");
-            // 
             // _executeAddGuids
             // 
             this._executeAddGuids.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -462,10 +454,19 @@
             this._executeAddGuids.Text = "I know what I\'m doing and have backed up";
             this._executeAddGuids.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteAddGuids);
             // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(15, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(434, 73);
+            this.label9.TabIndex = 22;
+            this.label9.Text = resources.GetString("label9.Text");
+            // 
             // QuickFixForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(487, 485);
             this.Controls.Add(this._tbFixes);
             this.Controls.Add(this.button1);

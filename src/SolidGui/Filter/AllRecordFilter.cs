@@ -13,7 +13,7 @@ namespace SolidGui.Filter
         private AllRecordFilter(RecordManager rm, string label) :
             base(rm, label)
         {
-            UpdateFilter();
+            UpdateFilter(); 
         }
        
         public override void UpdateFilter()

@@ -66,6 +66,7 @@ namespace SolidGui
         public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
             UpdateDisplay();
+            _model.MoveToFirst();
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)

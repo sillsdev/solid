@@ -40,6 +40,7 @@ namespace SolidGui
             _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
             _mainWindowPM.NavigatorModel.NavFilterChanged += _recordNavigatorView.OnNavFilterChanged;
+            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged;
             _mainWindowPM.FilterChooserModel.WarningFilterChanged += _filterChooserView.OnWarningFilterChanged;
             _mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerSettingsList.OnMarkerFilterChanged;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
@@ -159,6 +160,8 @@ namespace SolidGui
             {
                 OnFileLoaded(dlg.FileName);
                 Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
+                _mainWindowPM.needsSave = false; // These two lines fix issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
+                _saveButton.Enabled = false;
                 string ext = Path.GetExtension(dlg.FileName);
                 if (!SolidSettings.FileExtensions.Contains(ext))
                 {
@@ -327,6 +330,7 @@ namespace SolidGui
 
         }
 
+        // These keystrokes are mostly redundant now that I've underlined button letters, but I'm leaving them in in case anyone's used to them. -JMC 2013-10
         private void MainWindowView_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Control == true && e.KeyCode == Keys.F)
@@ -418,10 +422,13 @@ namespace SolidGui
         {
             var dialog = new WritingSystemsConfigDialog();
             var presenter = new WritingSystemsConfigPresenter(_mainWindowPM.Settings, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
-            dialog.ShowDialog(this);
+            DialogResult result = dialog.ShowDialog(this);
             _markerSettingsList.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
             _markerSettingsList.Refresh();
-            OnMarkerSettingPossiblyChanged(null, null); // TODO make conditional on dialog result
+            if (result != DialogResult.Cancel)  // fixes issue #1213 (bogus "needs save")
+            {
+                OnMarkerSettingPossiblyChanged(null, null);
+            }
 
         }
 

@@ -30,7 +30,6 @@ namespace SolidGui.Engine
             set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
-
         // Set both the value and the trailing-space value using a single string
         public void SetSplitValue(string val, string separator = " ")
         {

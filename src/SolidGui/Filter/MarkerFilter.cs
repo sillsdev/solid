@@ -12,7 +12,7 @@ namespace SolidGui.Filter
             base(recordManager, String.Format("Marker {0}", marker))
         {
             _marker = marker;
-            UpdateFilter();
+            UpdateFilter(); 
         }
 
         public override void UpdateFilter()
@@ -23,8 +23,8 @@ namespace SolidGui.Filter
             {
                 _recordManager.MoveTo(i);
                 f = _recordManager.Current.GetFirstFieldWithMarker(_marker);
-                if (f != null)
-                // if (_recordManager.Current.IsMarkerNotEmpty(_marker))  // fixed #1201 by checking for null instead -JMC 2013-09
+                if (f != null) // fixed #1201 by checking for not null instead of not empty; i.e. include empty fields too. -JMC 2013-09
+                // if (_recordManager.Current.IsMarkerNotEmpty(_marker))  
                 {
                     _indexesOfRecords.Add(i);
                 }

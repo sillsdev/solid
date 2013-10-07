@@ -65,6 +65,7 @@ namespace SolidGui
         private static Regex ReggieTab = new Regex(
             @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+        // Take whatever was in the view's rich text box and update the underlying model to match it.
         public void UpdateCurrentRecord(Record record, string newContents)
         {
             newContents = newContents.TrimStart(null);
@@ -73,12 +74,28 @@ namespace SolidGui
                 // user cleared it; delete the record that was there, then return -JMC
                 if (_dictionary.DeleteRecord(record))
                 {
-                    // JMC:! Success. Need to also delete it from the current filter, or reload the filter and jump to index i-1 or so (or failover to AllRecords)
-                    // JMC:! Verify that this prevents a phantom display after clearing and pressing Refresh
+                    record.SetRecordContents("", _solidSettings); // Prevents phantoms from reappearing on Refresh etc. Too bad we can't dispose the object (or all references to it). -JMC 2013-10
+                    // It also signals SfmEditorView to hide the textbox so the user won't enter data there (which would be lost).
+
+                    var f = _navigatorModel.ActiveFilter;
+                    f.Remove();// JMC:! test the effects of this, and of add. (unit tests too)
+                    if (f.HasPrevious())
+                    {
+                        f.MoveToPrevious();
+                    }
+/*
+                    else if (navf.HasNext())
+                    {
+                        navf.MoveToNext();
+                        navf.MoveToPrevious();
+                    }
+*/
+                    f.UpdateFilter();
+
                 }
                 else
                 {
-                    // JMC: Hmm, we should notify here, but do we really want to crash hard? Shouldn't really happen anyway, though.
+                    // JMC: Hmm, we should at least notify here, but do we want to crash harder? Shouldn't really happen anyway, though.
                     ErrorReport.NotifyUserOfProblem(
                         String.Format("There was a problem deleting this record (ID {0}).\n Record not found.", record.ID) );
                 }

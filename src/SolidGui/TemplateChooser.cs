@@ -87,13 +87,13 @@ namespace SolidGui
 
         private void OnOKButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;  // JMC: redundant?
             Close();
         }
 
         private void OnCancelButtonClick(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult = DialogResult.Cancel; // JMC: redundant?
             Close();
         }
 

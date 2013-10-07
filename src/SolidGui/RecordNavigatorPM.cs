@@ -46,7 +46,11 @@ namespace SolidGui
             }
             set
             {
-                int currentRecordId = (_recordFilter != null) ? _recordFilter.Current.ID : 0;
+                int currentRecordId = 0;
+                if (_recordFilter != null && _recordFilter.Current != null)
+                {
+                    currentRecordId = _recordFilter.Current.ID;
+                }
 
                 _recordFilter = value;
                 

@@ -82,6 +82,7 @@ namespace SolidGui.Tests.Model
 		}
 
 		[Test]
+        [Ignore]  // This is now a supported action -JMC 2013-10
 		public void CreateFromText_EmptyString_Throws()
 		{
 			const string sfmIn = @"";

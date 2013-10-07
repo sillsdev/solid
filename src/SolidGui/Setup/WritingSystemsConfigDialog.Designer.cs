@@ -28,33 +28,49 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this._writingSystemsConfigView = new SolidGui.Setup.WritingSystemsConfigView();
-			this.SuspendLayout();
-			// 
-			// _writingSystemsConfigView
-			// 
-			this._writingSystemsConfigView.FromMatching = "";
-			this._writingSystemsConfigView.Location = new System.Drawing.Point(0, -1);
-			this._writingSystemsConfigView.Name = "_writingSystemsConfigView";
-			this._writingSystemsConfigView.Size = new System.Drawing.Size(262, 276);
-			this._writingSystemsConfigView.TabIndex = 0;
-			// 
-			// WritingSystemsConfigDialog
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(261, 288);
-			this.Controls.Add(this._writingSystemsConfigView);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.Name = "WritingSystemsConfigDialog";
-			this.Text = "Writing Systems";
-			this.ResumeLayout(false);
+            this._writingSystemsConfigView = new SolidGui.Setup.WritingSystemsConfigView();
+            this._btnCanc = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // _writingSystemsConfigView
+            // 
+            this._writingSystemsConfigView.FromMatching = "";
+            this._writingSystemsConfigView.FromWritingSystem = null;
+            this._writingSystemsConfigView.Location = new System.Drawing.Point(0, -1);
+            this._writingSystemsConfigView.Name = "_writingSystemsConfigView";
+            this._writingSystemsConfigView.Size = new System.Drawing.Size(262, 250);
+            this._writingSystemsConfigView.TabIndex = 0;
+            // 
+            // _btnCanc
+            // 
+            this._btnCanc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnCanc.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._btnCanc.Location = new System.Drawing.Point(158, 255);
+            this._btnCanc.Name = "_btnCanc";
+            this._btnCanc.Size = new System.Drawing.Size(75, 23);
+            this._btnCanc.TabIndex = 1;
+            this._btnCanc.Text = "&Cancel";
+            this._btnCanc.UseVisualStyleBackColor = true;
+            // 
+            // WritingSystemsConfigDialog
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this._btnCanc;
+            this.ClientSize = new System.Drawing.Size(261, 284);
+            this.Controls.Add(this._btnCanc);
+            this.Controls.Add(this._writingSystemsConfigView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "WritingSystemsConfigDialog";
+            this.Text = "Writing Systems";
+            this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
 		private WritingSystemsConfigView _writingSystemsConfigView;
+        private System.Windows.Forms.Button _btnCanc;
 
 	}
 }

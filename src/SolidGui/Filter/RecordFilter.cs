@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using SolidGui.Model;
 
@@ -9,14 +10,26 @@ namespace SolidGui.Filter
             : base(null, "None")
         {
         }
+
+        public override void UpdateFilter()
+        {
+            return;
+        }
+    
     }
 
-    public class RecordFilter : RecordManagerDecorator
+    public abstract class RecordFilter : RecordManagerDecorator  // Decided this class could be declared abstract. (E.g. Update() wasn't really implemented.) -JMC
     {
         protected string _name;
         //  protected List<string> _descriptions;
         protected List<int> _indexesOfRecords = new List<int>();
         private int _currentIndex;
+
+        public override bool Remove()
+        {
+            _indexesOfRecords.RemoveAt(CurrentIndex);
+            return true;
+        }
 
         public RecordFilter(RecordManager d, string name) :
             base(d)
@@ -80,6 +93,10 @@ namespace SolidGui.Filter
             {
                 _currentIndex++;
             }
+            else
+            {
+                MoveToLast();
+            }
             return retval;
         }
 
@@ -89,6 +106,10 @@ namespace SolidGui.Filter
             if (retval)
             {
                 _currentIndex--;
+            }
+            else
+            {
+                MoveToFirst();
             }
             return retval;
         }
@@ -110,13 +131,33 @@ namespace SolidGui.Filter
 
         public override bool MoveTo(int index)
         {
-            bool retval = false;
+            if (index > Count - 1) index = Count - 1; // JMC: Trying to add robustness; is this a good idea?
+            if (index < 0) index = 0;                 // Note that now we'll only return false if the filter is empty.
+
             if (index >= 0 && index < Count)
             {
-                retval = true;
                 _currentIndex = index;
+                return true;
             }
-            return retval;
+            return false;
+        }
+
+        public override bool MoveToByID(int id)
+        {
+            if (_indexesOfRecords.Contains(id))
+            {
+                _currentIndex = _indexesOfRecords.IndexOf(id);
+                return true;
+            }
+            return false;
+        }
+
+        public override Record GetRecord(int index)
+        {
+            if (index >= 0 && index < _indexesOfRecords.Count)
+                return _recordManager.GetRecord(_indexesOfRecords[index]);
+
+            return null;
         }
 
         public override string ToString()
@@ -138,28 +179,8 @@ namespace SolidGui.Filter
         {
             return "unknown description";
         }
-       
-        public virtual void UpdateFilter()
-        {
-        }
 
-        public override bool MoveToByID(int id)
-        {
-            if(_indexesOfRecords.Contains(id))
-            {
-                _currentIndex = _indexesOfRecords.IndexOf(id);
-                return true;
-            }
-            return false;
-        }
-        
-        public override Record GetRecord(int index)
-        {
-            if(index >= 0 && index < _indexesOfRecords.Count)
-                return _recordManager.GetRecord(_indexesOfRecords[index]);
-
-            return null;
-        }
+        public abstract void UpdateFilter();
 
     }
 }
