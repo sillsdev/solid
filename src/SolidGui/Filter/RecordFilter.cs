@@ -15,9 +15,9 @@ namespace SolidGui.Filter
         {
             return;
         }
-    
     }
 
+    // Wraps a RecordManager and is itself a RecordManager (specificall a RecordManagerDecorator). But it overrides most methods (for indexing/moving). -JMC
     public abstract class RecordFilter : RecordManagerDecorator  // Decided this class could be declared abstract. (E.g. Update() wasn't really implemented.) -JMC
     {
         protected string _name;
@@ -38,6 +38,13 @@ namespace SolidGui.Filter
             _name = name;
             _currentIndex = 0;
         }
+
+        public virtual string Description(int index)
+        {
+            return "unknown description";  // i.e. not implemented by the subclass -JMC
+        }
+
+        public abstract void UpdateFilter();
 
         public override int Count
         {
@@ -174,13 +181,6 @@ namespace SolidGui.Filter
         {
             get { return new[] {""}; }
         }
-
-        public virtual string Description(int index)
-        {
-            return "unknown description";
-        }
-
-        public abstract void UpdateFilter();
 
     }
 }

@@ -64,32 +64,35 @@ namespace SolidGui
             @"^\s+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieTab = new Regex(
             @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex ReggieLx = new Regex(
+            @"^[ \t]*\\" + SolidSettings.NewLine + @"\b", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         // Take whatever was in the view's rich text box and update the underlying model to match it.
         public void UpdateCurrentRecord(Record record, string newContents)
         {
+            var f = _navigatorModel.ActiveFilter;
             newContents = newContents.TrimStart(null);
-            if (newContents.TrimEnd(null) == "")  // the DELETE case (issue #174)
+            if (newContents.TrimEnd(null) == "") // the DELETE case (issue #174)
             {
                 // user cleared it; delete the record that was there, then return -JMC
                 if (_dictionary.DeleteRecord(record))
                 {
-                    record.SetRecordContents("", _solidSettings); // Prevents phantoms from reappearing on Refresh etc. Too bad we can't dispose the object (or all references to it). -JMC 2013-10
+                    record.SetRecordContents("", _solidSettings);
+                    // Prevents phantoms from reappearing on Refresh etc. Too bad we can't dispose the object (or all references to it). -JMC 2013-10
                     // It also signals SfmEditorView to hide the textbox so the user won't enter data there (which would be lost).
 
-                    var f = _navigatorModel.ActiveFilter;
-                    f.Remove();// JMC:! test the effects of this, and of add. (unit tests too)
+                    f.Remove(); // JMC:! test the effects of this, and of add. (unit tests too)
                     if (f.HasPrevious())
                     {
                         f.MoveToPrevious();
                     }
-/*
-                    else if (navf.HasNext())
-                    {
-                        navf.MoveToNext();
-                        navf.MoveToPrevious();
-                    }
-*/
+                    /*
+                                        else if (navf.HasNext())
+                                        {
+                                            navf.MoveToNext();
+                                            navf.MoveToPrevious();
+                                        }
+                    */
                     f.UpdateFilter();
 
                 }
@@ -97,16 +100,23 @@ namespace SolidGui
                 {
                     // JMC: Hmm, we should at least notify here, but do we want to crash harder? Shouldn't really happen anyway, though.
                     ErrorReport.NotifyUserOfProblem(
-                        String.Format("There was a problem deleting this record (ID {0}).\n Record not found.", record.ID) );
+                        String.Format("There was a problem deleting this record (ID {0}).\n Record not found.",
+                                      record.ID));
                 }
                 return;
             }
-            else if (!newContents.StartsWith("\\" + _solidSettings.RecordMarker))  // the FRAGMENT ABOVE case (an edge case under issue #173)
+            else if (!newContents.StartsWith("\\" + _solidSettings.RecordMarker))
+                // the FRAGMENT ABOVE case (an edge case under issue #173)
             {
                 // user edits resulted in an initial fragment; insert an "\\lx FRAGMENT line" -JMC 2013-09
-                newContents = "\\" + _solidSettings.RecordMarker + " FRAGMENT!" + SolidSettings.NewLine + newContents;
+                // JMC: It might be nice to create an additional warning filter that finds these fragments; for that, we would want frag below to become a global setting.
+                string frag = "FRAGMENT!";
+                newContents = "\\" + _solidSettings.RecordMarker + " " + frag + SolidSettings.NewLine +
+                              newContents;
 
-                // JMC: and give a popup warning messagebox, ideally after showing "FRAGMENT!" but before applying it and updating the filter and right pane
+                ErrorReport.NotifyUserOfProblem("Record fragment detected! Adding a new record for it.", record.ID);
+                // Ideally we'd show this after displaying "FRAGMENT!" in the rich edit box, but before applying the effects (updating the filter and right pane).
+                // That would probably involve triggering a (new) event, though, and having the view listen to it. Not worth it, for now? -JMC 2013-10
             }
 
 
@@ -114,33 +124,59 @@ namespace SolidGui
 
             // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
             //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
-            newContents = ReggieLeading.Replace(newContents, "");  
+            newContents = ReggieLeading.Replace(newContents, "");
             newContents = ReggieTab.Replace(newContents, " ");
 
-            // JMC:! check for multiple \lx (issue #173) ; i.e. make newContents into a string[] and put the following in a loop.
-
-            
-            // Remove the inferred markers from the text
-            // Encode the value correctly as per the solid marker settings (either utf-8 or iso-8859-1)
+            // Check for multiple \lx in a single "record"--the result of recent user edits (issue #173)
+            /*
+                        // JMC: make newContents into a string[] and put the following in a loop.
+                        var splitAt = ReggieLx.Matches(newContents);
+                        var records = ReggieLx.Split(newContents);
+            */
             var reader = SfmRecordReader.CreateFromText(newContents);
             reader.AllowLeadingWhiteSpace = true;
-            if (reader.ReadRecord())  //JMC:! needs to be a while loop, in case the user inserted an \lx 
-            {
-                SfmRecord sfmRecord = reader.Record;
-                RemoveInferredFields(sfmRecord);
 
+            int i = -1;
+            //foreach (var r in records)
+            while (reader.ReadRecord())
+            {
+                i++;
+                SfmRecord sfmRecord = reader.Record;
+                // Remove the inferred markers from the text
+                RemoveInferredFields(sfmRecord);
+                // Encode the value correctly as per the solid marker settings (either utf-8 or iso-8859-1)
                 string s = AsString(sfmRecord);
 
-                record.SetRecordContents(s, _solidSettings);
+                if (i == 0)
+                {
+                    // We get one freebie; the first record is simply kept and sent to the UI
+                    record.SetRecordContents(s, _solidSettings);
 
-                // JMC: the UI will now update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
+                }
+                else
+                {
+                    // Additional \lx found; insert a new record into the lexicon, and into the current filter
+                    SfmLexEntry lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
+                    var tmp = new Record(lexEntry, null);
+
+                    // JMC:! The following (append) works, but it would be nicer to insert into our current position in the file and filter.
+                    _dictionary.AddRecord(tmp);
+                    // JMC:! Update the filter; make sure this works for SolidErrorRecordFilter too 
+                    var ef = f as SolidErrorRecordFilter;  // does an "is" check and a cast
+                    if (ef != null)
+                    {
+                        ef.AddEntry(_dictionary.Count-1); // JMC:! append; insert w/b better
+                    }
+                    else
+                    {
+                        _navigatorModel.ActiveFilter.UpdateFilter();                        
+                    }
+                }
+                 
             }
-            else
-            {
-                ;
-                //throw new Exception("Solid was trying to update a record in a form which could not be read back in:"+newContents);
-                // JMC: This is no longer an issue because we're now dealing with deletions and fragments; remove the else block?
-            }
+
+            // JMC: the UI will now update the right pane display (e.g. if the user edited leading spaces, replace those with the current interpretation).
+            // Again, should we explicitly trigger this by invoking an event, for clarity?
         }
 
         private string AsString(SfmRecord sfmRecord)

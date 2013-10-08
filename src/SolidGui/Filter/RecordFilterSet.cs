@@ -121,7 +121,7 @@ namespace SolidGui.Filter
             //Add(new NullRecordFilter());
         }
 
-        public void AddRecord(int record, SolidReport report)
+        public void AddRecord(int index, SolidReport report)
         {
             foreach (ReportEntry entry in report.Entries)
             {
@@ -130,7 +130,7 @@ namespace SolidGui.Filter
                 {
                     filter.Add(entry.Marker, CreateSolidErrorRecordFilter(entry.EntryType, entry.Marker));
                 }
-                filter[entry.Marker].AddEntry(record);
+                filter[entry.Marker].AddEntry(index);
             }
         }
     }

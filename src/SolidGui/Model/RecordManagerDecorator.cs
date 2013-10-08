@@ -5,6 +5,7 @@ using SolidGui.Model;
 
 namespace SolidGui
 {
+    // Wraps a RecordManager and is itself a RecordManager. -JMC
     public abstract class RecordManagerDecorator : RecordManager  // Decided this class could be declared abstract. -JMC
     {
         protected RecordManager _recordManager;

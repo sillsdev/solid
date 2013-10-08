@@ -22,7 +22,8 @@ namespace SolidGui.Model
 
         public override void UpdateFilter()
         {
-            throw new NotImplementedException("Not yet able to self-update");
+            return;  // JMC:! not yet done!
+            // throw new NotImplementedException("Not yet able to self-update");
         }
 
         public void AddEntry(int sfmLexEntryIndex)
