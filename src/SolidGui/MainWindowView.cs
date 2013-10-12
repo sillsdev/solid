@@ -141,8 +141,6 @@ namespace SolidGui
                 return; //they cancelled
             }
 
-            Settings.Default.PreviousPathToDictionary = dlg.FileName;  // JMC:! Move this down to XYZ!
-
             Cursor = Cursors.WaitCursor;
             string templatePath = null;
             if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
@@ -155,15 +153,14 @@ namespace SolidGui
             }
             // At this point we s/b guaranteed to have a template file with a matching name. -JMC
 
-            if (!_mainWindowPM.SaveOffOpenModifiedStuff())
-            {
-                return;
-            }
+            // Removed this extraneous save method, to clean up code and fix issue #1149 "Using Open Lexicon to switch files always saves currently open settings, even after choosing No." -JMC 2013-10
+            // _mainWindowPM.SaveSettings(); 
+
             Cursor = Cursors.WaitCursor;
             if (_mainWindowPM.OpenDictionary(dlg.FileName, templatePath))
             {
                 OnFileLoaded(dlg.FileName);
-                // JMC:! XYZ
+                Settings.Default.PreviousPathToDictionary = dlg.FileName; 
                 Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
                 _mainWindowPM.needsSave = false; // These two lines fix issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
                 _saveButton.Enabled = false;

@@ -367,23 +367,6 @@ namespace SolidGui
             );
         }
 
-        /// <summary>
-        /// Call this before switching dictionaries or quitting
-        /// </summary>
-        /// <returns>false if user cancelled</returns>
-        public bool SaveOffOpenModifiedStuff()
-        {
-            //review Mark(JH): do we need to save an existing, open dictionary at this point (and let the user cancel)?
-
-            if (Settings != null)
-            {
-                Palaso.Reporting.Logger.WriteEvent("Saving settings");
-                Settings.Save();
-            }
-
-            return true; // TODO: let the user cancel if the dictionary was changed (JMC:! e.g. http://projects.palaso.org/issues/1149)
-        }
-
         public void ProcessLexicon()
         {
             WorkingDictionary.SaveAs(_tempDictionaryPath);
