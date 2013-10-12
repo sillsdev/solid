@@ -218,7 +218,7 @@ namespace SolidGui.Model
 
         public string SfmHeader { get; set; }
 
-        public void Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
+        public bool Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
             Palaso.Reporting.Logger.WriteEvent("Opening {0}",path);
 
@@ -248,8 +248,9 @@ namespace SolidGui.Model
                 if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
                 {
                     Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);
-                    return;
+                    return false;
                 }
+                if (dlg.ProgressState.Cancel == true) return false;
             }
 
             if (_currentIndex > _recordList.Count - 1)
@@ -257,6 +258,7 @@ namespace SolidGui.Model
                 _currentIndex = 0;
             }
             Palaso.Reporting.Logger.WriteEvent("Done Opening.");
+            return true;
         }
 
         public bool Save()

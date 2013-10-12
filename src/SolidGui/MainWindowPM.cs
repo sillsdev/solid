@@ -29,8 +29,8 @@ namespace SolidGui
         private readonly RecordFilterSet _recordFilters;
         private readonly SfmEditorPM _sfmEditorModel;
         private readonly String _tempDictionaryPath;
-        private readonly SfmDictionary _workingDictionary;
-        private List<Record> _masterRecordList;
+        private SfmDictionary _workingDictionary;
+        // private List<Record> _masterRecordList;
         private String _realDictionaryPath;
         private SearchViewModel _searchModel;
         public bool needsSave = false;
@@ -46,8 +46,12 @@ namespace SolidGui
             _sfmEditorModel = new SfmEditorPM(_navigatorModel, _workingDictionary);  // passing the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
             _searchModel = new SearchViewModel();
 
+            Initialize();
+        }
 
-            _masterRecordList = WorkingDictionary.AllRecords;
+        private void Initialize()
+        {
+            // _masterRecordList = WorkingDictionary.AllRecords;  // Disabled this extra-step link because it made it harder to swap out the model. -JMC 2013-10
             FilterChooserModel.RecordFilters = _recordFilters;
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
@@ -84,11 +88,7 @@ namespace SolidGui
         {
             get
             {
-                return _masterRecordList;
-            }
-            set
-            {
-                _masterRecordList = value;
+                return _workingDictionary.AllRecords; // return _masterRecordList;
             }
         }
 
@@ -129,7 +129,7 @@ namespace SolidGui
         {
             get
             {
-                return _masterRecordList.Count > 0;
+                return _workingDictionary.AllRecords.Count > 0; // return _masterRecordList.Count > 0;
             }
         }
 
@@ -239,7 +239,7 @@ namespace SolidGui
         public event EventHandler DictionaryProcessed;
 
         /// <summary>
-        /// Called by the view to determine whether to ask the user for a starting template
+        /// Called by the view to determine whether to ask the user for a starting template. No significant side effects, except it notifies the user on error.
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
@@ -291,29 +291,54 @@ namespace SolidGui
         /// <returns>True if successful; false otherwise.</returns>
         public bool OpenDictionary(string dictionaryPath, string templatePath)
         {
-            if (!SaveOffOpenModifiedStuff())  //JMC: Side effect; split this out? E.g. doesn't make sense for command-line launch
-            {
-                return false;
-            }
+            // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
+            // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file is not an adequate "rollback".)
+            // The approach used here isn't very elegant, but it involves less refactoring. (Making SfmDictionary and MainWindowPM implement ICloneable might help.)
+            // http://stackoverflow.com/questions/11074381/deep-copy-of-a-c-sharp-object
+            string origDictionaryPath = _realDictionaryPath;
+            SolidSettings origSettings = Settings;
+            SfmDictionary origDict = _workingDictionary;
 
-            _realDictionaryPath = dictionaryPath;
+            _realDictionaryPath = dictionaryPath; 
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
             if (File.Exists(solidFilePath))
             {
-                Settings = LoadSettingsFromExistingFile(solidFilePath);
+                Settings = LoadSettingsFromExistingFile(solidFilePath); 
             }
             else
             {
-                Settings = LoadSettingsFromTemplate(templatePath);
+                Settings = LoadSettingsFromTemplate(templatePath); 
             }
             GiveSolidSettingsToModels();
-            _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
 
+
+            var dict = new SfmDictionary();
+            if (dict.Open(_realDictionaryPath, Settings, _recordFilters))  
+            {
+                _workingDictionary = dict;
+                if (DictionaryProcessed != null)
+                {
+                    DictionaryProcessed.Invoke(this, null);
+                }
+                return true;
+            }
+
+            // File Open was cancelled or didn't succeed. Roll back.
+            _realDictionaryPath = origDictionaryPath;
+            Settings = origSettings;
+            GiveSolidSettingsToModels();
+            _workingDictionary = origDict;
+            Initialize();
+
+            // JMC: need to also invoke DictionaryProcessed ? Hopefully not, since that would switch to the default filter.
+
+/*
             if (DictionaryProcessed != null)
             {
                 DictionaryProcessed.Invoke(this, null);
-                return true;
             }
+*/
+
             return false;
         }
 
@@ -346,11 +371,11 @@ namespace SolidGui
         /// Call this before switching dictionaries or quitting
         /// </summary>
         /// <returns>false if user cancelled</returns>
-        private bool SaveOffOpenModifiedStuff()
+        public bool SaveOffOpenModifiedStuff()
         {
             //review Mark(JH): do we need to save an existing, open dictionary at this point (and let the user cancel)?
 
-            if(Settings!=null)
+            if (Settings != null)
             {
                 Palaso.Reporting.Logger.WriteEvent("Saving settings");
                 Settings.Save();

@@ -141,7 +141,7 @@ namespace SolidGui
                 return; //they cancelled
             }
 
-            Settings.Default.PreviousPathToDictionary = dlg.FileName;
+            Settings.Default.PreviousPathToDictionary = dlg.FileName;  // JMC:! Move this down to XYZ!
 
             Cursor = Cursors.WaitCursor;
             string templatePath = null;
@@ -155,10 +155,15 @@ namespace SolidGui
             }
             // At this point we s/b guaranteed to have a template file with a matching name. -JMC
 
+            if (!_mainWindowPM.SaveOffOpenModifiedStuff())
+            {
+                return;
+            }
             Cursor = Cursors.WaitCursor;
             if (_mainWindowPM.OpenDictionary(dlg.FileName, templatePath))
             {
                 OnFileLoaded(dlg.FileName);
+                // JMC:! XYZ
                 Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
                 _mainWindowPM.needsSave = false; // These two lines fix issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
                 _saveButton.Enabled = false;
@@ -175,7 +180,10 @@ namespace SolidGui
 
         public void OnFileLoaded(string name)
         {
-            Text = "Solid: " + name;
+            if (!String.IsNullOrEmpty(name))
+            {
+                Text = "Solid: " + name;                
+            }
             splitContainer1.Panel1.Enabled = true;
             splitContainer2.Panel1.Enabled = true;
             splitContainer2.Panel2.Enabled = true;
@@ -224,6 +232,7 @@ namespace SolidGui
             _mainWindowPM.ProcessLexicon();
             _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
 
+            //_mainWindowPM.NavigatorModel.SendNavFilterChangedEvent();  // Added this so the left panes' selection would reset -JMC 2013-10
             _sfmEditorView.Reload();
             Cursor = Cursors.Default;
         }

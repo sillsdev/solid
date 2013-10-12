@@ -60,13 +60,10 @@ namespace SolidGui
                 }
 
                 // SendRecordChangedEvent();  // Currently redundant with the next event; disabled. -JMC 2013-10
-                if (NavFilterChanged != null)
-                {
-                    NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
-                }
+                SendNavFilterChangedEvent();
             }
         }
-        
+
         public string Description
         {
             get
@@ -94,6 +91,14 @@ namespace SolidGui
         {
             if (RecordChanged != null)
                 RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter.HighlightMarkers));
+        }
+
+        public void SendNavFilterChangedEvent()
+        {
+            if (NavFilterChanged != null)
+            {
+                NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
+            }
         }
 
         public void MoveToLast()
