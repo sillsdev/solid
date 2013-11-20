@@ -152,7 +152,7 @@ namespace SolidGui.Search
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SearchView";
-            this.Text = "Find";
+            this.Text = "Find (Experimental)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

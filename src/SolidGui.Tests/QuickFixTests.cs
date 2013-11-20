@@ -363,57 +363,57 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void PropogatePartOfSpeech_SecondSenseLacksPs_Propogated()
+        public void PropagatePartOfSpeech_SecondSenseLacksPs_Propagated()
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge lion");
-            new QuickFixer(dict).PropogatePartOfSpeech();
+            new QuickFixer(dict).PropagatePartOfSpeech();
             AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion");
         }
 
         [Test]
-        public void PropogatePartOfSpeech_PsBeforeSn_Switches()
+        public void PropagatePartOfSpeech_PsBeforeSn_Switches()
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \ps noun \sn 1 \ge cat");
-            new QuickFixer(dict).PropogatePartOfSpeech();
+            new QuickFixer(dict).PropagatePartOfSpeech();
             AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun  \ge cat");
         }
         
         [Test]
-        public void PropogatePartOfSpeech_StopsAtEndOfEntry()
+        public void PropagatePartOfSpeech_StopsAtEndOfEntry()
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \ps noun \lx b \ge dog");
-            new QuickFixer(dict).PropogatePartOfSpeech();
+            new QuickFixer(dict).PropagatePartOfSpeech();
             Assert.AreEqual(2, dict.Records.Count);
             AssertFieldContents(dict.Records[1], "lx b", "ge dog");
         }
 
         [Test]
-        public void PropogatePartOfSpeech_PsPropgatedToNextSense()
+        public void PropagatePartOfSpeech_PsPropgatedToNextSense()
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge lion");
-            new QuickFixer(dict).PropogatePartOfSpeech();
+            new QuickFixer(dict).PropagatePartOfSpeech();
             AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion");
         }
 
         [Test]
-        public void PropogatePartOfSpeech_NextSenseHasPOS_DoesntPropogate()
+        public void PropagatePartOfSpeech_NextSenseHasPOS_DoesntPropagate()
         {
             var dict = MakeDictionary(new SolidSettings(),
                         @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge foo \ps verb");
-            new QuickFixer(dict).PropogatePartOfSpeech();
+            new QuickFixer(dict).PropagatePartOfSpeech();
             AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge foo  \ps verb");
         }
 
 		[Test] // http://projects.palaso.org/issues/514
-		public void PropogatePartOfSpeech_WithSubEntry_PsPropagatesToLexemeLevelSense()
+		public void PropagatePartOfSpeech_WithSubEntry_PsPropagatesToLexemeLevelSense()
 		{
 			var dict = MakeDictionary(new SolidSettings(),
 						@"\lx a \ps noun \sn 1 \ge cat \se aa \ps verb \sn 2 \ge foo");
-			new QuickFixer(dict).PropogatePartOfSpeech();
+			new QuickFixer(dict).PropagatePartOfSpeech();
 			AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \se aa \sn 2 \ps verb \ge foo");
 		}
 

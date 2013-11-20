@@ -16,7 +16,7 @@ namespace SolidGui
     /// </summary>
     public partial class MainWindowView : Form
     {
-        private readonly MainWindowPM _mainWindowPM;
+        private MainWindowPM _mainWindowPM;  // / was readonly, but I think it s/b be hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
         private int _filterIndex;
 
         public MainWindowView(MainWindowPM mainWindowPM)
@@ -28,37 +28,57 @@ namespace SolidGui
                 return;
             }
 
-            _mainWindowPM = mainWindowPM;
-            _filterIndex = 0;
-            _sfmEditorView.BindModel(_mainWindowPM.SfmEditorModel);
-            _recordNavigatorView.BindModel(_mainWindowPM.NavigatorModel);
-            _filterChooserView.BindModel(_mainWindowPM.FilterChooserModel);
+            Initialize(mainWindowPM);
 
+        }
+
+        private void Initialize(MainWindowPM mainWindowPM)
+        {
             this.KeyPreview = true;
-            
-            // Wire the views to listen to the models
-            _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
-            _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
-            _mainWindowPM.NavigatorModel.NavFilterChanged += _recordNavigatorView.OnNavFilterChanged;
-            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged;
-            _mainWindowPM.FilterChooserModel.WarningFilterChanged += _filterChooserView.OnWarningFilterChanged;
-            _mainWindowPM.MarkerSettingsModel.MarkerFilterChanged += _markerSettingsList.OnMarkerFilterChanged;
-            _mainWindowPM.SearchModel.WordFound += OnWordFound;
-
-            // Event wiring for child views.
-            _recordNavigatorView._refreshButton.Click += _sfmEditorView.OnRefreshClicked;
-
-            // Event wiring for the main view.
-            _markerSettingsList.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
-            _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
-            _sfmEditorView.RecheckKeystroke += OnRecheckKeystroke;
-            _recordNavigatorView.SearchButtonClicked += OnSearchClick;
-
 
             splitContainer1.Panel1.Enabled = false;
             splitContainer2.Panel1.Enabled = false;
             splitContainer2.Panel2.Enabled = false;
             _sfmEditorView.Enabled = false;
+
+            _mainWindowPM = mainWindowPM;
+            _filterIndex = 0;
+
+        }
+
+        public void BindModels(MainWindowPM mainWindowPM) 
+        {
+            // cut any old wires first
+            if (_mainWindowPM != null)
+            {
+                _mainWindowPM.DictionaryProcessed -= OnDictionaryProcessed;
+                _mainWindowPM.SearchModel.WordFound -= OnWordFound;
+                _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
+            }
+
+            _mainWindowPM = mainWindowPM;
+
+            _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
+            _mainWindowPM.SearchModel.WordFound += OnWordFound;
+            _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
+
+            _sfmEditorView.BindModel(_mainWindowPM);
+            _recordNavigatorView.BindModel(_mainWindowPM.NavigatorModel);
+            _filterChooserView.BindModel(_mainWindowPM.WarningFilterChooserModel);
+            _markerSettingsListView.BindModel(_mainWindowPM.MarkerSettingsModel, _mainWindowPM.WorkingDictionary);  // added -JMC
+            // _searchView.BindModel(_mainWindowPM);  // Started to add this, but it'll crash; better to do on first use -JMC
+            //JMC: should prob also run MarkerSettingsDialog.BindModel() 
+            // var test = new MarkerSettings.MarkerSettingsDialog(_mainWindowPM.MarkerSettingsModel, "");
+            // But first, we'll need a private property for it, such as _markerSettingsDialog
+
+            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged;
+
+            // JMC: verify that the following += don't stack up after several File Open.
+            _recordNavigatorView._refreshButton.Click += _sfmEditorView.OnRefreshClicked;
+            _recordNavigatorView.SearchButtonClicked += OnSearchClick;
+            _markerSettingsListView.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
+            _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
+            _sfmEditorView.RecheckKeystroke += OnRecheckKeystroke;
 
         }
 
@@ -69,15 +89,14 @@ namespace SolidGui
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
+/* Moved this into BindModels()  -JMC 2013-10
             //wire up the change of record event to our record display widget
             _markerSettingsList.BindModel(
                 _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.WorkingDictionary
             );
-            _markerSettingsList.UpdateDisplay();
-            _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
-            _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274) -JMC 2013-09
-            _filterChooserView.UpdateDisplay();
+*/
+
             UpdateDisplay();
         }
 
@@ -95,7 +114,7 @@ namespace SolidGui
                     OnSaveClick(sender, e);
                 }
             }
-            ChooseProject();
+            ChooseAndOpenProject();
             if (_mainWindowPM.Settings != null)
             {
                 _mainWindowPM.Settings.NotifyIfNewMarkers();
@@ -103,7 +122,7 @@ namespace SolidGui
 
         }
 
-        private void ChooseProject()
+        private void ChooseAndOpenProject()
         {
             string initialDirectory = null;
             if (!String.IsNullOrEmpty(Settings.Default.PreviousPathToDictionary))
@@ -156,20 +175,42 @@ namespace SolidGui
             // Removed this extraneous save method, to clean up code and fix issue #1149 "Using Open Lexicon to switch files always saves currently open settings, even after choosing No." -JMC 2013-10
             // _mainWindowPM.SaveSettings(); 
 
+            Open(dlg.FileName, templatePath);
+        }
+
+        private void Open(string fileName, string templatePath)
+        {
             Cursor = Cursors.WaitCursor;
-            if (_mainWindowPM.OpenDictionary(dlg.FileName, templatePath))
+
+            // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
+            // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file from disk is not an adequate "rollback".)
+            var origPm = _mainWindowPM;
+            _mainWindowPM = new MainWindowPM();
+
+            if (_mainWindowPM.OpenDictionary(fileName, templatePath))
             {
-                OnFileLoaded(dlg.FileName);
-                Settings.Default.PreviousPathToDictionary = dlg.FileName; 
+                Settings.Default.PreviousPathToDictionary = fileName;
                 Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
+
+                BindModels(_mainWindowPM);
+                OnFileLoaded(fileName);
                 _mainWindowPM.needsSave = false; // These two lines fix issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
                 _saveButton.Enabled = false;
-                string ext = Path.GetExtension(dlg.FileName);
+                string ext = Path.GetExtension(fileName);
                 if (!SolidSettings.FileExtensions.Contains(ext))
                 {
                     SolidSettings.FileExtensions.Add(ext);
-                        // adaptive: makes the next File Open dialog friendlier (during this run; lost on exit) -JMC
+                    // adaptive: makes the next File Open dialog friendlier (during this run; lost on exit) -JMC
                 }
+                origPm.Dispose();  // in case any variables are still referencing the old file's PM, this might block those bugs. -JMC
+
+                // JMC:! need to call something that's in _mainWindowPM.ProcessLexicon();
+            }
+            else
+            {
+                // File Open was cancelled or didn't succeed. Roll back.
+                // Initialize(origPm);  // JMC:!! probably need something less destructive
+                BindModels(origPm);
             }
 
             Cursor = Cursors.Default;
@@ -181,14 +222,36 @@ namespace SolidGui
             {
                 Text = "Solid: " + name;                
             }
-            splitContainer1.Panel1.Enabled = true;
-            splitContainer2.Panel1.Enabled = true;
-            splitContainer2.Panel2.Enabled = true;
-            _sfmEditorView.Enabled = true;
+            UpdateDisplay();
+        }
+
+        private void UpdateDisplay()
+        {
+
+            bool canProcess = _mainWindowPM.CanProcessLexicon;
+            _filterChooserView.Enabled = canProcess;
+            _changeWritingSystems.Enabled = canProcess;
+            _changeTemplate.Enabled = canProcess;
+            _exportButton.Enabled = canProcess;
+            _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
+            _quickFixButton.Enabled = canProcess;
+            _saveButton.Enabled = _mainWindowPM.needsSave;
+
+            splitContainer1.Panel1.Enabled = canProcess;
+            splitContainer2.Panel1.Enabled = canProcess;
+            splitContainer2.Panel2.Enabled = canProcess;
+            _sfmEditorView.Enabled = canProcess;
+
+            _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274) -JMC 2013-09
             _mainWindowPM.NavigatorModel.StartupOrReset();
+            _markerSettingsListView.UpdateDisplay();
+            _filterChooserView.Model.Reset(); // _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
+            _filterChooserView.UpdateDisplay(); // adding this helps the lower left pane...
             _sfmEditorView.Focus();
-            _sfmEditorView.Reload();
+            _sfmEditorView.Reload();  // JMC:! ...but this doesn't help with the right pane
+            // Recheck(); // JMC:! ...so this is a temporary total hack (an extra recheck is expensive!)
             _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
+        
         }
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -236,17 +299,6 @@ namespace SolidGui
 
 
 
-        private void UpdateDisplay()
-        {
-            bool canProcess = _mainWindowPM.CanProcessLexicon;
-            _filterChooserView.Enabled = canProcess;
-            _changeWritingSystems.Enabled = canProcess;
-            _changeTemplate.Enabled = canProcess;
-            _exportButton.Enabled = canProcess;
-            _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
-            _quickFixButton.Enabled = canProcess;
-            _saveButton.Enabled = _mainWindowPM.needsSave;
-        }
 
         private void OnSaveClick(object sender, EventArgs e) // (this works for Ctrl+S too) -JMC
         {
@@ -261,9 +313,9 @@ namespace SolidGui
 
         private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
-            if (e.SearchResult.Filter != _mainWindowPM.FilterChooserModel.ActiveWarningFilter)
+            if (e.SearchResult.Filter != _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter)
             {
-                _mainWindowPM.FilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
+                _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
             }
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
@@ -304,6 +356,8 @@ namespace SolidGui
             string path = RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
             if(!String.IsNullOrEmpty(path))
             {
+                //JMC:!! Do we need to save first? I.e. prob need to call SfmEditorView.UpdateModel() to be safe
+                _sfmEditorView.UpdateModel();
                 _mainWindowPM.UseSolidSettingsTemplate(path);
             }
         }
@@ -324,9 +378,9 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
-            _searchView = SearchView.CreateSearchView(_mainWindowPM.NavigatorModel, _sfmEditorView);
+            _searchView = SearchView.CreateSearchView(_mainWindowPM, _sfmEditorView);
             _searchView.TopMost = true; // means that this form should always be in front of all others
-            _searchView.SearchModel = _mainWindowPM.SearchModel;
+            // _searchView.SearchModel = _mainWindowPM.SearchModel; // JMC: redundant now?
             _searchView.Show();
             _searchView.Focus();
         }
@@ -349,6 +403,11 @@ namespace SolidGui
             }
             if (e.Control == true && e.KeyCode == Keys.S)
             {
+                if (e.Shift)
+                {
+                    // JMC:! Insert code here for calling OnSaveClick() with saveClosingTags = true
+                    return;
+                }
                 if (_mainWindowPM.needsSave)
                 {
                     OnSaveClick(this, new EventArgs());
@@ -378,7 +437,7 @@ namespace SolidGui
         private void OnExportButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Title = "Export As";
+            saveDialog.Title = "Export As LIFT (Experimental)";
             saveDialog.AddExtension = true;
             saveDialog.Filter = ExportFilterString();
             saveDialog.FileName = Path.GetFileNameWithoutExtension(_mainWindowPM.DictionaryRealFilePath);
@@ -408,7 +467,7 @@ namespace SolidGui
 
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
-            _markerSettingsList.OpenSettingsDialog(null);
+            _markerSettingsListView.OpenSettingsDialog(null);
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -429,8 +488,8 @@ namespace SolidGui
             var dialog = new WritingSystemsConfigDialog();
             var presenter = new WritingSystemsConfigPresenter(_mainWindowPM.Settings, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
             DialogResult result = dialog.ShowDialog(this);
-            _markerSettingsList.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
-            _markerSettingsList.Refresh();
+            _markerSettingsListView.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
+            _markerSettingsListView.Refresh();
             if (result != DialogResult.Cancel)  // fixes issue #1213 (bogus "needs save")
             {
                 OnMarkerSettingPossiblyChanged(null, null);

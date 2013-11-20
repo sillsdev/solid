@@ -15,7 +15,7 @@ namespace SolidGui.Tests.Mapping
 		public void ConceptToString_NullNode_NoThrow()
 		{
 			var model = new MappingPM.Concept(null);
-			var result = model.ToString();
+			var result = model.Label();
 			Assert.That(result, Is.EqualTo(""));
 		}
 

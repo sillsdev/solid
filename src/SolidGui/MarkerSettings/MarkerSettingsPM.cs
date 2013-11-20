@@ -21,6 +21,12 @@ namespace SolidGui.MarkerSettings
 
         private MarkerFilter _activeMarkerFilter = null;
 
+        public override string ToString()
+        {
+            return string.Format("{{mrk: Active: {0}; All: {1}}}",
+                _activeMarkerFilter, SolidSettings);
+        }
+
         public MarkerFilter ActiveMarkerFilter
         {
             get

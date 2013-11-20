@@ -13,9 +13,10 @@ namespace SolidGui
 {
     public class SfmEditorPM
     {
-        private SolidSettings _solidSettings;
-        private readonly RecordNavigatorPM _navigatorModel;
-        private SfmDictionary _dictionary;   // working toward fixing #173 etc. (adding/deleting entries) -JMC 2013-09
+        // private SolidSettings _solidSettings;
+        private MainWindowPM _model;
+        //private readonly RecordNavigatorPM _navigatorModel;  // JMC: delete this
+        // private SfmDictionary _dictionary;   // working toward fixing #173 etc. (adding/deleting entries) -JMC 2013-09
         public class RecordEditedEventArgs:EventArgs
         {
             public string Record;
@@ -26,12 +27,22 @@ namespace SolidGui
             }
         }
 
-        public SfmEditorPM(RecordNavigatorPM navigatorModel, SfmDictionary dict)  
+        public SfmEditorPM (MainWindowPM m)  //JMC: was (RecordNavigatorPM navigatorModel, SfmDictionary dict)  
         {
+            _model = m;
+/*
             _navigatorModel = navigatorModel;
             _dictionary = dict;
+*/
         }
 
+        public override string ToString()
+        {
+            return string.Format("{{edit: {0}}}", _model.WorkingDictionary);
+        }
+
+/*
+        // JMC:!! Remove this property altogether? Access it via MainWindowPM instead (easier to swap it out then)
         public SolidSettings SolidSettings
         {
             set
@@ -39,25 +50,26 @@ namespace SolidGui
             get  // added it; missing get seemed like a simple oversight, and I needed it. -JMC 2013-09
             { return _solidSettings; }
         }
+*/
 
         public void MoveToFirst()
         {
-            _navigatorModel.MoveToFirst();
+            _model.NavigatorModel.MoveToFirst();
         }
 
         public void MoveToLast()
         {
-            _navigatorModel.MoveToLast();
+            _model.NavigatorModel.MoveToLast();
         }
 
         public void MoveToPrevious()
         {
-            _navigatorModel.MoveToPrevious();
+            _model.NavigatorModel.MoveToPrevious();
         }
 
         public void MoveToNext()
         {
-            _navigatorModel.MoveToNext();
+            _model.NavigatorModel.MoveToNext();
         }
 
         private static Regex ReggieLeading = new Regex(
@@ -70,14 +82,14 @@ namespace SolidGui
         // Take whatever was in the view's rich text box and update the underlying model to match it.
         public void UpdateCurrentRecord(Record record, string newContents)
         {
-            var f = _navigatorModel.ActiveFilter;
+            var f = _model.NavigatorModel.ActiveFilter;
             newContents = newContents.TrimStart(null);
             if (newContents.TrimEnd(null) == "") // the DELETE case (issue #174)
             {
                 // user cleared it; delete the record that was there, then return -JMC
-                if (_dictionary.DeleteRecord(record))
+                if (_model.WorkingDictionary.DeleteRecord(record))
                 {
-                    record.SetRecordContents("", _solidSettings);
+                    record.SetRecordContents("", _model.Settings);
                     // Prevents phantoms from reappearing on Refresh etc. Too bad we can't dispose the object (or all references to it). -JMC 2013-10
                     // It also signals SfmEditorView to hide the textbox so the user won't enter data there (which would be lost).
 
@@ -105,13 +117,13 @@ namespace SolidGui
                 }
                 return;
             }
-            else if (!newContents.StartsWith("\\" + _solidSettings.RecordMarker))
+            else if (!newContents.StartsWith("\\" + _model.Settings.RecordMarker))
                 // the FRAGMENT ABOVE case (an edge case under issue #173)
             {
                 // user edits resulted in an initial fragment; insert an "\\lx FRAGMENT line" -JMC 2013-09
                 // JMC: It might be nice to create an additional warning filter that finds these fragments; for that, we would want frag below to become a global setting.
                 string frag = "FRAGMENT!";
-                newContents = "\\" + _solidSettings.RecordMarker + " " + frag + SolidSettings.NewLine +
+                newContents = "\\" + _model.Settings.RecordMarker + " " + frag + SolidSettings.NewLine +
                               newContents;
 
                 ErrorReport.NotifyUserOfProblem("Record fragment detected! Adding a new record for it.", record.ID);
@@ -150,7 +162,7 @@ namespace SolidGui
                 if (i == 0)
                 {
                     // We get one freebie; the first record is simply kept and sent to the UI
-                    record.SetRecordContents(s, _solidSettings);
+                    record.SetRecordContents(s, _model.Settings);
 
                 }
                 else
@@ -160,16 +172,16 @@ namespace SolidGui
                     var tmp = new Record(lexEntry, null);
 
                     // JMC:! The following (append) works, but it would be nicer to insert into our current position in the file and filter.
-                    _dictionary.AddRecord(tmp);
+                    _model.WorkingDictionary.AddRecord(tmp);
                     // JMC:! Update the filter; make sure this works for SolidErrorRecordFilter too 
                     var ef = f as SolidErrorRecordFilter;  // does an "is" check and a cast
                     if (ef != null)
                     {
-                        ef.AddEntry(_dictionary.Count-1); // JMC:! append; insert w/b better
+                        ef.AddEntry(_model.WorkingDictionary.Count-1); // JMC:! append; insert w/b better
                     }
                     else
                     {
-                        _navigatorModel.ActiveFilter.UpdateFilter();                        
+                        _model.NavigatorModel.ActiveFilter.UpdateFilter();                        
                     }
                 }
                  
@@ -206,7 +218,7 @@ namespace SolidGui
 
         public Font FontForMarker(string marker)
         {
-            string writingSystemId = _solidSettings.FindOrCreateMarkerSetting(marker).WritingSystemRfc4646;
+            string writingSystemId = _model.Settings.FindOrCreateMarkerSetting(marker).WritingSystemRfc4646;
 
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
@@ -231,7 +243,7 @@ namespace SolidGui
         public string GetUnicodeValueFromLatin1(SfmFieldModel field)
         {
             string retval;
-            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(field.Marker);
+            SolidMarkerSetting setting = _model.Settings.FindOrCreateMarkerSetting(field.Marker);
             if (setting != null && setting.Unicode)
             {
                 retval = field.ValueAsUnicode();
@@ -245,7 +257,7 @@ namespace SolidGui
 
         private string GetLatin1ValueFromUnicode(string marker, string value)
         {
-            SolidMarkerSetting setting =  _solidSettings.FindOrCreateMarkerSetting(marker);
+            SolidMarkerSetting setting = _model.Settings.FindOrCreateMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
                 Encoding stringEncoding = Encoding.UTF8;

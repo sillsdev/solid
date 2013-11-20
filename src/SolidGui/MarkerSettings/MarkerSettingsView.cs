@@ -8,9 +8,12 @@ namespace SolidGui.MarkerSettings
 {
     public partial class MarkerSettingsView : UserControl
     {
-        private SolidMarkerSetting _currentMarkerSetting;
         private readonly WritingSystemSetupModel _wsModel;
         private readonly IWritingSystemRepository _store;
+
+        // JMC:! Need a BindModel for these? (See MarkerSettingsDialog)
+        private SolidMarkerSetting _currentMarkerSetting;
+        public MarkerSettingsPM MarkerModel { get; set; }
 
         public MarkerSettingsView()
         {
@@ -32,8 +35,6 @@ namespace SolidGui.MarkerSettings
                 _currentMarkerSetting.WritingSystemRfc4646 = string.Empty;
             }
         }
-
-        public MarkerSettingsPM MarkerModel{get;set;}
 
         public void UpdateDisplay()
         {
@@ -100,7 +101,8 @@ namespace SolidGui.MarkerSettings
                 return;
             }
             _structurePropertiesView.Model = MarkerModel.StructurePropertiesModel;
-            _mappingView.Model = MarkerModel.MappingModel;
+
+            _mappingView.BindModel(MarkerModel.MappingModel);  // was: _mappingView.Model = MarkerModel.MappingModel;
         }
 
         private void _structureTabControl_Leave(object sender, EventArgs e)

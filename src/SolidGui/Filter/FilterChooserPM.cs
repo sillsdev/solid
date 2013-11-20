@@ -9,7 +9,7 @@ namespace SolidGui.Filter
     /// This class is the Presentation Model(ui-agnostic) half of this control
     /// See also MarkerSettingsListView, since the user can only select an item from one list at a time.
     /// </summary>
-    public class FilterChooserPM
+    public class FilterChooserPM :IDisposable
     {
         private IList<RecordFilter> _recordFilters;
         private RecordFilter _activeWarningFilter;
@@ -29,6 +29,12 @@ namespace SolidGui.Filter
         public FilterChooserPM()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{{filts: Active: {0}; All: {1}; {2}}}", 
+                _activeWarningFilter, _recordFilters, GetHashCode());
         }
 
         public IList<RecordFilter> RecordFilters
@@ -58,6 +64,24 @@ namespace SolidGui.Filter
                     WarningFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeWarningFilter));
                 }
             }
+        }
+
+        public void Reset()
+        {
+            if (RecordFilters != null && RecordFilters.Count > 0)
+            {
+                ActiveWarningFilter = RecordFilters[0];                
+            }
+            else
+            {
+                ActiveWarningFilter = null;
+            }
+        }
+
+        public void Dispose()
+        {
+            _recordFilters = null;
+            _activeWarningFilter = null;
         }
     }
 }

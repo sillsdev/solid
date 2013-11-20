@@ -11,7 +11,7 @@ namespace SolidGui
     /// filter and lets them say "next" and "previous".
     /// This class is the Presentation Model(ui-agnostic) half of this control
     /// </summary>
-    public class RecordNavigatorPM
+    public class RecordNavigatorPM :IDisposable
     {
         private RecordFilter _recordFilter;
 
@@ -38,6 +38,11 @@ namespace SolidGui
         {
         }
 
+        public override string ToString()
+        {
+            return string.Format("{{nav: Active: {0}}}", ActiveFilter);
+        }
+
         public RecordFilter ActiveFilter
         {
             get
@@ -56,7 +61,7 @@ namespace SolidGui
                 
                 if ( currentRecordId == 0 || !_recordFilter.MoveToByID(currentRecordId) )
                 {
-                    _recordFilter.MoveToFirst();
+                    if (_recordFilter != null) _recordFilter.MoveToFirst();
                 }
 
                 // SendRecordChangedEvent();  // Currently redundant with the next event; disabled. -JMC 2013-10
@@ -203,6 +208,16 @@ namespace SolidGui
             {
                 ActiveFilter = filter;
             }
+        }
+
+        public void Dispose()
+        {
+            // cut off any listeners
+            NavFilterChanged = null;
+            RecordChanged = null;
+            // dispose
+            _recordFilter = null;
+            ActiveFilter = null;
         }
     }
 }    

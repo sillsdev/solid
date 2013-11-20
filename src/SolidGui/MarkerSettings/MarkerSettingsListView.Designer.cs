@@ -69,7 +69,7 @@ namespace SolidGui.MarkerSettings
             glColumn3.ImageIndex = -1;
             glColumn3.Name = "structure";
             glColumn3.NumericSort = false;
-            glColumn3.Text = "Structure";
+            glColumn3.Text = "Under";
             glColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             glColumn3.Width = 80;
             glColumn4.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;

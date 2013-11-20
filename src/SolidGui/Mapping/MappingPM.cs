@@ -183,13 +183,18 @@ namespace SolidGui.Mapping
                 }
             }
 
-            public override string ToString()
+            public string Label()
             {
                 if (_node == null)
                 {
                     return "";
                 }
                 return _node.GetOptionalStringAttribute("uiname", null);
+            }
+
+            public override string ToString()
+            {
+                return Label();
             }
             
             public string GetId()

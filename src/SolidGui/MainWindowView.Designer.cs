@@ -52,7 +52,7 @@ namespace SolidGui
             this.label1 = new System.Windows.Forms.Label();
             this._recheckButton = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this._markerSettingsList = new SolidGui.MarkerSettings.MarkerSettingsListView();
+            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
@@ -194,7 +194,7 @@ namespace SolidGui
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.Controls.Add(this.panel2);
-            this.splitContainer2.Panel1.Controls.Add(this._markerSettingsList);
+            this.splitContainer2.Panel1.Controls.Add(this._markerSettingsListView);
             // 
             // splitContainer2.Panel2
             // 
@@ -288,13 +288,13 @@ namespace SolidGui
             // 
             // _markerSettingsList
             // 
-            this._markerSettingsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this._markerSettingsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsList.Location = new System.Drawing.Point(0, 38);
-            this._markerSettingsList.Name = "_markerSettingsList";
-            this._markerSettingsList.Size = new System.Drawing.Size(435, 228);
-            this._markerSettingsList.TabIndex = 0;
+            this._markerSettingsListView.Location = new System.Drawing.Point(0, 38);
+            this._markerSettingsListView.Name = "_markerSettingsListView";
+            this._markerSettingsListView.Size = new System.Drawing.Size(435, 228);
+            this._markerSettingsListView.TabIndex = 0;
             // 
             // _filterChooserView
             // 
@@ -381,7 +381,7 @@ namespace SolidGui
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label1;
         private FilterChooserView _filterChooserView;
-        private MarkerSettingsListView _markerSettingsList;
+        private MarkerSettingsListView _markerSettingsListView;
         private System.Windows.Forms.Button _recheckButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton _exportButton;

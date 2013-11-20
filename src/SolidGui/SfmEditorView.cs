@@ -26,12 +26,13 @@ namespace SolidGui
         //private const string _processingMark = "\x01";
         
         private readonly MarkerTip _markerTip;
-        private Record _currentRecord;
         private int _indent = 130;
         private bool _isDirty;
         private int _lineNumber = -1;
         private int _markerTipDisplayDelay = 10;
-        private SfmEditorPM _model;
+
+        private Record _currentRecord; // /
+        private MainWindowPM _model; // /
 
         public SfmEditorView()
         {
@@ -94,9 +95,10 @@ namespace SolidGui
             ContentsBox.Focus();
         }
 
-        public void BindModel(SfmEditorPM model)
+        public void BindModel(MainWindowPM model)
         {
             _model = model;
+            _currentRecord = null;
         }
 
         public void Highlight(int startIndex, int length)
@@ -130,12 +132,12 @@ namespace SolidGui
             //int currentIndex = ContentsBox.SelectionStart;
             if (_currentRecord != null && _isDirty)  // && ContentsBox.Text.Length > 0)  // We now allow clearing to delete a record, so zero length is fine. -JMC 2013-09
             {
-                _model.UpdateCurrentRecord(_currentRecord, ContentsBox.Text);
+                _model.SfmEditorModel.UpdateCurrentRecord(_currentRecord, ContentsBox.Text);
             }
             _isDirty = false;
-            if (_model.SolidSettings != null)
+            if (_model.Settings != null)
             {
-                _model.SolidSettings.NotifyIfNewMarkers();
+                _model.Settings.NotifyIfNewMarkers();
             }
             //ContentsBox.SelectionStart = currentIndex;
         }
@@ -218,8 +220,8 @@ namespace SolidGui
 
                 // 3) (tab + Value) + Trailing Whitespace 
                 _contentsBoxDB.SelectionColor = _defaultTextColor;
-                _contentsBoxDB.SelectionFont = _model.FontForMarker(field.Marker) ?? _defaultFont;
-                string displayValue = _model.GetUnicodeValueFromLatin1(field);
+                _contentsBoxDB.SelectionFont = _model.SfmEditorModel.FontForMarker(field.Marker) ?? _defaultFont;
+                string displayValue = _model.SfmEditorModel.GetUnicodeValueFromLatin1(field);
                 if (displayValue != "")
                 {
                     _contentsBoxDB.AppendText("\t" + displayValue);
@@ -381,9 +383,9 @@ namespace SolidGui
                     if (e.Control)
                     {
                         if (e.Shift)
-                            _model.MoveToLast();
+                            _model.SfmEditorModel.MoveToLast();
                         else
-                            _model.MoveToNext();
+                            _model.SfmEditorModel.MoveToNext();
                         e.Handled = true;
                     }
                     break;
@@ -391,9 +393,9 @@ namespace SolidGui
                     if (e.Control)
                     {
                         if (e.Shift)
-                            _model.MoveToFirst();
+                            _model.SfmEditorModel.MoveToFirst();
                         else
-                            _model.MoveToPrevious();
+                            _model.SfmEditorModel.MoveToPrevious();
                         e.Handled = true;
                     }
                     break;

@@ -13,6 +13,7 @@ using SolidGui.Export;
 using SolidGui.Filter;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;
+using SolidGui.Properties;
 using SolidGui.Search;
 
 
@@ -21,42 +22,58 @@ namespace SolidGui
     /// <summary>
     /// Presentation Model (ui-agnostic) half of MainWindow
     /// </summary>
-    public class MainWindowPM
+    public class MainWindowPM :IDisposable
     {
-        private readonly FilterChooserPM _filterChooserModel;
-        private readonly MarkerSettingsPM _markerSettingsModel;
-        private readonly RecordNavigatorPM _navigatorModel;
-        private readonly RecordFilterSet _recordFilters;
-        private readonly SfmEditorPM _sfmEditorModel;
-        private readonly String _tempDictionaryPath;
+        // most of the following were readonly, but I think this s/b hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
+        private FilterChooserPM _warningFilterChooserModel;
+        private MarkerSettingsPM _markerSettingsModel;
+        private RecordNavigatorPM _navigatorModel;
+        private RecordFilterSet _recordFilters;  // JMC: redundant with the property in the RecordFilter model?
+        private SfmEditorPM _sfmEditorModel;
+        private String _tempDictionaryPath;
         private SfmDictionary _workingDictionary;
         // private List<Record> _masterRecordList;
         private String _realDictionaryPath;
         private SearchViewModel _searchModel;
         public bool needsSave = false;
 
-        public MainWindowPM()
+        public MainWindowPM() 
         {
-            _recordFilters = new RecordFilterSet();
-            _workingDictionary = new SfmDictionary();
-            _markerSettingsModel = new MarkerSettingsPM();
-            _tempDictionaryPath = Path.Combine(Path.GetTempPath(),"TempDictionary.db");
-            _filterChooserModel = new FilterChooserPM();
-            _navigatorModel = new RecordNavigatorPM();
-            _sfmEditorModel = new SfmEditorPM(_navigatorModel, _workingDictionary);  // passing the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
-            _searchModel = new SearchViewModel();
-
-            Initialize();
+            Initialize(new SfmDictionary()); // , new SolidSettings());
         }
 
-        private void Initialize()
+        public override string ToString()
         {
-            // _masterRecordList = WorkingDictionary.AllRecords;  // Disabled this extra-step link because it made it harder to swap out the model. -JMC 2013-10
-            FilterChooserModel.RecordFilters = _recordFilters;
+            return string.Format("{0} {1} {2} {3} {4} {5} {6}",
+                _workingDictionary, _markerSettingsModel, _recordFilters, _warningFilterChooserModel, 
+                _navigatorModel, _sfmEditorModel, GetHashCode());
+        }
+
+        public void Initialize(SfmDictionary dict) // , SolidSettings settings)
+        {
+            _recordFilters = new RecordFilterSet();
+            _workingDictionary = dict;
+            // Settings = settings;
+            _markerSettingsModel = new MarkerSettingsPM();
+            _tempDictionaryPath = Path.Combine(Path.GetTempPath(), "TempDictionary.db");
+            _warningFilterChooserModel = new FilterChooserPM();
+            _navigatorModel = new RecordNavigatorPM();
+            _sfmEditorModel = new SfmEditorPM(this);  // passing s.t. with access to the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
+            _searchModel = new SearchViewModel();
+            // _masterRecordList = WorkingDictionary.AllRecords;  // Got rid of this extra-step link because it made it harder to swap out the model. -JMC 2013-10
+            WarningFilterChooserModel.RecordFilters = _recordFilters;  // JMC:!! get rid of this too? (i.e. use the main PM instead)
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
             _navigatorModel.ActiveFilter = new NullRecordFilter();  // JMC: remove? (try setting to null first and fixing what breaks)
-            _markerSettingsModel.MarkersInDictionary = WorkingDictionary.AllMarkers;
+            _markerSettingsModel.MarkersInDictionary = _workingDictionary.AllMarkers;   // JMC:!! get rid of this too?
+
+            // Wiring: the nav should update its own filter whenever something (other than null) is selected in a chooser -JMC 2013-10
+            WarningFilterChooserModel.WarningFilterChanged += NavigatorModel.OnFilterChanged;
+            MarkerSettingsModel.MarkerFilterChanged += NavigatorModel.OnFilterChanged;
+            // and the choosers should listen to the nav so they can clear themselves as needed
+            NavigatorModel.NavFilterChanged += WarningFilterChooserModel.OnNavFilterChanged;
+            NavigatorModel.NavFilterChanged += MarkerSettingsModel.OnNavFilterChanged;
+
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -67,7 +84,9 @@ namespace SolidGui
             }
         }
 
+        // JMC:! Remove the following or replace it with pass-thru of _markerSettingsModel.SolidSettings ??
         public SolidSettings Settings { get; private set; }
+            // get { return _markerSettingsModel.SolidSettings; }
 
         public SearchViewModel SearchModel
         {
@@ -78,17 +97,6 @@ namespace SolidGui
             set
             {
                 _searchModel = value;
-            }
-        }
-
-        /// <summary>
-        /// A list containing every lexical record in the dictionary
-        /// </summary>
-        public List<Record> MasterRecordList
-        {
-            get
-            {
-                return _workingDictionary.AllRecords; // return _masterRecordList;
             }
         }
 
@@ -117,11 +125,11 @@ namespace SolidGui
    
         }
 
-        public FilterChooserPM FilterChooserModel
+        public FilterChooserPM WarningFilterChooserModel
         {
             get
             {
-                return _filterChooserModel;
+                return _warningFilterChooserModel;
             }
         }
 
@@ -291,14 +299,6 @@ namespace SolidGui
         /// <returns>True if successful; false otherwise.</returns>
         public bool OpenDictionary(string dictionaryPath, string templatePath)
         {
-            // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
-            // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file is not an adequate "rollback".)
-            // The approach used here isn't very elegant, but it involves less refactoring. (Making SfmDictionary and MainWindowPM implement ICloneable might help.)
-            // http://stackoverflow.com/questions/11074381/deep-copy-of-a-c-sharp-object
-            string origDictionaryPath = _realDictionaryPath;
-            SolidSettings origSettings = Settings;
-            SfmDictionary origDict = _workingDictionary;
-
             _realDictionaryPath = dictionaryPath; 
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
             if (File.Exists(solidFilePath))
@@ -311,33 +311,17 @@ namespace SolidGui
             }
             GiveSolidSettingsToModels();
 
-
-            var dict = new SfmDictionary();
+            //var dict = _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
+            //var dict = new SfmDictionary();
+            var dict = _workingDictionary;
             if (dict.Open(_realDictionaryPath, Settings, _recordFilters))  
             {
-                _workingDictionary = dict;
                 if (DictionaryProcessed != null)
                 {
                     DictionaryProcessed.Invoke(this, null);
                 }
                 return true;
             }
-
-            // File Open was cancelled or didn't succeed. Roll back.
-            _realDictionaryPath = origDictionaryPath;
-            Settings = origSettings;
-            GiveSolidSettingsToModels();
-            _workingDictionary = origDict;
-            Initialize();
-
-            // JMC: need to also invoke DictionaryProcessed ? Hopefully not, since that would switch to the default filter.
-
-/*
-            if (DictionaryProcessed != null)
-            {
-                DictionaryProcessed.Invoke(this, null);
-            }
-*/
 
             return false;
         }
@@ -346,7 +330,7 @@ namespace SolidGui
         {
             _markerSettingsModel.SolidSettings = Settings;
             _markerSettingsModel.Root = Settings.RecordMarker;
-            _sfmEditorModel.SolidSettings = Settings;
+            // _sfmEditorModel.SolidSettings = Settings;  // JMC: hopefully unnecessary now
         }
 
         private SolidSettings LoadSettingsFromTemplate(string templatePath)
@@ -395,7 +379,7 @@ namespace SolidGui
             Settings.Save();
             LoadSettingsFromTemplate(path);
             GiveSolidSettingsToModels();
-            ProcessLexicon();
+            ProcessLexicon();  
 
             //???? do we replace these settings, or ask the settings to do the switch?
             // TODO: copy over this set of settings
@@ -434,6 +418,23 @@ namespace SolidGui
             }
         }
 
+        // Probably not proper, but I'm hoping this will flush out existing/new bugs related to pieces of Solid 
+        // pointing to the old file's stuff after a second file is opened. -JMC 2013-10
+        public void Dispose()
+        {
+            if (_warningFilterChooserModel != null) _warningFilterChooserModel.Dispose();
+            if (_navigatorModel != null) _navigatorModel.Dispose();
+            if (_recordFilters != null) _recordFilters.Dispose();
+            if (_workingDictionary != null) _workingDictionary.Clear();
+
+            //quick and dirty, for now
+            if (_markerSettingsModel != null) _markerSettingsModel.SolidSettings = null;
+            _markerSettingsModel = null;
+            // if (_sfmEditorModel != null) _sfmEditorModel.SolidSettings = null;  // delete this
+            _sfmEditorModel = null;
+            _searchModel = null;
+
+        }
     }
 
 

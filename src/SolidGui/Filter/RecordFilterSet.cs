@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using SolidGui.Engine;
 using SolidGui.Model;
 
 namespace SolidGui.Filter
 {
-    public class RecordFilterSet : List<RecordFilter>
+    public class RecordFilterSet : List<RecordFilter>, IDisposable
     {
         SfmDictionary _currentDictionary = null;
 
@@ -16,6 +17,12 @@ namespace SolidGui.Filter
 
         public RecordFilterSet()
         {
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{{fset ({0}); {1}}}", 
+                Count, GetHashCode());
         }
 
         public SfmDictionary Dictionary
@@ -132,6 +139,12 @@ namespace SolidGui.Filter
                 }
                 filter[entry.Marker].AddEntry(index);
             }
+        }
+
+        public void Dispose()
+        {
+            _solidErrors = null;
+            _currentDictionary = null;
         }
     }
 }

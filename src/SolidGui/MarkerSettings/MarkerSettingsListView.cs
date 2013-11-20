@@ -18,10 +18,10 @@ namespace SolidGui.MarkerSettings
     public partial class MarkerSettingsListView : UserControl
     {
         private bool _changingFilter = false;
-        private SfmDictionary _dictionary;
-        private SolidSettings _settings;
-        private MarkerSettingsPM _markerSettingsPM;
         public event EventHandler MarkerSettingPossiblyChanged;
+
+        private SfmDictionary _dictionary; // /  JMC:! I'd like to pull this out, and access it via MainWindowPM.
+        private MarkerSettingsPM _markerSettingsPM;  // JMC:!! Ditto esp. for this one, since it can't pick up on GiveSolidSettingsToModels
 
         public MarkerSettingsListView()
         {
@@ -36,10 +36,18 @@ namespace SolidGui.MarkerSettings
 
         public void BindModel(MarkerSettingsPM markerSettingsPM, SfmDictionary dictionary)
         {
+            if (_markerSettingsPM != null)
+            {
+                _markerSettingsPM.MarkerFilterChanged -= OnMarkerFilterChanged;
+            }
+
             _markerListView.SuspendLayout();
             _markerSettingsPM = markerSettingsPM;
-            _settings = markerSettingsPM.SolidSettings;
+
             _dictionary = dictionary;
+
+            _markerSettingsPM.MarkerFilterChanged += OnMarkerFilterChanged;
+            
             //UpdateDisplay();
         }
         
@@ -61,6 +69,9 @@ namespace SolidGui.MarkerSettings
 //            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
 //            _markerListView.SmallImageList = colimglst;
 
+            // if (_settings == null) return;  // Could add this check, but it would mask a bad state. -JMC
+
+            if (_dictionary == null) return;
             foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
             {
                 var item = new GLItem();// (pair.Key);
@@ -68,7 +79,7 @@ namespace SolidGui.MarkerSettings
                 
                 //The order these are called in matters
                 FillInFrequencyColumn(item, pair.Value.ToString());
-                SolidMarkerSetting markerSetting = _settings.FindOrCreateMarkerSetting(pair.Key);
+                SolidMarkerSetting markerSetting = _markerSettingsPM.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
                 AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
                 AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
                 AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);  //JMC:! add another (checkbox) column here for Unic ?          
@@ -126,7 +137,7 @@ namespace SolidGui.MarkerSettings
 
             var concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
 
-            string mapping = (concept != null) ? concept.ToString() : null;
+            string mapping = (concept != null) ? concept.Label() : null;
             
             return mapping ?? "??";
         }
@@ -237,6 +248,7 @@ namespace SolidGui.MarkerSettings
             _markerListView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
         }
 
+        // JMC: considering refactoring these two
         public void OpenSettingsDialog(string area)
         {
             if(_markerListView.SelectedItems.Count == 0)

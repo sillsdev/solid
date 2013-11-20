@@ -15,11 +15,19 @@ namespace SolidGui.MarkerSettings
         public MarkerSettingsDialog(MarkerSettingsPM markerSettingsModel, string marker)
         {
             InitializeComponent();
-            _markerSettingsView.MarkerModel = markerSettingsModel;
+            BindModel(markerSettingsModel);
             _selectedMarker = marker;
+        }
+
+        // JMC: No need to make this public and call it from MainWindowView? But what if we start reusing the dialog? (E.g. to easily remember our last tab or whatever)
+        public void BindModel(MarkerSettingsPM markerSettingsModel)
+        {
+            _markerSettingsView.MarkerModel = markerSettingsModel;
             _mappingType = SolidMarkerSetting.MappingType.Lift;
             _initialArea = "structure";
+            _selectedMarker = null;
         }
+
 
         public Button CloseButton
         {

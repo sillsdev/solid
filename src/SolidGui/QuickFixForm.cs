@@ -113,7 +113,7 @@ namespace SolidGui
             if (_pushPsDownToSns.Checked)
             {
                 UsageReporter.SendNavigationNotice("QuickFix/PushPOSDOwnToSense");
-                var log = _fixer.PropogatePartOfSpeech();
+                var log = _fixer.PropagatePartOfSpeech();
                 var path = Path.GetTempFileName() + ".txt";
                 File.WriteAllText(path, log);
                 Process.Start(path);

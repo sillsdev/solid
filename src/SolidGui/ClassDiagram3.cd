@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SolidGui.Model.Record" Collapsed="true">
+    <Position X="12" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAIAAAA4AAAwAAAgAAAAAgACAEAQIAIAAAiAABAliA=</HashCode>
+      <FileName>Model\Record.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Model.SfmLexEntry" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCAIIAAApAAAAAAACACAAgQIgAEAQEAIAAQAAAIAgAA=</HashCode>
+      <FileName>Model\SfmLexEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Model.RecordManager">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAABAABAAAAAABAAAACAgIQAAAAYQAAABAAABAAAAAA=</HashCode>
+      <FileName>Model\RecordManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Model.SfmDictionary">
+    <Position X="2.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAIBgAgAAIBQAEECCgIUAAQAYABABBFBABABDAAA=</HashCode>
+      <FileName>Model\SfmDictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Model.SfmFieldModel" Collapsed="true">
+    <Position X="14.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAaAAAACAAJAAAECABEQQAQjEAAAAAoIAAgACMACAA=</HashCode>
+      <FileName>Model\SfmFieldModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.RecordManagerDecorator">
+    <Position X="4.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAABAABQAAAAABAAAACAhIQAAAAYQAAABAAABAAAAAA=</HashCode>
+      <FileName>Model\RecordManagerDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.NullRecordFilter" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\RecordFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.RecordFilter" Collapsed="true">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABIABACAAkABAEEACAhIQAAAAYQAAABAAABAAAAAA=</HashCode>
+      <FileName>Filter\RecordFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.MainWindowView" Collapsed="true">
+    <Position X="0.75" Y="9.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>ASGgCgglUiCgABQgQhKICAQyQEKAQ1KAAIABNQAAAAA=</HashCode>
+      <FileName>MainWindowView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.MainWindowPM" Collapsed="true">
+    <Position X="3.25" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEMAAMAAEgCANRAAARACDRACQEAEAYIAgCAQAAABRgE=</HashCode>
+      <FileName>MainWindowPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.RecordNavigatorView" Collapsed="true">
+    <Position X="4" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAEUIQAGgAADEAAgCDDAAKAQAEAABEgAABgAAAAAA=</HashCode>
+      <FileName>RecordNavigatorView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.RecordNavigatorPM" Collapsed="true">
+    <Position X="4.75" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAARAAACEAAsABhDAAAAAIQAAgAAAAAABABAAAAIIAA=</HashCode>
+      <FileName>RecordNavigatorPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.SfmEditorView" Collapsed="true">
+    <Position X="4" Y="12.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAAKESUBGCgkQAQwCgLTJCALEAAALEAACAAAgCBABQA=</HashCode>
+      <FileName>SfmEditorView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.SfmEditorPM" Collapsed="true">
+    <Position X="4.75" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIABAABCAAAAIRhAAAAAAIAAAAAABAAABAASEBAAAgA=</HashCode>
+      <FileName>SfmEditorPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.FilterChooserView" Collapsed="true">
+    <Position X="0.75" Y="12.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACgAAAAAAgCAAABCQQAAAAAAAAgBAAAAAEA=</HashCode>
+      <FileName>Filter\FilterChooserView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.FilterChooserPM" Collapsed="true">
+    <Position X="1.5" Y="13.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgACAAAAAQAAAAAIAAAAAAAQAIAAAAAAAAA=</HashCode>
+      <FileName>Filter\FilterChooserPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.AllRecordFilter" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAEAAAAAAAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\AllRecordFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.MarkerFilter" Collapsed="true">
+    <Position X="9.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAgAAAAEACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\MarkerFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Filter.RecordFilterSet" Collapsed="true">
+    <Position X="7.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAAAAIAgEAAAAAAAAACAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\RecordFilterSet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Model.SolidErrorRecordFilter" Collapsed="true">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAgAAACAAgAAAAEACAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Filter\SolidErrorRecordFilter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Engine.SfmRecord" Collapsed="true">
+    <Position X="12.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\SfmRecord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Engine.SfmField" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAACAAAAgAAAAABAQAAAEAIAAAAAAAgAAEAAAA=</HashCode>
+      <FileName>Engine\SfmField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Engine.SolidSettings" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qAAACJACIAQAAAACQAgAAACAACBAgAAgADBWQAAACAA=</HashCode>
+      <FileName>Engine\SolidSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Engine.SolidMarkerSetting" Collapsed="true">
+    <Position X="12.75" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAxAABAAAAAAQAAGgACIQQAAQAAAAEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Engine\SolidMarkerSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Engine.SolidStructureProperty" Collapsed="true">
+    <Position X="12.75" Y="5.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAQAAQCAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Engine\SolidStructureProperty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Solid.Engine.StructurePropertiesPM" Collapsed="true">
+    <Position X="12.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACgAgAAAABAEAgAAAAAiAAAAAAAgAAAQAAAAEABA=</HashCode>
+      <FileName>Engine\StructurePropertiesPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.Properties.Settings" Collapsed="true">
+    <Position X="15.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAEAAAAIAAAAAAJAAAAAAAAAAAECAA=</HashCode>
+      <FileName>Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.MarkerSettings.MarkerSettingsListView" Collapsed="true">
+    <Position X="0.75" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIABBAACgEAEAAgACAggZCAAAAACYACABBAwAAABI=</HashCode>
+      <FileName>MarkerSettings\MarkerSettingsListView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.MarkerSettings.MarkerSettingsPM" Collapsed="true">
+    <Position X="1.5" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAACAAAEAQEAAIAAAAAAAAAAAEABQQACA=</HashCode>
+      <FileName>MarkerSettings\MarkerSettingsPM.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SolidGui.QuickFixForm" Collapsed="true">
+    <Position X="8.25" Y="10.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACBUAEFADAAwBEgADyAAAQCAIAIEQACAAAAKQl9AEA=</HashCode>
+      <FileName>QuickFixForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Solid.Engine.QuickFixer" Collapsed="true">
+    <Position X="9" Y="11.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEgABAAgGACAAgEIBAAAAAAAABAAAgEACAAAAAAQA=</HashCode>
+      <FileName>QuickFixer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

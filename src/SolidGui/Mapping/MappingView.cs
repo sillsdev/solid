@@ -31,6 +31,12 @@ namespace SolidGui.Mapping
                 _model = value;
             }
         }
+
+        public void BindModel(MappingPM m)
+        {
+            _model = m;
+        }
+        
         private void OnLoad(object sender, EventArgs e)
         {
             if (this.DesignMode)
@@ -87,7 +93,7 @@ namespace SolidGui.Mapping
 
             foreach (MappingPM.Concept concept in _model.TargetSystem.Concepts)
             {
-                ListViewItem item = new ListViewItem(concept.ToString());
+                ListViewItem item = new ListViewItem(concept.Label());
                 item.Tag = concept;
                 _conceptList.Items.Add(item);
             }

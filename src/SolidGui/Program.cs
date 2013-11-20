@@ -32,15 +32,9 @@ namespace SolidGui
             SetupErrorHandling(); 
             SetupUsageTracking();
 
-            MainWindowPM model = new MainWindowPM();
+            MainWindowPM model = new MainWindowPM();  
             MainWindowView form = new MainWindowView(model);
-
-            // Wiring: the nav should update its own filter whenever something (other than null) is selected in a chooser -JMC 2013-10
-            model.FilterChooserModel.WarningFilterChanged += model.NavigatorModel.OnFilterChanged;
-            model.MarkerSettingsModel.MarkerFilterChanged += model.NavigatorModel.OnFilterChanged;
-            // and the choosers should listen to the nav so they can clear themselves as needed
-            model.NavigatorModel.NavFilterChanged += model.FilterChooserModel.OnNavFilterChanged;
-            model.NavigatorModel.NavFilterChanged += model.MarkerSettingsModel.OnNavFilterChanged;
+            form.BindModels(model);
 
             if(args.Length > 0)
             {

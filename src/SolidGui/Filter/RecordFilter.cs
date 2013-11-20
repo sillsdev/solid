@@ -167,9 +167,18 @@ namespace SolidGui.Filter
             return null;
         }
 
+        public string Label()
+        {
+            return _name + " (" + Count + ")";            
+        }
+
+        // I've created a separate Label() method, but ListBox (at least) will still make use of ToString(), 
+        // so don't go nuts adding debugging text. -JMC 2013-10
         public override string ToString()
         {
-            return _name + " (" + Count + ")";
+            return Label();
+            // return String.Format("{{filter: {0}; {1}}}", 
+            //    Label(), GetHashCode());
         }
 
         public string Name

@@ -5,14 +5,17 @@ namespace SolidGui.Search
 {
     public partial class SearchView : Form
     {
-        private static SearchView _searchView;
-        private SearchViewModel _searchModel;
-        private readonly RecordNavigatorPM _navigatorModel;
-        private readonly SfmEditorView _sfmEditorView;
+        private static SearchView _searchView;  // Singleton? -JMC
+        private SfmEditorView _sfmEditorView;
+
+        private SearchViewModel _searchModel;  // /
+        private RecordNavigatorPM _navigatorModel;  // /
+
         private int _textIndex;
         private int _startingTextIndex = -1;
         private int _startingRecordIndex = -1;
 
+/*
         public SearchViewModel SearchModel
         {
             set
@@ -20,22 +23,28 @@ namespace SolidGui.Search
                 _searchModel = value;
             }
         }
-
-        public static SearchView CreateSearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
+*/
+        public static SearchView CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
         {
             if (_searchView == null || _searchView.IsDisposed)
             {
-                _searchView = new SearchView(navigatorModel, sfmEditorView);
+                _searchView = new SearchView(sfmEditorView);
             }
+            _searchView.BindModel(model);
             return _searchView;
         }
 
-        private SearchView(RecordNavigatorPM navigatorModel, SfmEditorView sfmEditorView)
+        private SearchView(SfmEditorView sfmEditorView)
         {
             InitializeComponent();
-            _navigatorModel = navigatorModel;
             _sfmEditorView = sfmEditorView;
             _scopeComboBox.SelectedIndex = 0;
+        }
+
+        private void BindModel(MainWindowPM model)
+        {
+            _searchModel = model.SearchModel;
+            _navigatorModel = model.NavigatorModel;
         }
 
         public int RecordIndex { get; set; }

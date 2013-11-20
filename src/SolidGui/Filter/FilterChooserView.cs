@@ -9,7 +9,7 @@ namespace SolidGui.Filter
     /// </summary>
     public partial class FilterChooserView : UserControl
     {
-        private FilterChooserPM _model;
+        private FilterChooserPM _model; // /
         private bool _changingFilter = false;
 
         //??? Would be nice if we didn't need to expose this. CJP
@@ -25,7 +25,15 @@ namespace SolidGui.Filter
 
         public void BindModel(FilterChooserPM model)
         {
+            // cut any old wires first
+            if (_model != null)
+            {
+                _model.WarningFilterChanged -= OnWarningFilterChanged;
+                
+            }
+            // wire it up
             _model = model;
+            _model.WarningFilterChanged += OnWarningFilterChanged;
         }
 
         private void FilterChooserView_Load(object sender, EventArgs e)
@@ -83,6 +91,8 @@ namespace SolidGui.Filter
 
             _warningFilterListBox.Items.Clear();
 
+            if (_model == null) return;
+            if (_model.RecordFilters == null) return;
             foreach (RecordFilter filter in _model.RecordFilters)
             {
                 _warningFilterListBox.Items.Add(filter);

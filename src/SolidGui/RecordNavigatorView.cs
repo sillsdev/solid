@@ -11,7 +11,7 @@ namespace SolidGui
     /// </summary>
     public partial class RecordNavigatorView : UserControl
     {
-        private RecordNavigatorPM _model;
+        private RecordNavigatorPM _model;  // /
         public event EventHandler SearchButtonClicked;
 
         private readonly ToolTip _ttPrevious;
@@ -48,8 +48,16 @@ namespace SolidGui
 
         public void BindModel(RecordNavigatorPM model)
         {
+            // cut any old wires
+            if (_model != null)
+            {
+                _model.RecordChanged -= OnRecordChanged;
+                _model.NavFilterChanged -= OnNavFilterChanged;
+            }
+            // wire it up
             _model = model;
             _model.RecordChanged += OnRecordChanged;
+            _model.NavFilterChanged += OnNavFilterChanged;
         }
 
         public void UpdateDisplay()

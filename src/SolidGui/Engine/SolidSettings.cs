@@ -58,6 +58,24 @@ namespace SolidGui.Engine
             return x2.ToString();
         }
 
+        public override string ToString()
+        {
+            string s = "";
+            IEnumerable<SolidMarkerSetting> a;
+            if (_markerSettings.Count > 4)
+            {
+                a = _markerSettings.Take(4);
+                s = "...";
+            }
+            else
+            {
+                a = _markerSettings;
+            }
+            s = string.Join(" ", a) + s;
+            return string.Format("{{{0} setts: {1}; {2}}}", 
+                _markerSettings.Count, s, GetHashCode());
+        }
+
         public string RecordMarker
         {
             get { return _recordMarker; }

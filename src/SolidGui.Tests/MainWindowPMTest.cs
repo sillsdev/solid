@@ -83,8 +83,9 @@ namespace SolidGui.Tests
                 e.WriteTwoEntryDictionary();
 
                 pm.OpenDictionary(e.DictionaryPath, null);
-                
-                Assert.AreEqual(2, pm.MasterRecordList.Count);
+
+                // Assert.AreEqual(2, pm.MasterRecordList.Count);
+                Assert.AreEqual(2, pm.WorkingDictionary.AllRecords.Count);  // JMC:! Verify that this works
             }
         }
 

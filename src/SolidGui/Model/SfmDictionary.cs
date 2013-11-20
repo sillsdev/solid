@@ -44,6 +44,21 @@ namespace SolidGui.Model
             get { return _recordList; }
         }
 
+        public string ShortLabel()
+        {
+            if (_filePath.Length > 12)
+            {
+                return System.IO.Path.GetFileName(_filePath);
+            }
+            return _filePath;
+        }
+
+
+        public override string ToString()
+        {
+            return string.Format("{{{0} {1}}}", ShortLabel(), GetHashCode());
+        }
+
         public override int Count
         {
             get { return _recordList.Count; }

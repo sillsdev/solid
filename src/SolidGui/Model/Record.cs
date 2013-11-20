@@ -122,11 +122,11 @@ namespace SolidGui.Model
             }
             return record.ToString();
         }
-        */
         public string Value
         {
             get { return ToString(); }
         }
+        */
 
         //!!! Shouldn't be used ??? // TODO Make an adapter for the presentation of records used by SearchPM and the SfmEditorView CP 2010-09
         public string ToStructuredString()

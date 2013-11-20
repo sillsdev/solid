@@ -67,12 +67,28 @@ namespace SolidGui.Tests.Engine
         {
             string sfm = "hh\r\n" +
                                 "\\lx a\r\n" +
-                               "\\ge b\r\n" +
+                               "\\ge b\r\n\r\n" +
                                "\\lx  \r\n" +
                                "\\ge \r\n" +
-                               "\\ge   \r\n" +
+                               "\\ge   \r\n\r\n" +
                                "\\lx\r\n   \r\n";
-            //string sfm = "\\lx a\r\n\\lx  \r\n\\ge   \r\n";
+            sfm = "\\lx a\r\n \\lx \r\n\\ge   \r\n";
+            sfm = @"\_sh v3.0  400  MDF 4 U
+
+\lx a
+\un
+\ps pro
+\gn tu
+\rf
+\xv ~ yahii? 
+\xn Es-tu alle ?
+\lv
+\ln
+\dt 20/Jul/2008
+\lx a piccudo
+\un inform
+\hm
+";
             var result = InputProduces(sfm);
             var result2 = InputProduces(result); // chain it
             Assert.AreEqual(sfm, result);

@@ -154,13 +154,13 @@ namespace Solid.Engine
 
             //this isn't safe with \lv, 'cause each needs an \lf preceding.  That code
             //could be written, but hasn't been.  SplitFieldsWithMultipleItems(markers, log);
-            PropogateField("lf", "lv", log);
+            PropagateField("lf", "lv", log);
             List<RecordAdddition> additions = FindNeededEntryAdditions(new List<string>{"lv"});
             AddNewEntries(additions, log);
             return log.ToString();
         }
 
-        private void PropogateField(string markerOfFieldToPropogate, string markerOfFieldToPlaceBefore, StringBuilder log)
+        private void PropagateField(string markerOfFieldToPropagate, string markerOfFieldToPlaceBefore, StringBuilder log)
         {
             foreach (var record in _dictionary.Records)
             {
@@ -168,7 +168,7 @@ namespace Solid.Engine
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     var field = record.Fields[i];
-                    if (field.Marker == markerOfFieldToPropogate)
+                    if (field.Marker == markerOfFieldToPropagate)
                     {
                         fieldToCopy = field;
                         ++i;//skip the next line, since it is *already* preceded by this field
@@ -341,7 +341,7 @@ namespace Solid.Engine
             return null;
         }
 
-        public string PropogatePartOfSpeech()
+        public string PropagatePartOfSpeech()
         {
             var sensesEffected = 0;
 
