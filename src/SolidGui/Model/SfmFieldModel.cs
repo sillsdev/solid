@@ -106,13 +106,14 @@ namespace SolidGui.Model
         }
 
 
-        public string ToStructuredString() // TODO Move to UI Adapter CP 2010-08
+        public string ToStructuredString(SolidSettings solidSettings) // TODO Move to UI Adapter CP 2010-08
         {
             int spacesInIndentation = 4;
 
             string indentation = new string(' ', Depth*spacesInIndentation);
             string slash = (Inferred) ? "\\+" : "\\";
-            string val = (Value == "") ? "" : " " + Value;
+            string valXX = (Value == "") ? "" : " " + Value;
+            string val = (Value == "") ? "" : " " + DecodedValue(solidSettings);
             return indentation + slash + Marker + val + Trailing;
         }
 
@@ -159,6 +160,10 @@ namespace SolidGui.Model
 
         public string DecodedValue(SolidSettings solidSettings)
         {
+            if (solidSettings == null)
+            {
+                return Value;
+            }
             var markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
             if (markerSetting.Unicode)
             {

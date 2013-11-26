@@ -129,12 +129,12 @@ namespace SolidGui.Model
         */
 
         //!!! Shouldn't be used ??? // TODO Make an adapter for the presentation of records used by SearchPM and the SfmEditorView CP 2010-09
-        public string ToStructuredString()
+        public string ToStructuredString(SolidSettings solidSettings)
         {
             StringBuilder record = new StringBuilder();
             foreach (SfmFieldModel field in LexEntry.Fields)
             {
-                record.Append(field.ToStructuredString());
+                record.Append(field.ToStructuredString(solidSettings));
             }
             return record.ToString();
         }

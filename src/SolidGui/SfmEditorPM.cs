@@ -73,7 +73,7 @@ namespace SolidGui
         }
 
         private static Regex ReggieLeading = new Regex(
-            @"^\s+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+            @"^[ \t]+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieTab = new Regex(
             @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieLx = new Regex(

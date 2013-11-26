@@ -118,6 +118,7 @@ namespace SolidGui
             this._exportButton.Name = "_exportButton";
             this._exportButton.Size = new System.Drawing.Size(71, 22);
             this._exportButton.Text = "&Export...";
+            this._exportButton.ToolTipText = "Export As LIFT... (Experimental)";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // toolStripSeparator2
@@ -286,7 +287,7 @@ namespace SolidGui
             this._recheckButton.UseVisualStyleBackColor = true;
             this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
             // 
-            // _markerSettingsList
+            // _markerSettingsListView
             // 
             this._markerSettingsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 

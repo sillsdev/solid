@@ -59,7 +59,7 @@ namespace SolidGui
             _warningFilterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();
             _sfmEditorModel = new SfmEditorPM(this);  // passing s.t. with access to the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
-            _searchModel = new SearchViewModel();
+            _searchModel = new SearchViewModel(this);
             // _masterRecordList = WorkingDictionary.AllRecords;  // Got rid of this extra-step link because it made it harder to swap out the model. -JMC 2013-10
             WarningFilterChooserModel.RecordFilters = _recordFilters;  // JMC:!! get rid of this too? (i.e. use the main PM instead)
             _searchModel.Dictionary = _workingDictionary;
@@ -351,6 +351,7 @@ namespace SolidGui
             );
         }
 
+        // Called by Recheck. Also called after a quick fix, change template, etc. (Do this for Replace All too?) -JMC
         public void ProcessLexicon()
         {
             WorkingDictionary.SaveAs(_tempDictionaryPath);

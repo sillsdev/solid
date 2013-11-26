@@ -305,7 +305,7 @@ namespace SolidGui.Tests
             {
                 if(fields[i]!="*")
                 {
-                    Assert.AreEqual("\\"+fields[i].Trim(), record.Fields[i].ToStructuredString().Trim());
+                    Assert.AreEqual("\\"+fields[i].Trim(), record.Fields[i].ToStructuredString(null).Trim());
                 }
             }
             Assert.AreEqual(fields.Length, record.Fields.Count);

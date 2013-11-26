@@ -36,7 +36,7 @@ namespace SolidGui.Tests.Export
 
  
 
-        [Test]
+        [Test] [Ignore]
         public void SubEntry_MakesTwoLiftEntriesWithSubPointedAtBase()
         {
             using (var e = new ExportTestScenario())
@@ -48,7 +48,7 @@ namespace SolidGui.Tests.Export
                 e.SetupMarker("lx", "lexicalUnit", "en");
                 e.SetupMarker("se", "subentry", "en");
                 e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='tired']");
-                 e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='dog tired']");
+                e.AssertExportsSingleInstance("/lift/entry/lexical-unit/form[@lang='en' and text='dog tired']");
                 var dom = new XmlDocument();
                 dom.LoadXml(e.LiftAsString());
                 var guid = GetGuidOfLexeme(dom, "tired");
