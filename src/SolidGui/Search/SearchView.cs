@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using SolidGui.Engine;
 
 namespace SolidGui.Search
 {
@@ -30,6 +31,8 @@ namespace SolidGui.Search
             {
                 _searchView = new SearchView(sfmEditorView);
             }
+
+
             _searchView.BindModel(model);
             return _searchView;
         }

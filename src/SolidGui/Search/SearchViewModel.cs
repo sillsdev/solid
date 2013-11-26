@@ -13,7 +13,13 @@ namespace SolidGui.Search
         private  SfmDictionary _dictionary;
         private int _startRecordOfWholeSearch;
         private int _startIndexOfWholeSearch;
+        private MainWindowPM _model;
         
+        public SearchViewModel(MainWindowPM model)
+        {
+            _model = model;
+        }
+
         public class SearchResultEventArgs : EventArgs
         {
             private readonly SearchResult _searchResult;
@@ -40,11 +46,17 @@ namespace SolidGui.Search
             set { _dictionary = value; }
         }
 
-        private static Regex ReggieTempHack = new Regex(@"\r\n", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private static void CantFindWordErrorMessage(string word)
         {
             MessageBox.Show("Cannot find\n'" + word + "'", "Solid", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Find within all records, since no filter was specified
+        public void FindNext(string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
+        {
+            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary, null), word, recordIndex, textIndex, startingRecord, startingIndex);
         }
 
         // Find within the specified filter
@@ -64,12 +76,7 @@ namespace SolidGui.Search
             }
         }
 
-        // Find within all records, since no filter was specified
-        public void FindNext(string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
-        {
-            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary, null), word, recordIndex, textIndex, startingRecord, startingIndex);
-        }
-
+        // Find within the specified filter
         private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int searchStartIndex)
         {
             int startingRecordIndex = recordIndex;
@@ -116,13 +123,14 @@ namespace SolidGui.Search
             {recordIndex = 0;}
             return recordIndex;
         }
-
+        
+        // Return the index of the word (first match), or -1 (if not found)
         private int FindIndexOfWordInRecord(int recordIndex, RecordFilter filter, string word, int startTextIndex)
         {
             var record = filter.GetRecord(recordIndex);
             if (record == null)
                 return -1;
-            string recordText = record.ToStructuredString();  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better
+            string recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better
 
             // JMC:! Hack: swap out newline temporarily, since RichEditControl uses plain \n regardless of System.Environment.Newline (\r\n)
             // Apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
