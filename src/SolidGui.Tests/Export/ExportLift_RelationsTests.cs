@@ -36,7 +36,7 @@ namespace SolidGui.Tests.Export
 
  
 
-        [Test] [Ignore]
+        [Test] [Ignore("enable test once Palaso fixes #1083")]
         public void SubEntry_MakesTwoLiftEntriesWithSubPointedAtBase()
         {
             using (var e = new ExportTestScenario())

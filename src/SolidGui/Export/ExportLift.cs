@@ -81,7 +81,7 @@ namespace SolidGui.Export
                 //only copy the ones being used
                 foreach (var definition in repository.AllWritingSystems)
                 {
-                    WritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
+                    IWritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
                     if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.Bcp47Tag))
                     {
                         var existing = repository.GetFilePathFromIdentifier(definition.StoreID);

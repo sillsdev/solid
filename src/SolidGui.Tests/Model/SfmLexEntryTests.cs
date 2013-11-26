@@ -82,7 +82,7 @@ namespace SolidGui.Tests.Model
 		}
 
 		[Test]
-        [Ignore]  // This is now a supported action -JMC 2013-10
+        [Ignore("outdated test")]  // We now support letting the user do this (delete entry by clearing it) -JMC 2013-10
 		public void CreateFromText_EmptyString_Throws()
 		{
 			const string sfmIn = @"";
