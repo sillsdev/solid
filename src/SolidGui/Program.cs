@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Palaso.Reporting;
 using SolidGui.Properties;
 using SolidGui.Engine;
+using Palaso.UI.WindowsForms.Keyboarding;
 
 namespace SolidGui
 {
@@ -35,6 +36,7 @@ namespace SolidGui
             MainWindowPM model = new MainWindowPM();  
             MainWindowView form = new MainWindowView(model);
             form.BindModels(model);
+            KeyboardController.Initialize();  //JMC!: verify that calling this repeatedly is ok
 
             if(args.Length > 0)
             {
@@ -62,7 +64,8 @@ namespace SolidGui
                 }
             }
 
-            Application.Run(form);
+            Application.Run(form);  //JMC: Wrap this in a try and put the following in a finally??
+            KeyboardController.Shutdown();
             Settings.Default.Save();
             if (model.Settings != null)
             {

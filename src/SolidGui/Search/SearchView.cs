@@ -40,6 +40,7 @@ namespace SolidGui.Search
         private SearchView(SfmEditorView sfmEditorView)
         {
             InitializeComponent();
+            // JMC: Add a call here to KeyboardController.Register() ? Would not need to be as smart as for the rich edit control. Ideally, we'd probably default to the vernacular keyboard?
             _sfmEditorView = sfmEditorView;
             _scopeComboBox.SelectedIndex = 0;
         }

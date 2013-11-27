@@ -38,6 +38,7 @@ namespace SolidGui
         {
             _currentRecord = null;
             InitializeComponent();
+            // JMC: Add a call here to KeyboardController.Register() ? Would need some smarts for determining what field the cursor is in.
             _contentsBoxDB = new RichTextBox();
             _contentsBoxDB.Visible = false;
             ContentsBox.TextChanged -= _contentsBox_TextChanged;
