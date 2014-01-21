@@ -181,9 +181,6 @@
     <Compile Include="Engine\StructurePropertiesPM.cs" />
     <Compile Include="QuickFixer.cs" />
     <Compile Include="Model\SfmDictionary.cs" />
-    <Compile Include="EXListView.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Filter\FilterChooserPM.cs" />
     <Compile Include="Filter\FilterChooserView.cs">
       <SubType>UserControl</SubType>
@@ -392,6 +389,7 @@
     <None Include="Resources\folder_export.ico" />
     <Content Include="Resources\ForwardOne.png" />
     <None Include="Resources\logo2.jpg" />
+    <None Include="Resources\logo.jpg" />
     <Content Include="Resources\Recheck.png" />
     <Content Include="Resources\RecheckRecord.png" />
     <Content Include="Resources\Search.png" />

@@ -1,3 +1,6 @@
+// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
 using System;
 using System.ComponentModel.Design;
 using System.Windows.Forms;
@@ -123,6 +126,7 @@ namespace SolidGui
             var tmp = new Palaso.UI.WindowsForms.Reporting.WinFormsErrorReporter();
             tmp.ReportNonFatalException(new Exception("I would like to make a suggestion."), new ShowAlwaysPolicy());
         }
+
 
     }
 }

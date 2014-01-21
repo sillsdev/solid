@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -75,6 +78,9 @@ namespace SolidGui.Model
         public bool Inferred { get; set; }
 
         public string Marker { get; private set; }
+
+        //JMC: Issue #1219. Remove hard-coded references to markers (e.g. in the link-checking quick fix)
+        // In order to fix that, I think we need for the following to always get set properly.
         public string Mapping { get; set; }
 
         public string ValueAsUnicode()

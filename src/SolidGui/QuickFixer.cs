@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -20,7 +23,8 @@ namespace Solid.Engine
             _dictionary = dictionary;
         }
 
-        public void MoveCommonItemsUp(List<string>roots,List<string> markers)
+        //JMC: Issue #1243. All of these need to return an int instead (or maybe bool) representing how many changes the quick fix made, to decide whether a Save will be needed or not
+        public void MoveCommonItemsUp(List<string> roots, List<string> markers)
         {
             /* bw any other non-bundle fields are the only safe ones
              * to use with this method
@@ -341,6 +345,10 @@ namespace Solid.Engine
             return null;
         }
 
+        //JMC: Issue #1219. Remove hard-coded references to markers (e.g. in the link-checking quick fix)
+        // Instead, we should make sure the Mapping property is always correct, and use that if it's set.
+        // That is, push whatever is mapped to "Part of Speech" down. If null, default to hard-coded "ps" marker.
+        // Ditto for "Sense" and "sn", in this particular quick fix.
         public string PropagatePartOfSpeech()
         {
             var sensesEffected = 0;

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
+using System.Collections.Generic;
 using Palaso.WritingSystems;
 using Palaso.WritingSystems.Migration.WritingSystemsLdmlV0To1Migration;
 

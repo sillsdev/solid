@@ -1,4 +1,7 @@
-﻿using SolidGui.Model;
+﻿// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
+using SolidGui.Model;
 
 namespace SolidGui.Filter
 {

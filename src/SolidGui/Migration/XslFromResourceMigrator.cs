@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
+using System.IO;
 using System.Reflection;
 using Palaso.Migration;
 

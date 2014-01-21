@@ -1,3 +1,6 @@
+// Copyright (c) 2007-2014 SIL International
+// Licensed under the MIT license: opensource.org/licenses/MIT
+
 using System;
 using System.Windows.Forms;
 using Palaso.UI.WindowsForms.WritingSystems;
