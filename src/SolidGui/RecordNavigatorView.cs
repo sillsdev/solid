@@ -41,7 +41,7 @@ namespace SolidGui
             _ttFind = new ToolTip();
             _ttFind.SetToolTip(_findButton, "Find (Ctrl+F)");
             _ttRefresh = new ToolTip();
-            _ttRefresh.SetToolTip(_refreshButton, "Refresh (F5)");
+            _ttRefresh.SetToolTip(RefreshButton, "Refresh (F5)");
         }
 
         private bool ReturnFalse()
@@ -105,15 +105,20 @@ namespace SolidGui
             _model.MoveToLast();
         }
 
-        private void _searchButton_Click(object sender, EventArgs e)
-        {
-            SearchButtonClicked.Invoke(this, new EventArgs());
-        }
-
         private void RecordNavigatorView_Load(object sender, EventArgs e)
         {
             _descriptionLabel.Text = "";
             _recordNumber.Text = "0";
+        }
+
+        public void Find()
+        {
+            SearchButtonClicked.Invoke(this, new EventArgs());
+        }
+
+        private void _findButton_Click(object sender, EventArgs e)
+        {
+            Find();
         }
 
     }

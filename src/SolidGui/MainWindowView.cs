@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Text;
+using Palaso.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Export;
@@ -77,7 +78,8 @@ namespace SolidGui
             // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged;
 
             // JMC: verify that the following += don't stack up after several File Open.
-            _recordNavigatorView._refreshButton.Click += _sfmEditorView.OnRefreshClicked;
+            _recordNavigatorView.RefreshButton.Click += _sfmEditorView.OnRefreshClicked;
+            _refreshMenuItem.Click += _sfmEditorView.OnRefreshClicked;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
             _markerSettingsListView.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
@@ -197,8 +199,7 @@ namespace SolidGui
 
                 BindModels(_mainWindowPM);
                 OnFileLoaded(fileName);
-                _mainWindowPM.needsSave = false; // These two lines fix issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
-                _saveButton.Enabled = false;
+                setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
                 string ext = Path.GetExtension(fileName);
                 if (!SolidSettings.FileExtensions.Contains(ext))
                 {
@@ -238,7 +239,7 @@ namespace SolidGui
             _exportButton.Enabled = canProcess;
             _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
             _quickFixButton.Enabled = canProcess;
-            _saveButton.Enabled = _mainWindowPM.needsSave;
+            setSaveEnabled(_mainWindowPM.needsSave);
 
             splitContainer1.Panel1.Enabled = canProcess;
             splitContainer2.Panel1.Enabled = canProcess;
@@ -267,14 +268,19 @@ namespace SolidGui
             UpdateDisplay();
         }
 
+        private void setSaveEnabled(bool val)
+        {
+            _saveMenuItem.Enabled = _saveButton.Enabled = _mainWindowPM.needsSave = val;
+        }
+
         private void OnRecordTextChanged(object sender, EventArgs e)
         {
-            _saveButton.Enabled = _mainWindowPM.needsSave = true;
+            setSaveEnabled(true);
         }
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
-            _saveButton.Enabled = _mainWindowPM.needsSave = true;
+            setSaveEnabled(true); // JMC:! It would be much better to know for sure whether a save is needed or not. 
             _sfmEditorView.OnSolidSettingsChange();
         }
 
@@ -308,7 +314,7 @@ namespace SolidGui
             _sfmEditorView.UpdateModel();
             if (_mainWindowPM.DictionaryAndSettingsSave())
             {
-                _saveButton.Enabled = _mainWindowPM.needsSave = false;
+                setSaveEnabled(false);
             }
             _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
@@ -334,7 +340,7 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_searchView != null) {_searchView.Dispose();}  // may be helpful now that cancel Find only hides rather than closing. -JMC
+            if (_searchView != null) {_searchView.Dispose();}  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
             if (_mainWindowPM.needsSave) 
             {
                 var answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
@@ -483,7 +489,7 @@ namespace SolidGui
             }
             _mainWindowPM.ProcessLexicon(); 
             _sfmEditorView.Reload();
-            _saveButton.Enabled = _mainWindowPM.needsSave = true;
+            setSaveEnabled(true);
         }
 
         private void OnChangeWritingSystems_Click(object sender, EventArgs e)
@@ -498,6 +504,49 @@ namespace SolidGui
                 OnMarkerSettingPossiblyChanged(null, null);
             }
 
+        }
+
+        private void reportAProblemsuggestionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // (#249) I added this ability to trigger the yellow (non-fatal) Palaso error report. -JMC 2013-10
+            var tmp = new Palaso.UI.WindowsForms.Reporting.WinFormsErrorReporter();
+            tmp.ReportNonFatalException(new Exception("I would like to make a suggestion."), new ShowAlwaysPolicy());
+        }
+
+        private void _goFirstMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.NavigatorModel.MoveToFirst();
+        }
+
+        private void _goLastMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.NavigatorModel.MoveToLast();
+        }
+
+        private void _goPreviousMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.NavigatorModel.MoveToPrevious();
+        }
+
+        private void _goNextMenuItem_Click(object sender, EventArgs e)
+        {
+            _mainWindowPM.NavigatorModel.MoveToNext();
+        }
+
+        private void _findMenuItem_Click(object sender, EventArgs e)
+        {
+            _recordNavigatorView.Find();
+        }
+
+        private void _exitMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void _copyMenuItem_Click(object sender, EventArgs e)
+        {
+            var x = _sfmEditorView.ContentsBox.SelectedText;
+           
         }
 
     }

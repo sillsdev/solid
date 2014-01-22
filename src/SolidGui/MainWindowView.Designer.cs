@@ -57,32 +57,35 @@ namespace SolidGui
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openLexiconCtrlOAltOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitAltF4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changeWritingSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.propertiesforCurrentMarkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyCtrlCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteCtrlVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findCtrlFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshRightPaneF5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToPreviousCtrlPgUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToNextCtrlPgDnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.goToLastCtrlShiftPgDnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPDFHelpManualF1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutSolidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportAProblemsuggestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._exportXmlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._markersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._changeTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._changeWritingSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._findMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fixMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._quickFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._viewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recheckMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._goPreviousMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._goNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._goLastMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._goFirstMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
@@ -349,219 +352,245 @@ namespace SolidGui
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.editToolStripMenuItem,
-            this.fixToolStripMenuItem,
-            this.viewToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this._fileMenuItem,
+            this._markersMenuItem,
+            this._editMenuItem,
+            this._fixMenuItem,
+            this._viewMenuItem,
+            this._helpMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(891, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // _fileMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openLexiconCtrlOAltOToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem,
-            this.exitAltF4ToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "&File";
+            this._fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openMenuItem,
+            this._saveMenuItem,
+            this._exportXmlMenuItem,
+            this._exitMenuItem});
+            this._fileMenuItem.Name = "_fileMenuItem";
+            this._fileMenuItem.Size = new System.Drawing.Size(35, 20);
+            this._fileMenuItem.Text = "&File";
             // 
-            // openLexiconCtrlOAltOToolStripMenuItem
+            // _openMenuItem
             // 
-            this.openLexiconCtrlOAltOToolStripMenuItem.Name = "openLexiconCtrlOAltOToolStripMenuItem";
-            this.openLexiconCtrlOAltOToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.openLexiconCtrlOAltOToolStripMenuItem.Text = "&Open Lexicon... (Ctrl+O, Alt+O)";
-            this.openLexiconCtrlOAltOToolStripMenuItem.Click += new System.EventHandler(this.OnOpenClick);
+            this._openMenuItem.Image = global::SolidGui.Properties.Resources.folder_open;
+            this._openMenuItem.Name = "_openMenuItem";
+            this._openMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._openMenuItem.Text = "&Open Lexicon... (Ctrl+O, Alt+O)";
+            this._openMenuItem.Click += new System.EventHandler(this.OnOpenClick);
             // 
-            // saveToolStripMenuItem
+            // _saveMenuItem
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.saveToolStripMenuItem.Text = "&Save (Ctrl+S)";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveClick);
+            this._saveMenuItem.Enabled = false;
+            this._saveMenuItem.Image = global::SolidGui.Properties.Resources.save;
+            this._saveMenuItem.Name = "_saveMenuItem";
+            this._saveMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._saveMenuItem.Text = "&Save (Ctrl+S, Alt+S)";
+            this._saveMenuItem.Click += new System.EventHandler(this.OnSaveClick);
             // 
-            // exportAsLIFTXMLexperimentalToolStripMenuItem
+            // _exportXmlMenuItem
             // 
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Name = "exportAsLIFTXMLexperimentalToolStripMenuItem";
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Text = "Export as &LIFT XML (experimental)...";
-            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Click += new System.EventHandler(this.OnExportButton_Click);
+            this._exportXmlMenuItem.Name = "_exportXmlMenuItem";
+            this._exportXmlMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._exportXmlMenuItem.Text = "Export as &LIFT XML (experimental)...";
+            this._exportXmlMenuItem.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
-            // exitAltF4ToolStripMenuItem
+            // _exitMenuItem
             // 
-            this.exitAltF4ToolStripMenuItem.Enabled = false;
-            this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
-            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt + F4)";
+            this._exitMenuItem.Name = "_exitMenuItem";
+            this._exitMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._exitMenuItem.Text = "E&xit (Alt + F4)";
+            this._exitMenuItem.Click += new System.EventHandler(this._exitMenuItem_Click);
             // 
-            // toolStripMenuItem1
+            // _markersMenuItem
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeTemplateToolStripMenuItem,
-            this.changeWritingSystemsToolStripMenuItem,
-            this.propertiesforCurrentMarkerToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(57, 20);
-            this.toolStripMenuItem1.Text = "&Markers";
+            this._markersMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._propertiesMenuItem,
+            this._changeTemplateToolStripMenuItem,
+            this._changeWritingSystemsToolStripMenuItem});
+            this._markersMenuItem.Name = "_markersMenuItem";
+            this._markersMenuItem.Size = new System.Drawing.Size(57, 20);
+            this._markersMenuItem.Text = "&Markers";
             // 
-            // changeTemplateToolStripMenuItem
+            // _changeTemplateToolStripMenuItem
             // 
-            this.changeTemplateToolStripMenuItem.Name = "changeTemplateToolStripMenuItem";
-            this.changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.changeTemplateToolStripMenuItem.Text = "Change &Template...";
-            this.changeTemplateToolStripMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
+            this._changeTemplateToolStripMenuItem.Name = "_changeTemplateToolStripMenuItem";
+            this._changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._changeTemplateToolStripMenuItem.Text = "Switch &Templates...";
+            this._changeTemplateToolStripMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
-            // changeWritingSystemsToolStripMenuItem
+            // _changeWritingSystemsToolStripMenuItem
             // 
-            this.changeWritingSystemsToolStripMenuItem.Name = "changeWritingSystemsToolStripMenuItem";
-            this.changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.changeWritingSystemsToolStripMenuItem.Text = "Change &Writing Systems...";
-            this.changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
+            this._changeWritingSystemsToolStripMenuItem.Name = "_changeWritingSystemsToolStripMenuItem";
+            this._changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._changeWritingSystemsToolStripMenuItem.Text = "Change &Writing Systems...";
+            this._changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
-            // propertiesforCurrentMarkerToolStripMenuItem
+            // _propertiesMenuItem
             // 
-            this.propertiesforCurrentMarkerToolStripMenuItem.Name = "propertiesforCurrentMarkerToolStripMenuItem";
-            this.propertiesforCurrentMarkerToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.propertiesforCurrentMarkerToolStripMenuItem.Text = "&Properties (for current marker)...";
-            this.propertiesforCurrentMarkerToolStripMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
+            this._propertiesMenuItem.Name = "_propertiesMenuItem";
+            this._propertiesMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._propertiesMenuItem.Text = "&Properties (for current marker)...";
+            this._propertiesMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
             // 
-            // editToolStripMenuItem
+            // _editMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyCtrlCToolStripMenuItem,
-            this.pasteCtrlVToolStripMenuItem,
-            this.findCtrlFToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.editToolStripMenuItem.Text = "&Edit";
+            this._editMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._findMenuItem,
+            this.toolStripSeparator1,
+            this._cutMenuItem,
+            this._copyMenuItem,
+            this._pasteMenuItem});
+            this._editMenuItem.Name = "_editMenuItem";
+            this._editMenuItem.Size = new System.Drawing.Size(37, 20);
+            this._editMenuItem.Text = "&Edit";
             // 
-            // copyCtrlCToolStripMenuItem
+            // _copyMenuItem
             // 
-            this.copyCtrlCToolStripMenuItem.Enabled = false;
-            this.copyCtrlCToolStripMenuItem.Name = "copyCtrlCToolStripMenuItem";
-            this.copyCtrlCToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.copyCtrlCToolStripMenuItem.Text = "&Copy (Ctrl+C)";
+            this._copyMenuItem.Enabled = false;
+            this._copyMenuItem.Name = "_copyMenuItem";
+            this._copyMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._copyMenuItem.Text = "&Copy (Ctrl+C)";
+            this._copyMenuItem.Visible = false;
+            this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
             // 
-            // pasteCtrlVToolStripMenuItem
+            // _pasteMenuItem
             // 
-            this.pasteCtrlVToolStripMenuItem.Enabled = false;
-            this.pasteCtrlVToolStripMenuItem.Name = "pasteCtrlVToolStripMenuItem";
-            this.pasteCtrlVToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.pasteCtrlVToolStripMenuItem.Text = "&Paste (Ctrl+V)";
+            this._pasteMenuItem.Enabled = false;
+            this._pasteMenuItem.Name = "_pasteMenuItem";
+            this._pasteMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._pasteMenuItem.Text = "&Paste (Ctrl+V)";
+            this._pasteMenuItem.Visible = false;
             // 
-            // findCtrlFToolStripMenuItem
+            // _findMenuItem
             // 
-            this.findCtrlFToolStripMenuItem.Enabled = false;
-            this.findCtrlFToolStripMenuItem.Name = "findCtrlFToolStripMenuItem";
-            this.findCtrlFToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.findCtrlFToolStripMenuItem.Text = "&Find... (Ctrl+F)";
+            this._findMenuItem.Name = "_findMenuItem";
+            this._findMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._findMenuItem.Text = "&Find... (Ctrl+F)";
+            this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
             // 
-            // fixToolStripMenuItem
+            // _fixMenuItem
             // 
-            this.fixToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.moveUpToolStripMenuItem});
-            this.fixToolStripMenuItem.Name = "fixToolStripMenuItem";
-            this.fixToolStripMenuItem.Size = new System.Drawing.Size(33, 20);
-            this.fixToolStripMenuItem.Text = "&Fix";
+            this._fixMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._quickFixesMenuItem});
+            this._fixMenuItem.Name = "_fixMenuItem";
+            this._fixMenuItem.Size = new System.Drawing.Size(33, 20);
+            this._fixMenuItem.Text = "&Fix";
             // 
-            // moveUpToolStripMenuItem
+            // _quickFixesMenuItem
             // 
-            this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
-            this.moveUpToolStripMenuItem.Text = "&Quick Fixes...";
-            this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.OnQuickFix);
+            this._quickFixesMenuItem.Name = "_quickFixesMenuItem";
+            this._quickFixesMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._quickFixesMenuItem.Text = "&Quick Fixes...";
+            this._quickFixesMenuItem.Click += new System.EventHandler(this.OnQuickFix);
             // 
-            // viewToolStripMenuItem
+            // _viewMenuItem
             // 
-            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem,
-            this.refreshRightPaneF5ToolStripMenuItem,
-            this.goToPreviousCtrlPgUpToolStripMenuItem,
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem,
-            this.goToNextCtrlPgDnToolStripMenuItem,
-            this.goToLastCtrlShiftPgDnToolStripMenuItem});
-            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.viewToolStripMenuItem.Text = "&View";
+            this._viewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._recheckMenuItem,
+            this._refreshMenuItem,
+            this.toolStripSeparator3,
+            this._goFirstMenuItem,
+            this._goPreviousMenuItem,
+            this._goNextMenuItem,
+            this._goLastMenuItem});
+            this._viewMenuItem.Name = "_viewMenuItem";
+            this._viewMenuItem.Size = new System.Drawing.Size(41, 20);
+            this._viewMenuItem.Text = "&View";
             // 
-            // recheckAllRecordsCtrlF5ToolStripMenuItem
+            // _recheckMenuItem
             // 
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Name = "recheckAllRecordsCtrlF5ToolStripMenuItem";
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Text = "Recheck all records (Ctrl+F5)";
-            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            this._recheckMenuItem.Name = "_recheckMenuItem";
+            this._recheckMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._recheckMenuItem.Text = "Re&check all records (Ctrl+F5)";
+            this._recheckMenuItem.Click += new System.EventHandler(this.OnRecheckButtonClick);
             // 
-            // refreshRightPaneF5ToolStripMenuItem
+            // _refreshMenuItem
             // 
-            this.refreshRightPaneF5ToolStripMenuItem.Enabled = false;
-            this.refreshRightPaneF5ToolStripMenuItem.Name = "refreshRightPaneF5ToolStripMenuItem";
-            this.refreshRightPaneF5ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.refreshRightPaneF5ToolStripMenuItem.Text = "Refresh right pane (F5)";
+            this._refreshMenuItem.Name = "_refreshMenuItem";
+            this._refreshMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._refreshMenuItem.Text = "&Refresh right pane (F5)";
             // 
-            // goToPreviousCtrlPgUpToolStripMenuItem
+            // _goPreviousMenuItem
             // 
-            this.goToPreviousCtrlPgUpToolStripMenuItem.Enabled = false;
-            this.goToPreviousCtrlPgUpToolStripMenuItem.Name = "goToPreviousCtrlPgUpToolStripMenuItem";
-            this.goToPreviousCtrlPgUpToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.goToPreviousCtrlPgUpToolStripMenuItem.Text = "Go to previous (Ctrl+PgUp)";
+            this._goPreviousMenuItem.Name = "_goPreviousMenuItem";
+            this._goPreviousMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goPreviousMenuItem.Text = "Go to &previous (Ctrl+PgUp)";
+            this._goPreviousMenuItem.Click += new System.EventHandler(this._goPreviousMenuItem_Click);
             // 
-            // goToFirstCtrlShiftPgUpToolStripMenuItem
+            // _goNextMenuItem
             // 
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Enabled = false;
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Name = "goToFirstCtrlShiftPgUpToolStripMenuItem";
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Text = "Go to first (Ctrl+Shift+PgUp)";
+            this._goNextMenuItem.Name = "_goNextMenuItem";
+            this._goNextMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goNextMenuItem.Text = "Go to &next (Ctrl+PgDn)";
+            this._goNextMenuItem.Click += new System.EventHandler(this._goNextMenuItem_Click);
             // 
-            // goToNextCtrlPgDnToolStripMenuItem
+            // _goLastMenuItem
             // 
-            this.goToNextCtrlPgDnToolStripMenuItem.Enabled = false;
-            this.goToNextCtrlPgDnToolStripMenuItem.Name = "goToNextCtrlPgDnToolStripMenuItem";
-            this.goToNextCtrlPgDnToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.goToNextCtrlPgDnToolStripMenuItem.Text = "Go to next (Ctrl+PgDn)";
+            this._goLastMenuItem.Name = "_goLastMenuItem";
+            this._goLastMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goLastMenuItem.Text = "Go to &last (Ctrl+Shift+PgDn)";
+            this._goLastMenuItem.Click += new System.EventHandler(this._goLastMenuItem_Click);
             // 
-            // goToLastCtrlShiftPgDnToolStripMenuItem
+            // _helpMenuItem
             // 
-            this.goToLastCtrlShiftPgDnToolStripMenuItem.Enabled = false;
-            this.goToLastCtrlShiftPgDnToolStripMenuItem.Name = "goToLastCtrlShiftPgDnToolStripMenuItem";
-            this.goToLastCtrlShiftPgDnToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.goToLastCtrlShiftPgDnToolStripMenuItem.Text = "Go to last (Ctrl+Shift+PgDn)";
+            this._helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._openHelpMenuItem,
+            this._aboutMenuItem,
+            this._reportProblemMenuItem});
+            this._helpMenuItem.Name = "_helpMenuItem";
+            this._helpMenuItem.Size = new System.Drawing.Size(40, 20);
+            this._helpMenuItem.Text = "&Help";
             // 
-            // helpToolStripMenuItem
+            // _openHelpMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openPDFHelpManualF1ToolStripMenuItem,
-            this.aboutSolidToolStripMenuItem,
-            this.reportAProblemsuggestionToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
+            this._openHelpMenuItem.Enabled = false;
+            this._openHelpMenuItem.Name = "_openHelpMenuItem";
+            this._openHelpMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._openHelpMenuItem.Text = "Open PDF &Help Manual (F1)";
             // 
-            // openPDFHelpManualF1ToolStripMenuItem
+            // _aboutMenuItem
             // 
-            this.openPDFHelpManualF1ToolStripMenuItem.Enabled = false;
-            this.openPDFHelpManualF1ToolStripMenuItem.Name = "openPDFHelpManualF1ToolStripMenuItem";
-            this.openPDFHelpManualF1ToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.openPDFHelpManualF1ToolStripMenuItem.Text = "Open PDF &Help Manual (F1)";
+            this._aboutMenuItem.Name = "_aboutMenuItem";
+            this._aboutMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._aboutMenuItem.Text = "&About Solid...";
+            this._aboutMenuItem.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
             // 
-            // aboutSolidToolStripMenuItem
+            // _reportProblemMenuItem
             // 
-            this.aboutSolidToolStripMenuItem.Name = "aboutSolidToolStripMenuItem";
-            this.aboutSolidToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.aboutSolidToolStripMenuItem.Text = "&About Solid...";
-            this.aboutSolidToolStripMenuItem.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
+            this._reportProblemMenuItem.Name = "_reportProblemMenuItem";
+            this._reportProblemMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
+            this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
             // 
-            // reportAProblemsuggestionToolStripMenuItem
+            // _goFirstMenuItem
             // 
-            this.reportAProblemsuggestionToolStripMenuItem.Enabled = false;
-            this.reportAProblemsuggestionToolStripMenuItem.Name = "reportAProblemsuggestionToolStripMenuItem";
-            this.reportAProblemsuggestionToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.reportAProblemsuggestionToolStripMenuItem.Text = "&Report a problem/suggestion...";
+            this._goFirstMenuItem.Name = "_goFirstMenuItem";
+            this._goFirstMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goFirstMenuItem.Text = "Go to &first (Ctrl+Shift+PgUp)";
+            this._goFirstMenuItem.Click += new System.EventHandler(this._goFirstMenuItem_Click);
+            // 
+            // _cutMenuItem
+            // 
+            this._cutMenuItem.Enabled = false;
+            this._cutMenuItem.Name = "_cutMenuItem";
+            this._cutMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
+            this._cutMenuItem.Visible = false;
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(211, 6);
             // 
             // _markerSettingsListView
             // 
@@ -580,6 +609,7 @@ namespace SolidGui
             this._filterChooserView.Enabled = false;
             this._filterChooserView.Location = new System.Drawing.Point(0, 0);
             this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
             this._filterChooserView.Size = new System.Drawing.Size(435, 133);
             this._filterChooserView.TabIndex = 2;
             // 
@@ -673,32 +703,35 @@ namespace SolidGui
         private SfmEditorView _sfmEditorView;
         private RecordNavigatorView _recordNavigatorView;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exitAltF4ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openLexiconCtrlOAltOToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportAsLIFTXMLexperimentalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem changeTemplateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem changeWritingSystemsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem propertiesforCurrentMarkerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyCtrlCToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteCtrlVToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem findCtrlFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fixToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem moveUpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem recheckAllRecordsCtrlF5ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem refreshRightPaneF5ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToPreviousCtrlPgUpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToFirstCtrlShiftPgUpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToNextCtrlPgDnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem goToLastCtrlShiftPgDnToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openPDFHelpManualF1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutSolidToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportAProblemsuggestionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fileMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _editMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _helpMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _exitMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _openMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _saveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _exportXmlMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _markersMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _changeTemplateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _changeWritingSystemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _propertiesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _copyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _pasteMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _findMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fixMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _quickFixesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _viewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _recheckMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _refreshMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _goPreviousMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _goNextMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _goLastMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _openHelpMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _aboutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _reportProblemMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _goFirstMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem _cutMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 

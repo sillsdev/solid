@@ -41,7 +41,6 @@ namespace SolidGui
             this.license = new System.Windows.Forms.LinkLabel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.reportProblem = new System.Windows.Forms.LinkLabel();
             this.okButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -61,7 +60,6 @@ namespace SolidGui
             this.tableLayoutPanel.Controls.Add(this.license, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.pictureBox2, 0, 6);
             this.tableLayoutPanel.Controls.Add(this.label1, 1, 6);
-            this.tableLayoutPanel.Controls.Add(this.reportProblem, 1, 5);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 8);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
@@ -173,20 +171,6 @@ namespace SolidGui
             this.label1.TabIndex = 26;
             this.label1.Text = resources.GetString("label1.Text");
             // 
-            // reportProblem
-            // 
-            this.reportProblem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.reportProblem.AutoSize = true;
-            this.reportProblem.LinkBehavior = System.Windows.Forms.LinkBehavior.AlwaysUnderline;
-            this.reportProblem.Location = new System.Drawing.Point(123, 110);
-            this.reportProblem.Name = "reportProblem";
-            this.reportProblem.Size = new System.Drawing.Size(292, 13);
-            this.reportProblem.TabIndex = 28;
-            this.reportProblem.TabStop = true;
-            this.reportProblem.Text = "Report a problem/suggestion";
-            this.reportProblem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.reportProblem_LinkClicked);
-            // 
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -229,7 +213,6 @@ namespace SolidGui
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.LinkLabel goWeb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.LinkLabel reportProblem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.LinkLabel license;

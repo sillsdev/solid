@@ -1,6 +1,9 @@
 // Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
+// JMC: I'm not sure why, but these two GUI elements (this and FilterChooserView) aren't embedding quite right with Dock = Fill.
+// I had to add some top padding so the top part (e.g. column headings) would be visible. -JMC Jan 2014
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
