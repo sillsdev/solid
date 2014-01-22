@@ -46,6 +46,9 @@ namespace SolidGui
             this._changeWritingSystems = new System.Windows.Forms.ToolStripButton();
             this._quickFixButton = new System.Windows.Forms.ToolStripButton();
             this._aboutBoxButton = new System.Windows.Forms.ToolStripButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._recheckButton = new System.Windows.Forms.Button();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -53,14 +56,42 @@ namespace SolidGui
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this._recheckButton = new System.Windows.Forms.Button();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openLexiconCtrlOAltOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitAltF4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeWritingSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertiesforCurrentMarkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyCtrlCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteCtrlVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findCtrlFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshRightPaneF5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToPreviousCtrlPgUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToNextCtrlPgDnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.goToLastCtrlShiftPgDnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPDFHelpManualF1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutSolidToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportAProblemsuggestionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,10 +102,12 @@ namespace SolidGui
             this.splitContainer2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
             toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openButton,
@@ -85,9 +118,10 @@ namespace SolidGui
             this._changeWritingSystems,
             this._quickFixButton,
             this._aboutBoxButton});
-            toolStrip1.Location = new System.Drawing.Point(0, 0);
+            toolStrip1.Location = new System.Drawing.Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new System.Drawing.Size(891, 25);
+            toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -122,12 +156,14 @@ namespace SolidGui
             this._exportButton.Size = new System.Drawing.Size(71, 22);
             this._exportButton.Text = "&Export...";
             this._exportButton.ToolTipText = "Export As LIFT... (Experimental)";
+            this._exportButton.Visible = false;
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Visible = false;
             // 
             // _changeTemplate
             // 
@@ -136,6 +172,7 @@ namespace SolidGui
             this._changeTemplate.Name = "_changeTemplate";
             this._changeTemplate.Size = new System.Drawing.Size(123, 22);
             this._changeTemplate.Text = "&Change Template...";
+            this._changeTemplate.Visible = false;
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
             // _changeWritingSystems
@@ -145,6 +182,7 @@ namespace SolidGui
             this._changeWritingSystems.Name = "_changeWritingSystems";
             this._changeWritingSystems.Size = new System.Drawing.Size(156, 22);
             this._changeWritingSystems.Text = "Change &Writing Systems...";
+            this._changeWritingSystems.Visible = false;
             this._changeWritingSystems.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
             // _quickFixButton
@@ -155,6 +193,7 @@ namespace SolidGui
             this._quickFixButton.Name = "_quickFixButton";
             this._quickFixButton.Size = new System.Drawing.Size(77, 22);
             this._quickFixButton.Text = "&Quick Fixes...";
+            this._quickFixButton.Visible = false;
             this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
             // 
             // _aboutBoxButton
@@ -165,14 +204,50 @@ namespace SolidGui
             this._aboutBoxButton.Name = "_aboutBoxButton";
             this._aboutBoxButton.Size = new System.Drawing.Size(23, 22);
             this._aboutBoxButton.Text = "&About Solid...";
+            this._aboutBoxButton.Visible = false;
             this._aboutBoxButton.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
+            // 
+            // _recheckButton
+            // 
+            this._recheckButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this._recheckButton.FlatAppearance.BorderSize = 0;
+            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._recheckButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._recheckButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._recheckButton.Image = ((System.Drawing.Image)(resources.GetObject("_recheckButton.Image")));
+            this._recheckButton.Location = new System.Drawing.Point(336, 2);
+            this._recheckButton.Name = "_recheckButton";
+            this._recheckButton.Size = new System.Drawing.Size(85, 31);
+            this._recheckButton.TabIndex = 4;
+            this._recheckButton.Text = "&Recheck";
+            this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this._recheckButton, "Recheck all records (Ctrl+F5)");
+            this._recheckButton.UseVisualStyleBackColor = true;
+            this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(891, 403);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(891, 452);
+            this.toolStripContainer1.TabIndex = 4;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer1.TopToolStripPanel
+            // 
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(2, 26);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -184,9 +259,9 @@ namespace SolidGui
             // 
             this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
             this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
-            this.splitContainer1.Size = new System.Drawing.Size(889, 426);
+            this.splitContainer1.Size = new System.Drawing.Size(891, 403);
             this.splitContainer1.SplitterDistance = 435;
-            this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.TabIndex = 3;
             // 
             // splitContainer2
             // 
@@ -204,18 +279,17 @@ namespace SolidGui
             // 
             this.splitContainer2.Panel2.Controls.Add(this.panel1);
             this.splitContainer2.Panel2.Controls.Add(this._filterChooserView);
-            this.splitContainer2.Size = new System.Drawing.Size(435, 426);
+            this.splitContainer2.Size = new System.Drawing.Size(435, 403);
             this.splitContainer2.SplitterDistance = 266;
             this.splitContainer2.TabIndex = 2;
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel2.Controls.Add(this._editMarkerProperties);
             this.panel2.Controls.Add(this.label2);
-            this.panel2.Location = new System.Drawing.Point(0, 1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(435, 34);
             this.panel2.TabIndex = 1;
@@ -251,12 +325,11 @@ namespace SolidGui
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this._recheckButton);
-            this.panel1.Location = new System.Drawing.Point(0, 1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(435, 34);
             this.panel1.TabIndex = 4;
@@ -272,69 +345,265 @@ namespace SolidGui
             this.label1.TabIndex = 3;
             this.label1.Text = "Check Results";
             // 
-            // _recheckButton
+            // menuStrip1
             // 
-            this._recheckButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this._recheckButton.FlatAppearance.BorderSize = 0;
-            this._recheckButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._recheckButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._recheckButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._recheckButton.Image = ((System.Drawing.Image)(resources.GetObject("_recheckButton.Image")));
-            this._recheckButton.Location = new System.Drawing.Point(336, 2);
-            this._recheckButton.Name = "_recheckButton";
-            this._recheckButton.Size = new System.Drawing.Size(85, 31);
-            this._recheckButton.TabIndex = 4;
-            this._recheckButton.Text = "&Recheck";
-            this._recheckButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolTip1.SetToolTip(this._recheckButton, "Recheck all records (Ctrl+F5)");
-            this._recheckButton.UseVisualStyleBackColor = true;
-            this._recheckButton.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.editToolStripMenuItem,
+            this.fixToolStripMenuItem,
+            this.viewToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(891, 24);
+            this.menuStrip1.TabIndex = 4;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openLexiconCtrlOAltOToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem,
+            this.exitAltF4ToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // openLexiconCtrlOAltOToolStripMenuItem
+            // 
+            this.openLexiconCtrlOAltOToolStripMenuItem.Name = "openLexiconCtrlOAltOToolStripMenuItem";
+            this.openLexiconCtrlOAltOToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.openLexiconCtrlOAltOToolStripMenuItem.Text = "&Open Lexicon... (Ctrl+O, Alt+O)";
+            this.openLexiconCtrlOAltOToolStripMenuItem.Click += new System.EventHandler(this.OnOpenClick);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.saveToolStripMenuItem.Text = "&Save (Ctrl+S)";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.OnSaveClick);
+            // 
+            // exportAsLIFTXMLexperimentalToolStripMenuItem
+            // 
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Name = "exportAsLIFTXMLexperimentalToolStripMenuItem";
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Text = "Export as &LIFT XML (experimental)...";
+            this.exportAsLIFTXMLexperimentalToolStripMenuItem.Click += new System.EventHandler(this.OnExportButton_Click);
+            // 
+            // exitAltF4ToolStripMenuItem
+            // 
+            this.exitAltF4ToolStripMenuItem.Enabled = false;
+            this.exitAltF4ToolStripMenuItem.Name = "exitAltF4ToolStripMenuItem";
+            this.exitAltF4ToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.exitAltF4ToolStripMenuItem.Text = "Exit (Alt + F4)";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.changeTemplateToolStripMenuItem,
+            this.changeWritingSystemsToolStripMenuItem,
+            this.propertiesforCurrentMarkerToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(57, 20);
+            this.toolStripMenuItem1.Text = "&Markers";
+            // 
+            // changeTemplateToolStripMenuItem
+            // 
+            this.changeTemplateToolStripMenuItem.Name = "changeTemplateToolStripMenuItem";
+            this.changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.changeTemplateToolStripMenuItem.Text = "Change &Template...";
+            this.changeTemplateToolStripMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
+            // 
+            // changeWritingSystemsToolStripMenuItem
+            // 
+            this.changeWritingSystemsToolStripMenuItem.Name = "changeWritingSystemsToolStripMenuItem";
+            this.changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.changeWritingSystemsToolStripMenuItem.Text = "Change &Writing Systems...";
+            this.changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
+            // 
+            // propertiesforCurrentMarkerToolStripMenuItem
+            // 
+            this.propertiesforCurrentMarkerToolStripMenuItem.Name = "propertiesforCurrentMarkerToolStripMenuItem";
+            this.propertiesforCurrentMarkerToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.propertiesforCurrentMarkerToolStripMenuItem.Text = "&Properties (for current marker)...";
+            this.propertiesforCurrentMarkerToolStripMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyCtrlCToolStripMenuItem,
+            this.pasteCtrlVToolStripMenuItem,
+            this.findCtrlFToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.editToolStripMenuItem.Text = "&Edit";
+            // 
+            // copyCtrlCToolStripMenuItem
+            // 
+            this.copyCtrlCToolStripMenuItem.Enabled = false;
+            this.copyCtrlCToolStripMenuItem.Name = "copyCtrlCToolStripMenuItem";
+            this.copyCtrlCToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.copyCtrlCToolStripMenuItem.Text = "&Copy (Ctrl+C)";
+            // 
+            // pasteCtrlVToolStripMenuItem
+            // 
+            this.pasteCtrlVToolStripMenuItem.Enabled = false;
+            this.pasteCtrlVToolStripMenuItem.Name = "pasteCtrlVToolStripMenuItem";
+            this.pasteCtrlVToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.pasteCtrlVToolStripMenuItem.Text = "&Paste (Ctrl+V)";
+            // 
+            // findCtrlFToolStripMenuItem
+            // 
+            this.findCtrlFToolStripMenuItem.Enabled = false;
+            this.findCtrlFToolStripMenuItem.Name = "findCtrlFToolStripMenuItem";
+            this.findCtrlFToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.findCtrlFToolStripMenuItem.Text = "&Find... (Ctrl+F)";
+            // 
+            // fixToolStripMenuItem
+            // 
+            this.fixToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.moveUpToolStripMenuItem});
+            this.fixToolStripMenuItem.Name = "fixToolStripMenuItem";
+            this.fixToolStripMenuItem.Size = new System.Drawing.Size(33, 20);
+            this.fixToolStripMenuItem.Text = "&Fix";
+            // 
+            // moveUpToolStripMenuItem
+            // 
+            this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.moveUpToolStripMenuItem.Text = "&Quick Fixes...";
+            this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.OnQuickFix);
+            // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem,
+            this.refreshRightPaneF5ToolStripMenuItem,
+            this.goToPreviousCtrlPgUpToolStripMenuItem,
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem,
+            this.goToNextCtrlPgDnToolStripMenuItem,
+            this.goToLastCtrlShiftPgDnToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.viewToolStripMenuItem.Text = "&View";
+            // 
+            // recheckAllRecordsCtrlF5ToolStripMenuItem
+            // 
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Name = "recheckAllRecordsCtrlF5ToolStripMenuItem";
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Text = "Recheck all records (Ctrl+F5)";
+            this.recheckAllRecordsCtrlF5ToolStripMenuItem.Click += new System.EventHandler(this.OnRecheckButtonClick);
+            // 
+            // refreshRightPaneF5ToolStripMenuItem
+            // 
+            this.refreshRightPaneF5ToolStripMenuItem.Enabled = false;
+            this.refreshRightPaneF5ToolStripMenuItem.Name = "refreshRightPaneF5ToolStripMenuItem";
+            this.refreshRightPaneF5ToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.refreshRightPaneF5ToolStripMenuItem.Text = "Refresh right pane (F5)";
+            // 
+            // goToPreviousCtrlPgUpToolStripMenuItem
+            // 
+            this.goToPreviousCtrlPgUpToolStripMenuItem.Enabled = false;
+            this.goToPreviousCtrlPgUpToolStripMenuItem.Name = "goToPreviousCtrlPgUpToolStripMenuItem";
+            this.goToPreviousCtrlPgUpToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.goToPreviousCtrlPgUpToolStripMenuItem.Text = "Go to previous (Ctrl+PgUp)";
+            // 
+            // goToFirstCtrlShiftPgUpToolStripMenuItem
+            // 
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Enabled = false;
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Name = "goToFirstCtrlShiftPgUpToolStripMenuItem";
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.goToFirstCtrlShiftPgUpToolStripMenuItem.Text = "Go to first (Ctrl+Shift+PgUp)";
+            // 
+            // goToNextCtrlPgDnToolStripMenuItem
+            // 
+            this.goToNextCtrlPgDnToolStripMenuItem.Enabled = false;
+            this.goToNextCtrlPgDnToolStripMenuItem.Name = "goToNextCtrlPgDnToolStripMenuItem";
+            this.goToNextCtrlPgDnToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.goToNextCtrlPgDnToolStripMenuItem.Text = "Go to next (Ctrl+PgDn)";
+            // 
+            // goToLastCtrlShiftPgDnToolStripMenuItem
+            // 
+            this.goToLastCtrlShiftPgDnToolStripMenuItem.Enabled = false;
+            this.goToLastCtrlShiftPgDnToolStripMenuItem.Name = "goToLastCtrlShiftPgDnToolStripMenuItem";
+            this.goToLastCtrlShiftPgDnToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.goToLastCtrlShiftPgDnToolStripMenuItem.Text = "Go to last (Ctrl+Shift+PgDn)";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPDFHelpManualF1ToolStripMenuItem,
+            this.aboutSolidToolStripMenuItem,
+            this.reportAProblemsuggestionToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // openPDFHelpManualF1ToolStripMenuItem
+            // 
+            this.openPDFHelpManualF1ToolStripMenuItem.Enabled = false;
+            this.openPDFHelpManualF1ToolStripMenuItem.Name = "openPDFHelpManualF1ToolStripMenuItem";
+            this.openPDFHelpManualF1ToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.openPDFHelpManualF1ToolStripMenuItem.Text = "Open PDF &Help Manual (F1)";
+            // 
+            // aboutSolidToolStripMenuItem
+            // 
+            this.aboutSolidToolStripMenuItem.Name = "aboutSolidToolStripMenuItem";
+            this.aboutSolidToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.aboutSolidToolStripMenuItem.Text = "&About Solid...";
+            this.aboutSolidToolStripMenuItem.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
+            // 
+            // reportAProblemsuggestionToolStripMenuItem
+            // 
+            this.reportAProblemsuggestionToolStripMenuItem.Enabled = false;
+            this.reportAProblemsuggestionToolStripMenuItem.Name = "reportAProblemsuggestionToolStripMenuItem";
+            this.reportAProblemsuggestionToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.reportAProblemsuggestionToolStripMenuItem.Text = "&Report a problem/suggestion...";
             // 
             // _markerSettingsListView
             // 
-            this._markerSettingsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._markerSettingsListView.Location = new System.Drawing.Point(0, 38);
+            this._markerSettingsListView.AutoSize = true;
+            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerSettingsListView.Location = new System.Drawing.Point(0, 0);
             this._markerSettingsListView.Name = "_markerSettingsListView";
-            this._markerSettingsListView.Size = new System.Drawing.Size(435, 228);
+            this._markerSettingsListView.Padding = new System.Windows.Forms.Padding(0, 35, 0, 0);
+            this._markerSettingsListView.Size = new System.Drawing.Size(435, 266);
             this._markerSettingsListView.TabIndex = 0;
             // 
             // _filterChooserView
             // 
-            this._filterChooserView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this._filterChooserView.AutoSize = true;
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(3, 42);
+            this._filterChooserView.Location = new System.Drawing.Point(0, 0);
             this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(429, 114);
+            this._filterChooserView.Size = new System.Drawing.Size(435, 133);
             this._filterChooserView.TabIndex = 2;
             // 
             // _sfmEditorView
             // 
-            this._sfmEditorView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._sfmEditorView.HighlightMarkers = null;
             this._sfmEditorView.Indent = 130;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 35);
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(450, 391);
+            this._sfmEditorView.Size = new System.Drawing.Size(452, 369);
             this._sfmEditorView.TabIndex = 2;
             // 
             // _recordNavigatorView
             // 
-            this._recordNavigatorView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
             this._recordNavigatorView.Enabled = false;
-            this._recordNavigatorView.Location = new System.Drawing.Point(-2, 1);
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
             this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(451, 34);
+            this._recordNavigatorView.Size = new System.Drawing.Size(452, 34);
             this._recordNavigatorView.TabIndex = 3;
             // 
             // MainWindowView
@@ -342,9 +611,9 @@ namespace SolidGui
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 452);
-            this.Controls.Add(toolStrip1);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindowView";
             this.Text = "Solid";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
@@ -353,28 +622,33 @@ namespace SolidGui
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private RecordNavigatorView _recordNavigatorView;
-        private SfmEditorView _sfmEditorView;
         private SearchView _searchView;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
@@ -382,18 +656,49 @@ namespace SolidGui
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripButton _aboutBoxButton;
         private System.Windows.Forms.ToolStripButton _changeTemplate;
-        private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Label label1;
-        private FilterChooserView _filterChooserView;
-        private MarkerSettingsListView _markerSettingsListView;
-        private System.Windows.Forms.Button _recheckButton;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton _exportButton;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button _editMarkerProperties;
         private System.Windows.Forms.ToolStripButton _quickFixButton;
 		private System.Windows.Forms.ToolStripButton _changeWritingSystems;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button _editMarkerProperties;
+        private System.Windows.Forms.Label label2;
+        private MarkerSettingsListView _markerSettingsListView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button _recheckButton;
+        private FilterChooserView _filterChooserView;
+        private SfmEditorView _sfmEditorView;
+        private RecordNavigatorView _recordNavigatorView;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitAltF4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openLexiconCtrlOAltOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportAsLIFTXMLexperimentalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem changeTemplateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeWritingSystemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propertiesforCurrentMarkerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyCtrlCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteCtrlVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findCtrlFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem moveUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recheckAllRecordsCtrlF5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshRightPaneF5ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToPreviousCtrlPgUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToFirstCtrlShiftPgUpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToNextCtrlPgDnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem goToLastCtrlShiftPgDnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openPDFHelpManualF1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutSolidToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportAProblemsuggestionToolStripMenuItem;
     }
 }
 
