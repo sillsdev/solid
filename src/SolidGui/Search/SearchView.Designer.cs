@@ -118,7 +118,7 @@ namespace SolidGui.Search
             // 
             this._scopeComboBox.FormattingEnabled = true;
             this._scopeComboBox.Items.AddRange(new object[] {
-            "Check Result",
+            "Current Filter",
             "Entire Dictionary"});
             this._scopeComboBox.Location = new System.Drawing.Point(59, 16);
             this._scopeComboBox.Name = "_scopeComboBox";
@@ -155,7 +155,7 @@ namespace SolidGui.Search
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SearchView";
-            this.Text = "Find (Experimental)";
+            this.Text = "Find";
             this.ResumeLayout(false);
             this.PerformLayout();
 

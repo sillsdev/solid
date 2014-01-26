@@ -34,16 +34,14 @@ namespace SolidGui
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.labelProductName = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.goWeb = new System.Windows.Forms.LinkLabel();
             this.labelVersion = new System.Windows.Forms.Label();
             this.license = new System.Windows.Forms.LinkLabel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.okButton = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,14 +51,13 @@ namespace SolidGui
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.goWeb, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
             this.tableLayoutPanel.Controls.Add(this.license, 1, 4);
-            this.tableLayoutPanel.Controls.Add(this.pictureBox2, 0, 6);
-            this.tableLayoutPanel.Controls.Add(this.label1, 1, 6);
+            this.tableLayoutPanel.Controls.Add(this.pictureBox2, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 8);
+            this.tableLayoutPanel.Controls.Add(this.label1, 0, 6);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -75,7 +72,8 @@ namespace SolidGui
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel.Size = new System.Drawing.Size(418, 279);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(418, 248);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // labelProductName
@@ -90,17 +88,6 @@ namespace SolidGui
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Product Name";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::SolidGui.Properties.Resources.logo2;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.tableLayoutPanel.SetRowSpan(this.pictureBox1, 5);
-            this.pictureBox1.Size = new System.Drawing.Size(100, 95);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 27;
-            this.pictureBox1.TabStop = false;
             // 
             // labelCopyright
             // 
@@ -151,23 +138,13 @@ namespace SolidGui
             this.license.TabStop = true;
             this.license.Text = "Free and open source (MIT license)";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::SolidGui.Properties.Resources.logo;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 135);
-            this.pictureBox2.Name = "pictureBox2";
-            this.tableLayoutPanel.SetRowSpan(this.pictureBox2, 3);
-            this.pictureBox2.Size = new System.Drawing.Size(100, 112);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 31;
-            this.pictureBox2.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(123, 132);
+            this.tableLayoutPanel.SetColumnSpan(this.label1, 2);
+            this.label1.Location = new System.Drawing.Point(3, 132);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(287, 104);
+            this.label1.Size = new System.Drawing.Size(412, 78);
             this.label1.TabIndex = 26;
             this.label1.Text = resources.GetString("label1.Text");
             // 
@@ -175,18 +152,29 @@ namespace SolidGui
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(340, 247);
+            this.okButton.Location = new System.Drawing.Point(340, 221);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::SolidGui.Properties.Resources.logo;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.tableLayoutPanel.SetRowSpan(this.pictureBox2, 5);
+            this.pictureBox2.Size = new System.Drawing.Size(100, 104);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 31;
+            this.pictureBox2.TabStop = false;
             // 
             // AboutBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.okButton;
-            this.ClientSize = new System.Drawing.Size(436, 297);
+            this.ClientSize = new System.Drawing.Size(436, 266);
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -199,7 +187,6 @@ namespace SolidGui
             this.Text = "AboutBox";
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -213,7 +200,6 @@ namespace SolidGui
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.LinkLabel goWeb;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.LinkLabel license;
         private System.Windows.Forms.PictureBox pictureBox2;

@@ -96,7 +96,7 @@ namespace SolidGui.Search
                 TextIndex = _sfmEditorView.ContentsBox.SelectionStart + 1;
                 _startingTextIndex = (_startingTextIndex == -1) ? TextIndex - 1 : _startingTextIndex;
 
-                if (_scopeComboBox.SelectedIndex == 0)  // "Check Result"
+                if (_scopeComboBox.SelectedIndex == 0)  // "Current Filter" (formerly "Check Result")
                 {
                     RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
                     _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;

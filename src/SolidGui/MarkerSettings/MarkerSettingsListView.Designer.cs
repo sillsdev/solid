@@ -46,7 +46,7 @@ namespace SolidGui.MarkerSettings
             this._markerListView.AlternateBackground = System.Drawing.Color.DarkGreen;
             this._markerListView.AlternatingColors = false;
             this._markerListView.AutoHeight = true;
-            this._markerListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            //this._markerListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._markerListView.BackgroundStretchToFit = true;
             glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn1.CheckBoxes = false;
