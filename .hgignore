@@ -8,3 +8,4 @@ bin/
 *.pdb
 src/_ReSharper.solid
 *.ReSharper
+*Thumbs.db
