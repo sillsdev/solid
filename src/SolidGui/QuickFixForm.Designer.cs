@@ -204,9 +204,9 @@ namespace SolidGui
             this.label6.Location = new System.Drawing.Point(106, 27);
             this.label6.MaximumSize = new System.Drawing.Size(300, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(261, 51);
+            this.label6.Size = new System.Drawing.Size(294, 34);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Warning: this is very dangerous.  Backup before this, and check the results. ";
+            this.label6.Text = "Warning: this is very dangerous.  Back up before this, and check the results. ";
             // 
             // label3
             // 

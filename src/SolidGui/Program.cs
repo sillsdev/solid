@@ -23,7 +23,6 @@ namespace SolidGui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-
             //bring in settings from any previous version
             if (Settings.Default.NeedUpgrade)
             {
@@ -39,6 +38,8 @@ namespace SolidGui
             MainWindowPM model = new MainWindowPM();  
             MainWindowView form = new MainWindowView(model);
             form.BindModels(model);
+
+
             KeyboardController.Initialize();  //JMC!: verify that calling this repeatedly is ok
 
             if(args.Length > 0)
@@ -64,9 +65,15 @@ namespace SolidGui
                     form.Show(); // needed so that other commands won't be ignored (e.g. so Ctrl+F5 will work, and for #1200) -JMC
                     form.OnFileLoaded(fileName);
                     model.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
+                    string msg = model.MarkerSettingsModel.SolidSettings.NotifyIfMixedEncodings();
+                    if (msg != "")
+                    {
+                        MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
 
+            form.UpdateDisplay();
             Application.Run(form);  //JMC: Wrap this in a try and put the following in a finally??
             KeyboardController.Shutdown();
             Settings.Default.Save();

@@ -49,8 +49,8 @@ namespace SolidGui
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._recheckButton = new System.Windows.Forms.Button();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainerLeftRight = new System.Windows.Forms.SplitContainer();
+            this.splitContainerUpDown = new System.Windows.Forms.SplitContainer();
             this.panel2 = new System.Windows.Forms.Panel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,18 +63,22 @@ namespace SolidGui
             this._exportXmlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._markersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._changeTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._changeWritingSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._findMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this._cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._findMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._fixMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._quickFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recheckMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this._goFirstMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._goPreviousMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._goNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._goLastMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,10 +86,6 @@ namespace SolidGui
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._goFirstMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._cutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this._sfmEditorView = new SolidGui.SfmEditorView();
@@ -95,14 +95,14 @@ namespace SolidGui
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeftRight)).BeginInit();
+            this.splitContainerLeftRight.Panel1.SuspendLayout();
+            this.splitContainerLeftRight.Panel2.SuspendLayout();
+            this.splitContainerLeftRight.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerUpDown)).BeginInit();
+            this.splitContainerUpDown.Panel1.SuspendLayout();
+            this.splitContainerUpDown.Panel2.SuspendLayout();
+            this.splitContainerUpDown.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -159,7 +159,6 @@ namespace SolidGui
             this._exportButton.Size = new System.Drawing.Size(71, 22);
             this._exportButton.Text = "&Export...";
             this._exportButton.ToolTipText = "Export As LIFT... (Experimental)";
-            this._exportButton.Visible = false;
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // toolStripSeparator2
@@ -233,7 +232,7 @@ namespace SolidGui
             // 
             // toolStripContainer1.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainerLeftRight);
             this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(891, 403);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
@@ -247,44 +246,45 @@ namespace SolidGui
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
-            // splitContainer1
+            // splitContainerLeftRight
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainerLeftRight.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitContainerLeftRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerLeftRight.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerLeftRight.Name = "splitContainerLeftRight";
             // 
-            // splitContainer1.Panel1
+            // splitContainerLeftRight.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Panel1.Enabled = false;
+            this.splitContainerLeftRight.Panel1.Controls.Add(this.splitContainerUpDown);
+            this.splitContainerLeftRight.Panel1.Enabled = false;
             // 
-            // splitContainer1.Panel2
+            // splitContainerLeftRight.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this._sfmEditorView);
-            this.splitContainer1.Panel2.Controls.Add(this._recordNavigatorView);
-            this.splitContainer1.Size = new System.Drawing.Size(891, 403);
-            this.splitContainer1.SplitterDistance = 435;
-            this.splitContainer1.TabIndex = 3;
+            this.splitContainerLeftRight.Panel2.Controls.Add(this._sfmEditorView);
+            this.splitContainerLeftRight.Panel2.Controls.Add(this._recordNavigatorView);
+            this.splitContainerLeftRight.Size = new System.Drawing.Size(891, 403);
+            this.splitContainerLeftRight.SplitterDistance = 435;
+            this.splitContainerLeftRight.TabIndex = 3;
             // 
-            // splitContainer2
+            // splitContainerUpDown
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainerUpDown.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerUpDown.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerUpDown.Name = "splitContainerUpDown";
+            this.splitContainerUpDown.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer2.Panel1
+            // splitContainerUpDown.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel2);
-            this.splitContainer2.Panel1.Controls.Add(this._markerSettingsListView);
+            this.splitContainerUpDown.Panel1.Controls.Add(this.panel2);
+            this.splitContainerUpDown.Panel1.Controls.Add(this._markerSettingsListView);
             // 
-            // splitContainer2.Panel2
+            // splitContainerUpDown.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.panel1);
-            this.splitContainer2.Panel2.Controls.Add(this._filterChooserView);
-            this.splitContainer2.Size = new System.Drawing.Size(435, 403);
-            this.splitContainer2.SplitterDistance = 266;
-            this.splitContainer2.TabIndex = 2;
+            this.splitContainerUpDown.Panel2.Controls.Add(this.panel1);
+            this.splitContainerUpDown.Panel2.Controls.Add(this._filterChooserView);
+            this.splitContainerUpDown.Size = new System.Drawing.Size(435, 403);
+            this.splitContainerUpDown.SplitterDistance = 266;
+            this.splitContainerUpDown.TabIndex = 2;
             // 
             // panel2
             // 
@@ -416,6 +416,13 @@ namespace SolidGui
             this._markersMenuItem.Size = new System.Drawing.Size(57, 20);
             this._markersMenuItem.Text = "&Markers";
             // 
+            // _propertiesMenuItem
+            // 
+            this._propertiesMenuItem.Name = "_propertiesMenuItem";
+            this._propertiesMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._propertiesMenuItem.Text = "&Properties (for current marker)...";
+            this._propertiesMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
+            // 
             // _changeTemplateToolStripMenuItem
             // 
             this._changeTemplateToolStripMenuItem.Name = "_changeTemplateToolStripMenuItem";
@@ -430,13 +437,6 @@ namespace SolidGui
             this._changeWritingSystemsToolStripMenuItem.Text = "Change &Writing Systems...";
             this._changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
-            // _propertiesMenuItem
-            // 
-            this._propertiesMenuItem.Name = "_propertiesMenuItem";
-            this._propertiesMenuItem.Size = new System.Drawing.Size(234, 22);
-            this._propertiesMenuItem.Text = "&Properties (for current marker)...";
-            this._propertiesMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
-            // 
             // _editMenuItem
             // 
             this._editMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -449,11 +449,31 @@ namespace SolidGui
             this._editMenuItem.Size = new System.Drawing.Size(37, 20);
             this._editMenuItem.Text = "&Edit";
             // 
+            // _findMenuItem
+            // 
+            this._findMenuItem.Name = "_findMenuItem";
+            this._findMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._findMenuItem.Text = "&Find... (Ctrl+F)";
+            this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
+            // 
+            // _cutMenuItem
+            // 
+            this._cutMenuItem.Enabled = false;
+            this._cutMenuItem.Name = "_cutMenuItem";
+            this._cutMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
+            this._cutMenuItem.Visible = false;
+            // 
             // _copyMenuItem
             // 
             this._copyMenuItem.Enabled = false;
             this._copyMenuItem.Name = "_copyMenuItem";
-            this._copyMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._copyMenuItem.Size = new System.Drawing.Size(148, 22);
             this._copyMenuItem.Text = "&Copy (Ctrl+C)";
             this._copyMenuItem.Visible = false;
             this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
@@ -462,16 +482,9 @@ namespace SolidGui
             // 
             this._pasteMenuItem.Enabled = false;
             this._pasteMenuItem.Name = "_pasteMenuItem";
-            this._pasteMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._pasteMenuItem.Size = new System.Drawing.Size(148, 22);
             this._pasteMenuItem.Text = "&Paste (Ctrl+V)";
             this._pasteMenuItem.Visible = false;
-            // 
-            // _findMenuItem
-            // 
-            this._findMenuItem.Name = "_findMenuItem";
-            this._findMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._findMenuItem.Text = "&Find... (Ctrl+F)";
-            this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
             // 
             // _fixMenuItem
             // 
@@ -484,7 +497,7 @@ namespace SolidGui
             // _quickFixesMenuItem
             // 
             this._quickFixesMenuItem.Name = "_quickFixesMenuItem";
-            this._quickFixesMenuItem.Size = new System.Drawing.Size(152, 22);
+            this._quickFixesMenuItem.Size = new System.Drawing.Size(140, 22);
             this._quickFixesMenuItem.Text = "&Quick Fixes...";
             this._quickFixesMenuItem.Click += new System.EventHandler(this.OnQuickFix);
             // 
@@ -514,6 +527,18 @@ namespace SolidGui
             this._refreshMenuItem.Name = "_refreshMenuItem";
             this._refreshMenuItem.Size = new System.Drawing.Size(214, 22);
             this._refreshMenuItem.Text = "&Refresh right pane (F5)";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(211, 6);
+            // 
+            // _goFirstMenuItem
+            // 
+            this._goFirstMenuItem.Name = "_goFirstMenuItem";
+            this._goFirstMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goFirstMenuItem.Text = "Go to &first (Ctrl+Shift+PgUp)";
+            this._goFirstMenuItem.Click += new System.EventHandler(this._goFirstMenuItem_Click);
             // 
             // _goPreviousMenuItem
             // 
@@ -548,10 +573,10 @@ namespace SolidGui
             // 
             // _openHelpMenuItem
             // 
-            this._openHelpMenuItem.Enabled = false;
             this._openHelpMenuItem.Name = "_openHelpMenuItem";
             this._openHelpMenuItem.Size = new System.Drawing.Size(225, 22);
             this._openHelpMenuItem.Text = "Open PDF &Help Manual (F1)";
+            this._openHelpMenuItem.Click += new System.EventHandler(this._openHelpMenuItem_Click);
             // 
             // _aboutMenuItem
             // 
@@ -566,31 +591,6 @@ namespace SolidGui
             this._reportProblemMenuItem.Size = new System.Drawing.Size(225, 22);
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
-            // 
-            // _goFirstMenuItem
-            // 
-            this._goFirstMenuItem.Name = "_goFirstMenuItem";
-            this._goFirstMenuItem.Size = new System.Drawing.Size(214, 22);
-            this._goFirstMenuItem.Text = "Go to &first (Ctrl+Shift+PgUp)";
-            this._goFirstMenuItem.Click += new System.EventHandler(this._goFirstMenuItem_Click);
-            // 
-            // _cutMenuItem
-            // 
-            this._cutMenuItem.Enabled = false;
-            this._cutMenuItem.Name = "_cutMenuItem";
-            this._cutMenuItem.Size = new System.Drawing.Size(152, 22);
-            this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
-            this._cutMenuItem.Visible = false;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(211, 6);
             // 
             // _markerSettingsListView
             // 
@@ -657,16 +657,16 @@ namespace SolidGui
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
+            this.splitContainerLeftRight.Panel1.ResumeLayout(false);
+            this.splitContainerLeftRight.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLeftRight)).EndInit();
+            this.splitContainerLeftRight.ResumeLayout(false);
+            this.splitContainerUpDown.Panel1.ResumeLayout(false);
+            this.splitContainerUpDown.Panel1.PerformLayout();
+            this.splitContainerUpDown.Panel2.ResumeLayout(false);
+            this.splitContainerUpDown.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerUpDown)).EndInit();
+            this.splitContainerUpDown.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -690,8 +690,8 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripButton _quickFixButton;
 		private System.Windows.Forms.ToolStripButton _changeWritingSystems;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainerLeftRight;
+        private System.Windows.Forms.SplitContainer splitContainerUpDown;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button _editMarkerProperties;
         private System.Windows.Forms.Label label2;

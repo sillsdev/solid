@@ -64,6 +64,8 @@ Source: ..\templates\PLB SFM Unicode.solid; DestDir: {app}\templates
 Source: ..\templates\PLB SFM Legacy Font.solid; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
+Source: ..\doc\Solid Manual\Solid Documentation.pdf; DestDir: {app}
+Source: ..\license_MIT.txt; DestDir: {app}
 
 [Messages]
 WinVersionTooLowError=Solid requires Windows 2000 or later.

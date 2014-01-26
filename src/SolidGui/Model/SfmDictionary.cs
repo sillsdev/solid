@@ -250,7 +250,7 @@ namespace SolidGui.Model
 
             using (var dlg = new ProgressDialog())
             {
-                dlg.Overview = "Opening file...";
+                dlg.Overview = "Loading and checking data...";
 
                 var worker = new BackgroundWorker();
                 worker.DoWork += OnDoOpenWork;

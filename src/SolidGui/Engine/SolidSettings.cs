@@ -141,7 +141,7 @@ namespace SolidGui.Engine
 
         public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
         {
-            if (_newlyAdded == null || _newlyAdded.Count < 1) return;            
+            if (_newlyAdded == null || _newlyAdded.Count < 1) return;
             var sb = new StringBuilder("New marker(s) added: ");
             foreach (var marker in _newlyAdded)
             {
@@ -151,13 +151,18 @@ namespace SolidGui.Engine
             MessageBox.Show(sb.ToString(), "New Marker(s) Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             _newlyAdded = new List<SolidMarkerSetting>(); //clear it out (don't keep notifying)
 
-            // Also seems like the best time to detect whether there are any mixed encodings -JMC
-            NotifyIfMixedEncodings();
+            // Also seems like a good time to detect whether there are any mixed encodings -JMC
+            string msg = NotifyIfMixedEncodings();
+            if (msg != "")
+            {
+                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
         }
 
-        // JMC: This should probably be called once after every File Open (*not* each Recheck), since Solid used to silently create mixed-encoding situations for any new marker identified in a unicode file.
-        private void NotifyIfMixedEncodings()
+        // JMC: This should probably be called once after every File Open, since most users don't need mixed encodings,
+        // yet Solid used to silently create mixed-encoding situations for any new marker identified in a unicode file.
+        public string NotifyIfMixedEncodings()
         {
             int uni = 0;
             var legacy = new List<string>();
@@ -172,14 +177,15 @@ namespace SolidGui.Engine
                     legacy.Add(marker.Marker);
                 }
             }
-            if (uni > 0 && uni < _markerSettings.Count)  // all or nothing, ideally
+            if (uni > 0 && uni < _markerSettings.Count)  // non-mixed is ideal: all or nothing in unicode
             {
                 string msg = string.Join(" ", legacy.ToArray());
                 msg = "Warning: the marker settings have a mix of unicode and legacy specified."
                     + "\nLegacy markers: " + msg 
                     + "\nNote: settings are invisible for markers not currently in use.";
-                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return msg;
             }
+            return "";
         }
 
         /// <summary>

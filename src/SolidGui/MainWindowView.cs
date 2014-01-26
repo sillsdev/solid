@@ -2,6 +2,7 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using System.Text;
@@ -40,10 +41,10 @@ namespace SolidGui
         {
             this.KeyPreview = true;
 
-            splitContainer1.Panel1.Enabled = false;
-            splitContainer2.Panel1.Enabled = false;
-            splitContainer2.Panel2.Enabled = false;
-            _sfmEditorView.Enabled = false;
+            splitContainerLeftRight.Panel1.Enabled = false;
+            splitContainerUpDown.Panel1.Enabled = false;
+            splitContainerUpDown.Panel2.Enabled = false;
+            //_sfmEditorView.Enabled = false;
 
             _mainWindowPM = mainWindowPM;
             _filterIndex = 0;
@@ -123,6 +124,12 @@ namespace SolidGui
             if (_mainWindowPM.Settings != null)
             {
                 _mainWindowPM.Settings.NotifyIfNewMarkers();
+                string msg = _mainWindowPM.Settings.NotifyIfMixedEncodings();
+                if (msg != "")
+                {
+                    MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
             }
 
         }
@@ -200,6 +207,9 @@ namespace SolidGui
                 BindModels(_mainWindowPM);
                 OnFileLoaded(fileName);
                 setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
+                _sfmEditorView.Enabled = false;  //We need to clearly toggle this off before on, or else the background may be gray -JMC
+                _sfmEditorView.Enabled = true;   // (This issue only appeared after setting ShowSelectionMargin to True.)
+
                 string ext = Path.GetExtension(fileName);
                 if (!SolidSettings.FileExtensions.Contains(ext))
                 {
@@ -229,10 +239,11 @@ namespace SolidGui
             UpdateDisplay();
         }
 
-        private void UpdateDisplay()
+        public void UpdateDisplay()
         {
 
             bool canProcess = _mainWindowPM.CanProcessLexicon;
+
             _filterChooserView.Enabled = canProcess;
             _changeWritingSystems.Enabled = canProcess;
             _changeTemplate.Enabled = canProcess;
@@ -241,10 +252,11 @@ namespace SolidGui
             _quickFixButton.Enabled = canProcess;
             setSaveEnabled(_mainWindowPM.needsSave);
 
-            splitContainer1.Panel1.Enabled = canProcess;
-            splitContainer2.Panel1.Enabled = canProcess;
-            splitContainer2.Panel2.Enabled = canProcess;
-            _sfmEditorView.Enabled = canProcess;
+            splitContainerLeftRight.Panel1.Enabled = canProcess;
+            splitContainerUpDown.Panel1.Enabled = canProcess;
+            splitContainerUpDown.Panel2.Enabled = canProcess;
+            _sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
+            //_sfmEditorView.ContentsBox.ReadOnly = !canProcess;
 
             _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274) -JMC 2013-09
             _mainWindowPM.NavigatorModel.StartupOrReset();
@@ -265,7 +277,6 @@ namespace SolidGui
                 return;
             }
 
-            UpdateDisplay();
         }
 
         private void setSaveEnabled(bool val)
@@ -365,9 +376,10 @@ namespace SolidGui
             string path = RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
             if(!String.IsNullOrEmpty(path))
             {
-                //JMC:!! Do we need to save first? I.e. prob need to call SfmEditorView.UpdateModel() to be safe
+                //JMC:!! Don't we need to save first? I.e. prob need to call SfmEditorView.UpdateModel() to be safe
                 _sfmEditorView.UpdateModel();
                 _mainWindowPM.UseSolidSettingsTemplate(path);
+                //JMC:!! Don't we need to do our on-Open checking now (i.e. for new markers and mixed encodings)?
             }
         }
 
@@ -546,7 +558,20 @@ namespace SolidGui
         private void _copyMenuItem_Click(object sender, EventArgs e)
         {
             var x = _sfmEditorView.ContentsBox.SelectedText;
+            // unfinished
            
+        }
+
+        private void _openHelpMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("Solid Documentation.pdf");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "File not found");
+            }
         }
 
     }
