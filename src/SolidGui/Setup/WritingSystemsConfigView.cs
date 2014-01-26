@@ -35,12 +35,6 @@ namespace SolidGui.Setup
             _wscTo.BindToModel(model);
         }
 
-        public string FromMatching
-        {
-            get { return _tbFieldsMatching.Text; }
-            set { _tbFieldsMatching.Text = value; }
-        }
-
         public string FromWritingSystem
         {
             get { return _cbFrom.SelectedItem as string; }
@@ -91,5 +85,6 @@ namespace SolidGui.Setup
         {
             Presenter.OnSetupWritingSystemsClick();
         }
+
     }
 }

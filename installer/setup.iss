@@ -49,6 +49,7 @@ Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.Lift.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\L10NSharp.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Enchant.Net.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings

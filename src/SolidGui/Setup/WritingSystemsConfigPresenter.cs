@@ -19,7 +19,7 @@ namespace SolidGui.Setup
 
             void ToWritingSystemBindPresenter(WritingSystemSetupModel model);
 
-            string FromMatching { get; set; }
+            // string FromMatching { get; set; } // Removed this and the corresponding UI field since they weren't doing anything. -JMC Jan 2014
             string FromWritingSystem { get; set; }
             void SetFromItems(string[] items);
 

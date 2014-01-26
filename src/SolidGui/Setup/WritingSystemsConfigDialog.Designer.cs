@@ -37,7 +37,6 @@ namespace SolidGui.Setup
             // 
             // _writingSystemsConfigView
             // 
-            this._writingSystemsConfigView.FromMatching = "";
             this._writingSystemsConfigView.FromWritingSystem = null;
             this._writingSystemsConfigView.Location = new System.Drawing.Point(0, -1);
             this._writingSystemsConfigView.Name = "_writingSystemsConfigView";
@@ -65,7 +64,7 @@ namespace SolidGui.Setup
             this.Controls.Add(this._writingSystemsConfigView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "WritingSystemsConfigDialog";
-            this.Text = "Writing Systems";
+            this.Text = "Specify Writing Systems";
             this.ResumeLayout(false);
 
 		}
