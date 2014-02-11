@@ -73,7 +73,13 @@ namespace SolidGui.Setup
 
         private void OnApply_Click(object sender, EventArgs e)
         {
-            Presenter.OnApplyClick();
+            int c = Presenter.OnApplyClick();
+            if (c > 0)
+            {
+                string msg = String.Format("Changed the writing system in {0} field markers. (Any hidden, zero-count fields that matched were updated too.)", c);
+                MessageBox.Show(msg, "Writing Systems Replaced");
+            }
+            this.CloseForm();
         }
 
         private void OnAdvanced_Click(object sender, EventArgs e)

@@ -139,6 +139,29 @@ namespace SolidGui.Engine
             return result;
         }
 
+        public int FindReplaceWs(string fromWritingSystem, string toWritingSystem)
+        {
+            int count = 0;
+            foreach (var markerSetting in this.MarkerSettings)
+            {
+                if (markerSetting.WritingSystemRfc4646 == fromWritingSystem)
+                {
+                    markerSetting.WritingSystemRfc4646 = toWritingSystem;
+                    count++;
+                }
+            }
+            // TODO: I think we want something like the following any time anything is modified. But we'd need a handle on the model. -JMC Jan 2014
+            /* 
+            if (count > 0)
+            {
+                _mainWindowPM.needsSave = true;
+            }
+             */
+
+            return count;
+        }
+
+
         public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
         {
             if (_newlyAdded == null || _newlyAdded.Count < 1) return;

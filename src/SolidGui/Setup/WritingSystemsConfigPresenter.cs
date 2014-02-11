@@ -1,6 +1,14 @@
 ﻿// Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
+// (A better name would be SpecifyWritingSystems, or some such. Maybe should name any unit tests accordingly.)
+// This is the Presenter part of a Model-View-Presenter (MVP) implementation. It seems to me to be the one in
+// which "Both hold a reference to each other forming a circular dependency... The view responds to 
+// events by calling methods in the presenter. The presenter read/modifies data from the view through 
+// exposed properties." http://programmers.stackexchange.com/questions/60774/model-view-presenter-implementation-thoughts?rq=1 (and also Bil's answer there)
+// This dialog was Cambell's latest addition prior to my involvement, so its MVP is likely to be preferred on those grounds too.
+// Presumably unit tests should be added as a parallel implementation of WritingSystemsConfigPresenter.IView.
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +31,9 @@ namespace SolidGui.Setup
             string FromWritingSystem { get; set; }
             void SetFromItems(string[] items);
 
-            void ShowAdvanced();
-            void HideAdvanced();
+            // Disabling for now. -JMC Jan 2014
+            //void ShowAdvanced();
+            //void HideAdvanced();
 
             void CloseForm();
             void ShowWritingSystemSetupDialog(WritingSystemSetupModel model);
@@ -32,11 +41,14 @@ namespace SolidGui.Setup
 
         private readonly WritingSystemSetupModel _toWritingSystemSetupModel;
 
-        public WritingSystemsConfigPresenter(SolidSettings solidSettings, IWritingSystemRepository writingSystemRepository, IView view)
+        private MainWindowPM _mainWindowPm { get; set; }
+
+        public WritingSystemsConfigPresenter(MainWindowPM mainWindowPm, IWritingSystemRepository writingSystemRepository, IView view)
         {
+            _mainWindowPm = mainWindowPm;
             View = view;
             View.BindToPresenter(this);
-            SolidSettings = solidSettings;
+            SolidSettings = mainWindowPm.Settings;
             WritingSystemRepository = writingSystemRepository;
             _toWritingSystemSetupModel = new WritingSystemSetupModel(writingSystemRepository);
             View.ToWritingSystemBindPresenter(_toWritingSystemSetupModel);
@@ -59,19 +71,20 @@ namespace SolidGui.Setup
             View.ShowWritingSystemSetupDialog(_toWritingSystemSetupModel);
         }
 
-        public void OnApplyClick()
+
+        public int OnApplyClick()
         {
             string fromWritingSystem = View.FromWritingSystem;
 
-            // TODO Rename markers as per the advance view
-            foreach (var markerSetting in SolidSettings.MarkerSettings)
+            // TODO Rename markers as per the advanced view
+            // Note that I've removed that unimplemented field from the dialog for now. I've also
+            // moved the actual work into the model. -JMC Jan 2014
+            int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentRFC4646);
+            if (c > 0)
             {
-                if (markerSetting.WritingSystemRfc4646 == fromWritingSystem)
-                {
-                    markerSetting.WritingSystemRfc4646 = _toWritingSystemSetupModel.CurrentRFC4646;
-                }
+                _mainWindowPm.needsSave = true;  // JMC: another option would be to trigger a MarkerSettingPossiblyChanged event
             }
-            View.CloseForm();
+            return c;
         }
 
         public void OnAdvancedClick()

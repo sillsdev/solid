@@ -47,9 +47,9 @@ namespace SolidGui.Setup
             this._lblFrom.AutoSize = true;
             this._lblFrom.Location = new System.Drawing.Point(7, 97);
             this._lblFrom.Name = "_lblFrom";
-            this._lblFrom.Size = new System.Drawing.Size(30, 13);
+            this._lblFrom.Size = new System.Drawing.Size(51, 13);
             this._lblFrom.TabIndex = 3;
-            this._lblFrom.Text = "From";
+            this._lblFrom.Text = "Find WS:";
             // 
             // _btnAdvanced
             // 
@@ -68,9 +68,9 @@ namespace SolidGui.Setup
             this._lblTo.AutoSize = true;
             this._lblTo.Location = new System.Drawing.Point(8, 117);
             this._lblTo.Name = "_lblTo";
-            this._lblTo.Size = new System.Drawing.Size(20, 13);
+            this._lblTo.Size = new System.Drawing.Size(72, 13);
             this._lblTo.TabIndex = 3;
-            this._lblTo.Text = "To";
+            this._lblTo.Text = "Replace with:";
             // 
             // _wscTo
             // 
@@ -88,7 +88,8 @@ namespace SolidGui.Setup
             this.label6.Size = new System.Drawing.Size(181, 77);
             this.label6.TabIndex = 8;
             this.label6.Text = "After setting up your specific WS\'s, use those specific ones to replace the gener" +
-    "ic pseudo-writing-systems. E.g. replace \'nat\' with \'fr\'.";
+    "ic pseudo-writing-systems. E.g. replace \'nat\' with \'fr\' if French is the nationa" +
+    "l language.";
             // 
             // _btnApply
             // 

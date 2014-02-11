@@ -1,6 +1,9 @@
 // Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
+// TODO: Consider switching this MVP approach to the MVP approach used in WritingSystemsConfigPresenter
+// That MVP is a nice middle ground; seems easier to understand/manage than all this event/listener wiring. -JMC Jan 2014
+
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -223,8 +226,7 @@ namespace SolidGui
             else
             {
                 // File Open was cancelled or didn't succeed. Roll back.
-                // Initialize(origPm);  // JMC:!! probably need something less destructive
-                BindModels(origPm);
+                BindModels(origPm); // less destructive than Initialize(origPm);  -JMC
             }
 
             Cursor = Cursors.Default;
@@ -279,9 +281,11 @@ namespace SolidGui
 
         }
 
+        // just a convenience method
         private void setSaveEnabled(bool val)
         {
             _saveMenuItem.Enabled = _saveButton.Enabled = _mainWindowPM.needsSave = val;
+            _mainWindowPM.needsSave = val;
         }
 
         private void OnRecordTextChanged(object sender, EventArgs e)
@@ -291,8 +295,10 @@ namespace SolidGui
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
-            setSaveEnabled(true); // JMC:! It would be much better to know for sure whether a save is needed or not. 
+            // JMC:! It would be much better to know for sure whether a save is needed or not. 
+            // setSaveEnabled(true); 
             _sfmEditorView.OnSolidSettingsChange();
+            this.UpdateDisplay();
         }
 
         private void OnRecheckButtonClick(object sender, EventArgs e)
@@ -489,6 +495,7 @@ namespace SolidGui
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
             _markerSettingsListView.OpenSettingsDialog(null);
+            UpdateDisplay();
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -507,15 +514,11 @@ namespace SolidGui
         private void OnChangeWritingSystems_Click(object sender, EventArgs e)
         {
             var dialog = new WritingSystemsConfigDialog();
-            var presenter = new WritingSystemsConfigPresenter(_mainWindowPM.Settings, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
+            var presenter = new WritingSystemsConfigPresenter(_mainWindowPM, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
             DialogResult result = dialog.ShowDialog(this);
             _markerSettingsListView.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
             _markerSettingsListView.Refresh();
-            if (result != DialogResult.Cancel)  // fixes issue #1213 (bogus "needs save")
-            {
-                OnMarkerSettingPossiblyChanged(null, null);
-            }
-
+            UpdateDisplay();
         }
 
         private void reportAProblemsuggestionToolStripMenuItem_Click(object sender, EventArgs e)
