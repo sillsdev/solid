@@ -57,7 +57,7 @@ namespace SolidGui
             _recordFilters = new RecordFilterSet();
             _workingDictionary = dict;
             // Settings = settings;
-            _markerSettingsModel = new MarkerSettingsPM();
+            _markerSettingsModel = new MarkerSettingsPM(this);
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(), "TempDictionary.db");
             _warningFilterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM();

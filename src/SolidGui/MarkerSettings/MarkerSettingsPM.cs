@@ -14,15 +14,23 @@ namespace SolidGui.MarkerSettings
     public class MarkerSettingsPM
     {
 
-        public MarkerSettingsPM()
+        public MarkerSettingsPM(MainWindowPM m)
         {
+            _mainWindowPm = m;
             Root = "";
             MarkersInDictionary = new List<string>();
             StructurePropertiesModel = new StructurePropertiesPM();
             MappingModel = new MappingPM();
         }
 
-        private MarkerFilter _activeMarkerFilter = null;
+        public void WillNeedSave()
+        {
+            _mainWindowPm.needsSave = true;
+        }
+
+        private MainWindowPM _mainWindowPm { get; set; }
+
+    private MarkerFilter _activeMarkerFilter = null;
 
         public override string ToString()
         {

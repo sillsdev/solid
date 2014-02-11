@@ -61,5 +61,10 @@ namespace SolidGui.MarkerSettings
             Text = string.Format("{0} Settings", _selectedMarker);
             _markerSettingsView.UpdateDisplay(_initialArea, _selectedMarker, _mappingType);
         }
+
+        private void MarkerSettingsDialog_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _markerSettingsView.Cleanup(); //I wasn't quite confident to put this in Dispose(); might not happen soon enough? -JMC Feb 2014
+        }
     }
 }

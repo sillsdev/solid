@@ -101,6 +101,8 @@ namespace SolidGui.MarkerSettings
             _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
             _markerListView.SortColumn(0); // TODO: review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
+
+            //JMC:! to update NeedSave, either trigger an event here, or (if we had a handle) call MainWindowView's UpdateDisplay() 
         }
 
         private void FillInCheckedColumn(ListViewItem item, int errorCount)
@@ -249,9 +251,12 @@ namespace SolidGui.MarkerSettings
 
         private void UpdateSelectedItems(SolidMarkerSetting setting)
         {
-            _markerListView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
-            _markerListView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
-            _markerListView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+            if (_markerListView.SelectedItems.Count > 0)
+            {
+                _markerListView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
+                _markerListView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
+                _markerListView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
+            }
         }
 
         // JMC: considering refactoring these two
@@ -273,8 +278,12 @@ namespace SolidGui.MarkerSettings
             dialog.SelectedArea = area;
             dialog.ShowDialog();
             if (MarkerSettingPossiblyChanged != null)
+            {
                 MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
+            }
+
             UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
+            UpdateDisplay();
         }
 
         private void OpenSettingsDialog(string area, SolidMarkerSetting.MappingType mappingType)
@@ -289,8 +298,11 @@ namespace SolidGui.MarkerSettings
             dialog.MappingType = mappingType;
             dialog.ShowDialog();
             if (MarkerSettingPossiblyChanged != null)
+            {
                 MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
+            }
             UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
+            UpdateDisplay();
         }
 
 
@@ -303,11 +315,6 @@ namespace SolidGui.MarkerSettings
             {
                 a.Selected = (a.Text == marker);
             }
-        }
-
-        private void OnEditSettingsClick(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            OpenSettingsDialog(null);
         }
 
         private void _markerListView_SelectedIndexChanged(object source, ClickEventArgs e)

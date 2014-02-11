@@ -32,12 +32,13 @@ namespace SolidGui.MarkerSettings
         private void InitializeComponent()
         {
             this._closeButton = new System.Windows.Forms.Button();
-            this._markerSettingsView = new MarkerSettingsView();
+            this._markerSettingsView = new SolidGui.MarkerSettings.MarkerSettingsView();
             this.SuspendLayout();
             // 
             // _closeButton
             // 
             this._closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this._closeButton.Location = new System.Drawing.Point(535, 345);
             this._closeButton.Name = "_closeButton";
             this._closeButton.Size = new System.Drawing.Size(75, 23);
@@ -48,9 +49,9 @@ namespace SolidGui.MarkerSettings
             // 
             // _markerSettingsView
             // 
-            this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                                     | System.Windows.Forms.AnchorStyles.Left)
-                                                                                    | System.Windows.Forms.AnchorStyles.Right)));
+            this._markerSettingsView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._markerSettingsView.Location = new System.Drawing.Point(6, 8);
             this._markerSettingsView.MarkerModel = null;
             this._markerSettingsView.Name = "_markerSettingsView";
@@ -72,6 +73,7 @@ namespace SolidGui.MarkerSettings
             this.MinimizeBox = false;
             this.Name = "MarkerSettingsDialog";
             this.Text = "MarkerSettingsDialog";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MarkerSettingsDialog_FormClosed);
             this.ResumeLayout(false);
 
         }

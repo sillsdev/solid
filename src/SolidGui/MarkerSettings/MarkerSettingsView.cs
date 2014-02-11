@@ -14,6 +14,11 @@ namespace SolidGui.MarkerSettings
         private readonly WritingSystemSetupModel _wsModel;
         private readonly IWritingSystemRepository _store;
 
+        // Added the following reference because of a BetterLabel issue. Now trying to make sure the WS dialog is not disposed each time
+        // So, need to dispose of these things prior to app shutdown? Yes, added a Cleanup() method and called it from the parent dialog's FormClose event -JMC Feb 2014
+        // JMC: Would it be better to also make this class implement IDisposable?
+        private readonly WritingSystemSetupDialog _wsDialog;
+
         // JMC:! Need a BindModel for these? (See MarkerSettingsDialog)
         private SolidMarkerSetting _currentMarkerSetting;
         public MarkerSettingsPM MarkerModel { get; set; }
@@ -23,6 +28,7 @@ namespace SolidGui.MarkerSettings
             InitializeComponent();
             _store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
+            _wsDialog = new WritingSystemSetupDialog(_wsModel);
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             wsPickerUsingComboBox1.BindToModel(_wsModel);
             wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
@@ -37,6 +43,8 @@ namespace SolidGui.MarkerSettings
             {
                 _currentMarkerSetting.WritingSystemRfc4646 = string.Empty;
             }
+            //MarkerModel.WillNeedSave(); JMC:! Re-enable this in a way that doesn't always trigger
+            
         }
 
         public void UpdateDisplay()
@@ -110,18 +118,34 @@ namespace SolidGui.MarkerSettings
 
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
-            if(_wsModel.HasCurrentSelection)
-                _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
+            if (_wsModel.HasCurrentSelection)
+            {
+                string a = _currentMarkerSetting.WritingSystemRfc4646;
+                string b = _wsModel.CurrentRFC4646;
+                if (a != b)
+                {
+                    _currentMarkerSetting.WritingSystemRfc4646 = b;
+                    MarkerModel.WillNeedSave();
+                }
+                
+            }
         }
 
         private void _cbUnicode_CheckedChanged(object sender, EventArgs e)
         {
-            _currentMarkerSetting.Unicode = _cbUnicode.Checked;
+            bool a = _currentMarkerSetting.Unicode;
+            bool b = _cbUnicode.Checked;
+            if (a != b)
+            {
+                _currentMarkerSetting.Unicode = b;
+                MarkerModel.WillNeedSave();
+            }
         }
 
-        private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void XXX_setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            using (var d = new WritingSystemSetupDialog(_wsModel))
+
+            using (var d = new WritingSystemSetupDialog(_wsModel))  // problem: the Palaso code doesn't like being disposed by this using (used to be ok?) -JMC Feb 2014
             {
                 if (_wsModel.HasCurrentSelection)
                 {
@@ -134,5 +158,26 @@ namespace SolidGui.MarkerSettings
                 }
             }
         }
+
+        private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var d = _wsDialog;
+
+            if (_wsModel.HasCurrentSelection)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                d.ShowDialog(_wsModel.CurrentRFC4646);
+            }
+            else
+            {
+                d.ShowDialog();
+            } 
+        }
+
+        public void Cleanup()
+        {
+            _wsDialog.Dispose(); //not sure whether it would be
+        }
+
     }
 }
