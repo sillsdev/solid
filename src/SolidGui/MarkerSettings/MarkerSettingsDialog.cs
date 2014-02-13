@@ -64,7 +64,8 @@ namespace SolidGui.MarkerSettings
 
         private void MarkerSettingsDialog_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _markerSettingsView.Cleanup(); //I wasn't quite confident to put this in Dispose(); might not happen soon enough? -JMC Feb 2014
+            //Added this. I wasn't quite confident to put this in Dispose(); might not happen soon enough? -JMC Feb 2014
+            _markerSettingsView.Cleanup();
         }
     }
 }

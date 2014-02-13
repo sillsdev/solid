@@ -156,6 +156,7 @@ namespace SolidGui.Search
             this.MinimizeBox = false;
             this.Name = "SearchView";
             this.Text = "Find";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchView_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

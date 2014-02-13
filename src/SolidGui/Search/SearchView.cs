@@ -128,11 +128,15 @@ namespace SolidGui.Search
 
         private void OnCancelButton_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Added Close() and disabled Dispose(), then realized that Hide() might also solve issue #326, and it seems to! -JMC 2013-09
-            // We'll also dispose this from within MainWindowView_FormClosing() though that seems unnecessary.
+            this.Hide(); 
+            // Added Close() and disabled Dispose(), then realized that Hide() might also solve issue #326, and it seems to! -JMC 2013-09
+        }
 
-//            Close(); // TODO Should this be Close(); CP 2010-10
-//            // Dispose(); 
+        private void SearchView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Added this so that no matter which way the user 'closes' the dialog, it only hides. A cheap way to remember field contents (#326). -JMC Feb 2014
+            this.Hide();
+            e.Cancel = true;
         }
 
         private void OnFindTextbox_TextChanged(object sender, EventArgs e)

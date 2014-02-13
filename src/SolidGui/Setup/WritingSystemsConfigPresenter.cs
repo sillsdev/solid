@@ -73,16 +73,16 @@ namespace SolidGui.Setup
 
 
         public int OnApplyClick()
+        // Note that I've removed that unimplemented field from the dialog for now. I've also
+        // moved the actual work into the model. -JMC Jan 2014
         {
             string fromWritingSystem = View.FromWritingSystem;
 
             // TODO Rename markers as per the advanced view
-            // Note that I've removed that unimplemented field from the dialog for now. I've also
-            // moved the actual work into the model. -JMC Jan 2014
             int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentRFC4646);
             if (c > 0)
             {
-                _mainWindowPm.needsSave = true;  // JMC: another option would be to trigger a MarkerSettingPossiblyChanged event
+                _mainWindowPm.needsSave = true;  // JMC: another (more consistent?) option would be to trigger a MarkerSettingPossiblyChanged event
             }
             return c;
         }
