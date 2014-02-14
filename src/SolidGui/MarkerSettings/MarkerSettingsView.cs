@@ -26,6 +26,10 @@ namespace SolidGui.MarkerSettings
         public MarkerSettingsView()
         {
             InitializeComponent();
+            if (DesignMode) // Without this, the Palaso code crashes Visual Studio's Designer because it now demands explicit Dispose() -JMC Feb 2014
+            {
+                return;
+            }
             _store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
             _wsDialog = new WritingSystemSetupDialog(_wsModel);

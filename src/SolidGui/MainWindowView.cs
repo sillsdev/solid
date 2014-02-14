@@ -407,9 +407,13 @@ namespace SolidGui
         {
             _searchView = SearchView.CreateSearchView(_mainWindowPM, _sfmEditorView);
             _searchView.TopMost = true; // means that this form should always be in front of all others
-            // _searchView.SearchModel = _mainWindowPM.SearchModel; // JMC: redundant now?
             _searchView.Show();
             _searchView.Focus();
+
+            //JMC:! temporary
+            var dlg = new FindReplaceDialog();
+            dlg.Show();
+            dlg.Focus();
         }
 
         private void MainWindowView_KeyDown(object sender, KeyEventArgs e)

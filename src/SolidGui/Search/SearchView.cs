@@ -19,15 +19,6 @@ namespace SolidGui.Search
         private int _startingTextIndex = -1;
         private int _startingRecordIndex = -1;
 
-/*
-        public SearchViewModel SearchModel
-        {
-            set
-            {
-                _searchModel = value;
-            }
-        }
-*/
         public static SearchView CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
         {
             if (_searchView == null || _searchView.IsDisposed)
