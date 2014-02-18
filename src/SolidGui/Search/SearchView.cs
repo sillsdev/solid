@@ -75,7 +75,17 @@ namespace SolidGui.Search
 
         private void OnFindNextButton_Click(object sender, EventArgs e)
         {
-            Find(false);
+            try
+            {
+                Find(false);                
+            }
+            catch (Exception error)
+            {
+                string msg = "An unexpected error occurred:\r\n" + error.Message;
+                //Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
+                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
+            }
         }
 
         private void OnReplaceButton_Click(object sender, EventArgs e)
@@ -91,7 +101,6 @@ namespace SolidGui.Search
         private void Find(bool replace)
         {
             bool firstTime = true;
-            RecordFilter filter;
             string f = null;
             string r = "";
             if (_searchResult != null)
@@ -118,15 +127,14 @@ namespace SolidGui.Search
                     _startingRecordIndex = RecordIndex;
                 }
 
-                filter = null;
+                _searchModel.Filter = null;
                 if (_scopeComboBox.SelectedIndex == 0) // "Current Filter" (formerly "Check Result") -JMC
                 {
-                    filter = _navigatorModel.ActiveFilter;
+                    _searchModel.Filter = _navigatorModel.ActiveFilter;
                     RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
                 }
 
-                _searchModel.FindNext ( filter,
-                                        _findTextbox.Text,
+                _searchModel.FindNext(  _findTextbox.Text,
                                         _replaceTextBox.Text,
                                         RecordIndex,
                                         TextIndex,

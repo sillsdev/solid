@@ -13,15 +13,7 @@ namespace SolidGui.Search
 {
     public class SearchViewModel
     {
-        private MainWindowPM _model;
-        private SfmDictionary _dictionary;
-        private int _startRecordOfWholeSearch;
-        private int _startIndexOfWholeSearch;
-        
-        public SearchViewModel(MainWindowPM model)
-        {
-            _model = model;
-        }
+        private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public class SearchResultEventArgs : EventArgs
         {
@@ -43,13 +35,43 @@ namespace SolidGui.Search
 
         public event EventHandler<SearchResultEventArgs> WordFound;
 
+        private MainWindowPM _model;
+        private SfmDictionary _dictionary;
+        private int _startRecordOfWholeSearch;
+        private int _startIndexOfWholeSearch;
+
+        public RecordFilter Filter;
+        public string FindThis;
+        public Regex FindThisRegex;
+        public string ReplaceWith;
+        public bool CaseSensitive = false;
+        public bool UseRegex = true;
+        public bool UseDoubleRegex = false;  //JMC: if true, UseRegex needs to be true too (enforce with get/set ?)
+        //JMC: Other possibilities:
+        // CultureInvariant  (checkbox "use OS case rules")
+        // Multiline (checkbox "allow inline ^ $")
+        // Singleline ("dot matches newline")
+        
+        public SearchViewModel(MainWindowPM model)
+        {
+            _model = model;
+        }
+
+        public void setFindThis(string val)
+        {
+            var opt = RegexOptions.Multiline | RegexOptions.Compiled;
+            if (!CaseSensitive)
+            {
+                opt = RegexOptions.IgnoreCase | opt;
+            }
+            FindThisRegex = new Regex(val, opt);
+        }
+
         public SfmDictionary Dictionary
         {
             get { return _dictionary; }
             set { _dictionary = value; }
         }
-
-        private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private static void CantFindWordErrorMessage(string word)
         {
@@ -59,15 +81,18 @@ namespace SolidGui.Search
         /// Find within the specified filter (specify null for All Records)
         /// If called multiple times with the same values for startingRecord and startingIndex, it will search the 
         /// whole file (including wrap-around with ding) and stop at that starting point. -JMC
-        public void FindNext( RecordFilter filter, string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex)
+        public void FindNext( string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex)
         {
-            if (filter == null)
+            if (this.Filter == null)
             {
-                filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
+                this.Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
             }
-            SearchResult result = NextResult(filter, word, possReplace, recordIndex, textIndex);
+            this.setFindThis(word);
+            this.ReplaceWith = possReplace;
             _startRecordOfWholeSearch = startingRecord;
             _startIndexOfWholeSearch = startingIndex;
+
+            SearchResult result = NextResult(recordIndex, textIndex);
 
             if (result != null)
             {
@@ -75,13 +100,16 @@ namespace SolidGui.Search
             }
             else
             {
-                CantFindWordErrorMessage(word);  //JMC: This is a bit inconsistent, since it launches a messagebox instead of invoking an event
+                CantFindWordErrorMessage(word);  //JMC: Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model)
             }
         }
 
         /// Find within the specified filter
-        private SearchResult NextResult(RecordFilter filter, string word, string replaceWith, int recordIndex, int searchStartIndex)
+        private SearchResult NextResult(int recordIndex, int searchStartIndex)
         {
+            RecordFilter filter = this.Filter;
+            Regex reg = null;
+
             int startingRecordIndex = recordIndex;
             SearchResult searchResult = null;
             int searchResultIndex = -1;
@@ -94,19 +122,49 @@ namespace SolidGui.Search
             while (true)
             {
                 searchResultIndex = -1;
-                searchResult = FindWordInRecord(recordIndex, filter, word, replaceWith, searchStartIndex);
-                if (searchResult != null) // (searchResultIndex != -1)
+
+                string context = null;
+                bool skip = false;
+
+                if (this.UseDoubleRegex)
                 {
-                    searchResultIndex = searchResult.TextIndex;
+                    skip = true;
+                    // set the context
+                    SearchResult tmp = null; // = FindWordInRecord(recordIndex, searchStartIndex, ctxreg, ctxrw, null); //JMC:! unfinished
+                    if (tmp != null)
+                    { 
+                        searchStartIndex = 0;
+                        context = tmp.Found;
+                        skip = false;
+                    }
+                } 
+
+                if (!skip)
+                {
+                    if (this.UseRegex)
+                    {
+                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, this.FindThisRegex, this.ReplaceWith, context);
+                        //Note that context will be null unless UseDoubleRegex is true. -JMC
+                    }
+                    else
+                    {
+                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, null, this.ReplaceWith, null);
+                    }
+
+                    if (searchResult != null) // (searchResultIndex != -1)
+                    {
+                        searchResultIndex = searchResult.TextIndex;
+                    }
                 }
+
                 if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
                 {
                     MakeBing();
                 }
 
-                if (searchResult != null) // (searchResultIndex != -1)
+                if (searchResult != null)
                 {
-                    return searchResult; // new SearchResult(recordIndex, searchResultIndex, word.Length, filter, f, rw);
+                    return searchResult;
                 }
 
                 if (!first && recordIndex == startingRecordIndex) // have we come back around completely?
@@ -122,7 +180,7 @@ namespace SolidGui.Search
             return null;
         }
 
-        private int WrapRecordIndex(int recordIndex, RecordFilter filter)
+        private int WrapRecordIndex(int recordIndex, RecordFilter filter)  //probably should be static -JMC
         {
             if (recordIndex >= filter.Count)
             {
@@ -131,26 +189,44 @@ namespace SolidGui.Search
             return recordIndex;
         }
         
-        // Return the index of the findThis (first match), or -1 (if not found)
-        private SearchResult FindWordInRecord(int recordIndex, RecordFilter filter, string findThis, string replaceWith, int startTextIndex)
+        // Return the index and the word (first match), or null (if not found). Uses a regex if reg is not null; otherwise uses this.FindThis .
+        private SearchResult FindWordInRecord(int recordIndex, int startTextIndex, Regex reg, string replaceWith, string context)
         {
+            RecordFilter filter = this.Filter;
+            SearchResult res = null;
+
             var record = filter.GetRecord(recordIndex);
             if (record == null)
                 return null; // -1;
-            string recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better
-
-            // JMC:! Hack: swap out newline temporarily, since RichEditControl uses plain \n regardless of System.Environment.Newline (\r\n)
-            // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
-            recordText = ReggieTempHack.Replace(recordText, "\n");
-
-            int finalTextIndex = recordText.IndexOf(findThis, startTextIndex);
-            string foundThis = findThis;
-
-            if (finalTextIndex == -1)
+            string recordText;
+            if (context == null)
             {
-                return null;
+                recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
+                // JMC:! Hack: swap out newline temporarily, since RichEditControl uses plain \n regardless of System.Environment.Newline (\r\n)
+                // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
+                recordText = ReggieTempHack.Replace(recordText, "\n");
             }
-            return new SearchResult(recordIndex, finalTextIndex, filter, foundThis, replaceWith);
+            else
+            {
+                recordText = context;
+            }
+
+            if (reg == null)
+            {
+                int finalTextIndex = recordText.IndexOf(this.FindThis, startTextIndex);
+                res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);
+            }
+            else
+            {
+                Match m = reg.Match(recordText, startTextIndex);
+                if (m.Success)
+                {
+                    string rw = m.Result(replaceWith);
+                    res = new SearchResult(recordIndex, m.Index, filter, m.Value, rw);
+                }
+            }
+
+            return res;
         }
 
         // Make a dinging sound (well, the system Asterisk). Called on wraparound, or on no match found.

@@ -78,9 +78,11 @@ namespace SolidGui
             {
                 Application.Run(form); //JMC: Wrap this in a try and put the following in a finally??
             }
-            catch
+
+            catch (Exception error)
             {
-                throw;
+                string msg = "There was an unexpected error:\r\n" + error.Message;
+                Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
             }
             finally
             {
