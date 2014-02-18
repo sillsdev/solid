@@ -336,9 +336,9 @@
             this.flowLayoutPanelOptions.Controls.Add(this.checkBoxCaseSensitive);
             this.flowLayoutPanelOptions.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanelOptions.Location = new System.Drawing.Point(169, 3);
-            this.flowLayoutPanelOptions.MinimumSize = new System.Drawing.Size(132, 66);
+            this.flowLayoutPanelOptions.MinimumSize = new System.Drawing.Size(116, 66);
             this.flowLayoutPanelOptions.Name = "flowLayoutPanelOptions";
-            this.flowLayoutPanelOptions.Size = new System.Drawing.Size(132, 66);
+            this.flowLayoutPanelOptions.Size = new System.Drawing.Size(116, 66);
             this.flowLayoutPanelOptions.TabIndex = 23;
             // 
             // _scopeComboBox
@@ -349,7 +349,7 @@
             "Entire Dictionary"});
             this._scopeComboBox.Location = new System.Drawing.Point(3, 3);
             this._scopeComboBox.Name = "_scopeComboBox";
-            this._scopeComboBox.Size = new System.Drawing.Size(116, 21);
+            this._scopeComboBox.Size = new System.Drawing.Size(110, 21);
             this._scopeComboBox.TabIndex = 3;
             // 
             // checkBoxCaseSensitive

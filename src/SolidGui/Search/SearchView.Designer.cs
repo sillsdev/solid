@@ -41,12 +41,13 @@ namespace SolidGui.Search
             this._replaceButton = new System.Windows.Forms.Button();
             this._scopeComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxRegex = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 47);
+            this.label1.Location = new System.Drawing.Point(26, 81);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
@@ -56,7 +57,7 @@ namespace SolidGui.Search
             // 
             this._findTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._findTextbox.Location = new System.Drawing.Point(59, 47);
+            this._findTextbox.Location = new System.Drawing.Point(59, 78);
             this._findTextbox.Name = "_findTextbox";
             this._findTextbox.Size = new System.Drawing.Size(186, 20);
             this._findTextbox.TabIndex = 1;
@@ -65,7 +66,7 @@ namespace SolidGui.Search
             // _findNextButton
             // 
             this._findNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._findNextButton.Location = new System.Drawing.Point(251, 12);
+            this._findNextButton.Location = new System.Drawing.Point(251, 19);
             this._findNextButton.Name = "_findNextButton";
             this._findNextButton.Size = new System.Drawing.Size(85, 30);
             this._findNextButton.TabIndex = 4;
@@ -77,7 +78,7 @@ namespace SolidGui.Search
             // 
             this._cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._cancelButton.Location = new System.Drawing.Point(251, 86);
+            this._cancelButton.Location = new System.Drawing.Point(251, 102);
             this._cancelButton.Name = "_cancelButton";
             this._cancelButton.Size = new System.Drawing.Size(85, 30);
             this._cancelButton.TabIndex = 6;
@@ -89,15 +90,16 @@ namespace SolidGui.Search
             // 
             this._replaceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._replaceTextBox.Location = new System.Drawing.Point(59, 78);
+            this._replaceTextBox.Location = new System.Drawing.Point(59, 112);
             this._replaceTextBox.Name = "_replaceTextBox";
             this._replaceTextBox.Size = new System.Drawing.Size(186, 20);
             this._replaceTextBox.TabIndex = 3;
+            this._replaceTextBox.TextChanged += new System.EventHandler(this._replaceTextBox_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 78);
+            this.label2.Location = new System.Drawing.Point(6, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 2;
@@ -106,7 +108,7 @@ namespace SolidGui.Search
             // _replaceButton
             // 
             this._replaceButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._replaceButton.Location = new System.Drawing.Point(251, 49);
+            this._replaceButton.Location = new System.Drawing.Point(251, 55);
             this._replaceButton.Name = "_replaceButton";
             this._replaceButton.Size = new System.Drawing.Size(85, 30);
             this._replaceButton.TabIndex = 5;
@@ -120,7 +122,7 @@ namespace SolidGui.Search
             this._scopeComboBox.Items.AddRange(new object[] {
             "Current Filter",
             "Entire Dictionary"});
-            this._scopeComboBox.Location = new System.Drawing.Point(59, 16);
+            this._scopeComboBox.Location = new System.Drawing.Point(59, 19);
             this._scopeComboBox.Name = "_scopeComboBox";
             this._scopeComboBox.Size = new System.Drawing.Size(186, 21);
             this._scopeComboBox.TabIndex = 8;
@@ -135,13 +137,24 @@ namespace SolidGui.Search
             this.label3.TabIndex = 7;
             this.label3.Text = "&Search In";
             // 
+            // checkBoxRegex
+            // 
+            this.checkBoxRegex.AutoSize = true;
+            this.checkBoxRegex.Location = new System.Drawing.Point(59, 50);
+            this.checkBoxRegex.Name = "checkBoxRegex";
+            this.checkBoxRegex.Size = new System.Drawing.Size(57, 17);
+            this.checkBoxRegex.TabIndex = 10;
+            this.checkBoxRegex.Text = "Re&gex";
+            this.checkBoxRegex.UseVisualStyleBackColor = true;
+            // 
             // SearchView
             // 
             this.AcceptButton = this._findNextButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancelButton;
-            this.ClientSize = new System.Drawing.Size(346, 129);
+            this.ClientSize = new System.Drawing.Size(346, 138);
+            this.Controls.Add(this.checkBoxRegex);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._scopeComboBox);
             this.Controls.Add(this._replaceButton);
@@ -173,5 +186,6 @@ namespace SolidGui.Search
         private System.Windows.Forms.Button _replaceButton;
         private System.Windows.Forms.ComboBox _scopeComboBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox checkBoxRegex;
     }
 }

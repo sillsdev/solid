@@ -59,6 +59,8 @@ namespace SolidGui.Search
 
         public void setFindThis(string val)
         {
+            FindThis = val;
+
             var opt = RegexOptions.Multiline | RegexOptions.Compiled;
             if (!CaseSensitive)
             {
@@ -214,7 +216,10 @@ namespace SolidGui.Search
             if (reg == null)
             {
                 int finalTextIndex = recordText.IndexOf(this.FindThis, startTextIndex);
-                res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);
+                if (finalTextIndex > -1)
+                {
+                    res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);                    
+                }
             }
             else
             {
