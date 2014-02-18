@@ -4,6 +4,7 @@
 using System;
 using System.Windows.Forms;
 using SolidGui.Engine;
+using SolidGui.Filter;
 
 namespace SolidGui.Search
 {
@@ -19,13 +20,29 @@ namespace SolidGui.Search
         private int _startingTextIndex = -1;
         private int _startingRecordIndex = -1;
 
+        private SearchResult _searchResult;  //added to support regex -JMC Feb 2014
+
+        private void ResetStartingPoint()
+        {
+            _startingRecordIndex = -1;
+            _startingTextIndex = -1;
+            _searchResult = null;
+        }
+
+        private void BindModel(MainWindowPM model)
+        {
+            _searchModel = model.SearchModel;
+            _searchModel.WordFound += OnWordFound;
+            _navigatorModel = model.NavigatorModel;
+            ResetStartingPoint();
+        }
+
         public static SearchView CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
         {
             if (_searchView == null || _searchView.IsDisposed)
             {
                 _searchView = new SearchView(sfmEditorView);
             }
-
 
             _searchView.BindModel(model);
             return _searchView;
@@ -37,12 +54,6 @@ namespace SolidGui.Search
             // JMC: Add a call here to KeyboardController.Register() ? Would not need to be as smart as for the rich edit control. Ideally, we'd probably default to the vernacular keyboard?
             _sfmEditorView = sfmEditorView;
             _scopeComboBox.SelectedIndex = 0;
-        }
-
-        private void BindModel(MainWindowPM model)
-        {
-            _searchModel = model.SearchModel;
-            _navigatorModel = model.NavigatorModel;
         }
 
         public int RecordIndex { get; set; }
@@ -72,42 +83,56 @@ namespace SolidGui.Search
             Find(true);
         }
 
+        public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
+        {
+            this._searchResult = e.SearchResult;
+        }
+
         private void Find(bool replace)
         {
-
-            if (replace && _sfmEditorView.ContentsBox.SelectedText == _findTextbox.Text)
+            bool firstTime = true;
+            RecordFilter filter;
+            string f = null;
+            string r = "";
+            if (_searchResult != null)
+            {  // result of previous find
+                f = _searchResult.Found;
+                r = _searchResult.ReplaceWith;
+            }
+            if (replace && _sfmEditorView.ContentsBox.SelectedText == f) // == _findTextbox.Text)
             {
                 // Replace current selection
-                _sfmEditorView.ContentsBox.SelectedText = _replaceTextBox.Text;
+                _sfmEditorView.ContentsBox.SelectedText = r; // _replaceTextBox.Text;
                 _sfmEditorView.UpdateModel();
             }
             else
             {
                 // Find next
                 TextIndex = _sfmEditorView.ContentsBox.SelectionStart + 1;
-                _startingTextIndex = (_startingTextIndex == -1) ? TextIndex - 1 : _startingTextIndex;
+                RecordIndex = _navigatorModel.CurrentRecordID;
+                firstTime = (_startingTextIndex == -1);
+                if (firstTime)
+                {   
+                    //we're starting our first find in a potential series; bookmark this
+                    _startingTextIndex = TextIndex - 1;
+                    _startingRecordIndex = RecordIndex;
+                }
 
-                if (_scopeComboBox.SelectedIndex == 0)  // "Current Filter" (formerly "Check Result")
+                filter = null;
+                if (_scopeComboBox.SelectedIndex == 0) // "Current Filter" (formerly "Check Result") -JMC
                 {
+                    filter = _navigatorModel.ActiveFilter;
                     RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
-                    _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
-                    _searchModel.FindNext(_navigatorModel.ActiveFilter,
-                                          _findTextbox.Text,
-                                          RecordIndex,
-                                          TextIndex,
-                                          _startingRecordIndex,
-                                          _startingTextIndex);
                 }
-                else  // "Entire Dictionary"
-                {
-                    RecordIndex = _navigatorModel.CurrentRecordID;
-                    _startingRecordIndex = (_startingRecordIndex == -1) ? RecordIndex : _startingRecordIndex;
-                    _searchModel.FindNext(_findTextbox.Text,
-                                          RecordIndex,
-                                          TextIndex,
-                                          _startingRecordIndex,
-                                          _startingTextIndex);
-                }
+
+                _searchModel.FindNext ( filter,
+                                        _findTextbox.Text,
+                                        _replaceTextBox.Text,
+                                        RecordIndex,
+                                        TextIndex,
+                                        _startingRecordIndex,
+                                        _startingTextIndex);
+                
 
             }
             
@@ -119,8 +144,10 @@ namespace SolidGui.Search
 
         private void OnCancelButton_Click(object sender, EventArgs e)
         {
+            ResetStartingPoint(); //for good measure -JMC
+
+            // Added Close() and disabled Dispose(), but then realized that Hide() might solve issue #326 ("remember last find"), and it seems to! -JMC 2013-09
             this.Hide(); 
-            // Added Close() and disabled Dispose(), then realized that Hide() might also solve issue #326, and it seems to! -JMC 2013-09
         }
 
         private void SearchView_FormClosing(object sender, FormClosingEventArgs e)
@@ -140,10 +167,5 @@ namespace SolidGui.Search
             ResetStartingPoint();
         }
         
-        private void ResetStartingPoint()
-        {
-            _startingRecordIndex = -1;
-            _startingTextIndex = -1;
-        }
     }
 }

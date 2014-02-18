@@ -50,7 +50,7 @@ namespace SolidGui.Search
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "&Find";
+            this.label1.Text = "Fi&nd";
             // 
             // _findTextbox
             // 

@@ -74,12 +74,22 @@ namespace SolidGui
             }
 
             form.UpdateDisplay();
-            Application.Run(form);  //JMC: Wrap this in a try and put the following in a finally??
-            KeyboardController.Shutdown();
+            try
+            {
+                Application.Run(form); //JMC: Wrap this in a try and put the following in a finally??
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                KeyboardController.Shutdown();
+            }
             Settings.Default.Save();
             if (model.Settings != null)
             {
-                model.Settings.NotifyIfNewMarkers();
+                model.Settings.NotifyIfNewMarkers(); //JMC: Why did I put this here--is it really doing anything? -JMC Feb 2014
             }
         }
 

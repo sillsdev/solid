@@ -341,11 +341,12 @@ namespace SolidGui
         {
             if (e.SearchResult.Filter != _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter)
             {
+                //From Find, the user switched from a specific filter to All Records, so update the UI to match
                 _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter = e.SearchResult.Filter;
             }
             _mainWindowPM.NavigatorModel.CurrentRecordIndex = e.SearchResult.RecordIndex;
             _recordNavigatorView.UpdateDisplay();
-            _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.ResultLength);
+            _sfmEditorView.Highlight(e.SearchResult.TextIndex, e.SearchResult.Found.Length);
         }
 
         private void OnAboutBoxButton_Click(object sender, EventArgs e)

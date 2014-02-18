@@ -390,6 +390,7 @@
     <None Include="Resources\preview.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\%24this.Icon.ico" />
     <Content Include="Resources\BackwardAll.png" />
     <Content Include="Resources\BackwordOne.png" />
     <None Include="app.config" />

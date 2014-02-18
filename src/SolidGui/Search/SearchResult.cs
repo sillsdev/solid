@@ -11,15 +11,29 @@ namespace SolidGui.Search
         private int _textIndex;
         private int _resultLength;
         private RecordFilter _filter;
+        private string _found;
+        private string _replaceWith;
 
-        public SearchResult(int recordIndex, int textIndex, int resultLength, RecordFilter filter)
+        public SearchResult(int recordIndex, int textIndex, RecordFilter filter, string found, string replaceWith)
         {
-            RecordIndex = recordIndex;
-            TextIndex = textIndex;
-            ResultLength = resultLength;
             Filter = filter;
+            RecordIndex = recordIndex;    //record within the filtered list of records
+            TextIndex = textIndex;        //line within the matching record
+            _found = found;               //the exact matching string (needed for regex)
+            _replaceWith = replaceWith;   //what a Replace would replace it with (needed for regex)
         }
 
+        // Added these two properties so we can support regex find/replace, in which these values vary -JMC Feb 2014
+        public string Found
+        {
+            get { return _found; }
+        }
+
+        public string ReplaceWith
+        {
+            get { return _replaceWith; }
+        }
+        
         public RecordFilter Filter
         {
             get { return _filter; }

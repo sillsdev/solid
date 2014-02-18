@@ -13,10 +13,10 @@ namespace SolidGui.Search
 {
     public class SearchViewModel
     {
-        private  SfmDictionary _dictionary;
+        private MainWindowPM _model;
+        private SfmDictionary _dictionary;
         private int _startRecordOfWholeSearch;
         private int _startIndexOfWholeSearch;
-        private MainWindowPM _model;
         
         public SearchViewModel(MainWindowPM model)
         {
@@ -56,16 +56,16 @@ namespace SolidGui.Search
             MessageBox.Show("Cannot find\n'" + word + "'", "Solid", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // Find within all records, since no filter was specified
-        public void FindNext(string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
+        /// Find within the specified filter (specify null for All Records)
+        /// If called multiple times with the same values for startingRecord and startingIndex, it will search the 
+        /// whole file (including wrap-around with ding) and stop at that starting point. -JMC
+        public void FindNext( RecordFilter filter, string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex)
         {
-            FindNext(AllRecordFilter.CreateAllRecordFilter(_dictionary, null), word, recordIndex, textIndex, startingRecord, startingIndex);
-        }
-
-        // Find within the specified filter
-        public void FindNext( RecordFilter filter, string word, int recordIndex, int textIndex, int startingRecord, int startingIndex)
-        {
-            SearchResult result = NextResult(filter, word, recordIndex, textIndex);
+            if (filter == null)
+            {
+                filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
+            }
+            SearchResult result = NextResult(filter, word, possReplace, recordIndex, textIndex);
             _startRecordOfWholeSearch = startingRecord;
             _startIndexOfWholeSearch = startingIndex;
 
@@ -75,46 +75,48 @@ namespace SolidGui.Search
             }
             else
             {
-                CantFindWordErrorMessage(word);
+                CantFindWordErrorMessage(word);  //JMC: This is a bit inconsistent, since it launches a messagebox instead of invoking an event
             }
         }
 
-        // Find within the specified filter
-        private SearchResult NextResult(RecordFilter filter, string word, int recordIndex, int searchStartIndex)
+        /// Find within the specified filter
+        private SearchResult NextResult(RecordFilter filter, string word, string replaceWith, int recordIndex, int searchStartIndex)
         {
             int startingRecordIndex = recordIndex;
+            SearchResult searchResult = null;
             int searchResultIndex = -1;
-            if (filter.Count > 0)
+            if (filter.Count <= 0)
             {
-                do
+                return null;
+            }
+
+            bool first = true;
+            while (true)
+            {
+                searchResultIndex = -1;
+                searchResult = FindWordInRecord(recordIndex, filter, word, replaceWith, searchStartIndex);
+                if (searchResult != null) // (searchResultIndex != -1)
                 {
-                    searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
-                    if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
-                    {
-                        MakeBing();
-                    }
-
-                    if (searchResultIndex != -1)
-                    {
-                        return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
-                    }
-
-                    searchStartIndex = 0;
-                    recordIndex++;
-                    recordIndex = WrapRecordIndex(recordIndex, filter);
-                } while (recordIndex != startingRecordIndex);
-                
-                // JMC: the following could be refactored? (repeated code)
-                searchResultIndex = FindIndexOfWordInRecord(recordIndex, filter, word, searchStartIndex);
+                    searchResultIndex = searchResult.TextIndex;
+                }
                 if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
                 {
                     MakeBing();
                 }
-            }
-            
-            if (searchResultIndex != -1)
-            {
-                return new SearchResult(recordIndex, searchResultIndex, word.Length, filter);
+
+                if (searchResult != null) // (searchResultIndex != -1)
+                {
+                    return searchResult; // new SearchResult(recordIndex, searchResultIndex, word.Length, filter, f, rw);
+                }
+
+                if (!first && recordIndex == startingRecordIndex) // have we come back around completely?
+                {
+                    break;
+                }
+                first = false;
+                searchStartIndex = 0;
+                recordIndex++;
+                recordIndex = WrapRecordIndex(recordIndex, filter);
             }
             
             return null;
@@ -123,24 +125,32 @@ namespace SolidGui.Search
         private int WrapRecordIndex(int recordIndex, RecordFilter filter)
         {
             if (recordIndex >= filter.Count)
-            {recordIndex = 0;}
+            {
+                recordIndex = 0;
+            }
             return recordIndex;
         }
         
-        // Return the index of the word (first match), or -1 (if not found)
-        private int FindIndexOfWordInRecord(int recordIndex, RecordFilter filter, string word, int startTextIndex)
+        // Return the index of the findThis (first match), or -1 (if not found)
+        private SearchResult FindWordInRecord(int recordIndex, RecordFilter filter, string findThis, string replaceWith, int startTextIndex)
         {
             var record = filter.GetRecord(recordIndex);
             if (record == null)
-                return -1;
+                return null; // -1;
             string recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better
 
             // JMC:! Hack: swap out newline temporarily, since RichEditControl uses plain \n regardless of System.Environment.Newline (\r\n)
-            // Apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
+            // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
             recordText = ReggieTempHack.Replace(recordText, "\n");
 
-            int finalTextIndex = recordText.IndexOf(word, startTextIndex);
-            return finalTextIndex;
+            int finalTextIndex = recordText.IndexOf(findThis, startTextIndex);
+            string foundThis = findThis;
+
+            if (finalTextIndex == -1)
+            {
+                return null;
+            }
+            return new SearchResult(recordIndex, finalTextIndex, filter, foundThis, replaceWith);
         }
 
         // Make a dinging sound (well, the system Asterisk). Called on wraparound, or on no match found.
@@ -156,57 +166,5 @@ namespace SolidGui.Search
                    (textIndex >= _startIndexOfWholeSearch || textIndex == -1);
         }
 
-        /*
-                private SearchResult NextForwardResult(string word, int recordIndex, int textIndex)
-                {
-                    for (; recordIndex < _dictionary.Count && recordIndex >= 0; recordIndex++)
-                    {
-                        String currentRecord = _dictionary.Current.ToStructuredString();
-                        _dictionary.MoveToNext();
-
-                        textIndex = currentRecord.IndexOf(word, textIndex);
-                        if (textIndex != -1)
-                        {
-                            return new SearchResult(recordIndex, textIndex, word.Length);
-                        }
-                        textIndex = 0;
-                    }
-                    return null;
-                }
-
-                private SearchResult NextBackwardResult(string word, int recordIndex, int textIndex)
-                {
-                    for (; recordIndex >= 0 && recordIndex < _masterRecordList.Count; recordIndex--)
-                    {
-                        string currentRecord = _masterRecordList[recordIndex].ToStructuredString();
-                
-                        textIndex = currentRecord.LastIndexOf(word, textIndex);
-                
-                        if(textIndex != -1)
-                        {
-                            return new SearchResult(recordIndex, textIndex, word.Length);
-                        }
-                        if (recordIndex > 0)
-                        {
-                            textIndex = (_masterRecordList[recordIndex - 1].ToStructuredString().Length)-1;
-                        }
-                    }
-                    return null;
-                }
-        
-        public void FindPrevious(string word, int recordIndex, int textIndex)
-        {
-            SearchResult result = NextBackwardResult(word, recordIndex, textIndex);
-            
-            if(result != null)
-            {
-                wordFound.Invoke(this, new SearchResultEventArgs(result));
-            }
-            else
-            {
-                CantFindWordErrorMessage(word);   
-            }
-        }
-     */
     }
 }
