@@ -108,6 +108,7 @@ namespace SolidGui.Mapping
             {
                 return;
             }
+            _model.MarkerModel.WillNeedSave();  //Apparently we don't get here on dialog load, so need for an Initializing flag in this case. -JMC Feb 2014
             _model.SelectedConcept = (MappingPM.Concept) _conceptList.SelectedItems[0].Tag;
             _model.MarkerSetting.SetMappingConcept(CurrentMappingType(),_model.SelectedConcept.GetId());
             LoadInformationPane();

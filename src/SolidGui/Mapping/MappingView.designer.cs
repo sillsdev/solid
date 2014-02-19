@@ -35,11 +35,12 @@ namespace SolidGui.Mapping
             this._targetCombo = new System.Windows.Forms.ComboBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._conceptList = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this._htmlViewer = new System.Windows.Forms.WebBrowser();
             this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -59,8 +60,8 @@ namespace SolidGui.Mapping
             // 
             this._targetCombo.FormattingEnabled = true;
             this._targetCombo.Items.AddRange(new object[] {
-                                                              "FLEX (Use LIFT instead)",
-                                                              "Lexical Interchange Format (LIFT)"});
+            "FLEX (Use LIFT instead)",
+            "Lexical Interchange Format (LIFT)"});
             this._targetCombo.Location = new System.Drawing.Point(47, 6);
             this._targetCombo.Name = "_targetCombo";
             this._targetCombo.Size = new System.Drawing.Size(240, 21);
@@ -70,9 +71,9 @@ namespace SolidGui.Mapping
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                                 | System.Windows.Forms.AnchorStyles.Left)
-                                                                                | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(6, 33);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -85,23 +86,23 @@ namespace SolidGui.Mapping
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Size = new System.Drawing.Size(467, 323);
-            this.splitContainer1.SplitterDistance = 176;
+            this.splitContainer1.Size = new System.Drawing.Size(436, 328);
+            this.splitContainer1.SplitterDistance = 164;
             this.splitContainer1.TabIndex = 3;
             // 
             // _conceptList
             // 
-            this._conceptList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                              | System.Windows.Forms.AnchorStyles.Left)
-                                                                             | System.Windows.Forms.AnchorStyles.Right)));
+            this._conceptList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._conceptList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                                                                                           this.columnHeader1});
+            this.columnHeader1});
             this._conceptList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this._conceptList.HideSelection = false;
             this._conceptList.Location = new System.Drawing.Point(3, 18);
             this._conceptList.MultiSelect = false;
             this._conceptList.Name = "_conceptList";
-            this._conceptList.Size = new System.Drawing.Size(166, 305);
+            this._conceptList.Size = new System.Drawing.Size(154, 310);
             this._conceptList.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this._conceptList.TabIndex = 2;
             this._conceptList.UseCompatibleStateImageBehavior = false;
@@ -121,14 +122,14 @@ namespace SolidGui.Mapping
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                        | System.Windows.Forms.AnchorStyles.Left)
-                                                                       | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this._htmlViewer);
             this.panel1.Location = new System.Drawing.Point(6, 18);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(278, 305);
+            this.panel1.Size = new System.Drawing.Size(259, 310);
             this.panel1.TabIndex = 2;
             // 
             // _htmlViewer
@@ -139,7 +140,7 @@ namespace SolidGui.Mapping
             this._htmlViewer.Location = new System.Drawing.Point(0, 0);
             this._htmlViewer.MinimumSize = new System.Drawing.Size(20, 20);
             this._htmlViewer.Name = "_htmlViewer";
-            this._htmlViewer.Size = new System.Drawing.Size(276, 303);
+            this._htmlViewer.Size = new System.Drawing.Size(257, 308);
             this._htmlViewer.TabIndex = 2;
             this._htmlViewer.TabStop = false;
             this._htmlViewer.WebBrowserShortcutsEnabled = false;
@@ -162,12 +163,13 @@ namespace SolidGui.Mapping
             this.Controls.Add(this._targetCombo);
             this.Controls.Add(this.label1);
             this.Name = "MappingView";
-            this.Size = new System.Drawing.Size(476, 359);
+            this.Size = new System.Drawing.Size(445, 364);
             this.Load += new System.EventHandler(this.OnLoad);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

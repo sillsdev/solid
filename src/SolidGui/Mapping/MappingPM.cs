@@ -12,6 +12,7 @@ using System.Xml.Xsl;
 using Palaso.Code;
 using Palaso.Xml;
 using SolidGui.Engine;
+using SolidGui.MarkerSettings;
 
 namespace SolidGui.Mapping
 {
@@ -27,9 +28,11 @@ namespace SolidGui.Mapping
         private SolidMarkerSetting _markerSetting;
         private Concept _selectedConcept;
         private SolidMarkerSetting.MappingType _type;
+        public MarkerSettingsPM MarkerModel;  //added so we can support WillNeedSave -JMC Feb 2014
 
-        public MappingPM()
+        public MappingPM(MarkerSettingsPM markerSettings)
         {
+            MarkerModel = markerSettings;
             _systems = new List<MappingSystem>();
 
             foreach (string path in Directory.GetFiles(PathToMappingsDirectory, "*.mappingSystem"))   

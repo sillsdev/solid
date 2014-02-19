@@ -40,6 +40,9 @@ namespace SolidGui
         {
             UpdateParentMarkerListAndComboBox();
             UpdateRadioButtonsAndExplanation();
+            if (Initializing)
+            {
+            }
             Initializing = false;
         }
 
@@ -62,6 +65,12 @@ namespace SolidGui
                 item.Tag = property;
                 _parentListView.Items.Add(item);
                 _InferComboBox.Items.Add("Infer " + property.Parent);
+
+                if (selected == "") 
+                {
+                    //The dialog just loaded; select the first listed parent.  // Added for convenience. -JMC Feb 2014
+                    selected = item.Text;
+                }
 
                 if (item.Text == selected)
                 {
@@ -168,10 +177,7 @@ namespace SolidGui
                 return;
             }
             _parentListView.Items[e.Item].Text = StructurePropertiesPM.RemoveLeadingBackslash(e.Label);
-            if (!Initializing)
-            {
-                _model.UpdateParentMarkers(_parentListView.Items);
-            }
+            _model.UpdateParentMarkers(_parentListView.Items);
             UpdateDisplay();
             e.CancelEdit = true;
         }
