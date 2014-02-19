@@ -34,16 +34,16 @@ namespace SolidGui.MarkerSettings
         private void InitializeComponent()
         {
             this._mappingPage = new System.Windows.Forms.TabPage();
-            this._mappingView = new MappingView();
+            this._mappingView = new SolidGui.Mapping.MappingView();
             this._writingSystemPage = new System.Windows.Forms.TabPage();
+            this._setupWsLink = new System.Windows.Forms.LinkLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.wsPickerUsingComboBox1 = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
             this._cbUnicode = new System.Windows.Forms.CheckBox();
             this._structurePage = new System.Windows.Forms.TabPage();
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this._markerListBox = new System.Windows.Forms.ListBox();
             this._structureTabControl = new System.Windows.Forms.TabControl();
-            this.wsPickerUsingComboBox1 = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this._setupWsLink = new System.Windows.Forms.LinkLabel();
             this._mappingPage.SuspendLayout();
             this._writingSystemPage.SuspendLayout();
             this._structurePage.SuspendLayout();
@@ -82,6 +82,37 @@ namespace SolidGui.MarkerSettings
             this._writingSystemPage.Text = "Writing Systems";
             this._writingSystemPage.UseVisualStyleBackColor = true;
             // 
+            // _setupWsLink
+            // 
+            this._setupWsLink.AutoSize = true;
+            this._setupWsLink.Location = new System.Drawing.Point(257, 40);
+            this._setupWsLink.Name = "_setupWsLink";
+            this._setupWsLink.Size = new System.Drawing.Size(120, 13);
+            this._setupWsLink.TabIndex = 4;
+            this._setupWsLink.TabStop = true;
+            this._setupWsLink.Text = "Set up writing systems...";
+            this._setupWsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._setupWsLink_LinkClicked);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Writing System";
+            // 
+            // wsPickerUsingComboBox1
+            // 
+            this.wsPickerUsingComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.wsPickerUsingComboBox1.FormattingEnabled = true;
+            this.wsPickerUsingComboBox1.Location = new System.Drawing.Point(102, 38);
+            this.wsPickerUsingComboBox1.Name = "wsPickerUsingComboBox1";
+            this.wsPickerUsingComboBox1.Size = new System.Drawing.Size(121, 21);
+            this.wsPickerUsingComboBox1.TabIndex = 2;
+            this.wsPickerUsingComboBox1.SelectedComboIndexChanged += new System.EventHandler(this.wsPickerUsingComboBox1_SelectedComboIndexChanged);
+            this.wsPickerUsingComboBox1.SelectedIndexChanged += new System.EventHandler(this.wsPickerUsingComboBox1_SelectedComboIndexChanged);
+            // 
             // _cbUnicode
             // 
             this._cbUnicode.AutoSize = true;
@@ -116,8 +147,8 @@ namespace SolidGui.MarkerSettings
             // 
             // _markerListBox
             // 
-            this._markerListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                               | System.Windows.Forms.AnchorStyles.Left)));
+            this._markerListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this._markerListBox.FormattingEnabled = true;
             this._markerListBox.Location = new System.Drawing.Point(255, -31);
             this._markerListBox.Name = "_markerListBox";
@@ -128,9 +159,9 @@ namespace SolidGui.MarkerSettings
             // 
             // _structureTabControl
             // 
-            this._structureTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                                                                                      | System.Windows.Forms.AnchorStyles.Left)
-                                                                                     | System.Windows.Forms.AnchorStyles.Right)));
+            this._structureTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._structureTabControl.Controls.Add(this._structurePage);
             this._structureTabControl.Controls.Add(this._writingSystemPage);
             this._structureTabControl.Controls.Add(this._mappingPage);
@@ -140,35 +171,6 @@ namespace SolidGui.MarkerSettings
             this._structureTabControl.Size = new System.Drawing.Size(453, 390);
             this._structureTabControl.TabIndex = 2;
             this._structureTabControl.Leave += new System.EventHandler(this._structureTabControl_Leave);
-            // 
-            // wsPickerUsingComboBox1
-            // 
-            this.wsPickerUsingComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wsPickerUsingComboBox1.FormattingEnabled = true;
-            this.wsPickerUsingComboBox1.Location = new System.Drawing.Point(102, 38);
-            this.wsPickerUsingComboBox1.Name = "wsPickerUsingComboBox1";
-            this.wsPickerUsingComboBox1.Size = new System.Drawing.Size(121, 21);
-            this.wsPickerUsingComboBox1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Writing System";
-            // 
-            // _setupWsLink
-            // 
-            this._setupWsLink.AutoSize = true;
-            this._setupWsLink.Location = new System.Drawing.Point(257, 40);
-            this._setupWsLink.Name = "_setupWsLink";
-            this._setupWsLink.Size = new System.Drawing.Size(120, 13);
-            this._setupWsLink.TabIndex = 4;
-            this._setupWsLink.TabStop = true;
-            this._setupWsLink.Text = "Set up writing systems...";
-            this._setupWsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._setupWsLink_LinkClicked);
             // 
             // MarkerSettingsView
             // 

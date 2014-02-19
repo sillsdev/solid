@@ -82,7 +82,7 @@ namespace SolidGui.Setup
             int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentRFC4646);
             if (c > 0)
             {
-                _mainWindowPm.needsSave = true;  // JMC: another (more consistent?) option would be to trigger a MarkerSettingPossiblyChanged event
+                _mainWindowPm.needsSave = true;  // JMC: Should we also trigger a MarkerSettingPossiblyChanged event? Probably no need.
             }
             return c;
         }

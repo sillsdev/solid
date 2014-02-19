@@ -12,7 +12,7 @@ namespace SolidGui.Tests
     public class StructurePropertiesPMTest
     {
 
-        StructurePropertiesPM _model = new StructurePropertiesPM();
+        StructurePropertiesPM _model = new StructurePropertiesPM(null);
         SolidMarkerSetting _markerSetting = new SolidMarkerSetting();
 
         [SetUp]

@@ -213,7 +213,7 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem)((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("mapping", SolidMarkerSetting.MappingType.Lift);
+            OpenSettingsDialog("mapping"); //, SolidMarkerSetting.MappingType.Lift);
         }
 
         // When someone changes the filter in the PM
@@ -262,6 +262,7 @@ namespace SolidGui.MarkerSettings
         // JMC: considering refactoring these two
         public void OpenSettingsDialog(string area)
         {
+
             if(_markerListView.SelectedItems.Count == 0)
             {
                 return;

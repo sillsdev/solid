@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SolidGui.Engine;
+using SolidGui.MarkerSettings;
 
 namespace Solid.Engine
 {
@@ -12,6 +13,12 @@ namespace Solid.Engine
     {
         private SolidMarkerSetting _markerSetting;
         private List<string> _allValidMarkers;
+        private MarkerSettingsPM _markerSettingsPm;
+
+        public StructurePropertiesPM(MarkerSettingsPM markerSettings)
+        {
+            _markerSettingsPm = markerSettings;
+        }
 
         public SolidMarkerSetting MarkerSetting
         {
@@ -49,8 +56,14 @@ namespace Solid.Engine
             }
         }
 
+        private void MayNeedSave()
+        {
+            if (_markerSettingsPm != null) _markerSettingsPm.WillNeedSave();
+        }
+
         public void UpdateInferedParent(String comboBoxText)
         {
+            MayNeedSave();
             if (_markerSetting != null)
             {
                 if(comboBoxText == "Report Error")
@@ -67,6 +80,7 @@ namespace Solid.Engine
 
         public void UpdateParentMarkers(ListView.ListViewItemCollection items)
         {
+            MayNeedSave();
             _markerSetting.StructureProperties.Clear();
 
             foreach (ListViewItem item in items)
@@ -106,6 +120,7 @@ namespace Solid.Engine
                                        bool multipleApartChecked, 
                                        bool multipleTogetherChecked)
         {
+            MayNeedSave();
             if (onceChecked)
             {
                 selected.Multiplicity = MultiplicityAdjacency.Once;
@@ -138,6 +153,7 @@ namespace Solid.Engine
 
         public void RemoveStructureProperty(string marker)
         {
+            MayNeedSave();
             foreach (SolidStructureProperty property in StructureProperties)
             {
                 if(property.Parent == marker)

@@ -14,10 +14,12 @@ namespace SolidGui.MarkerSettings
         private readonly WritingSystemSetupModel _wsModel;
         private readonly IWritingSystemRepository _store;
 
-        // Added the following reference because of a BetterLabel issue. Now trying to make sure the WS dialog is not disposed each time
+        // Added the following reference because of what seems to be new behavior in Palaso's BetterLabel. Now trying to make sure the WS dialog is not disposed each time.
         // So, need to dispose of these things prior to app shutdown? Yes, added a Cleanup() method and called it from the parent dialog's FormClose event -JMC Feb 2014
-        // JMC: Would it be better to also make this class implement IDisposable?
+        // JMC: Would it be better to also make MarkerSettingsView implement IDisposable?
         private readonly WritingSystemSetupDialog _wsDialog;
+
+        private bool Initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
 
         // JMC:! Need a BindModel for these? (See MarkerSettingsDialog)
         private SolidMarkerSetting _currentMarkerSetting;
@@ -25,6 +27,7 @@ namespace SolidGui.MarkerSettings
 
         public MarkerSettingsView()
         {
+            Initializing = true;
             InitializeComponent();
             if (DesignMode) // Without this, the Palaso code crashes Visual Studio's Designer because it now demands explicit Dispose() -JMC Feb 2014
             {
@@ -40,21 +43,43 @@ namespace SolidGui.MarkerSettings
 
         void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
         {
-            //review: this is a  bit weird
-            if(_wsModel.HasCurrentSelection)
-                _currentMarkerSetting.WritingSystemRfc4646 = _wsModel.CurrentRFC4646;
-            else
+            UpdateModel();
+        }
+
+        public void UpdateModel()
+        {
+            if (Initializing) return;
+
+            if (!_wsModel.HasCurrentSelection)
             {
                 _currentMarkerSetting.WritingSystemRfc4646 = string.Empty;
+                //MarkerModel.WillNeedSave(); JMC: unnecessary?
             }
-            //MarkerModel.WillNeedSave(); JMC:! Re-enable this in a way that doesn't always trigger
+            else
+            {
+                string a = _currentMarkerSetting.WritingSystemRfc4646;
+                string b = _wsModel.CurrentRFC4646;
+                if (a != b)
+                {
+                    _currentMarkerSetting.WritingSystemRfc4646 = b;
+                    MarkerModel.WillNeedSave();
+                }
+            }
+
+            bool aa = _currentMarkerSetting.Unicode;
+            bool bb = _cbUnicode.Checked;
+            if (aa != bb)
+            {
+                _currentMarkerSetting.Unicode = bb;
+                MarkerModel.WillNeedSave();
+            }
             
         }
 
-        public void UpdateDisplay()
+/*        public void UpdateDisplay()
         {
             UpdateDisplay(null, string.Empty, SolidMarkerSetting.MappingType.Lift);
-        }
+        } */
 
         public void UpdateDisplay(string initialArea, string selectedMarker, SolidMarkerSetting.MappingType type)
         {
@@ -73,6 +98,7 @@ namespace SolidGui.MarkerSettings
             _cbUnicode.Checked = _currentMarkerSetting.Unicode;
 
             SelectInitialArea(initialArea);
+            Initializing = false;
         }
 
         private void SelectInitialArea(string initialArea)
@@ -122,28 +148,12 @@ namespace SolidGui.MarkerSettings
 
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
-            if (_wsModel.HasCurrentSelection)
-            {
-                string a = _currentMarkerSetting.WritingSystemRfc4646;
-                string b = _wsModel.CurrentRFC4646;
-                if (a != b)
-                {
-                    _currentMarkerSetting.WritingSystemRfc4646 = b;
-                    MarkerModel.WillNeedSave();
-                }
-                
-            }
+            UpdateModel();
         }
 
         private void _cbUnicode_CheckedChanged(object sender, EventArgs e)
         {
-            bool a = _currentMarkerSetting.Unicode;
-            bool b = _cbUnicode.Checked;
-            if (a != b)
-            {
-                _currentMarkerSetting.Unicode = b;
-                MarkerModel.WillNeedSave();
-            }
+            UpdateModel();
         }
 
         private void XXX_setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

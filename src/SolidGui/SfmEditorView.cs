@@ -261,12 +261,8 @@ namespace SolidGui
             }
         }
 */
-        public void OnSolidSettingsChange()
-        {
-            UpdateView();
-        }
 
-        private void UpdateView()
+        public void UpdateView()
         {
             ClearContentsOfTextBox();
             DisplayEachFieldInCurrentRecord();

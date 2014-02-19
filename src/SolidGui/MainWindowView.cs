@@ -295,10 +295,12 @@ namespace SolidGui
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
         {
-            // JMC:! It would be much better to know for sure whether a save is needed or not. 
-            // setSaveEnabled(true); 
-            _sfmEditorView.OnSolidSettingsChange();
-            this.UpdateDisplay();
+            if (_mainWindowPM.needsSave)
+            {
+                setSaveEnabled(true);
+                _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
+                this.UpdateDisplay();
+            }
         }
 
         private void OnRecheckButtonClick(object sender, EventArgs e)

@@ -19,10 +19,16 @@ namespace SolidGui.MarkerSettings
             _mainWindowPm = m;
             Root = "";
             MarkersInDictionary = new List<string>();
-            StructurePropertiesModel = new StructurePropertiesPM();
-            MappingModel = new MappingPM();
+            StructurePropertiesModel = new StructurePropertiesPM(this);
+            MappingModel = new MappingPM(this);
         }
 
+        /// <summary>
+        /// The calls to this (and avoiding calling it) are a poor man's implementation for allowing 
+        /// the user to look at (most) marker settings without triggering the "needs save" state.
+        /// A better implementation would be to make deep copies and compare them on OK click, or 
+        /// some such (see issue #70 about adding a Cancel button). -JMC Feb 2014
+        /// </summary>
         public void WillNeedSave()
         {
             _mainWindowPm.needsSave = true;

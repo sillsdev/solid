@@ -22,7 +22,7 @@ namespace SolidGui.MarkerSettings
             _selectedMarker = marker;
         }
 
-        // JMC: No need to make this public and call it from MainWindowView? But what if we start reusing the dialog? (E.g. to easily remember our last tab or whatever)
+        // JMC: No need to make this public? (And call it from MainWindowView?) But what if we start reusing the dialog? (E.g. to easily remember our last tab or whatever, like with Find)
         public void BindModel(MarkerSettingsPM markerSettingsModel)
         {
             _markerSettingsView.MarkerModel = markerSettingsModel;

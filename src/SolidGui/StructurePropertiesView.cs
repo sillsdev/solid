@@ -17,6 +17,7 @@ namespace SolidGui
     public partial class StructurePropertiesView : UserControl
     {
         private StructurePropertiesPM _model;
+        private bool Initializing = true;
 
         public StructurePropertiesPM Model
         {
@@ -39,6 +40,7 @@ namespace SolidGui
         {
             UpdateParentMarkerListAndComboBox();
             UpdateRadioButtonsAndExplanation();
+            Initializing = false;
         }
 
         private void UpdateParentMarkerListAndComboBox()
@@ -125,16 +127,22 @@ namespace SolidGui
             {
                 SolidStructureProperty selected = (SolidStructureProperty) _parentListView.SelectedItems[0].Tag;
 
-                _model.UpdateMultiplicity(selected,
-                                          _onceRadioButton.Checked,
-                                          _multipleApartRadioButton.Checked,
-                                          _multipleTogetherRadioButton.Checked);
+                if (!Initializing)
+                {
+                    _model.UpdateMultiplicity(selected,
+                                              _onceRadioButton.Checked,
+                                              _multipleApartRadioButton.Checked,
+                                              _multipleTogetherRadioButton.Checked);
+                }
             }
         }
 
         private void _InferComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _model.UpdateInferedParent(_InferComboBox.Text);
+            if (!Initializing)
+            {
+                _model.UpdateInferedParent(_InferComboBox.Text);
+            }
         }
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
@@ -160,7 +168,10 @@ namespace SolidGui
                 return;
             }
             _parentListView.Items[e.Item].Text = StructurePropertiesPM.RemoveLeadingBackslash(e.Label);
-            _model.UpdateParentMarkers(_parentListView.Items);
+            if (!Initializing)
+            {
+                _model.UpdateParentMarkers(_parentListView.Items);
+            }
             UpdateDisplay();
             e.CancelEdit = true;
         }
