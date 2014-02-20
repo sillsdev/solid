@@ -9,4 +9,27 @@ namespace SolidGui.Engine
         MultipleApart,
         MultipleTogether
     }
+
+    public static class Extensions
+    {
+        public static string Abbr(this MultiplicityAdjacency m)
+        {
+            string s="";
+            switch (m)
+            {
+                case MultiplicityAdjacency.Once:
+                    s = "i";
+                    break;
+                case MultiplicityAdjacency.MultipleTogether:
+                    s = "ii";
+                    break;
+                case MultiplicityAdjacency.MultipleApart:
+                    s = "i..ii";
+                    break;
+            }
+            return s;
+        }
+    }
+
+
 }

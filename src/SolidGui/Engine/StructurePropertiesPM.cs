@@ -135,22 +135,6 @@ namespace Solid.Engine
             }
         }
 
-        public string GetSelectedText(ListView parentListView)
-        {
-            string selected;
-
-            if (parentListView.SelectedItems.Count > 0)
-            {
-                selected = parentListView.SelectedItems[0].Text;
-            }
-            else
-            {
-                selected = "";
-            }
-
-            return selected;
-        }
-
         public void RemoveStructureProperty(string marker)
         {
             MayNeedSave();

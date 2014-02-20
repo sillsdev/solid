@@ -36,6 +36,8 @@ namespace SolidGui
             this.label2 = new System.Windows.Forms.Label();
             this._InferComboBox = new System.Windows.Forms.ComboBox();
             this._parentListView = new System.Windows.Forms.ListView();
+            this.columnHeaderMarker = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderOccurs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this._multipleTogetherRadioButton = new System.Windows.Forms.RadioButton();
             this._multipleApartRadioButton = new System.Windows.Forms.RadioButton();
@@ -45,13 +47,14 @@ namespace SolidGui
             this.flowLayoutPanelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelTop = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelOccurs = new System.Windows.Forms.FlowLayoutPanel();
+            this.textBoxDebug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanelMain.SuspendLayout();
             this.flowLayoutPanelBottom.SuspendLayout();
             this.flowLayoutPanelTop.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanelOccurs.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -68,9 +71,9 @@ namespace SolidGui
             this._explanationLabel.AutoSize = true;
             this._explanationLabel.Location = new System.Drawing.Point(149, 0);
             this._explanationLabel.Name = "_explanationLabel";
-            this._explanationLabel.Size = new System.Drawing.Size(121, 13);
+            this._explanationLabel.Size = new System.Drawing.Size(124, 13);
             this._explanationLabel.TabIndex = 3;
-            this._explanationLabel.Text = "Under lx, ge can appear";
+            this._explanationLabel.Text = "Under lx, ge can occur...";
             // 
             // label2
             // 
@@ -96,18 +99,33 @@ namespace SolidGui
             // 
             // _parentListView
             // 
+            this._parentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderMarker,
+            this.columnHeaderOccurs});
+            this._parentListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._parentListView.FullRowSelect = true;
             this._parentListView.HideSelection = false;
             this._parentListView.LabelEdit = true;
             this._parentListView.Location = new System.Drawing.Point(3, 23);
+            this._parentListView.MultiSelect = false;
             this._parentListView.Name = "_parentListView";
-            this._parentListView.Size = new System.Drawing.Size(61, 89);
+            this._parentListView.Size = new System.Drawing.Size(140, 229);
             this._parentListView.TabIndex = 8;
             this._parentListView.UseCompatibleStateImageBehavior = false;
-            this._parentListView.View = System.Windows.Forms.View.SmallIcon;
+            this._parentListView.View = System.Windows.Forms.View.Details;
             this._parentListView.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._parentListView_AfterLabelEdit);
-            this._parentListView.SelectedIndexChanged += new System.EventHandler(this._parentListBox_SelectedIndexChanged);
+            this._parentListView.BeforeLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this._parentListView_BeforeLabelEdit);
+            this._parentListView.SelectedIndexChanged += new System.EventHandler(this._parentListView_SelectedIndexChanged);
             this._parentListView.KeyUp += new System.Windows.Forms.KeyEventHandler(this._parentListView_KeyUp);
             this._parentListView.MouseUp += new System.Windows.Forms.MouseEventHandler(this._parentListView_MouseUp);
+            // 
+            // columnHeaderMarker
+            // 
+            this.columnHeaderMarker.Text = "Marker";
+            // 
+            // columnHeaderOccurs
+            // 
+            this.columnHeaderOccurs.Text = "Occurs";
             // 
             // pictureBox1
             // 
@@ -130,6 +148,7 @@ namespace SolidGui
             this._multipleTogetherRadioButton.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this._multipleTogetherRadioButton.UseVisualStyleBackColor = true;
             this._multipleTogetherRadioButton.CheckedChanged += new System.EventHandler(this._aRadioButton_CheckedChanged);
+            this._multipleTogetherRadioButton.Click += new System.EventHandler(this._radioButton_Click);
             // 
             // _multipleApartRadioButton
             // 
@@ -144,6 +163,7 @@ namespace SolidGui
             this._multipleApartRadioButton.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this._multipleApartRadioButton.UseVisualStyleBackColor = true;
             this._multipleApartRadioButton.CheckedChanged += new System.EventHandler(this._aRadioButton_CheckedChanged);
+            this._multipleApartRadioButton.Click += new System.EventHandler(this._radioButton_Click);
             // 
             // _onceRadioButton
             // 
@@ -156,7 +176,8 @@ namespace SolidGui
             this._onceRadioButton.Text = "Once";
             this._onceRadioButton.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this._onceRadioButton.UseVisualStyleBackColor = true;
-            this._onceRadioButton.CheckedChanged += new System.EventHandler(this._aRadioButton_CheckedChanged);
+            this._onceRadioButton.CheckedChanged += new System.EventHandler(this._radioButton_Click);
+            this._onceRadioButton.Click += new System.EventHandler(this._radioButton_Click);
             // 
             // label3
             // 
@@ -213,7 +234,7 @@ namespace SolidGui
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this._parentListView, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel3, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanelOccurs, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this._explanationLabel, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
@@ -224,17 +245,26 @@ namespace SolidGui
             this.tableLayoutPanel2.Size = new System.Drawing.Size(439, 255);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // flowLayoutPanel3
+            // flowLayoutPanelOccurs
             // 
-            this.flowLayoutPanel3.Controls.Add(this._onceRadioButton);
-            this.flowLayoutPanel3.Controls.Add(this._multipleTogetherRadioButton);
-            this.flowLayoutPanel3.Controls.Add(this._multipleApartRadioButton);
-            this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(149, 23);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(287, 229);
-            this.flowLayoutPanel3.TabIndex = 1;
+            this.flowLayoutPanelOccurs.Controls.Add(this._onceRadioButton);
+            this.flowLayoutPanelOccurs.Controls.Add(this._multipleTogetherRadioButton);
+            this.flowLayoutPanelOccurs.Controls.Add(this._multipleApartRadioButton);
+            this.flowLayoutPanelOccurs.Controls.Add(this.textBoxDebug);
+            this.flowLayoutPanelOccurs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelOccurs.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(149, 23);
+            this.flowLayoutPanelOccurs.Name = "flowLayoutPanelOccurs";
+            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(287, 229);
+            this.flowLayoutPanelOccurs.TabIndex = 1;
+            // 
+            // textBoxDebug
+            // 
+            this.textBoxDebug.Location = new System.Drawing.Point(3, 88);
+            this.textBoxDebug.Multiline = true;
+            this.textBoxDebug.Name = "textBoxDebug";
+            this.textBoxDebug.Size = new System.Drawing.Size(152, 71);
+            this.textBoxDebug.TabIndex = 6;
             // 
             // StructurePropertiesView
             // 
@@ -243,7 +273,6 @@ namespace SolidGui
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Name = "StructurePropertiesView";
             this.Size = new System.Drawing.Size(445, 364);
-            this.Load += new System.EventHandler(this.StructurePropertiesView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.flowLayoutPanelBottom.ResumeLayout(false);
@@ -251,7 +280,8 @@ namespace SolidGui
             this.flowLayoutPanelTop.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanelOccurs.ResumeLayout(false);
+            this.flowLayoutPanelOccurs.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -272,6 +302,9 @@ namespace SolidGui
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelBottom;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTop;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelOccurs;
+        private System.Windows.Forms.ColumnHeader columnHeaderMarker;
+        private System.Windows.Forms.ColumnHeader columnHeaderOccurs;
+        private System.Windows.Forms.TextBox textBoxDebug;
     }
 }

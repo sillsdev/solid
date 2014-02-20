@@ -17,7 +17,10 @@ namespace SolidGui
     public partial class StructurePropertiesView : UserControl
     {
         private StructurePropertiesPM _model;
-        private bool Initializing = true;
+        private bool _isProcessing = true;
+        private string _cachedLabel = "";
+        private const string InferLabel = "Infer ";
+        private const string NewLabel = "(New)";
 
         public StructurePropertiesPM Model
         {
@@ -38,37 +41,62 @@ namespace SolidGui
 
         public void UpdateDisplay()
         {
+            _isProcessing = true;
             UpdateParentMarkerListAndComboBox();
             UpdateRadioButtonsAndExplanation();
-            if (Initializing)
+            _isProcessing = false;
+
+            //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
+            _parentListView.Hide();
+            _parentListView.Show();
+            if (_parentListView.SelectedItems.Count > 0)
             {
+                _parentListView.FocusedItem = _parentListView.SelectedItems[0];
             }
-            Initializing = false;
+            else
+            {
+                //_parentListView.FocusedItem = _parentListView.Items[0];
+            }
+        }
+
+        public static string GetSelectedText(ListView parentListView)
+        {
+            string selected = "";
+            if (parentListView.SelectedItems.Count > 0)
+            {
+                selected = parentListView.SelectedItems[0].Text;
+            }
+            return selected;
         }
 
         private void UpdateParentMarkerListAndComboBox()
         {
-            string selected = _model.GetSelectedText(_parentListView);
-            _parentListView.Clear();
+            string selected = GetSelectedText(_parentListView);
+
+            _parentListView.Items.Clear(); // was _parentListView.Clear();
             _InferComboBox.Items.Clear();
             _InferComboBox.Text = "";
 
-            ListViewItem newItem = new ListViewItem("(New)");
-            newItem.Tag = new SolidStructureProperty();
-            _parentListView.Items.Add(newItem);
+            ListViewItem item = new ListViewItem(NewLabel);
+            item.Tag = new SolidStructureProperty();
+            if (selected == NewLabel) item.Selected = true;
+            item.SubItems.Add("--");
+            _parentListView.Items.Add(item);
 
             _InferComboBox.Items.Add("Report Error");
 
             foreach (SolidStructureProperty property in _model.StructureProperties)
             {
-                ListViewItem item = new ListViewItem(property.Parent);
+                item = new ListViewItem(property.Parent);
                 item.Tag = property;
                 _parentListView.Items.Add(item);
-                _InferComboBox.Items.Add("Infer " + property.Parent);
+                item.SubItems.Add(property.Multiplicity.Abbr());
+
+                _InferComboBox.Items.Add(InferLabel + property.Parent);
 
                 if (selected == "") 
                 {
-                    //The dialog just loaded; select the first listed parent.  // Added for convenience. -JMC Feb 2014
+                    //The dialog just loaded; prepare to select the first listed parent.  // Added for convenience. -JMC Feb 2014
                     selected = item.Text;
                 }
 
@@ -83,7 +111,7 @@ namespace SolidGui
             }
             else
             {
-                _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf("Infer " + _model.InferedParent);
+                _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf(InferLabel + _model.InferedParent);
             }
         }
         
@@ -110,64 +138,80 @@ namespace SolidGui
                             break;
                         }
                 }
-                _onceRadioButton.Enabled = true;
-                _multipleTogetherRadioButton.Enabled = true;
-                _multipleApartRadioButton.Enabled = true;
+                flowLayoutPanelOccurs.Enabled = true;
             }
             else
             {
-                _onceRadioButton.Enabled = false;
-                _multipleTogetherRadioButton.Enabled = false;
-                _multipleApartRadioButton.Enabled = false;
+                flowLayoutPanelOccurs.Enabled = false;
             }
 
-            string selected = _model.GetSelectedText(_parentListView);
-            _explanationLabel.Text = string.Format("{0} can appear under {1} ", _model.MarkerSetting.Marker, selected);
+            string selected = GetSelectedText(_parentListView);
+            _explanationLabel.Text = string.Format("Under {1}, {0} can occur...", _model.MarkerSetting.Marker, selected);
         }
 
-        private void _parentListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void _parentListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateRadioButtonsAndExplanation();
+            //Alas, this always fires twice, once to deselect, then once correctly. -JMC Feb 2014
+            if (_isProcessing || _parentListView.SelectedItems.Count <= 0) return; //ignore the first firing
+            UpdateDisplay();
+        }
+
+        private void _radioButton_Click(object sender, EventArgs e)
+        {
+            if (!_isProcessing && _parentListView.SelectedItems.Count > 0)
+            {
+                SolidStructureProperty selected = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
+                _model.UpdateMultiplicity(selected,
+                                            _onceRadioButton.Checked,
+                                            _multipleApartRadioButton.Checked,
+                                            _multipleTogetherRadioButton.Checked);
+                UpdateDisplay();
+            }
         }
 
         private void _aRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (_parentListView.SelectedItems.Count > 0)
-            {
-                SolidStructureProperty selected = (SolidStructureProperty) _parentListView.SelectedItems[0].Tag;
-
-                if (!Initializing)
-                {
-                    _model.UpdateMultiplicity(selected,
-                                              _onceRadioButton.Checked,
-                                              _multipleApartRadioButton.Checked,
-                                              _multipleTogetherRadioButton.Checked);
-                }
-            }
+            int tmp = 1;
         }
 
         private void _InferComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!Initializing)
+            if (!_isProcessing)
             {
                 _model.UpdateInferedParent(_InferComboBox.Text);
             }
         }
 
+        private void _parentListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            _cachedLabel = _parentListView.Items[e.Item].Text; // can't use e.Label because it's null at this point -JMC
+        }
+
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            if (String.IsNullOrEmpty(e.Label) && e.Item > 0)
+            // Note that clicking twice and hitting Enter will give null; retyping it precisely will give _cachedLabel. -JMC
+            if (e.Label == null || e.Label == _cachedLabel)
             {
-                var d = new ProblemNotificationDialog("The parent marker cannot be empty. It must be a valid marker, like \\sn or \\lx for example", "Solid Error");
-                d.ShowDialog();
                 e.CancelEdit = true;
                 return;
             }
+
+            if (e.Label == "" || e.Label == NewLabel)
+            {
+                if (e.Item > 0)
+                {
+                    var d = new ProblemNotificationDialog("The parent marker cannot be empty. Try a valid marker like \\sn or \\lx. To delete, click just once and press Delete.", "Solid Error");
+                    d.ShowDialog();
+                }
+                e.CancelEdit = true;
+                return;
+            }
+
             if (!_model.ValidParent(e.Label))
             {
                 var d = new ProblemNotificationDialog(
                     String.Format(
-                        "'{0}' isn't a valid parent marker. It must be a valid marker, like \\sn or \\lx for example",
+                        "'{0}' isn't a valid parent marker. It must be a valid marker, such as \\sn or \\lx .",
                         e.Label
                     ),
                     "Solid Error"
@@ -184,32 +228,28 @@ namespace SolidGui
 
         private void _parentListView_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Delete)
             {
-                string selectedMarker = _model.GetSelectedText(_parentListView);
+                string selectedMarker = GetSelectedText(_parentListView);
                 _model.RemoveStructureProperty(selectedMarker);
                 if (_model.InferedParent == selectedMarker)
                 {
                     _InferComboBox.SelectedIndex = 0;
                 }
-                UpdateDisplay();
             }
-        }
-
-        private void StructurePropertiesView_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void _parentListView_MouseUp(object sender, MouseEventArgs e)
         {
             if(_parentListView.SelectedItems.Count > 0)
             {
-                if (_model.GetSelectedText(_parentListView) == "(New)")
+                if (GetSelectedText(_parentListView) == NewLabel)
                 {
                     _parentListView.SelectedItems[0].BeginEdit();
                 }
             }
         }
+
+
     }
 }

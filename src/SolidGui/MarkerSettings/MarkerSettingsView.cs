@@ -116,8 +116,11 @@ namespace SolidGui.MarkerSettings
             }
         }
 
+        //JMC: Ok to delete this, and the ListBox?
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            return; //verifying... -JMC
+
             if (_markerListBox.SelectedItem != null)
             {
                 _structurePropertiesView.Model.MarkerSetting = (SolidMarkerSetting) _markerListBox.SelectedItem;
