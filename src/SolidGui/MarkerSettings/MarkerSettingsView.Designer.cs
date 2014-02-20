@@ -118,9 +118,9 @@ namespace SolidGui.MarkerSettings
             this._cbUnicode.AutoSize = true;
             this._cbUnicode.Location = new System.Drawing.Point(19, 81);
             this._cbUnicode.Name = "_cbUnicode";
-            this._cbUnicode.Size = new System.Drawing.Size(216, 17);
+            this._cbUnicode.Size = new System.Drawing.Size(300, 17);
             this._cbUnicode.TabIndex = 1;
-            this._cbUnicode.Text = "Data for this marker is Unicode encoded";
+            this._cbUnicode.Text = "Data for this marker is already encoded as UTF-8 Unicode";
             this._cbUnicode.UseVisualStyleBackColor = true;
             this._cbUnicode.CheckedChanged += new System.EventHandler(this._cbUnicode_CheckedChanged);
             // 

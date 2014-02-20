@@ -35,7 +35,8 @@ namespace SolidGui.MarkerSettings
             GlacialComponents.Controls.GLColumn glColumn2 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumn5 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumnLift = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumnUnicode = new GlacialComponents.Controls.GLColumn();
             this._markerListView = new GlacialComponents.Controls.GlacialList();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@ namespace SolidGui.MarkerSettings
             this._markerListView.AlternateBackground = System.Drawing.Color.DarkGreen;
             this._markerListView.AlternatingColors = false;
             this._markerListView.AutoHeight = true;
-            //this._markerListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this._markerListView.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._markerListView.BackgroundStretchToFit = true;
             glColumn1.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn1.CheckBoxes = false;
@@ -84,21 +85,33 @@ namespace SolidGui.MarkerSettings
             glColumn4.Text = "Writing System";
             glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             glColumn4.Width = 90;
-            glColumn5.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumn5.CheckBoxes = false;
-            glColumn5.ComparisonFunction = null;
-            glColumn5.ImageIndex = -1;
-            glColumn5.Name = "liftConcept";
-            glColumn5.NumericSort = false;
-            glColumn5.Text = "LIFT";
-            glColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn5.Width = 100;
+            glColumnLift.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumnLift.CheckBoxes = false;
+            glColumnLift.ComparisonFunction = null;
+            glColumnLift.ImageIndex = -1;
+            glColumnLift.Name = "liftConcept";
+            glColumnLift.NumericSort = false;
+            glColumnLift.Text = "LIFT";
+            glColumnLift.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumnLift.Width = 65;
+
+            glColumnUnicode.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumnUnicode.CheckBoxes = true;
+            glColumnUnicode.ComparisonFunction = null;
+            glColumnUnicode.ImageIndex = -1;
+            glColumnUnicode.Name = "unicode";
+            glColumnUnicode.NumericSort = false;
+            glColumnUnicode.Text = "utf8";
+            glColumnUnicode.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumnUnicode.Width = 35;
+            
             this._markerListView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
             glColumn1,
             glColumn2,
             glColumn3,
             glColumn4,
-            glColumn5});
+            glColumnUnicode,
+            glColumnLift});
             this._markerListView.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this._markerListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._markerListView.FullRowSelect = true;

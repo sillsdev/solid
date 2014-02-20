@@ -12,7 +12,7 @@ namespace SolidGui.Engine
         public SolidStructureProperty()
         {
             Parent = "";
-            Multiplicity = MultiplicityAdjacency.MultipleApart;
+            Multiplicity = MultiplicityAdjacency.Once; // was .MultipleApart; but it's better to promote best practices -JMC Feb 2014
         }
 
         public SolidStructureProperty(string parent,MultiplicityAdjacency ma)

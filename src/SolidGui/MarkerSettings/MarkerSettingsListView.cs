@@ -56,9 +56,34 @@ namespace SolidGui.MarkerSettings
             
             //UpdateDisplay();
         }
+
+        private GLItem MakeListItem (KeyValuePair<string, int> pair)
+        {
+            var item = new GLItem(); 
+            item.SubItems.Add(pair.Key);  // MARKER
+
+            //The order these are called in matters
+            FillInFrequencyColumn(item, pair.Value.ToString());  // COUNT
+
+            SolidMarkerSetting markerSetting = _markerSettingsPM.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
+            AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);  // UNDER
+
+            AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);  // WS
+
+            var u = new GLSubItem();
+            u.Checked = markerSetting.Unicode;
+            item.SubItems.Add(u);  // UNICODE  //added -JMC Feb 2014
+
+            AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked); //LIFT 
+
+            //FillInErrorColumn(item, _dictionary.MarkerErrors[pair.Key]);
+            return item;
+        }
         
         public void UpdateDisplay()
         {
+            if (DesignMode) return;
+
             string previouslySelectedMarker = string.Empty;
             
             if(_markerListView.SelectedItems.Count > 0)
@@ -80,18 +105,7 @@ namespace SolidGui.MarkerSettings
             if (_dictionary == null) return;
             foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
             {
-                var item = new GLItem();// (pair.Key);
-                item.SubItems.Add(pair.Key);
-                
-                //The order these are called in matters
-                FillInFrequencyColumn(item, pair.Value.ToString());
-                SolidMarkerSetting markerSetting = _markerSettingsPM.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
-                AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);
-                AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);
-                AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked);  //JMC:! add another (checkbox) column here for Unic ?          
-                //  FillInStructureColumn(item, _settings.FindOrCreateMarkerSetting(pair.Key).StructureProperties);
-                //  FillInCheckedColumn(item, _dictionary.MarkerErrors[pair.Key]);
-
+                GLItem item = MakeListItem(pair);
                 _markerListView.Items.Add(item);
             }
 
@@ -102,10 +116,9 @@ namespace SolidGui.MarkerSettings
             _markerListView.SortColumn(0); // TODO: review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
 
-            //JMC:! to update NeedSave, either trigger an event here, or (if we had a handle) call MainWindowView's UpdateDisplay() 
         }
 
-        private void FillInCheckedColumn(ListViewItem item, int errorCount)
+        private void FillInErrorColumn(ListViewItem item, int errorCount)
         {
             if(errorCount > 0)
             {
@@ -161,7 +174,7 @@ namespace SolidGui.MarkerSettings
                     {
                         parents += ", ";
                     }
-                    parents += property.Parent;
+                    parents += String.Format("{0} ({1})", property.Parent, property.Multiplicity.Abbr());
                 }
             }
             if (parents == "")
@@ -249,17 +262,6 @@ namespace SolidGui.MarkerSettings
             _changingFilter = false;
         }
 
-        private void UpdateSelectedItems(SolidMarkerSetting setting)
-        {
-            if (_markerListView.SelectedItems.Count > 0)
-            {
-                _markerListView.SelectedItems[0].SubItems[2].Control.Text = MakeStructureLinkLabel(setting.StructureProperties);
-                _markerListView.SelectedItems[0].SubItems[3].Control.Text = MakeWritingSystemLinkLabel(setting.WritingSystemRfc4646);
-                _markerListView.SelectedItems[0].SubItems[4].Control.Text = MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, setting);
-            }
-        }
-
-        // JMC: considering refactoring these two
         public void OpenSettingsDialog(string area)
         {
 
@@ -283,30 +285,9 @@ namespace SolidGui.MarkerSettings
                 MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
             }
 
-            UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
-            UpdateDisplay();
+            UpdateDisplay(); //more effective at highlighting the row: rebuild all rows
+            //UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));  //this was more efficient: update one row; but it adds maintenance overhead, and doesn't highlight the row. Removed. -JMC Feb 2014
         }
-
-        private void OpenSettingsDialog(string area, SolidMarkerSetting.MappingType mappingType)
-        {
-            if (_markerListView.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            string marker = _markerListView.SelectedItems[0].Text;
-            var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
-            dialog.SelectedArea = area;
-            dialog.MappingType = mappingType;
-            dialog.ShowDialog();
-            if (MarkerSettingPossiblyChanged != null)
-            {
-                MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
-            }
-            UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));
-            UpdateDisplay();
-        }
-
-
 
         public void SelectMarker(string marker)
         {
@@ -327,18 +308,32 @@ namespace SolidGui.MarkerSettings
                 return;
             }
 */
+            if (e.ItemIndex < 0) return;
+            GLItem item = _markerListView.Items[e.ItemIndex];
+            string marker = item.Text;
+
             if (!_changingFilter)
             {
-                string marker = _markerListView.Items[e.ItemIndex].Text;
-                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker);  
+                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker); 
                 // JMC:! why did we create a new one here, but not for the same situation in FilterChooserView, _filterList_SelectedIndexChanged() ?
             }
+
+            // Handle the new unicode column -JMC
+            var m = _markerSettingsPM.GetMarkerSetting(marker);
+            if (m.Unicode != item.SubItems[4].Checked)
+            {
+                _markerSettingsPM.WillNeedSave();
+                m.Unicode = !m.Unicode;
+                MarkerSettingPossiblyChanged.Invoke(this, null);
+            }
+        
         }
 
         private void _markerListView_DoubleClick(object sender, EventArgs e)
         {
             OpenSettingsDialog(null);
         }
+
 
 
     }

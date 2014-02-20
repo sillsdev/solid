@@ -46,14 +46,13 @@ namespace SolidGui
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelBottom = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelTop = new System.Windows.Forms.FlowLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutTwoCol = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelOccurs = new System.Windows.Forms.FlowLayoutPanel();
-            this.textBoxDebug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanelMain.SuspendLayout();
             this.flowLayoutPanelBottom.SuspendLayout();
             this.flowLayoutPanelTop.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutTwoCol.SuspendLayout();
             this.flowLayoutPanelOccurs.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +68,7 @@ namespace SolidGui
             // _explanationLabel
             // 
             this._explanationLabel.AutoSize = true;
-            this._explanationLabel.Location = new System.Drawing.Point(149, 0);
+            this._explanationLabel.Location = new System.Drawing.Point(178, 0);
             this._explanationLabel.Name = "_explanationLabel";
             this._explanationLabel.Size = new System.Drawing.Size(124, 13);
             this._explanationLabel.TabIndex = 3;
@@ -109,7 +108,7 @@ namespace SolidGui
             this._parentListView.Location = new System.Drawing.Point(3, 23);
             this._parentListView.MultiSelect = false;
             this._parentListView.Name = "_parentListView";
-            this._parentListView.Size = new System.Drawing.Size(140, 229);
+            this._parentListView.Size = new System.Drawing.Size(169, 229);
             this._parentListView.TabIndex = 8;
             this._parentListView.UseCompatibleStateImageBehavior = false;
             this._parentListView.View = System.Windows.Forms.View.Details;
@@ -196,7 +195,7 @@ namespace SolidGui
             this.tableLayoutPanelMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelMain.Controls.Add(this.flowLayoutPanelBottom, 0, 2);
             this.tableLayoutPanelMain.Controls.Add(this.flowLayoutPanelTop, 0, 0);
-            this.tableLayoutPanelMain.Controls.Add(this.tableLayoutPanel2, 0, 1);
+            this.tableLayoutPanelMain.Controls.Add(this.tableLayoutTwoCol, 0, 1);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
@@ -227,44 +226,35 @@ namespace SolidGui
             this.flowLayoutPanelTop.Size = new System.Drawing.Size(439, 54);
             this.flowLayoutPanelTop.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // tableLayoutTwoCol
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this._parentListView, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanelOccurs, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this._explanationLabel, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 63);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(439, 255);
-            this.tableLayoutPanel2.TabIndex = 1;
+            this.tableLayoutTwoCol.ColumnCount = 2;
+            this.tableLayoutTwoCol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutTwoCol.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutTwoCol.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutTwoCol.Controls.Add(this._parentListView, 0, 1);
+            this.tableLayoutTwoCol.Controls.Add(this.flowLayoutPanelOccurs, 1, 1);
+            this.tableLayoutTwoCol.Controls.Add(this._explanationLabel, 1, 0);
+            this.tableLayoutTwoCol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutTwoCol.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutTwoCol.Name = "tableLayoutTwoCol";
+            this.tableLayoutTwoCol.RowCount = 2;
+            this.tableLayoutTwoCol.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutTwoCol.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutTwoCol.Size = new System.Drawing.Size(439, 255);
+            this.tableLayoutTwoCol.TabIndex = 1;
             // 
             // flowLayoutPanelOccurs
             // 
             this.flowLayoutPanelOccurs.Controls.Add(this._onceRadioButton);
             this.flowLayoutPanelOccurs.Controls.Add(this._multipleTogetherRadioButton);
             this.flowLayoutPanelOccurs.Controls.Add(this._multipleApartRadioButton);
-            this.flowLayoutPanelOccurs.Controls.Add(this.textBoxDebug);
             this.flowLayoutPanelOccurs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelOccurs.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(149, 23);
+            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(178, 23);
             this.flowLayoutPanelOccurs.Name = "flowLayoutPanelOccurs";
-            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(287, 229);
+            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(258, 229);
             this.flowLayoutPanelOccurs.TabIndex = 1;
-            // 
-            // textBoxDebug
-            // 
-            this.textBoxDebug.Location = new System.Drawing.Point(3, 88);
-            this.textBoxDebug.Multiline = true;
-            this.textBoxDebug.Name = "textBoxDebug";
-            this.textBoxDebug.Size = new System.Drawing.Size(152, 71);
-            this.textBoxDebug.TabIndex = 6;
             // 
             // StructurePropertiesView
             // 
@@ -278,10 +268,9 @@ namespace SolidGui
             this.flowLayoutPanelBottom.ResumeLayout(false);
             this.flowLayoutPanelBottom.PerformLayout();
             this.flowLayoutPanelTop.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutTwoCol.ResumeLayout(false);
+            this.tableLayoutTwoCol.PerformLayout();
             this.flowLayoutPanelOccurs.ResumeLayout(false);
-            this.flowLayoutPanelOccurs.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -301,10 +290,9 @@ namespace SolidGui
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelBottom;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTop;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutTwoCol;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelOccurs;
         private System.Windows.Forms.ColumnHeader columnHeaderMarker;
         private System.Windows.Forms.ColumnHeader columnHeaderOccurs;
-        private System.Windows.Forms.TextBox textBoxDebug;
     }
 }
