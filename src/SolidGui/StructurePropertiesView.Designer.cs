@@ -68,7 +68,7 @@ namespace SolidGui
             // _explanationLabel
             // 
             this._explanationLabel.AutoSize = true;
-            this._explanationLabel.Location = new System.Drawing.Point(178, 0);
+            this._explanationLabel.Location = new System.Drawing.Point(184, 0);
             this._explanationLabel.Name = "_explanationLabel";
             this._explanationLabel.Size = new System.Drawing.Size(124, 13);
             this._explanationLabel.TabIndex = 3;
@@ -108,7 +108,7 @@ namespace SolidGui
             this._parentListView.Location = new System.Drawing.Point(3, 23);
             this._parentListView.MultiSelect = false;
             this._parentListView.Name = "_parentListView";
-            this._parentListView.Size = new System.Drawing.Size(169, 229);
+            this._parentListView.Size = new System.Drawing.Size(175, 198);
             this._parentListView.TabIndex = 8;
             this._parentListView.UseCompatibleStateImageBehavior = false;
             this._parentListView.View = System.Windows.Forms.View.Details;
@@ -200,10 +200,10 @@ namespace SolidGui
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 3;
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(445, 364);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(459, 323);
             this.tableLayoutPanelMain.TabIndex = 12;
             // 
             // flowLayoutPanelBottom
@@ -211,9 +211,9 @@ namespace SolidGui
             this.flowLayoutPanelBottom.Controls.Add(this.label2);
             this.flowLayoutPanelBottom.Controls.Add(this._InferComboBox);
             this.flowLayoutPanelBottom.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelBottom.Location = new System.Drawing.Point(3, 324);
+            this.flowLayoutPanelBottom.Location = new System.Drawing.Point(3, 283);
             this.flowLayoutPanelBottom.Name = "flowLayoutPanelBottom";
-            this.flowLayoutPanelBottom.Size = new System.Drawing.Size(439, 37);
+            this.flowLayoutPanelBottom.Size = new System.Drawing.Size(453, 37);
             this.flowLayoutPanelBottom.TabIndex = 0;
             // 
             // flowLayoutPanelTop
@@ -223,7 +223,7 @@ namespace SolidGui
             this.flowLayoutPanelTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelTop.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanelTop.Name = "flowLayoutPanelTop";
-            this.flowLayoutPanelTop.Size = new System.Drawing.Size(439, 54);
+            this.flowLayoutPanelTop.Size = new System.Drawing.Size(453, 44);
             this.flowLayoutPanelTop.TabIndex = 0;
             // 
             // tableLayoutTwoCol
@@ -236,12 +236,12 @@ namespace SolidGui
             this.tableLayoutTwoCol.Controls.Add(this.flowLayoutPanelOccurs, 1, 1);
             this.tableLayoutTwoCol.Controls.Add(this._explanationLabel, 1, 0);
             this.tableLayoutTwoCol.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutTwoCol.Location = new System.Drawing.Point(3, 63);
+            this.tableLayoutTwoCol.Location = new System.Drawing.Point(3, 53);
             this.tableLayoutTwoCol.Name = "tableLayoutTwoCol";
             this.tableLayoutTwoCol.RowCount = 2;
             this.tableLayoutTwoCol.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutTwoCol.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutTwoCol.Size = new System.Drawing.Size(439, 255);
+            this.tableLayoutTwoCol.Size = new System.Drawing.Size(453, 224);
             this.tableLayoutTwoCol.TabIndex = 1;
             // 
             // flowLayoutPanelOccurs
@@ -251,9 +251,9 @@ namespace SolidGui
             this.flowLayoutPanelOccurs.Controls.Add(this._multipleApartRadioButton);
             this.flowLayoutPanelOccurs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelOccurs.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(178, 23);
+            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(184, 23);
             this.flowLayoutPanelOccurs.Name = "flowLayoutPanelOccurs";
-            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(258, 229);
+            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(266, 198);
             this.flowLayoutPanelOccurs.TabIndex = 1;
             // 
             // StructurePropertiesView
@@ -261,8 +261,9 @@ namespace SolidGui
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanelMain);
+            this.MinimumSize = new System.Drawing.Size(377, 224);
             this.Name = "StructurePropertiesView";
-            this.Size = new System.Drawing.Size(445, 364);
+            this.Size = new System.Drawing.Size(459, 323);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.flowLayoutPanelBottom.ResumeLayout(false);

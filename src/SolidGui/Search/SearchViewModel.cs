@@ -215,14 +215,24 @@ namespace SolidGui.Search
 
             if (reg == null)
             {
-                int finalTextIndex = recordText.IndexOf(this.FindThis, startTextIndex);
+                //Basic mode
+                string r = recordText;
+                string f = this.FindThis;
+                if (!CaseSensitive)
+                {
+                    r = r.ToLower();
+                    f = f.ToLower();
+                }
+
+                int finalTextIndex = r.IndexOf(f, startTextIndex);
                 if (finalTextIndex > -1)
                 {
-                    res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);                    
+                    res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);
                 }
             }
             else
-            {
+            {   
+                //Regex mode
                 Match m = reg.Match(recordText, startTextIndex);
                 if (m.Success)
                 {

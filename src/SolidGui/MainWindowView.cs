@@ -413,10 +413,10 @@ namespace SolidGui
             _searchView.Show();
             _searchView.Focus();
 
-            //JMC:! temporary
-            var dlg = new FindReplaceDialog();
-            dlg.Show();
-            dlg.Focus();
+            //JMC:! testing the new prototype
+            //var dlg = new FindReplaceDialog();
+            //dlg.Show();
+            //dlg.Focus();
         }
 
         private void MainWindowView_KeyDown(object sender, KeyEventArgs e)

@@ -42,6 +42,7 @@ namespace SolidGui.Search
             this._scopeComboBox = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.checkBoxRegex = new System.Windows.Forms.CheckBox();
+            this.checkBoxCase = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -147,6 +148,16 @@ namespace SolidGui.Search
             this.checkBoxRegex.Text = "Re&gex";
             this.checkBoxRegex.UseVisualStyleBackColor = true;
             // 
+            // checkBoxCase
+            // 
+            this.checkBoxCase.AutoSize = true;
+            this.checkBoxCase.Location = new System.Drawing.Point(122, 50);
+            this.checkBoxCase.Name = "checkBoxCase";
+            this.checkBoxCase.Size = new System.Drawing.Size(83, 17);
+            this.checkBoxCase.TabIndex = 11;
+            this.checkBoxCase.Text = "&Match Case";
+            this.checkBoxCase.UseVisualStyleBackColor = true;
+            // 
             // SearchView
             // 
             this.AcceptButton = this._findNextButton;
@@ -154,6 +165,7 @@ namespace SolidGui.Search
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this._cancelButton;
             this.ClientSize = new System.Drawing.Size(346, 138);
+            this.Controls.Add(this.checkBoxCase);
             this.Controls.Add(this.checkBoxRegex);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._scopeComboBox);
@@ -187,5 +199,6 @@ namespace SolidGui.Search
         private System.Windows.Forms.ComboBox _scopeComboBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBoxRegex;
+        private System.Windows.Forms.CheckBox checkBoxCase;
     }
 }

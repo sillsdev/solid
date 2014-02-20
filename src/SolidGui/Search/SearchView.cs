@@ -101,6 +101,7 @@ namespace SolidGui.Search
         private void Find(bool replace)
         {
             _searchModel.UseRegex = this.checkBoxRegex.Checked;
+            _searchModel.CaseSensitive = this.checkBoxCase.Checked;
             bool firstTime = true;
             string f = null;
             string r = "";

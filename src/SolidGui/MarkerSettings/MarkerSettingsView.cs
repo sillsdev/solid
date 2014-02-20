@@ -120,7 +120,7 @@ namespace SolidGui.MarkerSettings
         private void _markerListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             return; //verifying... -JMC
-
+/*
             if (_markerListBox.SelectedItem != null)
             {
                 _structurePropertiesView.Model.MarkerSetting = (SolidMarkerSetting) _markerListBox.SelectedItem;
@@ -135,6 +135,7 @@ namespace SolidGui.MarkerSettings
                     _structurePropertiesView.Enabled = false;
                 }
             }
+ */
         }
 
         private void MarkerSettingsView_Load(object sender, EventArgs e)
