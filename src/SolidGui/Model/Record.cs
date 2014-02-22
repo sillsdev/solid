@@ -13,6 +13,7 @@ using SolidGui.Processes;
 
 namespace SolidGui.Model
 {
+
     public class Record
     {
         private static int _recordIdCounter = 0;

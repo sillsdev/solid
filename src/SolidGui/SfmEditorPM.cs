@@ -159,7 +159,7 @@ namespace SolidGui
                 SfmRecord sfmRecord = reader.Record;
                 // Remove the inferred markers from the text
                 RemoveInferredFields(sfmRecord);
-                // Encode the value correctly as per the solid marker settings (either utf-8 or iso-8859-1)
+                // Encode the value correctly as per the solid marker settings (either utf-8 or SolidSettings.LegacyEncoding)
                 string s = AsString(sfmRecord);
 
                 if (i == 0)
@@ -200,8 +200,8 @@ namespace SolidGui
             foreach (SfmField field in sfmRecord)
             {
                 string s = GetLatin1ValueFromUnicode(field.Marker, field.Value);
-                field.Value = s; // JMC:! Do we really want this side effect? Couldn't running this method twice on a record double decode the unicode values?
-                // JMC: I've added a local variable so we can test without it
+                // field.Value = s; // JMC: Do we really want this side effect? Couldn't running this method twice on a record double decode the unicode values?
+                // JMC: I've added a local variable s so we can test without it
                 sb.Append("\\");
                 sb.Append(field.Marker);
                 if (s != "") // (issue #1206) don't insert trailing spaces that weren't in the file. -JMC 2013-09
@@ -265,7 +265,7 @@ namespace SolidGui
             {
                 Encoding stringEncoding = Encoding.UTF8;
                 byte[] valueAsBytes = stringEncoding.GetBytes(value);
-                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                Encoding byteEncoding = SolidSettings.LegacyEncoding;
                 return byteEncoding.GetString(valueAsBytes);
             }
 

@@ -308,7 +308,7 @@ namespace SolidGui.Model
             _filePath = path;
             try
             {
-                using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), Encoding.GetEncoding("iso-8859-1")))
+                using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), SolidSettings.LegacyEncoding))
                 {
 
                     writer.Write(SfmHeader);

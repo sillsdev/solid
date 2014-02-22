@@ -204,7 +204,7 @@ namespace SolidGui.Search
             if (context == null)
             {
                 recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
-                // JMC:! Hack: swap out newline temporarily, since RichEditControl uses plain \n regardless of System.Environment.Newline (\r\n)
+                // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
                 // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
                 recordText = ReggieTempHack.Replace(recordText, "\n");
             }

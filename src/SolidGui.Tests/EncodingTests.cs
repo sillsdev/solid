@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using NUnit.Framework;
+using SolidGui.Engine;
 
 namespace SolidGui.Tests {
 	[TestFixture]
@@ -38,7 +39,7 @@ namespace SolidGui.Tests {
 				{
 					0xc3, 0xaf, 0xc2, 0xbf, 0xc2, 0xbd, 0x6c, 0xc3, 0xaf, 0xc2, 0xbf, 0xc2, 0xbd, 0x2e 
 				};
-			Encoding iso8859_1 = Encoding.GetEncoding("iso-8859-1");
+		    Encoding iso8859_1 = SolidSettings.LegacyEncoding; //was: Encoding.GetEncoding("iso-8859-1");  -JMC
 			Encoding stringEncoding = Encoding.UTF8;
 			byte[] utf8Bytes = Encoding.Convert(iso8859_1, Encoding.UTF8, iso8859Bytes);
 			Console.Write("iso: ");

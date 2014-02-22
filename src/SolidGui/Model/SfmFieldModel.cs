@@ -10,6 +10,7 @@ using SolidGui.Engine;
 
 namespace SolidGui.Model
 {
+    // SfmFieldNode might've been clearer, since it's part of a tree structure. Primarily used once the data is in Solid. -JMC
     public class SfmFieldModel
     {
         private readonly int _id;
@@ -89,7 +90,7 @@ namespace SolidGui.Model
             string value = Value;
             if (value.Length > 0)
             {
-                Encoding byteEncoding = Encoding.GetEncoding("iso-8859-1");
+                Encoding byteEncoding = SolidSettings.LegacyEncoding; // was Encoding.GetEncoding("iso-8859-1"); -JMC
                 //Encoding byteEncoding = Encoding.Unicode;
                 byte[] valueAsBytes = byteEncoding.GetBytes(value);
                 Encoding stringEncoding = Encoding.UTF8;

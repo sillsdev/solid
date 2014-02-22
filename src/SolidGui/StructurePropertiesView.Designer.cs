@@ -80,17 +80,17 @@ namespace SolidGui
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(166, 13);
+            this.label2.Size = new System.Drawing.Size(160, 13);
             this.label2.TabIndex = 6;
-            this.label2.Text = "When no valid parent is present,  ";
+            this.label2.Text = "When no valid parent is present,";
             // 
             // _InferComboBox
             // 
-            this._InferComboBox.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this._InferComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this._InferComboBox.FormattingEnabled = true;
             this._InferComboBox.Items.AddRange(new object[] {
             "Report Error"});
-            this._InferComboBox.Location = new System.Drawing.Point(175, 3);
+            this._InferComboBox.Location = new System.Drawing.Point(169, 3);
             this._InferComboBox.Name = "_InferComboBox";
             this._InferComboBox.Size = new System.Drawing.Size(149, 21);
             this._InferComboBox.TabIndex = 7;

@@ -42,7 +42,7 @@ namespace SolidGui.Engine
         private int _col = 1;
         private string _separator = " ";
 
-        Encoding _encoding = Encoding.GetEncoding("iso-8859-1");
+        private Encoding _encoding = SolidSettings.LegacyEncoding;  //was: Encoding.GetEncoding("iso-8859-1");
 
         #region Properties
         private bool _allowLeadingWhiteSpace;

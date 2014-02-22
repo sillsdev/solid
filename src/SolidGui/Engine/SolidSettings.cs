@@ -21,6 +21,8 @@ namespace SolidGui.Engine
         private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
         public static readonly int LatestVersion = 2; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
+        public static readonly Encoding LegacyEncoding = Encoding.GetEncoding("iso-8859-1"); //the original
+        //public static readonly Encoding LegacyEncoding = Encoding.GetEncoding(1252); //my preference -JMC Feb 2014
 
         public SolidSettings()
         {
@@ -30,7 +32,7 @@ namespace SolidGui.Engine
             _newlyAdded = new List<SolidMarkerSetting>();
         }
 
-        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error", "iso-8859-1" (s/b win1252??)
+        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
         // e.g. public static readonly string DotSolid = ".solid"
 
         private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
