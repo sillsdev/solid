@@ -17,7 +17,7 @@ namespace SolidGui.MarkerSettings
         // Added the following reference because of what seems to be new behavior in Palaso's BetterLabel. Now trying to make sure the WS dialog is not disposed each time.
         // So, need to dispose of these things prior to app shutdown? Yes, added a Cleanup() method and called it from the parent dialog's FormClose event -JMC Feb 2014
         // JMC: Would it be better to also make MarkerSettingsView implement IDisposable?
-//        private readonly WritingSystemSetupDialog _wsDialog;
+        private readonly WritingSystemSetupDialog _wsDialog;
 
         private bool Initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
 
@@ -35,7 +35,7 @@ namespace SolidGui.MarkerSettings
             }
             _store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
-//            _wsDialog = new WritingSystemSetupDialog(_wsModel); //-JMC
+            _wsDialog = new WritingSystemSetupDialog(_wsModel); //-JMC
             // _wsModel.SelectionChanged += new EventHandler(_wsModel_SelectionChanged);
             wsPickerUsingComboBox1.BindToModel(_wsModel);
             wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
@@ -160,7 +160,7 @@ namespace SolidGui.MarkerSettings
             UpdateModel();
         }
 
-        private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void XXX_setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
             using (var d = new WritingSystemSetupDialog(_wsModel))  // problem: the Palaso code doesn't like being disposed by this using (used to be ok?) -JMC Feb 2014
@@ -176,8 +176,8 @@ namespace SolidGui.MarkerSettings
                 }
             }
         }
-/*
-        private void XXX_setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var d = _wsDialog;
 
@@ -191,10 +191,9 @@ namespace SolidGui.MarkerSettings
                 d.ShowDialog();
             } 
         }
-*/
         public void Cleanup()
         {
-//            _wsDialog.Dispose(); //not sure whether it would be
+            _wsDialog.Dispose(); //not sure whether it would be
         }
 
     }
