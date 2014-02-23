@@ -96,10 +96,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Palaso, Version=1.2.316.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Palaso.dll</HintPath>
-    </Reference>
     <Reference Include="Palaso.DictionaryServices, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Palaso.DictionaryServices.dll</HintPath>
@@ -107,10 +103,6 @@
     <Reference Include="Palaso.Lift, Version=1.3.81.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Palaso.Lift.dll</HintPath>
-    </Reference>
-    <Reference Include="Palaso.TestUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Palaso.TestUtilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -149,12 +141,6 @@
     <Compile Include="SfmEditorPresentationModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SolidGui\SolidGui.csproj">
-      <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
-      <Name>SolidGui</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.4.0">
       <Visible>False</Visible>
       <ProductName>.NET Framework 4.0 Client Profile</ProductName>
@@ -185,6 +171,20 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\libpalaso\Palaso.TestUtilities\Palaso.TestUtilities.csproj">
+      <Project>{D74CE910-D44A-44F5-8C0F-F5E50B26F85D}</Project>
+      <Name>Palaso.TestUtilities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\libpalaso\Palaso\Palaso.csproj">
+      <Project>{3527DA1D-1E25-48BE-A71E-9EBF7F9208D4}</Project>
+      <Name>Palaso</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SolidGui\SolidGui.csproj">
+      <Project>{30985726-18E5-44E3-9CAD-FE27E0323FA1}</Project>
+      <Name>SolidGui</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
