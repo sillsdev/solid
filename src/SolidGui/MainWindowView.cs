@@ -360,22 +360,25 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (_searchView != null) {_searchView.Dispose();}  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
             if (_mainWindowPM.needsSave) 
             {
-                var answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
+                DialogResult answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
                                 MessageBoxIcon.Question);
-                switch (answer)
+                if (answer == System.Windows.Forms.DialogResult.Cancel)
                 {
-                    case System.Windows.Forms.DialogResult.Cancel:
-                        e.Cancel = true;
-                        break;
-                    case System.Windows.Forms.DialogResult.Yes:
+                    e.Cancel = true;
+                }
+                else
+                {
+                    if (answer == System.Windows.Forms.DialogResult.Yes)
+                    {
                         OnSaveClick(this,null);
-                        break;
-                    case System.Windows.Forms.DialogResult.No:
-                        break;
-
+                    }
+                    else if (answer == System.Windows.Forms.DialogResult.No)
+                    {
+                        //do nothing
+                    }
+                    if (_searchView != null) { _searchView.Dispose(); }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
                 }
             }
         }
