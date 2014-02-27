@@ -9,3 +9,5 @@ bin/
 src/_ReSharper.solid
 *.ReSharper
 *Thumbs.db
+lib/Palaso*.dll
+lib/Palaso*.XML
