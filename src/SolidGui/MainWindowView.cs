@@ -26,6 +26,8 @@ namespace SolidGui
     {
         private MainWindowPM _mainWindowPM;  // / was readonly, but I think it s/b be hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
         private int _filterIndex;
+        private SearchView _searchView;
+        private FindReplaceDialog _searchView2;
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
@@ -379,6 +381,7 @@ namespace SolidGui
                         //do nothing
                     }
                     if (_searchView != null) { _searchView.Dispose(); }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
+                    if (_searchView2 != null) { _searchView2.Dispose(); }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
                 }
             }
         }
@@ -411,15 +414,18 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
+            /* // Old dialog: 
             _searchView = SearchView.CreateSearchView(_mainWindowPM, _sfmEditorView);
             _searchView.TopMost = true; // means that this form should always be in front of all others
             _searchView.Show();
-            _searchView.Focus();
+            _searchView.Focus();*/ 
 
-            //JMC:! testing the new prototype
-            //var dlg = new FindReplaceDialog();
-            //dlg.Show();
-            //dlg.Focus();
+            //JMC: New dialog: -JMC Feb 2014
+            _searchView2 = FindReplaceDialog.CreateSearchView(_mainWindowPM, _sfmEditorView);
+            _searchView2.TopMost = true; // means that this form should always be in front of all others
+            _searchView2.Show();
+            _searchView2.Focus();
+
         }
 
         private void MainWindowView_KeyDown(object sender, KeyEventArgs e)

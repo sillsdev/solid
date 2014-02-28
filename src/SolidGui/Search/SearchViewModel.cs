@@ -236,6 +236,8 @@ namespace SolidGui.Search
                 Match m = reg.Match(recordText, startTextIndex);
                 if (m.Success)
                 {
+                    //replaceWith = replaceWith.Replace("\\\\", "\\"); //JMC:! need to deal with backslashed codes here, first.
+                    replaceWith = Regex.Unescape(replaceWith);
                     string rw = m.Result(replaceWith);
                     res = new SearchResult(recordIndex, m.Index, filter, m.Value, rw);
                 }

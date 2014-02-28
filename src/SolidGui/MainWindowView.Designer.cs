@@ -682,7 +682,6 @@ namespace SolidGui
 
         #endregion
 
-        private SearchView _searchView;
         private System.Windows.Forms.ToolStripButton _openButton;
         private System.Windows.Forms.ToolStripButton _saveButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

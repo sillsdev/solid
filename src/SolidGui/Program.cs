@@ -76,7 +76,7 @@ namespace SolidGui
             form.UpdateDisplay();
             try
             {
-                Application.Run(form); //JMC: Wrap this in a try and put the following in a finally??
+                Application.Run(form); 
             }
 
             catch (Exception error)

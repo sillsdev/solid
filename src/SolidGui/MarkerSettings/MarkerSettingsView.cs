@@ -16,12 +16,11 @@ namespace SolidGui.MarkerSettings
 
         // Added the following reference because of what seems to be new behavior in Palaso's BetterLabel. Now trying to make sure the WS dialog is not disposed each time.
         // So, need to dispose of these things prior to app shutdown? Yes, added a Cleanup() method and called it from the parent dialog's FormClose event -JMC Feb 2014
-        // JMC: Would it be better to also make MarkerSettingsView implement IDisposable?
+        // JMC: Would it be better to put it in Dispose()? Probably.
         private readonly WritingSystemSetupDialog _wsDialog;
 
         private bool Initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
 
-        // JMC:! Need a BindModel for these? (See MarkerSettingsDialog)
         private SolidMarkerSetting _currentMarkerSetting;
         public MarkerSettingsPM MarkerModel { get; set; }
 
@@ -160,6 +159,7 @@ namespace SolidGui.MarkerSettings
             UpdateModel();
         }
 
+/*	
         private void XXX_setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
@@ -176,7 +176,7 @@ namespace SolidGui.MarkerSettings
                 }
             }
         }
-
+*/
         private void _setupWsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var d = _wsDialog;
@@ -191,9 +191,9 @@ namespace SolidGui.MarkerSettings
                 d.ShowDialog();
             } 
         }
-        public void Cleanup()
+        public void Cleanup()  //JMC: I would think this really belongs in this.Dispose(), but Palaso wants its stuff disposed sooner. 
         {
-            _wsDialog.Dispose(); //not sure whether it would be
+            _wsDialog.Dispose();
         }
 
     }

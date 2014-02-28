@@ -31,10 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindReplaceDialog));
             this.groupBoxFindReplace = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelFindReplace = new System.Windows.Forms.TableLayoutPanel();
-            this.labelWarning = new System.Windows.Forms.Label();
             this.textBoxReplace = new System.Windows.Forms.TextBox();
             this.buttonHintReplace1 = new System.Windows.Forms.Button();
-            this.buttonFind = new System.Windows.Forms.Button();
+            this._findNextButton = new System.Windows.Forms.Button();
             this.textBoxFind = new System.Windows.Forms.TextBox();
             this.flowLayoutPanelReplaceButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonReplace = new System.Windows.Forms.Button();
@@ -43,7 +42,9 @@
             this.buttonHintReplace2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelPreview2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonReplaceAll = new System.Windows.Forms.Button();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelMode = new System.Windows.Forms.FlowLayoutPanel();
@@ -67,6 +68,7 @@
             this.tableLayoutPanelFindReplace.SuspendLayout();
             this.flowLayoutPanelReplaceButtons.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
             this.flowLayoutPanelSettings.SuspendLayout();
             this.flowLayoutPanelMode.SuspendLayout();
@@ -92,16 +94,15 @@
             this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelFindReplace.Controls.Add(this.labelWarning, 1, 3);
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplace, 1, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace1, 2, 0);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.buttonFind, 0, 0);
+            this.tableLayoutPanelFindReplace.Controls.Add(this._findNextButton, 0, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxFind, 1, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanelReplaceButtons, 0, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 1, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace2, 2, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel1, 0, 2);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.button1, 0, 3);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 1, 3);
             this.tableLayoutPanelFindReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
@@ -113,17 +114,6 @@
             this.tableLayoutPanelFindReplace.Size = new System.Drawing.Size(523, 158);
             this.tableLayoutPanelFindReplace.TabIndex = 18;
             // 
-            // labelWarning
-            // 
-            this.labelWarning.AutoSize = true;
-            this.labelWarning.Location = new System.Drawing.Point(203, 120);
-            this.labelWarning.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.labelWarning.Name = "labelWarning";
-            this.labelWarning.Size = new System.Drawing.Size(292, 26);
-            this.labelWarning.TabIndex = 32;
-            this.labelWarning.Text = "Instead of applying per-record, this runs on the whole file (including inferred m" +
-    "arkers) and can therefore merge entries. ";
-            // 
             // textBoxReplace
             // 
             this.textBoxReplace.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -134,6 +124,7 @@
             this.textBoxReplace.Size = new System.Drawing.Size(297, 33);
             this.textBoxReplace.TabIndex = 11;
             this.textBoxReplace.Text = "\\r\\n\\\\re ";
+            this.textBoxReplace.TextChanged += new System.EventHandler(this.textBoxReplace_TextChanged);
             // 
             // buttonHintReplace1
             // 
@@ -146,15 +137,16 @@
             this.buttonHintReplace1.Text = ">";
             this.buttonHintReplace1.UseVisualStyleBackColor = true;
             // 
-            // buttonFind
+            // _findNextButton
             // 
-            this.buttonFind.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.buttonFind.Location = new System.Drawing.Point(3, 8);
-            this.buttonFind.Name = "buttonFind";
-            this.buttonFind.Size = new System.Drawing.Size(68, 23);
-            this.buttonFind.TabIndex = 6;
-            this.buttonFind.Text = "&Find";
-            this.buttonFind.UseVisualStyleBackColor = true;
+            this._findNextButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this._findNextButton.Location = new System.Drawing.Point(3, 8);
+            this._findNextButton.Name = "_findNextButton";
+            this._findNextButton.Size = new System.Drawing.Size(68, 23);
+            this._findNextButton.TabIndex = 6;
+            this._findNextButton.Text = "&Find";
+            this._findNextButton.UseVisualStyleBackColor = true;
+            this._findNextButton.Click += new System.EventHandler(this.OnFindNextButton_Click);
             // 
             // textBoxFind
             // 
@@ -166,6 +158,7 @@
             this.textBoxFind.Size = new System.Drawing.Size(297, 33);
             this.textBoxFind.TabIndex = 7;
             this.textBoxFind.Text = "\\s*;\\s*";
+            this.textBoxFind.TextChanged += new System.EventHandler(this.textBoxFind_TextChanged);
             // 
             // flowLayoutPanelReplaceButtons
             // 
@@ -187,9 +180,11 @@
             this.buttonReplace.TabIndex = 9;
             this.buttonReplace.Text = "&Replace";
             this.buttonReplace.UseVisualStyleBackColor = true;
+            this.buttonReplace.Click += new System.EventHandler(this.OnReplaceButton_Click);
             // 
             // buttonReplaceFind
             // 
+            this.buttonReplaceFind.Enabled = false;
             this.buttonReplaceFind.Location = new System.Drawing.Point(74, 6);
             this.buttonReplaceFind.Name = "buttonReplaceFind";
             this.buttonReplaceFind.Size = new System.Drawing.Size(93, 23);
@@ -240,14 +235,37 @@
             this.labelPreview2.TabIndex = 17;
             this.labelPreview2.Text = "Preview (result):";
             // 
-            // button1
+            // flowLayoutPanel2
             // 
-            this.button1.Location = new System.Drawing.Point(3, 120);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(139, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Replace &All + Recheck";
-            this.button1.UseVisualStyleBackColor = true;
+            this.flowLayoutPanel2.Controls.Add(this.buttonCancel);
+            this.flowLayoutPanel2.Controls.Add(this.buttonReplaceAll);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(203, 120);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(297, 35);
+            this.flowLayoutPanel2.TabIndex = 31;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.Location = new System.Drawing.Point(220, 3);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(74, 23);
+            this.buttonCancel.TabIndex = 14;
+            this.buttonCancel.Text = "&Close";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_Click);
+            // 
+            // buttonReplaceAll
+            // 
+            this.buttonReplaceAll.Enabled = false;
+            this.buttonReplaceAll.Location = new System.Drawing.Point(75, 3);
+            this.buttonReplaceAll.Name = "buttonReplaceAll";
+            this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
+            this.buttonReplaceAll.TabIndex = 13;
+            this.buttonReplaceAll.Text = "Replace &All + Recheck";
+            this.buttonReplaceAll.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelMain
             // 
@@ -351,6 +369,7 @@
             this._scopeComboBox.Name = "_scopeComboBox";
             this._scopeComboBox.Size = new System.Drawing.Size(110, 21);
             this._scopeComboBox.TabIndex = 3;
+            this._scopeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScopeComboBox_SelectedIndexChanged);
             // 
             // checkBoxCaseSensitive
             // 
@@ -366,6 +385,7 @@
             // 
             this.groupBoxFindContext.Controls.Add(this.tableLayoutPanelFindContext);
             this.groupBoxFindContext.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxFindContext.Enabled = false;
             this.groupBoxFindContext.Location = new System.Drawing.Point(3, 83);
             this.groupBoxFindContext.Name = "groupBoxFindContext";
             this.groupBoxFindContext.Size = new System.Drawing.Size(529, 142);
@@ -487,12 +507,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(535, 411);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(403, 383);
             this.Name = "FindReplaceDialog";
             this.Text = "Find and Replace";
+            this.Activated += new System.EventHandler(this.FindReplaceDialog_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindReplaceDialog_FormClosing);
             this.groupBoxFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.ResumeLayout(false);
@@ -500,6 +522,7 @@
             this.flowLayoutPanelReplaceButtons.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.flowLayoutPanelSettings.ResumeLayout(false);
             this.flowLayoutPanelSettings.PerformLayout();
@@ -518,7 +541,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxFindReplace;
-        private System.Windows.Forms.Button buttonFind;
+        private System.Windows.Forms.Button _findNextButton;
         private System.Windows.Forms.Button buttonReplace;
         private System.Windows.Forms.Button buttonReplaceFind;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelMain;
@@ -547,9 +570,10 @@
         private System.Windows.Forms.Button buttonHintReplace2;
         private System.Windows.Forms.TextBox textBoxContextReplace;
         private System.Windows.Forms.Button buttonHintContext2;
-        private System.Windows.Forms.Label labelWarning;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonReplaceAll;
         private System.Windows.Forms.ComboBox _scopeComboBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
