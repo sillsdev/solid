@@ -281,7 +281,7 @@ namespace SolidGui.Model
 
         public bool Save()
         {
-            SaveAs(_filePath);
+            SaveAs(_filePath, null);
             // JMC: resurrect or delete the following old code? (First, search for other calls to GetLastWriteTime
             //if (_lastWrittenTo == File.GetLastWriteTime(_filePath) ||
             //    !File.Exists(_filePath))
@@ -302,7 +302,7 @@ namespace SolidGui.Model
             return false;
         }
 
-        public bool SaveAs(string path)
+        public bool SaveAs(string path, SolidSettings ss)
         {
             Logger.WriteEvent("Saving {0}", path);
             _filePath = path;
@@ -312,9 +312,13 @@ namespace SolidGui.Model
                 {
 
                     writer.Write(SfmHeader);
-                    
+                    var rf = new RecordFormatter();
+                    rf.SetDefaultsDisk();
+
                     foreach (var record in _recordList)
                     {
+                        writer.Write(rf.Format(record, ss));
+                        /*
                         foreach (var field in record.Fields)
                         {
                             if (!field.Inferred)
@@ -327,8 +331,8 @@ namespace SolidGui.Model
                                     writer.Write(field.Value);
                                 }
                                 writer.Write(field.Trailing);
-                            }
-                        }
+                            } 
+                        }*/
                     }
                     writer.Close();
                 }

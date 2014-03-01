@@ -34,7 +34,7 @@ namespace SolidGui.Tests.Engine
                 dict.SfmHeader = reader.Header;
 
                 // save it to a file
-                dict.SaveAs(e.TempFilePath);
+                dict.SaveAs(e.TempFilePath, null);
 
                 // read it back in
                 using (var r = new StreamReader(e.TempFilePath))

@@ -11,9 +11,8 @@ namespace SolidGui.Engine
     public class SfmField
     {
         public static string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
-        private static string Pat = @"[\t \r\n]+$";
-        private static Regex Reggie = new Regex(
-            Pat, RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex RegWhitespace = new Regex(
+            @"[\t \r\n]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public SfmField()
         {
@@ -46,7 +45,7 @@ namespace SolidGui.Engine
                 return;
             }
 
-            MatchCollection m = Reggie.Matches(val);
+            MatchCollection m = RegWhitespace.Matches(val);
             if (m.Count > 2)
             {
                 throw new ArgumentException("Bug: a single field shouldn't be able to end in whitespace twice.");

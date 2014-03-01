@@ -29,6 +29,17 @@ namespace SolidGui
         private SearchView _searchView;
         private FindReplaceDialog _searchView2;
 
+        // Only creates it the first time; otherwise just gets it (almost like the old singleton). -JMC Feb 2014
+        private FindReplaceDialog CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
+        {
+            if (_searchView2 == null || _searchView2.IsDisposed)
+            {
+                _searchView2 = new FindReplaceDialog(sfmEditorView, model);
+            }
+            return _searchView2;
+        }
+
+
         public MainWindowView(MainWindowPM mainWindowPM)
         {
             
@@ -139,7 +150,7 @@ namespace SolidGui
 
         }
 
-        private void ChooseAndOpenProject()
+        private string GetInitialDirectory()
         {
             string initialDirectory = null;
             if (!String.IsNullOrEmpty(Settings.Default.PreviousPathToDictionary))
@@ -162,7 +173,14 @@ namespace SolidGui
                 initialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             }
 
-            OpenFileDialog dlg = new OpenFileDialog();
+            return initialDirectory;
+        }
+
+        private void ChooseAndOpenProject()
+        {
+            string initialDirectory = GetInitialDirectory();
+
+            var dlg = new OpenFileDialog();
             dlg.Title = "Open Dictionary File...";
             dlg.DefaultExt = ".db";
             dlg.FileName = Settings.Default.PreviousPathToDictionary;
@@ -328,8 +346,6 @@ namespace SolidGui
         }
 
 
-
-
         private void OnSaveClick(object sender, EventArgs e) // (this works for Ctrl+S too) -JMC
         {
             _sfmEditorView.UpdateModel();
@@ -339,6 +355,24 @@ namespace SolidGui
             }
             _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
+        }
+
+        private void OnSaveAsClick(object sender, EventArgs e)
+        {
+
+            string initialDirectory = GetInitialDirectory();
+            var dlg = new SaveFileDialog();
+            dlg.Title = "Save As...";
+            dlg.DefaultExt = ".db";
+            dlg.FileName = Settings.Default.PreviousPathToDictionary;
+            //dlg.Filter = "SFM Lexicon (" + exts + ")|" + mask + "|All Files (*.*)|*.*";
+            dlg.InitialDirectory = initialDirectory;
+            if (DialogResult.OK != dlg.ShowDialog(this))
+            {
+                return; //they cancelled
+            }
+
+            MessageBox.Show("Not yet implemented. Nothing was saved to: " + dlg.FileName);
         }
 
         private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
@@ -421,8 +455,9 @@ namespace SolidGui
             _searchView.Focus();*/ 
 
             //JMC: New dialog: -JMC Feb 2014
-            _searchView2 = FindReplaceDialog.CreateSearchView(_mainWindowPM, _sfmEditorView);
+            _searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
             _searchView2.TopMost = true; // means that this form should always be in front of all others
+            _searchView2.SelectFind();
             _searchView2.Show();
             _searchView2.Focus();
 
@@ -592,6 +627,7 @@ namespace SolidGui
                 MessageBox.Show(err.Message, "File not found");
             }
         }
+
 
     }
 }

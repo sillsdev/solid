@@ -136,7 +136,7 @@ namespace SolidGui.Search
                     RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
                 }
 
-                _searchModel.FindNext(  _findTextbox.Text,
+                _searchModel.FindReplace(  _findTextbox.Text,
                                         _replaceTextBox.Text,
                                         RecordIndex,
                                         TextIndex,

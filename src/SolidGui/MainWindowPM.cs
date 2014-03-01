@@ -357,7 +357,7 @@ namespace SolidGui
         // Called by Recheck. Also called after a quick fix, change template, etc. (Do this for Replace All too?) -JMC
         public void ProcessLexicon()
         {
-            WorkingDictionary.SaveAs(_tempDictionaryPath);
+            WorkingDictionary.SaveAs(_tempDictionaryPath, Settings);
 
             _workingDictionary.Open(_tempDictionaryPath, Settings, _recordFilters);
 
@@ -375,7 +375,7 @@ namespace SolidGui
         public bool DictionaryAndSettingsSave()
         {
             bool success = Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
-            return success && _workingDictionary.SaveAs(_realDictionaryPath);
+            return success && _workingDictionary.SaveAs(_realDictionaryPath, Settings);
         }
 
         public void UseSolidSettingsTemplate(string path)
@@ -405,7 +405,7 @@ namespace SolidGui
 
                 destinationFilePath = exporter.ModifyDestinationIfNeeded(destinationFilePath);
 
-                _workingDictionary.SaveAs(_tempDictionaryPath);
+                _workingDictionary.SaveAs(_tempDictionaryPath, Settings);
                 Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
                 string sourceFilePath = _tempDictionaryPath;
 

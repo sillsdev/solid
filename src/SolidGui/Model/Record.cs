@@ -136,7 +136,7 @@ namespace SolidGui.Model
         public string ToStructuredString(SolidSettings solidSettings)
         {
             StringBuilder record = new StringBuilder();
-            foreach (SfmFieldModel field in LexEntry.Fields)
+            foreach (SfmFieldModel field in this.LexEntry.Fields)
             {
                 record.Append(field.ToStructuredString(solidSettings));
             }

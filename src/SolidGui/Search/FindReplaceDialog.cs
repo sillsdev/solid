@@ -16,7 +16,6 @@ namespace SolidGui.Search
     // Created to replace the simpler SearchView dialog that already existed. Very similar code, in basic mode. -JMC Feb 2014
     public partial class FindReplaceDialog : Form
     {
-        private static FindReplaceDialog _searchView;  // Singleton
         private SfmEditorView _sfmEditorView;
 
         private SearchViewModel _searchModel;
@@ -45,25 +44,7 @@ namespace SolidGui.Search
             }
         }
 
-        //JMC: Do we really need this singleton approach? Minimally, it seems that MainWindowView should hold the reference and static method.
-        public static FindReplaceDialog CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
-        {
-            if (_searchView == null || _searchView.IsDisposed)
-            {
-                _searchView = new FindReplaceDialog(sfmEditorView);
-            }
-
-            _searchView.BindModel(model);
-            return _searchView;
-        }
-
-        /* JMC:! OR BETTER, avoid singleton...?
-        public FindReplaceDialog()
-        {
-            FindReplaceDialog(null);
-        }*/
-
-        public FindReplaceDialog(SfmEditorView sfmEditorView)
+        public FindReplaceDialog(SfmEditorView sfmEditorView, MainWindowPM model)
         {
 
             InitializeComponent();
@@ -72,7 +53,13 @@ namespace SolidGui.Search
 
             // JMC: Add a call here to KeyboardController.Register() ? Would not need to be as smart as for the rich edit control. Ideally, we'd probably default to the vernacular keyboard?
             _sfmEditorView = sfmEditorView;
+
+            _searchModel = model.SearchModel;
+            _searchModel.WordFound += OnWordFound;
+            _navigatorModel = model.NavigatorModel;
+            ResetStartingPoint();
         }
+
 
 
         private void ResetStartingPoint()
@@ -83,19 +70,16 @@ namespace SolidGui.Search
             //_sfmEditorView. Select();
         }
 
-        private void BindModel(MainWindowPM model)
-        {
-            _searchModel = model.SearchModel;
-            _searchModel.WordFound += OnWordFound;
-            _navigatorModel = model.NavigatorModel;
-            ResetStartingPoint();
-        }
-
-
-
         private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
-            groupBoxFindContext.Enabled = radioButtonDoubleRegex.Checked;
+            bool dbl = radioButtonDoubleRegex.Checked;
+            groupBoxFindContext.Enabled = dbl;
+
+            /* //JMC:! delete the following
+            buttonReplaceFind.Enabled = dbl;
+            buttonReplaceAll.Enabled = dbl;
+            */
+
             return;
             if (radioButtonDoubleRegex.Checked)
             {
@@ -107,67 +91,33 @@ namespace SolidGui.Search
             }
         }
 
-        private void OnFindNextButton_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Find(false);
-            }
-            catch (Exception error)
-            {
-                string msg = "An unexpected error occurred:\r\n" + error.Message;
-                //Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
-                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
-                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
-            }
-        }
-
-        private void OnReplaceButton_Click(object sender, EventArgs e)
-        {
-            Find(true);
-        }
-
-        private void OnCancelButton_Click(object sender, EventArgs e)
-        {
-            ResetStartingPoint(); //for good measure -JMC
-
-            // Added Close() and disabled Dispose(), but then realized that Hide() might solve issue #326 ("remember last find"), and it seems to! -JMC 2013-09
-            this.Hide();
-        }
-
-
-        private void OnScopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ResetStartingPoint();
-        }
-
-        private void textBoxFind_TextChanged(object sender, EventArgs e)
-        {
-            ResetStartingPoint();
-        }
-
-        private void textBoxReplace_TextChanged(object sender, EventArgs e)
-        {
-            ResetStartingPoint();
-        }
-
-
-
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
             this._searchResult = e.SearchResult;
         }
 
-
-
-        private void FindReplaceDialog_FormClosing(object sender, FormClosingEventArgs e)
+        public void SelectFind()
         {
-            // Added this so that no matter which way the user 'closes' the dialog, it only hides. A cheap way to remember field contents (#326). -JMC Feb 2014
-            this.Hide();
-            e.Cancel = true;
+            this.textBoxFind.Select();
+            this.textBoxFind.SelectAll();
+        }
+
+        private bool ReadyToReplace()
+        {
+            if (_searchResult != null)
+            {  // result of previous find
+                string f = _searchResult.Found;
+                return _sfmEditorView.ContentsBox.SelectedText == f;
+            }
+            return false;
         }
 
         private void Find(bool replace)
+        {
+            Find(replace, false);
+        }
+
+        private void Find(bool replace, bool all)
         {
             _searchModel.UseRegex = this.radioButtonRegex.Checked;
             _searchModel.CaseSensitive = this.checkBoxCaseSensitive.Checked;
@@ -176,10 +126,9 @@ namespace SolidGui.Search
             string r = "";
             if (_searchResult != null)
             {  // result of previous find
-                f = _searchResult.Found;
                 r = _searchResult.ReplaceWith;
             }
-            if (replace && _sfmEditorView.ContentsBox.SelectedText == f) // == _findTextbox.Text)
+            if (replace && ReadyToReplace())
             {
                 // Replace current selection
                 _sfmEditorView.ContentsBox.SelectedText = r; // _replaceTextBox.Text;
@@ -205,27 +154,106 @@ namespace SolidGui.Search
                     RecordIndex = _navigatorModel.ActiveFilter.CurrentIndex;
                 }
 
-                _searchModel.FindNext(textBoxFind.Text,
+                if (all)
+                {
+                    
+                }
+                else
+                {
+                    _searchModel.FindReplace(textBoxFind.Text,
                                         textBoxReplace.Text,
                                         RecordIndex,
                                         TextIndex,
                                         _startingRecordIndex,
                                         _startingTextIndex);
+                }
 
 
             }
 
             // bring the search form back into focus -JMC
-            _searchView.BringToFront();
-            _searchView.Focus();
+            this.BringToFront();
+            this.Focus();
 
         }
 
-        private void FindReplaceDialog_Activated(object sender, EventArgs e)
+        private void TryFind(bool replace)
         {
-            textBoxFind.Focus();
+            try
+            {
+                Find(replace);
+            }
+            catch (Exception error)
+            {
+                string msg = "An unexpected error occurred:\r\n" + error.Message;
+                //Palaso.Reporting.ErrorReport.ReportNonFatalMessageWithStackTrace(msg, );
+                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
+            }
         }
 
+        private void OnFindNextButton_Click(object sender, EventArgs e)
+        {
+            TryFind(false);
+        }
+
+        private void OnReplaceButton_Click(object sender, EventArgs e)
+        {
+            TryFind(true);
+        }
+
+        private void buttonReplaceFind_Click(object sender, EventArgs e)
+        {
+            if (ReadyToReplace())
+            {
+                TryFind(true);
+            }
+            //JMC:! need to verify that we got a match?
+            TryFind(false);
+        }
+
+        private void OnCancelButton_Click(object sender, EventArgs e)
+        {
+            ResetStartingPoint(); //for good measure -JMC
+
+            // Added Close() and disabled Dispose(), but then realized that Hide() might solve issue #326 ("remember last find"), and it seems to! -JMC 2013-09
+            this.Hide();
+        }
+
+        private void FindReplaceDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ResetStartingPoint(); //for good measure -JMC
+
+            // Added this so that no matter which way the user 'closes' the dialog, it only hides. A cheap way to remember field contents (#326). -JMC Feb 2014
+            this.Hide();
+            e.Cancel = true;
+        }
+
+
+        private void OnScopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+        }
+
+        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+        }
+
+        private void textBoxReplace_TextChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+        }
+
+        private void textBoxContextFind_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxContextReplace_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
     }
 }

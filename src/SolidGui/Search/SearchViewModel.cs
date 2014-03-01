@@ -13,7 +13,7 @@ namespace SolidGui.Search
 {
     public class SearchViewModel
     {
-        private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        //private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public class SearchResultEventArgs : EventArgs
         {
@@ -40,6 +40,7 @@ namespace SolidGui.Search
         private int _startRecordOfWholeSearch;
         private int _startIndexOfWholeSearch;
 
+        public RecordFormatter RecFormatter;
         public RecordFilter Filter;
         public string FindThis;
         public Regex FindThisRegex;
@@ -55,6 +56,8 @@ namespace SolidGui.Search
         public SearchViewModel(MainWindowPM model)
         {
             _model = model;
+            RecFormatter = new RecordFormatter();
+            RecFormatter.SetDefaultsUiTree();
         }
 
         public void setFindThis(string val)
@@ -83,7 +86,14 @@ namespace SolidGui.Search
         /// Find within the specified filter (specify null for All Records)
         /// If called multiple times with the same values for startingRecord and startingIndex, it will search the 
         /// whole file (including wrap-around with ding) and stop at that starting point. -JMC
-        public void FindNext( string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex)
+        public void FindReplace(string word, string possReplace, int recordIndex, int textIndex, int startingRecord,
+                                int startingIndex)
+        {
+            FindReplace(word, possReplace, recordIndex, textIndex, startingRecord, startingIndex, false);
+        }
+
+        /// Same, but with the option to replace all
+        public void FindReplace( string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex, bool all)
         {
             if (this.Filter == null)
             {
@@ -94,7 +104,19 @@ namespace SolidGui.Search
             _startRecordOfWholeSearch = startingRecord;
             _startIndexOfWholeSearch = startingIndex;
 
-            SearchResult result = NextResult(recordIndex, textIndex);
+            SearchResult result;
+            while (true)
+            {
+                result = NextResult(recordIndex, textIndex);
+                if (!all)
+                {
+                    break;
+                }
+                else
+                {
+                    break;  //JMC: Stub; put Replace All functionality here?? Break after one full pass through the file.
+                }
+            }
 
             if (result != null)
             {
@@ -190,6 +212,10 @@ namespace SolidGui.Search
             }
             return recordIndex;
         }
+
+
+        private static Regex _regWindowsNewline = new Regex( @"\r\n", 
+            RegexOptions.Compiled | RegexOptions.CultureInvariant);
         
         // Return the index and the word (first match), or null (if not found). Uses a regex if reg is not null; otherwise uses this.FindThis .
         private SearchResult FindWordInRecord(int recordIndex, int startTextIndex, Regex reg, string replaceWith, string context)
@@ -203,10 +229,13 @@ namespace SolidGui.Search
             string recordText;
             if (context == null)
             {
-                recordText = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
+                // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
+                recordText = RecFormatter.Format(record, _model.MarkerSettingsModel.SolidSettings);
+
+                var recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
                 // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
                 // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
-                recordText = ReggieTempHack.Replace(recordText, "\n");
+                // recordText = ReggieTempHack.Replace(recordText, "\n");
             }
             else
             {
@@ -217,7 +246,7 @@ namespace SolidGui.Search
             {
                 //Basic mode
                 string r = recordText;
-                string f = this.FindThis;
+                string f = _regWindowsNewline.Replace(this.FindThis, "\n"); // the dialog gives \r\n but needs to match \n in the rich textbox
                 if (!CaseSensitive)
                 {
                     r = r.ToLower();

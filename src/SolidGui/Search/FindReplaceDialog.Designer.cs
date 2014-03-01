@@ -122,7 +122,7 @@
             this.textBoxReplace.Name = "textBoxReplace";
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxReplace.Size = new System.Drawing.Size(297, 33);
-            this.textBoxReplace.TabIndex = 11;
+            this.textBoxReplace.TabIndex = 4;
             this.textBoxReplace.Text = "\\r\\n\\\\re ";
             this.textBoxReplace.TextChanged += new System.EventHandler(this.textBoxReplace_TextChanged);
             // 
@@ -133,7 +133,7 @@
             this.buttonHintReplace1.Name = "buttonHintReplace1";
             this.buttonHintReplace1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintReplace1.Size = new System.Drawing.Size(14, 20);
-            this.buttonHintReplace1.TabIndex = 8;
+            this.buttonHintReplace1.TabIndex = 3;
             this.buttonHintReplace1.Text = ">";
             this.buttonHintReplace1.UseVisualStyleBackColor = true;
             // 
@@ -156,7 +156,7 @@
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxFind.Size = new System.Drawing.Size(297, 33);
-            this.textBoxFind.TabIndex = 7;
+            this.textBoxFind.TabIndex = 2;
             this.textBoxFind.Text = "\\s*;\\s*";
             this.textBoxFind.TextChanged += new System.EventHandler(this.textBoxFind_TextChanged);
             // 
@@ -177,20 +177,20 @@
             this.buttonReplace.Location = new System.Drawing.Point(3, 6);
             this.buttonReplace.Name = "buttonReplace";
             this.buttonReplace.Size = new System.Drawing.Size(65, 23);
-            this.buttonReplace.TabIndex = 9;
+            this.buttonReplace.TabIndex = 7;
             this.buttonReplace.Text = "&Replace";
             this.buttonReplace.UseVisualStyleBackColor = true;
             this.buttonReplace.Click += new System.EventHandler(this.OnReplaceButton_Click);
             // 
             // buttonReplaceFind
             // 
-            this.buttonReplaceFind.Enabled = false;
             this.buttonReplaceFind.Location = new System.Drawing.Point(74, 6);
             this.buttonReplaceFind.Name = "buttonReplaceFind";
             this.buttonReplaceFind.Size = new System.Drawing.Size(93, 23);
-            this.buttonReplaceFind.TabIndex = 10;
+            this.buttonReplaceFind.TabIndex = 8;
             this.buttonReplaceFind.Text = "Replace + Fi&nd";
             this.buttonReplaceFind.UseVisualStyleBackColor = true;
+            this.buttonReplaceFind.Click += new System.EventHandler(this.buttonReplaceFind_Click);
             // 
             // textBoxReplacePreview
             // 
@@ -202,6 +202,7 @@
             this.textBoxReplacePreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxReplacePreview.Size = new System.Drawing.Size(297, 33);
             this.textBoxReplacePreview.TabIndex = 24;
+            this.textBoxReplacePreview.TabStop = false;
             this.textBoxReplacePreview.Text = "\\re hum, to\r\n\\re sing, to\r\n\\re croon, to";
             // 
             // buttonHintReplace2
@@ -211,7 +212,7 @@
             this.buttonHintReplace2.Name = "buttonHintReplace2";
             this.buttonHintReplace2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintReplace2.Size = new System.Drawing.Size(14, 20);
-            this.buttonHintReplace2.TabIndex = 12;
+            this.buttonHintReplace2.TabIndex = 5;
             this.buttonHintReplace2.Text = ">";
             this.buttonHintReplace2.UseVisualStyleBackColor = true;
             // 
@@ -252,18 +253,17 @@
             this.buttonCancel.Location = new System.Drawing.Point(220, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(74, 23);
-            this.buttonCancel.TabIndex = 14;
+            this.buttonCancel.TabIndex = 10;
             this.buttonCancel.Text = "&Close";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_Click);
             // 
             // buttonReplaceAll
             // 
-            this.buttonReplaceAll.Enabled = false;
             this.buttonReplaceAll.Location = new System.Drawing.Point(75, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
-            this.buttonReplaceAll.TabIndex = 13;
+            this.buttonReplaceAll.TabIndex = 9;
             this.buttonReplaceAll.Text = "Replace &All + Recheck";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
             // 
@@ -305,7 +305,7 @@
             this.flowLayoutPanelMode.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanelMode.Name = "flowLayoutPanelMode";
             this.flowLayoutPanelMode.Size = new System.Drawing.Size(160, 76);
-            this.flowLayoutPanelMode.TabIndex = 24;
+            this.flowLayoutPanelMode.TabIndex = 23;
             // 
             // radioButtonModeBasic
             // 
@@ -357,7 +357,7 @@
             this.flowLayoutPanelOptions.MinimumSize = new System.Drawing.Size(116, 66);
             this.flowLayoutPanelOptions.Name = "flowLayoutPanelOptions";
             this.flowLayoutPanelOptions.Size = new System.Drawing.Size(116, 66);
-            this.flowLayoutPanelOptions.TabIndex = 23;
+            this.flowLayoutPanelOptions.TabIndex = 24;
             // 
             // _scopeComboBox
             // 
@@ -427,6 +427,7 @@
             this.textBoxContextReplace.Size = new System.Drawing.Size(297, 35);
             this.textBoxContextReplace.TabIndex = 4;
             this.textBoxContextReplace.Text = "\\\\\\1 \\2";
+            this.textBoxContextReplace.TextChanged += new System.EventHandler(this.textBoxContextReplace_TextChanged);
             // 
             // buttonHintContext1
             // 
@@ -459,6 +460,7 @@
             this.textBoxContextFind.Size = new System.Drawing.Size(297, 35);
             this.textBoxContextFind.TabIndex = 1;
             this.textBoxContextFind.Text = "^\\\\(re) (.+)$";
+            this.textBoxContextFind.TextChanged += new System.EventHandler(this.textBoxContextFind_TextChanged);
             // 
             // labelFind
             // 
@@ -490,6 +492,7 @@
             this.textBoxContextPreview.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxContextPreview.Size = new System.Drawing.Size(297, 35);
             this.textBoxContextPreview.TabIndex = 24;
+            this.textBoxContextPreview.TabStop = false;
             this.textBoxContextPreview.Text = "\\re hum, to; sing, to; croon, to";
             // 
             // buttonHintContext2
@@ -514,7 +517,6 @@
             this.MinimumSize = new System.Drawing.Size(403, 383);
             this.Name = "FindReplaceDialog";
             this.Text = "Find and Replace";
-            this.Activated += new System.EventHandler(this.FindReplaceDialog_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindReplaceDialog_FormClosing);
             this.groupBoxFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.ResumeLayout(false);

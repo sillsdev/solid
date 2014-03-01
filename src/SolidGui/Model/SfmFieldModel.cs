@@ -80,6 +80,10 @@ namespace SolidGui.Model
 
         public string Marker { get; private set; }
 
+        //JMC! The following needs to be set each time the depth of the following field is established. Or
+        public List<string> Closers; //one or more closing tags; e.g. "xe" "rf" "sn" "se"
+        //Example: if \xe ends a subentry, the whole field could be saved as: \xe They wept.\xe*\rf*\sn*\se*\r\n
+
         //JMC: Issue #1219. Remove hard-coded references to markers (e.g. in the link-checking quick fix)
         // In order to fix that, I think we need for the following to always get set properly.
         public string Mapping { get; set; }
@@ -115,13 +119,7 @@ namespace SolidGui.Model
 
         public string ToStructuredString(SolidSettings solidSettings) // TODO Move to UI Adapter CP 2010-08
         {
-            int spacesInIndentation = 4;
-
-            string indentation = new string(' ', Depth*spacesInIndentation);
-            string slash = (Inferred) ? "\\+" : "\\";
-            string valXX = (Value == "") ? "" : " " + Value;
-            string val = (Value == "") ? "" : " " + DecodedValue(solidSettings);
-            return indentation + slash + Marker + val + Trailing;
+            return "";
         }
 
         public int Id

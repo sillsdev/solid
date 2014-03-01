@@ -1,10 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using SolidGui.Engine;
 
 namespace SolidGui.Model
 {
-    // A sort of adapter for formatting the Record class. To replace ye olde:
-    // - Record.ToStructuredString() 
+    // A sort of adapter for formatting the Record class. Created to replace ye olde:
+    // - Record.ToStructuredString() + SfmFieldModel.ToStructuredString()
+
     // - most of SfmDictionary.SaveAs(),
     // - SfmEditorPM.AsString()
     // - SfmEditorView.DisplayEachFieldInCurrentRecord() 
@@ -12,30 +17,100 @@ namespace SolidGui.Model
     // And a non-indented editing mode, which is helpful with regex find/replace  -JMC Feb 2014
     public class RecordFormatter
     {
-        // defaults (for saving to disk on Windows)
-        public bool Indented = false;
-        public string Separator = " ";
-        public string NewLine = "\r\n";  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates this. -JMC
-        public bool ClosingTags = false;
+        public bool Indented;
+        public bool Inferred;
+        public string Separator;
+        public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates this. -JMC
+        public bool ClosingTags;
+        private Regex _regexNewline;
 
         public RecordFormatter()
         {
+            SetDefaultsDisk();
+            _regexNewline = new Regex(@"\r?\n|\r", RegexOptions.CultureInvariant | RegexOptions.Compiled);
         }
 
-        // A convenience method for overwriting one object with another without affecting references (pointers).
-        // The idea is to make it easy to make a copy, then swap these settings out, then put back the original settings. -JMC Feb 2014
-        public void fill_from(RecordFormatter source)
+        // Default formatting for Save As (Windows newlines)
+        public void SetDefaultsDisk()
+        {
+            Indented = false;
+            Inferred = false;
+            Separator = " ";
+            NewLine = SolidSettings.NewLine; // was "\r\n"; 
+            ClosingTags = false;
+        }
+
+        // Default UI formatting, showing marker hierarchy
+        public void SetDefaultsUiTree()
+        {
+            Indented = true;
+            Inferred = true;
+            Separator = "\t";
+            NewLine = "\n";
+            ClosingTags = false;
+        }
+
+        // Flat UI formatting; also required for regex Find/Replace (needs to force UI into this mode)
+        public void SetDefaultsUiFlat()
+        {
+            Indented = false;
+            Inferred = true;
+            Separator = " ";
+            NewLine = "\n";
+            ClosingTags = false;
+        }
+
+
+        // A convenience method for overwriting one RecordFormatter with another without affecting existing references (pointers).
+        // The idea is to make it easy to clone to a new one, swap these settings out, then put back the original settings back. -JMC Feb 2014
+        public void FillFrom(RecordFormatter source)
         {
             Indented = source.Indented;
+            Inferred = source.Inferred;
             Separator = source.Separator;
             NewLine = source.NewLine;
             ClosingTags = source.ClosingTags;
         }
 
+
         // Using my settings, format the record that is passed in.
-        public string format(Record rec) //, MarkerSettings settings)
+        public string Format(Record rec, SolidSettings solidSettings) //, MarkerSettings settings)
         {
-            return "";
+            StringBuilder record = new StringBuilder();
+            int spacesInIndentation = 4;
+
+            if (solidSettings == null && (Indented || ClosingTags))
+                throw new Exception("Programming error: non-flat output requested but solidSettings is null.");
+
+            foreach (SfmFieldModel field in rec.LexEntry.Fields)
+            {
+                string indentation = "";
+                if (Indented) indentation = new string(' ', field.Depth * spacesInIndentation);
+                string slash = "";
+                if (Inferred) slash = (field.Inferred) ? "\\+" : "\\";
+                string closers = "";
+                if (ClosingTags) closers = FormatClosers(field.Closers);
+                string val = (field.Value == "") ? "" : " " + field.DecodedValue(solidSettings);  // + field.Value;
+                record.Append(indentation + slash + field.Marker + val + closers + field.Trailing);
+            }
+            string s = record.ToString();
+            string s2 = _regexNewline.Replace(s, NewLine); //force all newlines to be the same, typically \n or \r\n (\r is unlikely)
+            return s2;
+        }
+
+        private string FormatClosers(List<string> list)
+        {
+            string s = "";
+
+            //JMC:! Dummy value for now. Parser (or something similar to LIFT adapter) needs to provide actual closers.
+            if (list == null) list = new List<string> {"stub", "zz"}; // new List<string>;}
+
+            foreach(string c in list)
+            {
+                s += " \\" + c + "*";
+            }
+
+            return s;
         }
 
         // Using our current settings, format the record that is passed in AS RICH TEXT.

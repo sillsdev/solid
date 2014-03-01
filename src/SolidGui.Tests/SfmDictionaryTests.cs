@@ -125,7 +125,7 @@ namespace SolidGui.Tests
 				e.CreateDictionary(EnvironmentForTest.SfmWithTwoRecords());
 				var dictionary = e.OpenDictionary();
 				Assert.That(File.Exists(e.AlternateDictionaryFilePath), Is.False);
-				dictionary.SaveAs(e.AlternateDictionaryFilePath);
+				dictionary.SaveAs(e.AlternateDictionaryFilePath, null);
 				Assert.That(File.Exists(e.AlternateDictionaryFilePath), Is.True);
 			}
         }

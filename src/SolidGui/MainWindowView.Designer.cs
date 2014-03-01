@@ -64,6 +64,7 @@ namespace SolidGui
             this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exportXmlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._markersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -415,6 +416,7 @@ namespace SolidGui
             this._fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openMenuItem,
             this._saveMenuItem,
+            this.saveAsToolStripMenuItem,
             this._exportXmlMenuItem,
             this._exitMenuItem});
             this._fileMenuItem.Name = "_fileMenuItem";
@@ -437,6 +439,13 @@ namespace SolidGui
             this._saveMenuItem.Size = new System.Drawing.Size(251, 22);
             this._saveMenuItem.Text = "&Save (Ctrl+S, Alt+S)";
             this._saveMenuItem.Click += new System.EventHandler(this.OnSaveClick);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // _exportXmlMenuItem
             // 
@@ -734,6 +743,7 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _cutMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
     }
 }
 
