@@ -121,5 +121,22 @@ namespace SolidGui
             Find();
         }
 
+        private void buttonTree_Click(object sender, EventArgs e)
+        {
+            buttonTree.Visible = false;
+            buttonFlat.Visible = true;
+        }
+
+        private void buttonFlat_Click(object sender, EventArgs e)
+        {
+            buttonTree.Visible = true;
+            buttonFlat.Visible = false;
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            // see SfmEditorView.OnRefreshClicked
+        }
+
     }
 }

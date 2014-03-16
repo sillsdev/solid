@@ -186,7 +186,7 @@ namespace SolidGui.Engine
         }
 
         // JMC: This should probably be called once after every File Open, since most users don't need mixed encodings,
-        // yet Solid used to silently create mixed-encoding situations for any new marker identified in a unicode file.
+        // yet Solid used to silently create mixed-encoding settings whenever a new marker was identified in a unicode file.
         public string NotifyIfMixedEncodings()
         {
             int uni = 0;
