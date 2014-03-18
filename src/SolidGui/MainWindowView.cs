@@ -219,7 +219,7 @@ namespace SolidGui
 
             // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
             // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file from disk is not an adequate "rollback".)
-            var origPm = _mainWindowPM;
+            MainWindowPM origPm = _mainWindowPM;
             _mainWindowPM = new MainWindowPM();
 
             if (_mainWindowPM.OpenDictionary(fileName, templatePath))
@@ -525,7 +525,7 @@ namespace SolidGui
                 return;
             }
             _filterIndex = saveDialog.FilterIndex;
-            var destinationFilePath = saveDialog.FileName;
+            string destinationFilePath = saveDialog.FileName;
 
             try
             {
@@ -611,7 +611,7 @@ namespace SolidGui
 
         private void _copyMenuItem_Click(object sender, EventArgs e)
         {
-            var x = _sfmEditorView.ContentsBox.SelectedText;
+            string x = _sfmEditorView.ContentsBox.SelectedText;
             // unfinished
            
         }

@@ -82,7 +82,7 @@ namespace SolidGui.MarkerSettings
 
             allValidMarkers.AddRange(MarkersInDictionary);
 
-            foreach (var marker in SolidSettings.Markers)
+            foreach (string marker in SolidSettings.Markers)
             {
                 if (!allValidMarkers.Contains(marker))
                 {

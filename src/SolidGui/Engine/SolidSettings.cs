@@ -45,7 +45,7 @@ namespace SolidGui.Engine
         public static string extsAsString(IEnumerable<string> exts) // added by JMC 2013-09
         {
             var x = new StringBuilder();
-            foreach (var extension in exts)
+            foreach (string extension in exts)
             {
                 x.Append(extension + " ");
             }
@@ -56,7 +56,7 @@ namespace SolidGui.Engine
         public static string extsAsMask(IEnumerable<string> exts, string baseFileName) // added by JMC 2013-09
         {
             var x2 = new StringBuilder();
-            foreach (var extension in exts)
+            foreach (string extension in exts)
             {
                 x2.Append(baseFileName + extension + ";");
             }
@@ -144,7 +144,7 @@ namespace SolidGui.Engine
         public int FindReplaceWs(string fromWritingSystem, string toWritingSystem)
         {
             int count = 0;
-            foreach (var markerSetting in this.MarkerSettings)
+            foreach (SolidMarkerSetting markerSetting in this.MarkerSettings)
             {
                 if (markerSetting.WritingSystemRfc4646 == fromWritingSystem)
                 {
@@ -168,7 +168,7 @@ namespace SolidGui.Engine
         {
             if (_newlyAdded == null || _newlyAdded.Count < 1) return;
             var sb = new StringBuilder("New marker(s) added: ");
-            foreach (var marker in _newlyAdded)
+            foreach (SolidMarkerSetting marker in _newlyAdded)
             {
                 sb.Append(string.Format("{0} ({1}) ", marker.Marker, marker.Unicode ? "u" : "Legacy!")); 
             }
@@ -191,7 +191,7 @@ namespace SolidGui.Engine
         {
             int uni = 0;
             var legacy = new List<string>();
-            foreach (var marker in _markerSettings)
+            foreach (SolidMarkerSetting marker in _markerSettings)
             {
                 if (marker.Unicode)
                 {
@@ -366,7 +366,7 @@ namespace SolidGui.Engine
         {
 
             var fileInfo = new FileInfo(settingsFilePath);
-            var dirInfo = fileInfo.Directory;
+            DirectoryInfo dirInfo = fileInfo.Directory;
 
             string f = fileInfo.Name;
             string ext = fileInfo.Extension; //Path.GetExtension(settingsFilePath);
@@ -379,7 +379,9 @@ namespace SolidGui.Engine
                 throw new ArgumentException("The settings file path ought to end in .solid");
             }
 
-            var extensions = FileExtensions; // was: new string[]{".db", ".sfm", ".mdf", ".dic", ".txt"};
+            //JMC:! check for null dirInfo ?
+
+            List<string> extensions = FileExtensions; // was: new string[]{".db", ".sfm", ".mdf", ".dic", ".txt"};
             string mask = extsAsMask(extensions, f);
             FileInfo[] matches = dirInfo.GetFiles(mask, SearchOption.TopDirectoryOnly); //find likely matches
             if (matches.Length < 1)
@@ -397,7 +399,7 @@ namespace SolidGui.Engine
 
             }
 
-            foreach (var match in matches)   // pick the first (or only) match
+            foreach (FileInfo match in matches)   // pick the first (or only) match
             {
                 if (match.Extension != ".solid")
                 {

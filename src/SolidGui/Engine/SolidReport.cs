@@ -49,7 +49,7 @@ namespace SolidGui.Engine
 
         public ReportEntry GetEntryById(int id)
         {
-            var retVal = Entries.Find( entry => entry.FieldID == id );
+            ReportEntry retVal = Entries.Find( entry => entry.FieldID == id );
             return retVal;
         }
 
@@ -77,7 +77,7 @@ namespace SolidGui.Engine
         public List<string> Markers()
         {
             var list = new List<string>();
-            foreach (var entry in Entries)
+            foreach (ReportEntry entry in Entries)
             {
                 if (!list.Contains(entry.Marker))
                 {

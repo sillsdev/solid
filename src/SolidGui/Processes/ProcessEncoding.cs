@@ -22,11 +22,11 @@ namespace SolidGui.Processes
 
         public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)
         {
-            var utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
-            var legacyEncoding = SolidSettings.LegacyEncoding;  //was: Encoding.GetEncoding("iso-8859-1");
+            Encoding utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
+            Encoding legacyEncoding = SolidSettings.LegacyEncoding;  //was: Encoding.GetEncoding("iso-8859-1");
             
             // Iterate through each (flat) node in the src d
-            foreach (var sfmField in lexEntry.Fields)
+            foreach (SfmFieldModel sfmField in lexEntry.Fields)
             {
                 SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sfmField.Marker);
                 string value = sfmField.Value;
@@ -38,7 +38,7 @@ namespace SolidGui.Processes
                         bool isValid = true;
                         try
                         {
-                            var convertedString = utf8Encoding.GetString(legacyEncoding.GetBytes(value));
+                            string convertedString = utf8Encoding.GetString(legacyEncoding.GetBytes(value));
                         }
                         catch  // (Exception e)
                         {

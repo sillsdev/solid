@@ -21,7 +21,7 @@ namespace SolidGui.Filter
 
         public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)  // added -JMC 2013-10
         {
-            var filter = e.RecordFilter;
+            RecordFilter filter = e.RecordFilter;
             if (filter != ActiveWarningFilter)
             {
                 // The nav filter just changed, and it wasn't me.

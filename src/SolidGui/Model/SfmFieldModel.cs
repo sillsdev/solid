@@ -10,7 +10,8 @@ using SolidGui.Engine;
 
 namespace SolidGui.Model
 {
-    // SfmFieldNode might've been clearer, since it's part of a tree structure. Primarily used once the data is in Solid. -JMC
+    // SfmFieldNode might've been clearer, since it's part of a tree structure. 
+    // Primarily used once the data is in Solid. -JMC
     public class SfmFieldModel
     {
         private readonly int _id;
@@ -169,7 +170,7 @@ namespace SolidGui.Model
             {
                 return Value;
             }
-            var markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
+            SolidMarkerSetting markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
             if (markerSetting.Unicode)
             {
                 return ValueAsUnicode();

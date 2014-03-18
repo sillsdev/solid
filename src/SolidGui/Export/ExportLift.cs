@@ -27,7 +27,7 @@ namespace SolidGui.Export
             UsageReporter.SendNavigationNotice("QuickFix/MoveUp");
 
             var liftLexEntries = new List<SfmLiftLexEntryAdapter>();
-            var logPath = outputFilePath + ".exportErrors.txt";
+            string logPath = outputFilePath + ".exportErrors.txt";
             if (File.Exists(outputFilePath))
             {
                 File.Delete(outputFilePath);
@@ -44,7 +44,7 @@ namespace SolidGui.Export
             using (var dm = new LiftDataMapper(outputFilePath))
             {
                 // first pass
-                var index = ConvertAllEntriesToLift(sfmLexEntries, dm, solidSettings, liftLexEntries, progress);
+                Dictionary<string, SfmLiftLexEntryAdapter> index = ConvertAllEntriesToLift(sfmLexEntries, dm, solidSettings, liftLexEntries, progress);
 
                 // second pass
                 ResolveTargetsOfRelations(liftLexEntries, progress, index);
@@ -53,14 +53,14 @@ namespace SolidGui.Export
 
             if (!string.IsNullOrEmpty(stringBuilderProgress.Text))
             {
-                using (var log = File.AppendText(logPath))
+                using (StreamWriter log = File.AppendText(logPath))
                 {
                     log.WriteLine(stringBuilderProgress.Text);
                 }
             }
             outerProgress.WriteMessage("");
             outerProgress.WriteMessage("Checking result to make sure it is valid LIFT XML...");
-            var result = Validator.GetAnyValidationErrors(outputFilePath, new NullValidationProgress(), ValidationOptions.All);
+            string result = Validator.GetAnyValidationErrors(outputFilePath, new NullValidationProgress(), ValidationOptions.All);
             if(!string.IsNullOrEmpty(result))
                 outerProgress.WriteError(result);
             WriteWritingSystemFolder(outputFilePath, solidSettings.MarkerSettings, outerProgress);
@@ -74,21 +74,21 @@ namespace SolidGui.Export
             {
                 // ReSharper disable AssignNullToNotNullAttribute
                 var repository = AppWritingSystems.WritingSystems as LdmlInFolderWritingSystemRepository;
-                var dir = Path.GetDirectoryName(outputFilePath);
-                var writingSystemsPath = Path.Combine(dir, "WritingSystems");
+                string dir = Path.GetDirectoryName(outputFilePath);
+                string writingSystemsPath = Path.Combine(dir, "WritingSystems");
                 if (!Directory.Exists(writingSystemsPath))
                 {
                     Directory.CreateDirectory(writingSystemsPath);
                 }
                 
                 //only copy the ones being used
-                foreach (var definition in repository.AllWritingSystems)
+                foreach (IWritingSystemDefinition definition in repository.AllWritingSystems)
                 {
-                    IWritingSystemDefinition definition1 = definition;//avoid "access to modified closure"
+                    IWritingSystemDefinition definition1 = definition; //avoid "access to modified closure"
                     if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.Bcp47Tag))
                     {
-                        var existing = repository.GetFilePathFromIdentifier(definition.StoreID);
-                        var path = Path.Combine(writingSystemsPath, Path.GetFileName(existing));
+                        string existing = repository.GetFilePathFromIdentifier(definition.StoreID);
+                        string path = Path.Combine(writingSystemsPath, Path.GetFileName(existing));
                         File.Copy(existing, path, true);
                     }
                 }
@@ -103,7 +103,7 @@ namespace SolidGui.Export
         private static Dictionary<string, SfmLiftLexEntryAdapter> ConvertAllEntriesToLift(IEnumerable<Record> sfmLexEntries, LiftDataMapper dm, SolidSettings solidSettings, List<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress)
         {
             var index = new Dictionary<string, SfmLiftLexEntryAdapter>();
-            foreach (var sfmLexEntry in sfmLexEntries)
+            foreach (Record sfmLexEntry in sfmLexEntries)
             {
                 try
                 {
@@ -123,8 +123,8 @@ namespace SolidGui.Export
                               index.Add(sfmId + "_" + adaptedEntry.HomonymNumber, adaptedEntry);
                           }
                           */
-                    var sfmId = adaptedEntry.SfmID;
-                    var homograph = 0;
+                    string sfmId = adaptedEntry.SfmID;
+                    int homograph = 0;
                     while (index.ContainsKey(sfmId)) // is a duplicate
                     {
                         ++homograph;
@@ -145,16 +145,16 @@ namespace SolidGui.Export
 
             private static void ResolveTargetsOfRelations(IEnumerable<SfmLiftLexEntryAdapter> liftLexEntries, MultiProgress progress, Dictionary<string, SfmLiftLexEntryAdapter> index)
             {
-                foreach (var adaptedEntry in liftLexEntries)
+                foreach (SfmLiftLexEntryAdapter adaptedEntry in liftLexEntries)
                 {
                     try
                     {
-                        foreach (var relation in adaptedEntry.Relations)
+                        foreach (Relation relation in adaptedEntry.Relations)
                         {
                             ResolveTargetOfRelation(index, relation, adaptedEntry, progress);
                         }
-                        
-                        foreach (var senseAndRelation in adaptedEntry.SenseRelations)
+
+                        foreach (KeyValuePair<LexSense, Relation> senseAndRelation in adaptedEntry.SenseRelations)
                         {
                             ResolveTargetOfSenseRelation(index, senseAndRelation.Key, senseAndRelation.Value, adaptedEntry, progress);
                         }
@@ -202,9 +202,9 @@ namespace SolidGui.Export
         private static void ProcessSubentryRelations(SfmLiftLexEntryAdapter adaptedEntry, Dictionary<string, SfmLiftLexEntryAdapter> index, MultiProgress progress)
         {
             SfmLiftLexEntryAdapter targetLexEntry;
-            foreach (var subEntry in adaptedEntry.SubEntries)
+            foreach (LiftLexEntryAdapter subEntry in adaptedEntry.SubEntries)
             {
-                foreach (var relation in subEntry.Relations)
+                foreach (Relation relation in subEntry.Relations)
                 {
                     // if the target is in the dictionary, add the relation, else post a note
                     if (index.ContainsKey(relation.TargetForm))
@@ -231,7 +231,7 @@ namespace SolidGui.Export
             var exportArguments = (ExportArguments)args.Argument;
 
             var dictionary = new SfmDictionary();
-            var solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(exportArguments.inputFilePath));
+            SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(exportArguments.inputFilePath));
             dictionary.Open(exportArguments.inputFilePath, solidSettings, new RecordFilterSet());
             Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath, exportArguments.progress);
         }
@@ -239,9 +239,9 @@ namespace SolidGui.Export
         public string ModifyDestinationIfNeeded(string destinationFilePath)
         {
             // ReSharper disable AssignNullToNotNullAttribute
-            var destDirectory = Path.GetDirectoryName(destinationFilePath);
+            string destDirectory = Path.GetDirectoryName(destinationFilePath);
             bool foundUnknown = false;
-            foreach(var file in Directory.GetFiles(destDirectory))
+            foreach(string file in Directory.GetFiles(destDirectory))
             {
                 if (file == destinationFilePath)
                     continue;
@@ -249,7 +249,7 @@ namespace SolidGui.Export
                     return destinationFilePath;//this is already a wesay lift folder, so go ahead.
                 foundUnknown = true;
             }
-            foreach (var dir in Directory.GetDirectories(destDirectory))
+            foreach (string dir in Directory.GetDirectories(destDirectory))
             {
                 if (Path.GetFileName(dir) == "WritingSystems")
                     continue;
@@ -263,7 +263,7 @@ namespace SolidGui.Export
             if(!foundUnknown)
                 return destinationFilePath;
 
-            var suggested = Path.Combine(destDirectory, Path.GetFileNameWithoutExtension(destinationFilePath));
+            string suggested = Path.Combine(destDirectory, Path.GetFileNameWithoutExtension(destinationFilePath));
             var s = string.Format("The folder you've selected has other files in it. Would you rather Solid export all the lift files into their own folder at {0}?", suggested);
             if(DialogResult.Yes == MessageBox.Show(s, "Destination check", MessageBoxButtons.YesNo))
             {

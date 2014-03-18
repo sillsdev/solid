@@ -10,6 +10,7 @@ namespace SolidGui.Model
     // A sort of adapter for formatting the Record class. Created to replace ye olde:
     // - Record.ToStructuredString() + SfmFieldModel.ToStructuredString()
 
+    // - Record.ToString() ??
     // - most of SfmDictionary.SaveAs(),
     // - SfmEditorPM.AsString()
     // - SfmEditorView.DisplayEachFieldInCurrentRecord() 
@@ -86,8 +87,7 @@ namespace SolidGui.Model
             {
                 string indentation = "";
                 if (Indented) indentation = new string(' ', field.Depth * spacesInIndentation);
-                string slash = "";
-                if (Inferred) slash = (field.Inferred) ? "\\+" : "\\";
+                string slash = (field.Inferred) ? "\\+" : "\\";
                 string closers = "";
                 if (ClosingTags) closers = FormatClosers(field.Closers);
                 string val = (field.Value == "") ? "" : " " + field.DecodedValue(solidSettings);  // + field.Value;

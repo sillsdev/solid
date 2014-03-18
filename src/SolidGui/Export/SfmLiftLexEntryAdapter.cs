@@ -47,7 +47,7 @@ namespace SolidGui.Export
 
         public void MakeRelationFromSenseToEntry(LexSense sense, string guid, string type)
         {
-            var i = LiftLexEntry.Senses.IndexOf(sense);
+            int i = LiftLexEntry.Senses.IndexOf(sense);
             if(i<0)
                 throw new ArgumentOutOfRangeException("Programming error: Could not find sense");
             LiftLexEntry.Senses[i].AddRelationTarget(type, guid);
@@ -228,10 +228,10 @@ namespace SolidGui.Export
             string currentPartOfSpeech = "";
             bool alreadyReadyTargetOfRelation = false;
 
-            var unicodeEntryName = SfmLexEntry.GetLexemeForm(SolidSettings).Trim();
+            string unicodeEntryName = SfmLexEntry.GetLexemeForm(SolidSettings).Trim();
 
             //if the sfm already declares a guid, use that instead of a made up one
-            var existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
+            SfmFieldModel existingGuid = SfmLexEntry.GetFirstFieldWithMarker("guid");
             if (existingGuid != null)
             {
                 try
@@ -246,10 +246,10 @@ namespace SolidGui.Export
 
             LexExampleSentence currentExample = null;
             LexEtymology currentEtymology = null;
-            foreach (var field in SfmLexEntry.Fields)
+            foreach (SfmFieldModel field in SfmLexEntry.Fields)
             {
-                var unicodeValue = MakeSingleLine(field.DecodedValue(SolidSettings).Trim());
-                var currentState = states.Peek();
+                string unicodeValue = MakeSingleLine(field.DecodedValue(SolidSettings).Trim());
+                StateInfo currentState = states.Peek();
                 while (field.Depth <= currentState.Depth)
                 {
                     if (currentSense != null && currentState.State == States.Sense)
@@ -343,7 +343,7 @@ namespace SolidGui.Export
                                 currentState.LexEntryAdapter.Relations.AddRange(ProduceRelationsFromField(field, currentState, unicodeValue, "confer"));
                                 break;
                             case Concepts.DateModified:
-                                var inModTime = unicodeValue.Trim();
+                                string inModTime = unicodeValue.Trim();
                                 DateTime dateValue;
                                 if(!DateTime.TryParse(inModTime, out dateValue))
                                 {
@@ -547,7 +547,7 @@ namespace SolidGui.Export
 
                             case Concepts.LexicalRelationType:
                                 var relations = ProduceRelationsFromField(field, currentState, unicodeValue, string.Empty);
-                                foreach (var relation in relations)
+                                foreach (Relation relation in relations)
                                 {
                                     currentState.LexEntryAdapter.SenseRelations.Add(
                                         new KeyValuePair<LexSense, Relation>(currentSense, relation));
@@ -629,7 +629,7 @@ namespace SolidGui.Export
         private string MakeSingleLine(string s)
         {
             var combined = new StringBuilder();
-            foreach(var line in s.Split(new char[] {'\r', '\n'}))
+            foreach(string line in s.Split(new char[] {'\r', '\n'}))
             {
                 if(line.Trim().Length>0)
                     combined.Append(line.Trim() + " ");
@@ -645,7 +645,7 @@ namespace SolidGui.Export
 
         private LexEtymology AddBorrowedWord(LexEntry liftLexEntry, string type, string sourceLanguage)
         {
-            var etymology = new LexEtymology(type, sourceLanguage);
+            LexEtymology etymology = new LexEtymology(type, sourceLanguage);
             liftLexEntry.Etymologies.Add(etymology);
             return etymology;
         }
@@ -717,7 +717,7 @@ namespace SolidGui.Export
                     AddSolidNote("Invalid Relation. Could not find targetID for relation:" + type + " in " + currentState.LiftLexEntry.LexicalForm.ToString());
                 }
             }
-            foreach (var id in targetIdList.Split(new char[]{',',';'}))
+            foreach (string id in targetIdList.Split(new char[]{',',';'}))
             {
                 yield return new Relation(id.Trim(), type);
             }
@@ -725,7 +725,7 @@ namespace SolidGui.Export
 
         private string GetCanonicalRelationName(string type)
         {
-            foreach (var alias in new[] {"syn", "synonym", "synonyms"})
+            foreach (string alias in new[] {"syn", "synonym", "synonyms"})
             {
                 if (type.ToLower() == alias)
                 {
@@ -733,7 +733,7 @@ namespace SolidGui.Export
                     break;
                 }
             }
-            foreach (var alias in new[] { "ant", "antonym"})
+            foreach (string alias in new[] { "ant", "antonym"})
             {
                 if (type.ToLower() == alias)
                 {
@@ -741,7 +741,7 @@ namespace SolidGui.Export
                     break;
                 }
             }
-            foreach (var alias in new[] { "confer"})
+            foreach (string alias in new[] { "confer"})
             {
                 if (type.ToLower() == alias)
                 {
@@ -853,9 +853,9 @@ namespace SolidGui.Export
         private LiftInfo GetLiftInfoForField(SfmFieldModel field)
         {
             var result = new LiftInfo();
-            var setting = SolidSettings.FindOrCreateMarkerSetting(field.Marker);
+            SolidMarkerSetting setting = SolidSettings.FindOrCreateMarkerSetting(field.Marker);
 
-            var mappingConceptId = setting.GetMappingConceptId( SolidMarkerSetting.MappingType.Lift);
+            string mappingConceptId = setting.GetMappingConceptId( SolidMarkerSetting.MappingType.Lift);
             if (string.IsNullOrEmpty(mappingConceptId))
             {
                 throw new ApplicationException("The field \\"+field.Marker+"' is not mapped to LIFT");

@@ -123,7 +123,7 @@ namespace SolidGui
             dlg.Filter = "Solid Settings File (*.solid)|*.solid";
             dlg.OverwritePrompt = true;
             dlg.Title = "Save Solid Settings File";
-            var result = dlg.ShowDialog();
+            DialogResult result = dlg.ShowDialog();
             if (result == DialogResult.OK)
             {
                 _solidSettings.SaveAs(dlg.FileName);

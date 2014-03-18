@@ -31,7 +31,7 @@ namespace Solid.Engine
              * 
              * ph isn't safe, because it could be in an \se
              */
-            foreach (var record in _dictionary.AllRecords)
+            foreach (Record record in _dictionary.AllRecords)
             {
                 int indexToMoveAfter = -1;//-1 means we haven't found a root yet
                 for (int i = 0; 
@@ -61,7 +61,7 @@ namespace Solid.Engine
              * 
              * ph isn't safe, because it could be in an \se
              */
-            foreach (var record in _dictionary.AllRecords)
+            foreach (Record record in _dictionary.AllRecords)
             {
                 int indexToMoveAfter = 0;
                 for (int i = 1; //start with the 2nd line, even though we wouldn't move it
@@ -86,7 +86,7 @@ namespace Solid.Engine
                 markersToLeaveAlone.Add("lx");
             }
 
-            foreach (var record in _dictionary.AllRecords)
+            foreach (Record record in _dictionary.AllRecords)
             {
                 for (int i = record.Fields.Count-1;
                     i > 0 ; // don't even look at record marker field
@@ -107,9 +107,9 @@ namespace Solid.Engine
 
         public void MakeInferedMarkersReal(List<string> markers)
         {
-            foreach (var record in _dictionary.AllRecords)
+            foreach (Record record in _dictionary.AllRecords)
             {
-                foreach (var field in record.Fields)
+                foreach (SfmFieldModel field in record.Fields)
                 {
                     if(field.Inferred && markers.Contains(field.Marker))
                         field.Inferred = false;
@@ -118,7 +118,7 @@ namespace Solid.Engine
             }          
         }
 
-        struct RecordAdddition
+        struct RecordAdddition  //JMC:! rename  :)
         {
 
             public string targetHeadWord;
@@ -166,12 +166,12 @@ namespace Solid.Engine
 
         private void PropagateField(string markerOfFieldToPropagate, string markerOfFieldToPlaceBefore, StringBuilder log)
         {
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
-                    var field = record.Fields[i];
+                    SfmFieldModel field = record.Fields[i];
                     if (field.Marker == markerOfFieldToPropagate)
                     {
                         fieldToCopy = field;
@@ -194,10 +194,10 @@ namespace Solid.Engine
         private List<RecordAdddition> FindNeededEntryAdditions(List<string> markers)
         {
             var additions = new List<RecordAdddition>();
-            foreach (var record in _dictionary.AllRecords)
+            foreach (Record record in _dictionary.AllRecords)
             {
                 string lastPOS = "FIXME";
-                foreach (var field in record.Fields)
+                foreach (SfmFieldModel field in record.Fields)
                 {
                     //nb: this isn't going to work when the refering marker
                     //comes before any ps
@@ -207,7 +207,7 @@ namespace Solid.Engine
                     }
                     if(markers.Contains(field.Marker))
                     {
-                        var headword = field.Value.Trim();
+                        string headword = field.Value.Trim();
                         if( !string.IsNullOrEmpty(headword) &&
                             !additions.Any( x => x.targetHeadWord == headword) )
                         {
@@ -222,10 +222,10 @@ namespace Solid.Engine
         private void AddNewEntries(List<RecordAdddition> additions, StringBuilder log)
         {
             SolidSettings nullSettings = new SolidSettings();  // JMC: why a new bunch?
-            foreach (var addition in additions)
+            foreach (RecordAdddition addition in additions)
             {
                 string switchToCitationForm;
-                var targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
+                Record targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
                 if (targetRecord == null)
                 {
                     targetRecord = FindRecordContainingVariantOrSubEntry(addition.targetHeadWord);
@@ -263,21 +263,21 @@ namespace Solid.Engine
 
         private void SplitFieldsWithMultipleItems(List<string> markers, StringBuilder log)
         {
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
-                    var field = record.Fields[i];
+                    SfmFieldModel field = record.Fields[i];
                     if (markers.Contains(field.Marker))
                     {
-                        var parts = field.Value.SplitTrimmed(',');
+                        List<string> parts = field.Value.SplitTrimmed(',');
                         if (parts.Count > 1)
                         {
                             parts.Reverse();
                             record.RemoveField(i);
 
                             log.AppendFormat("Splitting '\\{0} {1}' into multiple fields\r\n", field.Marker, field.Value);
-                            foreach (var headword in parts)
+                            foreach (string headword in parts)
                             {
                                 var f = new SfmFieldModel(field.Marker, headword, field.Trailing, field.Depth, false);
                                 record.InsertFieldAt(f, i);
@@ -295,11 +295,11 @@ namespace Solid.Engine
             form = form.Trim();
 
 
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 if (record.HasMarker("lc"))
                 {
-                    var citationField = record.GetFirstFieldWithMarker("lc");
+                    SfmFieldModel citationField = record.GetFirstFieldWithMarker("lc");
                     if (citationField != null && citationField.Value.Trim() == form)
                     {
                         return record;
@@ -309,14 +309,14 @@ namespace Solid.Engine
 
             //not found? Now look at the \lx's
 
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 if (record.Fields[0].Value.Trim() == form)
                 {
                     //do we need to switch to the lc so it links?
                     if (record.HasMarker("lc"))
                     {
-                        var citationField = record.GetFirstFieldWithMarker("lc");
+                        SfmFieldModel citationField = record.GetFirstFieldWithMarker("lc");
                         if (citationField != null)
                         {
                             switchToCitationForm = citationField.Value.Trim();
@@ -331,9 +331,9 @@ namespace Solid.Engine
         private Record FindRecordContainingVariantOrSubEntry(string form)
         {
 
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
-                foreach (var field in record.Fields)
+                foreach (SfmFieldModel field in record.Fields)
                 {
                     if (field.Marker == "va" || field.Marker == "se")
                     {
@@ -351,10 +351,10 @@ namespace Solid.Engine
         // Ditto for "Sense" and "sn", in this particular quick fix.
         public string PropagatePartOfSpeech()
         {
-            var sensesEffected = 0;
+            int sensesEffected = 0;
 
             StringBuilder logBuilder= new StringBuilder();
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 var encounteredSn = false;
 
@@ -364,7 +364,7 @@ namespace Solid.Engine
                 SfmFieldModel fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
-                    var field = record.Fields[i];
+                    SfmFieldModel field = record.Fields[i];
                     if (field.Marker == "ps")
                     {
                         if (!encounteredSn)
@@ -417,7 +417,7 @@ namespace Solid.Engine
         {
             for (int i = startBelowMarkerIndex+1; i < record.Fields.Count; i++)
             {
-                var field = record.Fields[i];
+                SfmFieldModel field = record.Fields[i];
                 if (markersToStopAt.Contains(field.Marker))
                 //if (field.Marker == markerToStopAt)
                 {
@@ -431,7 +431,7 @@ namespace Solid.Engine
 
         public void AddGuids()
         {
-            foreach (var record in _dictionary.Records)
+            foreach (Record record in _dictionary.Records)
             {
                 if (record.GetFirstFieldWithMarker("guid") != null)
                     continue;

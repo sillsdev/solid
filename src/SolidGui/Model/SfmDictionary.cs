@@ -315,7 +315,7 @@ namespace SolidGui.Model
                     var rf = new RecordFormatter();
                     rf.SetDefaultsDisk();
 
-                    foreach (var record in _recordList)
+                    foreach (Record record in _recordList)
                     {
                         writer.Write(rf.Format(record, ss));
                         /*

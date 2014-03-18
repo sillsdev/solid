@@ -77,7 +77,7 @@ namespace SolidGui.Filter
         {
             if (!_changingFilter)
             {
-                var sel = _warningFilterListBox.SelectedItems;
+                ListBox.SelectedObjectCollection sel = _warningFilterListBox.SelectedItems;
                 if (sel != null && sel.Count > 0)
                 {
                     _model.ActiveWarningFilter = (RecordFilter)_warningFilterListBox.SelectedItem;

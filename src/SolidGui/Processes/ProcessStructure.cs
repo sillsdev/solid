@@ -219,7 +219,7 @@ namespace SolidGui.Processes
             scope.Add(lexEntry.FirstField/* The lx field */);
             var outputEntry = SfmLexEntry.CreateDefault(lexEntry.FirstField);
 
-            foreach (var sfmField in lexEntry.Fields)
+            foreach (SfmFieldModel sfmField in lexEntry.Fields)
             {
                 if(sfmField != lexEntry.FirstField)
                 {

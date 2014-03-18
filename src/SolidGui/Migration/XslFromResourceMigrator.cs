@@ -17,7 +17,7 @@ namespace SolidGui.Migration
         protected override TextReader OpenXslStream(string xslSource)
         {
             string resourceName = "SolidGui.Migration." + xslSource;
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
             return new StreamReader(stream);
         }
     }

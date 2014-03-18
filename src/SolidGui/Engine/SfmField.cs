@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SolidGui.Engine
 {
-    // Primarily used for parsing. -JMC
+    // Primarily used while parsing. -JMC
     public class SfmField
     {
         public static string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows

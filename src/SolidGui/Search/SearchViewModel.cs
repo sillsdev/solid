@@ -64,7 +64,7 @@ namespace SolidGui.Search
         {
             FindThis = val;
 
-            var opt = RegexOptions.Multiline | RegexOptions.Compiled;
+            RegexOptions opt = RegexOptions.Multiline | RegexOptions.Compiled;
             if (!CaseSensitive)
             {
                 opt = RegexOptions.IgnoreCase | opt;
@@ -223,7 +223,7 @@ namespace SolidGui.Search
             RecordFilter filter = this.Filter;
             SearchResult res = null;
 
-            var record = filter.GetRecord(recordIndex);
+            Record record = filter.GetRecord(recordIndex);
             if (record == null)
                 return null; // -1;
             string recordText;
@@ -232,7 +232,7 @@ namespace SolidGui.Search
                 // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
                 recordText = RecFormatter.Format(record, _model.MarkerSettingsModel.SolidSettings);
 
-                var recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
+                string recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
                 // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
                 // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
                 // recordText = ReggieTempHack.Replace(recordText, "\n");

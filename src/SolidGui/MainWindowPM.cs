@@ -316,7 +316,7 @@ namespace SolidGui
 
             //var dict = _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
             //var dict = new SfmDictionary();
-            var dict = _workingDictionary;
+            SfmDictionary dict = _workingDictionary;
             if (dict.Open(_realDictionaryPath, Settings, _recordFilters))  
             {
                 if (DictionaryProcessed != null)

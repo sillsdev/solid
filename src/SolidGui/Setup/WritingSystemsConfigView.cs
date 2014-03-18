@@ -58,7 +58,7 @@ namespace SolidGui.Setup
 
         public void CloseForm()
         {
-            var form = ParentForm;
+            Form form = ParentForm;
             if (form != null)
             {
                 form.Close();

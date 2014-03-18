@@ -14,6 +14,8 @@ using SolidGui.Processes;
 namespace SolidGui.Model
 {
 
+    // See SfmFieldModel. I.e. this is basically SfmRecordModel / SfmRecord / SfmRecordNode 
+    // it has a tree structure. Primarily used once the data is in Solid. -JMC
     public class Record
     {
         private static int _recordIdCounter = 0;
@@ -102,17 +104,17 @@ namespace SolidGui.Model
                     RecordTextChanged.Invoke(this, new EventArgs());
             }
         }
-        /*
+
         public override string ToString()
         {
             StringBuilder record = new StringBuilder();
-            foreach(Field field in _fields)
+            foreach(SfmFieldModel field in this.Fields)
             {
                 record.AppendLine(field.ToString());
             }
             return record.ToString();
         }
-        */
+
         /*
         public string ToStringWithoutInferred()
         {

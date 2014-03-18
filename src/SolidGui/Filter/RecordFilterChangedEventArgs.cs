@@ -7,7 +7,7 @@ namespace SolidGui
 {
     public class RecordFilterChangedEventArgs : System.EventArgs 
     {
-        public RecordFilter RecordFilter;
+        public RecordFilter RecordFilter;  //JMC: Hmm... rename?
 
         public RecordFilterChangedEventArgs(RecordFilter recordFilter)
         {

@@ -16,6 +16,7 @@ using Palaso.Reporting;
 using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
+using SolidGui.Mapping;
 using SolidGui.Model;
 
 
@@ -33,7 +34,7 @@ namespace SolidGui.MarkerSettings
         {
             InitializeComponent();
 
-            var frequencyCount = (from GLColumn c in _markerListView.Columns where c.Text == "Count" select c).First();
+            GLColumn frequencyCount = (from GLColumn c in _markerListView.Columns where c.Text == "Count" select c).First();
             frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));   // JMC: Consider doing the same to make other columns sortable too
             _markerListView.GridLineStyle = GLGridLineStyles.gridNone;
             _markerListView.SelectionColor = Color.LightYellow;
@@ -142,12 +143,12 @@ namespace SolidGui.MarkerSettings
                 return "??";
             }
 
-            var repository = AppWritingSystems.WritingSystems;
+            IWritingSystemRepository repository = AppWritingSystems.WritingSystems;
             if (!repository.Contains(writingSystemId))
             {
                 return writingSystemId;
             }
-            var definition = repository.Get(writingSystemId);
+            IWritingSystemDefinition definition = repository.Get(writingSystemId);
             return (definition != null) ? definition.DisplayLabel : "??";
         }
 
@@ -156,7 +157,7 @@ namespace SolidGui.MarkerSettings
             string conceptId = markerSetting.GetMappingConceptId(type);
             var mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
 
-            var concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
+            MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
 
             string mapping = (concept != null) ? concept.Label() : null;
             
@@ -166,7 +167,7 @@ namespace SolidGui.MarkerSettings
         private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties)
         {
             string parents = "";
-            foreach (var property in properties)
+            foreach (SolidStructureProperty property in properties)
             {
                 if (!string.IsNullOrEmpty(property.Parent))
                 {
@@ -251,6 +252,7 @@ namespace SolidGui.MarkerSettings
             int n = 0;
             foreach (var filter in _markerListView.Items)
             {
+                //JMC:! don't we need to cast filter from object to RecordFilter ?
                 if (filter == e.RecordFilter)
                 {
                     _markerListView.Items[n].Selected = true;
@@ -319,7 +321,7 @@ namespace SolidGui.MarkerSettings
             }
 
             // Handle the new unicode column -JMC
-            var m = _markerSettingsPM.GetMarkerSetting(marker);
+            SolidMarkerSetting m = _markerSettingsPM.GetMarkerSetting(marker);
             if (m.Unicode != item.SubItems[4].Checked)
             {
                 _markerSettingsPM.WillNeedSave();

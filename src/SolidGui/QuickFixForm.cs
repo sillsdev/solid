@@ -50,8 +50,8 @@ namespace SolidGui
             try
             {
                 UsageReporter.SendNavigationNotice("QuickFix/MoveUp");
-                var moveMarkers = _moveUpMarkers.Text.SplitTrimmed(',');
-                var rootMarkers = _moveUpRoots.Text.SplitTrimmed(',');
+                List<string> moveMarkers = _moveUpMarkers.Text.SplitTrimmed(',');
+                List<string> rootMarkers = _moveUpRoots.Text.SplitTrimmed(',');
                 if (moveMarkers.Count > 0 && rootMarkers.Count > 0)
                 {
                     _fixer.MoveCommonItemsUp(rootMarkers, moveMarkers);
@@ -72,7 +72,7 @@ namespace SolidGui
 
         private void OnExecuteRemoveEmpty(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var markers = _removeEmptyMarkers.Text.SplitTrimmed(',');
+            List<string> markers = _removeEmptyMarkers.Text.SplitTrimmed(',');
             try
             {
                 UsageReporter.SendNavigationNotice("QuickFix/RemoveEmtpy");
@@ -90,7 +90,7 @@ namespace SolidGui
         private void OnExecuteSaveInferred_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string s = _tbMakeRealMarkers.Text;
-            var tokens = s.SplitTrimmed(',');
+            List<string> tokens = s.SplitTrimmed(',');
             _fixer.MakeInferedMarkersReal(tokens);
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
@@ -106,8 +106,8 @@ namespace SolidGui
             if (_createReferredToItems.Checked)
             {
                 UsageReporter.SendNavigationNotice("QuickFix/CreateReferredToItems");
-                var log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
-                var path = Path.GetTempFileName()+".txt";
+                string log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
+                string path = Path.GetTempFileName()+".txt";
                 File.WriteAllText(path, log);
                 log = _fixer.MakeEntriesForReferredItemsOfLv();
                 File.AppendAllText(path, log);
@@ -118,8 +118,8 @@ namespace SolidGui
             if (_pushPsDownToSns.Checked)
             {
                 UsageReporter.SendNavigationNotice("QuickFix/PushPOSDOwnToSense");
-                var log = _fixer.PropagatePartOfSpeech();
-                var path = Path.GetTempFileName() + ".txt";
+                string log = _fixer.PropagatePartOfSpeech();
+                string path = Path.GetTempFileName() + ".txt";
                 File.WriteAllText(path, log);
                 Process.Start(path);
 
@@ -132,10 +132,10 @@ namespace SolidGui
         private void OnPremadeLabelClick(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Label l = (Label)sender;
-            var x = l.Text.Replace(") to under (", "|");
+            string x = l.Text.Replace(") to under (", "|");
             x = x.Replace("(", "");
             x = x.Replace(")", "");
-            var z = x.Split(new char[] { '|' });
+            string[] z = x.Split(new char[] { '|' });
             _moveUpMarkers.Text = z[0];
             _moveUpRoots.Text = z[1];
         }

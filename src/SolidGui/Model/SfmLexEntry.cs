@@ -25,7 +25,7 @@ namespace SolidGui.Model
         private SfmLexEntry(IEnumerable<SfmField> fields) :
             this()
         {
-            foreach (var f in fields)
+            foreach (SfmField f in fields)
             {
                 _fields.Add(new SfmFieldModel(f.Marker, f.Value, f.Trailing, 0, false));
             }
@@ -63,12 +63,12 @@ namespace SolidGui.Model
         public string GetHeadWord(SolidSettings solidSettings)
         {
              Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-            var citationFormSetting = 
+            SolidMarkerSetting citationFormSetting = 
                 solidSettings.MarkerSettings.Find(s => "citation" == s.GetMappingConceptId(SolidMarkerSetting.MappingType.Lift));
             if (citationFormSetting == null)
                 return GetLexemeForm(solidSettings);
 
-            var citationField = _fields.Find(f => f.Marker == citationFormSetting.Marker);
+            SfmFieldModel citationField = _fields.Find(f => f.Marker == citationFormSetting.Marker);
 
             if(citationField == null)
                 return GetLexemeForm(solidSettings);

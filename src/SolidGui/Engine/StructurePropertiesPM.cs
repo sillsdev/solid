@@ -97,7 +97,7 @@ namespace Solid.Engine
 
         public bool ValidParent(string marker)
         {
-            var markerWithoutLeadingBackslash = RemoveLeadingBackslash(marker);
+            string markerWithoutLeadingBackslash = RemoveLeadingBackslash(marker);
             return (
                        _allValidMarkers.Contains(markerWithoutLeadingBackslash) &&
                        !_markerSetting.ParentExists(markerWithoutLeadingBackslash) &&

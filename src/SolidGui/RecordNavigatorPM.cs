@@ -202,7 +202,7 @@ namespace SolidGui
 
         public void OnFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-            var filter = e.RecordFilter;
+            RecordFilter filter = e.RecordFilter;
             if (filter == null)
             {
                 ;

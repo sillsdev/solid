@@ -142,11 +142,11 @@ xr,Example free trans. (r)
 xv,Example (v)";
 
             var guesses = new Dictionary<string, string>();
-            foreach (var marker in g.Split((new []{'\n'})))
+            foreach (string marker in g.Split((new []{'\n'})))
             {
-                var pairs = marker.Split(new[] {','});
-                var m = pairs[0];
-                var desc = pairs[1];
+                string[] pairs = marker.Split(new[] {','});
+                string m = pairs[0];
+                string desc = pairs[1];
                 guesses.Add(m.Trim(), desc.Trim());
             }
 
@@ -154,15 +154,15 @@ xv,Example (v)";
             var exportArguments = (ExportArguments)progress.Arguments;
             using (var w = new StreamWriter(exportArguments.outputFilePath))
             {
-                foreach (var rawMarker in exportArguments.markerSettings.MarkersInDictionary)
+                foreach (string rawMarker in exportArguments.markerSettings.MarkersInDictionary)
                 {
-                    var setting = exportArguments.markerSettings.GetMarkerSetting(rawMarker);
+                    SolidMarkerSetting setting = exportArguments.markerSettings.GetMarkerSetting(rawMarker);
 
-                    var marker = rawMarker.Replace("_x005F_", "").Replace("_x0031_", "1").Replace("_x0032_", "2").Replace("_x0033_", "3").Replace("_x0034_", "4");
+                    string marker = rawMarker.Replace("_x005F_", "").Replace("_x0031_", "1").Replace("_x0032_", "2").Replace("_x0033_", "3").Replace("_x0034_", "4");
                     w.Write(marker+'\t');
                     bool first = true;
 
-                    foreach (var property in setting.StructureProperties)
+                    foreach (SolidStructureProperty property in setting.StructureProperties)
                     {
                         if(!first)
                             w.Write(",");

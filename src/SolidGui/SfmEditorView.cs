@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Palaso.UI.WindowsForms.SuperToolTip;
+using SolidGui.Engine;
 using SolidGui.Model;
 
 
@@ -201,7 +202,7 @@ namespace SolidGui
                     _markerTip.AddLineMessage(lineNumber, "Inferred");
                     _contentsBoxDB.SelectionColor = _inferredTextColor;
                 }
-                foreach (var reportEntry in field.ReportEntries)
+                foreach (ReportEntry reportEntry in field.ReportEntries)
                 {
                     _markerTip.AddLineMessage(lineNumber, reportEntry.Description);
                     _contentsBoxDB.SelectionColor = _errorTextColor;

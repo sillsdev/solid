@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Palaso.Reporting;
+using Palaso.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -85,7 +86,7 @@ namespace SolidGui
         // Take whatever was in the view's rich text box and update the underlying model to match it.
         public void UpdateCurrentRecord(Record record, string newContents)
         {
-            var f = _model.NavigatorModel.ActiveFilter;
+            Filter.RecordFilter f = _model.NavigatorModel.ActiveFilter;
             newContents = newContents.TrimStart(null);
             if (newContents.TrimEnd(null) == "") // the DELETE case (issue #174)
             {
@@ -226,11 +227,11 @@ namespace SolidGui
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
-                var repository = AppWritingSystems.WritingSystems;
+                IWritingSystemRepository repository = AppWritingSystems.WritingSystems;
                 if (repository.Contains(writingSystemId))
                 {
-                    var definition = repository.Get(writingSystemId);
-                    var fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
+                    IWritingSystemDefinition definition = repository.Get(writingSystemId);
+                    float fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
                     return new Font(definition.DefaultFontName, fontSize);
                 }
             }
