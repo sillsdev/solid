@@ -16,11 +16,12 @@ namespace SolidGui.Engine
         {
         }
 
-        public SfmRecord(SfmRecord rhs)
+        public SfmRecord(SfmRecord rhs)  // JMC: decipher cryptic meaning of "rhs" before deleting? (unused)
             :
                 base(rhs)
         {
         }
+
 
     }
 }

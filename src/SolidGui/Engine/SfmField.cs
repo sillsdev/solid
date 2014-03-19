@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace SolidGui.Engine
 {
-    // Primarily used while parsing. -JMC
+    // Primarily used while parsing. Otherwise, SfmFieldModel is mostly used. -JMC
     public class SfmField
     {
         public static string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
@@ -39,9 +39,9 @@ namespace SolidGui.Engine
             if (val.Trim() == "")
             {
                 // for empty fields, remember the first trailing whitespace (the separator) too
-                separator = (separator == "\n") ? SolidSettings.NewLine : separator;
+                if (separator == "\n") separator = SolidSettings.NewLine;
                 Value = "";
-                Trailing = separator + val;
+                Trailing = separator + val;  //JMC:! Isn't this often going to result in extra trailing spaces? Remove separator?
                 return;
             }
 

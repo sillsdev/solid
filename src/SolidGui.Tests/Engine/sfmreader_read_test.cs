@@ -300,7 +300,7 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
-        [Ignore("but re-implement??")] // JON!: maybe this choice I made was wrong: "No longer the job of the main parser; will handle with regex in the UI. -JMC 2013-09"
+        [Ignore("but re-implement??")] // JMC:! maybe this choice I made was wrong: "No longer the job of the main parser; will handle with regex in the UI. -JMC 2013-09"
         public void ReadIndentedMarker_Correct()
         {
             const string sfm = "\\lx a\n" +

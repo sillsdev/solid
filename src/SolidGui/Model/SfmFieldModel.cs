@@ -11,7 +11,7 @@ using SolidGui.Engine;
 namespace SolidGui.Model
 {
     // SfmFieldNode might've been clearer, since it's part of a tree structure. 
-    // Primarily used once the data is in Solid. -JMC
+    // Like SfmField, but with more structure (indentation depth) and additional methods. Contained by SfmLexEntry -JMC
     public class SfmFieldModel
     {
         private readonly int _id;

@@ -82,17 +82,6 @@ namespace SolidGui.Tests.Model
 		}
 
 		[Test]
-        [Ignore("outdated test")]  // We now support letting the user do this (delete entry by clearing it) -JMC 2013-10
-		public void CreateFromText_EmptyString_Throws()
-		{
-			const string sfmIn = @"";
-
-			Assert.Throws<ArgumentException>(
-				() => SfmLexEntry.CreateFromText(sfmIn)
-				);
-		}
-
-		[Test]
 		public void CreateFromText_ValidEntry()
 		{
 			const string sfmIn = @"

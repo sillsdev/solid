@@ -10,6 +10,7 @@ using SolidGui.Mapping;
 
 namespace SolidGui.Model
 {
+    // Mostly just stores a parsed SFM entry
     public class SfmLexEntry
     {
         private readonly List<SfmFieldModel> _fields;
@@ -34,6 +35,22 @@ namespace SolidGui.Model
         public List<SfmFieldModel> Fields
         {
             get { return _fields; }
+        }
+
+        public bool SameAs(SfmLexEntry e2)
+        {
+            bool result = true;
+            int i = 0;
+            foreach (SfmFieldModel f in _fields)
+            {
+                SfmFieldModel f2 = e2.Fields[i++];
+                if (f.Marker != f2.Marker || f.DecodedValue(null) != f2.DecodedValue(null) || f.Trailing != f2.Trailing)
+                {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
         }
 
         public SfmFieldModel FirstField
@@ -76,7 +93,7 @@ namespace SolidGui.Model
             return citationField.DecodedValue(solidSettings).Trim();
         }
 
-        // JMC:? Temporarily avoiding all build warnings; don't forget to uncomment the following later
+        // JMC:!? Temporarily avoiding all build warnings; don't forget to uncomment the following later
         // [Obsolete("This method does not decode the value, use GetName(SolidSettings) instead")]
         public string Name
         {

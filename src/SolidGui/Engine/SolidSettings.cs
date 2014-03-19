@@ -108,11 +108,13 @@ namespace SolidGui.Engine
         [XmlIgnore]
         public bool DefaultEncodingUnicode { get; private set; }
 
-        [XmlIgnore] // JMC: Or, should we save this into the (next version of the) .solid file? Or make it a global user preference?
-        // NewLine s/b "\r\n" but it is not readonly. We could make it a user preference now that it's centralized here. -JMC 2013-10
-        // JMC: but it would be good to first do full testing (both unit and UI) using "\n" as the value.
-        public static string NewLine = "\r\n";  //static for now; maybe shouldn't be -JMC
-
+        [XmlIgnore] // JMC: Probably not worth saving this into the (next version of the) .solid file.
+        // NewLine should save as "\r\n" on Windows, but now that it's centralized here, and less is hard-coded, 
+        // maybe it can flex. Really, "\n" would be nicer (esp. given RichTextBox's behavior), and only using
+        // \r\n when saving to disk on Windows.
+        // JMC: But it would be good to first do full testing (both unit and UI) using "\n" as the value.
+        public static string NewLine = "\r\n";  //Static for now; maybe shouldn't be. And maybe should just return System.Environment.NewLine. -JMC
+        
         public bool HasMarker(string marker)
         {
             return FindMarkerSetting(marker) != null;

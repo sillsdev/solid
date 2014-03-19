@@ -36,7 +36,7 @@ namespace SolidGui.Tests.Export
 
  
 
-        [Test] [Ignore("enable test once Palaso fixes #1083")]
+        [Test] [Ignore("Important! Enable this test once Palaso fixes #1083")]
         public void SubEntry_MakesTwoLiftEntriesWithSubPointedAtBase()
         {
             using (var e = new ExportTestScenario())
@@ -53,7 +53,7 @@ namespace SolidGui.Tests.Export
                 dom.LoadXml(e.LiftAsString());
                 var guid = GetGuidOfLexeme(dom, "tired");
                 AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath(string.Format("/lift/entry/relation[@type='_component-lexeme' and @ref='{0}']", guid), 1);
-                // JMC:! issue #1083: need to export complex forms more clearly (not as implicit variants)
+                // JMC:! issue #1083: need to export complex forms more clearly (not as things FLEx sees as implicit variants)
                 // This means adding two <trait> elements: is-primary and complex-form-type
                 AssertThatXmlIn.Dom(dom).HasSpecifiedNumberOfMatchesForXpath("/lift/entry/relation/trait", 2);
             }

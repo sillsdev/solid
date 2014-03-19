@@ -23,15 +23,26 @@ namespace SolidGui.Model
         public string Separator;
         public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates this. -JMC
         public bool ClosingTags;
-        private Regex _regexNewline;
+        private Regex _regexOneNewline;
 
         public RecordFormatter()
         {
             SetDefaultsDisk();
-            _regexNewline = new Regex(@"\r?\n|\r", RegexOptions.CultureInvariant | RegexOptions.Compiled);
+            _regexOneNewline = new Regex(@"\r?\n|\r", RegexOptions.CultureInvariant | RegexOptions.Compiled);
         }
 
-        // Default formatting for Save As (Windows newlines)
+        // A convenience method for overwriting one RecordFormatter with another without affecting existing references (pointers).
+        // The idea is to make it easy to clone to a new one, swap these settings out, then put back the original settings back. -JMC Feb 2014
+        public void FillFrom(RecordFormatter source)
+        {
+            Indented = source.Indented;
+            Inferred = source.Inferred;
+            Separator = source.Separator;
+            NewLine = source.NewLine;
+            ClosingTags = source.ClosingTags;
+        }
+
+        // Default formatting for Save As (Windows newlines, no indents or closers)
         public void SetDefaultsDisk()
         {
             Indented = false;
@@ -62,18 +73,6 @@ namespace SolidGui.Model
         }
 
 
-        // A convenience method for overwriting one RecordFormatter with another without affecting existing references (pointers).
-        // The idea is to make it easy to clone to a new one, swap these settings out, then put back the original settings back. -JMC Feb 2014
-        public void FillFrom(RecordFormatter source)
-        {
-            Indented = source.Indented;
-            Inferred = source.Inferred;
-            Separator = source.Separator;
-            NewLine = source.NewLine;
-            ClosingTags = source.ClosingTags;
-        }
-
-
         // Using my settings, format the record that is passed in.
         public string Format(Record rec, SolidSettings solidSettings) //, MarkerSettings settings)
         {
@@ -94,7 +93,7 @@ namespace SolidGui.Model
                 record.Append(indentation + slash + field.Marker + val + closers + field.Trailing);
             }
             string s = record.ToString();
-            string s2 = _regexNewline.Replace(s, NewLine); //force all newlines to be the same, typically \n or \r\n (\r is unlikely)
+            string s2 = _regexOneNewline.Replace(s, NewLine); //force all newlines to be the same, typically \n or \r\n (\r is unlikely)
             return s2;
         }
 

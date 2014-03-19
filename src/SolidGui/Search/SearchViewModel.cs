@@ -124,7 +124,7 @@ namespace SolidGui.Search
             }
             else
             {
-                CantFindWordErrorMessage(word);  //JMC: Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model)
+                CantFindWordErrorMessage(word);  //JMC:! Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model)
             }
         }
 
@@ -229,7 +229,8 @@ namespace SolidGui.Search
             string recordText;
             if (context == null)
             {
-                // JMC:! WARNING! This has to match the editor's textbox perfectly in character count (e.g. identical newlines); so, replace ToStructuredString() with something better               
+                // JMC:! WARNING! This has to match the editor's textbox perfectly in character count 
+                // (esp. identical newlines and indents); so, replace ToStructuredString() with something better               
                 recordText = RecFormatter.Format(record, _model.MarkerSettingsModel.SolidSettings);
 
                 string recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  

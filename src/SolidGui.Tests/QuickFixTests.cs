@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using Solid.Engine;
@@ -21,44 +22,54 @@ namespace SolidGui.Tests
         [Test]
         public void AddGuids_NoGuid_AddsOne()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "ps" );
+            string s1 = @"\lx \ps";
+            string s2 = @"\lx \ps \guid";
+            var dict = MakeDictionary(new SolidSettings(), s1 );
 
             new QuickFixer(dict).AddGuids();
-            AssertFieldOrder(dict.Records[0], "lx", "ps", "guid");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
         public void AddGuids_HasGuid_DoesNotAddOne()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "guid", "ps");
+            string s1 = @"\lx \guid \ps";
+            string s2 = s1;
+            var dict = MakeDictionary(new SolidSettings(), s1);
 
             new QuickFixer(dict).AddGuids();
-            AssertFieldOrder(dict.Records[0], "lx", "guid", "ps");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
         public void MoveCommonItemsUp()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "ps", "bw");
+            string s1 = @"\lx \ps \bw";
+            string s2 = @"\lx \bw \ps";
+            var dict = MakeDictionary(new SolidSettings(), s1);
             
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));           
-            AssertFieldOrder(dict.Records[0],"lx", "bw","ps");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
         public void MoveCommonItemsUp_FirstTwoFieldsAreTopLevelOnes()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "bw", "hm");
+            string s1 = @"\lx \bw \hm";
+            string s2 = s1;
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
-            AssertFieldOrder(dict.Records[0], "lx", "bw", "hm");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
         public void MoveCommonItemsUp_NothingToMove()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "ps");
+            string s1 = @"\lx \ps";
+            string s2 = s1;
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));
-            AssertFieldOrder(dict.Records[0], "lx", "ps");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
@@ -89,9 +100,11 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_MoveToSnButNoSn_DoesntMove()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "ge");
+            string s1 = @"\lx \a \ge";
+            string s2 = s1;
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).MoveCommonItemsUp(M("sn"), M("ge"));
-            AssertFieldOrder(dict.Records[0], "lx", "a", "ge");
+            AssertFieldOrder(dict.Records[0], s2);
         }
 
         [Test]
@@ -106,9 +119,11 @@ namespace SolidGui.Tests
         [Test]
         public void RemoveEmptyFields_LxIsEmptyButLxNotSpecified_StillLeavesLx()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "sn", "co b");
+            string s1 = @"\lx \sn \co b";
+            string s2 = s1;
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "sn" }));
-            AssertFieldContents(dict.Records[0], "lx", "sn", "co b");
+            AssertFieldContents(dict.Records[0], s2);
 
         }
 
@@ -139,9 +154,9 @@ namespace SolidGui.Tests
         }
 
         [Test]
-        public void RemoveEmptyFields_MultipleSpecifiec_AllUsed()
+        public void RemoveEmptyFields_MultipleSpecified_AllUsed()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx","sn", "rf");
+            var dict = MakeDictionary(new SolidSettings(), "lx", "sn", "rf");
             new QuickFixer(dict).RemoveEmptyFields(new List<string>(new[] { "sn", "rf"}));
             AssertFieldOrder(dict.Records[0], "lx", "sn", "rf");
 
@@ -160,6 +175,7 @@ namespace SolidGui.Tests
             var dict = MakeDictionary(settings, "lx", "ps");
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
             Assert.IsTrue(dict.Records[0].Fields[1].Inferred);
+
             new QuickFixer(dict).MakeInferedMarkersReal(M("sn"));
             AssertFieldOrder(dict.Records[0], "lx", "sn", "ps");
             Assert.IsFalse(dict.Records[0].Fields[1].Inferred);
@@ -174,6 +190,35 @@ namespace SolidGui.Tests
             AssertFieldContents(dict.Records[0], "lx a", "cf b");
             AssertFieldContents(dict.Records[1], "lx b");
         }
+
+        [Ignore("But we need this, to support MDF well. -JMC 2014-03")]
+        [Test]
+        public void MakeEntriesForReferredItems_HomTargetExists_DoesNothing() 
+        {
+            string s1 = @"\lx a \cf b2 ";
+            string s2 = @"\lx b \hm 1 ";
+            string s3 = @"\lx b \hm 2";
+            var dict = MakeDictionary(new SolidSettings(), s1+s2+s3);
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(3, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], s1);
+            AssertFieldContents(dict.Records[1], s2);
+            AssertFieldContents(dict.Records[2], s3);
+        }
+
+        [Ignore("But we need this, to support MDF well. -JMC 2014-03")]
+        [Test]
+        public void MakeEntriesForReferredItems_SenseTargetExists_DoesNothing()
+        {
+            string s1 = @"\lx a \cf b 2 ";
+            string s2 = @"\lx b \sn 1 \ge x \sn 2 \ge y";
+            var dict = MakeDictionary(new SolidSettings(), s1+s2);
+            new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
+            Assert.AreEqual(2, dict.Records.Count);
+            AssertFieldContents(dict.Records[0], s1);
+            AssertFieldContents(dict.Records[1], s2);
+        }
+
 
         [Test]
         public void MakeEntriesForReferredItems_SyWithNoValue_DoesNothing()
@@ -254,19 +299,30 @@ namespace SolidGui.Tests
         [Test]
         public void MakeEntriesForReferredItems_HasDifferentLc_ReferrerSwitchedToIt()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx a", "cf b", "lx b", "lc x");
+            string s1 = @"\lx a \cf b \lx b \lc x";
+            var dict = MakeDictionary(new SolidSettings(), s1); //"lx a", "cf b", "lx b", "lc x");
             new QuickFixer(dict).MakeEntriesForReferredItems(M("cf"));
             Assert.AreEqual(2, dict.Records.Count);
             AssertFieldContents(dict.Records[0], "lx a", "cf x");
+            SfmLexEntry e2 = CreateEntry(s1);
+            Assert.IsFalse(e2.SameAs(dict.Records[0].LexEntry));
         }
 
+        // Support syntax/usage like the following, which will become an array 
+        // of length 4:  @"\lx a \ps noun \sn 1 \ge cat"
+        private static string[] splitSingle(string[] fields)
+        {
+            if (fields.Length == 1)
+            {
+                fields = fields[0].TrimStart('\\').Split('\\').Select(s => s.Trim()).ToArray();
+                //was: fields = fields[0].TrimStart('\\').Split('\\');
+            }
+            return fields;
+        }
 
         private SfmDictionary MakeDictionary(SolidSettings settings, params string[] fields)
         {
-            if (fields.Length == 1)  //enable usage like this:  @"\lx a \ps noun \sn 1 \ge cat"
-            {
-                fields = fields[0].TrimStart('\\').Split('\\');
-            }
+            fields = splitSingle(fields);
 
             var dictionary = new SfmDictionary();
             for (int i = 0; i < fields.Length; )
@@ -274,7 +330,7 @@ namespace SolidGui.Tests
                 var b = new StringBuilder();
                 do
                 {
-                    b.AppendLine("\\" + fields[i]);
+                    b.AppendLine("\\" + fields[i]);  //JMC: probably should globally find all .AppendLine and instead use .Append(SolidSettings.Newline)
                     ++i;
                 } while (i < fields.Length && !fields[i].StartsWith("lx"));
  
@@ -285,30 +341,69 @@ namespace SolidGui.Tests
             return dictionary;
       }
 
+        // In this case, the expectation is that markers without values are passed in
         private void AssertFieldOrder(Record record, params string[] markers)
         {
+            markers = splitSingle(markers);
+
             for (int i = 0; i < markers.Length; i++)
             {
-                Assert.AreEqual(markers[i], record.Fields[i].Marker);                
+                Assert.AreEqual(markers[i].Trim(), record.Fields[i].Marker);                
             }
             Assert.AreEqual(markers.Length, record.Fields.Count);
         }
 
-        private void AssertFieldContents(Record record,  params string[] fields)
+        private SfmLexEntry CreateEntry(params string[] fields)
         {
-            if (fields.Length == 1)  //enable usage like this:  @"\lx a \ps noun \sn 1 \ge cat"
+            fields = splitSingle(fields);
+
+            var sb = new StringBuilder();
+            foreach (string f in fields)
             {
-                fields = fields[0].Trim('\\').Split('\\');
+                sb.Append("\\");
+                sb.Append(f);
+                sb.Append(SolidSettings.NewLine);
             }
 
+            string s2 = sb.ToString();
+            var lex2 = SfmLexEntry.CreateFromText(s2);
+            return lex2;
+        }
+
+        // Given a Record, and a string or array of strings representing the fields of a second record, first add
+        // newlines to the second one, then make it into a Record and verify that they are the same.
+        // Assumptions: this method should insert leading backslashes and trailing field-separating newlines.
+        private void AssertFieldContents(Record record,  params string[] fields)
+        {
+            SfmLexEntry lex2 = CreateEntry(fields);
+            Assert.IsTrue(lex2.SameAs(record.LexEntry));
+
+            fields = splitSingle(fields);
+
+            // Do some bonus checking, so that these unit tests will exercise RecordFormatter too.
+            Record record2 = new Record(lex2, null);
+            var rf = new RecordFormatter();
+            rf.SetDefaultsDisk(); //flat is fine
+            string out1 = rf.Format(record, null);
+            string out2 = rf.Format(record2, null);
+            Assert.AreEqual(out1, out2);
+            Assert.AreEqual(record.Fields.Count, record2.Fields.Count);
+
+        }
+
+        // Similar, but allows an asterisk to mean "any field value".
+        private void AssertFieldContentsWild(Record record, params string[] fields)
+        {
             for (int i = 0; i < fields.Length; i++)
             {
-                if(fields[i]!="*")
+                if (fields[i].Trim() != "*")
                 {
-                    Assert.AreEqual("\\"+fields[i].Trim(), record.Fields[i].ToStructuredString(null).Trim());
+                    string tmp = record.Fields[i].Marker + " " + record.Fields[i].Value;
+                    Assert.AreEqual(tmp, fields[i]);
                 }
             }
             Assert.AreEqual(fields.Length, record.Fields.Count);
+
         }
 
         [Test]
@@ -319,7 +414,12 @@ namespace SolidGui.Tests
             new QuickFixer(dict).MakeEntriesForReferredItemsOfLv();
             Assert.AreEqual(2, dict.Records.Count);
             AssertFieldContents(dict.Records[0], "lx a", "lf foo", "lv x");
-            AssertFieldContents(dict.Records[1], "lx x", "*", "*");
+            AssertFieldContentsWild(dict.Records[1], "lx x", "*", "*");  // Is this really useful? Adding more below. -JMC 2014-03
+            Assert.IsTrue(dict.Records[1].Fields[1].Marker == "ps");
+            Assert.IsTrue(dict.Records[1].Fields[1].Value == "FIXME");
+            Assert.IsTrue(dict.Records[1].Fields[2].Marker == "CheckMe");
+            Assert.IsTrue(dict.Records[1].Fields[2].Value.StartsWith("Created by"));
+
         }
 
         [Test]
@@ -374,38 +474,42 @@ namespace SolidGui.Tests
         [Test]
         public void PropagatePartOfSpeech_PsBeforeSn_Switches()
         {
-            var dict = MakeDictionary(new SolidSettings(),
-                        @"\lx a \ps noun \sn 1 \ge cat");
+            string s1 = @"\lx a \ps noun \sn 1 \ge cat";
+            string s2 = @"\lx a \sn 1 \ps noun \ge cat";
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).PropagatePartOfSpeech();
-            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun  \ge cat");
+            AssertFieldContents(dict.Records[0], s2);
         }
         
         [Test]
         public void PropagatePartOfSpeech_StopsAtEndOfEntry()
         {
-            var dict = MakeDictionary(new SolidSettings(),
-                        @"\lx a \ps noun \lx b \ge dog");
+            string s1 = @"\lx a \ps noun \lx b \ge dog";
+            string s2 = @"\lx b \ge dog";
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).PropagatePartOfSpeech();
             Assert.AreEqual(2, dict.Records.Count);
-            AssertFieldContents(dict.Records[1], "lx b", "ge dog");
+            AssertFieldContents(dict.Records[1], s2);
         }
 
         [Test]
         public void PropagatePartOfSpeech_PsPropgatedToNextSense()
         {
-            var dict = MakeDictionary(new SolidSettings(),
-                        @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge lion");
+            string s1 = @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge lion";
+            string s2 = @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion";
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).PropagatePartOfSpeech();
-            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ps noun \ge lion");
+            AssertFieldContents(dict.Records[0], s2);
         }
 
         [Test]
         public void PropagatePartOfSpeech_NextSenseHasPOS_DoesntPropagate()
         {
-            var dict = MakeDictionary(new SolidSettings(),
-                        @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge foo \ps verb");
+            string s1 = @"\lx a \ps noun \sn 1 \ge cat \sn 2 \ge foo \ps verb";
+            string s2 = @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge foo \ps verb";
+            var dict = MakeDictionary(new SolidSettings(), s1);
             new QuickFixer(dict).PropagatePartOfSpeech();
-            AssertFieldContents(dict.Records[0], @"\lx a \sn 1 \ps noun \ge cat \sn 2 \ge foo  \ps verb");
+            AssertFieldContents(dict.Records[0], s2);
         }
 
 		[Test] // http://projects.palaso.org/issues/514
