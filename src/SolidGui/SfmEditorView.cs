@@ -26,9 +26,6 @@ namespace SolidGui
         private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
         private readonly Color _inferredTextColor = Color.Blue;
 
-        private readonly KeyScanner _keyScanner = new KeyScanner();
-        //private const string _processingMark = "\x01";
-        
         private readonly MarkerTip _markerTip;
         private int _indent = 130;
         private bool _isDirty;
@@ -127,7 +124,6 @@ namespace SolidGui
                 _currentRecord = e.Record;
                 HighlightMarkers =  e.HighlightMarkers;
                 UpdateView();
-                _keyScanner.Reset();
             }
             ContentsBox.Focus();
         }
@@ -184,18 +180,7 @@ namespace SolidGui
                 if (field == null) break;
                 string indentation = new string(' ', field.Depth * _spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
-/*
-                if (!foundProcessingMark)
-                {
-                    if (field.Value == _processingMark)
-                    {
-                        foundProcessingMark = true;
-                        field.Value = "";
-                        fieldText = indentation + markerPrefix + field.Marker + "\t" + field.Value;
-                    }
-                    currentPosition += fieldText.Length + 1;
-                }
-*/
+
                 _contentsBoxDB.SelectionColor = _defaultTextColor;
                 if (field.Inferred)
                 {
@@ -245,23 +230,6 @@ namespace SolidGui
 
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
-
-
-/*        
-        private void _contentsBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (_keyScanner.ProcessKey(e.KeyValue))
-            {
-                ContentsBox.SelectedText = _processingMark;
-                UpdateContentsOfTextBox();
-                _keyScanner.Reset();
-            }
-            if (RecordTextChanged != null)
-            {
-                RecordTextChanged.Invoke(this, new EventArgs());
-            }
-        }
-*/
 
         public void UpdateView()
         {
@@ -362,7 +330,7 @@ namespace SolidGui
             _isDirty = true;
             if (RecordTextChanged != null)
             {
-                RecordTextChanged.Invoke(this, new EventArgs());
+                RecordTextChanged.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -376,6 +344,10 @@ namespace SolidGui
             }
         }
 
+        // JMC: There also used to be a KeyUp event, which apparently detected a space after a backslash and 
+        // auto-indented on the fly. It's been dead code for a long time, so I've removed it ( just after this changeset: 19 Mar 2014, 97f17ef696a04430e0f1a88e65121f694564e29d )
+
+        // Mainly handles the shortcut keys for the navigator view, but also for Recheck All.
         private void _contentsBox_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -384,9 +356,9 @@ namespace SolidGui
                     if (e.Control)
                     {
                         if (e.Shift)
-                            _model.SfmEditorModel.MoveToLast();
+                            _model.SfmEditorModel.MoveToLast();  // Ctrl+Shift+PgDn
                         else
-                            _model.SfmEditorModel.MoveToNext();
+                            _model.SfmEditorModel.MoveToNext();  // Ctrl+PgDn
                         e.Handled = true;
                     }
                     break;
@@ -394,75 +366,25 @@ namespace SolidGui
                     if (e.Control)
                     {
                         if (e.Shift)
-                            _model.SfmEditorModel.MoveToFirst();
+                            _model.SfmEditorModel.MoveToFirst();  // Ctrl+Shift+PgUp
                         else
-                            _model.SfmEditorModel.MoveToPrevious();
+                            _model.SfmEditorModel.MoveToPrevious(); // Ctrl+PgUp
                         e.Handled = true;
                     }
                     break;
                 case Keys.F5:
                     if (e.Control)
                     {
-                        RecheckKeystroke.Invoke(this, new EventArgs());
+                        RecheckKeystroke.Invoke(this, EventArgs.Empty);  // Ctrl+F5
                     }
                     else
                     {
-                        RefreshRecord();
+                        RefreshRecord();  // F5
                     }
-                        e.Handled = true;
+                    e.Handled = true;
                     break;
             }
         }
-
-        #region Nested type: KeyScanner
-
-        class KeyScanner
-        {
-            State _state;
-
-            public KeyScanner()
-            {
-                Reset();
-            }
-
-            public void Reset()
-            {
-                _state = State.ScanBackslash;
-            }
-
-            public bool ProcessKey(int c)  //JMC: Dead code? Delete it?
-            {
-                bool retval = false;
-                switch (_state)
-                {
-                    case State.ScanBackslash:
-                        if (c == '\\' || c == 220)
-                        {
-                            _state = State.ScanWhite;
-                        }
-                        break;
-                    case State.ScanWhite:
-                        if (c == ' ' || c == 0x09)
-                        {
-                            retval = true;
-                        }
-                        break;
-                }
-                return retval;
-            }
-
-            #region Nested type: State
-
-            enum State
-            {
-                ScanBackslash,
-                ScanWhite
-            }
-
-            #endregion
-        }
-
-        #endregion
 
         #region Nested type: MarkerTip
 

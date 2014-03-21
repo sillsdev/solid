@@ -100,7 +100,7 @@ namespace SolidGui.Model
             {
                 LexEntry.Fields[id].Value = value;
                 if (RecordTextChanged != null)
-                    RecordTextChanged.Invoke(this, new EventArgs());
+                    RecordTextChanged.Invoke(this, EventArgs.Empty);
             }
         }
 

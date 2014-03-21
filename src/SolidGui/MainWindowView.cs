@@ -473,11 +473,11 @@ namespace SolidGui
         {
             if (e.Control == true && e.KeyCode == Keys.F)
             {
-                OnSearchClick(this, new EventArgs());
+                OnSearchClick(this, EventArgs.Empty);
             }
             if (e.Control == true && e.KeyCode == Keys.O)
             {
-                OnOpenClick(this, new EventArgs());
+                OnOpenClick(this, EventArgs.Empty);
             }
             if (e.Control == true && e.KeyCode == Keys.S)
             {
@@ -488,12 +488,12 @@ namespace SolidGui
                 }
                 if (_mainWindowPM.needsSave)
                 {
-                    OnSaveClick(this, new EventArgs());
+                    OnSaveClick(this, EventArgs.Empty);
                 }
             }
             if (e.Control == true && e.KeyCode == Keys.R)
             {
-                OnRecheckButtonClick(this, new EventArgs());
+                OnRecheckButtonClick(this, EventArgs.Empty);
             }
         }
 

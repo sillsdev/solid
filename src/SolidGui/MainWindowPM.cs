@@ -321,7 +321,7 @@ namespace SolidGui
             {
                 if (DictionaryProcessed != null)
                 {
-                    DictionaryProcessed.Invoke(this, null);
+                    DictionaryProcessed.Invoke(this, EventArgs.Empty);
                 }
                 return true;
             }
@@ -363,7 +363,7 @@ namespace SolidGui
 
             if (DictionaryProcessed != null)
             {
-                DictionaryProcessed.Invoke(this, null);
+                DictionaryProcessed.Invoke(this, EventArgs.Empty);
             }
         }
 

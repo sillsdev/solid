@@ -284,7 +284,7 @@ namespace SolidGui.MarkerSettings
             dialog.ShowDialog();
             if (MarkerSettingPossiblyChanged != null)
             {
-                MarkerSettingPossiblyChanged.Invoke(this, new EventArgs());
+                MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
             }
 
             UpdateDisplay(); //more effective at highlighting the row: rebuild all rows
@@ -326,7 +326,7 @@ namespace SolidGui.MarkerSettings
             {
                 _markerSettingsPM.WillNeedSave();
                 m.Unicode = !m.Unicode;
-                MarkerSettingPossiblyChanged.Invoke(this, null);
+                MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
             }
         
         }

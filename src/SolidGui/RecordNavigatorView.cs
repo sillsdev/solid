@@ -113,7 +113,7 @@ namespace SolidGui
 
         public void Find()
         {
-            SearchButtonClicked.Invoke(this, new EventArgs());
+            SearchButtonClicked.Invoke(this, EventArgs.Empty); 
         }
 
         private void _findButton_Click(object sender, EventArgs e)

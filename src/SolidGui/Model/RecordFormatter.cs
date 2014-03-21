@@ -21,7 +21,7 @@ namespace SolidGui.Model
         public bool Indented;
         public bool Inferred;
         public string Separator;
-        public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates this. -JMC
+        public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates \n and not \r\n. -JMC
         public bool ClosingTags;
         private Regex _regexOneNewline;
 

@@ -62,7 +62,7 @@ namespace SolidGui.Mapping
             }
             else
             {
-                _targetCombo_SelectedIndexChanged(this, new EventArgs());
+                _targetCombo_SelectedIndexChanged(this, EventArgs.Empty);
             }
         }
 
