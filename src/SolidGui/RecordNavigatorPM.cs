@@ -37,8 +37,10 @@ namespace SolidGui
         public event EventHandler<RecordChangedEventArgs> RecordChanged;
         public event EventHandler<RecordFilterChangedEventArgs> NavFilterChanged;
 
-        public RecordNavigatorPM()
+        public readonly MainWindowPM Model; 
+        public RecordNavigatorPM(MainWindowPM model)
         {
+            Model = model;
         }
 
         public override string ToString()
@@ -107,6 +109,11 @@ namespace SolidGui
             {
                 NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
             }
+        }
+
+        public void SendEditorRecordFormatterChangedEvent()
+        {
+
         }
 
         public void MoveToLast()

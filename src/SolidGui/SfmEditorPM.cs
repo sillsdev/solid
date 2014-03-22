@@ -19,6 +19,7 @@ namespace SolidGui
     {
         // private SolidSettings _solidSettings;
         private MainWindowPM _model;
+        //private RecordFormatter _recordFormatter;
         //private readonly RecordNavigatorPM _navigatorModel;  // JMC: delete this
         // private SfmDictionary _dictionary;   // working toward fixing #173 etc. (adding/deleting entries) -JMC 2013-09
         public class RecordEditedEventArgs:EventArgs
@@ -45,17 +46,6 @@ namespace SolidGui
             return string.Format("{{edit: {0}}}", _model.WorkingDictionary);
         }
 
-/*
-        // JMC:!! Remove this property altogether? Access it via MainWindowPM instead (easier to swap it out then)
-        public SolidSettings SolidSettings
-        {
-            set
-            { _solidSettings = value; }
-            get  // added it; missing get seemed like a simple oversight, and I needed it. -JMC 2013-09
-            { return _solidSettings; }
-        }
-*/
-
         public void MoveToFirst()
         {
             _model.NavigatorModel.MoveToFirst();
@@ -75,7 +65,7 @@ namespace SolidGui
         {
             _model.NavigatorModel.MoveToNext();
         }
-
+      
         private static Regex ReggieLeading = new Regex(
             @"^[ \t]+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieTab = new Regex(

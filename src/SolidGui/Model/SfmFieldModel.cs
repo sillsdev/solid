@@ -118,11 +118,6 @@ namespace SolidGui.Model
         }
 
 
-        public string ToStructuredString(SolidSettings solidSettings) // TODO Move to UI Adapter CP 2010-08
-        {
-            return "";
-        }
-
         public int Id
         {
             get { return _id; }

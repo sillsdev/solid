@@ -384,8 +384,8 @@ namespace SolidGui.Tests
             Record record2 = new Record(lex2, null);
             var rf = new RecordFormatter();
             rf.SetDefaultsDisk(); //flat is fine
-            string out1 = rf.Format(record, null);
-            string out2 = rf.Format(record2, null);
+            string out1 = rf.FormatPlain(record, null);
+            string out2 = rf.FormatPlain(record2, null);
             Assert.AreEqual(out1, out2);
             Assert.AreEqual(record.Fields.Count, record2.Fields.Count);
 

@@ -377,7 +377,6 @@ namespace SolidGui
             this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._sfmEditorView.HighlightMarkers = null;
-            this._sfmEditorView.Indent = 130;
             this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
             this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this._sfmEditorView.Name = "_sfmEditorView";

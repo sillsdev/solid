@@ -52,7 +52,7 @@ namespace SolidGui
             this._previousButton.FlatAppearance.BorderSize = 0;
             this._previousButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._previousButton.Image = global::SolidGui.Properties.Resources.BackwordOne;
-            this._previousButton.Location = new System.Drawing.Point(122, 3);
+            this._previousButton.Location = new System.Drawing.Point(142, 3);
             this._previousButton.Name = "_previousButton";
             this._previousButton.Size = new System.Drawing.Size(25, 25);
             this._previousButton.TabIndex = 1;
@@ -66,7 +66,7 @@ namespace SolidGui
             this._nextButton.FlatAppearance.BorderSize = 0;
             this._nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._nextButton.Image = global::SolidGui.Properties.Resources.ForwardOne;
-            this._nextButton.Location = new System.Drawing.Point(190, 3);
+            this._nextButton.Location = new System.Drawing.Point(210, 3);
             this._nextButton.Name = "_nextButton";
             this._nextButton.Size = new System.Drawing.Size(25, 25);
             this._nextButton.TabIndex = 2;
@@ -77,7 +77,7 @@ namespace SolidGui
             // 
             this._recordNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._recordNumber.ForeColor = System.Drawing.Color.Yellow;
-            this._recordNumber.Location = new System.Drawing.Point(153, 3);
+            this._recordNumber.Location = new System.Drawing.Point(173, 3);
             this._recordNumber.Margin = new System.Windows.Forms.Padding(3);
             this._recordNumber.Name = "_recordNumber";
             this._recordNumber.Size = new System.Drawing.Size(31, 25);
@@ -92,7 +92,7 @@ namespace SolidGui
             this._firstButton.FlatAppearance.BorderSize = 0;
             this._firstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._firstButton.Image = ((System.Drawing.Image)(resources.GetObject("_firstButton.Image")));
-            this._firstButton.Location = new System.Drawing.Point(91, 3);
+            this._firstButton.Location = new System.Drawing.Point(111, 3);
             this._firstButton.Name = "_firstButton";
             this._firstButton.Size = new System.Drawing.Size(25, 25);
             this._firstButton.TabIndex = 5;
@@ -106,7 +106,7 @@ namespace SolidGui
             this._findButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._findButton.Image = global::SolidGui.Properties.Resources.Search;
             this._findButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._findButton.Location = new System.Drawing.Point(60, 3);
+            this._findButton.Location = new System.Drawing.Point(80, 3);
             this._findButton.Name = "_findButton";
             this._findButton.Size = new System.Drawing.Size(25, 25);
             this._findButton.TabIndex = 6;
@@ -121,7 +121,7 @@ namespace SolidGui
             this.RefreshButton.FlatAppearance.BorderSize = 0;
             this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RefreshButton.Image = global::SolidGui.Properties.Resources.RecheckRecord;
-            this.RefreshButton.Location = new System.Drawing.Point(221, 3);
+            this.RefreshButton.Location = new System.Drawing.Point(241, 3);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(25, 25);
             this.RefreshButton.TabIndex = 8;
@@ -135,12 +135,11 @@ namespace SolidGui
             this.buttonTree.FlatAppearance.BorderSize = 0;
             this.buttonTree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTree.Image = ((System.Drawing.Image)(resources.GetObject("buttonTree.Image")));
-            this.buttonTree.Location = new System.Drawing.Point(34, 3);
+            this.buttonTree.Location = new System.Drawing.Point(54, 3);
             this.buttonTree.Name = "buttonTree";
             this.buttonTree.Size = new System.Drawing.Size(20, 25);
             this.buttonTree.TabIndex = 9;
             this.buttonTree.UseVisualStyleBackColor = true;
-            this.buttonTree.Visible = false;
             this.buttonTree.Click += new System.EventHandler(this.buttonTree_Click);
             // 
             // buttonFlat
@@ -150,10 +149,9 @@ namespace SolidGui
             this.buttonFlat.FlatAppearance.BorderSize = 0;
             this.buttonFlat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonFlat.Image = ((System.Drawing.Image)(resources.GetObject("buttonFlat.Image")));
-            this.buttonFlat.Location = new System.Drawing.Point(11, 3);
-            this.buttonFlat.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.buttonFlat.Location = new System.Drawing.Point(28, 3);
             this.buttonFlat.Name = "buttonFlat";
-            this.buttonFlat.Size = new System.Drawing.Size(20, 28);
+            this.buttonFlat.Size = new System.Drawing.Size(20, 25);
             this.buttonFlat.TabIndex = 10;
             this.buttonFlat.UseVisualStyleBackColor = true;
             this.buttonFlat.Click += new System.EventHandler(this.buttonFlat_Click);
@@ -170,9 +168,9 @@ namespace SolidGui
             this.flowLayoutPanel1.Controls.Add(this.buttonFlat);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(221, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(201, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(249, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(269, 34);
             this.flowLayoutPanel1.TabIndex = 11;
             // 
             // _descriptionLabel

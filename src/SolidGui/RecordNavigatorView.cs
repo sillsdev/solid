@@ -4,6 +4,7 @@
 using System;
 using System.Windows.Forms;
 using SolidGui.Filter;
+using SolidGui.Model;
 
 namespace SolidGui
 {
@@ -72,12 +73,28 @@ namespace SolidGui
             _previousButton.Enabled = _model.CanGoPrev();
             _firstButton.Enabled = _model.CanGoPrev();
             _recordNumber.Text = string.Format("{0}", _model.CurrentRecordIndex+1);
+            this.Enabled = _model.Model.WorkingDictionary.Count > 0;
+            bool indent = _model.Model.EditorRecordFormatter.Indented;
+            if (indent)
+            {
+                buttonFlat.Enabled = true;
+                buttonFlat.FlatStyle = FlatStyle.Flat;
+                buttonTree.Enabled = false;
+                buttonTree.FlatStyle = FlatStyle.Popup;
+            }
+            else
+            {
+                buttonFlat.Enabled = false;
+                buttonFlat.FlatStyle = FlatStyle.Popup;
+                buttonTree.Enabled = true;
+                buttonTree.FlatStyle = FlatStyle.Flat;
+            }
         }
 
         public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-            UpdateDisplay();
             _model.MoveToFirst();
+            UpdateDisplay();
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -123,14 +140,22 @@ namespace SolidGui
 
         private void buttonTree_Click(object sender, EventArgs e)
         {
-            buttonTree.Visible = false;
-            buttonFlat.Visible = true;
+            var rf = new RecordFormatter();
+            rf.SetDefaultsUiTree();
+            _model.Model.SyncFormat(rf);
+
+            //buttonTree.Visible = false;
+            //buttonFlat.Visible = true;
         }
 
         private void buttonFlat_Click(object sender, EventArgs e)
         {
-            buttonTree.Visible = true;
-            buttonFlat.Visible = false;
+            var rf = new RecordFormatter();
+            rf.SetDefaultsUiFlat();
+            _model.Model.SyncFormat(rf);
+
+            //buttonTree.Visible = true;
+            //buttonFlat.Visible = false;
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)

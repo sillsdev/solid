@@ -34,13 +34,15 @@ namespace SolidGui.Search
         }
 
         public event EventHandler<SearchResultEventArgs> WordFound;
+        public event EventHandler<RecordFormatterChangedEventArgs> SearchRecordFormatterChanged;
 
         private MainWindowPM _model;
         private SfmDictionary _dictionary;
         private int _startRecordOfWholeSearch;
         private int _startIndexOfWholeSearch;
 
-        public RecordFormatter RecFormatter;
+        public RecordFormatter RecordFormatter { get; set; }
+
         public RecordFilter Filter;
         public string FindThis;
         public Regex FindThisRegex;
@@ -56,8 +58,8 @@ namespace SolidGui.Search
         public SearchViewModel(MainWindowPM model)
         {
             _model = model;
-            RecFormatter = new RecordFormatter();
-            RecFormatter.SetDefaultsUiTree();
+            RecordFormatter = new RecordFormatter();
+            RecordFormatter.SetDefaultsUiTree();
         }
 
         public void setFindThis(string val)
@@ -69,7 +71,7 @@ namespace SolidGui.Search
             {
                 opt = RegexOptions.IgnoreCase | opt;
             }
-            FindThisRegex = new Regex(val, opt);
+            FindThisRegex = new Regex(val, opt);  
         }
 
         public SfmDictionary Dictionary
@@ -231,9 +233,9 @@ namespace SolidGui.Search
             {
                 // JMC:! WARNING! This has to match the editor's textbox perfectly in character count 
                 // (esp. identical newlines and indents); so, replace ToStructuredString() with something better               
-                recordText = RecFormatter.Format(record, _model.MarkerSettingsModel.SolidSettings);
+                recordText = RecordFormatter.FormatPlain(record, _model.MarkerSettingsModel.SolidSettings);
 
-                string recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
+                //string recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
                 // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
                 // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
                 // recordText = ReggieTempHack.Replace(recordText, "\n");
@@ -288,6 +290,29 @@ namespace SolidGui.Search
                    startTextIndex <= _startIndexOfWholeSearch &&
                    (textIndex >= _startIndexOfWholeSearch || textIndex == -1);
         }
+
+        public void SyncFormat(RecordFormatter rf)
+        {
+            if (RecordFormatter.Indented != rf.Indented)
+            {
+                // Mismatch. We now need to get in sync with the editing pane's indentation.
+                RecordFormatter = rf;
+                var arg = new RecordFormatterChangedEventArgs(rf);
+                SearchRecordFormatterChanged.Invoke(this, arg);
+                /*
+                _recordFormatter = new RecordFormatter();
+                if (editorRF.Indented)
+                {
+                    _recordFormatter.SetDefaultsUiTree();
+                }
+                else
+                {
+                    _recordFormatter.SetDefaultsUiFlat();
+                }
+                 */
+            }
+        }
+
 
     }
 }

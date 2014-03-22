@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -7,6 +8,18 @@ using SolidGui.Engine;
 
 namespace SolidGui.Model
 {
+
+    public class RecordFormatterChangedEventArgs : System.EventArgs
+    {
+        public RecordFormatter NewFormatter;
+
+        public RecordFormatterChangedEventArgs(RecordFormatter newFormatter)
+        {
+            NewFormatter = newFormatter;
+        }
+    }
+
+
     // A sort of adapter for formatting the Record class. Created to replace ye olde:
     // - Record.ToStructuredString() + SfmFieldModel.ToStructuredString()
 
@@ -18,6 +31,12 @@ namespace SolidGui.Model
     // And a non-indented editing mode, which is helpful with regex find/replace  -JMC Feb 2014
     public class RecordFormatter
     {
+
+        // One option here might be a private inner interface IFormatter 
+        // with private inner classers PlainTextFormatter and RichTextFormatter implementing it.
+        // Heavy, but it might make the main formatting method cleaner...? -JMC 
+
+        public const int SpacesInIndentation = 4;
         public bool Indented;
         public bool Inferred;
         public string Separator;
@@ -29,6 +48,15 @@ namespace SolidGui.Model
         {
             SetDefaultsDisk();
             _regexOneNewline = new Regex(@"\r?\n|\r", RegexOptions.CultureInvariant | RegexOptions.Compiled);
+        }
+
+        // E.g. "RF: Tree + NoClosers \r\n" would represent the normal editing format
+        public override string ToString()
+        {
+            string ind = Indented ? "Tree " : "Flat ";
+            string inf = Inferred ? "+ " : "No+ ";
+            string clos = ClosingTags ? "Closers " : "NoClosers ";
+            return "RF: " + ind + inf + Separator + clos + NewLine;
         }
 
         // A convenience method for overwriting one RecordFormatter with another without affecting existing references (pointers).
@@ -73,22 +101,78 @@ namespace SolidGui.Model
         }
 
 
-        // Using my settings, format the record that is passed in.
-        public string Format(Record rec, SolidSettings solidSettings) //, MarkerSettings settings)
+        private string getClosers(SfmFieldModel field)
         {
+            string s = "";
+            if (ClosingTags)
+            {
+                List<string> list = field.Closers;
+
+                //JMC:! Dummy value for now. Parser (or something similar to LIFT adapter) needs to provide actual closers.
+                if (list == null)
+                {
+                    list = new List<string> {"stub", "zz"}; // new List<string>;}
+                }
+
+                foreach(string c in list)
+                {
+                    s += " \\" + c + "*";
+                }
+            }
+            return s;
+        }
+
+        private string getIndent(SfmFieldModel field)
+        {           
+            string indentation = "";
+            if (Indented)
+            {
+                indentation = new string(' ', field.Depth * SpacesInIndentation);
+            }
+            return indentation;
+        }
+
+        private string getSlash(SfmFieldModel field)
+        {
+            if (Inferred)
+            {
+                return (field.Inferred) ? "\\+" : "\\";
+            }
+            return "\\";
+        }
+
+        private string getMarker(SfmFieldModel field)
+        {
+            return field.Marker;  //JMC: Or, bring up that Trim stuff ??
+        }
+
+
+
+        // Using current settings, format the record that is passed in.
+        public string FormatPlain(Record rec, SolidSettings solidSettings)
+        {
+
+
+/*            return Format(rec, solidSettings, null);
+        }
+
+        // Using my settings, format the record that is passed in.
+        private string Format(Record rec, SolidSettings solidSettings, Dictionary<int, string> report) //, MarkerSettings settings)
+        {
+ */ 
+  
             StringBuilder record = new StringBuilder();
-            int spacesInIndentation = 4;
 
             if (solidSettings == null && (Indented || ClosingTags))
                 throw new Exception("Programming error: non-flat output requested but solidSettings is null.");
 
             foreach (SfmFieldModel field in rec.LexEntry.Fields)
             {
-                string indentation = "";
-                if (Indented) indentation = new string(' ', field.Depth * spacesInIndentation);
-                string slash = (field.Inferred) ? "\\+" : "\\";
-                string closers = "";
-                if (ClosingTags) closers = FormatClosers(field.Closers);
+                
+                string indentation = getIndent(field);
+                string slash = getSlash(field);
+                string closers = getClosers(field);
+
                 string val = (field.Value == "") ? "" : " " + field.DecodedValue(solidSettings);  // + field.Value;
                 record.Append(indentation + slash + field.Marker + val + closers + field.Trailing);
             }
@@ -97,31 +181,72 @@ namespace SolidGui.Model
             return s2;
         }
 
-        private string FormatClosers(List<string> list)
-        {
-            string s = "";
 
-            //JMC:! Dummy value for now. Parser (or something similar to LIFT adapter) needs to provide actual closers.
-            if (list == null) list = new List<string> {"stub", "zz"}; // new List<string>;}
+        private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
+        private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
 
-            foreach(string c in list)
-            {
-                s += " \\" + c + "*";
-            }
-
-            return s;
-        }
-
-        // Using our current settings, format the record that is passed in AS RICH TEXT.
+        // Using current settings, format the record that is passed in AS RICH TEXT.
         // The main goal is the side effect, but we also return a list of messages indexed to line numbers.
         // Warning: this APPENDS, so you should typically pass in an empty rb.
-        public Dictionary<int, string> formatRich(Record rec, RichTextBox rb)
+        public void FormatRich(Record rec, RichTextBox rb, MainWindowPM model)
         {
-            // Should we return string instead?
 
-            return null;
-            // Should we simultaneously return string? Less clear, though then we only need one public method (with rb optionally null).
+            var report = new Dictionary<int, string>();
+
+            rb.SelectionFont = _defaultFont;
+            rb.SelectionColor = SfmEditorView.DefaultTextColor;
+
+            if (Indented)
+            {
+                SfmEditorView.Indent = SfmEditorView.IndentLarge;
+            }
+            else
+            {
+                SfmEditorView.Indent = SfmEditorView.IndentSmall;
+            }
+
+            foreach (SfmFieldModel field in rec.Fields)
+            {
+                if (field == null) break;
+
+                string indentation = getIndent(field);
+                string markerPrefix = getSlash(field);
+                string closers = getClosers(field);
+                string marker = getMarker(field);
+
+                // 1) Indentation
+                rb.AppendText(indentation);
+
+                // 2) Marker
+                marker = marker.Trim(new[] {'_'});
+                    //JMC:! Remove this Trim? It can misalign find/replace, and don't think \se_ is the same as \se  -JMC Mar 2014
+                rb.SelectionFont = _defaultFont;
+/*
+                if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
+                {
+                    rb.SelectionFont = _highlightMarkerFont;
+                }
+                else
+                {
+                    rb.SelectionFont = _defaultFont;
+                }
+ */
+                rb.AppendText(markerPrefix + marker);
+                rb.SelectionColor = SfmEditorView.DefaultTextColor;
+
+                // 3) (tab + Value) + Trailing Whitespace 
+                rb.SelectionFont = model.SfmEditorModel.FontForMarker(field.Marker) ?? _defaultFont;
+                string displayValue = model.SfmEditorModel.GetUnicodeValueFromLatin1(field);
+                if (displayValue != "")
+                {
+                    rb.AppendText("\t" + displayValue);
+                }
+                rb.AppendText(field.Trailing);
+            }
+
         }
+
+
 
     }
 }

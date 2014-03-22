@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text; */
+using SolidGui.Model;
 
 namespace SolidGui.Search
 {
@@ -18,7 +19,7 @@ namespace SolidGui.Search
     {
         private SfmEditorView _sfmEditorView;
 
-        private SearchViewModel _searchModel;
+        private SearchViewModel _searchModel;  // just a reference to MainWindowPm.SearchModel 
         private RecordNavigatorPM _navigatorModel;
 
         private int _textIndex;
@@ -66,14 +67,24 @@ namespace SolidGui.Search
         {
             _startingRecordIndex = -1;
             _startingTextIndex = -1;
-            _searchResult = null;
+            _searchResult = null;  // has ch
             //_sfmEditorView. Select();
+
+            textBoxReplacePreview.Text = "";
+            textBoxContextPreview.Text = "";
+            //JMC:! This is probably also the best time to update the Replace preview. But be sure this doesn't instantly wipe out error messages (for \x \c etc.)
         }
 
         private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
             bool dbl = radioButtonDoubleRegex.Checked;
             groupBoxFindContext.Enabled = dbl;
+            if (!radioButtonModeBasic.Checked)
+            {
+                var rf = new RecordFormatter();
+                rf.SetDefaultsUiFlat();
+                _searchModel.SyncFormat(rf);
+            }
 
             /* //JMC:! delete the following
             buttonReplaceFind.Enabled = dbl;
@@ -81,19 +92,34 @@ namespace SolidGui.Search
             */
 
             return;
-            if (radioButtonDoubleRegex.Checked)
-            {
-                groupBoxFindContext.Enabled = true;
-            }
-            else
-            {
-                groupBoxFindContext.Enabled = false;
-            }
         }
 
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
             this._searchResult = e.SearchResult;
+        }
+
+
+        private void UpdateDisplay()
+        {
+            //make the radio button compatible with editor's current indentation
+            bool indent = _searchModel.RecordFormatter.Indented;
+            if (indent)
+            {
+                //tree view is only compatible with basic mode
+                if (!radioButtonModeBasic.Checked)
+                {
+                    radioButtonModeBasic.Select();
+                }
+            }
+        }
+
+
+        public void OnEditorRecordFormatterChanged(object sender, RecordFormatterChangedEventArgs e)
+        {
+            ResetStartingPoint();
+            _searchModel.SyncFormat(e.NewFormatter);
+            UpdateDisplay();
         }
 
         public void SelectFind()
@@ -181,12 +207,16 @@ namespace SolidGui.Search
         {
             try
             {
-                Find(replace);
+                Find(replace); //JMC:! Is crashing on things like \xv that resembles hex codes (in regex, \\xv works)
+            }
+            catch (ArgumentException error)
+            {
+                this.textBoxReplacePreview.Text = error.ToString(); // Show the user why their input was bad. -JMC
             }
             catch (Exception error)
             {
-                string msg = "An unexpected error occurred:\r\n" + error.Message;
-                //Palaso.Reporting.ErrorReport.ReportNonFatalMessageWithStackTrace(msg, );
+                string msg = string.Format("An unexpected error occurred while searching:\r\n{0}\r\n", error);
+                    // JMC:! Palaso bug? If I don't include error here, the real exception name won't be in the report at all!
                 //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
                 Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
             }
@@ -253,6 +283,11 @@ namespace SolidGui.Search
         private void textBoxContextReplace_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FindReplaceDialog_Activated(object sender, EventArgs e)
+        {
+            UpdateDisplay();
         }
 
     }

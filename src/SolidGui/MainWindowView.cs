@@ -13,6 +13,7 @@ using Palaso.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Export;
+using SolidGui.Model;
 using SolidGui.Properties;
 using SolidGui.Search;
 using SolidGui.Setup;
@@ -29,16 +30,20 @@ namespace SolidGui
         private SearchView _searchView;
         private FindReplaceDialog _searchView2;
 
-        // Only creates it the first time; otherwise just gets it (almost like the old singleton). -JMC Feb 2014
+
+        // No longer needed because it needs to be wired up from the start now. -JMC Mar 2014
+/*
         private FindReplaceDialog CreateSearchView(MainWindowPM model, SfmEditorView sfmEditorView)
         {
+            // Only creates it the first time; otherwise just gets it (almost like the old singleton). -JMC Feb 2014
             if (_searchView2 == null || _searchView2.IsDisposed)
             {
                 _searchView2 = new FindReplaceDialog(sfmEditorView, model);
             }
+             
             return _searchView2;
         }
-
+*/
 
         public MainWindowView(MainWindowPM mainWindowPM)
         {
@@ -63,17 +68,20 @@ namespace SolidGui
             //_sfmEditorView.Enabled = false;
 
             _mainWindowPM = mainWindowPM;
+            _searchView2 = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
             _filterIndex = 0;
 
         }
 
         public void BindModels(MainWindowPM mainWindowPM) 
         {
-            // cut any old wires first
+            // cut any old wires first (does doing this make sense?)
             if (_mainWindowPM != null)
             {
                 _mainWindowPM.DictionaryProcessed -= OnDictionaryProcessed;
                 _mainWindowPM.SearchModel.WordFound -= OnWordFound;
+                _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
+                _mainWindowPM.EditorRecordFormatterChanged -= _searchView2.OnEditorRecordFormatterChanged;
                 _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
             }
 
@@ -81,6 +89,8 @@ namespace SolidGui
 
             _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
+            _mainWindowPM.SearchModel.SearchRecordFormatterChanged += OnRecordFormatterChanged;
+            _mainWindowPM.EditorRecordFormatterChanged += _searchView2.OnEditorRecordFormatterChanged;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
 
             _sfmEditorView.BindModel(_mainWindowPM);
@@ -263,14 +273,13 @@ namespace SolidGui
 
         public void UpdateDisplay()
         {
-
             bool canProcess = _mainWindowPM.CanProcessLexicon;
 
             _filterChooserView.Enabled = canProcess;
             _changeWritingSystems.Enabled = canProcess;
             _changeTemplate.Enabled = canProcess;
             _exportButton.Enabled = canProcess;
-            _recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;
+            _recordNavigatorView.UpdateDisplay();
             _quickFixButton.Enabled = canProcess;
             setSaveEnabled(_mainWindowPM.needsSave);
 
@@ -375,6 +384,14 @@ namespace SolidGui
             MessageBox.Show("Not yet implemented. Nothing was saved to: " + dlg.FileName);
         }
 
+
+        private void OnRecordFormatterChanged(object sender, RecordFormatterChangedEventArgs e)
+        {
+            _mainWindowPM.SyncFormat(e.NewFormatter);
+            UpdateDisplay();
+        }
+
+
         private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
         {
             if (e.SearchResult.Filter != _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter)
@@ -455,7 +472,7 @@ namespace SolidGui
             _searchView.Focus();*/ 
 
             //JMC: New dialog: -JMC Feb 2014
-            _searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
+            //_searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
             _searchView2.TopMost = true; // means that this form should always be in front of all others
             _searchView2.SelectFind();
             _searchView2.Show();

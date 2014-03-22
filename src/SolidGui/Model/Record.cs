@@ -104,54 +104,6 @@ namespace SolidGui.Model
             }
         }
 
-        /*
-        public override string ToString()
-        {
-            StringBuilder record = new StringBuilder();
-            foreach(SfmFieldModel field in this.Fields)
-            {
-                record.AppendLine(field.ToString());
-            }
-            return record.ToString();
-        }
-         */
-
-        /*
-        public string ToStringWithoutInferred()
-        {
-            StringBuilder record = new StringBuilder();
-            foreach (Field field in _fields)
-            {
-                if (!field.Inferred)
-                {
-                    record.AppendLine(field.ToString());
-                }
-            }
-            return record.ToString();
-        }
-        public string Value
-        {
-            get { return ToString(); }
-        }
-        */
-
-        //!!! Shouldn't be used ??? // TODO Make an adapter for the presentation of records used by SearchPM and the SfmEditorView CP 2010-09
-        public string ToStructuredString(SolidSettings solidSettings)
-        {
-            StringBuilder record = new StringBuilder();
-            foreach (SfmFieldModel field in this.LexEntry.Fields)
-            {
-                record.Append(field.ToStructuredString(solidSettings));
-            }
-            return record.ToString();
-        }
-
-        //!!! Not used ???
-        //public string GetFieldStructured(int i)
-        //{
-        //    return _fields[i].ToStructuredString();
-        //}
-
         public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
             LexEntry = SfmLexEntry.CreateFromText(setToText);

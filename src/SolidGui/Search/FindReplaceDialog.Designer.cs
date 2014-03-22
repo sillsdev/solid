@@ -310,11 +310,13 @@
             // radioButtonModeBasic
             // 
             this.radioButtonModeBasic.AutoSize = true;
+            this.radioButtonModeBasic.Checked = true;
             this.radioButtonModeBasic.Dock = System.Windows.Forms.DockStyle.Top;
             this.radioButtonModeBasic.Location = new System.Drawing.Point(3, 3);
             this.radioButtonModeBasic.Name = "radioButtonModeBasic";
             this.radioButtonModeBasic.Size = new System.Drawing.Size(152, 17);
             this.radioButtonModeBasic.TabIndex = 0;
+            this.radioButtonModeBasic.TabStop = true;
             this.radioButtonModeBasic.Text = "Basic mode";
             this.radioButtonModeBasic.UseVisualStyleBackColor = true;
             this.radioButtonModeBasic.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
@@ -334,13 +336,11 @@
             // radioButtonRegex
             // 
             this.radioButtonRegex.AutoSize = true;
-            this.radioButtonRegex.Checked = true;
             this.radioButtonRegex.Dock = System.Windows.Forms.DockStyle.Top;
             this.radioButtonRegex.Location = new System.Drawing.Point(3, 49);
             this.radioButtonRegex.Name = "radioButtonRegex";
             this.radioButtonRegex.Size = new System.Drawing.Size(152, 17);
             this.radioButtonRegex.TabIndex = 2;
-            this.radioButtonRegex.TabStop = true;
             this.radioButtonRegex.Text = "Regular expression";
             this.radioButtonRegex.UseVisualStyleBackColor = true;
             this.radioButtonRegex.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
@@ -517,6 +517,7 @@
             this.MinimumSize = new System.Drawing.Size(403, 383);
             this.Name = "FindReplaceDialog";
             this.Text = "Find and Replace";
+            this.Activated += new System.EventHandler(this.FindReplaceDialog_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindReplaceDialog_FormClosing);
             this.groupBoxFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.ResumeLayout(false);

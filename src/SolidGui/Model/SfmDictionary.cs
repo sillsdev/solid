@@ -317,7 +317,7 @@ namespace SolidGui.Model
 
                     foreach (Record record in _recordList)
                     {
-                        writer.Write(rf.Format(record, ss));
+                        writer.Write(rf.FormatPlain(record, ss));
                         /*
                         foreach (var field in record.Fields)
                         {

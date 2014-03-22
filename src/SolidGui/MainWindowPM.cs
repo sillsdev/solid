@@ -60,7 +60,9 @@ namespace SolidGui
             _markerSettingsModel = new MarkerSettingsPM(this);
             _tempDictionaryPath = Path.Combine(Path.GetTempPath(), "TempDictionary.db");
             _warningFilterChooserModel = new FilterChooserPM();
-            _navigatorModel = new RecordNavigatorPM();
+            _navigatorModel = new RecordNavigatorPM(this);
+            EditorRecordFormatter = new RecordFormatter();
+            EditorRecordFormatter.SetDefaultsUiTree();
             _sfmEditorModel = new SfmEditorPM(this);  // passing s.t. with access to the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
             _searchModel = new SearchViewModel(this);
             // _masterRecordList = WorkingDictionary.AllRecords;  // Got rid of this extra-step link because it made it harder to swap out the model. -JMC 2013-10
@@ -200,6 +202,42 @@ namespace SolidGui
             }
         }
 
+        private RecordFormatter _editorRecordFormatter;
+
+        public RecordFormatter EditorRecordFormatter
+        {
+            get { return _editorRecordFormatter; }
+
+            private set
+            {
+                _editorRecordFormatter = value;                
+            }
+        }
+
+        public void SyncFormat(RecordFormatter rf)
+        {
+            if (_editorRecordFormatter.Indented != rf.Indented)
+            {
+                // We need to get in sync with the dialog's indentation
+                _editorRecordFormatter = rf;
+                var args = new RecordFormatterChangedEventArgs(rf);
+                EditorRecordFormatterChanged.Invoke(this, args);
+
+                /*
+                _editorRecordFormatter = new RecordFormatter();  //JMC:! Need a rich text subclass here!
+                if (dialogRF.Indented)
+                {
+                    _editorRecordFormatter.SetDefaultsUiTree();
+                }
+                else
+                {
+                    _editorRecordFormatter.SetDefaultsUiFlat();
+                }
+                 */
+            }
+
+        }
+
         private static string DirectoryOfExecutingAssembly
         {
             get
@@ -248,6 +286,7 @@ namespace SolidGui
         }
 
         public event EventHandler DictionaryProcessed;
+        public event EventHandler<RecordFormatterChangedEventArgs> EditorRecordFormatterChanged;
 
         /// <summary>
         /// Called by the view to determine whether to ask the user for a starting template. No significant side effects, except it notifies the user on error.

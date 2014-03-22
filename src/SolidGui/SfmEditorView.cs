@@ -20,14 +20,12 @@ namespace SolidGui
         private const int _leftMarigin = 20;
         private const int _spacesInIndentation = 4;
         private readonly RichTextBox _contentsBoxDB; // Cheap double buffer for the ContentsBox
-        private readonly Font _defaultFont = new Font(FontFamily.GenericSansSerif, 13);
-        private readonly Color _defaultTextColor = Color.Black;
-        private readonly Color _errorTextColor = Color.Red;
-        private readonly Font _highlightMarkerFont = new Font(FontFamily.GenericSansSerif, 13, FontStyle.Bold);
-        private readonly Color _inferredTextColor = Color.Blue;
 
         private readonly MarkerTip _markerTip;
-        private int _indent = 130;
+        public static readonly Color DefaultTextColor = Color.Black;
+        private readonly Color _errorTextColor = Color.Red;
+        private readonly Color _inferredTextColor = Color.Blue;
+
         private bool _isDirty;
         private int _lineNumber = -1;
         private int _markerTipDisplayDelay = 10;
@@ -51,7 +49,10 @@ namespace SolidGui
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        public int Indent
+        public const int IndentSmall = 50;
+        public const int IndentLarge = 130;
+        private static int _indent = IndentLarge;
+        public static int Indent
         {
             get { return _indent; }
             set { _indent = value; }
@@ -156,15 +157,6 @@ namespace SolidGui
             // This prevents undesirable visual effects caused by moving the selection point in the visible control.
             ContentsBox.TextChanged -= _contentsBox_TextChanged;
 
-            _markerTip.ClearLineMessages();
-            _contentsBoxDB.Clear();
-            _contentsBoxDB.SelectAll();
-            _contentsBoxDB.SelectionTabs = new[] { _indent };
-
-            //const int currentPosition = 0;
-            //const bool foundProcessingMark = false;
-            int lineNumber = 0;
-
             if (_currentRecord == null || _currentRecord.Fields.Count < 1 || _currentRecord.Fields[0] == null)
             {
                 ContentsBox.Text = "";
@@ -172,16 +164,24 @@ namespace SolidGui
                 return;
             }
             ContentsBox.Visible = true;
+            
+            _markerTip.ClearLineMessages();
+            _contentsBoxDB.Clear();
+            _contentsBoxDB.SelectAll();
+            _contentsBoxDB.SelectionTabs = new[] { _indent };
 
-            // JMC:! Most or all of the following needs to go into into a method (see ToStructuredString), perhaps in SfmLexEntry or SfmEditorPM
 
+            //The new way, using RecordFormatter
+            _model.EditorRecordFormatter.FormatRich(_currentRecord, _contentsBoxDB, _model);
+            
+            int lineNumber = 0;
             foreach (SfmFieldModel field in _currentRecord.Fields)
             {
                 if (field == null) break;
-                string indentation = new string(' ', field.Depth * _spacesInIndentation);
+                string indentation = new string(' ', field.Depth*_spacesInIndentation);
                 string markerPrefix = (field.Inferred) ? "\\+" : "\\";
 
-                _contentsBoxDB.SelectionColor = _defaultTextColor;
+                _contentsBoxDB.SelectionColor = DefaultTextColor;
                 if (field.Inferred)
                 {
                     _markerTip.AddLineMessage(lineNumber, "Inferred");
@@ -192,43 +192,16 @@ namespace SolidGui
                     _markerTip.AddLineMessage(lineNumber, reportEntry.Description);
                     _contentsBoxDB.SelectionColor = _errorTextColor;
                 }
-
-                // 1) Indentation
-                _contentsBoxDB.AppendText(indentation);
-
-                // 2) Marker
-                string marker = field.Marker.Trim(new[] { '_' });
-                if (HighlightMarkers!=null && HighlightMarkers.Contains(marker))
-                {
-                    _contentsBoxDB.SelectionFont = _highlightMarkerFont;
-                }
-                else
-                {
-                    _contentsBoxDB.SelectionFont = _defaultFont;
-                }
-                _contentsBoxDB.AppendText(markerPrefix + marker);
-
-                // 3) (tab + Value) + Trailing Whitespace 
-                _contentsBoxDB.SelectionColor = _defaultTextColor;
-                _contentsBoxDB.SelectionFont = _model.SfmEditorModel.FontForMarker(field.Marker) ?? _defaultFont;
-                string displayValue = _model.SfmEditorModel.GetUnicodeValueFromLatin1(field);
-                if (displayValue != "")
-                {
-                    _contentsBoxDB.AppendText("\t" + displayValue);
-                }
-                _contentsBoxDB.AppendText(field.Trailing);
-                
                 lineNumber++;
             }
 
-            _contentsBoxDB.SelectionFont = _defaultFont;
-            _contentsBoxDB.SelectionColor = _defaultTextColor;
-            _contentsBoxDB.SelectionStart = 0;  // = (foundProcessingMark) ? currentPosition - 1 : 0;
 
+
+            _contentsBoxDB.SelectionStart = 0;  // = (foundProcessingMark) ? currentPosition - 1 : 0;
             // Copy the buffer to the real control.
             ContentsBox.Rtf = _contentsBoxDB.Rtf;
-
             ContentsBox.TextChanged += _contentsBox_TextChanged;
+
         }
 
         public void UpdateView()
