@@ -134,24 +134,26 @@ namespace SolidGui
             newContents = ReggieTab.Replace(newContents, " ");
 
             // Check for multiple \lx in a single "record"--the result of recent user edits (issue #173)
-            /*
-                        // JMC: make newContents into a string[] and put the following in a loop.
-                        var splitAt = ReggieLx.Matches(newContents);
-                        var records = ReggieLx.Split(newContents);
-            */
             var reader = SfmRecordReader.CreateFromText(newContents);
             reader.AllowLeadingWhiteSpace = true;
 
             int i = -1;
             //foreach (var r in records)
-            while (reader.ReadRecord())
+            while (reader.ReadRecord())  //there should only be one, unless the user messed with lx
             {
                 i++;
                 SfmRecord sfmRecord = reader.Record;
                 // Remove the inferred markers from the text
                 RemoveInferredFields(sfmRecord);
-                // Encode the value correctly as per the solid marker settings (either utf-8 or SolidSettings.LegacyEncoding)
-                string s = AsString(sfmRecord);
+
+                // At this point, this one record is stored in one clean string, ostensibly all UTF-16
+                // Encode the value correctly as per the solid marker settings (either utf-8 or SolidSettings.LegacyEncoding),
+                // just as if we were already writing to disk? Is each utf-8 byte simply dumped into a two-byte char? -JMC
+                var rf = new RecordFormatter();
+                rf.SetDefaultsDisk();
+                //rf.EncodeForDisk = true; //needs to be true
+                string s = rf.FormatPlain(sfmRecord, _model.Settings);
+                string old = AsString(sfmRecord);
 
                 if (i == 0)
                 {
@@ -190,7 +192,7 @@ namespace SolidGui
             var sb = new StringBuilder();
             foreach (SfmField field in sfmRecord)
             {
-                string s = GetLatin1Value(field.Marker, field.Value, _model.Settings);
+                string s = SfmFieldModel.ValueAsLatin1(field.Marker, field.Value, _model.Settings);
                 // field.Value = s; // JMC: Do we really want this side effect? Couldn't running this method twice on a record double decode the unicode values?
                 // JMC: I've added a local variable s so we can test without it
                 sb.Append("\\");
@@ -234,22 +236,6 @@ namespace SolidGui
             return new Font(FontFamily.GenericSansSerif, 12);
         }
 
-
-        public static string GetLatin1Value(string marker, string value, SolidSettings solidSettings)
-        {
-            if (solidSettings == null) return value;
-
-            SolidMarkerSetting setting = solidSettings.FindOrCreateMarkerSetting(marker);
-            if (setting != null && setting.Unicode)
-            {
-                Encoding stringEncoding = Encoding.UTF8;
-                byte[] valueAsBytes = stringEncoding.GetBytes(value);
-                Encoding byteEncoding = SolidSettings.LegacyEncoding;
-                return byteEncoding.GetString(valueAsBytes);
-            }
-
-            return value;
-        }
 
         private static bool FontIsInstalled(string name)
         {

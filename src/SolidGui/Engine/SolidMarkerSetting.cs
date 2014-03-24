@@ -36,10 +36,16 @@ namespace SolidGui.Engine
         }
 
         [XmlElement(ElementName = "WritingSystem")]
-        public string WritingSystemRfc4646
+        public string WritingSystemRfc4646  // an "extended language subtag"; see en.wikipedia.org/wiki/IETF_language_tag  -JMC
         {
-            get { return _writingSystemRfc4646; }
-            set { _writingSystemRfc4646 = value; }
+            get
+            {
+                return _writingSystemRfc4646;
+            }
+            set
+            {
+                _writingSystemRfc4646 = value;
+            }
         }
 
         public bool Unicode

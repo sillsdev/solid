@@ -408,6 +408,7 @@ namespace SolidGui.Engine
             return result.Trailing;
         }
 
+        // Given a string read it into one or more records. Ignore any encoding issues for now--must be handled in memory later. -JMC Mar 2014
         public static SfmRecordReader CreateFromText(string text)
         {
             var stream = new StringReader(text);

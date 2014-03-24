@@ -215,7 +215,9 @@ namespace SolidGui.Model
                 progressState.TotalNumberOfSteps = reader.SizeEstimate;  // added -JMC 2013-09
                 while (reader.ReadRecord())
                 {
-                    progressState.NumberOfStepsCompleted += 1; // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08  Partly done -JMC 2013-09
+                    // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08
+                    // JMC: Partly done. But maybe should do this: divide elapsed time by what "should" have elapsed, then make a new (separate) estimate using that multiplier. -JMC 2013-09
+                    progressState.NumberOfStepsCompleted += 1; 
 
                     SfmLexEntry lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
                     var recordReport = new SolidReport();

@@ -10,7 +10,7 @@ namespace SolidGui.Engine
         MultipleTogether
     }
 
-    public static class Extensions
+    public static class Extensions  //added so our columns can summarize more info. -JMC Feb 2014
     {
         public static string Abbr(this MultiplicityAdjacency m)
         {

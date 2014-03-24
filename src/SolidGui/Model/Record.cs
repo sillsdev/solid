@@ -32,6 +32,13 @@ namespace SolidGui.Model
             return Equals((Record)obj);
         }
 
+        public bool Equals(Record obj)  //JMC: is this superfluous?
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj._recordID == _recordID;
+        }
+
         public int ID
         {
             get { return _recordID; }
@@ -104,6 +111,7 @@ namespace SolidGui.Model
             }
         }
 
+
         public void SetRecordContents(string setToText, SolidSettings solidSettings)
         {
             LexEntry = SfmLexEntry.CreateFromText(setToText);
@@ -131,13 +139,6 @@ namespace SolidGui.Model
         }
 
         
-        public bool Equals(Record obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            return obj._recordID == _recordID;
-        }
-
         public override int GetHashCode()
         {
             return _recordID;

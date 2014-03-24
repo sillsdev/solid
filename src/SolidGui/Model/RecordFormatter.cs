@@ -48,9 +48,12 @@ namespace SolidGui.Model
         public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates \n and not \r\n. -JMC
 
         private Regex _regexOneNewline;
-        private readonly Color _defaultTextColor = Color.Black;
         private readonly Color _errorTextColor = Color.Red;
         private readonly Color _inferredTextColor = Color.Blue;
+        private readonly Color _defaultTextColor = Color.DarkGreen; // .Black;
+        private readonly Color _reminderTextColor = Color.DarkRed;
+        private readonly Color _legacyTextColor = Color.DarkMagenta;
+
 
         public RecordFormatter()
         {
@@ -168,7 +171,8 @@ namespace SolidGui.Model
         {
             if (EncodeForDisk)
             {
-                return SfmEditorPM.GetLatin1Value(field.Marker, field.Value, solidSettings);
+                
+                return SfmFieldModel.ValueAsLatin1(field.Marker, field.Value, solidSettings);
                 // return field.Value; //JMC: Is this ever needed?
             }
             else
@@ -217,6 +221,12 @@ namespace SolidGui.Model
             return s2;
         }
 
+        public string FormatPlain(IEnumerable<SfmField> rec, SolidSettings solidSettings)
+        {
+            var entry = SfmLexEntry.CreateFromReaderFields(rec);
+            var record = new Record(entry, null);
+            return FormatPlain(record, solidSettings);
+        }
 
         // Using current settings, format the record that is passed in.
         public string FormatPlain(Record rec, SolidSettings solidSettings)
@@ -230,7 +240,7 @@ namespace SolidGui.Model
             if (solidSettings == null && (ShowIndented || ShowClosingTags))
                 throw new Exception("Programming error: non-flat output requested but solidSettings is null.");
 
-            foreach (SfmFieldModel field in rec.LexEntry.Fields)
+            foreach (SfmFieldModel field in rec.Fields)
             {
                 if (field == null) break; //does this happen?
                 if (!ShowInferred && field.Inferred) continue;
@@ -277,6 +287,7 @@ namespace SolidGui.Model
             {
                 if (field == null) break; //does this happen?
                 if (!ShowInferred && field.Inferred) continue;
+                bool isUnicode = (SfmFieldModel.IsUnicode(field.Marker, model.Settings));
 
                 rb.SelectionFont = _defaultFont;
                 rb.SelectionColor = _defaultTextColor;
@@ -306,7 +317,7 @@ namespace SolidGui.Model
                     rb.SelectionFont = _highlightMarkerFont;
                 }
 
-                //Color the markers, and add super tooltip messages
+                //Color the markers, and add super tooltip messages. Also check for encoding issues.
                 if (field == null) break;
                 if (field.Inferred)
                 {
@@ -314,15 +325,14 @@ namespace SolidGui.Model
                     rb.SelectionColor = _inferredTextColor;
                 }
 
-                bool makeDataRed = false;
-
+                bool encodingIssue = false;
                 foreach (ReportEntry reportEntry in field.ReportEntries)
                 {
                     markerTip.AddLineMessage(lineNumber, reportEntry.Description);
 
                     if (SolidReport.IsDataWarning(reportEntry.EntryType))
                     {
-                        makeDataRed = true;
+                        encodingIssue = true;
                     }
                     else
                     {
@@ -338,21 +348,28 @@ namespace SolidGui.Model
                 rb.AppendText(sep);
 
                 rb.SelectionFont = model.SfmEditorModel.FontForMarker(field.Marker) ?? _defaultFont;
-                if (makeDataRed)
+                if (encodingIssue)
                 {
-                    rb.SelectionColor = _errorTextColor;
+                    rb.SelectionColor = isUnicode ? _errorTextColor : _reminderTextColor;
+                }
+                else
+                {
+                    rb.SelectionColor = isUnicode ? _defaultTextColor : _legacyTextColor;
                 }
                 string displayValue = getValue(field, model.Settings);
-                rb.AppendText(displayValue);  //JMC:! Here is where we need to format the data red and not the marker.
+                rb.AppendText(displayValue);  
                 rb.SelectionColor = _defaultTextColor;
 
                 string closers = getClosers(field);
                 rb.AppendText(closers);
                 rb.AppendText(field.Trailing);
 
-                // No need to try calling replaceNewlines(); the rich textbox will force \n regardless. -JMC
+                int inc = (sep + displayValue + field.Trailing).Count(x => x == '\n');
+                lineNumber += inc;
 
-                lineNumber++;
+                // Unlike FormatPlain, there's no need to try calling replaceNewlines(); 
+                // the rich textbox will force \n regardless. -JMC
+
             }
         }
 

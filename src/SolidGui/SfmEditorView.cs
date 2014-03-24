@@ -190,7 +190,7 @@ namespace SolidGui
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        // You should almost always call UpdateModel first, or edits may be lost!
+        // Warning: You should almost always call UpdateModel first, or edits may be lost!
         public void UpdateView()
         {
             string backup = ContentsBox.Text;
@@ -395,7 +395,9 @@ namespace SolidGui
 
         public void AddLineMessage(int line, string message)
         {
-            _lineMessage[line] = message;
+            var ret = _lineMessage.GetSetDefault(line, ""); // Fixes #1256 (using the new Extensions class)
+
+            _lineMessage[line] = ret + message + "\n\n";
         }
 
         public void ShowMessage(string message, Point point)

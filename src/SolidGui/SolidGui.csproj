@@ -157,6 +157,7 @@
     <Compile Include="Export\ExportLift.cs" />
     <Compile Include="Export\Relation.cs" />
     <Compile Include="Export\SfmLiftLexEntryAdapter.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Filter\AllRecordFilter.cs" />
     <Compile Include="Filter\MarkerFilter.cs" />
     <Compile Include="Filter\RecordFilterChangedEventArgs.cs" />

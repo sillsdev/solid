@@ -10,7 +10,7 @@ using SolidGui.Mapping;
 
 namespace SolidGui.Model
 {
-    // Mostly just stores a parsed SFM entry
+    // Mostly just stores a parsed SFM entry. See also the richer class Record, and much simpler SfmRecord. -JMC
     public class SfmLexEntry
     {
         private readonly List<SfmFieldModel> _fields;

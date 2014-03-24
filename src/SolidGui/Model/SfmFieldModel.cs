@@ -4,9 +4,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 using System.Xml;
 using SolidGui.Engine;
+using System.Linq;
 
 namespace SolidGui.Model
 {
@@ -55,7 +57,12 @@ namespace SolidGui.Model
 
         public IEnumerable<ReportEntry> ReportEntries
         {
-            get { return _reportEntries; }
+            get
+            {
+                // Reverse-sort first, to put the warnings at the top.
+                _reportEntries.OrderByDescending(x => x.Description);
+                return _reportEntries;
+            }
         }
 
         public void AddReportEntry(ReportEntry reportEntry)
@@ -91,18 +98,22 @@ namespace SolidGui.Model
 
         public string Value { get; set; }
 
-        // ?? Return unicode for either kind of field; used for display? -JMC
-        public string ValueAsUnicode()
+        public static bool IsUnicode(string Marker, SolidSettings solidSettings)
         {
-            string retval = string.Empty;
-            string value = Value;
-            if (value.Length > 0)
+            SolidMarkerSetting markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
+            return markerSetting.Unicode;
+        }
+
+        public static string ValueAsUtf8(string value)
+        {
+            Encoding sourceEnc = SolidSettings.LegacyEncoding;  // replaced Encoding.GetEncoding("iso-8859-1") with Legacy -JMC
+            Encoding targetEnc = Encoding.UTF8;
+            string retval = value;
+            string valueInMemory = value;
+            if (valueInMemory.Length > 0)  // might be safer to check settings, and to skip if unicode -JMC
             {
-                Encoding byteEncoding = SolidSettings.LegacyEncoding; // was Encoding.GetEncoding("iso-8859-1"); -JMC
-                //Encoding byteEncoding = Encoding.Unicode;
-                byte[] valueAsBytes = byteEncoding.GetBytes(value);
-                Encoding stringEncoding = Encoding.UTF8;
-                retval = stringEncoding.GetString(valueAsBytes);
+                byte[] valueAsBytes = sourceEnc.GetBytes(valueInMemory);
+                retval = targetEnc.GetString(valueAsBytes);
                 if (retval.Length == 0)  // JMC: Is this sufficient error detection?
                 {
                     retval = "Non Unicode Data Found";  //JMC:! How about throwing an exception? Maybe fatal, or maybe UI just catches and recommends not saving?
@@ -113,16 +124,40 @@ namespace SolidGui.Model
             return retval;
         }
 
+        private static string ToLatin1(string value)
+        {
+            byte[] valueAsBytes = Encoding.UTF8.GetBytes(value);
+            return SolidSettings.LegacyEncoding.GetString(valueAsBytes);
+        }
+
+        // JMC:! Can't we get rid of this? Why do we ever need to 
+        public static string ValueAsLatin1(string marker, string value, SolidSettings solidSettings)
+        {
+            if (solidSettings == null) return value;
+            if (IsUnicode(marker, solidSettings))  //safety check
+            {
+                // needs conversion from UTF8 to bytes (stored as a "string")
+                value = ToLatin1(value);
+            }
+            return value;
+        }
+
+        public string ValueForDisk(string marker, string value, SolidSettings solidSettings)
+        {
+            if (solidSettings == null) return value;
+            if (IsUnicode(marker, solidSettings))  //safety check
+            {
+                // needs conversion from UTF8 to bytes (stored as a "string")
+                value = ToLatin1(value);
+            }
+            return IsUnicode(Marker, solidSettings) ? ValueAsUtf8(Value) : ToLatin1(Value);
+        }
+
+
         public string ValueForDisplay(SolidSettings solidSettings)
         {
             if (solidSettings == null) return Value;
-
-            SolidMarkerSetting markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
-            if (markerSetting.Unicode)
-            {
-                return ValueAsUnicode();
-            }
-            return Value;
+            return IsUnicode(Marker, solidSettings) ? ValueAsUtf8(Value) : Value;
         }
 
         public void AppendChild(SfmFieldModel node)
@@ -171,7 +206,6 @@ namespace SolidGui.Model
             }
             return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
         }
-
     }
 
 

@@ -241,7 +241,7 @@ namespace Solid.Engine
                         addition.fromHeadWord, addition.fromMarker, SfmField.DefaultTrailing);
 
 
-                    r.SetRecordContents(b.ToString(), nullSettings);
+                    r.SetRecordContents(b.ToString(), nullSettings); //Wait--aren't we passing UTF16 as if it were UTF8 ? -JMC Mar 2014
                     _dictionary.AddRecord(r);
                     log.AppendFormat("Added {0} because '{1}' referred to it in the \\{2} field.\r\n",
                                      addition.targetHeadWord, addition.fromHeadWord, addition.fromMarker);

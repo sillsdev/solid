@@ -130,13 +130,13 @@ namespace SolidGui.Processes
                     }
                     else
                     {
-                        //??? This is bordering on an exception. It indicates that there is an inconsistency with the seutp.
+                        //??? This is bordering on an exception. It indicates that there is an inconsistency with the setings file, which the UI shouldn't make possible.
                         // Error.
                         report.AddEntry(
                             SolidReport.EntryType.StructureInsertInInferredFailed,
                             outputEntry,
                             sourceField,
-                            String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
+                            String.Format("ERROR: Inferred marker \\{0} is not a valid parent of \\{1}. Someone may have manually edited your settings file.", setting.InferedParent, sourceField.Marker)
                             );
                         InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                     }
@@ -160,7 +160,7 @@ namespace SolidGui.Processes
                                     SolidReport.EntryType.StructureInsertInInferredFailed,
                                     outputEntry,
                                     sourceField,
-                                    String.Format("Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
+                                    String.Format("ERROR: Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
                                     );
                                 InsertInTreeAnyway(sourceField, report, scope, outputEntry);
                             }

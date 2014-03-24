@@ -3,8 +3,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using SolidGui.Engine;
 using SolidGui.Model;
+using SolidGui;
 
 namespace SolidGui.Filter
 {
@@ -16,7 +18,8 @@ namespace SolidGui.Filter
         {
         }
 
-        ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.NumTypes];
+        private Dictionary<Enum, ErrorFilterForType> _solidErrors = new Dictionary<Enum, ErrorFilterForType>();
+        //private ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.NumTypes];
 
         public RecordFilterSet()
         {
@@ -67,7 +70,7 @@ namespace SolidGui.Filter
                         _currentDictionary,
                         marker,
                         type,
-                        string.Format("Marker {0} contains upper ascii data", marker)
+                        string.Format("Reminder: marker {0}'n upper ASCII data not yet converted to unicode.", marker)
                         );
                     break;
                 case SolidReport.EntryType.EncodingBadUnicode:
@@ -75,7 +78,7 @@ namespace SolidGui.Filter
                         _currentDictionary,
                         marker,
                         type,
-                        string.Format("Marker {0} contains bad unicode data", marker)
+                        string.Format("WARNING--don't save! Marker {0} contains bad unicode data.", marker)
                         );
                     break;
             }
@@ -86,10 +89,21 @@ namespace SolidGui.Filter
         {
             base.Clear();
             _currentDictionary = currentDictionary;
+            var v = EnumUtil.GetEnumValues<SolidReport.EntryType>();
+
+            // Initialize a dict entry for each one. Another option would be to remove this and instead
+            // use the GetSetDefault() extension method, but the new RecordFilterSet() constructor would be awkward. -JMC Mar 2014
+            foreach(var x in v)
+            {
+                _solidErrors[x] = new ErrorFilterForType();
+            }
+
+            /* //The old way, when the enum went 0 1 2 3 4 5 and not 0 1 2 4 8 16  -JMC
             for (int i = 0; i < (int)SolidReport.NumTypes; i++)
             {
                 _solidErrors[i] = new ErrorFilterForType();
             }
+             */
         }
 
         public void EndBuild()
@@ -99,8 +113,10 @@ namespace SolidGui.Filter
                 int filterCount = 0;
 
                 // Error Filters
-                foreach (ErrorFilterForType filter in _solidErrors)
+                foreach (KeyValuePair<Enum, ErrorFilterForType> pair in _solidErrors)
+                //was: foreach (ErrorFilterForType filter in _solidErrors)
                 {
+                    var filter = pair.Value;
                     if (filter != null)
                     {
                         foreach (KeyValuePair<string, SolidErrorRecordFilter> recordFilter in filter)
@@ -135,7 +151,7 @@ namespace SolidGui.Filter
         {
             foreach (ReportEntry entry in report.Entries)
             {
-                ErrorFilterForType filter = _solidErrors[(int)entry.EntryType];
+                ErrorFilterForType filter = _solidErrors.GetOrDefault(entry.EntryType, new ErrorFilterForType());
                 if (!filter.ContainsKey(entry.Marker))
                 {
                     filter.Add(entry.Marker, CreateSolidErrorRecordFilter(entry.EntryType, entry.Marker));
