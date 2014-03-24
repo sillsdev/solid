@@ -264,12 +264,12 @@ namespace SolidGui.MarkerSettings
             _changingFilter = false;
         }
 
-        public void OpenSettingsDialog(string area)
+        public bool OpenSettingsDialog(string area)
         {
 
             if(_markerListView.SelectedItems.Count == 0)
             {
-                return;
+                return false;
             }
             if (String.IsNullOrEmpty(area))
             {
@@ -289,6 +289,7 @@ namespace SolidGui.MarkerSettings
 
             UpdateDisplay(); //more effective at highlighting the row: rebuild all rows
             //UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));  //this was more efficient: update one row; but it adds maintenance overhead, and doesn't highlight the row. Removed. -JMC Feb 2014
+            return true;
         }
 
         public void SelectMarker(string marker)

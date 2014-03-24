@@ -193,7 +193,7 @@ namespace SolidGui
             get
             {
                 string path = DirectoryOfExecutingAssembly;
-                int outputIndex = path.ToLower().IndexOf("output");
+                int outputIndex = path.ToLowerInvariant().IndexOf("output");
                 if (outputIndex > -1)
                 {
                     path = path.Substring(0, outputIndex);
@@ -216,7 +216,7 @@ namespace SolidGui
 
         public void SyncFormat(RecordFormatter rf)
         {
-            if (_editorRecordFormatter.Indented != rf.Indented)
+            if (_editorRecordFormatter.ShowIndented != rf.ShowIndented)
             {
                 // We need to get in sync with the dialog's indentation
                 _editorRecordFormatter = rf;

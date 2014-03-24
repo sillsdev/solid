@@ -16,7 +16,7 @@ namespace SolidGui.Filter
         {
         }
 
-        ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.EntryType.Max];
+        ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.NumTypes];
 
         public RecordFilterSet()
         {
@@ -86,7 +86,7 @@ namespace SolidGui.Filter
         {
             base.Clear();
             _currentDictionary = currentDictionary;
-            for (int i = 0; i < (int)SolidReport.EntryType.Max; i++)
+            for (int i = 0; i < (int)SolidReport.NumTypes; i++)
             {
                 _solidErrors[i] = new ErrorFilterForType();
             }

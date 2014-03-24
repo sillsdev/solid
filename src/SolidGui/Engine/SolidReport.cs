@@ -11,17 +11,27 @@ namespace SolidGui.Engine
 {
     public class SolidReport
     {
+        [Flags]
         public enum EntryType
         {
-            StructureInsertInInferredFailed, 
-            StructureParentNotFound, 
-            StructureParentNotFoundForInferred,
-            EncodingBadUnicode,
-            EncodingUpperAscii,
-            Max 
+            StructureInsertInInferredFailed = 0, 
+            StructureParentNotFound = 1, 
+            StructureParentNotFoundForInferred = 2,
+            EncodingBadUnicode = 4,
+            EncodingUpperAscii = 8
         }
 
+        public const int NumTypes = 5;
+        // Max was just used to tell how many possible values there are. -JMC Mar 2014
+        // Seems better to use [Flags] above and values for bitwise and/or.
+        // http://stackoverflow.com/questions/4455719/compare-two-enums-w-bitwise-for-a-single-true-result
 
+        public static bool IsDataWarning (EntryType et)
+        {
+            var d = (EntryType.EncodingBadUnicode | EntryType.EncodingUpperAscii);
+            bool match = (int)(et & d) > 0;
+            return match;
+        }
 
         public List<ReportEntry> Entries { get; set; }
 
@@ -33,8 +43,11 @@ namespace SolidGui.Engine
             Entries = new List<ReportEntry>();
         }
 
-        public SolidReport(SolidReport report)        {
-            Entries = new List<ReportEntry>(report.Entries);
+        public static SolidReport MakeCopy(SolidReport report)
+        {
+            SolidReport s = new SolidReport();
+            s.Entries = new List<ReportEntry>(report.Entries);
+            return s;
         }
 
         public void Reset()

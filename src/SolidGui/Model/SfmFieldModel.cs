@@ -81,7 +81,7 @@ namespace SolidGui.Model
 
         public string Marker { get; private set; }
 
-        //JMC! The following needs to be set each time the depth of the following field is established. Or
+        //JMC! The following needs to be set each time the depth of the following field is established.
         public List<string> Closers; //one or more closing tags; e.g. "xe" "rf" "sn" "se"
         //Example: if \xe ends a subentry, the whole field could be saved as: \xe They wept.\xe*\rf*\sn*\se*\r\n
 
@@ -89,6 +89,9 @@ namespace SolidGui.Model
         // In order to fix that, I think we need for the following to always get set properly.
         public string Mapping { get; set; }
 
+        public string Value { get; set; }
+
+        // ?? Return unicode for either kind of field; used for display? -JMC
         public string ValueAsUnicode()
         {
             string retval = string.Empty;
@@ -102,12 +105,24 @@ namespace SolidGui.Model
                 retval = stringEncoding.GetString(valueAsBytes);
                 if (retval.Length == 0)  // JMC: Is this sufficient error detection?
                 {
-                    retval = "Non Unicode Data Found";
+                    retval = "Non Unicode Data Found";  //JMC:! How about throwing an exception? Maybe fatal, or maybe UI just catches and recommends not saving?
                     // TODO: Need to lock this field of the current record at this point.
                     // The editor must *never* write back to the model (for this field)
                 }
             }
             return retval;
+        }
+
+        public string ValueForDisplay(SolidSettings solidSettings)
+        {
+            if (solidSettings == null) return Value;
+
+            SolidMarkerSetting markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
+            if (markerSetting.Unicode)
+            {
+                return ValueAsUnicode();
+            }
+            return Value;
         }
 
         public void AppendChild(SfmFieldModel node)
@@ -123,8 +138,6 @@ namespace SolidGui.Model
             get { return _id; }
         }
 
-        public string Value { get; set; }
-
         private string _trailing;
         public string Trailing 
         {
@@ -133,7 +146,7 @@ namespace SolidGui.Model
         }
 
 
-    public int Depth { get; set; }
+        public int Depth { get; set; }
 
         public bool HasReportEntry
         {
@@ -159,19 +172,6 @@ namespace SolidGui.Model
             return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
         }
 
-        public string DecodedValue(SolidSettings solidSettings)
-        {
-            if (solidSettings == null)
-            {
-                return Value;
-            }
-            SolidMarkerSetting markerSetting = solidSettings.FindOrCreateMarkerSetting(Marker);
-            if (markerSetting.Unicode)
-            {
-                return ValueAsUnicode();
-            }
-            return Value;
-        }
     }
 
 

@@ -248,7 +248,7 @@ namespace SolidGui.Export
             LexEtymology currentEtymology = null;
             foreach (SfmFieldModel field in SfmLexEntry.Fields)
             {
-                string unicodeValue = MakeSingleLine(field.DecodedValue(SolidSettings).Trim());
+                string unicodeValue = MakeSingleLine(field.ValueForDisplay(SolidSettings).Trim());
                 StateInfo currentState = states.Peek();
                 while (field.Depth <= currentState.Depth)
                 {

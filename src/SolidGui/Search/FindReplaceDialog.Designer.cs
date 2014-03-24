@@ -45,6 +45,7 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonReplaceAll = new System.Windows.Forms.Button();
+            this.labelReplaceAll = new System.Windows.Forms.Label();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelMode = new System.Windows.Forms.FlowLayoutPanel();
@@ -54,6 +55,7 @@
             this.flowLayoutPanelOptions = new System.Windows.Forms.FlowLayoutPanel();
             this._scopeComboBox = new System.Windows.Forms.ComboBox();
             this.checkBoxCaseSensitive = new System.Windows.Forms.CheckBox();
+            this.checkBoxMultiline = new System.Windows.Forms.CheckBox();
             this.groupBoxFindContext = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelFindContext = new System.Windows.Forms.TableLayoutPanel();
             this.textBoxContextReplace = new System.Windows.Forms.TextBox();
@@ -102,7 +104,7 @@
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 1, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace2, 2, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel1, 0, 2);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 1, 3);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 0, 3);
             this.tableLayoutPanelFindReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
@@ -118,18 +120,17 @@
             // 
             this.textBoxReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxReplace.Location = new System.Drawing.Point(203, 42);
-            this.textBoxReplace.Multiline = true;
             this.textBoxReplace.Name = "textBoxReplace";
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxReplace.Size = new System.Drawing.Size(297, 33);
+            this.textBoxReplace.Size = new System.Drawing.Size(297, 20);
             this.textBoxReplace.TabIndex = 4;
             this.textBoxReplace.Text = "\\r\\n\\\\re ";
             this.textBoxReplace.TextChanged += new System.EventHandler(this.textBoxReplace_TextChanged);
             // 
             // buttonHintReplace1
             // 
-            this.buttonHintReplace1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonHintReplace1.Location = new System.Drawing.Point(506, 9);
+            this.buttonHintReplace1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintReplace1.Location = new System.Drawing.Point(506, 3);
             this.buttonHintReplace1.Name = "buttonHintReplace1";
             this.buttonHintReplace1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintReplace1.Size = new System.Drawing.Size(14, 20);
@@ -152,10 +153,9 @@
             // 
             this.textBoxFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxFind.Location = new System.Drawing.Point(203, 3);
-            this.textBoxFind.Multiline = true;
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxFind.Size = new System.Drawing.Size(297, 33);
+            this.textBoxFind.Size = new System.Drawing.Size(297, 20);
             this.textBoxFind.TabIndex = 2;
             this.textBoxFind.Text = "\\s*;\\s*";
             this.textBoxFind.TextChanged += new System.EventHandler(this.textBoxFind_TextChanged);
@@ -207,8 +207,8 @@
             // 
             // buttonHintReplace2
             // 
-            this.buttonHintReplace2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonHintReplace2.Location = new System.Drawing.Point(506, 48);
+            this.buttonHintReplace2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintReplace2.Location = new System.Drawing.Point(506, 42);
             this.buttonHintReplace2.Name = "buttonHintReplace2";
             this.buttonHintReplace2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintReplace2.Size = new System.Drawing.Size(14, 20);
@@ -238,34 +238,49 @@
             // 
             // flowLayoutPanel2
             // 
+            this.tableLayoutPanelFindReplace.SetColumnSpan(this.flowLayoutPanel2, 2);
             this.flowLayoutPanel2.Controls.Add(this.buttonCancel);
             this.flowLayoutPanel2.Controls.Add(this.buttonReplaceAll);
+            this.flowLayoutPanel2.Controls.Add(this.labelReplaceAll);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(203, 120);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 120);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(297, 35);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(497, 35);
             this.flowLayoutPanel2.TabIndex = 31;
             // 
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(220, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(420, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(74, 23);
             this.buttonCancel.TabIndex = 10;
-            this.buttonCancel.Text = "&Close";
+            this.buttonCancel.Text = "Close";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.OnCancelButton_Click);
             // 
             // buttonReplaceAll
             // 
-            this.buttonReplaceAll.Location = new System.Drawing.Point(75, 3);
+            this.buttonReplaceAll.Enabled = false;
+            this.buttonReplaceAll.Location = new System.Drawing.Point(275, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
             this.buttonReplaceAll.TabIndex = 9;
             this.buttonReplaceAll.Text = "Replace &All + Recheck";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
+            // 
+            // labelReplaceAll
+            // 
+            this.labelReplaceAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelReplaceAll.AutoSize = true;
+            this.labelReplaceAll.Location = new System.Drawing.Point(134, 5);
+            this.labelReplaceAll.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.labelReplaceAll.Name = "labelReplaceAll";
+            this.labelReplaceAll.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.labelReplaceAll.Size = new System.Drawing.Size(135, 15);
+            this.labelReplaceAll.TabIndex = 32;
+            this.labelReplaceAll.Text = "For now, hold Alt + N or R :";
             // 
             // tableLayoutPanelMain
             // 
@@ -317,7 +332,7 @@
             this.radioButtonModeBasic.Size = new System.Drawing.Size(152, 17);
             this.radioButtonModeBasic.TabIndex = 0;
             this.radioButtonModeBasic.TabStop = true;
-            this.radioButtonModeBasic.Text = "Basic mode";
+            this.radioButtonModeBasic.Text = "&Basic mode";
             this.radioButtonModeBasic.UseVisualStyleBackColor = true;
             this.radioButtonModeBasic.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
@@ -329,7 +344,7 @@
             this.radioButtonDoubleRegex.Name = "radioButtonDoubleRegex";
             this.radioButtonDoubleRegex.Size = new System.Drawing.Size(152, 17);
             this.radioButtonDoubleRegex.TabIndex = 1;
-            this.radioButtonDoubleRegex.Text = "Double Regular expression";
+            this.radioButtonDoubleRegex.Text = "D&ouble Regular expression";
             this.radioButtonDoubleRegex.UseVisualStyleBackColor = true;
             this.radioButtonDoubleRegex.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
@@ -341,7 +356,7 @@
             this.radioButtonRegex.Name = "radioButtonRegex";
             this.radioButtonRegex.Size = new System.Drawing.Size(152, 17);
             this.radioButtonRegex.TabIndex = 2;
-            this.radioButtonRegex.Text = "Regular expression";
+            this.radioButtonRegex.Text = "Re&gular expression";
             this.radioButtonRegex.UseVisualStyleBackColor = true;
             this.radioButtonRegex.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
             // 
@@ -352,11 +367,12 @@
             this.flowLayoutPanelOptions.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanelOptions.Controls.Add(this._scopeComboBox);
             this.flowLayoutPanelOptions.Controls.Add(this.checkBoxCaseSensitive);
+            this.flowLayoutPanelOptions.Controls.Add(this.checkBoxMultiline);
             this.flowLayoutPanelOptions.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanelOptions.Location = new System.Drawing.Point(169, 3);
             this.flowLayoutPanelOptions.MinimumSize = new System.Drawing.Size(116, 66);
             this.flowLayoutPanelOptions.Name = "flowLayoutPanelOptions";
-            this.flowLayoutPanelOptions.Size = new System.Drawing.Size(116, 66);
+            this.flowLayoutPanelOptions.Size = new System.Drawing.Size(116, 73);
             this.flowLayoutPanelOptions.TabIndex = 24;
             // 
             // _scopeComboBox
@@ -378,8 +394,19 @@
             this.checkBoxCaseSensitive.Name = "checkBoxCaseSensitive";
             this.checkBoxCaseSensitive.Size = new System.Drawing.Size(94, 17);
             this.checkBoxCaseSensitive.TabIndex = 4;
-            this.checkBoxCaseSensitive.Text = "Case sensitive";
+            this.checkBoxCaseSensitive.Text = "&Case sensitive";
             this.checkBoxCaseSensitive.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxMultiline
+            // 
+            this.checkBoxMultiline.AutoSize = true;
+            this.checkBoxMultiline.Location = new System.Drawing.Point(3, 53);
+            this.checkBoxMultiline.Name = "checkBoxMultiline";
+            this.checkBoxMultiline.Size = new System.Drawing.Size(64, 17);
+            this.checkBoxMultiline.TabIndex = 5;
+            this.checkBoxMultiline.Text = "&Multiline";
+            this.checkBoxMultiline.UseVisualStyleBackColor = true;
+            this.checkBoxMultiline.CheckedChanged += new System.EventHandler(this.checkBoxMultiline_CheckedChanged);
             // 
             // groupBoxFindContext
             // 
@@ -421,18 +448,17 @@
             // 
             this.textBoxContextReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxContextReplace.Location = new System.Drawing.Point(203, 44);
-            this.textBoxContextReplace.Multiline = true;
             this.textBoxContextReplace.Name = "textBoxContextReplace";
             this.textBoxContextReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxContextReplace.Size = new System.Drawing.Size(297, 35);
+            this.textBoxContextReplace.Size = new System.Drawing.Size(297, 20);
             this.textBoxContextReplace.TabIndex = 4;
             this.textBoxContextReplace.Text = "\\\\\\1 \\2";
             this.textBoxContextReplace.TextChanged += new System.EventHandler(this.textBoxContextReplace_TextChanged);
             // 
             // buttonHintContext1
             // 
-            this.buttonHintContext1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonHintContext1.Location = new System.Drawing.Point(506, 10);
+            this.buttonHintContext1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintContext1.Location = new System.Drawing.Point(506, 3);
             this.buttonHintContext1.Name = "buttonHintContext1";
             this.buttonHintContext1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintContext1.Size = new System.Drawing.Size(14, 20);
@@ -454,10 +480,9 @@
             // 
             this.textBoxContextFind.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxContextFind.Location = new System.Drawing.Point(203, 3);
-            this.textBoxContextFind.Multiline = true;
             this.textBoxContextFind.Name = "textBoxContextFind";
             this.textBoxContextFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxContextFind.Size = new System.Drawing.Size(297, 35);
+            this.textBoxContextFind.Size = new System.Drawing.Size(297, 20);
             this.textBoxContextFind.TabIndex = 1;
             this.textBoxContextFind.Text = "^\\\\(re) (.+)$";
             this.textBoxContextFind.TextChanged += new System.EventHandler(this.textBoxContextFind_TextChanged);
@@ -497,8 +522,8 @@
             // 
             // buttonHintContext2
             // 
-            this.buttonHintContext2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.buttonHintContext2.Location = new System.Drawing.Point(506, 51);
+            this.buttonHintContext2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintContext2.Location = new System.Drawing.Point(506, 44);
             this.buttonHintContext2.Name = "buttonHintContext2";
             this.buttonHintContext2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintContext2.Size = new System.Drawing.Size(14, 20);
@@ -508,6 +533,7 @@
             // 
             // FindReplaceDialog
             // 
+            this.AcceptButton = this._findNextButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
@@ -526,6 +552,7 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.tableLayoutPanelMain.ResumeLayout(false);
             this.flowLayoutPanelSettings.ResumeLayout(false);
             this.flowLayoutPanelSettings.PerformLayout();
@@ -578,5 +605,7 @@
         private System.Windows.Forms.ComboBox _scopeComboBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.CheckBox checkBoxMultiline;
+        private System.Windows.Forms.Label labelReplaceAll;
     }
 }

@@ -70,28 +70,36 @@ namespace SolidGui.Search
             _searchResult = null;  // has ch
             //_sfmEditorView. Select();
 
+            // If the user pastes in tabs, change them to spaces
+            textBoxFind.Text = SearchViewModel.RegexTab.Replace(textBoxFind.Text, " ");
+            textBoxContextFind.Text = SearchViewModel.RegexTab.Replace(textBoxContextFind.Text, " ");
+            textBoxReplace.Text = SearchViewModel.RegexTab.Replace(textBoxReplace.Text, " ");
+            textBoxContextReplace.Text = SearchViewModel.RegexTab.Replace(textBoxContextReplace.Text, " ");
+            
+            //JMC:! This is probably also the best time to update the Replace preview. But be careful to not instantly wipe out error messages (for \x \c etc.)
             textBoxReplacePreview.Text = "";
             textBoxContextPreview.Text = "";
-            //JMC:! This is probably also the best time to update the Replace preview. But be sure this doesn't instantly wipe out error messages (for \x \c etc.)
         }
 
         private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
             bool dbl = radioButtonDoubleRegex.Checked;
             groupBoxFindContext.Enabled = dbl;
+            
+            if (dbl || radioButtonRegex.Checked )
+            {
+                checkBoxMultiline.Checked = false;
+            }
+
+            /*
+            // With leading spaces, tree view doesn't fit well with serious (regex) Find
             if (!radioButtonModeBasic.Checked)
             {
                 var rf = new RecordFormatter();
                 rf.SetDefaultsUiFlat();
                 _searchModel.SyncFormat(rf);
             }
-
-            /* //JMC:! delete the following
-            buttonReplaceFind.Enabled = dbl;
-            buttonReplaceAll.Enabled = dbl;
-            */
-
-            return;
+             */
         }
 
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
@@ -103,15 +111,19 @@ namespace SolidGui.Search
         private void UpdateDisplay()
         {
             //make the radio button compatible with editor's current indentation
-            bool indent = _searchModel.RecordFormatter.Indented;
+            bool indent = _searchModel.RecordFormatter.ShowIndented;
+
+            /*
+            //With leading spaces, tree view is not very compatible with serious regex mode
             if (indent)
             {
-                //tree view is only compatible with basic mode
+                
                 if (!radioButtonModeBasic.Checked)
                 {
                     radioButtonModeBasic.Select();
                 }
             }
+             */
         }
 
 
@@ -133,7 +145,7 @@ namespace SolidGui.Search
             if (_searchResult != null)
             {  // result of previous find
                 string f = _searchResult.Found;
-                return _sfmEditorView.ContentsBox.SelectedText == f;
+                return _sfmEditorView.ContentsBox.SelectedText.ToLowerInvariant() == f.ToLowerInvariant();
             }
             return false;
         }
@@ -288,6 +300,30 @@ namespace SolidGui.Search
         private void FindReplaceDialog_Activated(object sender, EventArgs e)
         {
             UpdateDisplay();
+        }
+
+        private void checkBoxMultiline_CheckedChanged(object sender, EventArgs e)
+        {
+            bool ch = checkBoxMultiline.Checked;
+            textBoxFind.Multiline = ch;
+            textBoxReplace.Multiline = ch;
+
+            // Determine what the Enter key will do
+            this.AcceptButton = ch ? null : _findNextButton;
+
+            // Not compatible with regex modes; force Basic
+            if (ch)
+            {
+                radioButtonModeBasic.Checked = true;
+            }
+            else
+            {
+                //trim down to the first line
+                var nl = new char[] { '\n', '\r' };
+                textBoxFind.Text = textBoxFind.Text.Split(nl)[0];
+                textBoxReplace.Text = textBoxReplace.Text.Split(nl)[0];
+            }
+
         }
 
     }

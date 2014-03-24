@@ -265,7 +265,7 @@ namespace SolidGui.Model
                 dlg.ShowDialog();
                 if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
                 {
-                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  //JMC: I suppose this is non-fatal because the calling code *might* check the return value.
+                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  //JMC!: I suppose this is non-fatal because the calling code *might* check the return value. That's not yet happening.
                     return false;
                 }
                 if (dlg.ProgressState.Cancel == true) return false;

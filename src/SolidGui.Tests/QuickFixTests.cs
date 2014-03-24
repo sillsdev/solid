@@ -191,7 +191,7 @@ namespace SolidGui.Tests
             AssertFieldContents(dict.Records[1], "lx b");
         }
 
-        [Ignore("But we need this, to support MDF well. -JMC 2014-03")]
+        [Ignore("But we need this, to support MDF well. -added by JMC 2014-03")]
         [Test]
         public void MakeEntriesForReferredItems_HomTargetExists_DoesNothing() 
         {
@@ -206,7 +206,7 @@ namespace SolidGui.Tests
             AssertFieldContents(dict.Records[2], s3);
         }
 
-        [Ignore("But we need this, to support MDF well. -JMC 2014-03")]
+        [Ignore("But we need this, to support MDF well. -added by JMC 2014-03")]
         [Test]
         public void MakeEntriesForReferredItems_SenseTargetExists_DoesNothing()
         {

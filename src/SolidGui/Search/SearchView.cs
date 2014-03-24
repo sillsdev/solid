@@ -81,9 +81,7 @@ namespace SolidGui.Search
             }
             catch (Exception error)
             {
-                string msg = "An unexpected error occurred:\r\n" + error.Message;
-                //Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
-                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+                string msg = string.Format("An unexpected error occurred:\r\n{0}\r\n", error);
                 Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
             }
         }

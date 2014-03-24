@@ -54,6 +54,7 @@ namespace SolidGui
             this.ContentsBox.WordWrap = false;
             this.ContentsBox.TextChanged += new System.EventHandler(this._contentsBox_TextChanged);
             this.ContentsBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this._contentsBox_KeyDown);
+            this.ContentsBox.Leave += new System.EventHandler(this.ContentsBox_Leave);
             this.ContentsBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseDown);
             this.ContentsBox.MouseLeave += new System.EventHandler(this._contentsBox_MouseLeave);
             this.ContentsBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this._contentsBox_MouseMove);

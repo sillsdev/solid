@@ -74,7 +74,7 @@ namespace SolidGui
             _firstButton.Enabled = _model.CanGoPrev();
             _recordNumber.Text = string.Format("{0}", _model.CurrentRecordIndex+1);
             this.Enabled = _model.Model.WorkingDictionary.Count > 0;
-            bool indent = _model.Model.EditorRecordFormatter.Indented;
+            bool indent = _model.Model.EditorRecordFormatter.ShowIndented;
             if (indent)
             {
                 buttonFlat.Enabled = true;

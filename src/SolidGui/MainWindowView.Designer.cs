@@ -135,7 +135,7 @@ namespace SolidGui
             this._openButton.Image = global::SolidGui.Properties.Resources.folder_open;
             this._openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._openButton.Name = "_openButton";
-            this._openButton.Size = new System.Drawing.Size(104, 22);
+            this._openButton.Size = new System.Drawing.Size(108, 22);
             this._openButton.Text = "&Open Lexicon...";
             this._openButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._openButton.ToolTipText = "Open Lexicon... Ctrl+O";
@@ -158,7 +158,7 @@ namespace SolidGui
             this._exportButton.Image = global::SolidGui.Properties.Resources.folder_export;
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
-            this._exportButton.Size = new System.Drawing.Size(71, 22);
+            this._exportButton.Size = new System.Drawing.Size(69, 22);
             this._exportButton.Text = "&Export...";
             this._exportButton.ToolTipText = "Export As LIFT... (Experimental)";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
@@ -174,7 +174,7 @@ namespace SolidGui
             this._changeTemplate.Image = global::SolidGui.Properties.Resources.template;
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
-            this._changeTemplate.Size = new System.Drawing.Size(123, 22);
+            this._changeTemplate.Size = new System.Drawing.Size(130, 22);
             this._changeTemplate.Text = "&Change Template...";
             this._changeTemplate.Visible = false;
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
@@ -184,7 +184,7 @@ namespace SolidGui
             this._changeWritingSystems.Image = global::SolidGui.Properties.Resources.template;
             this._changeWritingSystems.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeWritingSystems.Name = "_changeWritingSystems";
-            this._changeWritingSystems.Size = new System.Drawing.Size(156, 22);
+            this._changeWritingSystems.Size = new System.Drawing.Size(165, 22);
             this._changeWritingSystems.Text = "Change &Writing Systems...";
             this._changeWritingSystems.Visible = false;
             this._changeWritingSystems.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
@@ -195,7 +195,7 @@ namespace SolidGui
             this._quickFixButton.Image = ((System.Drawing.Image)(resources.GetObject("_quickFixButton.Image")));
             this._quickFixButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._quickFixButton.Name = "_quickFixButton";
-            this._quickFixButton.Size = new System.Drawing.Size(77, 22);
+            this._quickFixButton.Size = new System.Drawing.Size(79, 22);
             this._quickFixButton.Text = "&Quick Fixes...";
             this._quickFixButton.Visible = false;
             this._quickFixButton.Click += new System.EventHandler(this.OnQuickFix);
@@ -419,14 +419,14 @@ namespace SolidGui
             this._exportXmlMenuItem,
             this._exitMenuItem});
             this._fileMenuItem.Name = "_fileMenuItem";
-            this._fileMenuItem.Size = new System.Drawing.Size(35, 22);
+            this._fileMenuItem.Size = new System.Drawing.Size(37, 22);
             this._fileMenuItem.Text = "&File";
             // 
             // _openMenuItem
             // 
             this._openMenuItem.Image = global::SolidGui.Properties.Resources.folder_open;
             this._openMenuItem.Name = "_openMenuItem";
-            this._openMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._openMenuItem.Size = new System.Drawing.Size(261, 22);
             this._openMenuItem.Text = "&Open Lexicon... (Ctrl+O, Alt+O)";
             this._openMenuItem.Click += new System.EventHandler(this.OnOpenClick);
             // 
@@ -435,28 +435,28 @@ namespace SolidGui
             this._saveMenuItem.Enabled = false;
             this._saveMenuItem.Image = global::SolidGui.Properties.Resources.save;
             this._saveMenuItem.Name = "_saveMenuItem";
-            this._saveMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._saveMenuItem.Size = new System.Drawing.Size(261, 22);
             this._saveMenuItem.Text = "&Save (Ctrl+S, Alt+S)";
             this._saveMenuItem.Click += new System.EventHandler(this.OnSaveClick);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // _exportXmlMenuItem
             // 
             this._exportXmlMenuItem.Name = "_exportXmlMenuItem";
-            this._exportXmlMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._exportXmlMenuItem.Size = new System.Drawing.Size(261, 22);
             this._exportXmlMenuItem.Text = "Export as &LIFT XML (experimental)...";
             this._exportXmlMenuItem.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
             // _exitMenuItem
             // 
             this._exitMenuItem.Name = "_exitMenuItem";
-            this._exitMenuItem.Size = new System.Drawing.Size(251, 22);
+            this._exitMenuItem.Size = new System.Drawing.Size(261, 22);
             this._exitMenuItem.Text = "E&xit (Alt + F4)";
             this._exitMenuItem.Click += new System.EventHandler(this._exitMenuItem_Click);
             // 
@@ -467,27 +467,27 @@ namespace SolidGui
             this._changeTemplateToolStripMenuItem,
             this._changeWritingSystemsToolStripMenuItem});
             this._markersMenuItem.Name = "_markersMenuItem";
-            this._markersMenuItem.Size = new System.Drawing.Size(57, 22);
+            this._markersMenuItem.Size = new System.Drawing.Size(61, 22);
             this._markersMenuItem.Text = "&Markers";
             // 
             // _propertiesMenuItem
             // 
             this._propertiesMenuItem.Name = "_propertiesMenuItem";
-            this._propertiesMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._propertiesMenuItem.Size = new System.Drawing.Size(243, 22);
             this._propertiesMenuItem.Text = "&Properties (for current marker)...";
             this._propertiesMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
             // 
             // _changeTemplateToolStripMenuItem
             // 
             this._changeTemplateToolStripMenuItem.Name = "_changeTemplateToolStripMenuItem";
-            this._changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this._changeTemplateToolStripMenuItem.Text = "Switch &Templates...";
             this._changeTemplateToolStripMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
             // _changeWritingSystemsToolStripMenuItem
             // 
             this._changeWritingSystemsToolStripMenuItem.Name = "_changeWritingSystemsToolStripMenuItem";
-            this._changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this._changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this._changeWritingSystemsToolStripMenuItem.Text = "Specify &Writing Systems...";
             this._changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
@@ -500,26 +500,26 @@ namespace SolidGui
             this._copyMenuItem,
             this._pasteMenuItem});
             this._editMenuItem.Name = "_editMenuItem";
-            this._editMenuItem.Size = new System.Drawing.Size(37, 22);
+            this._editMenuItem.Size = new System.Drawing.Size(39, 22);
             this._editMenuItem.Text = "&Edit";
             // 
             // _findMenuItem
             // 
             this._findMenuItem.Name = "_findMenuItem";
-            this._findMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._findMenuItem.Size = new System.Drawing.Size(150, 22);
             this._findMenuItem.Text = "&Find... (Ctrl+F)";
             this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
             // 
             // _cutMenuItem
             // 
             this._cutMenuItem.Enabled = false;
             this._cutMenuItem.Name = "_cutMenuItem";
-            this._cutMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._cutMenuItem.Size = new System.Drawing.Size(150, 22);
             this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
             this._cutMenuItem.Visible = false;
             // 
@@ -527,7 +527,7 @@ namespace SolidGui
             // 
             this._copyMenuItem.Enabled = false;
             this._copyMenuItem.Name = "_copyMenuItem";
-            this._copyMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._copyMenuItem.Size = new System.Drawing.Size(150, 22);
             this._copyMenuItem.Text = "&Copy (Ctrl+C)";
             this._copyMenuItem.Visible = false;
             this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
@@ -536,7 +536,7 @@ namespace SolidGui
             // 
             this._pasteMenuItem.Enabled = false;
             this._pasteMenuItem.Name = "_pasteMenuItem";
-            this._pasteMenuItem.Size = new System.Drawing.Size(148, 22);
+            this._pasteMenuItem.Size = new System.Drawing.Size(150, 22);
             this._pasteMenuItem.Text = "&Paste (Ctrl+V)";
             this._pasteMenuItem.Visible = false;
             // 
@@ -551,7 +551,7 @@ namespace SolidGui
             // _quickFixesMenuItem
             // 
             this._quickFixesMenuItem.Name = "_quickFixesMenuItem";
-            this._quickFixesMenuItem.Size = new System.Drawing.Size(140, 22);
+            this._quickFixesMenuItem.Size = new System.Drawing.Size(142, 22);
             this._quickFixesMenuItem.Text = "&Quick Fixes...";
             this._quickFixesMenuItem.Click += new System.EventHandler(this.OnQuickFix);
             // 
@@ -566,52 +566,52 @@ namespace SolidGui
             this._goNextMenuItem,
             this._goLastMenuItem});
             this._viewMenuItem.Name = "_viewMenuItem";
-            this._viewMenuItem.Size = new System.Drawing.Size(41, 22);
+            this._viewMenuItem.Size = new System.Drawing.Size(44, 22);
             this._viewMenuItem.Text = "&View";
             // 
             // _recheckMenuItem
             // 
             this._recheckMenuItem.Name = "_recheckMenuItem";
-            this._recheckMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._recheckMenuItem.Size = new System.Drawing.Size(225, 22);
             this._recheckMenuItem.Text = "Re&check all records (Ctrl+F5)";
             this._recheckMenuItem.Click += new System.EventHandler(this.OnRecheckButtonClick);
             // 
             // _refreshMenuItem
             // 
             this._refreshMenuItem.Name = "_refreshMenuItem";
-            this._refreshMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._refreshMenuItem.Size = new System.Drawing.Size(225, 22);
             this._refreshMenuItem.Text = "&Refresh right pane (F5)";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(211, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(222, 6);
             // 
             // _goFirstMenuItem
             // 
             this._goFirstMenuItem.Name = "_goFirstMenuItem";
-            this._goFirstMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goFirstMenuItem.Size = new System.Drawing.Size(225, 22);
             this._goFirstMenuItem.Text = "Go to &first (Ctrl+Shift+PgUp)";
             this._goFirstMenuItem.Click += new System.EventHandler(this._goFirstMenuItem_Click);
             // 
             // _goPreviousMenuItem
             // 
             this._goPreviousMenuItem.Name = "_goPreviousMenuItem";
-            this._goPreviousMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goPreviousMenuItem.Size = new System.Drawing.Size(225, 22);
             this._goPreviousMenuItem.Text = "Go to &previous (Ctrl+PgUp)";
             this._goPreviousMenuItem.Click += new System.EventHandler(this._goPreviousMenuItem_Click);
             // 
             // _goNextMenuItem
             // 
             this._goNextMenuItem.Name = "_goNextMenuItem";
-            this._goNextMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goNextMenuItem.Size = new System.Drawing.Size(225, 22);
             this._goNextMenuItem.Text = "Go to &next (Ctrl+PgDn)";
             this._goNextMenuItem.Click += new System.EventHandler(this._goNextMenuItem_Click);
             // 
             // _goLastMenuItem
             // 
             this._goLastMenuItem.Name = "_goLastMenuItem";
-            this._goLastMenuItem.Size = new System.Drawing.Size(214, 22);
+            this._goLastMenuItem.Size = new System.Drawing.Size(225, 22);
             this._goLastMenuItem.Text = "Go to &last (Ctrl+Shift+PgDn)";
             this._goLastMenuItem.Click += new System.EventHandler(this._goLastMenuItem_Click);
             // 
@@ -622,27 +622,27 @@ namespace SolidGui
             this._aboutMenuItem,
             this._reportProblemMenuItem});
             this._helpMenuItem.Name = "_helpMenuItem";
-            this._helpMenuItem.Size = new System.Drawing.Size(40, 22);
+            this._helpMenuItem.Size = new System.Drawing.Size(44, 22);
             this._helpMenuItem.Text = "&Help";
             // 
             // _openHelpMenuItem
             // 
             this._openHelpMenuItem.Name = "_openHelpMenuItem";
-            this._openHelpMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._openHelpMenuItem.Size = new System.Drawing.Size(238, 22);
             this._openHelpMenuItem.Text = "Open PDF &Help Manual (F1)";
             this._openHelpMenuItem.Click += new System.EventHandler(this._openHelpMenuItem_Click);
             // 
             // _aboutMenuItem
             // 
             this._aboutMenuItem.Name = "_aboutMenuItem";
-            this._aboutMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._aboutMenuItem.Size = new System.Drawing.Size(238, 22);
             this._aboutMenuItem.Text = "&About Solid...";
             this._aboutMenuItem.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
             // 
             // _reportProblemMenuItem
             // 
             this._reportProblemMenuItem.Name = "_reportProblemMenuItem";
-            this._reportProblemMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._reportProblemMenuItem.Size = new System.Drawing.Size(238, 22);
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
             // 
@@ -657,6 +657,7 @@ namespace SolidGui
             this.MinimumSize = new System.Drawing.Size(629, 371);
             this.Name = "MainWindowView";
             this.Text = "Solid";
+            this.Deactivate += new System.EventHandler(this.MainWindowView_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
             this.Load += new System.EventHandler(this.MainWindowView_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyDown);

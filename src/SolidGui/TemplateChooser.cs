@@ -75,7 +75,7 @@ namespace SolidGui
                         Y = (_lblInstructions.Location.Y + _lblInstructions.Height)
                     };
                     _pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
-                    if (path.ToLower ().Contains ("mdf.solid"))
+                    if (path.ToLowerInvariant().Contains("mdf.solid"))
                     {
                         item.Selected = true;
                     }

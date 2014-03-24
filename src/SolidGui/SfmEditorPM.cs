@@ -190,7 +190,7 @@ namespace SolidGui
             var sb = new StringBuilder();
             foreach (SfmField field in sfmRecord)
             {
-                string s = GetLatin1ValueFromUnicode(field.Marker, field.Value);
+                string s = GetLatin1Value(field.Marker, field.Value, _model.Settings);
                 // field.Value = s; // JMC: Do we really want this side effect? Couldn't running this method twice on a record double decode the unicode values?
                 // JMC: I've added a local variable s so we can test without it
                 sb.Append("\\");
@@ -234,24 +234,12 @@ namespace SolidGui
             return new Font(FontFamily.GenericSansSerif, 12);
         }
 
-        public string GetUnicodeValueFromLatin1(SfmFieldModel field)
-        {
-            string retval;
-            SolidMarkerSetting setting = _model.Settings.FindOrCreateMarkerSetting(field.Marker);
-            if (setting != null && setting.Unicode)
-            {
-                retval = field.ValueAsUnicode();
-            }
-            else
-            {
-                retval = field.Value;
-            }
-            return retval;
-        }
 
-        private string GetLatin1ValueFromUnicode(string marker, string value)
+        public static string GetLatin1Value(string marker, string value, SolidSettings solidSettings)
         {
-            SolidMarkerSetting setting = _model.Settings.FindOrCreateMarkerSetting(marker);
+            if (solidSettings == null) return value;
+
+            SolidMarkerSetting setting = solidSettings.FindOrCreateMarkerSetting(marker);
             if (setting != null && setting.Unicode)
             {
                 Encoding stringEncoding = Encoding.UTF8;

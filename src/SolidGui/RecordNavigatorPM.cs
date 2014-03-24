@@ -111,11 +111,6 @@ namespace SolidGui
             }
         }
 
-        public void SendEditorRecordFormatterChangedEvent()
-        {
-
-        }
-
         public void MoveToLast()
         {
             if (_recordFilter.MoveToLast())

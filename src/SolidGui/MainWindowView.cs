@@ -289,7 +289,7 @@ namespace SolidGui
             _sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
             //_sfmEditorView.ContentsBox.ReadOnly = !canProcess;
 
-            _mainWindowPM.SfmEditorModel.MoveToFirst(); // This helps fix #616 (and #274) -JMC 2013-09
+            _mainWindowPM.SfmEditorModel.MoveToFirst(); // Cheap way to "fix" #616 (and #274) -JMC 2013-09
             _mainWindowPM.NavigatorModel.StartupOrReset();
             _markerSettingsListView.UpdateDisplay();
             _filterChooserView.Model.Reset(); // _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
@@ -327,7 +327,8 @@ namespace SolidGui
             if (_mainWindowPM.needsSave)
             {
                 setSaveEnabled(true);
-                _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
+                //_sfmEditorView.UpdateBoth(); // Using UpdateView() alone was losing edits. However, perhaps neither is necessary now thanks to ContentsBox_Leave() -JMC
+                // _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
                 this.UpdateDisplay();
             }
         }
@@ -562,8 +563,10 @@ namespace SolidGui
 
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
-            _markerSettingsListView.OpenSettingsDialog(null);
-            UpdateDisplay();
+            if (_markerSettingsListView.OpenSettingsDialog(null))
+            {
+                UpdateDisplay();
+            }
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -642,6 +645,14 @@ namespace SolidGui
             catch (Exception err)
             {
                 MessageBox.Show(err.Message, "File not found");
+            }
+        }
+
+        private void MainWindowView_Deactivate(object sender, EventArgs e)
+        {
+            if (_sfmEditorView.IsDirty)
+            {
+                _sfmEditorView.UpdateBoth();
             }
         }
 

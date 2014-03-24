@@ -13,6 +13,7 @@ namespace SolidGui.Search
 {
     public class SearchViewModel
     {
+        public static Regex RegexTab = new Regex(@"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         //private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public class SearchResultEventArgs : EventArgs
@@ -65,6 +66,11 @@ namespace SolidGui.Search
         public void setFindThis(string val)
         {
             FindThis = val;
+            if (!UseRegex)
+            {
+                FindThisRegex = null;
+                return;
+            }
 
             RegexOptions opt = RegexOptions.Multiline | RegexOptions.Compiled;
             if (!CaseSensitive)
@@ -239,6 +245,8 @@ namespace SolidGui.Search
                 // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
                 // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
                 // recordText = ReggieTempHack.Replace(recordText, "\n");
+
+                recordText = RegexTab.Replace(recordText, " "); //replace all tabs with spaces
             }
             else
             {
@@ -248,18 +256,20 @@ namespace SolidGui.Search
             if (reg == null)
             {
                 //Basic mode
-                string r = recordText;
-                string f = _regWindowsNewline.Replace(this.FindThis, "\n"); // the dialog gives \r\n but needs to match \n in the rich textbox
+                string f = _regWindowsNewline.Replace(FindThis, "\n"); // the Find dialog gives \r\n (when multiline) but needs to match the \n from the rich textbox
+                string rec = _regWindowsNewline.Replace(recordText, "\n"); // just in case
+                string rec2 = rec;
+                string f2 = f;
                 if (!CaseSensitive)
                 {
-                    r = r.ToLower();
-                    f = f.ToLower();
+                    rec2 = rec.ToLowerInvariant();
+                    f2 = f.ToLowerInvariant();
                 }
 
-                int finalTextIndex = r.IndexOf(f, startTextIndex);
+                int finalTextIndex = rec2.IndexOf(f2, startTextIndex);
                 if (finalTextIndex > -1)
                 {
-                    res = new SearchResult(recordIndex, finalTextIndex, filter, this.FindThis, replaceWith);
+                    res = new SearchResult(recordIndex, finalTextIndex, filter, f, replaceWith);
                 }
             }
             else
@@ -293,7 +303,7 @@ namespace SolidGui.Search
 
         public void SyncFormat(RecordFormatter rf)
         {
-            if (RecordFormatter.Indented != rf.Indented)
+            if (RecordFormatter.ShowIndented != rf.ShowIndented)
             {
                 // Mismatch. We now need to get in sync with the editing pane's indentation.
                 RecordFormatter = rf;

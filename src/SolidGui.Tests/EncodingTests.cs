@@ -45,6 +45,8 @@ namespace SolidGui.Tests {
 			Console.Write("iso: ");
 			foreach (byte b in iso8859Bytes)
 			{
+			    //string s = String.Format("0x{0:x} ", b);
+                //Console.Write(s);
 				Console.Write("0x{0:x} ", b);
 			}
 			Console.Write("\nutf8: ");
