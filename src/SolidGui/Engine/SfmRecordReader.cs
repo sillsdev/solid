@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using SolidGui.Engine;
 
 namespace SolidGui.Engine
@@ -31,6 +32,14 @@ namespace SolidGui.Engine
 
         string _startKey = "lx";  // JMC: use global setting!
         private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
+
+        private static Regex ReggieLeading = new Regex(
+            @"^[ \t]+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex ReggieTab = new Regex(
+            @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex ReggieLx = new Regex(
+            @"^[ \t]*\\" + SolidSettings.NewLine + @"\b", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
 
         private long _size = 0;
         private int _recordStartLine;
@@ -408,10 +417,17 @@ namespace SolidGui.Engine
             return result.Trailing;
         }
 
-        // Given a string read it into one or more records. Ignore any encoding issues for now--must be handled in memory later. -JMC Mar 2014
+        // Given a string read it into one or more records. -JMC
         public static SfmRecordReader CreateFromText(string text)
         {
-            var stream = new StringReader(text);
+
+            // Start with regex cleanup to remove tabs, and leading spaces -JMC 2013-09
+            // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
+            //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
+            string s = ReggieLeading.Replace(text, "");
+            s = ReggieTab.Replace(s, " ");
+
+            var stream = new StringReader(s);
             return new SfmRecordReader(stream);
         }
 

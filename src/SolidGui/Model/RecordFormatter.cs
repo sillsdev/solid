@@ -24,12 +24,10 @@ namespace SolidGui.Model
 
     // A sort of adapter for formatting the Record class. Created to replace ye olde:
     // - Record.ToStructuredString() + SfmFieldModel.ToStructuredString()
-
-    // - Record.ToString() ??
-    // - most of SfmDictionary.SaveAs(),
     // - SfmEditorPM.AsString()
+    // - most of SfmDictionary.SaveAs(),
     // - SfmEditorView.DisplayEachFieldInCurrentRecord() 
-    // Also, it will allow for more save options, like closing tags. 
+    // (That last one being rich text). Also, it will allow for more save options, like closing tags. 
     // And a non-indented editing mode, which is helpful with regex find/replace  -JMC Feb 2014
     public class RecordFormatter
     {
@@ -43,14 +41,14 @@ namespace SolidGui.Model
         public int IndentSpaces;
         public bool ShowInferred;
         public string Separator;  // space or tab
-        public bool EncodeForDisk; 
+        public bool EncodeSomeUtf8; 
         public bool ShowClosingTags;
         public string NewLine;  // use \n everywhere except when saving to disk; doing find/replace on RichTextBox basically mandates \n and not \r\n. -JMC
 
         private Regex _regexOneNewline;
         private readonly Color _errorTextColor = Color.Red;
         private readonly Color _inferredTextColor = Color.Blue;
-        private readonly Color _defaultTextColor = Color.DarkGreen; // .Black;
+        private readonly Color _defaultTextColor = Color.Black; // DarkGreen; // 
         private readonly Color _reminderTextColor = Color.DarkRed;
         private readonly Color _legacyTextColor = Color.DarkMagenta;
 
@@ -64,9 +62,9 @@ namespace SolidGui.Model
         // E.g. "RF: Tree + NoClosers \r\n" would represent the normal editing format
         public override string ToString()
         {
-            string ind = ShowIndented ? "Tree" : "Flat;";
+            string ind = ShowIndented ? "Tree;" : "Flat;";
             string inf = ShowInferred ? "+;" : "No+;";
-            string enc = EncodeForDisk ? " encode;" : " no encode;";
+            string enc = EncodeSomeUtf8 ? " some utf8;" : " no utf8;";
             string clos = ShowClosingTags ? "Closers;" : "NoClosers;";
             return "RF: " + ind + IndentSpaces + inf + Separator + enc + clos + NewLine;
         }
@@ -79,7 +77,7 @@ namespace SolidGui.Model
             IndentSpaces = source.IndentSpaces;
             ShowInferred = source.ShowInferred;
             Separator = source.Separator;
-            EncodeForDisk = source.EncodeForDisk;
+            EncodeSomeUtf8 = source.EncodeSomeUtf8;
             NewLine = source.NewLine;
             ShowClosingTags = source.ShowClosingTags;
         }
@@ -88,10 +86,10 @@ namespace SolidGui.Model
         public void SetDefaultsDisk()
         {
             ShowIndented = false;
-            IndentSpaces = 0;
+            IndentSpaces = IndentWidth;
             ShowInferred = false;
             Separator = " ";
-            EncodeForDisk = true;
+            EncodeSomeUtf8 = false;  // because our unicode data is (unofficially) already utf-8 sitting in memory strings.
             NewLine = SolidSettings.NewLine; // was "\r\n"; 
             ShowClosingTags = false;
         }
@@ -103,7 +101,7 @@ namespace SolidGui.Model
             IndentSpaces = 0;  // now that we have a better indent
             ShowInferred = true;
             Separator = "\t";
-            EncodeForDisk = false;
+            EncodeSomeUtf8 = true;
             NewLine = "\n";
             ShowClosingTags = false;
         }
@@ -112,21 +110,21 @@ namespace SolidGui.Model
         public void SetDefaultsUiFlat()
         {
             ShowIndented = false;
-            IndentSpaces = 0;
+            IndentSpaces = IndentWidth;
             ShowInferred = true;
             Separator = " ";
-            EncodeForDisk = false;
+            EncodeSomeUtf8 = true;
             NewLine = "\n";
             ShowClosingTags = false;
         }
 
 
-        private int getIndentPixels(SfmFieldModel field)
+        private int GetIndentPixels(SfmFieldModel field)
         {
             return field.Depth*IndentWidth*3;
         }
 
-        private string getIndent(SfmFieldModel field)
+        private string GetIndent(SfmFieldModel field)
         {           
             string indentation = "";
             if (ShowIndented && IndentSpaces > 0)
@@ -136,7 +134,7 @@ namespace SolidGui.Model
             return indentation;
         }
 
-        private string getSlash(SfmFieldModel field)
+        private string GetSlash(SfmFieldModel field)
         {
             if (ShowInferred)
             {
@@ -145,9 +143,8 @@ namespace SolidGui.Model
             return "\\";
         }
 
-        private string getMarker(SfmFieldModel field)
+        private string GetMarker(SfmFieldModel field)
         {
-            //JMC: bring up that Trim stuff that's in the rich text method ??
             return field.Marker;
 /*
             if ((!ShowInferred) && field.Inferred)
@@ -158,53 +155,58 @@ namespace SolidGui.Model
  */ 
         }
 
-        private string getSeparator(SfmFieldModel field)
+        private string GetSeparator(SfmFieldModel field)
         {
-            if (field.Value != "")
+            if (field.Value != "")  // (issue #1206) don't insert trailing spaces that weren't in the file. -JMC 2013-09
             {
-                return ShowIndented ? "\t" : " ";
+                return Separator;
             }
             return "";
         }
 
-        private string getValue(SfmFieldModel field, SolidSettings solidSettings)
+        /* Analysis of original design of encoding/decoding: (JMC)
+        SfmEditorPM.UpdateCurrentRecord 
+          called GetLatin1ValueFromUnicode
+            if field marker is "unicode", convert to ISO:
+                byte[] valueAsBytes = Encoding.UTF8;.GetBytes(value);
+                return Encoding.GetEncoding("iso-8859-1").GetString(valueAsBytes);
+            else plain value (ISO)
+          Conclusion: RichTextBox returns some UTF8, but Everything is stored as ISO in memory.
+
+        SfmDictionary.SaveAs called update, then used a streamwriter set to ISO and wrote straight from memory
+          Conclusion: Everything is stored as ISO to disk.
+  
+        DisplayEachFieldInCurrentRecord()
+          called GetUnicodeValueFromLatin1(field) and appended that to the richtextbox
+            if field marker is "unicode", convert to utf8
+                byte[] valueAsBytes = Encoding.GetEncoding("iso-8859-1").GetBytes(value);
+                return Encoding.UTF8.GetString(valueAsBytes);
+            else plain value (ISO)
+          Conclusion: The only place we officially write UTF8 is to the UI! 
+            Example: presumably a character that's 3-byte in UTF8 gets stored in memory as 3 UTF16 chars (6 bytes).
+            Hopefully it all gets passed through ok, and 1- to 4-byte characters work identically?
+            (Presumably 4 is no harder than 2-3, so no need to explicitly handle surrogate pairs?)
+         */
+
+        private string GetValue(SfmFieldModel field, SolidSettings solidSettings)
         {
-            if (EncodeForDisk)
+            if (EncodeSomeUtf8)
             {
-                
-                return SfmFieldModel.ValueAsLatin1(field.Marker, field.Value, solidSettings);
-                // return field.Value; //JMC: Is this ever needed?
+                return field.ValueMaybeUtf8(solidSettings);
             }
-            else
-            {
-                return field.ValueForDisplay(solidSettings);
-/*
-                string retval;
-                SolidMarkerSetting setting = solidSettings.FindOrCreateMarkerSetting(field.Marker);
-                if (setting != null && setting.Unicode)
-                {
-                    retval = field.ValueAsUnicode();
-                }
-                else
-                {
-                    retval = field.Value;
-                }
-                return retval; // mainly for display
-*/                
-            }
+            return field.Value;
         }
 
-        private string getClosers(SfmFieldModel field)
+        private string GetClosers(SfmFieldModel field)
         {
             string s = "";
             if (ShowClosingTags)
             {
                 List<string> list = field.Closers;
-
-                //JMC:! Dummy value for now. Parser (or something similar to LIFT adapter) needs to provide actual closers.
                 if (list == null)
                 {
-                    list = new List<string> { "stub", "zz" }; // new List<string>;}
+                    // For error fields, have them close themselves. Not ideal, but at least it balances. -JMC
+                    return "\\" + field.Marker + "*";
                 }
 
                 foreach (string c in list)
@@ -215,7 +217,7 @@ namespace SolidGui.Model
             return s;
         }
 
-        private string replaceNewlines(string s)
+        private string ReplaceNewlines(string s)
         {
             string s2 = _regexOneNewline.Replace(s, NewLine); //force all newlines to be the same, typically \n or \r\n (\r is unlikely)
             return s2;
@@ -244,15 +246,16 @@ namespace SolidGui.Model
             {
                 if (field == null) break; //does this happen?
                 if (!ShowInferred && field.Inferred) continue;
-                string indentation = getIndent(field);
-                string slash = getSlash(field);
-                string sep = getSeparator(field);
-                string val = getValue(field, solidSettings);
-                string closers = getClosers(field);
-                sb.Append(indentation + slash + getMarker(field) + sep + val + closers + field.Trailing);
+                string indentation = GetIndent(field);
+                string slash = GetSlash(field);
+                string marker = GetMarker(field);
+                string sep = GetSeparator(field);
+                string val = GetValue(field, solidSettings);
+                string closers = GetClosers(field);
+                sb.Append(indentation + slash + marker + sep + val + closers + field.Trailing);
             }
             string s = sb.ToString();
-            return replaceNewlines(s);
+            return ReplaceNewlines(s);
         }
 
 
@@ -302,14 +305,14 @@ namespace SolidGui.Model
                     */
 
                     // Add indent. This gets rid of the problematic leading spaces. -JMC Mar 2014
-                    rb.SelectionIndent = getIndentPixels(field);
+                    rb.SelectionIndent = GetIndentPixels(field);
                 }
 
-                string markerPrefix = getSlash(field);
-                string marker = getMarker(field);
+                string markerPrefix = GetSlash(field);
+                string marker = GetMarker(field);
 
                 // 2) Marker
-                marker = marker.Trim(new[] {'_'});
+                //marker = marker.Trim(new[] { '_' });  //I think this was being trimmed off because the old parser detected the header based on leading underscores. -JMC 2013-10
                 //JMC:! Remove this Trim? It can misalign find/replace, and don't think \se_ is the same as \se  -JMC Mar 2014
 
                 if (highlightMarkers.Contains(field.Marker))
@@ -343,7 +346,7 @@ namespace SolidGui.Model
                 rb.SelectionColor = _defaultTextColor;
 
                 // 3) separator, value, closers, and Trailing Whitespace 
-                string sep = getSeparator(field);
+                string sep = GetSeparator(field);
                 // rb.SelectionFont = _underlined;  // just for grins (might look ok dashed/dotted; probably not. -JMC
                 rb.AppendText(sep);
 
@@ -356,19 +359,19 @@ namespace SolidGui.Model
                 {
                     rb.SelectionColor = isUnicode ? _defaultTextColor : _legacyTextColor;
                 }
-                string displayValue = getValue(field, model.Settings);
+                string displayValue = GetValue(field, model.Settings);
                 rb.AppendText(displayValue);  
                 rb.SelectionColor = _defaultTextColor;
 
-                string closers = getClosers(field);
+                string closers = GetClosers(field);
                 rb.AppendText(closers);
                 rb.AppendText(field.Trailing);
 
-                int inc = (sep + displayValue + field.Trailing).Count(x => x == '\n');
+                int inc = (sep + displayValue + field.Trailing).Count(x => x == '\n'); //count the number of newlines in this field
                 lineNumber += inc;
 
                 // Unlike FormatPlain, there's no need to try calling replaceNewlines(); 
-                // the rich textbox will force \n regardless. -JMC
+                // the richtextbox will force \n regardless. -JMC
 
             }
         }

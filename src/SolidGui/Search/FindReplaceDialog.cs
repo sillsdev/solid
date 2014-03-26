@@ -268,7 +268,7 @@ namespace SolidGui.Search
 
             // Added this so that no matter which way the user 'closes' the dialog, it only hides. A cheap way to remember field contents (#326). -JMC Feb 2014
             this.Hide();
-            e.Cancel = true;
+            e.Cancel = true; // cancel the close
         }
 
 

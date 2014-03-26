@@ -192,12 +192,18 @@ namespace SolidGui.Model
             progressState.NumberOfStepsCompleted = 1;
             try
             {
-                ReadDictionary(progressState, openArguments);                
+                ReadDictionary(progressState, openArguments);
             }
             catch (FileNotFoundException e)
             {
                 ErrorReport.NotifyUserOfProblem(
                     "The specified file was not found. The error was\r\n" + e.Message);
+                return;
+            }
+            catch (DataMisalignedException e)
+            {
+                ErrorReport.NotifyUserOfProblem(
+                    "Unable to finish opening the file. The error was\r\n" + e.Message);
                 return;
             }
 
@@ -206,6 +212,8 @@ namespace SolidGui.Model
 
         private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments)
         {
+            //JMC:! Merge some of this code with ProcessEncoding.Process ("hacked fonts") . See esp FilterSet.AddRecord and CreateSolidErrorRecordFilter
+
             var processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.SolidSettings));
             processes.Add(new ProcessStructure(openArguments.SolidSettings));
@@ -306,6 +314,13 @@ namespace SolidGui.Model
 
         public bool SaveAs(string path, SolidSettings ss)
         {
+            var rf = new RecordFormatter();
+            rf.SetDefaultsDisk();
+            return SaveAs(path, ss, rf);
+        }
+
+        public bool SaveAs(string path, SolidSettings ss, RecordFormatter rf)
+        {
             Logger.WriteEvent("Saving {0}", path);
             _filePath = path;
             try
@@ -314,8 +329,6 @@ namespace SolidGui.Model
                 {
 
                     writer.Write(SfmHeader);
-                    var rf = new RecordFormatter();
-                    rf.SetDefaultsDisk();
 
                     foreach (Record record in _recordList)
                     {

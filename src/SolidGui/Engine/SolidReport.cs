@@ -14,10 +14,10 @@ namespace SolidGui.Engine
         [Flags]
         public enum EntryType
         {
-            StructureInsertInInferredFailed = 0, 
-            StructureParentNotFound = 1, 
-            StructureParentNotFoundForInferred = 2,
-            EncodingBadUnicode = 4,
+            EncodingBadUnicode = 0,
+            StructureInsertInInferredFailed = 1, 
+            StructureParentNotFound = 2, 
+            StructureParentNotFoundForInferred = 4,
             EncodingUpperAscii = 8
         }
 

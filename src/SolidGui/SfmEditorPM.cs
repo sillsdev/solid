@@ -66,13 +66,6 @@ namespace SolidGui
             _model.NavigatorModel.MoveToNext();
         }
       
-        private static Regex ReggieLeading = new Regex(
-            @"^[ \t]+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        private static Regex ReggieTab = new Regex(
-            @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        private static Regex ReggieLx = new Regex(
-            @"^[ \t]*\\" + SolidSettings.NewLine + @"\b", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
         // Take whatever was in the view's rich text box and update the underlying model to match it.
         public void UpdateCurrentRecord(Record record, string newContents)
         {
@@ -126,20 +119,13 @@ namespace SolidGui
             }
 
 
-            // regex cleanup to remove tabs, and leading spaces -JMC 2013-09
-
-            // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
-            //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
-            newContents = ReggieLeading.Replace(newContents, "");
-            newContents = ReggieTab.Replace(newContents, " ");
-
-            // Check for multiple \lx in a single "record"--the result of recent user edits (issue #173)
+            // Usually there'll only be one, but the readers lets us handle multiple \lx in a single "record"--the result of recent user edits (issue #173)
             var reader = SfmRecordReader.CreateFromText(newContents);
             reader.AllowLeadingWhiteSpace = true;
 
             int i = -1;
             //foreach (var r in records)
-            while (reader.ReadRecord())  //there should only be one, unless the user messed with lx
+            while (reader.ReadRecord())  // the loop will only run once, unless the user messed with lx
             {
                 i++;
                 SfmRecord sfmRecord = reader.Record;
@@ -149,11 +135,13 @@ namespace SolidGui
                 // At this point, this one record is stored in one clean string, ostensibly all UTF-16
                 // Encode the value correctly as per the solid marker settings (either utf-8 or SolidSettings.LegacyEncoding),
                 // just as if we were already writing to disk? Is each utf-8 byte simply dumped into a two-byte char? -JMC
+
+                //string old = AsString(sfmRecord);
                 var rf = new RecordFormatter();
                 rf.SetDefaultsDisk();
-                //rf.EncodeForDisk = true; //needs to be true
+                rf.EncodeSomeUtf8 = false;
+                Record.DecodeUtf8(sfmRecord, _model.Settings);
                 string s = rf.FormatPlain(sfmRecord, _model.Settings);
-                string old = AsString(sfmRecord);
 
                 if (i == 0)
                 {
@@ -187,6 +175,7 @@ namespace SolidGui
             // Again, should we explicitly trigger this by invoking an event, for clarity?
         }
 
+        /*
         private string AsString(SfmRecord sfmRecord)
         {
             var sb = new StringBuilder();
@@ -197,7 +186,7 @@ namespace SolidGui
                 // JMC: I've added a local variable s so we can test without it
                 sb.Append("\\");
                 sb.Append(field.Marker);
-                if (s != "") // (issue #1206) don't insert trailing spaces that weren't in the file. -JMC 2013-09
+                if (s != "") 
                 {
                     sb.Append(" ");
                     sb.Append(s);
@@ -205,7 +194,8 @@ namespace SolidGui
                 sb.Append(field.Trailing);
             }
             return sb.ToString();
-        }
+        } 
+         */
 
         private static void RemoveInferredFields(List<SfmField> sfmRecord)
         {

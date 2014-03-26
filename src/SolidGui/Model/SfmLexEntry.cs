@@ -44,7 +44,7 @@ namespace SolidGui.Model
             foreach (SfmFieldModel f in _fields)
             {
                 SfmFieldModel f2 = e2.Fields[i++];
-                if (f.Marker != f2.Marker || f.ValueForDisplay(null) != f2.ValueForDisplay(null) || f.Trailing != f2.Trailing)
+                if (f.Marker != f2.Marker || f.Value != f2.Value || f.Trailing != f2.Trailing)
                 {
                     result = false;
                     break;
@@ -69,7 +69,7 @@ namespace SolidGui.Model
         {
             // Assume that the lx is first, it always will be.
             Guard.Against(_fields.Count == 0, "No fields in this SfmLexEntry");
-            return _fields[0].ValueForDisplay(solidSettings).Trim();
+            return _fields[0].ValueMaybeUtf8(solidSettings).Trim();
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace SolidGui.Model
             if(citationField == null)
                 return GetLexemeForm(solidSettings);
 
-            return citationField.ValueForDisplay(solidSettings).Trim();
+            return citationField.ValueMaybeUtf8(solidSettings).Trim();
         }
 
         // JMC:!? Temporarily avoiding all build warnings; don't forget to uncomment the following later

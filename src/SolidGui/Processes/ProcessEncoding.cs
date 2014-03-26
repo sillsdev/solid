@@ -24,7 +24,11 @@ namespace SolidGui.Processes
         {
             Encoding utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
             Encoding legacyEncoding = SolidSettings.LegacyEncoding;  //was: Encoding.GetEncoding("iso-8859-1");
-            
+
+
+            //JMC:! Can this method be deleted? It overlaps with SfmDictionary.ReadDictionary() and thus with:
+            // filter.Add(entry.Marker, CreateSolidErrorRecordFilter(entry.EntryType, entry.Marker));
+
             // Iterate through each (flat) node in the src d
             foreach (SfmFieldModel sfmField in lexEntry.Fields)
             {

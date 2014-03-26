@@ -79,6 +79,15 @@ namespace SolidGui.Model
             get { return LexEntry.Fields; }
         }
 
+        public static void DecodeUtf8(SfmRecord entry, SolidSettings s)
+        {
+            foreach(SfmField f in entry)
+            {
+                f.Value = SfmFieldModel.ValueAsLatin1(f.Marker, f.Value, s);
+            }
+        }
+
+
         public bool HasMarker(string marker)
         {
             return LexEntry.HasMarker(marker);

@@ -70,7 +70,7 @@ namespace SolidGui.Filter
                         _currentDictionary,
                         marker,
                         type,
-                        string.Format("Reminder: marker {0}'n upper ASCII data not yet converted to unicode.", marker)
+                        string.Format("Reminder: marker {0} contains upper ASCII data not yet converted to unicode.", marker)
                         );
                     break;
                 case SolidReport.EntryType.EncodingBadUnicode:
@@ -78,7 +78,7 @@ namespace SolidGui.Filter
                         _currentDictionary,
                         marker,
                         type,
-                        string.Format("WARNING--don't save! Marker {0} contains bad unicode data.", marker)
+                        string.Format("WARNING: do NOT save! Marker {0} contains bad unicode data.", marker)
                         );
                     break;
             }

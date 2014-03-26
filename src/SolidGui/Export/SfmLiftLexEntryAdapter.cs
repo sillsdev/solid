@@ -248,7 +248,8 @@ namespace SolidGui.Export
             LexEtymology currentEtymology = null;
             foreach (SfmFieldModel field in SfmLexEntry.Fields)
             {
-                string unicodeValue = MakeSingleLine(field.ValueForDisplay(SolidSettings).Trim());
+                string unicodeValue = field.ValueForceUtf8(SolidSettings);  // Changed to ensure that LIFT doesn't use mixed encodings -JMC
+                unicodeValue = MakeSingleLine(unicodeValue.Trim());
                 StateInfo currentState = states.Peek();
                 while (field.Depth <= currentState.Depth)
                 {

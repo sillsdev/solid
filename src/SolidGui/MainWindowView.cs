@@ -367,22 +367,62 @@ namespace SolidGui
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 
+        // Currently is a "Save Copy As..." rather than a true "Save As..." -JMC
         private void OnSaveAsClick(object sender, EventArgs e)
         {
+            SaveACopy();
+        }
 
-            string initialDirectory = GetInitialDirectory();
+        private void SaveACopy()
+        {
+            //JMC!: insert code here to present various save options first (or just after the file chooser?).
+            // The options dialog will return a RecordFormatter with the selected options.
+            // We'll pass that as an argument.
+            var rf = new RecordFormatter();
+            rf.SetDefaultsDisk();
+            /*
+            rf.IndentSpaces = 4;
+            rf.ShowIndented = true;
+            rf.ShowClosingTags = true;
+             */ 
+
+            var optionsDialog = new SaveOptionsDialog();
+            // optionsDialog.WarnAboutClosers = false; //only do this if there are no structural errors detected. -JMC
+            var result = optionsDialog.ShowDialog(this);
+            if (DialogResult.OK != result)
+            {
+                return; // user cancelled
+            }
+            rf = SaveOptionsDialog.ShortTermMemory;
+
+            string s = _mainWindowPM.DictionaryRealFilePath;
+            string initialDirectory = Path.GetDirectoryName(s);
+            string initialFilename = Path.GetFileName(s);
+            string initialExt = Path.GetExtension(s);
+
+
             var dlg = new SaveFileDialog();
             dlg.Title = "Save As...";
-            dlg.DefaultExt = ".db";
-            dlg.FileName = Settings.Default.PreviousPathToDictionary;
+            dlg.DefaultExt = initialExt;
+            dlg.FileName = initialFilename;
             //dlg.Filter = "SFM Lexicon (" + exts + ")|" + mask + "|All Files (*.*)|*.*";
             dlg.InitialDirectory = initialDirectory;
             if (DialogResult.OK != dlg.ShowDialog(this))
             {
-                return; //they cancelled
+                return; // user cancelled
             }
 
-            MessageBox.Show("Not yet implemented. Nothing was saved to: " + dlg.FileName);
+            //JMC: If we save A.txt as B.txt and B.solid already exists, the following will silently overwrite B.solid
+            // That's usually the right thing to do, but we could check, and provide a confirmation dialog here if needed, and bail on Cancel.
+
+            if (_mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf));
+            {
+                setSaveEnabled(false);
+                //JMC: For true Save As, we'd need to switch over to the other file. And to be safe, just reload?
+
+            }
+            _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
+            _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 
 

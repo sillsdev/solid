@@ -411,10 +411,26 @@ namespace SolidGui
             Settings.SaveAs(filePath);
         }
 
+        public bool DictionaryAndSettingsSaveAs(string dictionaryPath)
+        {
+            var rf = new RecordFormatter();
+            rf.SetDefaultsDisk(); //JMC:! redundant with SfmDictionary.SaveAs
+            return DictionaryAndSettingsSaveAs(dictionaryPath, rf);
+        }
+        public bool DictionaryAndSettingsSaveAs(string dictionaryPath, RecordFormatter rf)
+        {
+            string settingsPath = SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath);
+            bool success = Settings.SaveAs(settingsPath);
+            return success && _workingDictionary.SaveAs(dictionaryPath, Settings, rf);
+        }
+
         public bool DictionaryAndSettingsSave()
         {
+            return DictionaryAndSettingsSaveAs(_realDictionaryPath);
+            /*
             bool success = Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath));
             return success && _workingDictionary.SaveAs(_realDictionaryPath, Settings);
+             */ 
         }
 
         public void UseSolidSettingsTemplate(string path)

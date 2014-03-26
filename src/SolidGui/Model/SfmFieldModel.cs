@@ -104,60 +104,52 @@ namespace SolidGui.Model
             return markerSetting.Unicode;
         }
 
-        public static string ValueAsUtf8(string value)
+        public string ValueMaybeUtf8(SolidSettings solidSettings)
         {
-            Encoding sourceEnc = SolidSettings.LegacyEncoding;  // replaced Encoding.GetEncoding("iso-8859-1") with Legacy -JMC
-            Encoding targetEnc = Encoding.UTF8;
-            string retval = value;
-            string valueInMemory = value;
-            if (valueInMemory.Length > 0)  // might be safer to check settings, and to skip if unicode -JMC
-            {
-                byte[] valueAsBytes = sourceEnc.GetBytes(valueInMemory);
-                retval = targetEnc.GetString(valueAsBytes);
-                if (retval.Length == 0)  // JMC: Is this sufficient error detection?
-                {
-                    retval = "Non Unicode Data Found";  //JMC:! How about throwing an exception? Maybe fatal, or maybe UI just catches and recommends not saving?
-                    // TODO: Need to lock this field of the current record at this point.
-                    // The editor must *never* write back to the model (for this field)
-                }
-            }
-            return retval;
+            return IsUnicode(Marker, solidSettings) ? AsUtf8(Value) : Value;
         }
 
-        private static string ToLatin1(string value)
+        public string ValueForceUtf8(SolidSettings solidSettings)
+        {
+            if (IsUnicode(Marker, solidSettings))
+            {
+                // Already utf8, basically
+                return AsUtf8(Value);
+            }
+            else
+            {
+                // Use cp1252 to convert to utf8
+                var utf8 = new UTF8Encoding(false, true);  // BOM: false, throw errors: true  -JMC
+                byte[] legacyBytes = SolidSettings.LegacyEncoding.GetBytes(Value);
+                byte[] utf8Bytes = Encoding.Convert(SolidSettings.LegacyEncoding, utf8, legacyBytes);
+                string utf8String = Encoding.UTF8.GetString(utf8Bytes);
+                return utf8String;
+            }
+        }
+
+        private static string AsUtf8 (string value)
+        {
+            byte[] valueAsBytes = SolidSettings.LegacyEncoding.GetBytes(value);  // replaced Encoding.GetEncoding("iso-8859-1") with Legacy -JMC 
+            var utf8 = new UTF8Encoding(false, false); // no BOM, nor errors yet (that up to ProcessEncoding). -JMC
+            return utf8.GetString(valueAsBytes);
+        }
+
+        private static string AsLatin1(string value)
         {
             byte[] valueAsBytes = Encoding.UTF8.GetBytes(value);
-            return SolidSettings.LegacyEncoding.GetString(valueAsBytes);
+            string s = SolidSettings.LegacyEncoding.GetString(valueAsBytes);
+            return s;
         }
 
-        // JMC:! Can't we get rid of this? Why do we ever need to 
         public static string ValueAsLatin1(string marker, string value, SolidSettings solidSettings)
         {
             if (solidSettings == null) return value;
             if (IsUnicode(marker, solidSettings))  //safety check
             {
                 // needs conversion from UTF8 to bytes (stored as a "string")
-                value = ToLatin1(value);
+                value = AsLatin1(value);
             }
             return value;
-        }
-
-        public string ValueForDisk(string marker, string value, SolidSettings solidSettings)
-        {
-            if (solidSettings == null) return value;
-            if (IsUnicode(marker, solidSettings))  //safety check
-            {
-                // needs conversion from UTF8 to bytes (stored as a "string")
-                value = ToLatin1(value);
-            }
-            return IsUnicode(Marker, solidSettings) ? ValueAsUtf8(Value) : ToLatin1(Value);
-        }
-
-
-        public string ValueForDisplay(SolidSettings solidSettings)
-        {
-            if (solidSettings == null) return Value;
-            return IsUnicode(Marker, solidSettings) ? ValueAsUtf8(Value) : Value;
         }
 
         public void AppendChild(SfmFieldModel node)
@@ -200,11 +192,8 @@ namespace SolidGui.Model
 
         public override string ToString()
         {
-            if(String.IsNullOrEmpty(Value))
-            {
-                return "\"" + Marker + "\"" + " DEPTH:" + this.Depth;
-            }
-            return "\"" + Marker + " " + Value + "\""  + " DEPTH:" + this.Depth; ;
+            string v = Value ?? "";
+            return "\"" + Marker + " " + v + "\""  + " DEPTH:" + this.Depth;
         }
     }
 
