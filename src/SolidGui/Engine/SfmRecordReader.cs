@@ -34,7 +34,7 @@ namespace SolidGui.Engine
         private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
 
         private static Regex ReggieLeading = new Regex(
-            @"^[ \t]+", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
+            @"^[ \t]+\\", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieTab = new Regex(
             @"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         private static Regex ReggieLx = new Regex(
@@ -424,7 +424,7 @@ namespace SolidGui.Engine
             // Start with regex cleanup to remove tabs, and leading spaces -JMC 2013-09
             // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
             //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
-            string s = ReggieLeading.Replace(text, "");
+            string s = ReggieLeading.Replace(text, "\\");
             s = ReggieTab.Replace(s, " ");
 
             var stream = new StringReader(s);
