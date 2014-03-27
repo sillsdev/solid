@@ -24,7 +24,7 @@ namespace SolidGui.Engine
                     s = "ii";
                     break;
                 case MultiplicityAdjacency.MultipleApart:
-                    s = "i..ii";
+                    s = "i_i";
                     break;
             }
             return s;

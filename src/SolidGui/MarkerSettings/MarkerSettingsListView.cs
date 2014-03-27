@@ -67,7 +67,7 @@ namespace SolidGui.MarkerSettings
             FillInFrequencyColumn(item, pair.Value.ToString());  // COUNT
 
             SolidMarkerSetting markerSetting = _markerSettingsPM.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
-            AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties), OnStructureLinkClicked);  // UNDER
+            AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties, markerSetting), OnStructureLinkClicked);  // UNDER
 
             AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);  // WS
 
@@ -164,9 +164,15 @@ namespace SolidGui.MarkerSettings
             return mapping ?? "??";
         }
 
-        private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties)
+        private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties, SolidMarkerSetting markerSetting)
         {
             string parents = "";
+
+            if (!String.IsNullOrEmpty(markerSetting.InferedParent))  //implements issue #1272 -JMC Mar 2014
+            {
+                parents += "+" + markerSetting.InferedParent;
+            }
+
             foreach (SolidStructureProperty property in properties)
             {
                 if (!string.IsNullOrEmpty(property.Parent))

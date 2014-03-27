@@ -52,11 +52,13 @@ namespace SolidGui
             this.splitContainerLeftRight = new System.Windows.Forms.SplitContainer();
             this.splitContainerUpDown = new System.Windows.Forms.SplitContainer();
             this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelMarkerSettings = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
+            this.buttonTree = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this._filterChooserView = new SolidGui.Filter.FilterChooserView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelFilters = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this._sfmEditorView = new SolidGui.SfmEditorView();
             this._recordNavigatorView = new SolidGui.RecordNavigatorView();
@@ -64,13 +66,13 @@ namespace SolidGui
             this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._saveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exportXmlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._markersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._changeTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._changeWritingSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._switchTemplatesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._changeWritingSystemsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._editMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._findMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -78,7 +80,17 @@ namespace SolidGui
             this._copyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._pasteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._fixMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._suggestFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._recipesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._splitSemicolonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._trimSpacesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._quickFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._moveUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._deleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._makeMarkersRealMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._addGuidsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fixLinksMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._fixPsSnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._viewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._recheckMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._refreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,10 +99,14 @@ namespace SolidGui
             this._goPreviousMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._goNextMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._goLastMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._markerHierarchyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._addFilterMarkersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._addFilterDataShapeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._globallyDeleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -104,8 +120,9 @@ namespace SolidGui
             this.splitContainerUpDown.Panel1.SuspendLayout();
             this.splitContainerUpDown.Panel2.SuspendLayout();
             this.splitContainerUpDown.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelMarkerSettings.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.panelFilters.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -159,7 +176,7 @@ namespace SolidGui
             this._exportButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._exportButton.Name = "_exportButton";
             this._exportButton.Size = new System.Drawing.Size(69, 22);
-            this._exportButton.Text = "&Export...";
+            this._exportButton.Text = "E&xport...";
             this._exportButton.ToolTipText = "Export As LIFT... (Experimental)";
             this._exportButton.Click += new System.EventHandler(this.OnExportButton_Click);
             // 
@@ -280,12 +297,12 @@ namespace SolidGui
             // splitContainerUpDown.Panel1
             // 
             this.splitContainerUpDown.Panel1.Controls.Add(this._markerSettingsListView);
-            this.splitContainerUpDown.Panel1.Controls.Add(this.panel2);
+            this.splitContainerUpDown.Panel1.Controls.Add(this.panelMarkerSettings);
             // 
             // splitContainerUpDown.Panel2
             // 
             this.splitContainerUpDown.Panel2.Controls.Add(this._filterChooserView);
-            this.splitContainerUpDown.Panel2.Controls.Add(this.panel1);
+            this.splitContainerUpDown.Panel2.Controls.Add(this.panelFilters);
             this.splitContainerUpDown.Size = new System.Drawing.Size(433, 403);
             this.splitContainerUpDown.SplitterDistance = 265;
             this.splitContainerUpDown.TabIndex = 2;
@@ -299,26 +316,39 @@ namespace SolidGui
             this._markerSettingsListView.Size = new System.Drawing.Size(433, 231);
             this._markerSettingsListView.TabIndex = 0;
             // 
-            // panel2
+            // panelMarkerSettings
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel2.Controls.Add(this._editMarkerProperties);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(433, 34);
-            this.panel2.TabIndex = 1;
+            this.panelMarkerSettings.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panelMarkerSettings.Controls.Add(this.flowLayoutPanel1);
+            this.panelMarkerSettings.Controls.Add(this.label2);
+            this.panelMarkerSettings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelMarkerSettings.Location = new System.Drawing.Point(0, 0);
+            this.panelMarkerSettings.Name = "panelMarkerSettings";
+            this.panelMarkerSettings.Size = new System.Drawing.Size(433, 34);
+            this.panelMarkerSettings.TabIndex = 1;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.Controls.Add(this._editMarkerProperties);
+            this.flowLayoutPanel1.Controls.Add(this.buttonTree);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(287, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(145, 32);
+            this.flowLayoutPanel1.TabIndex = 7;
             // 
             // _editMarkerProperties
             // 
-            this._editMarkerProperties.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this._editMarkerProperties.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._editMarkerProperties.FlatAppearance.BorderSize = 0;
             this._editMarkerProperties.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._editMarkerProperties.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._editMarkerProperties.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._editMarkerProperties.Image = global::SolidGui.Properties.Resources.cog;
-            this._editMarkerProperties.Location = new System.Drawing.Point(326, 3);
+            this._editMarkerProperties.Location = new System.Drawing.Point(47, 1);
+            this._editMarkerProperties.Margin = new System.Windows.Forms.Padding(3, 1, 1, 3);
             this._editMarkerProperties.Name = "_editMarkerProperties";
             this._editMarkerProperties.Size = new System.Drawing.Size(97, 28);
             this._editMarkerProperties.TabIndex = 6;
@@ -327,6 +357,22 @@ namespace SolidGui
             this._editMarkerProperties.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this._editMarkerProperties.UseVisualStyleBackColor = true;
             this._editMarkerProperties.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
+            // 
+            // buttonTree
+            // 
+            this.buttonTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonTree.FlatAppearance.BorderSize = 0;
+            this.buttonTree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonTree.Image = ((System.Drawing.Image)(resources.GetObject("buttonTree.Image")));
+            this.buttonTree.Location = new System.Drawing.Point(21, 2);
+            this.buttonTree.Margin = new System.Windows.Forms.Padding(3, 2, 3, 3);
+            this.buttonTree.Name = "buttonTree";
+            this.buttonTree.Size = new System.Drawing.Size(20, 25);
+            this.buttonTree.TabIndex = 10;
+            this.buttonTree.UseVisualStyleBackColor = true;
+            this.buttonTree.Visible = false;
+            this.buttonTree.Click += new System.EventHandler(this.buttonTree_Click);
             // 
             // label2
             // 
@@ -349,16 +395,16 @@ namespace SolidGui
             this._filterChooserView.Size = new System.Drawing.Size(433, 100);
             this._filterChooserView.TabIndex = 2;
             // 
-            // panel1
+            // panelFilters
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this._recheckButton);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(433, 34);
-            this.panel1.TabIndex = 4;
+            this.panelFilters.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panelFilters.Controls.Add(this.label1);
+            this.panelFilters.Controls.Add(this._recheckButton);
+            this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelFilters.Location = new System.Drawing.Point(0, 0);
+            this.panelFilters.Name = "panelFilters";
+            this.panelFilters.Size = new System.Drawing.Size(433, 34);
+            this.panelFilters.TabIndex = 4;
             // 
             // label1
             // 
@@ -415,7 +461,7 @@ namespace SolidGui
             this._fileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openMenuItem,
             this._saveMenuItem,
-            this.saveAsToolStripMenuItem,
+            this._saveAsMenuItem,
             this._exportXmlMenuItem,
             this._exitMenuItem});
             this._fileMenuItem.Name = "_fileMenuItem";
@@ -439,12 +485,12 @@ namespace SolidGui
             this._saveMenuItem.Text = "&Save (Ctrl+S, Alt+S)";
             this._saveMenuItem.Click += new System.EventHandler(this.OnSaveClick);
             // 
-            // saveAsToolStripMenuItem
+            // _saveAsMenuItem
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.saveAsToolStripMenuItem.Text = "Save a Copy As...";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
+            this._saveAsMenuItem.Name = "_saveAsMenuItem";
+            this._saveAsMenuItem.Size = new System.Drawing.Size(261, 22);
+            this._saveAsMenuItem.Text = "Save a Copy As...";
+            this._saveAsMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // _exportXmlMenuItem
             // 
@@ -464,8 +510,8 @@ namespace SolidGui
             // 
             this._markersMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._propertiesMenuItem,
-            this._changeTemplateToolStripMenuItem,
-            this._changeWritingSystemsToolStripMenuItem});
+            this._switchTemplatesMenuItem,
+            this._changeWritingSystemsMenuItem});
             this._markersMenuItem.Name = "_markersMenuItem";
             this._markersMenuItem.Size = new System.Drawing.Size(61, 22);
             this._markersMenuItem.Text = "&Markers";
@@ -477,19 +523,19 @@ namespace SolidGui
             this._propertiesMenuItem.Text = "&Properties (for current marker)...";
             this._propertiesMenuItem.Click += new System.EventHandler(this.OnEditMarkerPropertiesClick);
             // 
-            // _changeTemplateToolStripMenuItem
+            // _switchTemplatesMenuItem
             // 
-            this._changeTemplateToolStripMenuItem.Name = "_changeTemplateToolStripMenuItem";
-            this._changeTemplateToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this._changeTemplateToolStripMenuItem.Text = "Switch &Templates...";
-            this._changeTemplateToolStripMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
+            this._switchTemplatesMenuItem.Name = "_switchTemplatesMenuItem";
+            this._switchTemplatesMenuItem.Size = new System.Drawing.Size(243, 22);
+            this._switchTemplatesMenuItem.Text = "Switch &Templates...";
+            this._switchTemplatesMenuItem.Click += new System.EventHandler(this.OnChangeTemplate_Click);
             // 
-            // _changeWritingSystemsToolStripMenuItem
+            // _changeWritingSystemsMenuItem
             // 
-            this._changeWritingSystemsToolStripMenuItem.Name = "_changeWritingSystemsToolStripMenuItem";
-            this._changeWritingSystemsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this._changeWritingSystemsToolStripMenuItem.Text = "Specify &Writing Systems...";
-            this._changeWritingSystemsToolStripMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
+            this._changeWritingSystemsMenuItem.Name = "_changeWritingSystemsMenuItem";
+            this._changeWritingSystemsMenuItem.Size = new System.Drawing.Size(243, 22);
+            this._changeWritingSystemsMenuItem.Text = "Specify &Writing Systems...";
+            this._changeWritingSystemsMenuItem.Click += new System.EventHandler(this.OnChangeWritingSystems_Click);
             // 
             // _editMenuItem
             // 
@@ -543,17 +589,96 @@ namespace SolidGui
             // _fixMenuItem
             // 
             this._fixMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._quickFixesMenuItem});
+            this._suggestFixesMenuItem,
+            this._recipesMenuItem,
+            this._quickFixesMenuItem,
+            this._moveUpMenuItem,
+            this._deleteFieldsMenuItem,
+            this._makeMarkersRealMenuItem,
+            this._addGuidsMenuItem,
+            this._fixLinksMenuItem,
+            this._fixPsSnMenuItem});
             this._fixMenuItem.Name = "_fixMenuItem";
             this._fixMenuItem.Size = new System.Drawing.Size(33, 22);
-            this._fixMenuItem.Text = "&Fix";
+            this._fixMenuItem.Text = "F&ix";
+            // 
+            // _suggestFixesMenuItem
+            // 
+            this._suggestFixesMenuItem.Name = "_suggestFixesMenuItem";
+            this._suggestFixesMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._suggestFixesMenuItem.Text = "&Suggest Fixes...";
+            this._suggestFixesMenuItem.Visible = false;
+            // 
+            // _recipesMenuItem
+            // 
+            this._recipesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._splitSemicolonMenuItem,
+            this._trimSpacesMenuItem,
+            this._globallyDeleteFieldsMenuItem});
+            this._recipesMenuItem.Name = "_recipesMenuItem";
+            this._recipesMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._recipesMenuItem.Text = "&Find/Replace Recipes";
+            // 
+            // _splitSemicolonMenuItem
+            // 
+            this._splitSemicolonMenuItem.Name = "_splitSemicolonMenuItem";
+            this._splitSemicolonMenuItem.Size = new System.Drawing.Size(258, 22);
+            this._splitSemicolonMenuItem.Text = "&Split on semicolon (typical fields)...";
+            this._splitSemicolonMenuItem.Click += new System.EventHandler(this.toolStripSplitOnSemicolon);
+            // 
+            // _trimSpacesMenuItem
+            // 
+            this._trimSpacesMenuItem.Name = "_trimSpacesMenuItem";
+            this._trimSpacesMenuItem.Size = new System.Drawing.Size(258, 22);
+            this._trimSpacesMenuItem.Text = "&Trim spaces";
+            this._trimSpacesMenuItem.Click += new System.EventHandler(this.trimSpacesToolStripMenuItem_Click);
             // 
             // _quickFixesMenuItem
             // 
             this._quickFixesMenuItem.Name = "_quickFixesMenuItem";
-            this._quickFixesMenuItem.Size = new System.Drawing.Size(142, 22);
+            this._quickFixesMenuItem.Size = new System.Drawing.Size(229, 22);
             this._quickFixesMenuItem.Text = "&Quick Fixes...";
             this._quickFixesMenuItem.Click += new System.EventHandler(this.OnQuickFix);
+            // 
+            // _moveUpMenuItem
+            // 
+            this._moveUpMenuItem.Name = "_moveUpMenuItem";
+            this._moveUpMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._moveUpMenuItem.Text = "Move &Up...";
+            this._moveUpMenuItem.Visible = false;
+            // 
+            // _deleteFieldsMenuItem
+            // 
+            this._deleteFieldsMenuItem.Name = "_deleteFieldsMenuItem";
+            this._deleteFieldsMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._deleteFieldsMenuItem.Text = "&Delete Fields...";
+            this._deleteFieldsMenuItem.Visible = false;
+            // 
+            // _makeMarkersRealMenuItem
+            // 
+            this._makeMarkersRealMenuItem.Name = "_makeMarkersRealMenuItem";
+            this._makeMarkersRealMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._makeMarkersRealMenuItem.Text = "Make Markers &Real...";
+            // 
+            // _addGuidsMenuItem
+            // 
+            this._addGuidsMenuItem.Name = "_addGuidsMenuItem";
+            this._addGuidsMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._addGuidsMenuItem.Text = "Add &GUIDs...";
+            // 
+            // _fixLinksMenuItem
+            // 
+            this._fixLinksMenuItem.Name = "_fixLinksMenuItem";
+            this._fixLinksMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._fixLinksMenuItem.Text = "Fix &Links (experimental)...";
+            this._fixLinksMenuItem.Visible = false;
+            // 
+            // _fixPsSnMenuItem
+            // 
+            this._fixPsSnMenuItem.Name = "_fixPsSnMenuItem";
+            this._fixPsSnMenuItem.Size = new System.Drawing.Size(229, 22);
+            this._fixPsSnMenuItem.Text = "Fix &ps and sn (experimental)...";
+            this._fixPsSnMenuItem.Visible = false;
             // 
             // _viewMenuItem
             // 
@@ -564,7 +689,10 @@ namespace SolidGui
             this._goFirstMenuItem,
             this._goPreviousMenuItem,
             this._goNextMenuItem,
-            this._goLastMenuItem});
+            this._goLastMenuItem,
+            this._markerHierarchyMenuItem,
+            this._addFilterMarkersMenuItem,
+            this._addFilterDataShapeMenuItem});
             this._viewMenuItem.Name = "_viewMenuItem";
             this._viewMenuItem.Size = new System.Drawing.Size(44, 22);
             this._viewMenuItem.Text = "&View";
@@ -572,48 +700,69 @@ namespace SolidGui
             // _recheckMenuItem
             // 
             this._recheckMenuItem.Name = "_recheckMenuItem";
-            this._recheckMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._recheckMenuItem.Size = new System.Drawing.Size(227, 22);
             this._recheckMenuItem.Text = "Re&check all records (Ctrl+F5)";
             this._recheckMenuItem.Click += new System.EventHandler(this.OnRecheckButtonClick);
             // 
             // _refreshMenuItem
             // 
             this._refreshMenuItem.Name = "_refreshMenuItem";
-            this._refreshMenuItem.Size = new System.Drawing.Size(225, 22);
+            this._refreshMenuItem.Size = new System.Drawing.Size(227, 22);
             this._refreshMenuItem.Text = "&Refresh right pane (F5)";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(222, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(224, 6);
             // 
             // _goFirstMenuItem
             // 
             this._goFirstMenuItem.Name = "_goFirstMenuItem";
-            this._goFirstMenuItem.Size = new System.Drawing.Size(225, 22);
-            this._goFirstMenuItem.Text = "Go to &first (Ctrl+Shift+PgUp)";
+            this._goFirstMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._goFirstMenuItem.Text = "Go to &First (Ctrl+Shift+PgUp)";
             this._goFirstMenuItem.Click += new System.EventHandler(this._goFirstMenuItem_Click);
             // 
             // _goPreviousMenuItem
             // 
             this._goPreviousMenuItem.Name = "_goPreviousMenuItem";
-            this._goPreviousMenuItem.Size = new System.Drawing.Size(225, 22);
-            this._goPreviousMenuItem.Text = "Go to &previous (Ctrl+PgUp)";
+            this._goPreviousMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._goPreviousMenuItem.Text = "Go to &Previous (Ctrl+PgUp)";
             this._goPreviousMenuItem.Click += new System.EventHandler(this._goPreviousMenuItem_Click);
             // 
             // _goNextMenuItem
             // 
             this._goNextMenuItem.Name = "_goNextMenuItem";
-            this._goNextMenuItem.Size = new System.Drawing.Size(225, 22);
-            this._goNextMenuItem.Text = "Go to &next (Ctrl+PgDn)";
+            this._goNextMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._goNextMenuItem.Text = "Go to &Next (Ctrl+PgDn)";
             this._goNextMenuItem.Click += new System.EventHandler(this._goNextMenuItem_Click);
             // 
             // _goLastMenuItem
             // 
             this._goLastMenuItem.Name = "_goLastMenuItem";
-            this._goLastMenuItem.Size = new System.Drawing.Size(225, 22);
-            this._goLastMenuItem.Text = "Go to &last (Ctrl+Shift+PgDn)";
+            this._goLastMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._goLastMenuItem.Text = "Go to &Last (Ctrl+Shift+PgDn)";
             this._goLastMenuItem.Click += new System.EventHandler(this._goLastMenuItem_Click);
+            // 
+            // _markerHierarchyMenuItem
+            // 
+            this._markerHierarchyMenuItem.Name = "_markerHierarchyMenuItem";
+            this._markerHierarchyMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._markerHierarchyMenuItem.Text = "Marker &Hierarchy...";
+            this._markerHierarchyMenuItem.Visible = false;
+            // 
+            // _addFilterMarkersMenuItem
+            // 
+            this._addFilterMarkersMenuItem.Name = "_addFilterMarkersMenuItem";
+            this._addFilterMarkersMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._addFilterMarkersMenuItem.Text = "Add filter: Markers that E&xit...";
+            this._addFilterMarkersMenuItem.Visible = false;
+            // 
+            // _addFilterDataShapeMenuItem
+            // 
+            this._addFilterDataShapeMenuItem.Name = "_addFilterDataShapeMenuItem";
+            this._addFilterDataShapeMenuItem.Size = new System.Drawing.Size(227, 22);
+            this._addFilterDataShapeMenuItem.Text = "Add filter: Data &Shape...";
+            this._addFilterDataShapeMenuItem.Visible = false;
             // 
             // _helpMenuItem
             // 
@@ -645,6 +794,13 @@ namespace SolidGui
             this._reportProblemMenuItem.Size = new System.Drawing.Size(238, 22);
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
+            // 
+            // _globallyDeleteFieldsMenuItem
+            // 
+            this._globallyDeleteFieldsMenuItem.Name = "_globallyDeleteFieldsMenuItem";
+            this._globallyDeleteFieldsMenuItem.Size = new System.Drawing.Size(258, 22);
+            this._globallyDeleteFieldsMenuItem.Text = "Globally &Delete fields...";
+            this._globallyDeleteFieldsMenuItem.Click += new System.EventHandler(this._globallyDeleteFieldsMenuItem_Click);
             // 
             // MainWindowView
             // 
@@ -679,10 +835,11 @@ namespace SolidGui
             this.splitContainerUpDown.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerUpDown)).EndInit();
             this.splitContainerUpDown.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelMarkerSettings.ResumeLayout(false);
+            this.panelMarkerSettings.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.panelFilters.ResumeLayout(false);
+            this.panelFilters.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -703,11 +860,11 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.SplitContainer splitContainerLeftRight;
         private System.Windows.Forms.SplitContainer splitContainerUpDown;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelMarkerSettings;
         private System.Windows.Forms.Button _editMarkerProperties;
         private System.Windows.Forms.Label label2;
         private MarkerSettingsListView _markerSettingsListView;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelFilters;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _recheckButton;
         private FilterChooserView _filterChooserView;
@@ -722,8 +879,8 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripMenuItem _saveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _exportXmlMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _markersMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _changeTemplateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _changeWritingSystemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _switchTemplatesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _changeWritingSystemsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _propertiesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _copyMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _pasteMenuItem;
@@ -743,7 +900,23 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _cutMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _saveAsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _suggestFixesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _moveUpMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _deleteFieldsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _makeMarkersRealMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _addGuidsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fixLinksMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _fixPsSnMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _markerHierarchyMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _addFilterMarkersMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _addFilterDataShapeMenuItem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button buttonTree;
+        private System.Windows.Forms.ToolStripMenuItem _recipesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _splitSemicolonMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _trimSpacesMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _globallyDeleteFieldsMenuItem;
     }
 }
 

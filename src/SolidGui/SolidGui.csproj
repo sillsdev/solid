@@ -247,6 +247,7 @@
     <Compile Include="Search\FindReplaceDialog.Designer.cs">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Search\RegexItem.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Setup\WritingSystemsConfigDialog.cs">
       <SubType>Form</SubType>

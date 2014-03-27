@@ -28,7 +28,7 @@ namespace SolidGui.Engine
         StateParse _stateParse = StateParse.Header;
         TextReader _r;
         private SfmRecord _record;
-        private string _header = ""; 
+        private string _headerLinux = ""; 
 
         string _startKey = "lx";  // JMC: use global setting!
         private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
@@ -147,7 +147,7 @@ namespace SolidGui.Engine
             int L = 0;
             while (true)
             {
-                tmp = ReadOneChar(_r);
+                tmp = ReadOneChar(_r);  //or two, in the case of \r\n
                 if (tmp == -1)
                 {
                     break; // EOF
@@ -200,7 +200,7 @@ namespace SolidGui.Engine
                 }
                          
             }
-            _header = sbHeader.ToString();
+            _headerLinux = sbHeader.ToString();
             return ret;
         }
 
@@ -361,13 +361,21 @@ namespace SolidGui.Engine
             }
         }
 
-        public string Header
+        public string HeaderLinux
         {
             get
             {
-                return _header;
+                return _headerLinux;
             }
         }
+
+        public static string HeaderToWrite(string headerLinux, string newLine)
+        {
+            string tmp = headerLinux.Replace("\r\n", "\n");
+            tmp = tmp.Replace("\r", "\n");
+            return tmp.Replace("\n", newLine); //JMC: a single regex would be better
+        }
+
 
         public SfmRecord Record
         {

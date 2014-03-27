@@ -45,12 +45,16 @@ namespace SolidGui.Search
         public RecordFormatter RecordFormatter { get; set; }
 
         public RecordFilter Filter;
-        public string FindThis;
-        public Regex FindThisRegex;
-        public string ReplaceWith;
+
+        public RegexItem Reggie;
         public bool CaseSensitive = false;
         public bool UseRegex = true;
         public bool UseDoubleRegex = false;  //JMC: if true, UseRegex needs to be true too (enforce with get/set ?)
+
+        public string FindThis;
+        public string ReplaceWith;
+        //public Regex FindThisRegex;
+
         //JMC: Other possibilities:
         // CultureInvariant  (checkbox "use OS case rules")
         // Multiline (checkbox "allow inline ^ $")
@@ -68,16 +72,11 @@ namespace SolidGui.Search
             FindThis = val;
             if (!UseRegex)
             {
-                FindThisRegex = null;
+                Reggie = null;
                 return;
             }
-
-            RegexOptions opt = RegexOptions.Multiline | RegexOptions.Compiled;
-            if (!CaseSensitive)
-            {
-                opt = RegexOptions.IgnoreCase | opt;
-            }
-            FindThisRegex = new Regex(val, opt);  
+            Reggie = Reggie ?? new RegexItem();
+            Reggie.setFind(val, CaseSensitive);
         }
 
         public SfmDictionary Dictionary
@@ -158,16 +157,18 @@ namespace SolidGui.Search
                 string context = null;
                 bool skip = false;
 
-                if (this.UseDoubleRegex)
+                if (this.UseDoubleRegex) //JMC:! unfinished
                 {
                     skip = true;
                     // set the context
-                    SearchResult tmp = null; // = FindWordInRecord(recordIndex, searchStartIndex, ctxreg, ctxrw, null); //JMC:! unfinished
-                    if (tmp != null)
-                    { 
-                        searchStartIndex = 0;
-                        context = tmp.Found;
-                        skip = false;
+                    SearchResult tempResult = FindWordInRecord(recordIndex, searchStartIndex, Reggie.ReggieContext,
+                        Reggie.ReplaceContext, null); 
+                    searchStartIndex = 0;
+                    context = tempResult.Found;
+                    if (!String.IsNullOrEmpty(context))
+                    {
+                        Reggie.ContextFound = tempResult;
+                        skip = false;  //found the context; can now do the find
                     }
                 } 
 
@@ -175,11 +176,11 @@ namespace SolidGui.Search
                 {
                     if (this.UseRegex)
                     {
-                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, this.FindThisRegex, this.ReplaceWith, context);
+                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, Reggie.Reggie, Reggie.Replace, context);
                         //Note that context will be null unless UseDoubleRegex is true. -JMC
                     }
                     else
-                    {
+                    {   //basic mode
                         searchResult = FindWordInRecord(recordIndex, searchStartIndex, null, this.ReplaceWith, null);
                     }
 
@@ -237,15 +238,7 @@ namespace SolidGui.Search
             string recordText;
             if (context == null)
             {
-                // JMC:! WARNING! This has to match the editor's textbox perfectly in character count 
-                // (esp. identical newlines and indents); so, replace ToStructuredString() with something better               
                 recordText = RecordFormatter.FormatPlain(record, _model.MarkerSettingsModel.SolidSettings);
-
-                //string recordTextORIG = record.ToStructuredString(_model.MarkerSettingsModel.SolidSettings);  
-                // JMC:! Hack: swap out newline temporarily, since RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n)
-                // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
-                // recordText = ReggieTempHack.Replace(recordText, "\n");
-
                 recordText = RegexTab.Replace(recordText, " "); //replace all tabs with spaces
             }
             else
@@ -274,12 +267,11 @@ namespace SolidGui.Search
             }
             else
             {   
-                //Regex mode
+                //Regex mode (or double regex mode)
                 Match m = reg.Match(recordText, startTextIndex);
                 if (m.Success)
                 {
-                    //replaceWith = replaceWith.Replace("\\\\", "\\"); //JMC:! need to deal with backslashed codes here, first.
-                    replaceWith = Regex.Unescape(replaceWith);
+                    replaceWith = Regex.Unescape(replaceWith);  //deal with backslash codes etc.
                     string rw = m.Result(replaceWith);
                     res = new SearchResult(recordIndex, m.Index, filter, m.Value, rw);
                 }

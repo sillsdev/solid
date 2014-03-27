@@ -31,7 +31,7 @@ namespace SolidGui.Tests.Engine
                     lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
                     dict.AddRecord(lexEntry, null);
                 }
-                dict.SfmHeader = reader.Header;
+                dict.SfmHeader = reader.HeaderLinux;
 
                 // save it to a file
                 dict.SaveAs(e.TempFilePath, null);
@@ -135,7 +135,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
 //            Assert.AreEqual(0, r.Header.Count);
         }
 
@@ -147,7 +147,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.AreEqual(false, result);
-            Assert.AreEqual(sfm, r.Header);
+            Assert.AreEqual(sfm, r.HeaderLinux);
 
 /*
             Assert.AreEqual(2, r.Header.Count);
@@ -184,7 +184,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(1, r.FieldCount);
             Assert.AreEqual("", r.Value("lx"));
             result = r.ReadRecord();
@@ -199,7 +199,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
 
 /*
             Assert.AreEqual(0, r.Header.Count);
@@ -219,7 +219,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual(header, r.Header);
+            Assert.AreEqual(header, r.HeaderLinux);
         }
 
         [Test]
@@ -230,7 +230,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -246,7 +246,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(4, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("", r.Value("ge"));
@@ -264,7 +264,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(5, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -285,7 +285,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("head\r\n", r.Header);
+            Assert.AreEqual("head\r\n", r.HeaderLinux);
             Assert.AreEqual(3, r.FieldCount);
             Assert.AreEqual("", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -294,7 +294,7 @@ namespace SolidGui.Tests.Engine
             Assert.AreEqual("ge", r.Key(2));
             result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("head\r\n", r.Header);
+            Assert.AreEqual("head\r\n", r.HeaderLinux);
             Assert.AreEqual(1, r.FieldCount);
             Assert.AreEqual("", r.Value("lx"));
         }
@@ -309,7 +309,7 @@ namespace SolidGui.Tests.Engine
             r.AllowLeadingWhiteSpace = true;
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("b", r.Value("ge"));
@@ -323,7 +323,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual("a", r.Value("lx"));
             Assert.AreEqual("\\b \\zblah\\z", r.Value("ge"));
@@ -337,7 +337,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord ();
             Assert.IsTrue (result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(2, r.FieldCount);
             Assert.AreEqual ("a", r.Value ("lx"));
             Assert.AreEqual ("b\r\nc", r.Value ("ge"));
@@ -356,7 +356,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.IsTrue(result);
-            Assert.AreEqual("", r.Header);
+            Assert.AreEqual("", r.HeaderLinux);
             Assert.AreEqual(4, r.FieldCount);
             Assert.AreEqual("a\r\nb", r.Value("lx"));
             Assert.AreEqual("\r\n\r\n\r\n", r.Trailing("lx"));
@@ -409,7 +409,7 @@ namespace SolidGui.Tests.Engine
             var r = SfmRecordReader.CreateFromText(sfm);
             bool result = r.ReadRecord();
             Assert.AreEqual(true, result);
-            Assert.AreEqual(h, r.Header);
+            Assert.AreEqual(h, r.HeaderLinux);
             Assert.AreEqual(val, r.Value("lx"));
             Assert.AreEqual(trail, r.Field(0).Trailing);
         }

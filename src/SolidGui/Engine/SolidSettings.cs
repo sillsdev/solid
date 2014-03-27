@@ -344,7 +344,7 @@ namespace SolidGui.Engine
             }
             catch (Exception exception)
             {
-                MessageBox.Show(null, exception.Message, "Error on saving settings file");
+                MessageBox.Show(null, exception.Message + "\r\n\r\nYou might try saving to a different location.", "Error on saving file.");
                 return false;
             }
             Logger.WriteEvent("Done saving settings file.");

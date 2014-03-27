@@ -46,6 +46,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonReplaceAll = new System.Windows.Forms.Button();
             this.labelReplaceAll = new System.Windows.Forms.Label();
+            this.buttonHelp = new System.Windows.Forms.Button();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelMode = new System.Windows.Forms.FlowLayoutPanel();
@@ -105,6 +106,7 @@
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace2, 2, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel1, 0, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 0, 3);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHelp, 2, 2);
             this.tableLayoutPanelFindReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
@@ -124,7 +126,6 @@
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxReplace.Size = new System.Drawing.Size(200, 20);
             this.textBoxReplace.TabIndex = 4;
-            this.textBoxReplace.Text = "\\r\\n\\\\re ";
             this.textBoxReplace.TextChanged += new System.EventHandler(this.textBoxReplace_TextChanged);
             // 
             // buttonHintReplace1
@@ -157,7 +158,6 @@
             this.textBoxFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxFind.Size = new System.Drawing.Size(200, 20);
             this.textBoxFind.TabIndex = 2;
-            this.textBoxFind.Text = "\\s*;\\s*";
             this.textBoxFind.TextChanged += new System.EventHandler(this.textBoxFind_TextChanged);
             // 
             // flowLayoutPanelReplaceButtons
@@ -280,6 +280,22 @@
             this.labelReplaceAll.Size = new System.Drawing.Size(135, 15);
             this.labelReplaceAll.TabIndex = 32;
             this.labelReplaceAll.Text = "For now, hold Alt + N or R :";
+            // 
+            // buttonHelp
+            // 
+            this.buttonHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHelp.BackColor = System.Drawing.Color.Crimson;
+            this.buttonHelp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHelp.ForeColor = System.Drawing.Color.Yellow;
+            this.buttonHelp.Location = new System.Drawing.Point(409, 119);
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Size = new System.Drawing.Size(14, 20);
+            this.buttonHelp.TabIndex = 6;
+            this.buttonHelp.Text = "?";
+            this.buttonHelp.UseVisualStyleBackColor = false;
+            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
             // 
             // tableLayoutPanelMain
             // 
@@ -451,7 +467,6 @@
             this.textBoxContextReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxContextReplace.Size = new System.Drawing.Size(200, 20);
             this.textBoxContextReplace.TabIndex = 4;
-            this.textBoxContextReplace.Text = "\\\\\\1 \\2";
             this.textBoxContextReplace.TextChanged += new System.EventHandler(this.textBoxContextReplace_TextChanged);
             // 
             // buttonHintContext1
@@ -483,7 +498,6 @@
             this.textBoxContextFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxContextFind.Size = new System.Drawing.Size(200, 20);
             this.textBoxContextFind.TabIndex = 1;
-            this.textBoxContextFind.Text = "^\\\\(re) (.+)$";
             this.textBoxContextFind.TextChanged += new System.EventHandler(this.textBoxContextFind_TextChanged);
             // 
             // labelFind
@@ -516,7 +530,6 @@
             this.textBoxContextPreview.Size = new System.Drawing.Size(200, 53);
             this.textBoxContextPreview.TabIndex = 24;
             this.textBoxContextPreview.TabStop = false;
-            this.textBoxContextPreview.Text = "\\re hum, to; sing, to; croon, to";
             // 
             // buttonHintContext2
             // 
@@ -607,5 +620,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.CheckBox checkBoxMultiline;
         private System.Windows.Forms.Label labelReplaceAll;
+        private System.Windows.Forms.Button buttonHelp;
     }
 }

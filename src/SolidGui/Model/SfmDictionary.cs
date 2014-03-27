@@ -239,7 +239,7 @@ namespace SolidGui.Model
                         openArguments.FilterSet.AddRecord(Count - 1, recordReport);
                     }
                 }
-                SfmHeader = reader.Header;
+                SfmHeader = reader.HeaderLinux;
             }
 
         }
@@ -328,7 +328,7 @@ namespace SolidGui.Model
                 using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), SolidSettings.LegacyEncoding))
                 {
 
-                    writer.Write(SfmHeader);
+                    writer.Write(SfmRecordReader.HeaderToWrite(SfmHeader, rf.NewLine));
 
                     foreach (Record record in _recordList)
                     {
@@ -354,7 +354,7 @@ namespace SolidGui.Model
             }
             catch (Exception exception)
             {
-                MessageBox.Show(null, exception.Message, "Error on saving data file");
+                MessageBox.Show(null, exception.Message + "\r\n\r\nYou might try saving to a different location.", "Error on saving data file.");
                 return false;
             }
             Palaso.Reporting.Logger.WriteEvent("Done saving data file.");

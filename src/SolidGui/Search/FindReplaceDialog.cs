@@ -61,9 +61,27 @@ namespace SolidGui.Search
             ResetStartingPoint();
         }
 
+        public void SetFields(RegexItem r)
+        {
+            checkBoxMultiline.Checked = false;
+            checkBoxCaseSensitive.Checked = true;
 
+            if (r.Double)
+            {
+                radioButtonDoubleRegex.Checked = true;
+            }
+            else
+            {
+                radioButtonRegex.Checked = true;
+            }
+            textBoxContextFind.Text = r.FindContext;
+            textBoxContextReplace.Text = r.ReplaceContext;
+            textBoxFind.Text = r.Find;
+            textBoxReplace.Text = r.Replace;
+            HelpMessage = r.HelpMessage;
+        }
 
-        private void ResetStartingPoint()
+        private void ResetStartingPoint()  // and Refresh
         {
             _startingRecordIndex = -1;
             _startingTextIndex = -1;
@@ -79,17 +97,12 @@ namespace SolidGui.Search
             //JMC:! This is probably also the best time to update the Replace preview. But be careful to not instantly wipe out error messages (for \x \c etc.)
             textBoxReplacePreview.Text = "";
             textBoxContextPreview.Text = "";
+
+            UpdateDisplay();
         }
 
         private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
-            bool dbl = radioButtonDoubleRegex.Checked;
-            groupBoxFindContext.Enabled = dbl;
-            
-            if (dbl || radioButtonRegex.Checked )
-            {
-                checkBoxMultiline.Checked = false;
-            }
 
             /*
             // With leading spaces, tree view doesn't fit well with serious (regex) Find
@@ -100,6 +113,8 @@ namespace SolidGui.Search
                 _searchModel.SyncFormat(rf);
             }
              */
+
+            UpdateDisplay();
         }
 
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
@@ -107,14 +122,29 @@ namespace SolidGui.Search
             this._searchResult = e.SearchResult;
         }
 
+        public void ShowHelp()
+        {
+            if (String.IsNullOrEmpty(this.HelpMessage)) return;
+            MessageBox.Show(HelpMessage, "About the selected recipe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void UpdateDisplay()
         {
-            //make the radio button compatible with editor's current indentation
-            bool indent = _searchModel.RecordFormatter.ShowIndented;
+            buttonHelp.Visible = !(String.IsNullOrEmpty(HelpMessage));
 
-            /*
-            //With leading spaces, tree view is not very compatible with serious regex mode
+            bool dbl = radioButtonDoubleRegex.Checked;
+            groupBoxFindContext.Enabled = dbl;
+
+            if (dbl || radioButtonRegex.Checked)
+            {
+                checkBoxMultiline.Checked = false;
+            }
+
+            //No longer using leading spaces (if indent works well) -JMC Mar 2014
+            /* 
+            //Make the radio button compatible with editor's current indentation, since
+            //with leading spaces, tree view is not very compatible with serious regex mode
+            bool indent = _searchModel.RecordFormatter.ShowIndented;
             if (indent)
             {
                 
@@ -148,11 +178,6 @@ namespace SolidGui.Search
                 return _sfmEditorView.ContentsBox.SelectedText.ToLowerInvariant() == f.ToLowerInvariant();
             }
             return false;
-        }
-
-        private void Find(bool replace)
-        {
-            Find(replace, false);
         }
 
         private void Find(bool replace, bool all)
@@ -208,6 +233,8 @@ namespace SolidGui.Search
 
 
             }
+            string ss = "";
+            this.textBoxContextPreview.Text = ss;
 
             // bring the search form back into focus -JMC
             this.BringToFront();
@@ -219,7 +246,7 @@ namespace SolidGui.Search
         {
             try
             {
-                Find(replace); //JMC:! Is crashing on things like \xv that resembles hex codes (in regex, \\xv works)
+                Find(replace, false); //JMC:! Is crashing on things like \xv that resembles hex codes (in regex, \\xv works)
             }
             catch (ArgumentException error)
             {
@@ -256,10 +283,11 @@ namespace SolidGui.Search
 
         private void OnCancelButton_Click(object sender, EventArgs e)
         {
+            HelpMessage = "";
             ResetStartingPoint(); //for good measure -JMC
 
             // Added Close() and disabled Dispose(), but then realized that Hide() might solve issue #326 ("remember last find"), and it seems to! -JMC 2013-09
-            this.Hide();
+            Hide();
         }
 
         private void FindReplaceDialog_FormClosing(object sender, FormClosingEventArgs e)
@@ -324,6 +352,13 @@ namespace SolidGui.Search
                 textBoxReplace.Text = textBoxReplace.Text.Split(nl)[0];
             }
 
+        }
+
+        public string HelpMessage;
+
+        private void buttonHelp_Click(object sender, EventArgs e)
+        {
+            ShowHelp();
         }
 
     }

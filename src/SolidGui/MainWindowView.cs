@@ -6,6 +6,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.IO;
 using System.Windows.Forms;
 using System.Text;
@@ -506,6 +507,11 @@ namespace SolidGui
 
         private void OnSearchClick(object sender, EventArgs e)
         {
+            Search();
+        }
+
+        private void Search()
+        {
             /* // Old dialog: 
             _searchView = SearchView.CreateSearchView(_mainWindowPM, _sfmEditorView);
             _searchView.TopMost = true; // means that this form should always be in front of all others
@@ -518,7 +524,7 @@ namespace SolidGui
             _searchView2.SelectFind();
             _searchView2.Show();
             _searchView2.Focus();
-
+            _searchView2.ShowHelp();
         }
 
         private void MainWindowView_KeyDown(object sender, KeyEventArgs e)
@@ -529,27 +535,22 @@ namespace SolidGui
         // These keystrokes are mostly redundant now that I've underlined button letters, but I'm leaving them in in case anyone's used to them. -JMC 2013-10
         private void MainWindowView_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Control == true && e.KeyCode == Keys.F)
+            if (e.Control && e.KeyCode == Keys.F)  //ctrl+f
             {
                 OnSearchClick(this, EventArgs.Empty);
             }
-            if (e.Control == true && e.KeyCode == Keys.O)
+            if (e.Control && e.KeyCode == Keys.O)  //ctrl+o
             {
                 OnOpenClick(this, EventArgs.Empty);
             }
-            if (e.Control == true && e.KeyCode == Keys.S)
+            if (e.Control && e.KeyCode == Keys.S)  //ctrl+s
             {
-                if (e.Shift)
-                {
-                    // JMC:! Insert code here for calling OnSaveClick() with saveClosingTags = true
-                    return;
-                }
                 if (_mainWindowPM.needsSave)
                 {
                     OnSaveClick(this, EventArgs.Empty);
                 }
             }
-            if (e.Control == true && e.KeyCode == Keys.R)
+            if (e.Control && e.KeyCode == Keys.R)
             {
                 OnRecheckButtonClick(this, EventArgs.Empty);
             }
@@ -695,6 +696,66 @@ namespace SolidGui
                 _sfmEditorView.UpdateBoth();
             }
         }
+
+        private void buttonTree_Click(object sender, EventArgs e)
+        {
+            //JMC: Stub for feature #255
+            // Probably simplest to just generate a plain text report in a (copiable) text box,
+            // or in a MessageBox and copied to the clipboard
+            // Note: some markers would show up multiple times in the hierarchy (once per parent),
+            /* 
+Example (of plain-text report):
+lx
+. ps (ii)
+. . sn (ii)
+. . . ge (+sn, i)
+. . . de (+sn, i)
+. . . re (ii)
+. se (i_i)
+. . ps (ii) .
+. . et (i)
+. . . ec (i)
+. seco (i_i)
+. . ps (ii) .
+. . et (i) .
+. et (i) .
+. dt
+
+Notes:
+- that fields that can infer a parent (ge, de above) should probably be listed first. 
+- The second occurrence of a parent marker would not show all the children again. 
+             */
+        }
+
+        private void toolStripSplitOnSemicolon(object sender, EventArgs e)
+        {
+            SplitOnSemicolon();
+        }
+        private void SplitOnSemicolon()
+        {
+            RegexItem r = RegexItem.GetSplitOnSemicolon();
+            _searchView2.SetFields(r);
+            Search();
+        }
+
+        private void trimSpacesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Unwrap();
+        }
+        private void Unwrap()
+        {
+            RegexItem reg = RegexItem.GetUnwrap();
+            _searchView2.SetFields(reg);
+            Search();
+        }
+
+        private void _globallyDeleteFieldsMenuItem_Click(object sender, EventArgs e)
+        {
+            RegexItem reg = RegexItem.GetDeleteFields();
+            _searchView2.SetFields(reg);
+            Search();
+        }
+
 
 
     }

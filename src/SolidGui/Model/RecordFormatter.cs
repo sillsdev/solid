@@ -104,6 +104,8 @@ namespace SolidGui.Model
             EncodeSomeUtf8 = true;
             NewLine = "\n";
             ShowClosingTags = false;
+            // Note: RichTextBox uses plain \n regardless of System.Environment.Newline (\r\n) -JMC
+            // Is apparently due to round-tripping through RTF: http://stackoverflow.com/questions/7067899/richtextbox-newline-conversion
         }
 
         // Flat UI formatting; also required for regex Find/Replace (needs to force UI into this mode)
@@ -205,8 +207,8 @@ namespace SolidGui.Model
                 List<string> list = field.Closers;
                 if (list == null)
                 {
-                    // For error fields, have them close themselves. Not ideal, but at least it balances. -JMC
-                    return "\\" + field.Marker + "*";
+                    // For error fields, have them close themselves. Maybe that's ideal, maybe not, but at least it balances. -JMC
+                    return " \\" + field.Marker + "*";
                 }
 
                 foreach (string c in list)
