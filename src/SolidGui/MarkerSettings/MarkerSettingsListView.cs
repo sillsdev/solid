@@ -24,6 +24,7 @@ namespace SolidGui.MarkerSettings
 {
     public partial class MarkerSettingsListView : UserControl
     {
+        private GlacialList _markerListView;
         private bool _changingFilter = false;
         public event EventHandler MarkerSettingPossiblyChanged;
 
@@ -116,6 +117,24 @@ namespace SolidGui.MarkerSettings
             _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
             _markerListView.SortColumn(0); // TODO: review... how to keep the old order?
             SelectMarker(previouslySelectedMarker);
+
+            Workaround(_markerListView);
+
+        }
+
+        public static void Workaround(GlacialList gl)
+        {
+            //Would this (copied code) help us here too? -JMC
+
+/*
+            //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
+            gl.Hide();
+            gl.Show();
+            if (gl.SelectedItems.Count > 0)
+            {
+                gl.FocusedItem = gl.SelectedItems[0];
+            }
+*/
 
         }
 

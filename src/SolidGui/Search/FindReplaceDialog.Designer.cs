@@ -261,13 +261,13 @@
             // 
             // buttonReplaceAll
             // 
-            this.buttonReplaceAll.Enabled = false;
             this.buttonReplaceAll.Location = new System.Drawing.Point(178, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
             this.buttonReplaceAll.TabIndex = 9;
             this.buttonReplaceAll.Text = "Replace &All + Recheck";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
+            this.buttonReplaceAll.Click += new System.EventHandler(this.buttonReplaceAll_Click);
             // 
             // labelReplaceAll
             // 
@@ -558,6 +558,7 @@
             this.Text = "Find and Replace";
             this.Activated += new System.EventHandler(this.FindReplaceDialog_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindReplaceDialog_FormClosing);
+            this.Leave += new System.EventHandler(this.FindReplaceDialog_Leave);
             this.groupBoxFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.PerformLayout();

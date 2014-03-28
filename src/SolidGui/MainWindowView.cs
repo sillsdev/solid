@@ -8,6 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing.Text;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Text;
 using Palaso.Reporting;
@@ -28,8 +29,7 @@ namespace SolidGui
     {
         private MainWindowPM _mainWindowPM;  // / was readonly, but I think it s/b be hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
         private int _filterIndex;
-        private SearchView _searchView;
-        private FindReplaceDialog _searchView2;
+        private FindReplaceDialog _searchDialog;
 
 
         // No longer needed because it needs to be wired up from the start now. -JMC Mar 2014
@@ -69,7 +69,7 @@ namespace SolidGui
             //_sfmEditorView.Enabled = false;
 
             _mainWindowPM = mainWindowPM;
-            _searchView2 = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
+            _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
             _filterIndex = 0;
 
         }
@@ -82,7 +82,7 @@ namespace SolidGui
                 _mainWindowPM.DictionaryProcessed -= OnDictionaryProcessed;
                 _mainWindowPM.SearchModel.WordFound -= OnWordFound;
                 _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
-                _mainWindowPM.EditorRecordFormatterChanged -= _searchView2.OnEditorRecordFormatterChanged;
+                _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
                 _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
             }
 
@@ -91,7 +91,7 @@ namespace SolidGui
             _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
             _mainWindowPM.SearchModel.WordFound += OnWordFound;
             _mainWindowPM.SearchModel.SearchRecordFormatterChanged += OnRecordFormatterChanged;
-            _mainWindowPM.EditorRecordFormatterChanged += _searchView2.OnEditorRecordFormatterChanged;
+            _mainWindowPM.EditorRecordFormatterChanged += _searchDialog.OnEditorRecordFormatterChanged;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
 
             _sfmEditorView.BindModel(_mainWindowPM);
@@ -151,12 +151,6 @@ namespace SolidGui
             if (_mainWindowPM.Settings != null)
             {
                 _mainWindowPM.Settings.NotifyIfNewMarkers();
-                string msg = _mainWindowPM.Settings.NotifyIfMixedEncodings();
-                if (msg != "")
-                {
-                    MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
             }
 
         }
@@ -224,6 +218,15 @@ namespace SolidGui
             Open(dlg.FileName, templatePath);
         }
 
+        public void ReInit(MainWindowPM m)
+        {
+            _mainWindowPM = m;
+            //JMC: simulate new MainWindowView(_mainWindowPM); Definitely helps search see active nav, anyway. Good nuff? -JMC Mar 2014
+            this.InitializeComponent();
+            this.Initialize(_mainWindowPM);
+            BindModels(_mainWindowPM);
+        }
+
         private void Open(string fileName, string templatePath)
         {
             Cursor = Cursors.WaitCursor;
@@ -231,14 +234,15 @@ namespace SolidGui
             // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
             // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file from disk is not an adequate "rollback".)
             MainWindowPM origPm = _mainWindowPM;
-            _mainWindowPM = new MainWindowPM();
+            var newPm = new MainWindowPM();
+            ReInit(newPm);
 
             if (_mainWindowPM.OpenDictionary(fileName, templatePath))
             {
                 Settings.Default.PreviousPathToDictionary = fileName;
                 Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
 
-                BindModels(_mainWindowPM);
+                //BindModels(_mainWindowPM);
                 OnFileLoaded(fileName);
                 setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
                 _sfmEditorView.Enabled = false;  //We need to clearly toggle this off before on, or else the background may be gray -JMC
@@ -257,19 +261,30 @@ namespace SolidGui
             else
             {
                 // File Open was cancelled or didn't succeed. Roll back.
-                BindModels(origPm); // less destructive than Initialize(origPm);  -JMC
+                //BindModels(origPm); // less destructive than Initialize(origPm);  -JMC
+                ReInit(origPm);
+                newPm.Dispose();
             }
 
             Cursor = Cursors.Default;
         }
 
-        public void OnFileLoaded(string name)
+        public void OnFileLoaded(string filename)
         {
-            if (!String.IsNullOrEmpty(name))
+            Show(); // needed so that other commands won't be ignored (e.g. so Ctrl+F5 will work, and for #1200) -JMC
+            if (!String.IsNullOrEmpty(filename))
             {
-                Text = "Solid: " + name;                
+                Text = "Solid: " + filename;                
             }
+            //UpdateDisplay();
+            string msg = _mainWindowPM.MarkerSettingsModel.SolidSettings.NotifyIfMixedEncodings();
+            if (msg != "")
+            {
+                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            _mainWindowPM.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
             UpdateDisplay();
+
         }
 
         public void UpdateDisplay()
@@ -297,6 +312,8 @@ namespace SolidGui
             _filterChooserView.UpdateDisplay(); // adding this helps the lower left pane...
             _sfmEditorView.Focus();
             _sfmEditorView.Reload();  // JMC:! ...but this doesn't help with the right pane
+            Hide();
+            Show();
             // Recheck(); // JMC:! ...so this is a temporary total hack (an extra recheck is expensive!)
             _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         
@@ -429,7 +446,7 @@ namespace SolidGui
 
         private void OnRecordFormatterChanged(object sender, RecordFormatterChangedEventArgs e)
         {
-            _mainWindowPM.SyncFormat(e.NewFormatter);
+            _mainWindowPM.SyncFormat(e.NewFormatter, false);
             UpdateDisplay();
         }
 
@@ -467,17 +484,26 @@ namespace SolidGui
                 {
                     if (answer == System.Windows.Forms.DialogResult.Yes)
                     {
-                        OnSaveClick(this,null);
+                        e.Cancel = true;
+                        OnSaveClick(this, null);
                     }
                     else if (answer == System.Windows.Forms.DialogResult.No)
                     {
-                        //do nothing
+                        //do nothing (allow close to happen)
                     }
-                    if (_searchView != null) { _searchView.Dispose(); }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
-                    if (_searchView2 != null) { _searchView2.Dispose(); }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
                 }
             }
         }
+
+        private void Cleanup()
+        {
+            if (_searchDialog != null)
+            {
+                _searchDialog.Dispose();
+            }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
+
+        }
+
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
         {
@@ -520,11 +546,11 @@ namespace SolidGui
 
             //JMC: New dialog: -JMC Feb 2014
             //_searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
-            _searchView2.TopMost = true; // means that this form should always be in front of all others
-            _searchView2.SelectFind();
-            _searchView2.Show();
-            _searchView2.Focus();
-            _searchView2.ShowHelp();
+            _searchDialog.TopMost = true; // means that this form should always be in front of all others
+            _searchDialog.SelectFind();
+            _searchDialog.Show();
+            _searchDialog.Focus();
+            _searchDialog.ShowHelp();
         }
 
         private void MainWindowView_KeyDown(object sender, KeyEventArgs e)
@@ -734,7 +760,7 @@ Notes:
         private void SplitOnSemicolon()
         {
             RegexItem r = RegexItem.GetSplitOnSemicolon();
-            _searchView2.SetFields(r);
+            _searchDialog.SetFields(r);
             Search();
         }
 
@@ -745,14 +771,14 @@ Notes:
         private void Unwrap()
         {
             RegexItem reg = RegexItem.GetUnwrap();
-            _searchView2.SetFields(reg);
+            _searchDialog.SetFields(reg);
             Search();
         }
 
         private void _globallyDeleteFieldsMenuItem_Click(object sender, EventArgs e)
         {
             RegexItem reg = RegexItem.GetDeleteFields();
-            _searchView2.SetFields(reg);
+            _searchDialog.SetFields(reg);
             Search();
         }
 

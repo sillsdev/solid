@@ -325,10 +325,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>RecordNavigatorView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Search\SearchView.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>SearchView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SfmEditorView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>SfmEditorView.cs</DependentUpon>
@@ -362,12 +358,6 @@
     </Compile>
     <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="Search\SearchResult.cs" />
-    <Compile Include="Search\SearchView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Search\SearchView.Designer.cs">
-      <DependentUpon>SearchView.cs</DependentUpon>
-    </Compile>
     <Compile Include="SfmEditorPM.cs" />
     <Compile Include="SfmEditorView.cs">
       <SubType>UserControl</SubType>

@@ -64,7 +64,7 @@ namespace SolidGui
             EditorRecordFormatter = new RecordFormatter();
             EditorRecordFormatter.SetDefaultsUiTree();
             _sfmEditorModel = new SfmEditorPM(this);  // passing s.t. with access to the dict will help fix issue #173 etc. (adding/deleting entries) -JMC
-            _searchModel = new SearchViewModel(this);
+            _searchModel = new SearchViewModel(this, EditorRecordFormatter);
             // _masterRecordList = WorkingDictionary.AllRecords;  // Got rid of this extra-step link because it made it harder to swap out the model. -JMC 2013-10
             WarningFilterChooserModel.RecordFilters = _recordFilters;  // JMC:!! get rid of this too? (i.e. use the main PM instead)
             _searchModel.Dictionary = _workingDictionary;
@@ -214,14 +214,14 @@ namespace SolidGui
             }
         }
 
-        public void SyncFormat(RecordFormatter rf)
+        public void SyncFormat(RecordFormatter rf, bool updateSearchView)
         {
             if (_editorRecordFormatter.ShowIndented != rf.ShowIndented)
             {
                 // We need to get in sync with the dialog's indentation
                 _editorRecordFormatter = rf;
                 var args = new RecordFormatterChangedEventArgs(rf);
-                EditorRecordFormatterChanged.Invoke(this, args);
+                if (updateSearchView) EditorRecordFormatterChanged.Invoke(this, args); // this if is intended to block ping-ponging invokes -JMC
 
                 /*
                 _editorRecordFormatter = new RecordFormatter();  //JMC:! Need a rich text subclass here!
@@ -295,42 +295,38 @@ namespace SolidGui
         /// <returns></returns>
         public bool ShouldAskForTemplateBeforeOpening(string filePath)
         {
-            bool result = true;
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(filePath);
-            if (File.Exists(solidFilePath))
+            if (!File.Exists(solidFilePath)) return true;
+            // Check also that the setting file is valid.  If it's not allow true to be returned to pop up
+            // the template chooser.
+            // See http://projects.palaso.org/issues/show/180
+            SolidSettings solidSettings = null;
+            try
             {
-                // Check also that the setting file is valid.  If it's not allow true to be returned to pop up
-                // the template chooser.
-                // See http://projects.palaso.org/issues/show/180
-                SolidSettings solidSettings = null;
-                try
-                {
-                    solidSettings = LoadSettingsFromExistingFile(solidFilePath);  // A dry run. If it succeeds, we'll reload later. -JMC
-                }
-                catch (InvalidOperationException e)
-                {
-                    ErrorReport.NotifyUserOfProblem(
-                        String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
-                    );
-                }
-                catch (XmlException e)
-                {
-                    ErrorReport.NotifyUserOfProblem(
-                        String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
-                    );
-                    
-                }
-                catch (ApplicationException e) // Added because MigratorBase.cs has changed (Palaso lib, changeset 2103 (51be8122f653) ~Mar 2013). -JMC
-                {
-                    ErrorReport.NotifyUserOfProblem(
-                        String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
-                    );
-
-                }
-                
-                result = solidSettings == null;
+                solidSettings = LoadSettingsFromExistingFile(solidFilePath);  // A dry run. If it succeeds, we'll reload later. -JMC
             }
-            return result;
+            catch (InvalidOperationException e)
+            {
+                ErrorReport.NotifyUserOfProblem(
+                    String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+                );
+            }
+            catch (XmlException e)
+            {
+                ErrorReport.NotifyUserOfProblem(
+                    String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+                );
+                    
+            }
+            catch (ApplicationException e) // Added because MigratorBase.cs has changed (Palaso lib, changeset 2103 (51be8122f653) ~Mar 2013). -JMC
+            {
+                ErrorReport.NotifyUserOfProblem(
+                    String.Format("There was a problem opening the solid file '{0:s}'\n", solidFilePath) + e.Message
+                );
+
+            }
+                
+            return solidSettings == null;
         }
 
         /// <summary>

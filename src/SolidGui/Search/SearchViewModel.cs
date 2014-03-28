@@ -46,7 +46,8 @@ namespace SolidGui.Search
 
         public RecordFilter Filter;
 
-        public RegexItem Reggie;
+        private RegexItem _reggie;
+
         public bool CaseSensitive = false;
         public bool UseRegex = true;
         public bool UseDoubleRegex = false;  //JMC: if true, UseRegex needs to be true too (enforce with get/set ?)
@@ -59,84 +60,87 @@ namespace SolidGui.Search
         // CultureInvariant  (checkbox "use OS case rules")
         // Multiline (checkbox "allow inline ^ $")
         // Singleline ("dot matches newline")
-        
-        public SearchViewModel(MainWindowPM model)
+
+        public SearchViewModel(MainWindowPM model, RecordFormatter recordFormatter)
         {
             _model = model;
-            RecordFormatter = new RecordFormatter();
-            RecordFormatter.SetDefaultsUiTree();
+            RecordFormatter = recordFormatter;
         }
 
+        public void Setup(RegexItem ri, int recordIndex, int textIndex)
+        {
+            _reggie = ri;
+            Setup(null, null, recordIndex, textIndex);
+        }
+        public void Setup(string f, string r, int recordIndex, int textIndex)
+        {
+            FindThis = f;
+            ReplaceWith = r;
+            if (Filter == null)
+            {
+                Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
+            }
+            //we're starting our first find in a potential series; bookmark this
+            _startRecordOfWholeSearch = recordIndex;
+            _startIndexOfWholeSearch = textIndex;
+        }
+
+/* JMC: delete
         public void setFindThis(string val)
         {
             FindThis = val;
             if (!UseRegex)
             {
-                Reggie = null;
+                _reggie = null;
                 return;
             }
-            Reggie = Reggie ?? new RegexItem();
-            Reggie.setFind(val, CaseSensitive);
+            _reggie = _reggie ?? new RegexItem();
+            _reggie.setFind(val, CaseSensitive);
         }
-
+        */
         public SfmDictionary Dictionary
         {
             get { return _dictionary; }
             set { _dictionary = value; }
         }
 
-        private static void CantFindWordErrorMessage(string word)
-        {
-            MessageBox.Show("Cannot find\n'" + word + "'", "Solid", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        /// Find within the specified filter (specify null for All Records)
-        /// If called multiple times with the same values for startingRecord and startingIndex, it will search the 
-        /// whole file (including wrap-around with ding) and stop at that starting point. -JMC
-        public void FindReplace(string word, string possReplace, int recordIndex, int textIndex, int startingRecord,
-                                int startingIndex)
-        {
-            FindReplace(word, possReplace, recordIndex, textIndex, startingRecord, startingIndex, false);
-        }
-
-        /// Same, but with the option to replace all
-        public void FindReplace( string word, string possReplace, int recordIndex, int textIndex, int startingRecord, int startingIndex, bool all)
-        {
-            if (this.Filter == null)
+        // Find within the specified filter (specify null for All Records)
+        // If called multiple times with the same values for startingRecord and startingIndex, it will search the 
+        // whole file (including wrap-around with ding) and stop at that starting point. -JMC
+        //public void FindReplace(int recordIndex, int textIndex, int startingRecord, int startingIndex, bool all)
+                 
+            /*
+            string word = FindThis;
+            string possReplace = ReplaceWith;
+            if (_reggie != null)
+            {
+                word = _reggie.Find;
+                possReplace = _reggie.Replace;
+            }
+            */
+        
+/*            if (this.Filter == null)
             {
                 this.Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
             }
-            this.setFindThis(word);
-            this.ReplaceWith = possReplace;
             _startRecordOfWholeSearch = startingRecord;
             _startIndexOfWholeSearch = startingIndex;
 
             SearchResult result;
-            while (true)
-            {
-                result = NextResult(recordIndex, textIndex);
-                if (!all)
-                {
-                    break;
-                }
-                else
-                {
-                    break;  //JMC: Stub; put Replace All functionality here?? Break after one full pass through the file.
-                }
-            }
 
+            result = NextResult(recordIndex, textIndex);
             if (result != null)
             {
                 WordFound.Invoke(this, new SearchResultEventArgs(result));
             }
             else
             {
-                CantFindWordErrorMessage(word);  //JMC:! Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model)
+                CantFindWordErrorMessage(_reggie.Find);  //JMC:! Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model; my bad)
             }
-        }
+        }*/
 
         /// Find within the specified filter
-        private SearchResult NextResult(int recordIndex, int searchStartIndex)
+        public SearchResult NextResult(int recordIndex, int startIndexChar)
         {
             RecordFilter filter = this.Filter;
             Regex reg = null;
@@ -161,13 +165,13 @@ namespace SolidGui.Search
                 {
                     skip = true;
                     // set the context
-                    SearchResult tempResult = FindWordInRecord(recordIndex, searchStartIndex, Reggie.ReggieContext,
-                        Reggie.ReplaceContext, null); 
-                    searchStartIndex = 0;
+                    SearchResult tempResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.ReggieContext,
+                        _reggie.ReplaceContext, null); 
+                    startIndexChar = 0;
                     context = tempResult.Found;
                     if (!String.IsNullOrEmpty(context))
                     {
-                        Reggie.ContextFound = tempResult;
+                        _reggie.ContextFound = tempResult;
                         skip = false;  //found the context; can now do the find
                     }
                 } 
@@ -176,12 +180,12 @@ namespace SolidGui.Search
                 {
                     if (this.UseRegex)
                     {
-                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, Reggie.Reggie, Reggie.Replace, context);
+                        searchResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.Reggie, _reggie.Replace, context);
                         //Note that context will be null unless UseDoubleRegex is true. -JMC
                     }
                     else
                     {   //basic mode
-                        searchResult = FindWordInRecord(recordIndex, searchStartIndex, null, this.ReplaceWith, null);
+                        searchResult = FindWordInRecord(recordIndex, startIndexChar, null, this.ReplaceWith, null);
                     }
 
                     if (searchResult != null) // (searchResultIndex != -1)
@@ -190,22 +194,24 @@ namespace SolidGui.Search
                     }
                 }
 
-                if (SearchStartingPointPassed(recordIndex, searchStartIndex, searchResultIndex))
+                if (SearchStartingPointPassed(recordIndex, startIndexChar, searchResultIndex))
                 {
-                    MakeBing();
+                    return null;
                 }
 
                 if (searchResult != null)
                 {
+                    WordFound.Invoke(this, new SearchResultEventArgs(searchResult));  //move to dialog? -JMC
                     return searchResult;
                 }
-
+/*
                 if (!first && recordIndex == startingRecordIndex) // have we come back around completely?
                 {
                     break;
                 }
+ */ 
                 first = false;
-                searchStartIndex = 0;
+                startIndexChar = 0;
                 recordIndex++;
                 recordIndex = WrapRecordIndex(recordIndex, filter);
             }
@@ -243,7 +249,7 @@ namespace SolidGui.Search
             }
             else
             {
-                recordText = context;
+                recordText = context; 
             }
 
             if (reg == null)
@@ -262,7 +268,8 @@ namespace SolidGui.Search
                 int finalTextIndex = rec2.IndexOf(f2, startTextIndex);
                 if (finalTextIndex > -1)
                 {
-                    res = new SearchResult(recordIndex, finalTextIndex, filter, f, replaceWith);
+                    res = new SearchResult(recordIndex, finalTextIndex, filter, f);
+                    res.ReplaceWith = replaceWith; //move this out?
                 }
             }
             else
@@ -273,29 +280,24 @@ namespace SolidGui.Search
                 {
                     replaceWith = Regex.Unescape(replaceWith);  //deal with backslash codes etc.
                     string rw = m.Result(replaceWith);
-                    res = new SearchResult(recordIndex, m.Index, filter, m.Value, rw);
+                    res = new SearchResult(recordIndex, m.Index, filter, m.Value);
+                    res.ReplaceWith = rw; //move this out?
                 }
             }
 
             return res;
         }
 
-        // Make a dinging sound (well, the system Asterisk). Called on wraparound, or on no match found.
-        private void MakeBing()
+        public bool SearchStartingPointPassed(int recordIndex, int startTextIndex, int textIndex)
         {
-            SystemSounds.Asterisk.Play();
-        }
-
-        private bool SearchStartingPointPassed(int recordIndex, int startTextIndex, int textIndex)
-        {
-            return recordIndex == _startRecordOfWholeSearch && 
-                   startTextIndex <= _startIndexOfWholeSearch &&
-                   (textIndex >= _startIndexOfWholeSearch || textIndex == -1);
+            return recordIndex == _startRecordOfWholeSearch &&   // we're back to our starting record
+                   startTextIndex <= _startIndexOfWholeSearch &&   // and character
+                   (textIndex >= _startIndexOfWholeSearch || textIndex == -1); // and 
         }
 
         public void SyncFormat(RecordFormatter rf)
         {
-            if (RecordFormatter.ShowIndented != rf.ShowIndented)
+            if (RecordFormatter.ShowIndented != rf.ShowIndented)  //prevents ping-ponging invokes
             {
                 // Mismatch. We now need to get in sync with the editing pane's indentation.
                 RecordFormatter = rf;

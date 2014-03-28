@@ -142,7 +142,7 @@ namespace SolidGui
         {
             var rf = new RecordFormatter();
             rf.SetDefaultsUiTree();
-            _model.Model.SyncFormat(rf);
+            _model.Model.SyncFormat(rf, true);
 
             //buttonTree.Visible = false;
             //buttonFlat.Visible = true;
@@ -152,7 +152,7 @@ namespace SolidGui
         {
             var rf = new RecordFormatter();
             rf.SetDefaultsUiFlat();
-            _model.Model.SyncFormat(rf);
+            _model.Model.SyncFormat(rf, true);
 
             //buttonTree.Visible = true;
             //buttonFlat.Visible = false;

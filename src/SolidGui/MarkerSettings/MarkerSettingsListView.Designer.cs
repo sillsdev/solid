@@ -158,7 +158,5 @@ namespace SolidGui.MarkerSettings
 
         #endregion
 
-        private GlacialComponents.Controls.GlacialList _markerListView;
-
     }
 }

@@ -178,13 +178,6 @@ namespace SolidGui.Engine
             MessageBox.Show(sb.ToString(), "New Marker(s) Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             _newlyAdded = new List<SolidMarkerSetting>(); //clear it out (don't keep notifying)
 
-            // Also seems like a good time to detect whether there are any mixed encodings -JMC
-            string msg = NotifyIfMixedEncodings();
-            if (msg != "")
-            {
-                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
         }
 
         // JMC: This should probably be called once after every File Open, since most users don't need mixed encodings,

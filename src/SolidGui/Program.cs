@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 using Palaso.Reporting;
 using SolidGui.Properties;
@@ -42,38 +43,9 @@ namespace SolidGui
 
             KeyboardController.Initialize();  //JMC!: verify that calling this repeatedly is ok
 
-            if(args.Length > 0)
-            {
-                string fileName = args[0];
-                //string solidFileName = "";
-                if (fileName.EndsWith(".solid"))
-                {
-                    //solidFileName = fileName;
-                    fileName = SolidSettings.GetDictionaryFilePathFromSettingsPath(fileName);
-                }
-                string templatePath = null;
-                if (model.ShouldAskForTemplateBeforeOpening(fileName))  //check validity of .solid file
-                {
-                    templatePath = form.RequestTemplatePath(fileName, false);
-                    if (string.IsNullOrEmpty(templatePath))
-                    {
-                        return; //they cancelled
-                    }
-                }
-                if (model.OpenDictionary(fileName, templatePath))
-                {
-                    form.Show(); // needed so that other commands won't be ignored (e.g. so Ctrl+F5 will work, and for #1200) -JMC
-                    form.OnFileLoaded(fileName);
-                    model.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
-                    string msg = model.MarkerSettingsModel.SolidSettings.NotifyIfMixedEncodings();
-                    if (msg != "")
-                    {
-                        MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-            }
+            if (args.Length > 0) TryToOpen(args[0], model, form);
 
-            form.UpdateDisplay();
+            //form.UpdateDisplay();
             try
             {
                 Application.Run(form); 
@@ -95,6 +67,25 @@ namespace SolidGui
             }
         }
 
+        static void TryToOpen(string fileName, MainWindowPM model, MainWindowView form)
+        {
+            if (!File.Exists(fileName)) return;
+
+            if (fileName.EndsWith(".solid"))
+            {
+                fileName = SolidSettings.GetDictionaryFilePathFromSettingsPath(fileName);
+            }
+            string templatePath = null;
+            if (model.ShouldAskForTemplateBeforeOpening(fileName))  //check validity of .solid file
+            {
+                templatePath = form.RequestTemplatePath(fileName, false);
+                if (string.IsNullOrEmpty(templatePath)) { return; } //they cancelled
+            }
+            if (model.OpenDictionary(fileName, templatePath))
+            {
+                form.OnFileLoaded(fileName);
+            }
+        }
         private static void SetupErrorHandling()
         {
             ExceptionHandler.Init();

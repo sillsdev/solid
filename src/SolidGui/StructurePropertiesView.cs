@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Palaso.UI.WindowsForms.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
+using SolidGui.MarkerSettings;
 
 namespace SolidGui
 {
@@ -45,8 +46,9 @@ namespace SolidGui
             UpdateParentMarkerListAndComboBox();
             UpdateRadioButtonsAndExplanation();
             _isProcessing = false;
-
+           
             //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
+            
             _parentListView.Hide();
             _parentListView.Show();
             if (_parentListView.SelectedItems.Count > 0)
