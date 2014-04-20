@@ -84,18 +84,18 @@ namespace SolidGui
 
         public void OnNavFilterChanged(object sender, RecordFilterChangedEventArgs e)
         {
-            Reload();
+            UpdateViewFromModel();
         }
 
-        public void UpdateBoth()
+        public void UpdateModelAndView()
         {
-            UpdateModel();
-            UpdateView();
+            UpdateModelFromView();
+            UpdateViewFromModel();
         }
 
         private void RefreshRecord()
         {
-            UpdateBoth();
+            UpdateModelAndView();
             ContentsBox.Focus();
         }
 
@@ -122,16 +122,19 @@ namespace SolidGui
             }
             if (_currentRecord != e.Record || HighlightMarkers != e.HighlightMarkers)
             {
-                UpdateModel();
+                UpdateModelFromView();
                 _currentRecord = e.Record;
                 HighlightMarkers =  e.HighlightMarkers;
-                UpdateView();
+                UpdateViewFromModel();
             }
             ContentsBox.Focus();
         }
        
-        // "Save" from the on-screen editing box into memory
-        public void UpdateModel()
+        /// <summary>
+        /// "Save" from the on-screen editing box into memory. Is usually followed by an UpdateViewFromModel() call.
+        /// </summary>
+ 
+        public void UpdateModelFromView()
         {
             //int currentIndex = ContentsBox.SelectionStart;
             if (_currentRecord != null && IsDirty)  // && ContentsBox.Text.Length > 0)  // We now allow clearing to delete a record, so zero length is fine. -JMC 2013-09
@@ -174,7 +177,7 @@ namespace SolidGui
 
 
             //The new way, using RecordFormatter (note all the side effects)
-            _model.EditorRecordFormatter.FormatRich(_currentRecord, _model, _contentsBoxDB, HighlightMarkers, _markerTip);
+            _model.EditorRecordFormatter.FormatRich(_currentRecord, _model, _contentsBoxDB, HighlightMarkers, _markerTip);  //JMC:! Consider switching to _model.NavigatorModel.ActiveFilter.HighlightMarkers and eliminating the HighlightMarkers property entirely.
             
             _contentsBoxDB.SelectionStart = 0;  // = (foundProcessingMark) ? currentPosition - 1 : 0;
             // Copy the buffer to the real control.
@@ -190,8 +193,12 @@ namespace SolidGui
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        // Warning: You should almost always call UpdateModel first, or edits may be lost!
-        public void UpdateView()
+        /// <summary>
+        /// Refresh the editing pane to matach the model. Warning: You should almost always call UpdateModelFromView 
+        /// first, or edits may be lost!
+        /// </summary>
+ 
+        public void UpdateViewFromModel()
         {
             string backup = ContentsBox.Text;
             try
@@ -208,11 +215,15 @@ namespace SolidGui
             }
         }
 
-        // This was identical to UpdateView() ; if intent is really the same, we should merge them. -JMC Mar 2014
+/*
+        /// <summary>
+        /// This was identical to UpdateViewFromModel() ; if intent is really the same, we should merge them. -JMC Mar 2014
+        /// </summary>
         public void Reload()
         {
             UpdateView();
         }    
+ */
 
         [DebuggerStepThrough]
         private bool CursorIsAboveLastLine()  //JMC: What's the purpose here? AFAIK this always returns true. Maybe it's due to the multiplication below?
@@ -363,7 +374,7 @@ namespace SolidGui
         {
             if (IsDirty)
             {
-                UpdateBoth();
+                UpdateModelAndView();
             }
         }
 

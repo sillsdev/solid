@@ -42,6 +42,11 @@ namespace SolidGui.Export
                 radioButtonSpace.Checked = spc;
                 radioButtonTab.Checked = !spc;
             }
+            else
+            {
+                ShortTermMemory = new RecordFormatter();
+                ShortTermMemory.SetDefaultsDisk();
+            }
 
         }
 

@@ -88,7 +88,7 @@ namespace SolidGui.Model
 
         public string Marker { get; private set; }
 
-        //JMC! The following needs to be set each time the depth of the following field is established.
+        //JMC:! The following needs to be set each time the depth of the following field is established.
         public List<string> Closers; //one or more closing tags; e.g. "xe" "rf" "sn" "se"
         //Example: if \xe ends a subentry, the whole field could be saved as: \xe They wept.\xe*\rf*\sn*\se*\r\n
 

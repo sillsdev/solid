@@ -180,8 +180,8 @@ namespace SolidGui.Engine
 
         }
 
-        // JMC: This should probably be called once after every File Open, since most users don't need mixed encodings,
-        // yet Solid used to silently create mixed-encoding settings whenever a new marker was identified in a unicode file.
+        // JMC: This should probably be called once after every File Open. Especially because, even though most users don't need mixed encodings,
+        // Solid used to silently create legacy-encoded markers whenever a new marker was identified in any file (even a unicode one).
         public string NotifyIfMixedEncodings()
         {
             int uni = 0;
@@ -209,19 +209,28 @@ namespace SolidGui.Engine
         }
 
         /// <summary>
-        /// will overwrite existing file, if needed
+        /// Will silently rename existing file to name.solid.bak, if necessary.
         /// </summary>
         /// <param name="templateFilePath"></param>
         /// <param name="outputFilePath"></param>
         /// <returns></returns>
         public static SolidSettings CreateSolidFileFromTemplate(string templateFilePath, string outputFilePath)
         {
+            string needsBackup = outputFilePath;
             try
             {
-                if (File.Exists(outputFilePath))
+                // File.Delete(outputFilePath);
+                if (File.Exists(outputFilePath)) // added by JMC
                 {
-                    File.Delete(outputFilePath);
+                    string backupPath = outputFilePath + ".bak";
+                    int i = 2;
+                    while (File.Exists(backupPath))
+                    {
+                        backupPath = outputFilePath + ".bak" + i++.ToString();
+                    }
+                    File.Move(outputFilePath, backupPath);
                 }
+
                 File.Copy(templateFilePath, outputFilePath);
             }
             catch (Exception e)
@@ -315,9 +324,9 @@ namespace SolidGui.Engine
             return settings;
         }
 
-        public void Save()
+        public bool Save()
         {
-            SaveAs(FilePath);
+            return SaveAs(FilePath);
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace SolidGui.MarkerSettings
         public event EventHandler MarkerSettingPossiblyChanged;
 
         private SfmDictionary _dictionary; // /  JMC:! I'd like to pull this out, and access it via MainWindowPM.
-        private MarkerSettingsPM _markerSettingsPM;  // JMC:!! Ditto esp. for this one, since it can't pick up on GiveSolidSettingsToModels
+        private MarkerSettingsPM _markerSettingsPm;  // JMC:!! Ditto esp. for this one, since it can't pick up on GiveSolidSettingsToModels
 
         public MarkerSettingsListView()
         {
@@ -42,19 +42,19 @@ namespace SolidGui.MarkerSettings
             _markerListView.SelectedTextColor = Color.Black;
         }
 
-        public void BindModel(MarkerSettingsPM markerSettingsPM, SfmDictionary dictionary)
+        public void BindModel(MarkerSettingsPM markerSettingsPm, SfmDictionary dictionary)
         {
-            if (_markerSettingsPM != null)
+            if (_markerSettingsPm != null)
             {
-                _markerSettingsPM.MarkerFilterChanged -= OnMarkerFilterChanged;
+                _markerSettingsPm.MarkerFilterChanged -= OnMarkerFilterChanged;
             }
 
             _markerListView.SuspendLayout();
-            _markerSettingsPM = markerSettingsPM;
+            _markerSettingsPm = markerSettingsPm;
 
             _dictionary = dictionary;
 
-            _markerSettingsPM.MarkerFilterChanged += OnMarkerFilterChanged;
+            _markerSettingsPm.MarkerFilterChanged += OnMarkerFilterChanged;
             
             //UpdateDisplay();
         }
@@ -67,7 +67,7 @@ namespace SolidGui.MarkerSettings
             //The order these are called in matters
             FillInFrequencyColumn(item, pair.Value.ToString());  // COUNT
 
-            SolidMarkerSetting markerSetting = _markerSettingsPM.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
+            SolidMarkerSetting markerSetting = _markerSettingsPm.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
             AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties, markerSetting), OnStructureLinkClicked);  // UNDER
 
             AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);  // WS
@@ -174,7 +174,7 @@ namespace SolidGui.MarkerSettings
         private string MakeMappingLinkLabel(SolidMarkerSetting.MappingType type, SolidMarkerSetting markerSetting)
         {
             string conceptId = markerSetting.GetMappingConceptId(type);
-            var mappingSystem = _markerSettingsPM.MappingModel.TargetChoices[(int)type];
+            var mappingSystem = _markerSettingsPm.MappingModel.TargetChoices[(int)type];
 
             MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
 
@@ -304,7 +304,7 @@ namespace SolidGui.MarkerSettings
             UsageReporter.SendNavigationNotice("Settings/"+area);
 
             string marker = _markerListView.SelectedItems[0].Text;
-            var dialog = new MarkerSettingsDialog(_markerSettingsPM, marker);
+            var dialog = new MarkerSettingsDialog(_markerSettingsPm, marker);
             dialog.SelectedArea = area;
             dialog.ShowDialog();
             if (MarkerSettingPossiblyChanged != null)
@@ -342,15 +342,15 @@ namespace SolidGui.MarkerSettings
 
             if (!_changingFilter)
             {
-                _markerSettingsPM.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker); 
+                _markerSettingsPm.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker); 
                 // JMC:! why did we create a new one here, but not for the same situation in FilterChooserView, _filterList_SelectedIndexChanged() ?
             }
 
             // Handle the new unicode column -JMC
-            SolidMarkerSetting m = _markerSettingsPM.GetMarkerSetting(marker);
+            SolidMarkerSetting m = _markerSettingsPm.GetMarkerSetting(marker);
             if (m.Unicode != item.SubItems[4].Checked)
             {
-                _markerSettingsPM.WillNeedSave();
+                _markerSettingsPm.WillNeedSave();
                 m.Unicode = !m.Unicode;
                 MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
             }

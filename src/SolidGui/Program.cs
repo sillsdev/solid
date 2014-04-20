@@ -41,7 +41,7 @@ namespace SolidGui
             form.BindModels(model);
 
 
-            KeyboardController.Initialize();  //JMC!: verify that calling this repeatedly is ok
+            KeyboardController.Initialize();  //JMC:! verify that calling this repeatedly is ok
 
             if (args.Length > 0) TryToOpen(args[0], model, form);
 
@@ -61,10 +61,6 @@ namespace SolidGui
                 KeyboardController.Shutdown();
             }
             Settings.Default.Save();
-            if (model.Settings != null)
-            {
-                model.Settings.NotifyIfNewMarkers(); //JMC: Why did I put this here--is it really doing anything? -JMC Feb 2014
-            }
         }
 
         static void TryToOpen(string fileName, MainWindowPM model, MainWindowView form)
@@ -86,6 +82,7 @@ namespace SolidGui
                 form.OnFileLoaded(fileName);
             }
         }
+
         private static void SetupErrorHandling()
         {
             ExceptionHandler.Init();

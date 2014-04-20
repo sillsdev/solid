@@ -20,7 +20,7 @@ namespace SolidGui.Processes
             _settings = settings;
         }
 
-        public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)
+        public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)  //JMC: void would make more sense
         {
             Encoding utf8Encoding = Encoding.GetEncoding("utf-8", new EncoderExceptionFallback(), new DecoderExceptionFallback());
             Encoding legacyEncoding = SolidSettings.LegacyEncoding;  //was: Encoding.GetEncoding("iso-8859-1");

@@ -8,6 +8,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Xml;
 using Palaso.Reporting;
 using Palaso.UI.WindowsForms.Progress;
@@ -33,12 +36,20 @@ namespace SolidGui
         private RecordNavigatorPM _navigatorModel;
         private RecordFilterSet _recordFilters;  // JMC: redundant with the property in the RecordFilter model?
         private SfmEditorPM _sfmEditorModel;
-        private String _tempDictionaryPath;
         private SfmDictionary _workingDictionary;
         // private List<Record> _masterRecordList;
         private String _realDictionaryPath;
         private SearchViewModel _searchModel;
         public bool needsSave = false;
+
+        private static Regex _cleanUpIndents;
+        private static Regex _cleanUpClosers;
+        /*
+        private static Regex _cleanUpSeparators;
+        private static Regex _cleanUpNewlinesNonWindows;
+        private static Regex _cleanUpNewlinesNonLinux;
+        */
+
 
         public MainWindowPM() 
         {
@@ -52,13 +63,17 @@ namespace SolidGui
                 _navigatorModel, _sfmEditorModel, GetHashCode());
         }
 
+        private static String TempDictionaryPath()
+        {
+            return Path.Combine(Path.GetTempPath(), "TempDictionary.db");
+        }
+
         public void Initialize(SfmDictionary dict) // , SolidSettings settings)
         {
             _recordFilters = new RecordFilterSet();
             _workingDictionary = dict;
             // Settings = settings;
             _markerSettingsModel = new MarkerSettingsPM(this);
-            _tempDictionaryPath = Path.Combine(Path.GetTempPath(), "TempDictionary.db");
             _warningFilterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM(this);
             EditorRecordFormatter = new RecordFormatter();
@@ -79,6 +94,9 @@ namespace SolidGui
             NavigatorModel.NavFilterChanged += WarningFilterChooserModel.OnNavFilterChanged;
             NavigatorModel.NavFilterChanged += MarkerSettingsModel.OnNavFilterChanged;
 
+            RegexOptions options = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline;
+            _cleanUpIndents = new Regex(@"^[ \t]+", options);  //any line-initial spaces or tabs
+            _cleanUpClosers = new Regex(@"\\\w+\* ?", options);  //any closing tag, and possibly one space
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -89,9 +107,15 @@ namespace SolidGui
             }
         }
 
-        // JMC:! Remove the following or replace it with pass-thru of _markerSettingsModel.SolidSettings ??
-        public SolidSettings Settings { get; private set; }
-            // get { return _markerSettingsModel.SolidSettings; }
+        // JMC:! Remove this property or replace it with pass-thru of _markerSettingsModel.SolidSettings ??
+        public SolidSettings Settings
+        {
+            get
+            {
+                return _markerSettingsModel.SolidSettings;
+            }  // was get {}
+            private set { _markerSettingsModel.SolidSettings = value; }  // was private set {}
+        }
 
         public SearchViewModel SearchModel
         {
@@ -149,6 +173,7 @@ namespace SolidGui
         public string DictionaryRealFilePath
         {
             get { return _realDictionaryPath; }
+            set { _realDictionaryPath = value; }
         }
 
         /// <summary>
@@ -170,6 +195,9 @@ namespace SolidGui
                     foreach (string path in Directory.GetFiles(Path.GetDirectoryName(DictionaryRealFilePath), "*.solid"))
                     {
                         if (Settings != null && path != Settings.FilePath)
+                        {
+                        }
+                        else
                         {
                             paths.Add(path);
                         }
@@ -329,8 +357,40 @@ namespace SolidGui
             return solidSettings == null;
         }
 
+        private static string CleanupOne(string input, string rw, Regex reg, StringBuilder report, string label)
+        {
+            int c = 0;
+            string output = reg.Replace(input, 
+                (match) =>
+                {
+                    c++;
+                    return match.Result(rw);
+                });
+            if (c > 0)
+            {
+                report.AppendLine(String.Format("Replaced {0} occurrences of {1}",c,label));
+                return output;
+            }
+            return input;
+        }
+
+        // Copy the file at the source path to a new file, doing cleanup find/replace on it.
+        // Returns a report of what was cleaned up; if nothing, returns an empty string.
+        private static string CleanupToTempFile(string source, string tmp)
+        {
+            var report = new StringBuilder("");
+
+            string writeText = File.ReadAllText(source, SolidSettings.LegacyEncoding);
+
+            writeText = CleanupOne(writeText, "", _cleanUpIndents, report, "Indentation"); //potentially releases writeText's memory?
+            //writeText = CleanupOne(writeText, "", _cleanUpClosers, report, "Closers");     //ditto
+
+            File.WriteAllText(tmp, writeText, SolidSettings.LegacyEncoding);
+            return report.ToString();
+        }
+
         /// <summary>
-        /// Caller should first call ShouldAskForTemplateBeforeOpening, and supply a non-null templatePath iff that returns true
+        /// Caller should first call ShouldAskForTemplateBeforeOpening, and supply a non-null templatePath if that returns true
         /// </summary>
         /// <param name="dictionaryPath"></param>
         /// <param name="templatePath"></param>
@@ -350,9 +410,22 @@ namespace SolidGui
             GiveSolidSettingsToModels();
 
             //var dict = _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
-            //var dict = new SfmDictionary();
-            SfmDictionary dict = _workingDictionary;
-            if (dict.Open(_realDictionaryPath, Settings, _recordFilters))  
+            //var dict = new SfmDictionary();          
+
+            string tmp; /* = TempDictionaryPath();
+            string report = ""; // CleanupToTempFile(_realDictionaryPath, tmp);
+
+            if (report != "")
+            {
+                string msg = String.Format("Did the following cleanup: \n{0}\nThis will become permanent if you save.",
+                    report);
+                MessageBox.Show(msg, "Preprocessing made changes"); //JMC: move to UI? (my bad)
+                Logger.WriteEvent(msg);
+                needsSave = true;
+            } */
+            tmp = _realDictionaryPath; //JMC:! delete this
+
+            if (_workingDictionary.Open(tmp, Settings, _recordFilters))  
             {
                 if (DictionaryProcessed != null)
                 {
@@ -368,12 +441,11 @@ namespace SolidGui
         {
             _markerSettingsModel.SolidSettings = Settings;
             _markerSettingsModel.Root = Settings.RecordMarker;
-            // _sfmEditorModel.SolidSettings = Settings;  // JMC: hopefully unnecessary now
         }
 
         private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
-            Palaso.Reporting.Logger.WriteEvent("Loading Solid file from Template from {0}", templatePath);
+            Palaso.Reporting.Logger.WriteEvent("Loading Solid file from template located at {0}", templatePath);
             Trace.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder.");
             return SolidSettings.CreateSolidFileFromTemplate(
                 templatePath, 
@@ -389,12 +461,15 @@ namespace SolidGui
             );
         }
 
-        // Called by Recheck. Also called after a quick fix, change template, etc. (Do this for Replace All too?) -JMC
+        /// <summary>
+        /// Called by Recheck. Also called after a quick fix, change template, etc. (Do this for Replace All too?) -JMC
+        /// </summary>
         public void ProcessLexicon()
         {
-            WorkingDictionary.SaveAs(_tempDictionaryPath, Settings);
+            string newPath = TempDictionaryPath();
+            WorkingDictionary.SaveAs(newPath, Settings);
 
-            _workingDictionary.Open(_tempDictionaryPath, Settings, _recordFilters);
+            _workingDictionary.Open(newPath, Settings, _recordFilters);
 
             if (DictionaryProcessed != null)
             {
@@ -407,10 +482,12 @@ namespace SolidGui
             Settings.SaveAs(filePath);
         }
 
+        // These methods seem redundant with SfmDictionary.SaveAs but they save both files. They are called by "Save" and "Save a Copy" buttons. -JMC
+        // This is a REAL save--to a file the user knows about rather than a temp file. -JMC
         public bool DictionaryAndSettingsSaveAs(string dictionaryPath)
         {
             var rf = new RecordFormatter();
-            rf.SetDefaultsDisk(); //JMC:! redundant with SfmDictionary.SaveAs
+            rf.SetDefaultsDisk(); 
             return DictionaryAndSettingsSaveAs(dictionaryPath, rf);
         }
         public bool DictionaryAndSettingsSaveAs(string dictionaryPath, RecordFormatter rf)
@@ -419,7 +496,6 @@ namespace SolidGui
             bool success = Settings.SaveAs(settingsPath);
             return success && _workingDictionary.SaveAs(dictionaryPath, Settings, rf);
         }
-
         public bool DictionaryAndSettingsSave()
         {
             return DictionaryAndSettingsSaveAs(_realDictionaryPath);
@@ -431,8 +507,11 @@ namespace SolidGui
 
         public void UseSolidSettingsTemplate(string path)
         {
-            Settings.Save();
-            LoadSettingsFromTemplate(path);
+            if (Settings != null)
+            {
+                Settings.Save();
+            }
+            Settings = LoadSettingsFromTemplate(path);
             GiveSolidSettingsToModels();
             ProcessLexicon();  
 
@@ -456,9 +535,10 @@ namespace SolidGui
 
                 destinationFilePath = exporter.ModifyDestinationIfNeeded(destinationFilePath);
 
-                _workingDictionary.SaveAs(_tempDictionaryPath, Settings);
-                Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(_tempDictionaryPath));
-                string sourceFilePath = _tempDictionaryPath;
+                _workingDictionary.SaveAs(TempDictionaryPath(), Settings);
+                //WorkingDictionary.FilePath = TempDictionaryPath(); //JMC: No, right?
+                Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(TempDictionaryPath()));
+                string sourceFilePath = TempDictionaryPath();
 
                 ExportArguments exportArguments = new ExportArguments();
                 exportArguments.inputFilePath = sourceFilePath;

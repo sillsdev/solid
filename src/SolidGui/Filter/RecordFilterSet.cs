@@ -18,11 +18,12 @@ namespace SolidGui.Filter
         {
         }
 
-        private Dictionary<Enum, ErrorFilterForType> _solidErrors = new Dictionary<Enum, ErrorFilterForType>();
+        private Dictionary<Enum, ErrorFilterForType> _solidErrors;
         //private ErrorFilterForType[] _solidErrors = new ErrorFilterForType[(int)SolidReport.NumTypes];
 
         public RecordFilterSet()
         {
+            _solidErrors = new Dictionary<Enum, ErrorFilterForType>();
         }
 
         public override string ToString()

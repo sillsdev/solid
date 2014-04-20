@@ -62,10 +62,18 @@ namespace SolidGui.Engine
             set { _allowLeadingWhiteSpace = value; }
         }
 
-        public int SizeEstimate  // file size estimate
+        /// <summary>
+        /// Time estimate is based on this file size estimate (units of returned size are arbitrary)
+        /// The number returned is usually in the int range; otherwise it'll just be the max int).
+        /// </summary>
+        public int SizeEstimate  
         {
-            // JMC: a rough attempt at scaling most longs down to ints (not guaranteed to work well; might wrap around)
-            get { return _size > int.MaxValue ? int.MaxValue : (int)(_size / 160); } 
+            get
+            {
+                long num = _size/1200 + 1;  // not sure if returning 0 prematurely is ok
+                int ret = (num > int.MaxValue) ? int.MaxValue : (int)(num);  // max of int32 is 2,147,483,647
+                return ret;
+            } 
         }
 
         public int RecordID

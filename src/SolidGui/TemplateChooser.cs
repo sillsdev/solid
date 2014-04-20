@@ -56,25 +56,33 @@ namespace SolidGui
                 int listViewBottom = _okButton.Location.Y - 8;
                 if (WouldBeReplacingExistingSettings)
                 {
-                    _lblInstructions.Visible = false;
+                    // _lblInstructions.Visible = false;
                     _pnlWarning.Visible = true;
+                    _pnlWarning.Height = 31;
+                    // _lblInstructions.Height = 0;
+                    /*
                     _pnlListView.Location = new Point
                     {
                         X = _pnlListView.Location.X,
                         Y = (_pnlWarning.Location.Y + _pnlWarning.Height)
                     };
                     _pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
+                     */
                 }
                 else
                 {
-                    _lblInstructions.Visible = true;
+                    //_lblInstructions.Visible = true;
                     _pnlWarning.Visible = false;
+                    _pnlWarning.Height = 0;
+                    // _lblInstructions.Height = 125;
+                    /*
                     _pnlListView.Location = new Point
                     {
                         X = _pnlListView.Location.X,
                         Y = (_lblInstructions.Location.Y + _lblInstructions.Height)
                     };
                     _pnlListView.Height = listViewBottom - _pnlListView.Location.Y;
+                     */
                     if (path.ToLowerInvariant().Contains("mdf.solid"))
                     {
                         item.Selected = true;
@@ -115,6 +123,7 @@ namespace SolidGui
             Close();
         }
 
+        /*
         private void OnSaveCurrentSettingsLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var dlg = new SaveFileDialog();
@@ -129,6 +138,7 @@ namespace SolidGui
                 _solidSettings.SaveAs(dlg.FileName);
             }
         }
+         */
 
     }
 }

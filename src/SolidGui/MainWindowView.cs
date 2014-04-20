@@ -46,6 +46,15 @@ namespace SolidGui
         }
 */
 
+        private void ReInit(MainWindowPM mainWindowPM)
+        {
+            //JMC: simulate new MainWindowView(_mainWindowPM); Definitely helps search see active nav, anyway. Good nuff? -JMC Mar 2014
+            //InitializeComponent();
+            Initialize(mainWindowPM);
+
+            BindModels(mainWindowPM);
+        }
+
         public MainWindowView(MainWindowPM mainWindowPM)
         {
             
@@ -67,6 +76,7 @@ namespace SolidGui
             splitContainerUpDown.Panel1.Enabled = false;
             splitContainerUpDown.Panel2.Enabled = false;
             //_sfmEditorView.Enabled = false;
+            _sfmEditorView.ContentsBox.ReadOnly = true;
 
             _mainWindowPM = mainWindowPM;
             _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
@@ -103,7 +113,7 @@ namespace SolidGui
             // var test = new MarkerSettings.MarkerSettingsDialog(_mainWindowPM.MarkerSettingsModel, "");
             // But first, we'll need a private property for it, such as _markerSettingsDialog
 
-            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged;
+            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged; //JMC: can be disabled? (redundant?)
 
             // JMC: verify that the following += don't stack up after several File Open.
             _recordNavigatorView.RefreshButton.Click += _sfmEditorView.OnRefreshClicked;
@@ -122,13 +132,13 @@ namespace SolidGui
 
         public void OnDictionaryProcessed(object sender, EventArgs e)
         {
-/* Moved this into BindModels()  -JMC 2013-10
+            /* Moved this into BindModels()  -JMC 2013-10
             //wire up the change of record event to our record display widget
-            _markerSettingsList.BindModel(
+            _markerSettingsListView.BindModel(
                 _mainWindowPM.MarkerSettingsModel,
                 _mainWindowPM.WorkingDictionary
             );
-*/
+            */
 
             UpdateDisplay();
         }
@@ -148,11 +158,6 @@ namespace SolidGui
                 }
             }
             ChooseAndOpenProject();
-            if (_mainWindowPM.Settings != null)
-            {
-                _mainWindowPM.Settings.NotifyIfNewMarkers();
-            }
-
         }
 
         private string GetInitialDirectory()
@@ -218,45 +223,26 @@ namespace SolidGui
             Open(dlg.FileName, templatePath);
         }
 
-        public void ReInit(MainWindowPM m)
-        {
-            _mainWindowPM = m;
-            //JMC: simulate new MainWindowView(_mainWindowPM); Definitely helps search see active nav, anyway. Good nuff? -JMC Mar 2014
-            this.InitializeComponent();
-            this.Initialize(_mainWindowPM);
-            BindModels(_mainWindowPM);
-        }
-
         private void Open(string fileName, string templatePath)
         {
             Cursor = Cursors.WaitCursor;
 
             // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
-            // E.g. if they have an open file with unsaved data, its state should remain the same. (I.e. simply reloading the previous file from disk is not an adequate "rollback".)
+            // E.g. if they have an open file with unsaved data, its state should remain the same. That is, simply reloading 
+            // the previous file from disk is not an adequate "rollback", unless we were to save current edits to a temp file first.
             MainWindowPM origPm = _mainWindowPM;
             var newPm = new MainWindowPM();
             ReInit(newPm);
+            //JMC: consider calling origPm.WorkingDictionary.Reset() here
 
             if (_mainWindowPM.OpenDictionary(fileName, templatePath))
             {
-                Settings.Default.PreviousPathToDictionary = fileName;
-                Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
-
                 //BindModels(_mainWindowPM);
                 OnFileLoaded(fileName);
-                setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
-                _sfmEditorView.Enabled = false;  //We need to clearly toggle this off before on, or else the background may be gray -JMC
-                _sfmEditorView.Enabled = true;   // (This issue only appeared after setting ShowSelectionMargin to True.)
 
-                string ext = Path.GetExtension(fileName);
-                if (!SolidSettings.FileExtensions.Contains(ext))
-                {
-                    SolidSettings.FileExtensions.Add(ext);
-                    // adaptive: makes the next File Open dialog friendlier (during this run; lost on exit) -JMC
-                }
                 origPm.Dispose();  // in case any variables are still referencing the old file's PM, this might block those bugs. -JMC
 
-                // JMC:! need to call something that's in _mainWindowPM.ProcessLexicon();
+                // JMC:! ? need to call something that's in _mainWindowPM.ProcessLexicon();
             }
             else
             {
@@ -271,39 +257,69 @@ namespace SolidGui
 
         public void OnFileLoaded(string filename)
         {
+            Settings.Default.PreviousPathToDictionary = filename;
+            Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
+
+            setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
+            /*
+            _sfmEditorView.Enabled = false;  //We need to clearly toggle this off before on, or else the background may be gray -JMC
+            _sfmEditorView.Enabled = true;   // (This issue only appeared after setting ShowSelectionMargin to True.)
+             */
+
+            string ext = Path.GetExtension(filename);
+            if (!SolidSettings.FileExtensions.Contains(ext))
+            {
+                SolidSettings.FileExtensions.Add(ext);
+                // adaptive: makes the next File Open dialog friendlier (during this run; lost on exit) -JMC
+            }
+
             Show(); // needed so that other commands won't be ignored (e.g. so Ctrl+F5 will work, and for #1200) -JMC
-            if (!String.IsNullOrEmpty(filename))
-            {
-                Text = "Solid: " + filename;                
-            }
-            //UpdateDisplay();
-            string msg = _mainWindowPM.MarkerSettingsModel.SolidSettings.NotifyIfMixedEncodings();
-            if (msg != "")
-            {
-                MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+
+            CheckAndNotify();
+
+            //if (_mainWindowPM.NavigatorModel.ActiveFilter.MoveToFirst()) _sfmEditorView.UpdateViewFromModel();
             _mainWindowPM.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
             UpdateDisplay();
 
+        }
+
+        public void CheckAndNotify()
+        {
+            if (_mainWindowPM.Settings != null)
+            {
+                _mainWindowPM.Settings.NotifyIfNewMarkers();
+                string msg = _mainWindowPM.Settings.NotifyIfMixedEncodings();
+                if (msg != "")
+                {
+                    MessageBox.Show(msg, "Mixed Encodings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
 
         public void UpdateDisplay()
         {
             bool canProcess = _mainWindowPM.CanProcessLexicon;
 
+            Text = "Solid: ";
+            if (!String.IsNullOrEmpty(_mainWindowPM.DictionaryRealFilePath))
+            {
+                Text += _mainWindowPM.DictionaryRealFilePath;
+            }
+
             _filterChooserView.Enabled = canProcess;
             _changeWritingSystems.Enabled = canProcess;
             _changeTemplate.Enabled = canProcess;
             _exportButton.Enabled = canProcess;
-            _recordNavigatorView.UpdateDisplay();
+            //_recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;  
+            _recordNavigatorView.UpdateDisplay();  //JMC: would this work?
             _quickFixButton.Enabled = canProcess;
             setSaveEnabled(_mainWindowPM.needsSave);
 
             splitContainerLeftRight.Panel1.Enabled = canProcess;
             splitContainerUpDown.Panel1.Enabled = canProcess;
             splitContainerUpDown.Panel2.Enabled = canProcess;
-            _sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
-            //_sfmEditorView.ContentsBox.ReadOnly = !canProcess;
+            //_sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
+            _sfmEditorView.ContentsBox.ReadOnly = !canProcess;  // see also Initialize()  -JMC
 
             _mainWindowPM.SfmEditorModel.MoveToFirst(); // Cheap way to "fix" #616 (and #274) -JMC 2013-09
             _mainWindowPM.NavigatorModel.StartupOrReset();
@@ -311,10 +327,9 @@ namespace SolidGui
             _filterChooserView.Model.Reset(); // _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
             _filterChooserView.UpdateDisplay(); // adding this helps the lower left pane...
             _sfmEditorView.Focus();
-            _sfmEditorView.Reload();  // JMC:! ...but this doesn't help with the right pane
+            _sfmEditorView.UpdateViewFromModel();  // JMC:! ...but this doesn't help with the right pane
             Hide();
             Show();
-            // Recheck(); // JMC:! ...so this is a temporary total hack (an extra recheck is expensive!)
             _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         
         }
@@ -361,27 +376,27 @@ namespace SolidGui
             Recheck();
         }
 
-        public void Recheck()
+        private void Recheck()
         {
             Cursor = Cursors.WaitCursor;
-            _sfmEditorView.UpdateModel();
+            _sfmEditorView.UpdateModelFromView();
             _mainWindowPM.ProcessLexicon();
             _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
 
             //_mainWindowPM.NavigatorModel.SendNavFilterChangedEvent();  // Added this so the left panes' selection would reset -JMC 2013-10
-            _sfmEditorView.Reload();
+            _sfmEditorView.UpdateViewFromModel();
             Cursor = Cursors.Default;
         }
 
 
         private void OnSaveClick(object sender, EventArgs e) // (this works for Ctrl+S too) -JMC
         {
-            _sfmEditorView.UpdateModel();
+            _sfmEditorView.UpdateModelFromView();
             if (_mainWindowPM.DictionaryAndSettingsSave())
             {
                 setSaveEnabled(false);
             }
-            _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
+            _sfmEditorView.UpdateViewFromModel();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 
@@ -393,16 +408,9 @@ namespace SolidGui
 
         private void SaveACopy()
         {
-            //JMC!: insert code here to present various save options first (or just after the file chooser?).
+            // Present various save options before (or just after?) showing the file chooser dialog.
             // The options dialog will return a RecordFormatter with the selected options.
-            // We'll pass that as an argument.
-            var rf = new RecordFormatter();
-            rf.SetDefaultsDisk();
-            /*
-            rf.IndentSpaces = 4;
-            rf.ShowIndented = true;
-            rf.ShowClosingTags = true;
-             */ 
+            // We'll pass that and the filename as arguments.
 
             var optionsDialog = new SaveOptionsDialog();
             // optionsDialog.WarnAboutClosers = false; //only do this if there are no structural errors detected. -JMC
@@ -411,7 +419,7 @@ namespace SolidGui
             {
                 return; // user cancelled
             }
-            rf = SaveOptionsDialog.ShortTermMemory;
+            RecordFormatter rf = SaveOptionsDialog.ShortTermMemory;
 
             string s = _mainWindowPM.DictionaryRealFilePath;
             string initialDirectory = Path.GetDirectoryName(s);
@@ -433,13 +441,15 @@ namespace SolidGui
             //JMC: If we save A.txt as B.txt and B.solid already exists, the following will silently overwrite B.solid
             // That's usually the right thing to do, but we could check, and provide a confirmation dialog here if needed, and bail on Cancel.
 
+            string remember = _mainWindowPM.WorkingDictionary.FilePath;  // Not really a Save As, but a Save a Copy -JMC Apr 2014
             if (_mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf));
             {
                 setSaveEnabled(false);
                 //JMC: For true Save As, we'd need to switch over to the other file. And to be safe, just reload?
 
             }
-            _sfmEditorView.Reload();  // we want to see the data (indentation) the way Solid does -JMC
+            _mainWindowPM.WorkingDictionary.FilePath = remember;
+            _sfmEditorView.UpdateViewFromModel();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC
         }
 
@@ -490,6 +500,7 @@ namespace SolidGui
                     else if (answer == System.Windows.Forms.DialogResult.No)
                     {
                         //do nothing (allow close to happen)
+                        // Cleanup();  //might be useful -JMC
                     }
                 }
             }
@@ -510,10 +521,9 @@ namespace SolidGui
             string path = RequestTemplatePath(_mainWindowPM.PathToCurrentDictionary, true);
             if(!String.IsNullOrEmpty(path))
             {
-                //JMC:!! Don't we need to save first? I.e. prob need to call SfmEditorView.UpdateModel() to be safe
-                _sfmEditorView.UpdateModel();
+                _sfmEditorView.UpdateModelFromView();
                 _mainWindowPM.UseSolidSettingsTemplate(path);
-                //JMC:!! Don't we need to do our on-Open checking now (i.e. for new markers and mixed encodings)?
+                CheckAndNotify();
             }
         }
 
@@ -521,7 +531,12 @@ namespace SolidGui
         {
             TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings);
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
+
+            string tmp = _mainWindowPM.DictionaryRealFilePath; //quick hack to enfoce consistent behavior. -JMC Apr 2014
+            _mainWindowPM.DictionaryRealFilePath = dictionaryPath;  
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
+            _mainWindowPM.DictionaryRealFilePath = tmp;
+
             chooser.WouldBeReplacingExistingSettings = wouldBeReplacingExistingSettings;
             chooser.ShowDialog();
             if (chooser.DialogResult == DialogResult.OK && chooser.PathToChosenTemplate != _mainWindowPM.PathToCurrentSolidSettingsFile)
@@ -645,7 +660,7 @@ namespace SolidGui
                 return;
             }
             _mainWindowPM.ProcessLexicon(); 
-            _sfmEditorView.Reload();
+            _sfmEditorView.UpdateViewFromModel();
             setSaveEnabled(true);
         }
 
@@ -719,7 +734,7 @@ namespace SolidGui
         {
             if (_sfmEditorView.IsDirty)
             {
-                _sfmEditorView.UpdateBoth();
+                _sfmEditorView.UpdateModelAndView();
             }
         }
 

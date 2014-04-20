@@ -232,7 +232,7 @@ namespace SolidGui.Export
 
             var dictionary = new SfmDictionary();
             SolidSettings solidSettings = SolidSettings.OpenSolidFile(SolidSettings.GetSettingsFilePathFromDictionaryPath(exportArguments.inputFilePath));
-            dictionary.Open(exportArguments.inputFilePath, solidSettings, new RecordFilterSet());
+            dictionary.Open(exportArguments.inputFilePath, solidSettings, new RecordFilterSet());  //JMC:! Will this inputFilePath pick up any "latest edits"--including any preprocessing cleanup? (See MainWindowPM; look for "cleanup".)
             Export(dictionary.AllRecords, solidSettings, exportArguments.outputFilePath, exportArguments.progress);
         }
 

@@ -17,7 +17,6 @@ namespace SolidGui
 {
     public class SfmEditorPM
     {
-        // private SolidSettings _solidSettings;
         private MainWindowPM _model;
         //private RecordFormatter _recordFormatter;
         //private readonly RecordNavigatorPM _navigatorModel;  // JMC: delete this

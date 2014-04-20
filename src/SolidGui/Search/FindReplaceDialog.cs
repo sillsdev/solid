@@ -257,7 +257,7 @@ namespace SolidGui.Search
                         if (!SafeToReplace()) return false; //redundant?
                         // Replace current selection
                         _sfmEditorView.ContentsBox.SelectedText = rw; 
-                        _sfmEditorView.UpdateModel();
+                        _sfmEditorView.UpdateModelFromView();
                         if (!replaceAll) return true;
 
                     }

@@ -27,8 +27,8 @@ namespace SolidGui.Model
     {
         private List<Record> _recordList;
         private string _filePath;
-        private readonly Dictionary<string, int> _markerFrequencies;
-        private readonly Dictionary<string, int> _markerErrors;
+        private Dictionary<string, int> _markerFrequencies;
+        private Dictionary<string, int> _markerErrors;
 
         private int _currentIndex;
 
@@ -36,10 +36,19 @@ namespace SolidGui.Model
         {
             _currentIndex = 0;
             _recordList = new List<Record>();
-            _markerFrequencies = new Dictionary<string, int>();
-            _markerErrors = new Dictionary<string, int>();
             _filePath = Path.Combine(Path.GetTempPath(), Path.GetTempFileName());
 //            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
+            Reset();
+        }
+
+        /// <summary>
+        /// Call this during construction [JMC: and maybe after cancelling a File Open. Is that really needed? If so, do a recheck too.]
+        /// </summary>
+        public void Reset()
+        {
+            _markerFrequencies = new Dictionary<string, int>();
+            _markerErrors = new Dictionary<string, int>();
+            // _currentIndex = 0; //add?
         }
        
         public List<Record> Records
@@ -131,13 +140,14 @@ namespace SolidGui.Model
 
         public string GetDirectoryPath()
         {
-            return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));
+            return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));  //JMC: Try using Path.GetDirectoryName() instead
         }
  
         public void Clear()
         {
             _recordList.Clear();
             _markerFrequencies.Clear();
+            _markerErrors.Clear();
         }
 
         public void AddRecord(SfmLexEntry entry, SolidReport report)
@@ -167,7 +177,7 @@ namespace SolidGui.Model
                 if (!_markerFrequencies.ContainsKey(field.Marker))
                 {
                     _markerFrequencies.Add(field.Marker, 0);
-                    _markerErrors.Add(field.Marker, 0);
+                    _markerErrors.Add(field.Marker, 0);  //can give a "key already exists" error if the code isn't perfect -JMC
                 }
 
                 _markerFrequencies[field.Marker] += 1;
@@ -185,10 +195,10 @@ namespace SolidGui.Model
             var openArguments = (DictionaryOpenArguments)progressState.Arguments;
             openArguments.FilterSet.BeginBuild(this);
 
-            var sfmDataSet = new SfmDictionary();//SfmDataSet();
+            // var sfmDataSet = new SfmDictionary();//SfmDataSet();
 
-           
-            progressState.TotalNumberOfSteps = sfmDataSet.Count;
+
+            progressState.TotalNumberOfSteps = 0; // = sfmDataSet.Count;
             progressState.NumberOfStepsCompleted = 1;
             try
             {
@@ -250,15 +260,14 @@ namespace SolidGui.Model
         {
             Palaso.Reporting.Logger.WriteEvent("Opening {0}",path);
 
-
             _filePath = path;
             //            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
 
-            _recordList.Clear();
+            _recordList.Clear();  // JMC: Call Clear() instead?
             _markerFrequencies.Clear();
             _markerErrors.Clear();
 
-            using (var dlg = new ProgressDialog())
+            using (var dlg = new ProgressDialog())  // JMC:! Move this UI stuff elsewhere?
             {
                 dlg.Overview = "Loading and checking data...";
 
@@ -275,7 +284,8 @@ namespace SolidGui.Model
                 dlg.ShowDialog();
                 if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
                 {
-                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  //JMC!: I suppose this is non-fatal because the calling code *might* check the return value. That's not yet happening.
+                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  
+                    //I suppose this is non-fatal because we'll just fall back to whatever was already open, same as with Cancel. -JMC
                     return false;
                 }
                 if (dlg.ProgressState.Cancel == true) return false;
@@ -319,10 +329,12 @@ namespace SolidGui.Model
             return SaveAs(path, ss, rf);
         }
 
+        // This may or may not be a real save that the UI would reflect to the user and file system.
+        // It does cause _filePath to be set, but the calling code might also keep track of a "real" dictionary path. -JMC
         public bool SaveAs(string path, SolidSettings ss, RecordFormatter rf)
         {
             Logger.WriteEvent("Saving {0}", path);
-            _filePath = path;
+            _filePath = path; // side effect
             try
             {
                 using (var writer = new StreamWriter(new FileStream(_filePath, FileMode.Create, FileAccess.Write), SolidSettings.LegacyEncoding))
