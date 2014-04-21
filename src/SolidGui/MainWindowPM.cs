@@ -44,6 +44,9 @@ namespace SolidGui
 
         private static Regex _cleanUpIndents;
         private static Regex _cleanUpClosers;
+        private static Regex _cleanUpInferred;
+        private static Regex _cleanUpSeparators;
+        private static Regex _cleanUpNewlines;
         /*
         private static Regex _cleanUpSeparators;
         private static Regex _cleanUpNewlinesNonWindows;
@@ -95,8 +98,11 @@ namespace SolidGui
             NavigatorModel.NavFilterChanged += MarkerSettingsModel.OnNavFilterChanged;
 
             RegexOptions options = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline;
-            _cleanUpIndents = new Regex(@"^[ \t]+", options);  //any line-initial spaces or tabs
-            _cleanUpClosers = new Regex(@"\\\w+\* ?", options);  //any closing tag, and possibly one space
+            _cleanUpIndents = new Regex(@"^[ \t]+\\", options);  //any line-initial spaces or tabs
+            _cleanUpClosers = new Regex(@" ?\\\w+\* ?", options);  //any closing tag, and possibly one space buffer around it
+            _cleanUpInferred = new Regex(@"^[ \t]*\\\+.*(\r|\r?\n)", options);  //any inferred marker (\+mrkr) and its value and newline (any leading whitespace)
+            _cleanUpSeparators = new Regex(@"\t", options);  // one tab
+            _cleanUpNewlines = new Regex(@"(\r?\n|\r)", options);  // one newline (\r\n or \n or \r)
         }
 
         public MarkerSettingsPM MarkerSettingsModel
@@ -366,7 +372,7 @@ namespace SolidGui
                     c++;
                     return match.Result(rw);
                 });
-            if (c > 0)
+            if ((c > 0) && (output != input))
             {
                 report.AppendLine(String.Format("Replaced {0} occurrences of {1}",c,label));
                 return output;
@@ -382,8 +388,11 @@ namespace SolidGui
 
             string writeText = File.ReadAllText(source, SolidSettings.LegacyEncoding);
 
-            writeText = CleanupOne(writeText, "", _cleanUpIndents, report, "Indentation"); //potentially releases writeText's memory?
-            //writeText = CleanupOne(writeText, "", _cleanUpClosers, report, "Closers");     //ditto
+            writeText = CleanupOne(writeText, "\\", _cleanUpIndents, report, "Indentation"); //potentially releases writeText's memory?
+            writeText = CleanupOne(writeText, "", _cleanUpClosers, report, "Closers");     //ditto, and below too
+            writeText = CleanupOne(writeText, "", _cleanUpInferred, report, "Inferred fields (and any values!)");
+            writeText = CleanupOne(writeText, " ", _cleanUpSeparators, report, "Tabs (become single spaces)"); 
+            writeText = CleanupOne(writeText, SolidSettings.NewLine, _cleanUpNewlines, report, "Newlines");
 
             File.WriteAllText(tmp, writeText, SolidSettings.LegacyEncoding);
             return report.ToString();
@@ -412,17 +421,16 @@ namespace SolidGui
             //var dict = _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
             //var dict = new SfmDictionary();          
 
-            string tmp; /* = TempDictionaryPath();
-            string report = ""; // CleanupToTempFile(_realDictionaryPath, tmp);
-
+            string tmp = TempDictionaryPath();
+            string report = CleanupToTempFile(_realDictionaryPath, tmp);
             if (report != "")
             {
-                string msg = String.Format("Did the following cleanup: \n{0}\nThis will become permanent if you save.",
-                    report);
+                string msg = String.Format("Did the following cleanup: \n{0}\nChange(s) will become permanent if you save.\n", report);
+                msg += @"Actually, so far this prototype feature only makes those changes here (please verify special character encodings): %appdata%\..\local\temp\TempDictionary.db"; //JMC:! delete this
                 MessageBox.Show(msg, "Preprocessing made changes"); //JMC: move to UI? (my bad)
                 Logger.WriteEvent(msg);
                 needsSave = true;
-            } */
+            }
             tmp = _realDictionaryPath; //JMC:! delete this
 
             if (_workingDictionary.Open(tmp, Settings, _recordFilters))  

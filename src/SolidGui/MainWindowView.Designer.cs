@@ -51,17 +51,13 @@ namespace SolidGui
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainerLeftRight = new System.Windows.Forms.SplitContainer();
             this.splitContainerUpDown = new System.Windows.Forms.SplitContainer();
-            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this.panelMarkerSettings = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.buttonTree = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,6 +80,7 @@ namespace SolidGui
             this._recipesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._splitSemicolonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._trimSpacesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._globallyDeleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._quickFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._moveUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._deleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,7 +103,11 @@ namespace SolidGui
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._globallyDeleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unwrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
+            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
+            this._sfmEditorView = new SolidGui.SfmEditorView();
+            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -307,15 +308,6 @@ namespace SolidGui
             this.splitContainerUpDown.SplitterDistance = 265;
             this.splitContainerUpDown.TabIndex = 2;
             // 
-            // _markerSettingsListView
-            // 
-            this._markerSettingsListView.AutoSize = true;
-            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
-            this._markerSettingsListView.Name = "_markerSettingsListView";
-            this._markerSettingsListView.Size = new System.Drawing.Size(433, 231);
-            this._markerSettingsListView.TabIndex = 0;
-            // 
             // panelMarkerSettings
             // 
             this.panelMarkerSettings.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -385,16 +377,6 @@ namespace SolidGui
             this.label2.TabIndex = 5;
             this.label2.Text = "Marker Settings/Filters";
             // 
-            // _filterChooserView
-            // 
-            this._filterChooserView.AutoSize = true;
-            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(433, 100);
-            this._filterChooserView.TabIndex = 2;
-            // 
             // panelFilters
             // 
             this.panelFilters.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -416,28 +398,6 @@ namespace SolidGui
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Error Filters";
-            // 
-            // _sfmEditorView
-            // 
-            this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._sfmEditorView.HighlightMarkers = null;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
-            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(449, 369);
-            this._sfmEditorView.TabIndex = 2;
-            // 
-            // _recordNavigatorView
-            // 
-            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
-            this._recordNavigatorView.Enabled = false;
-            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
-            this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(449, 34);
-            this._recordNavigatorView.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -614,6 +574,7 @@ namespace SolidGui
             this._recipesMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._splitSemicolonMenuItem,
             this._trimSpacesMenuItem,
+            this.unwrapToolStripMenuItem,
             this._globallyDeleteFieldsMenuItem});
             this._recipesMenuItem.Name = "_recipesMenuItem";
             this._recipesMenuItem.Size = new System.Drawing.Size(229, 22);
@@ -621,6 +582,7 @@ namespace SolidGui
             // 
             // _splitSemicolonMenuItem
             // 
+            this._splitSemicolonMenuItem.Enabled = false;
             this._splitSemicolonMenuItem.Name = "_splitSemicolonMenuItem";
             this._splitSemicolonMenuItem.Size = new System.Drawing.Size(258, 22);
             this._splitSemicolonMenuItem.Text = "&Split on semicolon (typical fields)...";
@@ -630,8 +592,15 @@ namespace SolidGui
             // 
             this._trimSpacesMenuItem.Name = "_trimSpacesMenuItem";
             this._trimSpacesMenuItem.Size = new System.Drawing.Size(258, 22);
-            this._trimSpacesMenuItem.Text = "&Trim spaces";
+            this._trimSpacesMenuItem.Text = "&Trim spaces...";
             this._trimSpacesMenuItem.Click += new System.EventHandler(this.trimSpacesToolStripMenuItem_Click);
+            // 
+            // _globallyDeleteFieldsMenuItem
+            // 
+            this._globallyDeleteFieldsMenuItem.Name = "_globallyDeleteFieldsMenuItem";
+            this._globallyDeleteFieldsMenuItem.Size = new System.Drawing.Size(258, 22);
+            this._globallyDeleteFieldsMenuItem.Text = "Globally &Delete fields...";
+            this._globallyDeleteFieldsMenuItem.Click += new System.EventHandler(this._globallyDeleteFieldsMenuItem_Click);
             // 
             // _quickFixesMenuItem
             // 
@@ -795,12 +764,53 @@ namespace SolidGui
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
             // 
-            // _globallyDeleteFieldsMenuItem
+            // unwrapToolStripMenuItem
             // 
-            this._globallyDeleteFieldsMenuItem.Name = "_globallyDeleteFieldsMenuItem";
-            this._globallyDeleteFieldsMenuItem.Size = new System.Drawing.Size(258, 22);
-            this._globallyDeleteFieldsMenuItem.Text = "Globally &Delete fields...";
-            this._globallyDeleteFieldsMenuItem.Click += new System.EventHandler(this._globallyDeleteFieldsMenuItem_Click);
+            this.unwrapToolStripMenuItem.Name = "unwrapToolStripMenuItem";
+            this.unwrapToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+            this.unwrapToolStripMenuItem.Text = "&Unwrap...";
+            this.unwrapToolStripMenuItem.Click += new System.EventHandler(this.unwrapToolStripMenuItem_Click);
+            // 
+            // _markerSettingsListView
+            // 
+            this._markerSettingsListView.AutoSize = true;
+            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
+            this._markerSettingsListView.Name = "_markerSettingsListView";
+            this._markerSettingsListView.Size = new System.Drawing.Size(433, 231);
+            this._markerSettingsListView.TabIndex = 0;
+            // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.AutoSize = true;
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(433, 100);
+            this._filterChooserView.TabIndex = 2;
+            // 
+            // _sfmEditorView
+            // 
+            this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sfmEditorView.HighlightMarkers = null;
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
+            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this._sfmEditorView.Name = "_sfmEditorView";
+            this._sfmEditorView.Size = new System.Drawing.Size(449, 369);
+            this._sfmEditorView.TabIndex = 2;
+            // 
+            // _recordNavigatorView
+            // 
+            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
+            this._recordNavigatorView.Enabled = false;
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
+            this._recordNavigatorView.Name = "_recordNavigatorView";
+            this._recordNavigatorView.Size = new System.Drawing.Size(449, 34);
+            this._recordNavigatorView.TabIndex = 3;
             // 
             // MainWindowView
             // 
@@ -917,6 +927,7 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripMenuItem _splitSemicolonMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _trimSpacesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _globallyDeleteFieldsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unwrapToolStripMenuItem;
     }
 }
 

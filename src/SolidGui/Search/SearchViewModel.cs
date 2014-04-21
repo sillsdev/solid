@@ -13,8 +13,12 @@ namespace SolidGui.Search
 {
     public class SearchViewModel
     {
-        public static Regex RegexTab = new Regex(@"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static Regex RegexTab = new Regex(@"\t", RegexOptions.Compiled | RegexOptions.CultureInvariant);
         //private static Regex ReggieTempHack = new Regex(@"\r\n?", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        public static string NoTabs(string input)  //replace all tabs with spaces
+        {
+            return RegexTab.Replace(input, " ");
+        }
 
         public class SearchResultEventArgs : EventArgs
         {
@@ -67,19 +71,24 @@ namespace SolidGui.Search
             RecordFormatter = recordFormatter;
         }
 
-        public void Setup(RegexItem ri, int recordIndex, int textIndex)
+        public void Setup(RegexItem ri, int recordIndex, int textIndex, bool currentFilter)
         {
             _reggie = ri;
-            Setup(null, null, recordIndex, textIndex);
+            Setup(null, null, recordIndex, textIndex, currentFilter);
         }
-        public void Setup(string f, string r, int recordIndex, int textIndex)
+        public void Setup(string f, string r, int recordIndex, int textIndex, bool currentFilter)
         {
             FindThis = f;
             ReplaceWith = r;
-            if (Filter == null)
+            if (currentFilter)
+            {
+                Filter = _model.NavigatorModel.ActiveFilter;
+            }
+            else
             {
                 Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
             }
+
             //we're starting our first find in a potential series; bookmark this
             _startRecordOfWholeSearch = recordIndex;
             _startIndexOfWholeSearch = textIndex;
@@ -153,7 +162,7 @@ namespace SolidGui.Search
                 return null;
             }
 
-            bool first = true;
+            //bool first = true;
             while (true)
             {
                 searchResultIndex = -1;
@@ -209,8 +218,8 @@ namespace SolidGui.Search
                 {
                     break;
                 }
- */ 
                 first = false;
+ */ 
                 startIndexChar = 0;
                 recordIndex++;
                 recordIndex = WrapRecordIndex(recordIndex, filter);
@@ -242,10 +251,10 @@ namespace SolidGui.Search
             if (record == null)
                 return null; // -1;
             string recordText;
-            if (context == null)
+            if (string.IsNullOrEmpty(context))  // if not double regex mode
             {
                 recordText = RecordFormatter.FormatPlain(record, _model.MarkerSettingsModel.SolidSettings);
-                recordText = RegexTab.Replace(recordText, " "); //replace all tabs with spaces
+                recordText = NoTabs(recordText);  // force this regardless of RecordFormatter
             }
             else
             {
@@ -255,7 +264,7 @@ namespace SolidGui.Search
             if (reg == null)
             {
                 //Basic mode
-                string f = _regWindowsNewline.Replace(FindThis, "\n"); // the Find dialog gives \r\n (when multiline) but needs to match the \n from the rich textbox
+                string f = _regWindowsNewline.Replace(FindThis, "\n"); // the Find dialog gives \r\n (when multiline) but we need to match the \n from the rich textbox
                 string rec = _regWindowsNewline.Replace(recordText, "\n"); // just in case
                 string rec2 = rec;
                 string f2 = f;

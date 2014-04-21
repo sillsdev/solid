@@ -46,11 +46,15 @@ namespace SolidGui
         }
 */
 
+        /// <summary>
+        /// Simulate getting a fresh UI, as if using new MainWindowView(_mainWindowPM); 
+        /// 
+        /// </summary>
+        /// <param name="mainWindowPM"></param>
         private void ReInit(MainWindowPM mainWindowPM)
         {
-            //JMC: simulate new MainWindowView(_mainWindowPM); Definitely helps search see active nav, anyway. Good nuff? -JMC Mar 2014
-            //InitializeComponent();
-            Initialize(mainWindowPM);
+            //InitializeComponent();  //this will break everything unless it all can be rewired
+            Initialize(mainWindowPM); 
 
             BindModels(mainWindowPM);
         }
@@ -68,6 +72,7 @@ namespace SolidGui
 
         }
 
+        //Start fresh. (Helps the Find dialog see the active nav, anyway.)
         private void Initialize(MainWindowPM mainWindowPM)
         {
             this.KeyPreview = true;
@@ -109,9 +114,9 @@ namespace SolidGui
             _filterChooserView.BindModel(_mainWindowPM.WarningFilterChooserModel);
             _markerSettingsListView.BindModel(_mainWindowPM.MarkerSettingsModel, _mainWindowPM.WorkingDictionary);  // added -JMC
             // _searchView.BindModel(_mainWindowPM);  // Started to add this, but it'll crash; better to do on first use -JMC
-            //JMC: should prob also run MarkerSettingsDialog.BindModel() 
-            // var test = new MarkerSettings.MarkerSettingsDialog(_mainWindowPM.MarkerSettingsModel, "");
-            // But first, we'll need a private property for it, such as _markerSettingsDialog
+            // Currently no need to also run MarkerSettingsDialog.BindModel(), since those get created/disposed each time.
+            //   Or, we could create a private property for it, such as _markerSettingsDialog
+            //   var test = new MarkerSettings.MarkerSettingsDialog(_mainWindowPM.MarkerSettingsModel, "");
 
             // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged; //JMC: can be disabled? (redundant?)
 
@@ -227,9 +232,9 @@ namespace SolidGui
         {
             Cursor = Cursors.WaitCursor;
 
-            // JMC:! starting here, we need to be able to roll the following back if the user cancels the File Open.
+            // Starting here, we need to be able to roll the following back if the user cancels the File Open.
             // E.g. if they have an open file with unsaved data, its state should remain the same. That is, simply reloading 
-            // the previous file from disk is not an adequate "rollback", unless we were to save current edits to a temp file first.
+            // the previous file from disk is not an adequate "rollback", unless we were to save current edits to a temp file first. -JMC Mar 2012
             MainWindowPM origPm = _mainWindowPM;
             var newPm = new MainWindowPM();
             ReInit(newPm);
@@ -241,6 +246,7 @@ namespace SolidGui
                 OnFileLoaded(fileName);
 
                 origPm.Dispose();  // in case any variables are still referencing the old file's PM, this might block those bugs. -JMC
+                setSaveEnabled(newPm.needsSave); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
 
                 // JMC:! ? need to call something that's in _mainWindowPM.ProcessLexicon();
             }
@@ -250,6 +256,7 @@ namespace SolidGui
                 //BindModels(origPm); // less destructive than Initialize(origPm);  -JMC
                 ReInit(origPm);
                 newPm.Dispose();
+                setSaveEnabled(origPm.needsSave);
             }
 
             Cursor = Cursors.Default;
@@ -260,7 +267,6 @@ namespace SolidGui
             Settings.Default.PreviousPathToDictionary = filename;
             Settings.Default.Save(); //we want to remember this even if we don't get a clean shutdown later on. -JMC
 
-            setSaveEnabled(false); // This fixes issue #1213 (bogus "needs save" right after opening a second file, if the first file was not saved)
             /*
             _sfmEditorView.Enabled = false;  //We need to clearly toggle this off before on, or else the background may be gray -JMC
             _sfmEditorView.Enabled = true;   // (This issue only appeared after setting ShowSelectionMargin to True.)
@@ -347,7 +353,7 @@ namespace SolidGui
         private void setSaveEnabled(bool val)
         {
             _saveMenuItem.Enabled = _saveButton.Enabled = _mainWindowPM.needsSave = val;
-            _mainWindowPM.needsSave = val;
+            //_mainWindowPM.needsSave = val;
         }
 
         private void OnRecordTextChanged(object sender, EventArgs e)
@@ -781,14 +787,18 @@ Notes:
 
         private void trimSpacesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Unwrap();
+            RegexItem r = RegexItem.GetTrim();
+            _searchDialog.SetFields(r);
+            Search();
         }
-        private void Unwrap()
+
+        private void unwrapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegexItem reg = RegexItem.GetUnwrap();
             _searchDialog.SetFields(reg);
             Search();
         }
+
 
         private void _globallyDeleteFieldsMenuItem_Click(object sender, EventArgs e)
         {

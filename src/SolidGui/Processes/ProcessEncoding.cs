@@ -73,7 +73,7 @@ namespace SolidGui.Processes
                                 SolidReport.EntryType.EncodingUpperAscii,
                                 lexEntry,
                                 sfmField,
-                                String.Format("Marker \\{0} may use a hacked font", sfmField.Marker)
+                                String.Format("Field \\{0} may use a hacked font", sfmField.Marker)
                                 );
                             break;
                         }

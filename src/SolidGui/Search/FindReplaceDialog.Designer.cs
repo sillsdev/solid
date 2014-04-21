@@ -131,6 +131,7 @@
             // buttonHintReplace1
             // 
             this.buttonHintReplace1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintReplace1.Enabled = false;
             this.buttonHintReplace1.Location = new System.Drawing.Point(409, 3);
             this.buttonHintReplace1.Name = "buttonHintReplace1";
             this.buttonHintReplace1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -190,7 +191,7 @@
             this.buttonReplaceFind.TabIndex = 8;
             this.buttonReplaceFind.Text = "Replace + Fi&nd";
             this.buttonReplaceFind.UseVisualStyleBackColor = true;
-            this.buttonReplaceFind.Click += new System.EventHandler(this.buttonReplaceFind_Click);
+            this.buttonReplaceFind.Click += new System.EventHandler(this.OnReplaceFindButton_Click);
             // 
             // textBoxReplacePreview
             // 
@@ -199,6 +200,7 @@
             this.textBoxReplacePreview.Location = new System.Drawing.Point(203, 119);
             this.textBoxReplacePreview.Multiline = true;
             this.textBoxReplacePreview.Name = "textBoxReplacePreview";
+            this.textBoxReplacePreview.ReadOnly = true;
             this.textBoxReplacePreview.Size = new System.Drawing.Size(200, 52);
             this.textBoxReplacePreview.TabIndex = 24;
             this.textBoxReplacePreview.TabStop = false;
@@ -207,6 +209,7 @@
             // buttonHintReplace2
             // 
             this.buttonHintReplace2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintReplace2.Enabled = false;
             this.buttonHintReplace2.Location = new System.Drawing.Point(409, 61);
             this.buttonHintReplace2.Name = "buttonHintReplace2";
             this.buttonHintReplace2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -228,6 +231,7 @@
             // labelPreview2
             // 
             this.labelPreview2.AutoSize = true;
+            this.labelPreview2.Enabled = false;
             this.labelPreview2.Location = new System.Drawing.Point(3, 5);
             this.labelPreview2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.labelPreview2.Name = "labelPreview2";
@@ -261,13 +265,14 @@
             // 
             // buttonReplaceAll
             // 
+            this.buttonReplaceAll.Enabled = false;
             this.buttonReplaceAll.Location = new System.Drawing.Point(178, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
             this.buttonReplaceAll.TabIndex = 9;
-            this.buttonReplaceAll.Text = "Replace &All + Recheck";
+            this.buttonReplaceAll.Text = "Replace &All";
             this.buttonReplaceAll.UseVisualStyleBackColor = true;
-            this.buttonReplaceAll.Click += new System.EventHandler(this.buttonReplaceAll_Click);
+            this.buttonReplaceAll.Click += new System.EventHandler(this.OnReplaceAllButton_Click);
             // 
             // labelReplaceAll
             // 
@@ -292,10 +297,10 @@
             this.buttonHelp.Location = new System.Drawing.Point(409, 119);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(14, 20);
-            this.buttonHelp.TabIndex = 6;
+            this.buttonHelp.TabIndex = 11;
             this.buttonHelp.Text = "?";
             this.buttonHelp.UseVisualStyleBackColor = false;
-            this.buttonHelp.Click += new System.EventHandler(this.buttonHelp_Click);
+            this.buttonHelp.Click += new System.EventHandler(this.OnHelpButton_Click);
             // 
             // tableLayoutPanelMain
             // 
@@ -355,6 +360,7 @@
             // 
             this.radioButtonDoubleRegex.AutoSize = true;
             this.radioButtonDoubleRegex.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radioButtonDoubleRegex.Enabled = false;
             this.radioButtonDoubleRegex.Location = new System.Drawing.Point(3, 26);
             this.radioButtonDoubleRegex.Name = "radioButtonDoubleRegex";
             this.radioButtonDoubleRegex.Size = new System.Drawing.Size(152, 17);
@@ -472,6 +478,7 @@
             // buttonHintContext1
             // 
             this.buttonHintContext1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintContext1.Enabled = false;
             this.buttonHintContext1.Location = new System.Drawing.Point(409, 3);
             this.buttonHintContext1.Name = "buttonHintContext1";
             this.buttonHintContext1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -527,6 +534,7 @@
             this.textBoxContextPreview.Location = new System.Drawing.Point(203, 59);
             this.textBoxContextPreview.Multiline = true;
             this.textBoxContextPreview.Name = "textBoxContextPreview";
+            this.textBoxContextPreview.ReadOnly = true;
             this.textBoxContextPreview.Size = new System.Drawing.Size(200, 53);
             this.textBoxContextPreview.TabIndex = 24;
             this.textBoxContextPreview.TabStop = false;
@@ -534,6 +542,7 @@
             // buttonHintContext2
             // 
             this.buttonHintContext2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonHintContext2.Enabled = false;
             this.buttonHintContext2.Location = new System.Drawing.Point(409, 31);
             this.buttonHintContext2.Name = "buttonHintContext2";
             this.buttonHintContext2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);

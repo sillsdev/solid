@@ -31,7 +31,7 @@ namespace SolidGui.Search
         public string Title = "";
         public string HelpMessage = "";
 
-        public static Regex makeReggie(string find, bool cs)
+        public static Regex MakeReggie(string find, bool cs)
         {
             RegexOptions opt = RegexOptions.Multiline | RegexOptions.Compiled;
             if (!cs)
@@ -41,23 +41,28 @@ namespace SolidGui.Search
             return new Regex(find, opt);  
         }
 
-        public void setFind(string find, bool cs)
+        public void SetFind(string find, bool cs)
         {
             Find = find;
             CaseSensitive = cs;
             Double = false;
-            Reggie = makeReggie(find, cs);
+            Reggie = MakeReggie(find, cs);
         }
 
-        public void setFind(string findContext, string find, bool cs)
+        public void SetFindAndContext(string findContext, string find, bool cs)
         {
+            SetFind(find, cs);
             Double = true;
-            setFind(find, cs);
             FindContext = findContext;
-            ReggieContext = makeReggie(findContext, cs);
+            ReggieContext = MakeReggie(findContext, cs);
         }
 
+        // Utility regexes follow. (These could perhaps be stored in a config file.) -JMC Apr 2014
 
+        /// <summary>
+        /// Utility regex.
+        /// </summary>
+        /// <returns></returns>
         public static RegexItem GetSplitOnSemicolon()
         {
             string fc = @"^\\(re) (.+)$";
@@ -77,30 +82,58 @@ namespace SolidGui.Search
                 @"  \\\\1 \2\r\n\\\1 " + "\r\n";
             return reg;
         }
+
+        /// <summary>
+        /// Utility regex.
+        /// </summary>
+        /// <returns></returns>
         public static RegexItem GetUnwrap()
         {
             string f = @"[ ]*[\n]+[ \n]*(?=[^\n\\])";
+                   f = @"[ ]*[\n][ ]*(?=[^\n\\])";
             string r = @" ";
             var reg = new RegexItem();
             reg.Find = f;
             reg.Replace = r;
             reg.HelpMessage =
-                "From a given line, this will remove any trailing spaces, one newline,\r\n" +
-                "and any leading spaces, replacing them with a single space.";
+                "From a given line, this will use one space to replace any trailing spaces, \n" +
+                "one newline, then any leading spaces, iff the next line isn't a different field. \n" +
+                "WARNING: If any fields begin with indentation (not \\), use Trim to remove that first.";
             return reg;
         }
 
-        public static RegexItem GetDeleteFields()
+        /// <summary>
+        /// Utility regex.
+        /// </summary>
+        /// <returns></returns>
+        public static RegexItem GetTrim()
         {
-            string f = @"\\(deOld|bad|delme).*\n([^\\].*\n)*";
+            string f = @"(^[ \t]+|[ \t]+$)";
             string r = @"";
             var reg = new RegexItem();
             reg.Find = f;
             reg.Replace = r;
             reg.HelpMessage =
-                "Will globally delete all the mentioned fields, \r\n" +
-                "WARNING: you should first unwrap hard-wrapped fields,\r\n" + 
-                "or at least make sure none of them includes any totally blank lines.";
+                "Finds and removes whitespace beginning/ending a line.\n";
+            return reg;
+        }
+
+        /// <summary>
+        /// Utility regex.
+        /// </summary>
+        /// <returns></returns>
+        public static RegexItem GetDeleteFields()
+        {
+            string f = @"\\(deOld|bad|delme).*\n([^\n\\].*\n)*";
+            string r = @"";
+            var reg = new RegexItem();
+            reg.Find = f;
+            reg.Replace = r;
+            reg.HelpMessage =
+                "Will globally delete all the mentioned fields, \n" +
+                "WARNING: you should first unwrap hard-wrapped fields, \n" + 
+                "or at least make sure none of them includes any totally \n" +
+                "blank lines followed by data.";
             return reg;
         }
 

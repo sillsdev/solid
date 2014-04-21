@@ -78,7 +78,7 @@ namespace SolidGui.Tests.Processes
             _p.Process(entry, report);
 
             Assert.AreEqual(1, report.Count);
-            Assert.AreEqual("Marker \\ge may use a hacked font", report.Entries[0].Description);
+            Assert.AreEqual("Field \\ge may use a hacked font", report.Entries[0].Description);
         }
 
         [Test]

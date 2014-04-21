@@ -162,6 +162,7 @@ namespace SolidGui.Tests
         }
 
         [Test]
+        [Ignore("Appears to be unfinished--never creates the lexicon it then tries to open.")]
         public void OpeningWithTemplateMakesCorrectSettingsFile()
         {
             using (var e = new EnvironmentForTest())

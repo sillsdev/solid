@@ -93,10 +93,11 @@ namespace SolidGui.Search
             //_sfmEditorView. Select();
 
             // If the user pastes in tabs, change them to spaces
-            textBoxFind.Text = SearchViewModel.RegexTab.Replace(textBoxFind.Text, " ");
-            textBoxContextFind.Text = SearchViewModel.RegexTab.Replace(textBoxContextFind.Text, " ");
-            textBoxReplace.Text = SearchViewModel.RegexTab.Replace(textBoxReplace.Text, " ");
-            textBoxContextReplace.Text = SearchViewModel.RegexTab.Replace(textBoxContextReplace.Text, " ");
+            textBoxFind.Text = SearchViewModel.NoTabs(textBoxFind.Text);
+            textBoxContextFind.Text = SearchViewModel.NoTabs(textBoxContextFind.Text);
+            textBoxReplace.Text = SearchViewModel.NoTabs(textBoxReplace.Text);
+            textBoxContextReplace.Text = SearchViewModel.NoTabs(textBoxContextReplace.Text);
+            //textBoxContextReplace.Text = SearchViewModel.RegexTab.Replace(textBoxContextReplace.Text, " ");
             
             //JMC:! This is probably also the best time to update the Replace preview. But be careful to not instantly wipe out error messages (for \x \c etc.)
             textBoxReplacePreview.Text = "";
@@ -136,10 +137,10 @@ namespace SolidGui.Search
         {
             buttonHelp.Visible = !(String.IsNullOrEmpty(HelpMessage));
 
-            bool dbl = radioButtonDoubleRegex.Checked;
-            groupBoxFindContext.Enabled = dbl;
+            bool dubble = radioButtonDoubleRegex.Checked;
+            groupBoxFindContext.Enabled = dubble;
 
-            if (dbl || radioButtonRegex.Checked)
+            if (dubble || radioButtonRegex.Checked)
             {
                 checkBoxMultiline.Checked = false;
             }
@@ -178,8 +179,9 @@ namespace SolidGui.Search
         {
             if (_searchResult != null)
             {  // result of previous find
-                string f = _searchResult.Found;
-                return _sfmEditorView.ContentsBox.SelectedText.ToLowerInvariant() == f.ToLowerInvariant();
+                string f = SearchViewModel.NoTabs(_searchResult.Found);
+                string sel = SearchViewModel.NoTabs(_sfmEditorView.ContentsBox.SelectedText);
+                return sel.ToLowerInvariant() == f.ToLowerInvariant();
             }
             return false;
         }
@@ -187,59 +189,67 @@ namespace SolidGui.Search
         private RegexItem GetReggie()
         {
             var ri = new RegexItem();
-            bool cs = this.checkBoxCaseSensitive.Checked;
-            bool dub = radioButtonDoubleRegex.Checked;
+            bool cs = checkBoxCaseSensitive.Checked;
+            bool dubble = radioButtonDoubleRegex.Checked;
             string f = textBoxFind.Text;
             string fc = textBoxContextFind.Text;
-            if (dub)
+            if (dubble)
             {
-                ri.setFind(fc, f, cs);
+                ri.SetFindAndContext(fc, f, cs);
                 ri.ReplaceContext = textBoxContextReplace.Text;
             }
             else
             {
-                ri.setFind(f, cs);
+                ri.SetFind(f, cs);
             }
-            ri.Replace = textBoxContextReplace.Text;
+            ri.Replace = textBoxReplace.Text;
             return ri;
         }
 
         private int GetTextIndex()
         {
-            return _sfmEditorView.ContentsBox.SelectionStart + 1;
+            return _sfmEditorView.ContentsBox.SelectionStart + 1;  //JMC:! I don't like the +1 but be careful when tweaking any of this stuff.
         }
 
-        private int GetRecordIndex()
+        private int GetRecordIndex(bool currentFilter)
         {
             // firstTime = (_startingTextIndex == -1); //why?
 
-            if (_scopeComboBox.SelectedIndex == 0) // "Current Filter" (formerly "Check Result") -JMC
+            if (currentFilter)
             {
                 return _model.NavigatorModel.ActiveFilter.CurrentIndex;  // position in current filter instead
             }
             return _model.NavigatorModel.CurrentRecordID;  // position in file (i.e. in the All filter)
         }
 
-
+        /// <summary>
+        /// Finds and/or replaces one or more occurrences. The two parameters define diverse behaviors.
+        /// (false, false) : find one occurrence
+        /// (true, false) : replace the currently highlighted occurrence.
+        /// (true, true) : replace all
+        /// (false, true) : undefined, currently (no "Find All" feature yet)
+        /// </summary>
+        /// <param name="replace"></param>
+        /// <param name="replaceAll"></param>
+        /// <returns></returns>
         private bool Find(bool replace, bool replaceAll)
         {
-            //_searchModel.UseRegex = this.radioButtonRegex.Checked;
-            //_searchModel.CaseSensitive = this.checkBoxCaseSensitive.Checked;
-            bool reg = this.radioButtonRegex.Checked;
             RegexItem ri = null;
-            RecordIndex = GetRecordIndex();
+            bool scopeCurrent = (_scopeComboBox.SelectedIndex == 0); // "Current Filter" (formerly "Check Result") -JMC
+            RecordIndex = GetRecordIndex(scopeCurrent);
             _startingRecordIndex = RecordIndex;  //do we need this?
+            bool reg = this.radioButtonRegex.Checked;
             if (reg)
             {
                 ri = GetReggie();
-                _searchModel.Setup(ri, RecordIndex, GetTextIndex());  //was GetTextIndex()-1
+                _searchModel.Setup(ri, RecordIndex, GetTextIndex()-1, scopeCurrent);  //JMC: I don't like the -1
             }
             else
             {
-                _searchModel.Setup(textBoxFind.Text, textBoxReplace.Text, RecordIndex, GetTextIndex()); //was GetTextIndex()-1
+                _searchModel.Setup(textBoxFind.Text, textBoxReplace.Text, RecordIndex, GetTextIndex() - 1, scopeCurrent);   //JMC: I don't like the -1
             }
             _searchModel.UseRegex = reg;
-            _searchModel.Filter = _model.NavigatorModel.ActiveFilter;
+            _searchModel.CaseSensitive = checkBoxCaseSensitive.Checked;
 
             string f = null;
             string rw = null;
@@ -265,11 +275,15 @@ namespace SolidGui.Search
                     {
                         // Find next
                         CursorIndex = GetTextIndex();
-                        RecordIndex = GetRecordIndex(); 
+                        RecordIndex = GetRecordIndex(scopeCurrent);
 
                         SearchResult result = _searchModel.NextResult(RecordIndex, CursorIndex);
 
-                        if (result == null) CantFindWordErrorMessage(ri, textBoxFind.Text); 
+                        if (result == null)
+                        {
+                            CantFindWordErrorMessage(ri, textBoxFind.Text);
+                            ResetStartingPoint();
+                        } 
 
                         if (replaceAll)
                         {
@@ -278,7 +292,7 @@ namespace SolidGui.Search
                                 MakeBing();
                                 break;
                             }
-                            replace = (!replace); //alternate back and forth
+                            replace = (!replace); // simplifies "Replace + Find"
                         }
                         else
                         {
@@ -315,6 +329,11 @@ namespace SolidGui.Search
             SystemSounds.Asterisk.Play();
         }
 
+        /// <summary>
+        /// Only one of the parameters will be used (prefers ri if non-null).
+        /// </summary>
+        /// <param name="ri">Should be non-null if in regex mode.</param>
+        /// <param name="find">Pass a plain string if in basic mode.</param>
         private static void CantFindWordErrorMessage(RegexItem ri, string find)
         {
             if (ri != null)
@@ -329,19 +348,31 @@ namespace SolidGui.Search
             Find(false, false);
         }
 
+        private bool OneReplace()
+        {
+            bool doReplace = SafeToReplace();
+            if (doReplace)
+            {
+                Find(true, false); // Replace
+            }
+            else
+            {
+                Find(false, false); // Find
+            }
+            return doReplace;
+        }
+        
         private void OnReplaceButton_Click(object sender, EventArgs e)
         {
-            Find(true, false);
+            OneReplace();
         }
 
-        private void buttonReplaceFind_Click(object sender, EventArgs e)
+        private void OnReplaceFindButton_Click(object sender, EventArgs e)
         {
-            if (SafeToReplace())
+            if (OneReplace())
             {
-                bool success = Find(true, false);
-                if (!success) return; //probably an unnecessary check
-            }
-            Find(false, false);
+                Find(false, false); // followed by one find
+            } 
         }
 
         private void OnCancelButton_Click(object sender, EventArgs e)
@@ -380,12 +411,12 @@ namespace SolidGui.Search
 
         private void textBoxContextFind_TextChanged(object sender, EventArgs e)
         {
-
+            ResetStartingPoint();
         }
 
         private void textBoxContextReplace_TextChanged(object sender, EventArgs e)
         {
-
+            ResetStartingPoint();
         }
 
         private void FindReplaceDialog_Activated(object sender, EventArgs e)
@@ -395,6 +426,7 @@ namespace SolidGui.Search
 
         private void checkBoxMultiline_CheckedChanged(object sender, EventArgs e)
         {
+            ResetStartingPoint();
             bool ch = checkBoxMultiline.Checked;
             textBoxFind.Multiline = ch;
             textBoxReplace.Multiline = ch;
@@ -419,14 +451,15 @@ namespace SolidGui.Search
 
         public string HelpMessage;
 
-        private void buttonHelp_Click(object sender, EventArgs e)
+        private void OnHelpButton_Click(object sender, EventArgs e)
         {
             ShowHelp();
         }
 
-        private void buttonReplaceAll_Click(object sender, EventArgs e)
+        private void OnReplaceAllButton_Click(object sender, EventArgs e)
         {
             Find(true, true);
+            ResetStartingPoint();  // right? -JMC
         }
 
         private void FindReplaceDialog_Leave(object sender, EventArgs e)

@@ -31,7 +31,7 @@ namespace SolidGui.Model
 
         public void AddEntry(int sfmLexEntryIndex)
         {
-            // if (!_indexesOfRecords.Contains(sfmLexEntryIndex))  // Was too inefficient -JMC
+            //if (!_indexesOfRecords.Contains(sfmLexEntryIndex))  // Was too inefficient. See #1278 regarding this bottleneck. -JMC
             if ( (Count == 0) || (_indexesOfRecords[Count-1] != sfmLexEntryIndex) ) // If the same record has the same error multiple time, just store the record once per filter
             {
                 _indexesOfRecords.Add(sfmLexEntryIndex);

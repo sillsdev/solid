@@ -105,10 +105,13 @@ namespace SolidGui.MarkerSettings
             // if (_settings == null) return;  // Could add this check, but it would mask a bad state. -JMC
 
             if (_dictionary == null) return;
-            foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
+            lock (_dictionary.MarkerFrequencies)
             {
-                GLItem item = MakeListItem(pair);
-                _markerListView.Items.Add(item);
+                foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
+                {
+                    GLItem item = MakeListItem(pair);
+                    _markerListView.Items.Add(item);
+                }
             }
 
             //           _markerListView.Sorting = SortOrder.Ascending;
