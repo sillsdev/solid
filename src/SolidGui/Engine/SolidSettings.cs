@@ -245,6 +245,8 @@ namespace SolidGui.Engine
 
         /// <summary>
         /// Determine the default encoding, based on record marker if possible; otherwise based on the majority of markers (tiebreaker goes false)
+        /// (I initially wrote the "majority" code thinking it best and not realizing that legacy is better at preserving mixed encodings; 
+        /// the majority code could probably be removed now--less to maintain--since vernacular should take priority. -JMC)
         /// </summary>
         /// <param name="settings">A valid, already loaded set of settings, preferably including the record marker.</param>
         /// <returns>true (unicode) or false (legacy)</returns>

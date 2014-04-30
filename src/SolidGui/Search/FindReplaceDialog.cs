@@ -21,7 +21,7 @@ namespace SolidGui.Search
     {
         private SfmEditorView _sfmEditorView;
 
-        private SearchViewModel _searchModel;  // just a reference to MainWindowPm.SearchModel 
+        private SearchViewModel _searchModel; // just a reference to MainWindowPm.SearchModel 
 
         private int _cursorIndex;
         private int _startingTextIndex = -1;
@@ -41,10 +41,7 @@ namespace SolidGui.Search
                 }
                 // JMC: else throw an exception?
             }
-            get
-            {
-                return _cursorIndex;
-            }
+            get { return _cursorIndex; }
         }
 
         private MainWindowPM _model;
@@ -85,11 +82,11 @@ namespace SolidGui.Search
             HelpMessage = r.HelpMessage;
         }
 
-        private void ResetStartingPoint()  // and Refresh
+        private void ResetStartingPoint() // and Refresh
         {
             _startingRecordIndex = -1;
             _startingTextIndex = -1;
-            _searchResult = null;  // has ch
+            _searchResult = null; // has ch
             //_sfmEditorView. Select();
 
             // If the user pastes in tabs, change them to spaces
@@ -98,7 +95,7 @@ namespace SolidGui.Search
             textBoxReplace.Text = SearchViewModel.NoTabs(textBoxReplace.Text);
             textBoxContextReplace.Text = SearchViewModel.NoTabs(textBoxContextReplace.Text);
             //textBoxContextReplace.Text = SearchViewModel.RegexTab.Replace(textBoxContextReplace.Text, " ");
-            
+
             //JMC:! This is probably also the best time to update the Replace preview. But be careful to not instantly wipe out error messages (for \x \c etc.)
             textBoxReplacePreview.Text = "";
             textBoxContextPreview.Text = "";
@@ -106,7 +103,7 @@ namespace SolidGui.Search
             UpdateDisplay();
         }
 
-        private void radioButtonMode_CheckedChanged(object sender, EventArgs e)
+        private void OnRadioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
 
             /*
@@ -120,6 +117,7 @@ namespace SolidGui.Search
              */
 
             UpdateDisplay();
+            textBoxFind.Focus();
         }
 
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
@@ -178,7 +176,8 @@ namespace SolidGui.Search
         private bool SafeToReplace()
         {
             if (_searchResult != null)
-            {  // result of previous find
+            {
+                // result of previous find
                 string f = SearchViewModel.NoTabs(_searchResult.Found);
                 string sel = SearchViewModel.NoTabs(_sfmEditorView.ContentsBox.SelectedText);
                 return sel.ToLowerInvariant() == f.ToLowerInvariant();
@@ -208,7 +207,8 @@ namespace SolidGui.Search
 
         private int GetTextIndex()
         {
-            return _sfmEditorView.ContentsBox.SelectionStart + 1;  //JMC:! I don't like the +1 but be careful when tweaking any of this stuff.
+            return _sfmEditorView.ContentsBox.SelectionStart + 1;
+                //JMC:! I don't like the +1 but be careful when tweaking any of this stuff.
         }
 
         private int GetRecordIndex(bool currentFilter)
@@ -217,10 +217,48 @@ namespace SolidGui.Search
 
             if (currentFilter)
             {
-                return _model.NavigatorModel.ActiveFilter.CurrentIndex;  // position in current filter instead
+                return _model.NavigatorModel.ActiveFilter.CurrentIndex; // position in current filter instead
             }
-            return _model.NavigatorModel.CurrentRecordID;  // position in file (i.e. in the All filter)
+            return _model.NavigatorModel.CurrentRecordID; // position in file (i.e. in the All filter)
         }
+
+        // Note the textbox side effect
+        private bool ValidSearch()
+        {
+            bool reg = radioButtonRegex.Checked;
+            bool dubble = radioButtonDoubleRegex.Checked;
+            string f = textBoxFind.Text;
+            string fc = textBoxContextFind.Text;
+            string msgEmpty = "Please provide something to find (even just a '^' or '$' regex will suffice).";
+
+            textBoxReplacePreview.Text = "";
+            textBoxContextPreview.Text = "";
+            if (f == "")
+            {
+                textBoxReplacePreview.Text = msgEmpty;
+                return false; // allowing this isn't useful and could lead to infinite loops
+                //(To insert some text, say, at the beginning of a line, replace "^" instead of "".)
+            }
+            if (dubble && fc == "")
+            {
+                textBoxContextPreview.Text = msgEmpty;
+            }
+            if (reg)
+            {
+                try
+                {
+                    var tmp = GetReggie();  //attempt to compile one or two regexes
+                }
+                catch (Exception error)
+                {
+                    string msg = string.Format("Problem with regex: {0}", error);
+                    textBoxReplacePreview.Text = msg;
+                    return false; //bail
+                }
+            }
+            return true;
+        }
+    
 
         /// <summary>
         /// Finds and/or replaces one or more occurrences. The two parameters define diverse behaviors.
@@ -235,10 +273,15 @@ namespace SolidGui.Search
         private bool Find(bool replace, bool replaceAll)
         {
             RegexItem ri = null;
+            textBoxReplacePreview.Text = "";
             bool scopeCurrent = (_scopeComboBox.SelectedIndex == 0); // "Current Filter" (formerly "Check Result") -JMC
             RecordIndex = GetRecordIndex(scopeCurrent);
             _startingRecordIndex = RecordIndex;  //do we need this?
             bool reg = this.radioButtonRegex.Checked;
+            if (!ValidSearch())
+            {
+                return false; //bail
+            }
             if (reg)
             {
                 ri = GetReggie();
@@ -283,7 +326,11 @@ namespace SolidGui.Search
                         {
                             CantFindWordErrorMessage(ri, textBoxFind.Text);
                             ResetStartingPoint();
-                        } 
+                        }
+                        else
+                        {
+                            textBoxReplacePreview.Text = string.Format("Will replace selection with this:\r\n[{0}]", result.ReplaceWith);
+                        }
 
                         if (replaceAll)
                         {
@@ -346,6 +393,7 @@ namespace SolidGui.Search
         private void OnFindNextButton_Click(object sender, EventArgs e)
         {
             Find(false, false);
+            textBoxFind.Focus();
         }
 
         private bool OneReplace()
@@ -365,6 +413,7 @@ namespace SolidGui.Search
         private void OnReplaceButton_Click(object sender, EventArgs e)
         {
             OneReplace();
+            textBoxReplace.Focus();
         }
 
         private void OnReplaceFindButton_Click(object sender, EventArgs e)
@@ -372,7 +421,8 @@ namespace SolidGui.Search
             if (OneReplace())
             {
                 Find(false, false); // followed by one find
-            } 
+            }
+            textBoxReplace.Focus();
         }
 
         private void OnCancelButton_Click(object sender, EventArgs e)
@@ -384,7 +434,7 @@ namespace SolidGui.Search
             Hide();
         }
 
-        private void FindReplaceDialog_FormClosing(object sender, FormClosingEventArgs e)
+        private void OnFindReplaceDialog_FormClosing(object sender, FormClosingEventArgs e)
         {
             ResetStartingPoint(); //for good measure -JMC
 
@@ -397,34 +447,37 @@ namespace SolidGui.Search
         private void OnScopeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
+            textBoxFind.Focus();
         }
 
-        private void textBoxFind_TextChanged(object sender, EventArgs e)
+        private void OnTextBoxFind_TextChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+            ValidSearch(); //checks regexes; might display error in preview box
+        }
+
+        private void OnTextBoxReplace_TextChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
         }
 
-        private void textBoxReplace_TextChanged(object sender, EventArgs e)
+        private void OnTextBoxContextFind_TextChanged(object sender, EventArgs e)
+        {
+            ResetStartingPoint();
+            ValidSearch(); //checks regexes; might display error in preview box
+        }
+
+        private void OnTextBoxContextReplace_TextChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
         }
 
-        private void textBoxContextFind_TextChanged(object sender, EventArgs e)
-        {
-            ResetStartingPoint();
-        }
-
-        private void textBoxContextReplace_TextChanged(object sender, EventArgs e)
-        {
-            ResetStartingPoint();
-        }
-
-        private void FindReplaceDialog_Activated(object sender, EventArgs e)
+        private void OnFindReplaceDialog_Activated(object sender, EventArgs e)
         {
             UpdateDisplay();
         }
 
-        private void checkBoxMultiline_CheckedChanged(object sender, EventArgs e)
+        private void OnCheckBoxMultiline_CheckedChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
             bool ch = checkBoxMultiline.Checked;
@@ -447,6 +500,7 @@ namespace SolidGui.Search
                 textBoxReplace.Text = textBoxReplace.Text.Split(nl)[0];
             }
 
+            textBoxFind.Focus();
         }
 
         public string HelpMessage;
@@ -462,9 +516,14 @@ namespace SolidGui.Search
             ResetStartingPoint();  // right? -JMC
         }
 
-        private void FindReplaceDialog_Leave(object sender, EventArgs e)
+        private void OnFindReplaceDialog_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        private void OnCheckBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxFind.Focus();
         }
 
     }

@@ -40,8 +40,6 @@
             this.buttonReplaceFind = new System.Windows.Forms.Button();
             this.textBoxReplacePreview = new System.Windows.Forms.TextBox();
             this.buttonHintReplace2 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.labelPreview2 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonReplaceAll = new System.Windows.Forms.Button();
@@ -70,7 +68,6 @@
             this.groupBoxFindReplace.SuspendLayout();
             this.tableLayoutPanelFindReplace.SuspendLayout();
             this.flowLayoutPanelReplaceButtons.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanelMain.SuspendLayout();
             this.flowLayoutPanelSettings.SuspendLayout();
@@ -102,9 +99,8 @@
             this.tableLayoutPanelFindReplace.Controls.Add(this._findNextButton, 0, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxFind, 1, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanelReplaceButtons, 0, 1);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 1, 2);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 0, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace2, 2, 1);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel1, 0, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 0, 3);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHelp, 2, 2);
             this.tableLayoutPanelFindReplace.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,7 +122,7 @@
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxReplace.Size = new System.Drawing.Size(200, 20);
             this.textBoxReplace.TabIndex = 4;
-            this.textBoxReplace.TextChanged += new System.EventHandler(this.textBoxReplace_TextChanged);
+            this.textBoxReplace.TextChanged += new System.EventHandler(this.OnTextBoxReplace_TextChanged);
             // 
             // buttonHintReplace1
             // 
@@ -142,8 +138,7 @@
             // 
             // _findNextButton
             // 
-            this._findNextButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this._findNextButton.Location = new System.Drawing.Point(3, 17);
+            this._findNextButton.Location = new System.Drawing.Point(3, 3);
             this._findNextButton.Name = "_findNextButton";
             this._findNextButton.Size = new System.Drawing.Size(68, 23);
             this._findNextButton.TabIndex = 6;
@@ -159,7 +154,7 @@
             this.textBoxFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxFind.Size = new System.Drawing.Size(200, 20);
             this.textBoxFind.TabIndex = 2;
-            this.textBoxFind.TextChanged += new System.EventHandler(this.textBoxFind_TextChanged);
+            this.textBoxFind.TextChanged += new System.EventHandler(this.OnTextBoxFind_TextChanged);
             // 
             // flowLayoutPanelReplaceButtons
             // 
@@ -196,12 +191,13 @@
             // textBoxReplacePreview
             // 
             this.textBoxReplacePreview.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanelFindReplace.SetColumnSpan(this.textBoxReplacePreview, 2);
             this.textBoxReplacePreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxReplacePreview.Location = new System.Drawing.Point(203, 119);
+            this.textBoxReplacePreview.Location = new System.Drawing.Point(3, 119);
             this.textBoxReplacePreview.Multiline = true;
             this.textBoxReplacePreview.Name = "textBoxReplacePreview";
             this.textBoxReplacePreview.ReadOnly = true;
-            this.textBoxReplacePreview.Size = new System.Drawing.Size(200, 52);
+            this.textBoxReplacePreview.Size = new System.Drawing.Size(400, 52);
             this.textBoxReplacePreview.TabIndex = 24;
             this.textBoxReplacePreview.TabStop = false;
             this.textBoxReplacePreview.Text = "\\re hum, to\r\n\\re sing, to\r\n\\re croon, to";
@@ -217,27 +213,6 @@
             this.buttonHintReplace2.TabIndex = 5;
             this.buttonHintReplace2.Text = ">";
             this.buttonHintReplace2.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Controls.Add(this.labelPreview2);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 119);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(194, 52);
-            this.flowLayoutPanel1.TabIndex = 30;
-            // 
-            // labelPreview2
-            // 
-            this.labelPreview2.AutoSize = true;
-            this.labelPreview2.Enabled = false;
-            this.labelPreview2.Location = new System.Drawing.Point(3, 5);
-            this.labelPreview2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.labelPreview2.Name = "labelPreview2";
-            this.labelPreview2.Size = new System.Drawing.Size(82, 13);
-            this.labelPreview2.TabIndex = 17;
-            this.labelPreview2.Text = "Preview (result):";
             // 
             // flowLayoutPanel2
             // 
@@ -354,7 +329,7 @@
             this.radioButtonModeBasic.TabStop = true;
             this.radioButtonModeBasic.Text = "&Basic mode";
             this.radioButtonModeBasic.UseVisualStyleBackColor = true;
-            this.radioButtonModeBasic.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            this.radioButtonModeBasic.CheckedChanged += new System.EventHandler(this.OnRadioButtonMode_CheckedChanged);
             // 
             // radioButtonDoubleRegex
             // 
@@ -367,7 +342,7 @@
             this.radioButtonDoubleRegex.TabIndex = 1;
             this.radioButtonDoubleRegex.Text = "D&ouble Regular expression";
             this.radioButtonDoubleRegex.UseVisualStyleBackColor = true;
-            this.radioButtonDoubleRegex.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            this.radioButtonDoubleRegex.CheckedChanged += new System.EventHandler(this.OnRadioButtonMode_CheckedChanged);
             // 
             // radioButtonRegex
             // 
@@ -379,7 +354,7 @@
             this.radioButtonRegex.TabIndex = 2;
             this.radioButtonRegex.Text = "Re&gular expression";
             this.radioButtonRegex.UseVisualStyleBackColor = true;
-            this.radioButtonRegex.CheckedChanged += new System.EventHandler(this.radioButtonMode_CheckedChanged);
+            this.radioButtonRegex.CheckedChanged += new System.EventHandler(this.OnRadioButtonMode_CheckedChanged);
             // 
             // flowLayoutPanelOptions
             // 
@@ -417,6 +392,7 @@
             this.checkBoxCaseSensitive.TabIndex = 4;
             this.checkBoxCaseSensitive.Text = "&Case sensitive";
             this.checkBoxCaseSensitive.UseVisualStyleBackColor = true;
+            this.checkBoxCaseSensitive.CheckedChanged += new System.EventHandler(this.OnCheckBoxCaseSensitive_CheckedChanged);
             // 
             // checkBoxMultiline
             // 
@@ -427,7 +403,7 @@
             this.checkBoxMultiline.TabIndex = 5;
             this.checkBoxMultiline.Text = "&Multiline";
             this.checkBoxMultiline.UseVisualStyleBackColor = true;
-            this.checkBoxMultiline.CheckedChanged += new System.EventHandler(this.checkBoxMultiline_CheckedChanged);
+            this.checkBoxMultiline.CheckedChanged += new System.EventHandler(this.OnCheckBoxMultiline_CheckedChanged);
             // 
             // groupBoxFindContext
             // 
@@ -473,7 +449,7 @@
             this.textBoxContextReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxContextReplace.Size = new System.Drawing.Size(200, 20);
             this.textBoxContextReplace.TabIndex = 4;
-            this.textBoxContextReplace.TextChanged += new System.EventHandler(this.textBoxContextReplace_TextChanged);
+            this.textBoxContextReplace.TextChanged += new System.EventHandler(this.OnTextBoxContextReplace_TextChanged);
             // 
             // buttonHintContext1
             // 
@@ -505,7 +481,7 @@
             this.textBoxContextFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxContextFind.Size = new System.Drawing.Size(200, 20);
             this.textBoxContextFind.TabIndex = 1;
-            this.textBoxContextFind.TextChanged += new System.EventHandler(this.textBoxContextFind_TextChanged);
+            this.textBoxContextFind.TextChanged += new System.EventHandler(this.OnTextBoxContextFind_TextChanged);
             // 
             // labelFind
             // 
@@ -523,9 +499,9 @@
             this.labelPreview1.AutoSize = true;
             this.labelPreview1.Location = new System.Drawing.Point(3, 79);
             this.labelPreview1.Name = "labelPreview1";
-            this.labelPreview1.Size = new System.Drawing.Size(115, 13);
+            this.labelPreview1.Size = new System.Drawing.Size(107, 13);
             this.labelPreview1.TabIndex = 17;
-            this.labelPreview1.Text = "Preview (feeds step 2):";
+            this.labelPreview1.Text = "Found (feeds step 2):";
             // 
             // textBoxContextPreview
             // 
@@ -564,16 +540,14 @@
             this.MinimumSize = new System.Drawing.Size(384, 411);
             this.Name = "FindReplaceDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Find and Replace";
-            this.Activated += new System.EventHandler(this.FindReplaceDialog_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FindReplaceDialog_FormClosing);
-            this.Leave += new System.EventHandler(this.FindReplaceDialog_Leave);
+            this.Text = "Find and Replace (Experimental--with no Undo!)";
+            this.Activated += new System.EventHandler(this.OnFindReplaceDialog_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFindReplaceDialog_FormClosing);
+            this.Leave += new System.EventHandler(this.OnFindReplaceDialog_Leave);
             this.groupBoxFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.ResumeLayout(false);
             this.tableLayoutPanelFindReplace.PerformLayout();
             this.flowLayoutPanelReplaceButtons.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.tableLayoutPanelMain.ResumeLayout(false);
@@ -618,12 +592,9 @@
         private System.Windows.Forms.Button buttonHintReplace1;
         private System.Windows.Forms.TextBox textBoxFind;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelReplaceButtons;
-        private System.Windows.Forms.Label labelPreview2;
-        private System.Windows.Forms.TextBox textBoxReplacePreview;
         private System.Windows.Forms.Button buttonHintReplace2;
         private System.Windows.Forms.TextBox textBoxContextReplace;
         private System.Windows.Forms.Button buttonHintContext2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonReplaceAll;
         private System.Windows.Forms.ComboBox _scopeComboBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
@@ -631,5 +602,6 @@
         private System.Windows.Forms.CheckBox checkBoxMultiline;
         private System.Windows.Forms.Label labelReplaceAll;
         private System.Windows.Forms.Button buttonHelp;
+        private System.Windows.Forms.TextBox textBoxReplacePreview;
     }
 }
