@@ -49,10 +49,9 @@ namespace SolidGui.Search
             Reggie = MakeReggie(find, cs);
         }
 
-        public void SetFindAndContext(string findContext, string find, bool cs)
+        public void SetFindContext(string findContext, string find, bool cs)
         {
-            SetFind(find, cs);
-            Double = true;
+            Double = true; // we expect this to be called after SetFind()
             FindContext = findContext;
             ReggieContext = MakeReggie(findContext, cs);
         }

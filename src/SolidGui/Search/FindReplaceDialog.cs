@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text; */
 using SolidGui.Model;
+using Spart.Parsers.Primitives;
 
 namespace SolidGui.Search
 {
@@ -101,10 +102,12 @@ namespace SolidGui.Search
             textBoxContextPreview.Text = "";
 
             UpdateDisplay();
+            ValidSearch();
         }
 
         private void OnRadioButtonMode_CheckedChanged(object sender, EventArgs e)
         {
+            ResetStartingPoint();
 
             /*
             // With leading spaces, tree view doesn't fit well with serious (regex) Find
@@ -117,7 +120,15 @@ namespace SolidGui.Search
              */
 
             UpdateDisplay();
-            textBoxFind.Focus();
+            bool dubble = radioButtonDoubleRegex.Checked;
+            if (dubble)
+            {
+                textBoxContextFind.Focus();
+            }
+            else
+            {
+                textBoxFind.Focus();
+            }
         }
 
         public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
@@ -185,6 +196,8 @@ namespace SolidGui.Search
             return false;
         }
 
+        // JMC: This code is highly parallel to ValidSearch()
+        // but it assumes that we're not in Basic mode
         private RegexItem GetReggie()
         {
             var ri = new RegexItem();
@@ -192,16 +205,13 @@ namespace SolidGui.Search
             bool dubble = radioButtonDoubleRegex.Checked;
             string f = textBoxFind.Text;
             string fc = textBoxContextFind.Text;
+            ri.SetFind(f, cs);
+            ri.Replace = textBoxReplace.Text;
             if (dubble)
             {
-                ri.SetFindAndContext(fc, f, cs);
+                ri.SetFindContext(fc, f, cs);
                 ri.ReplaceContext = textBoxContextReplace.Text;
             }
-            else
-            {
-                ri.SetFind(f, cs);
-            }
-            ri.Replace = textBoxReplace.Text;
             return ri;
         }
 
@@ -222,41 +232,59 @@ namespace SolidGui.Search
             return _model.NavigatorModel.CurrentRecordID; // position in file (i.e. in the All filter)
         }
 
-        // Note the textbox side effect
+        // Note the textbox side effect(s), and the significant overlap with the code GetReggie()
         private bool ValidSearch()
         {
-            bool reg = radioButtonRegex.Checked;
+            bool success = true;  //assume the best
             bool dubble = radioButtonDoubleRegex.Checked;
+            bool single = radioButtonRegex.Checked;
+            bool cs = checkBoxCaseSensitive.Checked;
             string f = textBoxFind.Text;
             string fc = textBoxContextFind.Text;
             string msgEmpty = "Please provide something to find (even just a '^' or '$' regex will suffice).";
 
-            textBoxReplacePreview.Text = "";
             textBoxContextPreview.Text = "";
+            if (dubble && (fc == ""))
+            {
+                textBoxContextPreview.Text = msgEmpty;
+                success = false;
+            }
+            textBoxReplacePreview.Text = "";
             if (f == "")
             {
                 textBoxReplacePreview.Text = msgEmpty;
-                return false; // allowing this isn't useful and could lead to infinite loops
-                //(To insert some text, say, at the beginning of a line, replace "^" instead of "".)
+                success = false;
             }
-            if (dubble && fc == "")
+
+            if (single || dubble)
             {
-                textBoxContextPreview.Text = msgEmpty;
-            }
-            if (reg)
-            {
+                var ri = new RegexItem();
+                string msg = "Problem with regex: {0}";
                 try
                 {
-                    var tmp = GetReggie();  //attempt to compile one or two regexes
+                    ri.SetFind(f, cs);
                 }
                 catch (Exception error)
                 {
-                    string msg = string.Format("Problem with regex: {0}", error);
-                    textBoxReplacePreview.Text = msg;
-                    return false; //bail
+                    textBoxReplacePreview.Text = string.Format(msg, error);
+                    success = false;
                 }
+                if (dubble)
+                {
+                    try
+                    {
+                        ri.SetFindContext(fc, f, cs);
+                    }
+                    catch (Exception error)
+                    {
+                        textBoxContextPreview.Text = string.Format(msg, error);
+                        success = false;
+                    }
+                }
+
             }
-            return true;
+            return success;
+        
         }
     
 
@@ -523,6 +551,7 @@ namespace SolidGui.Search
 
         private void OnCheckBoxCaseSensitive_CheckedChanged(object sender, EventArgs e)
         {
+            ResetStartingPoint();
             textBoxFind.Focus();
         }
 

@@ -86,12 +86,12 @@
             this.groupBoxFindReplace.Size = new System.Drawing.Size(432, 227);
             this.groupBoxFindReplace.TabIndex = 19;
             this.groupBoxFindReplace.TabStop = false;
-            this.groupBoxFindReplace.Text = "Replace";
+            this.groupBoxFindReplace.Text = "Find/Replace";
             // 
             // tableLayoutPanelFindReplace
             // 
             this.tableLayoutPanelFindReplace.ColumnCount = 3;
-            this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelFindReplace.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplace, 1, 1);
@@ -107,7 +107,7 @@
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
             this.tableLayoutPanelFindReplace.RowCount = 4;
-            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
@@ -117,10 +117,10 @@
             // textBoxReplace
             // 
             this.textBoxReplace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxReplace.Location = new System.Drawing.Point(203, 61);
+            this.textBoxReplace.Location = new System.Drawing.Point(123, 61);
             this.textBoxReplace.Name = "textBoxReplace";
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxReplace.Size = new System.Drawing.Size(200, 20);
+            this.textBoxReplace.Size = new System.Drawing.Size(280, 20);
             this.textBoxReplace.TabIndex = 4;
             this.textBoxReplace.TextChanged += new System.EventHandler(this.OnTextBoxReplace_TextChanged);
             // 
@@ -149,10 +149,10 @@
             // textBoxFind
             // 
             this.textBoxFind.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxFind.Location = new System.Drawing.Point(203, 3);
+            this.textBoxFind.Location = new System.Drawing.Point(123, 3);
             this.textBoxFind.Name = "textBoxFind";
             this.textBoxFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxFind.Size = new System.Drawing.Size(200, 20);
+            this.textBoxFind.Size = new System.Drawing.Size(280, 20);
             this.textBoxFind.TabIndex = 2;
             this.textBoxFind.TextChanged += new System.EventHandler(this.OnTextBoxFind_TextChanged);
             // 
@@ -165,7 +165,7 @@
             this.flowLayoutPanelReplaceButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelReplaceButtons.Name = "flowLayoutPanelReplaceButtons";
             this.flowLayoutPanelReplaceButtons.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.flowLayoutPanelReplaceButtons.Size = new System.Drawing.Size(200, 58);
+            this.flowLayoutPanelReplaceButtons.Size = new System.Drawing.Size(120, 58);
             this.flowLayoutPanelReplaceButtons.TabIndex = 25;
             // 
             // buttonReplace
@@ -180,7 +180,7 @@
             // 
             // buttonReplaceFind
             // 
-            this.buttonReplaceFind.Location = new System.Drawing.Point(74, 6);
+            this.buttonReplaceFind.Location = new System.Drawing.Point(3, 35);
             this.buttonReplaceFind.Name = "buttonReplaceFind";
             this.buttonReplaceFind.Size = new System.Drawing.Size(93, 23);
             this.buttonReplaceFind.TabIndex = 8;
@@ -335,7 +335,6 @@
             // 
             this.radioButtonDoubleRegex.AutoSize = true;
             this.radioButtonDoubleRegex.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButtonDoubleRegex.Enabled = false;
             this.radioButtonDoubleRegex.Location = new System.Drawing.Point(3, 26);
             this.radioButtonDoubleRegex.Name = "radioButtonDoubleRegex";
             this.radioButtonDoubleRegex.Size = new System.Drawing.Size(152, 17);
@@ -420,7 +419,7 @@
             // tableLayoutPanelFindContext
             // 
             this.tableLayoutPanelFindContext.ColumnCount = 3;
-            this.tableLayoutPanelFindContext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanelFindContext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
             this.tableLayoutPanelFindContext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelFindContext.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanelFindContext.Controls.Add(this.textBoxContextReplace, 1, 1);
@@ -444,10 +443,10 @@
             // textBoxContextReplace
             // 
             this.textBoxContextReplace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxContextReplace.Location = new System.Drawing.Point(203, 31);
+            this.textBoxContextReplace.Location = new System.Drawing.Point(123, 31);
             this.textBoxContextReplace.Name = "textBoxContextReplace";
             this.textBoxContextReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxContextReplace.Size = new System.Drawing.Size(200, 20);
+            this.textBoxContextReplace.Size = new System.Drawing.Size(280, 20);
             this.textBoxContextReplace.TabIndex = 4;
             this.textBoxContextReplace.TextChanged += new System.EventHandler(this.OnTextBoxContextReplace_TextChanged);
             // 
@@ -476,10 +475,10 @@
             // textBoxContextFind
             // 
             this.textBoxContextFind.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxContextFind.Location = new System.Drawing.Point(203, 3);
+            this.textBoxContextFind.Location = new System.Drawing.Point(123, 3);
             this.textBoxContextFind.Name = "textBoxContextFind";
             this.textBoxContextFind.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxContextFind.Size = new System.Drawing.Size(200, 20);
+            this.textBoxContextFind.Size = new System.Drawing.Size(280, 20);
             this.textBoxContextFind.TabIndex = 1;
             this.textBoxContextFind.TextChanged += new System.EventHandler(this.OnTextBoxContextFind_TextChanged);
             // 
@@ -507,11 +506,11 @@
             // 
             this.textBoxContextPreview.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxContextPreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxContextPreview.Location = new System.Drawing.Point(203, 59);
+            this.textBoxContextPreview.Location = new System.Drawing.Point(123, 59);
             this.textBoxContextPreview.Multiline = true;
             this.textBoxContextPreview.Name = "textBoxContextPreview";
             this.textBoxContextPreview.ReadOnly = true;
-            this.textBoxContextPreview.Size = new System.Drawing.Size(200, 53);
+            this.textBoxContextPreview.Size = new System.Drawing.Size(280, 53);
             this.textBoxContextPreview.TabIndex = 24;
             this.textBoxContextPreview.TabStop = false;
             // 
