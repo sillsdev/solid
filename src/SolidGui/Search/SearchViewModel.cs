@@ -210,7 +210,7 @@ namespace SolidGui.Search
 
                 string context = null;
 
-                if (UseDoubleRegex) //JMC:! unfinished
+                if (UseDoubleRegex) 
                 {
                     //get context using first regex to do one find/replace
                     searchResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.ReggieContext, _reggie.ReplaceContext);
@@ -218,6 +218,8 @@ namespace SolidGui.Search
                     {
                         //do a replace all in that context using second regex
                         string iv = searchResult.IntermediateValue = searchResult.ReplaceWith;
+                        _reggie.Replace = Regex.Unescape(_reggie.Replace);  //deal with backslash codes etc.
+                        //string rw = m.Result(_reggie.Replace);
                         searchResult.ReplaceWith = _reggie.Reggie.Replace(iv, _reggie.Replace);
                     }
                 }

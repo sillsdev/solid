@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Media;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 /*
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace SolidGui.Search
         private readonly Color _changeColor = Color.DarkGreen;
         private readonly Color _noChangeColor = Color.Black;
 
+        private static Regex _regLinuxNewline = new Regex(@"\r?\n",
+            RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private int _cursorIndex;
         private int _startingTextIndex = -1;
@@ -108,7 +111,7 @@ namespace SolidGui.Search
             textBoxContextPreview.Text = "";
 
             UpdateDisplay();
-            ValidSearch();
+            IsValidSearch();
         }
 
         private void OnRadioButtonMode_CheckedChanged(object sender, EventArgs e)
@@ -240,7 +243,7 @@ namespace SolidGui.Search
         }
 
         // Note the textbox side effect(s), and the significant overlap with the code GetReggie()
-        private bool ValidSearch()
+        private bool IsValidSearch()
         {
             bool success = true;  //assume the best
             bool dubble = radioButtonDoubleRegex.Checked;
@@ -319,7 +322,7 @@ namespace SolidGui.Search
             bool single = radioButtonRegex.Checked;
             bool dubble = radioButtonDoubleRegex.Checked;
             bool reg = single || dubble;
-            if (!ValidSearch())
+            if (!IsValidSearch())
             {
                 return false; //bail
             }
@@ -354,13 +357,18 @@ namespace SolidGui.Search
                         if (rw == null) throw new Exception("Cannot replace text with null.");
                         if (!SafeToReplace()) return false; //redundant?
                         // Replace current selection
+                        int origCursor = _sfmEditorView.ContentsBox.SelectionStart;
+
                         _sfmEditorView.ContentsBox.SelectedText = rw; 
                         _sfmEditorView.UpdateModelFromView();
+                        _sfmEditorView.ContentsBox.SelectionStart = origCursor + rw.Length;
                         if (!replaceAll)
                         {
-                            _sfmEditorView.UpdateModelAndView();
+                            _sfmEditorView.UpdateViewFromModel();
+                            _sfmEditorView.ContentsBox.SelectionStart = origCursor + rw.Length;
                             return true;
                         }
+
 
                     }
                     else
@@ -380,19 +388,23 @@ namespace SolidGui.Search
                         else
                         {
                             if (result.IntermediateValue != result.Found) textBoxContextPreview.ForeColor = _changeColor;
-                            string tmp = "[{0}]"; // "Context found:\r\n[{0}]";
-                            textBoxContextPreview.Text = string.Format(tmp, result.IntermediateValue);
+                            string tmp = "[{0}]"; // "Context found:\n[{0}]";
+                            tmp = string.Format(tmp, result.IntermediateValue);
+                            tmp = _regLinuxNewline.Replace(tmp, "\r\n");
+                            textBoxContextPreview.Text = tmp;
                             string compareTo = (dubble) ? result.IntermediateValue : result.Found;
                             if (result.ReplaceWith != compareTo) textBoxReplacePreview.ForeColor = _changeColor;
                             tmp = "[{0}]"; // "Will replace selection with this:\r\n[{0}]";
-                            textBoxReplacePreview.Text = string.Format(tmp, result.ReplaceWith);
+                            tmp = string.Format(tmp, result.ReplaceWith);
+                            tmp = _regLinuxNewline.Replace(tmp, "\r\n");
+                            textBoxReplacePreview.Text = tmp;
                         }
 
                         if (replaceAll)
                         {
                             if (result == null)
                             {
-                                MakeBing();
+                                //MakeBing();
                                 break;
                             }
                             replace = (!replace); // simplifies "Replace + Find"
@@ -403,8 +415,6 @@ namespace SolidGui.Search
                         }
 
                     }
-                    string ss = "preview "; //JMC:! unfinished
-                    this.textBoxContextPreview.Text = ss;
 
                 }
             }
@@ -421,12 +431,12 @@ namespace SolidGui.Search
             }
 
             // bring the search form back into focus -JMC
-            this.BringToFront();
-            this.Focus();
+            //this.BringToFront();
+            //this.Focus();
             return (_searchResult != null);
         }
 
-        // Make a dinging sound (well, the system Asterisk). Called on wraparound, or on no match found.
+        // Make a dinging sound (well, the system Asterisk). Called on wraparound.
         private void MakeBing()
         {
             SystemSounds.Asterisk.Play();
@@ -463,6 +473,7 @@ namespace SolidGui.Search
             {
                 Find(false, false); // Find
             }
+            textBoxReplace.Focus();
             return doReplace;
         }
         
@@ -474,9 +485,9 @@ namespace SolidGui.Search
 
         private void OnReplaceFindButton_Click(object sender, EventArgs e)
         {
-            if (OneReplace())
+            if (OneReplace()) // one replace...
             {
-                Find(false, false); // followed by one find
+                Find(false, false); // ...followed by one find
             }
             textBoxReplace.Focus();
         }
@@ -509,7 +520,7 @@ namespace SolidGui.Search
         private void OnTextBoxFind_TextChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
-            ValidSearch(); //checks regexes; might display error in preview box
+            IsValidSearch(); //checks regexes; might display error in preview box
         }
 
         private void OnTextBoxReplace_TextChanged(object sender, EventArgs e)
@@ -520,7 +531,7 @@ namespace SolidGui.Search
         private void OnTextBoxContextFind_TextChanged(object sender, EventArgs e)
         {
             ResetStartingPoint();
-            ValidSearch(); //checks regexes; might display error in preview box
+            IsValidSearch(); //checks regexes; might display error in preview box
         }
 
         private void OnTextBoxContextReplace_TextChanged(object sender, EventArgs e)
@@ -570,6 +581,7 @@ namespace SolidGui.Search
         {
             Find(true, true);
             ResetStartingPoint();  // right? -JMC
+            textBoxReplace.Focus();
         }
 
         private void OnFindReplaceDialog_Leave(object sender, EventArgs e)

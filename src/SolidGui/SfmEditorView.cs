@@ -110,6 +110,7 @@ namespace SolidGui
             ContentsBox.TextChanged -= _contentsBox_TextChanged;
             ContentsBox.Select(startIndex, length);
             ContentsBox.TextChanged += _contentsBox_TextChanged;
+            ContentsBox.ScrollToCaret();
         }
 
         public void OnRecordChanged(object sender, RecordNavigatorPM.RecordChangedEventArgs e)
@@ -200,11 +201,13 @@ namespace SolidGui
  
         public void UpdateViewFromModel()
         {
+            //int currentIndex = ContentsBox.SelectionStart;
             string backup = ContentsBox.Text;
             try
             {
                 ClearContentsOfTextBox();
                 DisplayEachFieldInCurrentRecord();
+                ContentsBox.ScrollToCaret();
             }
             catch (Exception error)
             {
@@ -213,6 +216,7 @@ namespace SolidGui
                 IsDirty = false;  // a little white lie that lets us exit. -JMC
                 //ContentsBox.Text = backup;
             }
+            //ContentsBox.SelectionStart = currentIndex;
         }
 
 /*

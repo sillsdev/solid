@@ -64,7 +64,7 @@ namespace SolidGui.Search
         public static RegexItem GetSplitOnSemicolon()
         {
             string fc = @"^\\(re) (.+)$";
-            string rc = @"\\\1 \2";
+            string rc = @"$0"; // @"\\$1 $2";
             string f = @"[ ]*;[ ]*";
             string r = @"\n\\re ";
             var reg = new RegexItem();
@@ -77,7 +77,7 @@ namespace SolidGui.Search
                 "This will split one field (re) in one pass. For multiple fields,\r\n" +
                 "you can instead run a (non-double) regex multiple times:\r\n" +
                 @"  ^\\(re|va|cf) (.+)[ ]*;[ ]*" + "\r\n" +
-                @"  \\\\1 \2\r\n\\\1 " + "\r\n";
+                @"  \\$1 $2\n\\$1 " + "\r\n";
             return reg;
         }
 
