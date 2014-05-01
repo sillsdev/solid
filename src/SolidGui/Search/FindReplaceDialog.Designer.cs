@@ -45,6 +45,7 @@
             this.buttonReplaceAll = new System.Windows.Forms.Button();
             this.labelReplaceAll = new System.Windows.Forms.Label();
             this.buttonHelp = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanelSettings = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanelMode = new System.Windows.Forms.FlowLayoutPanel();
@@ -99,10 +100,11 @@
             this.tableLayoutPanelFindReplace.Controls.Add(this._findNextButton, 0, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxFind, 1, 0);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanelReplaceButtons, 0, 1);
-            this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 0, 2);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.textBoxReplacePreview, 1, 2);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHintReplace2, 2, 1);
             this.tableLayoutPanelFindReplace.Controls.Add(this.flowLayoutPanel2, 0, 3);
             this.tableLayoutPanelFindReplace.Controls.Add(this.buttonHelp, 2, 2);
+            this.tableLayoutPanelFindReplace.Controls.Add(this.label1, 0, 2);
             this.tableLayoutPanelFindReplace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
@@ -191,13 +193,12 @@
             // textBoxReplacePreview
             // 
             this.textBoxReplacePreview.BackColor = System.Drawing.SystemColors.Control;
-            this.tableLayoutPanelFindReplace.SetColumnSpan(this.textBoxReplacePreview, 2);
             this.textBoxReplacePreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxReplacePreview.Location = new System.Drawing.Point(3, 119);
+            this.textBoxReplacePreview.Location = new System.Drawing.Point(123, 119);
             this.textBoxReplacePreview.Multiline = true;
             this.textBoxReplacePreview.Name = "textBoxReplacePreview";
             this.textBoxReplacePreview.ReadOnly = true;
-            this.textBoxReplacePreview.Size = new System.Drawing.Size(400, 52);
+            this.textBoxReplacePreview.Size = new System.Drawing.Size(280, 52);
             this.textBoxReplacePreview.TabIndex = 24;
             this.textBoxReplacePreview.TabStop = false;
             this.textBoxReplacePreview.Text = "\\re hum, to\r\n\\re sing, to\r\n\\re croon, to";
@@ -276,6 +277,16 @@
             this.buttonHelp.Text = "?";
             this.buttonHelp.UseVisualStyleBackColor = false;
             this.buttonHelp.Click += new System.EventHandler(this.OnHelpButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 119);
+            this.label1.Margin = new System.Windows.Forms.Padding(3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Will replace with:";
             // 
             // tableLayoutPanelMain
             // 
@@ -464,9 +475,9 @@
             // 
             // labelReplace
             // 
-            this.labelReplace.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelReplace.AutoSize = true;
-            this.labelReplace.Location = new System.Drawing.Point(3, 35);
+            this.labelReplace.Location = new System.Drawing.Point(3, 31);
+            this.labelReplace.Margin = new System.Windows.Forms.Padding(3);
             this.labelReplace.Name = "labelReplace";
             this.labelReplace.Size = new System.Drawing.Size(72, 13);
             this.labelReplace.TabIndex = 3;
@@ -484,9 +495,9 @@
             // 
             // labelFind
             // 
-            this.labelFind.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelFind.AutoSize = true;
-            this.labelFind.Location = new System.Drawing.Point(3, 7);
+            this.labelFind.Location = new System.Drawing.Point(3, 3);
+            this.labelFind.Margin = new System.Windows.Forms.Padding(3);
             this.labelFind.Name = "labelFind";
             this.labelFind.Size = new System.Drawing.Size(30, 13);
             this.labelFind.TabIndex = 0;
@@ -494,13 +505,13 @@
             // 
             // labelPreview1
             // 
-            this.labelPreview1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelPreview1.AutoSize = true;
-            this.labelPreview1.Location = new System.Drawing.Point(3, 79);
+            this.labelPreview1.Location = new System.Drawing.Point(3, 59);
+            this.labelPreview1.Margin = new System.Windows.Forms.Padding(3);
             this.labelPreview1.Name = "labelPreview1";
-            this.labelPreview1.Size = new System.Drawing.Size(107, 13);
+            this.labelPreview1.Size = new System.Drawing.Size(97, 13);
             this.labelPreview1.TabIndex = 17;
-            this.labelPreview1.Text = "Found (feeds step 2):";
+            this.labelPreview1.Text = "Intermediate value:";
             // 
             // textBoxContextPreview
             // 
@@ -535,7 +546,7 @@
             this.ClientSize = new System.Drawing.Size(438, 453);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(630, 40);
+            this.Location = new System.Drawing.Point(5, 75);
             this.MinimumSize = new System.Drawing.Size(384, 411);
             this.Name = "FindReplaceDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -602,5 +613,6 @@
         private System.Windows.Forms.Label labelReplaceAll;
         private System.Windows.Forms.Button buttonHelp;
         private System.Windows.Forms.TextBox textBoxReplacePreview;
+        private System.Windows.Forms.Label label1;
     }
 }

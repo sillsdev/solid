@@ -43,7 +43,7 @@ namespace SolidGui
 
             KeyboardController.Initialize();  //JMC:! verify that calling this repeatedly is ok
 
-            if (args.Length > 0) TryToOpen(args[0], model, form);
+            if (args.Length > 0) TryToOpen(args[0], model, form);           
 
             //form.UpdateDisplay();
             try

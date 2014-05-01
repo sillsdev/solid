@@ -87,6 +87,10 @@ namespace SolidGui
             _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
             _filterIndex = 0;
 
+            this.Top = 10;
+            this.Left = Screen.FromControl(this).Bounds.Width - this.Width;  // top right
+            _searchDialog.Top = Screen.FromControl(this).Bounds.Height - (_searchDialog.Height + 35);  //bottom left + taskbar
+
         }
 
         public void BindModels(MainWindowPM mainWindowPM) 

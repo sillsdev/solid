@@ -3,6 +3,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 /*
@@ -23,6 +24,11 @@ namespace SolidGui.Search
         private SfmEditorView _sfmEditorView;
 
         private SearchViewModel _searchModel; // just a reference to MainWindowPm.SearchModel 
+
+        private readonly Color _errorColor = Color.DarkRed;
+        private readonly Color _changeColor = Color.DarkGreen;
+        private readonly Color _noChangeColor = Color.Black;
+
 
         private int _cursorIndex;
         private int _startingTextIndex = -1;
@@ -121,6 +127,7 @@ namespace SolidGui.Search
 
             UpdateDisplay();
             bool dubble = radioButtonDoubleRegex.Checked;
+            // _searchModel.UseDoubleRegex = dubble;  //JMC: should probably do this here (or in an ApplyToModel() method), rather than in Find()
             if (dubble)
             {
                 textBoxContextFind.Focus();
@@ -243,12 +250,14 @@ namespace SolidGui.Search
             string fc = textBoxContextFind.Text;
             string msgEmpty = "Please provide something to find (even just a '^' or '$' regex will suffice).";
 
+            textBoxContextPreview.ForeColor = _noChangeColor;
             textBoxContextPreview.Text = "";
             if (dubble && (fc == ""))
             {
                 textBoxContextPreview.Text = msgEmpty;
                 success = false;
             }
+            textBoxReplacePreview.ForeColor = _noChangeColor;
             textBoxReplacePreview.Text = "";
             if (f == "")
             {
@@ -264,8 +273,9 @@ namespace SolidGui.Search
                 {
                     ri.SetFind(f, cs);
                 }
-                catch (Exception error)
+                catch (ArgumentException error)
                 {
+                    textBoxReplacePreview.ForeColor = _errorColor; 
                     textBoxReplacePreview.Text = string.Format(msg, error);
                     success = false;
                 }
@@ -275,8 +285,9 @@ namespace SolidGui.Search
                     {
                         ri.SetFindContext(fc, f, cs);
                     }
-                    catch (Exception error)
+                    catch (ArgumentException error)
                     {
+                        textBoxContextPreview.ForeColor = _errorColor;
                         textBoxContextPreview.Text = string.Format(msg, error);
                         success = false;
                     }
@@ -305,21 +316,26 @@ namespace SolidGui.Search
             bool scopeCurrent = (_scopeComboBox.SelectedIndex == 0); // "Current Filter" (formerly "Check Result") -JMC
             RecordIndex = GetRecordIndex(scopeCurrent);
             _startingRecordIndex = RecordIndex;  //do we need this?
-            bool reg = this.radioButtonRegex.Checked;
+            bool single = radioButtonRegex.Checked;
+            bool dubble = radioButtonDoubleRegex.Checked;
+            bool reg = single || dubble;
             if (!ValidSearch())
             {
                 return false; //bail
             }
             if (reg)
             {
+                //regex (single or double)
                 ri = GetReggie();
                 _searchModel.Setup(ri, RecordIndex, GetTextIndex()-1, scopeCurrent);  //JMC: I don't like the -1
             }
             else
             {
+                //basic
                 _searchModel.Setup(textBoxFind.Text, textBoxReplace.Text, RecordIndex, GetTextIndex() - 1, scopeCurrent);   //JMC: I don't like the -1
             }
             _searchModel.UseRegex = reg;
+            _searchModel.UseDoubleRegex = dubble;
             _searchModel.CaseSensitive = checkBoxCaseSensitive.Checked;
 
             string f = null;
@@ -328,6 +344,7 @@ namespace SolidGui.Search
             {  // result of previous find
                 rw = _searchResult.ReplaceWith;
             }
+
             try
             {
                 while (true)
@@ -339,7 +356,11 @@ namespace SolidGui.Search
                         // Replace current selection
                         _sfmEditorView.ContentsBox.SelectedText = rw; 
                         _sfmEditorView.UpdateModelFromView();
-                        if (!replaceAll) return true;
+                        if (!replaceAll)
+                        {
+                            _sfmEditorView.UpdateModelAndView();
+                            return true;
+                        }
 
                     }
                     else
@@ -349,6 +370,7 @@ namespace SolidGui.Search
                         RecordIndex = GetRecordIndex(scopeCurrent);
 
                         SearchResult result = _searchModel.NextResult(RecordIndex, CursorIndex);
+                        //_searchResult = result; //JMC: This would be an alternative to OnWordFound()
 
                         if (result == null)
                         {
@@ -357,7 +379,13 @@ namespace SolidGui.Search
                         }
                         else
                         {
-                            textBoxReplacePreview.Text = string.Format("Will replace selection with this:\r\n[{0}]", result.ReplaceWith);
+                            if (result.IntermediateValue != result.Found) textBoxContextPreview.ForeColor = _changeColor;
+                            string tmp = "[{0}]"; // "Context found:\r\n[{0}]";
+                            textBoxContextPreview.Text = string.Format(tmp, result.IntermediateValue);
+                            string compareTo = (dubble) ? result.IntermediateValue : result.Found;
+                            if (result.ReplaceWith != compareTo) textBoxReplacePreview.ForeColor = _changeColor;
+                            tmp = "[{0}]"; // "Will replace selection with this:\r\n[{0}]";
+                            textBoxReplacePreview.Text = string.Format(tmp, result.ReplaceWith);
                         }
 
                         if (replaceAll)

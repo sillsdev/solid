@@ -53,17 +53,44 @@ namespace SolidGui.Search
         private RegexItem _reggie;
 
         public bool CaseSensitive = false;
-        public bool UseRegex = true;
-        public bool UseDoubleRegex = false;  //JMC: if true, UseRegex needs to be true too (enforce with get/set ?)
+
+        private bool _useRegex = false;
+        public bool UseRegex
+        {
+            get { return _useRegex; }
+            set
+            {
+                _useRegex = value;
+                if (value == false && UseDoubleRegex)
+                {
+                    UseDoubleRegex = false;
+                }
+            }
+        }
+
+        private bool _useDoubleRegex = false;
+        public bool UseDoubleRegex
+        {
+            get { return _useDoubleRegex; }
+            set
+            {
+                _useDoubleRegex = value;
+                if (value && !UseRegex)
+                {
+                    UseRegex = true;
+                }
+            }
+            
+        }
 
         public string FindThis;
         public string ReplaceWith;
         //public Regex FindThisRegex;
 
         //JMC: Other possibilities:
-        // CultureInvariant  (checkbox "use OS case rules")
-        // Multiline (checkbox "allow inline ^ $")
-        // Singleline ("dot matches newline")
+        // CultureInvariant  (unticked checkbox: "use OS case rules")
+        // Multiline (ticked checkbox: "allow inline ^ $")
+        // Singleline (unticked checkbox: "dot matches newline")
 
         public SearchViewModel(MainWindowPM model, RecordFormatter recordFormatter)
         {
@@ -148,59 +175,69 @@ namespace SolidGui.Search
             }
         }*/
 
+
+        /*
+        public SearchResult NextResult(int recordIndex, int startIndexChar)
+        {
+            if (UseDoubleRegex)
+            {
+                //do tricky stuff
+            }
+            else
+            {
+                return NextResult2(recordIndex, startIndexChar);
+            }
+        }
+        */
+
         /// Find within the specified filter
         public SearchResult NextResult(int recordIndex, int startIndexChar)
         {
-            RecordFilter filter = this.Filter;
             Regex reg = null;
 
             int startingRecordIndex = recordIndex;
             SearchResult searchResult = null;
             int searchResultIndex = -1;
-            if (filter.Count <= 0)
+            if (Filter.Count <= 0)
             {
                 return null;
             }
 
             //bool first = true;
-            while (true)
+            while (true)  // loops once per record until match found (returns immediately) or we pass the starting point.
             {
                 searchResultIndex = -1;
 
                 string context = null;
-                bool skip = false;
 
-                if (this.UseDoubleRegex) //JMC:! unfinished
+                if (UseDoubleRegex) //JMC:! unfinished
                 {
-                    skip = true;
-                    // set the context
-                    SearchResult tempResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.ReggieContext,
-                        _reggie.ReplaceContext, null); 
-                    startIndexChar = 0;
-                    context = tempResult.Found;
-                    if (!String.IsNullOrEmpty(context))
+                    //get context using first regex to do one find/replace
+                    searchResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.ReggieContext, _reggie.ReplaceContext);
+                    if (searchResult != null)
                     {
-                        _reggie.ContextFound = tempResult;
-                        skip = false;  //found the context; can now do the find
+                        //do a replace all in that context using second regex
+                        string iv = searchResult.IntermediateValue = searchResult.ReplaceWith;
+                        searchResult.ReplaceWith = _reggie.Reggie.Replace(iv, _reggie.Replace);
                     }
-                } 
+                }
 
-                if (!skip)
+                else //not double
                 {
-                    if (this.UseRegex)
+                    if (UseRegex)
                     {
-                        searchResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.Reggie, _reggie.Replace, context);
-                        //Note that context will be null unless UseDoubleRegex is true. -JMC
+                        searchResult = FindWordInRecord(recordIndex, startIndexChar, _reggie.Reggie, _reggie.Replace);
                     }
                     else
                     {   //basic mode
-                        searchResult = FindWordInRecord(recordIndex, startIndexChar, null, this.ReplaceWith, null);
+                        searchResult = FindWordInRecord(recordIndex, startIndexChar, null, this.ReplaceWith);
                     }
 
-                    if (searchResult != null) // (searchResultIndex != -1)
-                    {
-                        searchResultIndex = searchResult.TextIndex;
-                    }
+                }
+
+                if (searchResult != null) // (searchResultIndex != -1)
+                {
+                    searchResultIndex = searchResult.TextIndex;
                 }
 
                 if (SearchStartingPointPassed(recordIndex, startIndexChar, searchResultIndex))
@@ -222,7 +259,7 @@ namespace SolidGui.Search
  */ 
                 startIndexChar = 0;
                 recordIndex++;
-                recordIndex = WrapRecordIndex(recordIndex, filter);
+                recordIndex = WrapRecordIndex(recordIndex, this.Filter);
             }
             
             return null;
@@ -240,26 +277,19 @@ namespace SolidGui.Search
 
         private static Regex _regWindowsNewline = new Regex( @"\r\n", 
             RegexOptions.Compiled | RegexOptions.CultureInvariant);
-        
-        // Return the index and the word (first match), or null (if not found). Uses a regex if reg is not null; otherwise uses this.FindThis .
-        private SearchResult FindWordInRecord(int recordIndex, int startTextIndex, Regex reg, string replaceWith, string context)
-        {
-            RecordFilter filter = this.Filter;
-            SearchResult res = null;
 
-            Record record = filter.GetRecord(recordIndex);
+
+        // Return the index and the word (first match), or null (if not found). Uses a regex if reg is not null; otherwise uses this.FindThis .
+        private SearchResult FindWordInRecord(int recordIndex, int startTextIndex, Regex reg, string replaceWith)
+        {
+            SearchResult res = null;
+            Record record = Filter.GetRecord(recordIndex);
             if (record == null)
                 return null; // -1;
             string recordText;
-            if (string.IsNullOrEmpty(context))  // if not double regex mode
-            {
-                recordText = RecordFormatter.FormatPlain(record, _model.MarkerSettingsModel.SolidSettings);
-                recordText = NoTabs(recordText);  // force this regardless of RecordFormatter
-            }
-            else
-            {
-                recordText = context; 
-            }
+
+            recordText = RecordFormatter.FormatPlain(record, _model.MarkerSettingsModel.SolidSettings);
+            recordText = NoTabs(recordText);  // force this regardless of RecordFormatter
 
             if (reg == null)
             {
@@ -277,19 +307,19 @@ namespace SolidGui.Search
                 int finalTextIndex = rec2.IndexOf(f2, startTextIndex);
                 if (finalTextIndex > -1)
                 {
-                    res = new SearchResult(recordIndex, finalTextIndex, filter, f);
+                    res = new SearchResult(recordIndex, finalTextIndex, Filter, f);
                     res.ReplaceWith = replaceWith; //move this out?
                 }
             }
             else
             {   
-                //Regex mode (or double regex mode)
+                //Regex mode (or first part of double regex mode)
                 Match m = reg.Match(recordText, startTextIndex);
                 if (m.Success)
                 {
                     replaceWith = Regex.Unescape(replaceWith);  //deal with backslash codes etc.
                     string rw = m.Result(replaceWith);
-                    res = new SearchResult(recordIndex, m.Index, filter, m.Value);
+                    res = new SearchResult(recordIndex, m.Index, Filter, m.Value);
                     res.ReplaceWith = rw; //move this out?
                 }
             }

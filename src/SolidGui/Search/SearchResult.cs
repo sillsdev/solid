@@ -34,6 +34,9 @@ namespace SolidGui.Search
             get { return _replaceWith; }
             set { _replaceWith = value; }
         }
+
+        // Added this one to support double regex. -JMC Apr 2014
+        public string IntermediateValue = "";
         
         public RecordFilter Filter
         {
@@ -41,6 +44,7 @@ namespace SolidGui.Search
             set { _filter = value; }
         }
 
+        /*
         public int ResultLength
         {
             get
@@ -52,6 +56,7 @@ namespace SolidGui.Search
                 _resultLength = value;
             }
         }
+         */
 
         public int RecordIndex
         {

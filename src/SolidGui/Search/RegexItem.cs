@@ -21,7 +21,6 @@ namespace SolidGui.Search
  */ 
         public string ReplaceContext = "";
         public Regex ReggieContext { get; private set; }
-        public SearchResult ContextFound = null;
         public string Find { get; private set; }
         public Regex Reggie { get; private set; }
         public string Replace = "";
