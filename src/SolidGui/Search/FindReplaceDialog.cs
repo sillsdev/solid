@@ -257,6 +257,7 @@ namespace SolidGui.Search
             textBoxContextPreview.Text = "";
             if (dubble && (fc == ""))
             {
+                textBoxContextPreview.ForeColor = _errorColor;
                 textBoxContextPreview.Text = msgEmpty;
                 success = false;
             }
@@ -264,6 +265,7 @@ namespace SolidGui.Search
             textBoxReplacePreview.Text = "";
             if (f == "")
             {
+                textBoxReplacePreview.ForeColor = _errorColor;
                 textBoxReplacePreview.Text = msgEmpty;
                 success = false;
             }
@@ -276,7 +278,7 @@ namespace SolidGui.Search
                 {
                     ri.SetFind(f, cs);
                 }
-                catch (ArgumentException error)
+                catch (Exception error)  //Don't crash on bad regex. Just catching ArgumentException wasn't enough; e.g. typing the following regex would crash with an IndexOutOfRangeException: (?<-
                 {
                     textBoxReplacePreview.ForeColor = _errorColor; 
                     textBoxReplacePreview.Text = string.Format(msg, error);

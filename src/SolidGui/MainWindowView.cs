@@ -571,9 +571,12 @@ namespace SolidGui
 
             //JMC: New dialog: -JMC Feb 2014
             //_searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
+            _searchDialog.Hide();
             _searchDialog.TopMost = true; // means that this form should always be in front of all others
             _searchDialog.SelectFind();
             _searchDialog.Show();
+            _searchDialog.WindowState = FormWindowState.Minimized;
+            _searchDialog.WindowState = FormWindowState.Normal;
             _searchDialog.Focus();
             _searchDialog.ShowHelp();
         }

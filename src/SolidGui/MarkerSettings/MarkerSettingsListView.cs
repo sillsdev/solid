@@ -190,11 +190,6 @@ namespace SolidGui.MarkerSettings
         {
             string parents = "";
 
-            if (!String.IsNullOrEmpty(markerSetting.InferedParent))  //implements issue #1272 -JMC Mar 2014
-            {
-                parents += "+" + markerSetting.InferedParent;
-            }
-
             foreach (SolidStructureProperty property in properties)
             {
                 if (!string.IsNullOrEmpty(property.Parent))
@@ -210,6 +205,12 @@ namespace SolidGui.MarkerSettings
             {
                 parents = "???";
             }
+
+            if (!String.IsNullOrEmpty(markerSetting.InferedParent))  //implements issue #1272 -JMC Mar 2014
+            {
+                parents += "; [+" + markerSetting.InferedParent + "]";
+            }
+
             return parents;
         }
 

@@ -421,8 +421,11 @@ namespace SolidGui
             //var dict = _workingDictionary.Open(_realDictionaryPath, Settings, _recordFilters);
             //var dict = new SfmDictionary();          
 
-            string tmp = TempDictionaryPath();
-            string report = CleanupToTempFile(_realDictionaryPath, tmp);
+            
+            string f;
+            /*
+            f = TempDictionaryPath();
+            string report = CleanupToTempFile(_realDictionaryPath, f);
             if (report != "")
             {
                 string msg = String.Format("Did the following cleanup: \n{0}\nChange(s) will become permanent if you save.\n", report);
@@ -431,9 +434,10 @@ namespace SolidGui
                 Logger.WriteEvent(msg);
                 needsSave = true;
             }
-            tmp = _realDictionaryPath; //JMC:! delete this
+             */
+            f = _realDictionaryPath; //JMC: means ignore the cleanup
 
-            if (_workingDictionary.Open(tmp, Settings, _recordFilters))  
+            if (_workingDictionary.Open(f, Settings, _recordFilters))  
             {
                 if (DictionaryProcessed != null)
                 {

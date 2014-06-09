@@ -88,7 +88,7 @@ namespace SolidGui.Search
         public static RegexItem GetUnwrap()
         {
             string f = @"[ ]*[\n]+[ \n]*(?=[^\n\\])";
-                   f = @"[ ]*[\n][ ]*(?=[^\n\\])";
+                   f = @"[ ]*[\n]+[ ]*(?=[^\n\\])";
             string r = @" ";
             var reg = new RegexItem();
             reg.Find = f;
