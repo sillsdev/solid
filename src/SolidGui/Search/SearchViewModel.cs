@@ -20,25 +20,7 @@ namespace SolidGui.Search
             return RegexTab.Replace(input, " ");
         }
 
-        public class SearchResultEventArgs : EventArgs
-        {
-            private readonly SearchResult _searchResult;
 
-            public SearchResultEventArgs(SearchResult value)
-            {
-                _searchResult = value;
-            }
-
-            public SearchResult SearchResult
-            {
-                get
-                {
-                    return _searchResult;
-                }
-            }
-        }
-
-        public event EventHandler<SearchResultEventArgs> WordFound;
         public event EventHandler<RecordFormatterChangedEventArgs> SearchRecordFormatterChanged;
 
         private MainWindowPM _model;
@@ -249,7 +231,6 @@ namespace SolidGui.Search
 
                 if (searchResult != null)
                 {
-                    WordFound.Invoke(this, new SearchResultEventArgs(searchResult));  //move to dialog? -JMC
                     return searchResult;
                 }
 /*

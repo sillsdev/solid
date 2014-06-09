@@ -99,7 +99,7 @@ namespace SolidGui
             if (_mainWindowPM != null)
             {
                 _mainWindowPM.DictionaryProcessed -= OnDictionaryProcessed;
-                _mainWindowPM.SearchModel.WordFound -= OnWordFound;
+                _searchDialog.WordFound -= OnWordFound;
                 _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
                 _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
                 _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
@@ -108,7 +108,7 @@ namespace SolidGui
             _mainWindowPM = mainWindowPM;
 
             _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
-            _mainWindowPM.SearchModel.WordFound += OnWordFound;
+            _searchDialog.WordFound += OnWordFound;
             _mainWindowPM.SearchModel.SearchRecordFormatterChanged += OnRecordFormatterChanged;
             _mainWindowPM.EditorRecordFormatterChanged += _searchDialog.OnEditorRecordFormatterChanged;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
@@ -471,7 +471,7 @@ namespace SolidGui
         }
 
 
-        private void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
+        private void OnWordFound(object sender, FindReplaceDialog.SearchResultEventArgs e)
         {
             if (e.SearchResult.Filter != _mainWindowPM.WarningFilterChooserModel.ActiveWarningFilter)
             {

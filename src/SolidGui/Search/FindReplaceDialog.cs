@@ -56,6 +56,25 @@ namespace SolidGui.Search
 
         private MainWindowPM _model;
 
+        public event EventHandler<SearchResultEventArgs> WordFound;
+        public class SearchResultEventArgs : EventArgs
+        {
+            private readonly SearchResult _searchResult;
+
+            public SearchResultEventArgs(SearchResult value)
+            {
+                _searchResult = value;
+            }
+
+            public SearchResult SearchResult
+            {
+                get
+                {
+                    return _searchResult;
+                }
+            }
+        }
+
         public FindReplaceDialog(SfmEditorView sfmEditorView, MainWindowPM model)
         {
 
@@ -67,7 +86,6 @@ namespace SolidGui.Search
             _sfmEditorView = sfmEditorView;
 
             _searchModel = model.SearchModel;
-            _searchModel.WordFound += OnWordFound;
             _model = model;
             ResetStartingPoint();
         }
@@ -139,11 +157,6 @@ namespace SolidGui.Search
             {
                 textBoxFind.Focus();
             }
-        }
-
-        public void OnWordFound(object sender, SearchViewModel.SearchResultEventArgs e)
-        {
-            this._searchResult = e.SearchResult;
         }
 
         public void ShowHelp()
@@ -380,7 +393,7 @@ namespace SolidGui.Search
                         RecordIndex = GetRecordIndex(scopeCurrent);
 
                         SearchResult result = _searchModel.NextResult(RecordIndex, CursorIndex);
-                        //_searchResult = result; //JMC: This would be an alternative to OnWordFound()
+                        _searchResult = result; // used to be in this.OnWordFound() -JMC Jun 2014
 
                         if (result == null)
                         {
@@ -400,6 +413,7 @@ namespace SolidGui.Search
                             tmp = string.Format(tmp, result.ReplaceWith);
                             tmp = _regLinuxNewline.Replace(tmp, "\r\n");
                             textBoxReplacePreview.Text = tmp;
+                            WordFound.Invoke(this, new SearchResultEventArgs(_searchResult));  // used to be in SearchViewModel -JMC Jun 2014
                         }
 
                         if (replaceAll)
