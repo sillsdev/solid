@@ -322,7 +322,7 @@ namespace SolidGui.Search
         /// (false, false) : find one occurrence
         /// (true, false) : replace the currently highlighted occurrence.
         /// (true, true) : replace all
-        /// (false, true) : undefined, currently (no "Find All" feature yet)
+        /// (false, true) : undefined, currently (no "Find All" or "Count" features yet)
         /// </summary>
         /// <param name="replace"></param>
         /// <param name="replaceAll"></param>
@@ -370,21 +370,18 @@ namespace SolidGui.Search
                     if (replace)
                     {
                         if (rw == null) throw new Exception("Cannot replace text with null.");
-                        if (!SafeToReplace()) return false; //redundant?
-                        // Replace current selection
-                        int origCursor = _sfmEditorView.ContentsBox.SelectionStart;
-
-                        _sfmEditorView.ContentsBox.SelectedText = rw; 
-                        _sfmEditorView.UpdateModelFromView();
-                        _sfmEditorView.ContentsBox.SelectionStart = origCursor + rw.Length;
-                        if (!replaceAll)
+                        if (SafeToReplace())
                         {
-                            _sfmEditorView.UpdateViewFromModel();
-                            _sfmEditorView.ContentsBox.SelectionStart = origCursor + rw.Length;
-                            return true;
+                            // Replace current selection
+                            int origCursor = _sfmEditorView.ContentsBox.SelectionStart;
+                            _sfmEditorView.ContentsBox.SelectedText = rw; //do the replace
+                            _sfmEditorView.UpdateModelFromView();
+                            _sfmEditorView.ContentsBox.SelectionStart = origCursor + rw.Length;  //move the cursor
+                            if (!replaceAll)
+                            {
+                                return true;
+                            }
                         }
-
-
                     }
                     else
                     {
@@ -413,7 +410,6 @@ namespace SolidGui.Search
                             tmp = string.Format(tmp, result.ReplaceWith);
                             tmp = _regLinuxNewline.Replace(tmp, "\r\n");
                             textBoxReplacePreview.Text = tmp;
-                            WordFound.Invoke(this, new SearchResultEventArgs(_searchResult));  // used to be in SearchViewModel -JMC Jun 2014
                         }
 
                         if (replaceAll)
@@ -423,16 +419,21 @@ namespace SolidGui.Search
                                 //MakeBing();
                                 break;
                             }
-                            replace = (!replace); // simplifies "Replace + Find"
                         }
                         else
                         {
                             break;
                         }
-
                     }
 
+                    replace = (!replace); // toggle; simplifies "Replace + Find"
+                }  // while (true)
+
+                if (_searchResult != null)
+                {
+                    WordFound.Invoke(this, new SearchResultEventArgs(_searchResult));  // Used to be in SearchViewModel; note that this only gets invoked for the *last* Replace. -JMC Jun 2014
                 }
+
             }
             catch (ArgumentException error)
             {
@@ -478,7 +479,11 @@ namespace SolidGui.Search
             textBoxFind.Focus();
         }
 
-        private bool OneReplace()
+        /// <summary>
+        /// Replace the current selection if it's safe to do so (i.e. is is a found match).
+        /// Otherwise, do a Find Next.
+        /// </summary>
+        private bool OneReplaceOrFind()
         {
             bool doReplace = SafeToReplace();
             if (doReplace)
@@ -495,15 +500,18 @@ namespace SolidGui.Search
         
         private void OnReplaceButton_Click(object sender, EventArgs e)
         {
-            OneReplace();
+            OneReplaceOrFind();
             textBoxReplace.Focus();
         }
 
+        /// <summary>
+        /// Find the next match. But first, replace the current selection if it is a match.
+        /// </summary>
         private void OnReplaceFindButton_Click(object sender, EventArgs e)
         {
-            if (OneReplace()) // one replace...
+            if (OneReplaceOrFind()) // one replace...  (or one find)
             {
-                Find(false, false); // ...followed by one find
+                Find(false, false); // ...followed by one find  (unless we already did that)
             }
             textBoxReplace.Focus();
         }

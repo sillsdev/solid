@@ -241,7 +241,6 @@
             // 
             // buttonReplaceAll
             // 
-            this.buttonReplaceAll.Enabled = false;
             this.buttonReplaceAll.Location = new System.Drawing.Point(178, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
