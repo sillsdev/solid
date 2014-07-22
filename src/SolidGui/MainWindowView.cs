@@ -532,7 +532,7 @@ namespace SolidGui
             if(!String.IsNullOrEmpty(path))
             {
                 _sfmEditorView.UpdateModelFromView();
-                _mainWindowPM.UseSolidSettingsTemplate(path);
+                _mainWindowPM.SwitchSolidSettingsTemplate(path);
                 CheckAndNotify();
             }
         }

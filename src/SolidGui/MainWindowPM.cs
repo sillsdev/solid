@@ -113,7 +113,8 @@ namespace SolidGui
             }
         }
 
-        // JMC:! Remove this property or replace it with pass-thru of _markerSettingsModel.SolidSettings ??
+        // Remove this property? (Or replace it with pass-thru of _markerSettingsModel.SolidSettings) -JMC
+        // Yes, done (pass-thru). -JMC
         public SolidSettings Settings
         {
             get
@@ -443,6 +444,7 @@ namespace SolidGui
                 {
                     DictionaryProcessed.Invoke(this, EventArgs.Empty);
                 }
+                Settings.Save(); // Together with one other line, fixes bug #1260
                 return true;
             }
 
@@ -459,10 +461,11 @@ namespace SolidGui
         {
             Palaso.Reporting.Logger.WriteEvent("Loading Solid file from template located at {0}", templatePath);
             Trace.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder.");
-            return SolidSettings.CreateSolidFileFromTemplate(
+            SolidSettings s = SolidSettings.CreateSolidFileFromTemplate(
                 templatePath, 
                 SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath)
             );
+            return s;
         }
 
         private SolidSettings LoadSettingsFromExistingFile(string solidFilePath)
@@ -517,7 +520,7 @@ namespace SolidGui
              */ 
         }
 
-        public void UseSolidSettingsTemplate(string path)
+        public void SwitchSolidSettingsTemplate(string path)
         {
             if (Settings != null)
             {
@@ -525,7 +528,8 @@ namespace SolidGui
             }
             Settings = LoadSettingsFromTemplate(path);
             GiveSolidSettingsToModels();
-            ProcessLexicon();  
+            ProcessLexicon();
+            Settings.Save(); // Together with one other line, fixes bug #1260
 
             //???? do we replace these settings, or ask the settings to do the switch?
             // TODO: copy over this set of settings
