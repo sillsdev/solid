@@ -105,13 +105,13 @@ namespace SolidGui.MarkerSettings
             // if (_settings == null) return;  // Could add this check, but it would mask a bad state. -JMC
 
             if (_dictionary == null) return;
-            lock (_dictionary.MarkerFrequencies)
+            // Here we either need to lock here (and elsewhere) for thread safety and use for(), or make a copy.  http://projects.palaso.org/issues/1279
+            // Using foreach() is nicer, and it's not a huge dataset, so I'm making a copy. -JMC July 2014
+            KeyValuePair<string, int>[] tmp = _dictionary.MarkerFrequencies.ToArray(); // copy
+            foreach (KeyValuePair<string, int> pair in tmp)
             {
-                foreach (KeyValuePair<string, int> pair in _dictionary.MarkerFrequencies)
-                {
-                    GLItem item = MakeListItem(pair);
-                    _markerListView.Items.Add(item);
-                }
+                GLItem item = MakeListItem(pair);
+                _markerListView.Items.Add(item);
             }
 
             //           _markerListView.Sorting = SortOrder.Ascending;
