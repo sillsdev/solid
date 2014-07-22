@@ -390,7 +390,10 @@ namespace SolidGui
         {
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModelFromView();
-            _mainWindowPM.ProcessLexicon();
+            lock (_mainWindowPM.WorkingDictionary.MarkerFrequencies)
+            {
+                _mainWindowPM.ProcessLexicon();
+            }
             _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
 
             //_mainWindowPM.NavigatorModel.SendNavFilterChangedEvent();  // Added this so the left panes' selection would reset -JMC 2013-10

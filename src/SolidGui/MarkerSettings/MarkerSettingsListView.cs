@@ -81,14 +81,14 @@ namespace SolidGui.MarkerSettings
             //FillInErrorColumn(item, _dictionary.MarkerErrors[pair.Key]);
             return item;
         }
-        
+
         public void UpdateDisplay()
         {
             if (DesignMode) return;
 
             string previouslySelectedMarker = string.Empty;
-            
-            if(_markerListView.SelectedItems.Count > 0)
+
+            if (_markerListView.SelectedItems.Count > 0)
             {
                 previouslySelectedMarker = _markerListView.SelectedItems[0].Text;
             }
@@ -108,13 +108,18 @@ namespace SolidGui.MarkerSettings
             // Here we either need to lock here (and elsewhere) for thread safety and use for(), or make a copy.  http://projects.palaso.org/issues/1279
             // Using foreach() is nicer, and it's not a huge dataset, so I'm making a copy. -JMC July 2014
             KeyValuePair<string, int>[] tmp = _dictionary.MarkerFrequencies.ToArray(); // copy
-            foreach (KeyValuePair<string, int> pair in tmp)
+            lock (_dictionary.MarkerFrequencies)
             {
-                GLItem item = MakeListItem(pair);
-                _markerListView.Items.Add(item);
+                for (int i=0; i < _dictionary.MarkerFrequencies.Keys.Count; i++)
+                {
+                    var key = _dictionary.MarkerFrequencies.Keys.ElementAt(i);
+                    var val = _dictionary.MarkerFrequencies[key];
+                    GLItem item = MakeListItem(new KeyValuePair<string, int>(key, val));
+                    _markerListView.Items.Add(item);
+                }
             }
 
-            //           _markerListView.Sorting = SortOrder.Ascending;
+        //           _markerListView.Sorting = SortOrder.Ascending;
             //          _markerListView.Sort();
 
             _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
