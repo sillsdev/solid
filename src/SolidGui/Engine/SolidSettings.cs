@@ -398,7 +398,7 @@ namespace SolidGui.Engine
                 {
                     //still nothing beyond the .solid file; fail
                     var x = new StringBuilder();
-                    x.AppendFormat("Solid could not find a matching dictionary for {0}. ", settingsFilePath);
+                    x.AppendFormat("Solid could not find a matching dictionary for {0}. Please try again via the File menu.", settingsFilePath);
                     ErrorReport.NotifyUserOfProblem(x.ToString());
                     return ""; 
                 }

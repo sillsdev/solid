@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 using Palaso.Reporting;
 using SolidGui.Properties;
@@ -70,6 +71,7 @@ namespace SolidGui
             if (fileName.EndsWith(".solid"))
             {
                 fileName = SolidSettings.GetDictionaryFilePathFromSettingsPath(fileName);
+                if (String.IsNullOrEmpty(fileName)) return;  // fixes bug #1285
             }
             string templatePath = null;
             if (model.ShouldAskForTemplateBeforeOpening(fileName))  //check validity of .solid file

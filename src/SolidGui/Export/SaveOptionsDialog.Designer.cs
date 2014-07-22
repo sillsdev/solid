@@ -160,9 +160,9 @@
             this.checkBoxLinuxNewline.Location = new System.Drawing.Point(3, 87);
             this.checkBoxLinuxNewline.Name = "checkBoxLinuxNewline";
             this.checkBoxLinuxNewline.Padding = new System.Windows.Forms.Padding(0, 2, 0, 3);
-            this.checkBoxLinuxNewline.Size = new System.Drawing.Size(123, 22);
+            this.checkBoxLinuxNewline.Size = new System.Drawing.Size(143, 22);
             this.checkBoxLinuxNewline.TabIndex = 6;
-            this.checkBoxLinuxNewline.Text = "Linux/Mac &Newlines";
+            this.checkBoxLinuxNewline.Text = "Linux/Mac &Newlines (\\n)";
             this.checkBoxLinuxNewline.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
