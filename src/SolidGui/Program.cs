@@ -10,6 +10,7 @@ using Palaso.Reporting;
 using SolidGui.Properties;
 using SolidGui.Engine;
 using Palaso.UI.WindowsForms.Keyboarding;
+using SolidGui.Setup;
 
 namespace SolidGui
 {
@@ -66,6 +67,7 @@ namespace SolidGui
 
         static void TryToOpen(string fileName, MainWindowPM model, MainWindowView form)
         {
+            bool forceUnicode = false;
             if (!File.Exists(fileName)) return;
 
             if (fileName.EndsWith(".solid"))
@@ -76,10 +78,11 @@ namespace SolidGui
             string templatePath = null;
             if (model.ShouldAskForTemplateBeforeOpening(fileName))  //check validity of .solid file
             {
+                forceUnicode = EncodingChooser.UserWantsUnicode(fileName);
                 templatePath = form.RequestTemplatePath(fileName, false);
                 if (string.IsNullOrEmpty(templatePath)) { return; } //they cancelled
             }
-            if (model.OpenDictionary(fileName, templatePath))
+            if (model.OpenDictionary(fileName, templatePath, forceUnicode))
             {
                 form.OnFileLoaded(fileName);
             }

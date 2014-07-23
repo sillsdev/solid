@@ -5,7 +5,7 @@
   <MarkerSettings>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>lex</string>
         <string>lexicalUnit</string>
@@ -21,7 +21,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>allo</string>
         <string>variant</string>
@@ -41,7 +41,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
@@ -61,7 +61,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -77,7 +77,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -93,7 +93,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -109,7 +109,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -125,7 +125,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -141,7 +141,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -157,7 +157,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>ref</string>
         <string>example</string>
@@ -173,7 +173,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>sent</string>
         <string>exampleSentence</string>
@@ -189,7 +189,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
@@ -205,7 +205,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
@@ -220,8 +220,8 @@
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
@@ -237,7 +237,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
@@ -253,7 +253,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>cref</string>
         <string>confer</string>
@@ -277,7 +277,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
@@ -293,7 +293,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>com</string>
         <string>note</string>
@@ -317,7 +317,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>mod</string>
         <string>dateModified</string>
@@ -333,7 +333,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -349,7 +349,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -365,7 +365,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -381,7 +381,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>sent</string>
         <string>exampleSentenceTranslation</string>
@@ -397,7 +397,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
@@ -413,7 +413,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string>semanticDomain</string>
@@ -429,7 +429,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -440,7 +440,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -460,7 +460,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
@@ -476,7 +476,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>cref</string>
         <string xsi:nil="true" />
@@ -492,7 +492,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>hom</string>
         <string>homonym</string>
@@ -508,7 +508,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>cit</string>
         <string>citation</string>
@@ -528,7 +528,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>guid</string>
         <string>guid</string>
@@ -544,7 +544,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -564,7 +564,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -584,7 +584,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>prnf</string>
         <string>pronunciation</string>
@@ -604,7 +604,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -628,7 +628,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -644,7 +644,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -660,7 +660,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -676,7 +676,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>subc</string>
         <string>subentry</string>
@@ -692,7 +692,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>sn</string>
         <string>sense</string>
@@ -708,7 +708,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>etf</string>
         <string>etymology</string>
@@ -728,7 +728,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>etc</string>
         <string>etymologyComment</string>
@@ -744,7 +744,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>etg</string>
         <string>etymologyGloss</string>
@@ -760,7 +760,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>ets</string>
         <string>etymologySource</string>
@@ -776,7 +776,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string>antonym</string>
@@ -792,7 +792,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>ebib</string>
         <string>noteBibliographic</string>
@@ -808,7 +808,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -824,7 +824,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -840,7 +840,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -856,7 +856,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -872,7 +872,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -888,7 +888,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -904,7 +904,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>litm</string>
         <string xsi:nil="true" />
@@ -924,7 +924,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>anote</string>
         <string>noteAnthropology</string>
@@ -948,7 +948,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>dnote</string>
         <string>noteDiscourse</string>
@@ -972,7 +972,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>grnote</string>
         <string>noteGrammar</string>
@@ -996,7 +996,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>pnote</string>
         <string>notePhonology</string>
@@ -1020,7 +1020,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>com</string>
         <string>noteQuestion</string>
@@ -1044,7 +1044,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>slnote</string>
         <string>noteSociolinguistic</string>
@@ -1068,7 +1068,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1084,7 +1084,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1100,7 +1100,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1116,7 +1116,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1132,7 +1132,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>picf</string>
         <string>illustration</string>
@@ -1156,7 +1156,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -1172,7 +1172,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1188,7 +1188,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1204,7 +1204,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1220,7 +1220,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1236,7 +1236,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1252,7 +1252,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -1268,7 +1268,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
@@ -1284,7 +1284,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -1300,7 +1300,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>sci</string>
         <string>scientificName</string>
@@ -1316,7 +1316,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -1332,7 +1332,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>src</string>
         <string>noteSource</string>
@@ -1348,7 +1348,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>stat</string>
         <string xsi:nil="true" />
@@ -1368,7 +1368,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string>synonym</string>
@@ -1384,7 +1384,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>eires</string>
         <string xsi:nil="true" />
@@ -1400,7 +1400,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>utyp</string>
         <string xsi:nil="true" />
@@ -1416,7 +1416,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1432,7 +1432,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1448,7 +1448,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1464,7 +1464,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>sem</string>
         <string>semanticDomain</string>
@@ -1480,7 +1480,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>seme</string>
         <string xsi:nil="true" />
@@ -1496,7 +1496,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>semv</string>
         <string xsi:nil="true" />
@@ -1512,7 +1512,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>func</string>
         <string>lexicalRelationType</string>
@@ -1536,7 +1536,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string>lex</string>
         <string>lexicalRelationLexeme</string>
@@ -1552,7 +1552,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1568,7 +1568,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>nat</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1584,7 +1584,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1604,7 +1604,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1620,7 +1620,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1636,7 +1636,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1652,7 +1652,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1668,7 +1668,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1684,7 +1684,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1700,7 +1700,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1716,7 +1716,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1732,7 +1732,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1748,7 +1748,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1764,7 +1764,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1780,7 +1780,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1796,7 +1796,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1812,7 +1812,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1828,7 +1828,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>reg</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1844,7 +1844,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>vern</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1855,7 +1855,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1866,7 +1866,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1877,7 +1877,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1888,7 +1888,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1899,7 +1899,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1910,7 +1910,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1921,7 +1921,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1932,7 +1932,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem />
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string xsi:nil="true" />
@@ -1943,7 +1943,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
-      <Unicode>true</Unicode>
+      <Unicode>false</Unicode>
       <Mappings>
         <string xsi:nil="true" />
         <string>custom</string>
@@ -1957,7 +1957,5 @@
       </StructureProperties>
       <Marker>CheckMe</Marker>
     </SolidMarkerSetting>
-	
   </MarkerSettings>
-  
 </SolidSettings>

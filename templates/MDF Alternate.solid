@@ -228,7 +228,7 @@
       <Marker>xn</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>reg</WritingSystem>
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <Mappings>
         <string>utyp</string>
@@ -1803,6 +1803,5 @@
       </StructureProperties>
       <Marker>CheckMe</Marker>
     </SolidMarkerSetting>
-
-	</MarkerSettings>
+  </MarkerSettings>
 </SolidSettings>

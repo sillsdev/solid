@@ -82,7 +82,7 @@ namespace SolidGui.Tests
                 File.Copy(PathToMDFTemplate(pm), e.PathToSettingsFileThatGoesWithDictionary);
                 e.WriteTwoEntryDictionary();
 
-                pm.OpenDictionary(e.DictionaryPath, null);
+                pm.OpenDictionary(e.DictionaryPath, null, false);
 
                 // Assert.AreEqual(2, pm.MasterRecordList.Count);
                 Assert.AreEqual(2, pm.WorkingDictionary.AllRecords.Count);  // JMC:! Verify that this works
@@ -168,7 +168,7 @@ namespace SolidGui.Tests
             using (var e = new EnvironmentForTest())
             {
                 var pm = new MainWindowPM();
-                pm.OpenDictionary(e.DictionaryPath, PathToMDFTemplate(pm));
+                pm.OpenDictionary(e.DictionaryPath, PathToMDFTemplate(pm), false);
                 Assert.IsTrue(File.Exists(e.PathToSettingsFileThatGoesWithDictionary));
                 Assert.AreEqual(File.ReadAllText(PathToMDFTemplate(pm)), File.ReadAllText(e.PathToSettingsFileThatGoesWithDictionary));
             }

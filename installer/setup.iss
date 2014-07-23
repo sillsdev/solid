@@ -54,15 +54,11 @@ Source: ..\output\release\Enchant.Net.dll; DestDir: {app}; Flags: replacesamever
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
-Source: ..\templates\MDF Unicode.solid; DestDir: {app}\templates
-Source: ..\templates\MDF Legacy Font.solid; DestDir: {app}\templates
-Source: ..\templates\MDF Alternate Legacy Font.solid; DestDir: {app}\templates
-Source: ..\templates\MDF Alternate Unicode.solid; DestDir: {app}\templates
-Source: ..\templates\FLEx-friendly MDF Unicode.solid; DestDir: {app}\templates
-Source: ..\templates\FLEx-friendly MDF Legacy Font.solid; DestDir: {app}\templates
+Source: ..\templates\MDF.solid; DestDir: {app}\templates
+Source: ..\templates\MDF Alternate.solid; DestDir: {app}\templates
+Source: ..\templates\FLEx-friendly MDF.solid; DestDir: {app}\templates
 Source: ..\templates\No Assumptions.solid; DestDir: {app}\templates
-Source: ..\templates\PLB SFM Unicode.solid; DestDir: {app}\templates
-Source: ..\templates\PLB SFM Legacy Font.solid; DestDir: {app}\templates
+Source: ..\templates\PLB SFM.solid; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 Source: ..\doc\Solid Manual\Solid Documentation.pdf; DestDir: {app}

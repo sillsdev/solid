@@ -254,7 +254,7 @@ namespace Solid.Engine
                     //lx unless there is an lc. So now we switch the referrer to the lc.
 
                     addition.sourceField.Value = switchToCitationForm;
-                    log.AppendFormat("***Switched  \\{3} target of '{0}' from '{1}' to the citation form '{2}' to get around Flex 5.4 limitation (only links to the 'headword', not the lx)\r\n",
+                    log.AppendFormat("***Switched  \\{3} target of '{0}' from '{1}' to the citation form '{2}' to get around Flex import limitation (LT-14442; only links to the 'headword', not the lx)\r\n",
                                      addition.fromHeadWord, addition.targetHeadWord, switchToCitationForm, addition.fromMarker);
 
                 }

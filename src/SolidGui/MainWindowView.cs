@@ -198,6 +198,7 @@ namespace SolidGui
         private void ChooseAndOpenProject()
         {
             string initialDirectory = GetInitialDirectory();
+            bool forceUnicode = false;
 
             var dlg = new OpenFileDialog();
             dlg.Title = "Open Dictionary File...";
@@ -218,6 +219,7 @@ namespace SolidGui
             string templatePath = null;
             if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
             {
+                forceUnicode = EncodingChooser.UserWantsUnicode(dlg.FileName); // issue #1259
                 templatePath = RequestTemplatePath(dlg.FileName, false);
                 if (string.IsNullOrEmpty(templatePath))
                 {
@@ -229,10 +231,10 @@ namespace SolidGui
             // Removed this extraneous save method, to clean up code and fix issue #1149 "Using Open Lexicon to switch files always saves currently open settings, even after choosing No." -JMC 2013-10
             // _mainWindowPM.SaveSettings(); 
 
-            Open(dlg.FileName, templatePath);
+            Open(dlg.FileName, templatePath, forceUnicode);
         }
 
-        private void Open(string fileName, string templatePath)
+        private void Open(string fileName, string templatePath, bool forceUnicode)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -244,7 +246,7 @@ namespace SolidGui
             ReInit(newPm);
             //JMC: consider calling origPm.WorkingDictionary.Reset() here
 
-            if (_mainWindowPM.OpenDictionary(fileName, templatePath))
+            if (_mainWindowPM.OpenDictionary(fileName, templatePath, forceUnicode))
             {
                 //BindModels(_mainWindowPM);
                 OnFileLoaded(fileName);
@@ -452,12 +454,14 @@ namespace SolidGui
             // That's usually the right thing to do, but we could check, and provide a confirmation dialog here if needed, and bail on Cancel.
 
             string remember = _mainWindowPM.WorkingDictionary.FilePath;  // Not really a Save As, but a Save a Copy -JMC Apr 2014
-            if (_mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf));
+            _mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf);
+            /*
+            if (_mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf))
             {
                 setSaveEnabled(false);
                 //JMC: For true Save As, we'd need to switch over to the other file. And to be safe, just reload?
-
             }
+            */
             _mainWindowPM.WorkingDictionary.FilePath = remember;
             _sfmEditorView.UpdateViewFromModel();  // we want to see the data (indentation) the way Solid does -JMC
             _sfmEditorView.ContentsBox.Focus();  // just in case; probably redundant -JMC

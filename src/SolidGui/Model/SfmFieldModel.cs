@@ -130,7 +130,7 @@ namespace SolidGui.Model
         private static string AsUtf8 (string value)
         {
             byte[] valueAsBytes = SolidSettings.LegacyEncoding.GetBytes(value);  // replaced Encoding.GetEncoding("iso-8859-1") with Legacy -JMC 
-            var utf8 = new UTF8Encoding(false, false); // no BOM, nor errors yet (that up to ProcessEncoding). -JMC
+            var utf8 = new UTF8Encoding(false, false); // no BOM, nor errors yet (that is up to ProcessEncoding). -JMC
             return utf8.GetString(valueAsBytes);
         }
 

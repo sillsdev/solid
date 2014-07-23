@@ -249,6 +249,13 @@
     </Compile>
     <Compile Include="Search\RegexItem.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Setup\EncodingChecker.cs" />
+    <Compile Include="Setup\EncodingChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setup\EncodingChooser.Designer.cs">
+      <DependentUpon>EncodingChooser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Setup\WritingSystemsConfigDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -311,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Search\FindReplaceDialog.resx">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setup\EncodingChooser.resx">
+      <DependentUpon>EncodingChooser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StructurePropertiesView.resx">
       <SubType>Designer</SubType>

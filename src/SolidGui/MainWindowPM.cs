@@ -21,6 +21,7 @@ using SolidGui.MarkerSettings;
 using SolidGui.Model;
 using SolidGui.Properties;
 using SolidGui.Search;
+using SolidGui.Setup;
 
 
 namespace SolidGui
@@ -405,7 +406,7 @@ namespace SolidGui
         /// <param name="dictionaryPath"></param>
         /// <param name="templatePath"></param>
         /// <returns>True if successful; false otherwise.</returns>
-        public bool OpenDictionary(string dictionaryPath, string templatePath)
+        public bool OpenDictionary(string dictionaryPath, string templatePath, bool forceUnicode)
         {
             _realDictionaryPath = dictionaryPath; 
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
@@ -415,7 +416,11 @@ namespace SolidGui
             }
             else
             {
-                Settings = LoadSettingsFromTemplate(templatePath); 
+                Settings = LoadSettingsFromTemplate(templatePath);
+                if (forceUnicode)
+                {
+                    Settings.SetToUnicode(); // implements #1259
+                }
             }
             GiveSolidSettingsToModels();
 
@@ -527,6 +532,8 @@ namespace SolidGui
                 Settings.Save();
             }
             Settings = LoadSettingsFromTemplate(path);
+            bool forceUnicode = EncodingChooser.UserWantsUnicode(PathToCurrentDictionary);
+            if (forceUnicode) Settings.SetToUnicode(); // implements #1259
             GiveSolidSettingsToModels();
             ProcessLexicon();
             Settings.Save(); // Together with one other line, fixes bug #1260
