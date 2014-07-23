@@ -63,7 +63,7 @@ namespace SolidGui.Tests
 
         private static string PathToMDFTemplate(MainWindowPM pm)
         {
-            return Path.Combine(MainWindowPM.PathToFactoryTemplatesDirectory, "MDF Unicode.solid");
+            return Path.Combine(MainWindowPM.PathToFactoryTemplatesDirectory, "MDF.solid");
         }
 
         [Test]
