@@ -93,7 +93,7 @@ namespace SolidGui.Engine
         {
             get 
             {
-                return _markerSettings.Select(item => item.Marker);
+                return _markerSettings.Select(item => item.Marker);   //LINQ
             }
         }
 
@@ -323,6 +323,8 @@ namespace SolidGui.Engine
             {
                 settings = (SolidSettings) settingsDataMapper.Deserialize(reader);
             }
+            // If we don't replace the deserializer with custom code (Data Mapper pattern?), then we 
+            // need a fix here to remove duplicates (multiple marker settings using the same marker); see bug #  -JMC Jul 2014
 
             // Set properties that aren't serialized.
             settings.FilePath = filePath;

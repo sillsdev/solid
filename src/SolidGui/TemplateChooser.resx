@@ -118,12 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="_lblInstructions.Text" xml:space="preserve">
-    <value>As you use SOLID, you'll be building up a rich set of information about your dictionary which will help you
+    <value>Solid stores custom structural rules for checking your SFM lexicon in a settings file named {0}. Select a template as a starting point:
 
-• Add important information that should be part of the archive of your dictionary
-• Keep your dictionary entries clean and consistent
-• Reuse your dictionary in other editing, analysis, and publishing tools
-
-This information is stored in a 'Solid settings' file. Your settings will be saved to a file named {0} in the same directory as the lexicon.</value>
+• MDF (recommended): The standard MDF structure, but tightened up to avoid ambiguities.
+• MDF Flat: Same, but with \ps and \sn inverted. If used, manually make sure each sense contains a \ps (LT-9353).
+• MDF Loose: For those not currently migrating/publishing their data, or are doing a first pass at cleanup. The standard MDF structure; finds only more serious issues.
+• PLB: An older Philippine format that predates MDF. PLB SFM lexicons vary in their FLEx-compatibility.</value>
   </data>
 </root>

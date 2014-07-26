@@ -57,8 +57,9 @@ namespace SolidGui
                 if (WouldBeReplacingExistingSettings)
                 {
                     // _lblInstructions.Visible = false;
-                    _pnlWarning.Visible = true;
-                    _pnlWarning.Height = 31;
+                    _textBoxWarning.Visible = true;
+                    _textBoxWarning.ForeColor = Color.Red;
+                    //_pnlWarning.Height = 31;
                     // _lblInstructions.Height = 0;
                     /*
                     _pnlListView.Location = new Point
@@ -72,8 +73,8 @@ namespace SolidGui
                 else
                 {
                     //_lblInstructions.Visible = true;
-                    _pnlWarning.Visible = false;
-                    _pnlWarning.Height = 0;
+                    _textBoxWarning.Visible = false;
+                    //_pnlWarning.Height = 0;
                     // _lblInstructions.Height = 125;
                     /*
                     _pnlListView.Location = new Point

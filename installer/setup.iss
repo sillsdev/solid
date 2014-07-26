@@ -55,8 +55,8 @@ Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
 Source: ..\templates\MDF.solid; DestDir: {app}\templates
-Source: ..\templates\MDF Alternate.solid; DestDir: {app}\templates
-Source: ..\templates\FLEx-friendly MDF.solid; DestDir: {app}\templates
+Source: ..\templates\MDF Alternate.solid.bak; DestDir: {app}\templates
+Source: ..\templates\MDF Loose.solid; DestDir: {app}\templates
 Source: ..\templates\No Assumptions.solid; DestDir: {app}\templates
 Source: ..\templates\PLB SFM.solid; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples

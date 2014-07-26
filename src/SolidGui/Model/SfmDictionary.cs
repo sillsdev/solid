@@ -267,6 +267,22 @@ namespace SolidGui.Model
             _markerFrequencies.Clear();
             _markerErrors.Clear();
 
+            // Show zero-count markers in the UI list too... bug # -JMC
+/*
+            foreach (string s in solidSettings.Markers)
+            {
+                try
+                {
+                    _markerFrequencies.Add(s, 0);
+                }
+                catch (ArgumentException e)
+                {
+                    Palaso.Reporting.ErrorReport.ReportFatalException(new ArgumentException("The .solid configuration file appears to have multiple settings for this marker: \\" + s + " \r\n" + e.Message, e));
+                }
+            }
+*/
+            
+
             using (var dlg = new ProgressDialog())  // JMC:! Move this UI stuff elsewhere?
             {
                 dlg.Overview = "Loading and checking data...";

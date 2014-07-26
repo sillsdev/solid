@@ -1375,22 +1375,6 @@
       <Marker>wr</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string>sem</string>
-        <string>semanticDomain</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <Multiplicity>MultipleTogether</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>is</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <Mappings>
@@ -1934,6 +1918,5 @@
       </StructureProperties>
       <Marker>CheckMe</Marker>
     </SolidMarkerSetting>
-
-	</MarkerSettings>
+  </MarkerSettings>
 </SolidSettings>

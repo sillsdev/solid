@@ -408,6 +408,7 @@ namespace SolidGui
         /// <returns>True if successful; false otherwise.</returns>
         public bool OpenDictionary(string dictionaryPath, string templatePath, bool forceUnicode)
         {
+            bool saveSettings = false;
             _realDictionaryPath = dictionaryPath; 
             string solidFilePath = SolidSettings.GetSettingsFilePathFromDictionaryPath(_realDictionaryPath);
             if (File.Exists(solidFilePath))
@@ -420,6 +421,7 @@ namespace SolidGui
                 if (forceUnicode)
                 {
                     Settings.SetToUnicode(); // implements #1259
+                    saveSettings = true;
                 }
             }
             GiveSolidSettingsToModels();
@@ -449,7 +451,7 @@ namespace SolidGui
                 {
                     DictionaryProcessed.Invoke(this, EventArgs.Empty);
                 }
-                Settings.Save(); // Together with one other line, fixes bug #1260
+                if (saveSettings) Settings.Save(); // Together with one other line, fixes bug #1260
                 return true;
             }
 
