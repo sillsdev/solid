@@ -58,7 +58,7 @@ namespace SolidGui
                 {
                     // _lblInstructions.Visible = false;
                     _textBoxWarning.Visible = true;
-                    _textBoxWarning.ForeColor = Color.Red;
+                    _textBoxWarning.ForeColor = Color.Red; // JMC: color is not working (does work on labels)
                     //_pnlWarning.Height = 31;
                     // _lblInstructions.Height = 0;
                     /*
