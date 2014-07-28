@@ -100,7 +100,9 @@
    	<Exec Command='"C:\Program Files (x86)\Inno Setup 5\ISCC.exe" ..\installer\setup-tmp.iss' />
 
     <!-- remove the setup-tmp file -->
+	<!-- troubleshooting the server's installer build -JMC July 2014
     <Delete Files="$(teamcity_build_checkoutDir)\installer\setup-tmp.iss" TreatErrorsAsWarnings="false" />
+	-->
 
     <!-- remove an existing one with the same name, if necessary -->
     <Delete Files="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).exe" TreatErrorsAsWarnings="false" />
