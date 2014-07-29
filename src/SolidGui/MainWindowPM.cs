@@ -219,7 +219,7 @@ namespace SolidGui
         {
             get
             {
-                return Path.Combine(TopAppDirectory, "templates");
+                return Path.Combine(TopAppDirectory, TemplatesFolder);
             }
         }
 
@@ -274,6 +274,7 @@ namespace SolidGui
 
         }
 
+        // JMC:! We should install to %APPDATA% as non-administrator and modify/rename this method to point there
         private static string DirectoryOfExecutingAssembly
         {
             get
@@ -323,6 +324,7 @@ namespace SolidGui
 
         public event EventHandler DictionaryProcessed;
         public event EventHandler<RecordFormatterChangedEventArgs> EditorRecordFormatterChanged;
+        private const string TemplatesFolder = "templates";
 
         /// <summary>
         /// Called by the view to determine whether to ask the user for a starting template. No significant side effects, except it notifies the user on error.

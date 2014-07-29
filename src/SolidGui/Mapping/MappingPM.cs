@@ -30,6 +30,8 @@ namespace SolidGui.Mapping
         private SolidMarkerSetting.MappingType _type;
         public MarkerSettingsPM MarkerModel;  //added so we can support WillNeedSave -JMC Feb 2014
 
+        private const string MappingsFolder = "mappings";
+
         public MappingPM(MarkerSettingsPM markerSettings)
         {
             MarkerModel = markerSettings;
@@ -98,7 +100,7 @@ namespace SolidGui.Mapping
         {
             get
             {
-                return Path.Combine(MainWindowPM.TopAppDirectory, "mappings");
+                return Path.Combine(MainWindowPM.TopAppDirectory, MappingsFolder);
             }
         }
 

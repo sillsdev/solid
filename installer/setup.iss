@@ -30,6 +30,8 @@ Compression=lzma
 SolidCompression=yes
 WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP 
 CreateUninstallRegKey=true
+;JMC: If we do switch over to installing just for the current user, then do the following.
+; PrivilegesRequired=lowest
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -123,6 +125,9 @@ begin
   //downloadNeeded := true;
   //SetIniString('install', 'dotnetRedist', dotnetRedistPath, ExpandConstant('{tmp}\dep.ini'));
 
+
+  // I wanted to do the following since it isn't really just "Next", but this errors because WizardForm is not yet created. -JMC July 2014
+  // WizardForm.NextButton.Caption := 'Install';
 
 end;
 
