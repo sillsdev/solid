@@ -141,7 +141,6 @@
     <Compile Include="AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Engine\EngineEnvironment.cs" />
     <Compile Include="Engine\ReportEntry.cs" />
     <Compile Include="Engine\SfmField.cs" />
     <Compile Include="Export\Exporter.cs" />
