@@ -186,6 +186,7 @@ namespace SolidGui.MarkerSettings
             return mapping ?? "??";
         }
 
+        // TODO: Move this to a non-UI location and make it public. (E.g. useful in debugging, could be called by various ToString(), etc.) -JMC
         private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties, SolidMarkerSetting markerSetting)
         {
             string parents = "";
