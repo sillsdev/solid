@@ -3,7 +3,7 @@
 
 namespace SolidGui.Engine
 {
-    public enum MultiplicityAdjacency
+    public enum MultiplicityAdjacency  // don't rename these values unless you're willing to create a new version of .solid -JMC
     {
         Once,
         MultipleApart,

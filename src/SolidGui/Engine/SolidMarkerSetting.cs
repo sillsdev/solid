@@ -36,6 +36,18 @@ namespace SolidGui.Engine
             _structureProperties = new List<SolidStructureProperty>();
         }
 
+        public string Marker  // Don't rename
+        {
+            get
+            {
+                return _marker;
+            }
+            set
+            {
+                _marker = value;
+            }
+        }
+
         [XmlElement(ElementName = "WritingSystem")]
         public string WritingSystemRfc4646  // an "extended language subtag"; see en.wikipedia.org/wiki/IETF_language_tag  -JMC
         {
@@ -49,13 +61,15 @@ namespace SolidGui.Engine
             }
         }
 
-        public bool Unicode
+        // Don't rename these properties unless you're willing to specify ElementName, or to create a new version of .solid -JMC
+
+        public bool Unicode  // Don't rename
         {
             get { return _isUnicode; }
             set { _isUnicode = value; }
         }
 
-        public string[] Mappings { get; set; }
+        public string[] Mappings { get; set; }  // Don't rename
 
         public void SetMappingConcept(MappingType mappingType, string id)
         {
@@ -78,7 +92,7 @@ namespace SolidGui.Engine
             return Marker;
         }
 
-        public string InferedParent
+        public string InferedParent  // Don't rename
         {
             get
             {
@@ -91,7 +105,7 @@ namespace SolidGui.Engine
         }
 
 
-        public List<SolidStructureProperty> StructureProperties
+        public List<SolidStructureProperty> StructureProperties  // Don't rename
         {
             get 
             { 
@@ -100,18 +114,6 @@ namespace SolidGui.Engine
             set
             {
                 _structureProperties = value;
-            }
-        }
-
-        public string Marker
-        {
-            get
-            {
-                return _marker;
-            }
-            set
-            {
-                _marker = value;
             }
         }
 
