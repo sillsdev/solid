@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -76,12 +77,15 @@ namespace SolidGui.Tests.Migration
 
             using (var f = new TempFile(_v1Content))
             {
-                var migrator = new SolidSettingsMigrator(f.Path);
-                migrator.Migrate();
-				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath(
+                SolidSettings ss = SolidSettings.OpenSolidFile(f.Path);
+                Assert.AreEqual(ss.Version, SolidSettings.LatestVersion.ToString(CultureInfo.InvariantCulture));
+                string fResult = System.IO.Path.GetTempFileName();
+                ss.SaveAs(fResult);
+
+				AssertThatXmlIn.File(fResult).HasAtLeastOneMatchForXpath(
 					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
 				);
-				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+				AssertThatXmlIn.File(fResult).HasAtLeastOneMatchForXpath("//Multiplicity");
             }
         }
 
@@ -101,7 +105,6 @@ namespace SolidGui.Tests.Migration
             var f2Path = System.IO.Path.GetTempFileName();
             ss.SaveAs(f2Path);
             var tmp = SolidSettings.OpenSolidFile(f2Path); //just making sure this doesn't crash
-            //using (var f2 = File.OpenRead(f2Path))
             var s = File.ReadAllText(f2Path);
             Assert.AreEqual(s, vCurrentContent);
             File.Delete(f2Path);
