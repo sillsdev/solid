@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using Palaso.Reporting;
-using SolidGui.Migration;
 
 namespace SolidGui.Engine
 {

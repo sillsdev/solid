@@ -173,8 +173,6 @@
     <Compile Include="AppWritingSystems.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
-    <Compile Include="Migration\SolidSettingsMigrator.cs" />
-    <Compile Include="Migration\XslFromResourceMigrator.cs" />
     <Compile Include="Model\RecordFormatter.cs" />
     <Compile Include="Model\SfmFieldModel.cs" />
     <Compile Include="Model\SfmLexEntry.cs" />
@@ -416,7 +414,6 @@
     <Content Include="Resources\Recheck.png" />
     <Content Include="Resources\RecheckRecord.png" />
     <Content Include="Resources\Search.png" />
-    <EmbeddedResource Include="Migration\SolidSettings1To2.xslt" />
     <EmbeddedResource Include="Setup\WritingSystemsConfigDialog.resx">
       <DependentUpon>WritingSystemsConfigDialog.cs</DependentUpon>
       <SubType>Designer</SubType>

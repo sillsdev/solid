@@ -1,8 +1,8 @@
+using System.IO;
 using NUnit.Framework;
 using Palaso.IO;
 using Palaso.TestUtilities;
 using SolidGui.Engine;
-using SolidGui.Migration;
 
 
 namespace SolidGui.Tests.Engine
@@ -123,10 +123,13 @@ namespace SolidGui.Tests.Engine
 				var markerSettings = settings.FindOrCreateMarkerSetting("lx");
 				Assert.That(markerSettings.StructureProperties[0].Multiplicity, Is.EqualTo(MultiplicityAdjacency.Once));
 
-				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath(
+                string newFile = System.IO.Path.GetTempFileName();
+			    settings.SaveAs(newFile);
+				AssertThatXmlIn.File(newFile).HasAtLeastOneMatchForXpath(
 					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
 				);
-				AssertThatXmlIn.File(f.Path).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+				AssertThatXmlIn.File(newFile).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+                File.Delete(newFile);
 			}
 		}
 

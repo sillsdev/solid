@@ -8,7 +8,6 @@ using System.Text;
 using Palaso.TestUtilities;
 using Palaso.IO;
 using SolidGui.Engine;
-using SolidGui.Migration;
 
 using NUnit.Framework;
 
