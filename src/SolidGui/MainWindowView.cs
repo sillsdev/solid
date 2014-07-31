@@ -299,6 +299,12 @@ namespace SolidGui
         {
             if (_mainWindowPM.Settings != null)
             {
+                string migrationReport = _mainWindowPM.Settings.FileStatusReport.GetReport();
+                if (migrationReport != "")
+                {
+                    MessageBox.Show(migrationReport, "Settings Migrated or Corrected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
                 _mainWindowPM.Settings.NotifyIfNewMarkers();
                 string msg = _mainWindowPM.Settings.NotifyIfMixedEncodings();
                 if (msg != "")

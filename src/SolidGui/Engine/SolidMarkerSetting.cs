@@ -69,8 +69,6 @@ namespace SolidGui.Engine
             set { _isUnicode = value; }
         }
 
-        public string[] Mappings { get; set; }  // Don't rename
-
         public void SetMappingConcept(MappingType mappingType, string id)
         {
             Mappings[(int) mappingType] = id;
@@ -92,6 +90,18 @@ namespace SolidGui.Engine
             return Marker;
         }
 
+        public List<SolidStructureProperty> StructureProperties  // Don't rename
+        {
+            get 
+            { 
+                return _structureProperties; 
+            }
+            set
+            {
+                _structureProperties = value;
+            }
+        }
+
         public string InferedParent  // Don't rename
         {
             get
@@ -104,18 +114,7 @@ namespace SolidGui.Engine
             }
         }
 
-
-        public List<SolidStructureProperty> StructureProperties  // Don't rename
-        {
-            get 
-            { 
-                return _structureProperties; 
-            }
-            set
-            {
-                _structureProperties = value;
-            }
-        }
+        public string[] Mappings { get; set; }  // Don't rename
 
         public SolidStructureProperty GetStructurePropertiesForParent(string name)
         {

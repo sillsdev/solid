@@ -108,7 +108,7 @@ namespace SolidGui.Tests.Engine
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>entry</Parent>
-          <MultipleAdjacent>Once</MultipleAdjacent>
+          <MultipleAdjacent>MultipleTogether</MultipleAdjacent>
         </SolidStructureProperty>
       </StructureProperties>
       <Marker>lx</Marker>
@@ -121,14 +121,14 @@ namespace SolidGui.Tests.Engine
 
 				Assert.That(settings.Version, Is.EqualTo("2"));
 				var markerSettings = settings.FindOrCreateMarkerSetting("lx");
-				Assert.That(markerSettings.StructureProperties[0].Multiplicity, Is.EqualTo(MultiplicityAdjacency.Once));
+                Assert.That(markerSettings.StructureProperties[0].Multiplicity, Is.EqualTo(MultiplicityAdjacency.MultipleTogether));
 
                 string newFile = System.IO.Path.GetTempFileName();
 			    settings.SaveAs(newFile);
 				AssertThatXmlIn.File(newFile).HasAtLeastOneMatchForXpath(
 					string.Format("/SolidSettings/Version[text()='{0}']", SolidSettings.LatestVersion)
 				);
-				AssertThatXmlIn.File(newFile).HasAtLeastOneMatchForXpath("//Multiplicity[text()='Once']");
+				AssertThatXmlIn.File(newFile).HasAtLeastOneMatchForXpath("//Multiplicity[text()='MultipleTogether']");
                 File.Delete(newFile);
 			}
 		}

@@ -466,6 +466,8 @@ namespace SolidGui
             _markerSettingsModel.Root = Settings.RecordMarker;
         }
 
+        // Copy and open a .solid file. Note that any migration done here is silent. The code calling this may report it
+        // using the report object, but that's optional because the user hasn't tweaked settings yet. (Also, it's just a copy.) -JMC July 2014
         private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
             Palaso.Reporting.Logger.WriteEvent("Loading Solid file from template located at {0}", templatePath);
@@ -536,6 +538,7 @@ namespace SolidGui
                 Settings.Save();
             }
             Settings = LoadSettingsFromTemplate(path);
+
             bool forceUnicode = EncodingChooser.UserWantsUnicode(PathToCurrentDictionary);
             if (forceUnicode) Settings.SetToUnicode(); // implements #1259
             GiveSolidSettingsToModels();

@@ -143,7 +143,7 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Engine\ReportEntry.cs" />
-    <Compile Include="Engine\ResultOfOpeningSettings.cs" />
+    <Compile Include="Engine\SettingsFileReport.cs" />
     <Compile Include="Engine\SfmField.cs" />
     <Compile Include="Export\Exporter.cs" />
     <Compile Include="Export\ExportFactory.cs" />
