@@ -41,11 +41,11 @@ namespace SolidGui.Tests.Migration
   </MarkerSettings>
 </SolidSettings>".Replace('\'', '"');
 
-        // Same content, in v2 format
-        private readonly string _v2Content = @"<?xml version='1.0' encoding='utf-8'?>
+        // Same content, in the latest format
+        private readonly string _vNewContent = @"<?xml version='1.0' encoding='utf-8'?>
 <SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
   <RecordMarker>lx</RecordMarker>
-  <Version>2</Version>
+  <Version>3</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
       <Marker>lx</Marker>
@@ -58,6 +58,8 @@ namespace SolidGui.Tests.Migration
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
+      <Required>false</Required>
+      <Comments />
       <Mappings>
         <string>lex</string>
         <string>lexicalUnit</string>
@@ -91,7 +93,7 @@ namespace SolidGui.Tests.Migration
         [Test]
         public void CanReadV1AndSaveAsCurrent()
         {
-            MigrateFromTo(_v1Content, _v2Content);
+            MigrateFromTo(_v1Content, _vNewContent);
         }
 
 
@@ -148,7 +150,7 @@ namespace SolidGui.Tests.Migration
         private readonly string _omissionsCorrected = @"<?xml version='1.0' encoding='utf-8'?>
 <SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
   <RecordMarker>lx</RecordMarker>
-  <Version>2</Version>
+  <Version>3</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
       <Marker>lx</Marker>
@@ -161,6 +163,8 @@ namespace SolidGui.Tests.Migration
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
+      <Required>false</Required>
+      <Comments />
       <Mappings>
         <string />
         <string />
@@ -181,6 +185,8 @@ namespace SolidGui.Tests.Migration
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
+      <Required>false</Required>
+      <Comments />
       <Mappings>
         <string />
         <string />
@@ -195,6 +201,58 @@ namespace SolidGui.Tests.Migration
             MigrateFromTo(_omissionsV1, _omissionsCorrected);
         }
 
+
+        private readonly string _currentContent = @"<?xml version='1.0' encoding='utf-8'?>
+<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <RecordMarker>lx</RecordMarker>
+  <Version>3</Version>
+  <MarkerSettings>
+    <SolidMarkerSetting>
+      <Marker>lx</Marker>
+      <WritingSystem>lbw</WritingSystem>
+      <Unicode>true</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Required>true</Required>
+      <Comments>The root marker</Comments>
+      <Mappings>
+        <string>lex</string>
+        <string>lexicalUnit</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>le</Marker>
+      <WritingSystem>lbw</WritingSystem>
+      <Unicode>true</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Required>false</Required>
+      <Comments>Warning: no equivalent in FLEx. Lexical Function Gloss - English.</Comments>
+      <Mappings>
+        <string></string>
+        <string></string>
+      </Mappings>
+    </SolidMarkerSetting>
+  </MarkerSettings>
+</SolidSettings>".Replace('\'', '"');
+
+        [Test]
+        public void CanHandleCurrentFormatWithNoLoss()
+        {
+            MigrateFromTo(_vNewContent, _vNewContent);
+            MigrateFromTo(_omissionsCorrected, _omissionsCorrected);
+            MigrateFromTo(_currentContent, _currentContent);
+        }
 
     }
 }

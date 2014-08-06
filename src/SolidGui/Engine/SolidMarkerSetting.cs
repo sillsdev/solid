@@ -22,7 +22,7 @@ namespace SolidGui.Engine
         private bool _isUnicode;
         private List<SolidStructureProperty> _structureProperties;
         
-        public SolidMarkerSetting() : this("", false) // defaults to legacy rather than unicode -JMC
+        public SolidMarkerSetting() : this("", false) // defaults to legacy rather than unicode (legacy is actually safer) -JMC
         {
         }
 
@@ -34,9 +34,11 @@ namespace SolidGui.Engine
             _inferedParent = "";
             _writingSystemRfc4646 = "";
             _structureProperties = new List<SolidStructureProperty>();
+            NotesOrComments = "";
         }
 
-        public string Marker  // Don't rename
+        [XmlElement(ElementName = "Marker", Order = 0)]
+        public string Marker  
         {
             get
             {
@@ -48,7 +50,7 @@ namespace SolidGui.Engine
             }
         }
 
-        [XmlElement(ElementName = "WritingSystem")]
+        [XmlElement(ElementName = "WritingSystem", Order = 1)]
         public string WritingSystemRfc4646  // an "extended language subtag"; see en.wikipedia.org/wiki/IETF_language_tag  -JMC
         {
             get
@@ -63,7 +65,8 @@ namespace SolidGui.Engine
 
         // Don't rename these properties unless you're willing to specify ElementName, or to create a new version of .solid -JMC
 
-        public bool Unicode  // Don't rename
+        [XmlElement(ElementName = "Unicode", Order = 2)]
+        public bool Unicode 
         {
             get { return _isUnicode; }
             set { _isUnicode = value; }
@@ -90,7 +93,9 @@ namespace SolidGui.Engine
             return Marker;
         }
 
-        public List<SolidStructureProperty> StructureProperties  // Don't rename
+        [XmlArray("StructureProperties", Order = 3)]  
+        [XmlArrayItem("SolidStructureProperty", typeof(SolidStructureProperty))]
+        public List<SolidStructureProperty> StructureProperties  // don't rename
         {
             get 
             { 
@@ -102,7 +107,8 @@ namespace SolidGui.Engine
             }
         }
 
-        public string InferedParent  // Don't rename
+        [XmlElement("InferedParent", Order = 4)]
+        public string InferedParent 
         {
             get
             {
@@ -114,7 +120,15 @@ namespace SolidGui.Engine
             }
         }
 
-        public string[] Mappings { get; set; }  // Don't rename
+        [XmlElement("Required", Order = 5)]
+        public bool IsRequired { get; set; }
+
+        [XmlElement("Comments", Order = 6)]
+        public string NotesOrComments { get; set; }
+
+        [XmlArray("Mappings", Order = 7)]
+        [XmlArrayItem("string", typeof(string))]
+        public string[] Mappings { get; set; } 
 
         public SolidStructureProperty GetStructurePropertiesForParent(string name)
         {

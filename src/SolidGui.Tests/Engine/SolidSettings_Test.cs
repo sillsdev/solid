@@ -119,7 +119,7 @@ namespace SolidGui.Tests.Engine
 			{
 				var settings = SolidSettings.OpenSolidFile(f.Path);
 
-				Assert.That(settings.Version, Is.EqualTo("2"));
+				Assert.That(settings.Version, Is.EqualTo(SolidSettings.LatestVersion.ToString()));
 				var markerSettings = settings.FindOrCreateMarkerSetting("lx");
                 Assert.That(markerSettings.StructureProperties[0].Multiplicity, Is.EqualTo(MultiplicityAdjacency.MultipleTogether));
 

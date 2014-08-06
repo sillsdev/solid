@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml.Linq;
 using Palaso.Reporting;
+using SolidGui.MarkerSettings;
 
 namespace SolidGui.Engine
 {
@@ -21,7 +22,7 @@ namespace SolidGui.Engine
         private /*readonly*/ List<SolidMarkerSetting> _markerSettings;
         private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
-        public static readonly int LatestVersion = 2; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
+        public static readonly int LatestVersion = 3; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
         //public static readonly Encoding LegacyEncoding = Encoding.GetEncoding("iso-8859-1"); //the original
         public static readonly Encoding LegacyEncoding = Encoding.GetEncoding(1252); //my preference -JMC Feb 2014
 
@@ -44,6 +45,7 @@ namespace SolidGui.Engine
 
         private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
 
+        [XmlIgnore]
         public static List<string> FileExtensions  // added by JMC 2013-09; note that it's not read-only; might perhaps have made more sense to have this property under MainWindowPM?
         {
             get { return _fileExtensions; }
@@ -88,18 +90,10 @@ namespace SolidGui.Engine
                 _markerSettings.Count, s, GetHashCode());
         }
 
-        public string RecordMarker
-        {
-            get { return _recordMarker; }
-            set { _recordMarker = value; }
-        }
-
-        public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
-
         [XmlIgnore]
         public SettingsFileReport FileStatusReport;
 
-        private decimal getVersionNum()
+        public decimal getVersionNum()
         {
             return Convert.ToDecimal(Version);
         }
@@ -113,10 +107,23 @@ namespace SolidGui.Engine
             }
         }
 
+        [XmlElement("RecordMarker", Order = 0)]
+        public string RecordMarker
+        {
+            get { return _recordMarker; }
+            set { _recordMarker = value; }
+        }
+
+        [XmlElement("Version", Order = 1)]
+        public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
+
+        // TODO : Ideally, this shouldn't be public, and _markerSettings should be readonly
+        // don't rename this property unless you're willing to create a new version of .solid -JMC
         ///
         /// WARNING: This property's setter should only be used by the xml-mapping code  
-        // TODO : Ideally, this shouldn't be public, and _markerSettings should be readonly
-        public List<SolidMarkerSetting> MarkerSettings // don't rename this property unless you're willing to create a new version of .solid -JMC
+        [XmlArray("MarkerSettings", Order = 2)]
+        [XmlArrayItem("SolidMarkerSetting", typeof(SolidMarkerSetting))]
+        public List<SolidMarkerSetting> MarkerSettings
         {
             get { return _markerSettings; }
             set { _markerSettings = value; }
@@ -125,8 +132,29 @@ namespace SolidGui.Engine
         [XmlIgnore]
         public string FilePath { get; set; }
 
-        [XmlIgnore]
-        public bool DefaultEncodingUnicode { get; private set; }  // TODO: consider defaulting to null and calling DetermineDefaultEncoding from get, if null
+        private bool _haveDeterminedDefault = false;
+
+        private bool _defaultEncodingUnicode;
+
+        [XmlIgnore]  // might want to eventually serialize this -JMC
+        public bool DefaultEncodingUnicode
+        {
+            set
+            {
+                _defaultEncodingUnicode = value;
+                _haveDeterminedDefault = true;
+            }
+            get
+            {
+               if (!_haveDeterminedDefault)
+               {
+                   _defaultEncodingUnicode = DetermineDefaultEncoding(this);
+                   _haveDeterminedDefault = true;
+               }
+               return _defaultEncodingUnicode;
+            }
+           
+        } 
 
         // NewLine should save as "\r\n" on Windows, but now that it's centralized here, and less is hard-coded, 
         // maybe it can flex. Really, "\n" would be nicer (esp. given RichTextBox's behavior), and only using
@@ -332,11 +360,10 @@ namespace SolidGui.Engine
 
             //Migrate/load the file. (Previously, we would migrate first via XSLT, then deserialize from disk directly into objects) -JMC July 2014
             XDocument xdoc = XDocument.Load(filePath);
-            settings = LoadMarkerSettings(xdoc);
+            settings = MarkerSettingsMapper.LoadMarkerSettings(xdoc);
 
             // Set properties that aren't serialized.
             settings.FilePath = filePath;
-            settings.DefaultEncodingUnicode = DetermineDefaultEncoding(settings);
             // Fix settings for the record marker.
             SolidMarkerSetting markerSetting = settings.FindOrCreateMarkerSetting(settings.RecordMarker);
             //!!! Assert if null
@@ -444,135 +471,6 @@ namespace SolidGui.Engine
         }
 
 
-        // DATA MAPPER
-
-        // The following new methods are probably the precursor to refactoring the mapping into a true DataMapper pattern.
-        // But for now, I'm just refactoring away from serialize/deserialize (see #1218). JMC July 2014
-        // TODO: Include all of the migration from v1 to v2, then delete ye olde XSLT, (de)serialization, etc.
-
-        // TODO: Bucket list for version 3
-        // See bug: #
-        // Note: no need to "correct" infered to inferred; http://www.verbix.com/webverbix/English/infer.html
-
-        private static string GetElementValue(XElement elem, string xname, string defaultValue)
-        {
-            XElement tmp = elem.Element(xname);
-            if (tmp != null)
-            {
-                return tmp.Value;
-            }
-            else
-            {
-                return defaultValue;
-            }
-        }
-
-        // TODO: Consider returning a string instead, either empty or with message(s) to show the user (e.g. "Discarded an extraneous set of \\is marker settings. \n Inferred a default encoding of NOT-unicode." etc.)
-        // At that point, we'd add an "out" parameter for the current return value. -JMC
-        public static SolidSettings LoadMarkerSettings(XDocument xdoc)
-        {
-            XElement elem = xdoc.Element("SolidSettings");
-
-            var ss = new SolidSettings();
-
-            ss.Version = GetElementValue(elem, "Version", "1"); // if missing, assume v1  (TODO: should we report that?)
-
-            ss.RecordMarker = GetElementValue(elem, "RecordMarker", ss.RecordMarker);  // (TODO: again, report if was missing?)
-
-            XElement xParent = elem.Element("MarkerSettings"); // TODO: if missing (XML file is bad) we'll crash on null here
-
-            var msets = new List<SolidMarkerSetting>();
-            ss.MarkerSettings = msets; // Doing this up front and iteratively (not assigning from ToList() from linq) because DetermineDefaultEncoding may need to run part-way through. -JMC
-            foreach (var mset in xParent.Elements("SolidMarkerSetting"))
-            {
-                msets.Add(LoadOneMarkerSettingFromXml(mset, ss));  
-            }
-
-            // TODO: We may need a fix here, or in the method called above, to report any ignored duplicates 
-            // (multiple marker settings using the same marker); see bug #1292  
-            // Likewise, can we identify any other extraneous markers and inform the user of exactly what was dropped?
-            // Long-term, however, if inter-operating with FLEx (e.g. if .solid and .map formats are merged), 
-            // then preserving unused elements could become important. -JMC Jul 2014
-
-            string latest = LatestVersion.ToString();
-            if (ss.Version != latest)
-            {
-                ss.FileStatusReport.AppendLine( String.Format("Migrated from v{0} to v{1} of the .solid format.", ss.Version, latest) );
-                ss.Version = latest;
-            }
-
-            return ss;
-        }
-
-        // TODO: Consider returning a string instead. -JMC
-        private static SolidMarkerSetting LoadOneMarkerSettingFromXml(XElement elem, SolidSettings solidSettings)
-        {
-
-            var ms = new SolidMarkerSetting();
-
-            ms.Marker = GetElementValue(elem, "Marker", null);  //TODO: report if missing?
-
-            //if (solidSettings.getVersionNum() <= 2) // as of v3 we could maybe allow omitting this per-field (fall back to solidSettings.DefaultEncodingUnicode) -JMC
-            string uni = GetElementValue(elem, "Unicode", null); // JMC: currently that null will cause a crash (specifying this for every field is required in v1 and v2)
-            ms.Unicode = Convert.ToBoolean(uni) ? (uni != null) : SolidSettings.DetermineDefaultEncoding(solidSettings); //TODO: report if had to be determined
-
-            ms.WritingSystemRfc4646 = (string) elem.Element("WritingSystem");
-
-            ms.InferedParent = GetElementValue(elem, "InferedParent", ""); // optional field
-
-            ms.Mappings = LoadOneMappingSet(elem.Element("Mappings"), ms.Marker, solidSettings);
-
-            ms.StructureProperties = LoadStructureProperties(elem.Element("StructureProperties"), ms.Marker, solidSettings);
-
-            return ms;
-        }
-
-        // TODO: Use a specific XML element (and object property) for LIFT, a different one for FLEX, etc. Or, simplify down to one. -JMC
-        // A string array is brittle--it relies on the ordering of the XML values, and an unchanging enum: 
-        // Versions 1-2 would need to be auto-migrated from string[]
-        private static string[] LoadOneMappingSet(XElement oneMappingPair, string marker, SolidSettings ss)
-        {
-            if (oneMappingPair != null)
-            {
-                return oneMappingPair.Elements("string").Select(m => m.Value).ToArray();  // linq (lambda / method syntax)                
-                // TODO: verify there were exactly two returned values; report if not
-            }
-            // TODO: report a problem?
-            ss.FileStatusReport.AppendLine("Marker " + marker + ": No mappings found--setting them to blank.");
-            return new string[] {"", ""};
-        }
-
-        private static List<SolidStructureProperty> LoadStructureProperties(XElement elem, string marker, SolidSettings solidSettings)
-        {
-            return elem.Elements("SolidStructureProperty").Select(e => LoadOneStructureProperty(e, marker, solidSettings)).ToList();
-        }
-
-        private static SolidStructureProperty LoadOneStructureProperty(XElement e, string marker, SolidSettings solidSettings)
-        {
-            var parent = new SolidStructureProperty();
-            parent.Parent = GetElementValue(e, "Parent", solidSettings.RecordMarker);  // default to @"\lx"
-
-            string mult; // <Multiplicity> , or in v1, <MultipleAdjacent>
-            if (solidSettings.getVersionNum() < 2)
-            {
-                mult = GetElementValue(e, "MultipleAdjacent", "Once"); // default to "Once" (TODO: if inferred, report that?)
-            }
-            else
-            {
-                mult = GetElementValue(e, "Multiplicity", "Once"); // default to "Once" (TODO: if inferred, report that?)
-            }
-
-            MultiplicityAdjacency multAdj;
-            bool success = Enum.TryParse(mult, true, out multAdj);
-            if (!success)
-            {
-                solidSettings.FileStatusReport.AppendLine("Marker " + marker + ": Unable to interpret Multiplicity setting. Defaulting to Once.");
-                multAdj = MultiplicityAdjacency.Once;
-            }
-
-            parent.Multiplicity = multAdj;
-            return parent;
-        }
 
     }
 }

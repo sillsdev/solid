@@ -171,6 +171,7 @@
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="AppWritingSystems.cs" />
+    <Compile Include="MarkerSettings\MarkerSettingsMapper.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
     <Compile Include="Model\RecordFormatter.cs" />
