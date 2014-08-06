@@ -20,7 +20,7 @@ namespace SolidGui.Engine
         public class LineItem
         {
             private int _tally = 0;
-            private int _maxToList = 9;
+            private int _maxToList;
             private string _markers = "";
             private string _messageTemplate = "Error affecting {0} marker(s):{1}"; // needs to have at least these two slots
 
@@ -72,7 +72,8 @@ namespace SolidGui.Engine
 
         public string GetReport()
         {
-            var sb = new StringBuilder(_reportBuilder.ToString().Trim());
+            var sb = new StringBuilder();
+            sb.AppendLine(_reportBuilder.ToString().Trim());
             foreach(var key in Messages.Keys)
             {
                 string s = Messages[key].ToString();
@@ -88,7 +89,7 @@ namespace SolidGui.Engine
 
         public void AppendLine(string s)
         {
-            _reportBuilder.AppendLine(s + ""); // + any specifically counted/summarized issues
+            _reportBuilder.AppendLine(s);
         }
 
         // TODO: add methods for tallying up a given error/change across a bunch of markers, returning a
@@ -116,11 +117,23 @@ namespace SolidGui.Engine
 
         public void AddKey(string key, string message)
         {
-            Messages.Add(key, new LineItem(message));
+            AddKey(key, message, 4);
         }
 
+        /// <summary>
+        /// Can be used in two ways:
+        /// 1. Define a long message and a short key in advance (AddKey), then report using the short key.
+        /// 2. Directly report, without a short key. The long message itself will be the key.
+        /// Have mostly transitioned from 1 to 2.
+        /// </summary>
+        /// <param name="key">The error to be tallied.</param>
+        /// <param name="marker">The marker whose settings it occurred under.</param>
         public void ReportProblem(string key, string marker)
         {
+            if (!Messages.ContainsKey(key))
+            {
+                AddKey(key, key);
+            }
             Messages[key].Tally(marker);
         }
     }

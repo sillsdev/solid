@@ -239,8 +239,8 @@ namespace SolidGui.Tests.Migration
       <Required>false</Required>
       <Comments>Warning: no equivalent in FLEx. Lexical Function Gloss - English.</Comments>
       <Mappings>
-        <string></string>
-        <string></string>
+        <string />
+        <string />
       </Mappings>
     </SolidMarkerSetting>
   </MarkerSettings>
