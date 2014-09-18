@@ -422,7 +422,7 @@ namespace SolidGui
                 Settings = LoadSettingsFromTemplate(templatePath);
                 if (forceUnicode)
                 {
-                    Settings.SetToUnicode(); // implements #1259
+                    Settings.SetAllUnicodeTo(true); // implements #1259
                     saveSettings = true;
                 }
             }
@@ -540,7 +540,7 @@ namespace SolidGui
             Settings = LoadSettingsFromTemplate(path);
 
             bool forceUnicode = EncodingChooser.UserWantsUnicode(PathToCurrentDictionary);
-            if (forceUnicode) Settings.SetToUnicode(); // implements #1259
+            if (forceUnicode) Settings.SetAllUnicodeTo(true); // implements #1259
             GiveSolidSettingsToModels();
             ProcessLexicon();
             Settings.Save(); // Together with one other line, fixes bug #1260

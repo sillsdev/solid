@@ -108,6 +108,8 @@ namespace SolidGui
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._switchlToUnicodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._switchlToLegacyMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -512,7 +514,9 @@ namespace SolidGui
             this._markersMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._propertiesMenuItem,
             this._switchTemplatesMenuItem,
-            this._changeWritingSystemsMenuItem});
+            this._changeWritingSystemsMenuItem,
+            this._switchlToUnicodeMenuItem,
+            this._switchlToLegacyMenuItem});
             this._markersMenuItem.Name = "_markersMenuItem";
             this._markersMenuItem.Size = new System.Drawing.Size(61, 22);
             this._markersMenuItem.Text = "&Markers";
@@ -811,6 +815,20 @@ namespace SolidGui
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
             // 
+            // _switchlToUnicodeMenuItem
+            // 
+            this._switchlToUnicodeMenuItem.Name = "_switchlToUnicodeMenuItem";
+            this._switchlToUnicodeMenuItem.Size = new System.Drawing.Size(243, 22);
+            this._switchlToUnicodeMenuItem.Text = "Switch all to Unicode";
+            this._switchlToUnicodeMenuItem.Click += new System.EventHandler(this._switchlToUnicodeMenuItem_Click);
+            // 
+            // _switchlToLegacyMenuItem
+            // 
+            this._switchlToLegacyMenuItem.Name = "_switchlToLegacyMenuItem";
+            this._switchlToLegacyMenuItem.Size = new System.Drawing.Size(243, 22);
+            this._switchlToLegacyMenuItem.Text = "Switch all to Legacy";
+            this._switchlToLegacyMenuItem.Click += new System.EventHandler(this._switchlToLegacyMenuItem_Click);
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -928,6 +946,8 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripMenuItem _trimSpacesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _globallyDeleteFieldsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unwrapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _switchlToUnicodeMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _switchlToLegacyMenuItem;
     }
 }
 

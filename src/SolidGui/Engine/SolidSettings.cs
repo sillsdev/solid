@@ -186,18 +186,6 @@ namespace SolidGui.Engine
             return result;
         }
 
-        /// <summary>
-        /// Sets all marker settings to unicode. Typically called just after the user has selected a template and encoding.
-        /// </summary>
-        public void SetToUnicode()
-        {
-            DefaultEncodingUnicode = true;
-            foreach (SolidMarkerSetting markerSetting in this.MarkerSettings)
-            {
-                markerSetting.Unicode = true;
-            }
-        } 
-
         public int FindReplaceWs(string fromWritingSystem, string toWritingSystem)
         {
             int count = 0;
@@ -299,6 +287,16 @@ namespace SolidGui.Engine
             }
 
             return OpenSolidFile(outputFilePath);
+        }
+
+        public void SetAllUnicodeTo(bool isUnicode)
+        {
+            DefaultEncodingUnicode = isUnicode;
+            _haveDeterminedDefault = true;
+            foreach (var ms in _markerSettings)
+            {
+                ms.Unicode = isUnicode;
+            }
         }
 
         /// <summary>

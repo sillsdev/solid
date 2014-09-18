@@ -819,6 +819,20 @@ Notes:
             Search();
         }
 
+        private void _switchlToUnicodeMenuItem_Click(object sender, EventArgs e)  // implements #1303
+        {
+            _mainWindowPM.Settings.SetAllUnicodeTo(true);
+            _mainWindowPM.needsSave = true;
+            this.UpdateDisplay();
+        }
+
+        private void _switchlToLegacyMenuItem_Click(object sender, EventArgs e)  // implements #1303
+        {
+            _mainWindowPM.Settings.SetAllUnicodeTo(false);
+            _mainWindowPM.needsSave = true;
+            this.UpdateDisplay();
+        }
+
 
     }
 }
