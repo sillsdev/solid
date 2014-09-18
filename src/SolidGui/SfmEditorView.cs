@@ -145,7 +145,7 @@ namespace SolidGui
             IsDirty = false;
             if (_model.Settings != null)
             {
-                _model.Settings.NotifyIfNewMarkers();
+                _model.Settings.NotifyIfNewMarkers(true);
             }
             //ContentsBox.SelectionStart = currentIndex;
         }

@@ -264,6 +264,11 @@ namespace SolidGui.Processes
         // Recursive
         private static void AddClosers(SfmFieldModel node)
         {
+            if (node == null)
+            {
+                return;
+            }
+
             if (node.Closers == null)
             {
                 node.Closers = new List<string>();

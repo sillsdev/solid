@@ -29,7 +29,7 @@ namespace SolidGui.Engine
         public SolidSettings(List<SolidMarkerSetting> ms)
         {
             Version = LatestVersion.ToString();
-            DefaultEncodingUnicode = false;
+            // DefaultEncodingUnicode = false; // Should not explicitly set this to false anymore. Removing this line fixes bug #270
             _markerSettings = ms;
             _newlyAdded = new List<SolidMarkerSetting>();
             FileStatusReport = new SettingsFileReport();
@@ -146,11 +146,6 @@ namespace SolidGui.Engine
             }
             get
             {
-               if (!_haveDeterminedDefault)
-               {
-                   _defaultEncodingUnicode = DetermineDefaultEncoding(this);
-                   _haveDeterminedDefault = true;
-               }
                return _defaultEncodingUnicode;
             }
            
@@ -183,6 +178,7 @@ namespace SolidGui.Engine
             SolidMarkerSetting result = FindMarkerSetting(marker);
             if (result == null)
             {
+                if (!_haveDeterminedDefault) DetermineDefaultEncodingUnicode(this);
                 result = new SolidMarkerSetting(marker, DefaultEncodingUnicode);
                 _markerSettings.Add(result);
                 _newlyAdded.Add(result);  // In some cases, the calling code should notify the user of new fields detected.
@@ -225,7 +221,7 @@ namespace SolidGui.Engine
         }
 
 
-        public void NotifyIfNewMarkers()  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
+        public void NotifyIfNewMarkers(bool thenCheckMixedEncodings)  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
         {
             if (_newlyAdded == null || _newlyAdded.Count < 1) return;
             var sb = new StringBuilder("New marker(s) added: ");
@@ -236,7 +232,10 @@ namespace SolidGui.Engine
             sb.Append(". Will appear upon Recheck.\n");
             MessageBox.Show(sb.ToString(), "New Marker(s) Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             _newlyAdded = new List<SolidMarkerSetting>(); //clear it out (don't keep notifying)
-
+            if (thenCheckMixedEncodings)
+            {
+                NotifyIfMixedEncodings();
+            }
         }
 
         // JMC: This should probably be called once after every File Open. Especially because, even though most users don't need mixed encodings,
@@ -309,15 +308,17 @@ namespace SolidGui.Engine
         /// </summary>
         /// <param name="settings">A valid, already loaded set of settings, preferably including the record marker.</param>
         /// <returns>true (unicode) or false (legacy)</returns>
-        public static bool DetermineDefaultEncoding(SolidSettings settings) // Added by JMC 2013-09  //TODO: move this into a private, non-static method called on first get. -JMC
+        public static bool DetermineDefaultEncodingUnicode(SolidSettings settings) // Added by JMC 2013-09  //TODO: move this into a private, non-static method called on first get. -JMC
         {
             SolidMarkerSetting recordMarker = settings.FindMarkerSetting(settings.RecordMarker);
             if (!(recordMarker == null))
             {
-                return recordMarker.Unicode;
+                settings.DefaultEncodingUnicode = recordMarker.Unicode;
             }
             else
             {
+                //This generally shouldn't happen, but it could if lx isn't the first marker in the .solid file
+                //and an earlier marker's unicode isn't specified.
                 int countTrue = 0;
                 int countFalse = 0;
                 foreach (string m in settings.Markers)
@@ -333,13 +334,14 @@ namespace SolidGui.Engine
                 }
                 if (countTrue > countFalse)
                 {
-                    return true;
+                    settings.DefaultEncodingUnicode = true;
                 }
                 else
                 {
-                    return false;
+                    settings.DefaultEncodingUnicode = false;
                 }
             }
+            return settings.DefaultEncodingUnicode;
         }
 
         /// <summary>

@@ -122,8 +122,8 @@ namespace SolidGui.MarkerSettings
             //if (solidSettings.getVersionNum() <= 8) // at some point we could maybe allow omitting this per-field (fall back to solidSettings.DefaultEncodingUnicode) -JMC
 
 
-            string uni = GetElementValue(elem, "Unicode", "false", ss.FileStatusReport, "Found {0} marker(s) with no Encoding: using legacy: {1}", ms.Marker);
-            ms.Unicode = Convert.ToBoolean(uni) ? (uni != null) : SolidSettings.DetermineDefaultEncoding(ss);
+            string uni = GetElementValue(elem, "Unicode", null, ss.FileStatusReport, "Found {0} marker(s) with no Encoding: using legacy: {1}", ms.Marker);
+            ms.Unicode = (uni != null) ? Convert.ToBoolean(uni) : SolidSettings.DetermineDefaultEncodingUnicode(ss);
 
             ms.WritingSystemRfc4646 = GetElementValue(elem, "WritingSystem", "", ss.FileStatusReport, "Found {0} marker(s) with no WS; using '': {1}", ms.Marker);
 

@@ -31,7 +31,7 @@ namespace SolidGui.Tests.Engine
             var s3 = f.FindOrCreateMarkerSetting("dn");
             s3.Unicode = false;
             Assert.IsTrue(f.RecordMarker == "lx");
-            Assert.IsTrue(SolidSettings.DetermineDefaultEncoding(f));
+            Assert.IsTrue(SolidSettings.DetermineDefaultEncodingUnicode(f));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace SolidGui.Tests.Engine
             var s3 = f.FindOrCreateMarkerSetting("dn");
             s3.Unicode = false;
             Assert.IsFalse(f.RecordMarker == "lex");
-            Assert.IsFalse(SolidSettings.DetermineDefaultEncoding(f));
+            Assert.IsFalse(SolidSettings.DetermineDefaultEncodingUnicode(f));
         }
         [Test]
         public void SolidSettings_WriteRead_HasMarker()

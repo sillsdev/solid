@@ -120,7 +120,7 @@ namespace SolidGui
 
             // Usually there'll only be one, but the readers lets us handle multiple \lx in a single "record"--the result of recent user edits (issue #173)
             var reader = SfmRecordReader.CreateFromText(newContents);
-            reader.AllowLeadingWhiteSpace = true;
+            reader.AllowLeadingWhiteSpace = true; // in case the UI added any; I currently have it using indentation instead. -JMC
 
             int i = -1;
             //foreach (var r in records)
@@ -131,7 +131,8 @@ namespace SolidGui
                 // Remove the inferred markers from the text
                 RemoveInferredFields(sfmRecord);
 
-                // At this point, this one record is stored in one clean string, ostensibly all UTF-16
+                // At this point, this one record is stored in one clean string, ostensibly all UTF-16  -?
+
                 // Encode the value correctly as per the solid marker settings (either utf-8 or SolidSettings.LegacyEncoding),
                 // just as if we were already writing to disk? Is each utf-8 byte simply dumped into a two-byte char? -JMC
 
@@ -157,7 +158,7 @@ namespace SolidGui
                     // JMC:! The following (append) works, but it would be nicer to insert into our current position in the file and filter.
                     _model.WorkingDictionary.AddRecord(tmp);
                     // JMC:! Update the filter; make sure this works for SolidErrorRecordFilter too 
-                    var ef = f as SolidErrorRecordFilter;  // does an "is" check and a cast
+                    var ef = f; // as SolidErrorRecordFilter;  // does an "is" check and a cast
                     if (ef != null)
                     {
                         ef.AddEntry(_model.WorkingDictionary.Count-1); // JMC:! append; insert w/b better

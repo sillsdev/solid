@@ -20,7 +20,7 @@ namespace SolidGui.Filter
         }
     }
 
-    // Wraps a RecordManager and is itself a RecordManager (specificall a RecordManagerDecorator). But it overrides most methods (for indexing/moving). -JMC
+    // Wraps a RecordManager and is itself a RecordManager (specifically a RecordManagerDecorator). But it overrides most methods (for indexing/moving). -JMC
     public abstract class RecordFilter : RecordManagerDecorator  // Decided this class could be declared abstract. (E.g. Update() wasn't really implemented.) -JMC
     {
         protected string _name;
@@ -59,6 +59,15 @@ namespace SolidGui.Filter
             return _indexesOfRecords.GetEnumerator();
         }
         */
+
+        public void AddEntry(int sfmLexEntryIndex)
+        {
+            //if (!_indexesOfRecords.Contains(sfmLexEntryIndex))  // Was too inefficient. See #1278 regarding this bottleneck. -JMC
+            if ((Count == 0) || (_indexesOfRecords[Count - 1] != sfmLexEntryIndex)) // If the same record has the same error multiple time, just store the record once per filter
+            {
+                _indexesOfRecords.Add(sfmLexEntryIndex);
+            }
+        }
 
         public override Record Current
         {

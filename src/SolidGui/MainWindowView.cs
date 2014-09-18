@@ -305,7 +305,7 @@ namespace SolidGui
                     MessageBox.Show(migrationReport, "Settings Migrated or Corrected", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                _mainWindowPM.Settings.NotifyIfNewMarkers();
+                _mainWindowPM.Settings.NotifyIfNewMarkers(false);
                 string msg = _mainWindowPM.Settings.NotifyIfMixedEncodings();
                 if (msg != "")
                 {
@@ -591,11 +591,6 @@ namespace SolidGui
             _searchDialog.ShowHelp();
         }
 
-        private void MainWindowView_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
-
         // These keystrokes are mostly redundant now that I've underlined button letters, but I'm leaving them in in case anyone's used to them. -JMC 2013-10
         private void MainWindowView_KeyUp(object sender, KeyEventArgs e)
         {
@@ -757,7 +752,7 @@ namespace SolidGui
         {
             if (_sfmEditorView.IsDirty)
             {
-                _sfmEditorView.UpdateModelAndView();
+                _sfmEditorView.UpdateModelAndView();  // JMC: Why do this now?
             }
         }
 

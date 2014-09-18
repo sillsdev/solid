@@ -827,7 +827,6 @@ namespace SolidGui
             this.Deactivate += new System.EventHandler(this.MainWindowView_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindowView_FormClosing);
             this.Load += new System.EventHandler(this.MainWindowView_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainWindowView_KeyUp);
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
