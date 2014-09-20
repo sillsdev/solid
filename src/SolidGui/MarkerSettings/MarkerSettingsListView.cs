@@ -249,7 +249,7 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("writingSystem");
+            OpenSettingsDialog("structure");
         }
 
 

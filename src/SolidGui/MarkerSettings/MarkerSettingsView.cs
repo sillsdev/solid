@@ -19,14 +19,14 @@ namespace SolidGui.MarkerSettings
         // JMC: Would it be better to put it in Dispose()? Probably.
         private readonly WritingSystemSetupDialog _wsDialog;
 
-        private bool Initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
+        private bool _initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
 
         private SolidMarkerSetting _currentMarkerSetting;
         public MarkerSettingsPM MarkerModel { get; set; }
 
         public MarkerSettingsView()
         {
-            Initializing = true;
+            _initializing = true;
             InitializeComponent();
             if (DesignMode) // Without this, the Palaso code crashes Visual Studio's Designer because it now demands explicit Dispose() -JMC Feb 2014
             {
@@ -47,7 +47,7 @@ namespace SolidGui.MarkerSettings
 
         public void UpdateModel()
         {
-            if (Initializing) return;
+            if (_initializing) return;
 
             if (!_wsModel.HasCurrentSelection)
             {
@@ -97,7 +97,7 @@ namespace SolidGui.MarkerSettings
             _cbUnicode.Checked = _currentMarkerSetting.Unicode;
 
             SelectInitialArea(initialArea);
-            Initializing = false;
+            _initializing = false;
         }
 
         private void SelectInitialArea(string initialArea)
