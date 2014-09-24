@@ -115,8 +115,7 @@ namespace SolidGui.Model
             if(LexEntry.Fields[id].Value != value)
             {
                 LexEntry.Fields[id].Value = value;
-                if (RecordTextChanged != null)
-                    RecordTextChanged.Invoke(this, EventArgs.Empty);
+                if (RecordTextChanged != null) RecordTextChanged.Invoke(this, EventArgs.Empty);
             }
         }
 

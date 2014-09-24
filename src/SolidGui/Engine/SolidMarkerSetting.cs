@@ -34,7 +34,7 @@ namespace SolidGui.Engine
             _inferedParent = "";
             _writingSystemRfc4646 = "";
             _structureProperties = new List<SolidStructureProperty>();
-            NotesOrComments = "";
+            Comment = "";
         }
 
         [XmlElement(ElementName = "Marker", Order = 0)]
@@ -124,7 +124,7 @@ namespace SolidGui.Engine
         public bool IsRequired { get; set; }
 
         [XmlElement("Comments", Order = 6)]
-        public string NotesOrComments { get; set; }
+        public string Comment { get; set; }
 
         [XmlArray("Mappings", Order = 7)]
         [XmlArrayItem("string", typeof(string))]

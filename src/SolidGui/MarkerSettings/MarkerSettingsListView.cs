@@ -28,8 +28,13 @@ namespace SolidGui.MarkerSettings
         private bool _changingFilter = false;
         public event EventHandler MarkerSettingPossiblyChanged;
 
+        // top left
+        private int _xOfDialog = -90;
+        private int _yOfDialog = -90; 
+
         private SfmDictionary _dictionary; // /  JMC:! I'd like to pull this out, and access it via MainWindowPM.
         private MarkerSettingsPM _markerSettingsPm;  // JMC:!! Ditto esp. for this one, since it can't pick up on GiveSolidSettingsToModels
+        private MarkerSettingsDialog _markerSettingsDialog;  // added so this can be a non-modal dialog. -JMC Sep 2014
 
         public MarkerSettingsListView()
         {
@@ -59,16 +64,15 @@ namespace SolidGui.MarkerSettings
             //UpdateDisplay();
         }
 
-        private GLItem MakeListItem (KeyValuePair<string, int> pair)
+        private GLItem FillListItem (KeyValuePair<string, int> pair, GLItem item)
         {
-            var item = new GLItem(); 
             item.SubItems.Add(pair.Key);  // MARKER
 
             //The order these are called in matters
             FillInFrequencyColumn(item, pair.Value.ToString());  // COUNT
 
             SolidMarkerSetting markerSetting = _markerSettingsPm.SolidSettings.FindOrCreateMarkerSetting(pair.Key);
-            AddLinkSubItem(item, MakeStructureLinkLabel(markerSetting.StructureProperties, markerSetting), OnStructureLinkClicked);  // UNDER
+            AddLinkSubItem(item, MarkerSettingsPM.MakeStructureLinkLabel(markerSetting.StructureProperties, markerSetting), OnStructureLinkClicked);  // UNDER
 
             AddLinkSubItem(item, MakeWritingSystemLinkLabel(markerSetting.WritingSystemRfc4646), OnWritingSystemLinkClicked);  // WS
 
@@ -78,11 +82,18 @@ namespace SolidGui.MarkerSettings
 
             AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked); //LIFT 
 
+            item.SubItems.Add(markerSetting.Comment);  // COMMENT
+
             //FillInErrorColumn(item, _dictionary.MarkerErrors[pair.Key]);
             return item;
         }
-        
+
         public void UpdateDisplay()
+        {
+            UpdateDisplay(false);
+        }
+
+        public void UpdateDisplay(bool fullRefresh)
         {
             if (DesignMode) return;
 
@@ -93,35 +104,55 @@ namespace SolidGui.MarkerSettings
                 previouslySelectedMarker = _markerListView.SelectedItems[0].Text;
             }
 
-            _markerListView.Items.Clear();
-            //_markerListView.MySortBrush  = null;
-            // _markerListView.MySortBrush = Brushes.Coral;
-            // _markerListView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
-
-//            ImageList colimglst = new ImageList();
-//            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
-//            _markerListView.SmallImageList = colimglst;
-
-            // if (_settings == null) return;  // Could add this check, but it would mask a bad state. -JMC
-
-            if (_dictionary == null) return;
-            // Here we either need to lock here (and elsewhere) for thread safety and use for(), or make a copy.  http://projects.palaso.org/issues/1279
-            // Using foreach() is nicer, and it's not a huge dataset, so I'm making a copy. -JMC July 2014
-            KeyValuePair<string, int>[] tmp = _dictionary.MarkerFrequencies.ToArray(); // copy
-            foreach (KeyValuePair<string, int> pair in tmp)
+            if (fullRefresh)
             {
-                GLItem item = MakeListItem(pair);
-                _markerListView.Items.Add(item);
+                _markerListView.Items.Clear();
+                //_markerListView.MySortBrush  = null;
+                // _markerListView.MySortBrush = Brushes.Coral;
+                // _markerListView.MyHighlightBrush = System.Drawing.SystemBrushes.Highlight;
+
+                //            ImageList colimglst = new ImageList();
+                //            colimglst.ImageSize = new Size(20, 20); // this will affect the row height
+                //            _markerListView.SmallImageList = colimglst;
+
+                if (_dictionary == null) return;
             }
 
-            //           _markerListView.Sorting = SortOrder.Ascending;
-            //          _markerListView.Sort();
+            if (!fullRefresh)
+            {
+                foreach(GLItem item in _markerListView.Items)
+                {
+                    string key = item.Text;
+                    int value = _dictionary.MarkerFrequencies[key];
+                    var pair = new KeyValuePair<string, int>(key, value);
+                    item.SubItems.Clear();
+                    FillListItem(pair, item);
+                }
+            }
+            else
+            {
+                // Here we either need to lock here (and elsewhere) for thread safety and use for(), or make a copy.  http://projects.palaso.org/issues/1279
+                // Using foreach() is nicer, and it's not a huge dataset, so I'm making a copy. -JMC July 2014
+                KeyValuePair<string, int>[] tmp = _dictionary.MarkerFrequencies.ToArray(); // copy
+                foreach (KeyValuePair<string, int> pair in tmp)
+                {
+                    GLItem item = new GLItem();
+                    FillListItem(pair, item);
+                    _markerListView.Items.Add(item);
+                }
 
-            _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
-            _markerListView.SortColumn(0); // TODO: review... how to keep the old order?
-            SelectMarker(previouslySelectedMarker);
+                //           _markerListView.Sorting = SortOrder.Ascending;
+                //          _markerListView.Sort();
 
-            Workaround(_markerListView);
+                _markerListView.Columns[0].LastSortState = SortDirections.SortAscending;
+                _markerListView.SortColumn(0); // TODO: review... how to keep the old order? -CP
+                SelectMarker(previouslySelectedMarker);
+
+                Workaround(_markerListView);
+            }
+
+            Refresh();
+            UpdateDisplayOfSettingsDialog();
 
         }
 
@@ -186,35 +217,6 @@ namespace SolidGui.MarkerSettings
             return mapping ?? "??";
         }
 
-        // TODO: Move this to a non-UI location and make it public. (E.g. useful in debugging, could be called by various ToString(), etc.) -JMC
-        private static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties, SolidMarkerSetting markerSetting)
-        {
-            string parents = "";
-
-            foreach (SolidStructureProperty property in properties)
-            {
-                if (!string.IsNullOrEmpty(property.Parent))
-                {
-                    if (parents!= "")
-                    {
-                        parents += ", ";
-                    }
-                    parents += String.Format("{0} ({1})", property.Parent, property.Multiplicity.Abbr());
-                }
-            }
-            if (parents == "")
-            {
-                parents = "???";
-            }
-
-            if (!String.IsNullOrEmpty(markerSetting.InferedParent))  //implements issue #1272 -JMC Mar 2014
-            {
-                parents += "; [+" + markerSetting.InferedParent + "]";
-            }
-
-            return parents;
-        }
-
         private static void AddLinkSubItem(GLItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
         {
             var label = new LinkLabel();
@@ -242,14 +244,14 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("structure");
+            OpenSettingsDialog(MarkerSettingsDialog.firstTab);
         }
 
         private void OnWritingSystemLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("structure");
+            OpenSettingsDialog(MarkerSettingsDialog.firstTab);
         }
 
 
@@ -257,7 +259,7 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem)((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog("mapping"); //, SolidMarkerSetting.MappingType.Lift);
+            OpenSettingsDialog(MarkerSettingsDialog.mappingTab);
         }
 
         // When someone changes the filter in the PM
@@ -265,6 +267,7 @@ namespace SolidGui.MarkerSettings
         {
 
             _changingFilter = true; // prevents event-firing loops -JMC
+            string marker = "";
 
             // Remove the selection (start with blank slate)
             _markerListView.Items.ClearSelection();
@@ -279,19 +282,39 @@ namespace SolidGui.MarkerSettings
             _markerListView.FocusedItem = null;
 
             // Find the new filter in our list and select it
-            int n = 0;
-            foreach (var filter in _markerListView.Items)
+            if (e.RecordFilter != null)
             {
-                //JMC:! don't we need to cast filter from object to RecordFilter ?
-                if (filter == e.RecordFilter)
+                foreach (GLItem gItem in _markerListView.Items)
                 {
-                    _markerListView.Items[n].Selected = true;
-                    break;
+                    string m = MarkerFilter.Label + gItem.Text;
+                    if (m == e.RecordFilter.Name)
+                    {
+                        marker = gItem.Text;
+                        gItem.Selected = true;
+
+                        break;
+                    }
                 }
-                n++;
             }
 
             _changingFilter = false;
+
+            // changing to a marker filter should update any open settings dialog, to keep it in sync (#1283)
+            if (marker != "" && _markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
+            {
+                _markerSettingsDialog.SetMarker(marker);
+                _markerSettingsDialog.UpdateDisplay();
+            }
+        }
+
+        public void CloseSettingsDialog()
+        {
+            if(_markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
+            {
+                _markerSettingsDialog.Close();
+                _markerSettingsDialog.Dispose();
+            }
+            _markerSettingsDialog = null;
         }
 
         public bool OpenSettingsDialog(string area)
@@ -303,23 +326,55 @@ namespace SolidGui.MarkerSettings
             }
             if (String.IsNullOrEmpty(area))
             {
-                area = "structure";
+                area = MarkerSettingsDialog.firstTab;
             }
 
             UsageReporter.SendNavigationNotice("Settings/"+area);
 
             string marker = _markerListView.SelectedItems[0].Text;
-            var dialog = new MarkerSettingsDialog(_markerSettingsPm, marker);
-            dialog.SelectedArea = area;
-            dialog.ShowDialog();
-            if (MarkerSettingPossiblyChanged != null)
-            {
-                MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
-            }
 
+            if (_markerSettingsDialog == null || _markerSettingsDialog.IsDisposed)
+            {
+                _markerSettingsDialog = new MarkerSettingsDialog(_markerSettingsPm, marker, area);
+
+                _markerSettingsDialog.Left = _xOfDialog;
+                _markerSettingsDialog.Top = _yOfDialog;
+                var myDelegate = new EventHandler(OnMarkerSettingPossiblyChanged);
+                _markerSettingsDialog.Listen(myDelegate); //wire it up (to be responsive to the non-modal dialog)
+                _markerSettingsDialog.BringToFront();
+
+                Screen scr = Screen.FromControl(this);
+                _xOfDialog = scr.WorkingArea.Left + 1; //scr.WorkingArea.Width - this.Width;  // nearly top-right
+                _yOfDialog = scr.WorkingArea.Top + 1; //_searchDialog.Top = scr.WorkingArea.Height - (_searchDialog.Height);
+            }
+            else
+            {
+                _markerSettingsDialog.SetArea(area);
+                _markerSettingsDialog.SetMarker(marker);
+            }
+            _markerSettingsDialog.Hide();
+            _markerSettingsDialog.UpdateDisplay();
+            _markerSettingsDialog.Show();  //was .ShowDialog();
+
+            return true;
+        }
+
+        private void UpdateDisplayOfSettingsDialog()
+        {
+            if (_markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
+            {
+                _markerSettingsDialog.UpdateDisplay();
+            }
+        }
+
+        private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
+        {
+            if (MarkerSettingPossiblyChanged != null) MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
+
+            /* the above now causes the whole app to update anyway
             UpdateDisplay(); //more effective at highlighting the row: rebuild all rows
             //UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));  //this was more efficient: update one row; but it adds maintenance overhead, and doesn't highlight the row. Removed. -JMC Feb 2014
-            return true;
+             */
         }
 
         public void SelectMarker(string marker)
@@ -357,7 +412,7 @@ namespace SolidGui.MarkerSettings
             {
                 _markerSettingsPm.WillNeedSave();
                 m.Unicode = !m.Unicode;
-                MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
+                if (MarkerSettingPossiblyChanged != null) MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
             }
         
         }
@@ -366,9 +421,6 @@ namespace SolidGui.MarkerSettings
         {
             OpenSettingsDialog(null);
         }
-
-
-
     }
 
 }

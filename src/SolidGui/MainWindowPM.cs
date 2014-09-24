@@ -257,7 +257,8 @@ namespace SolidGui
                 // We need to get in sync with the dialog's indentation
                 _editorRecordFormatter = rf;
                 var args = new RecordFormatterChangedEventArgs(rf);
-                if (updateSearchView) EditorRecordFormatterChanged.Invoke(this, args); // this if is intended to block ping-ponging invokes -JMC
+                if (updateSearchView)  // this if is intended to block ping-ponging invokes -JMC
+                    if (EditorRecordFormatterChanged != null) EditorRecordFormatterChanged.Invoke(this, args);
 
                 /*
                 _editorRecordFormatter = new RecordFormatter();  //JMC:! Need a rich text subclass here!
@@ -449,10 +450,7 @@ namespace SolidGui
 
             if (_workingDictionary.Open(f, Settings, _recordFilters))  
             {
-                if (DictionaryProcessed != null)
-                {
-                    DictionaryProcessed.Invoke(this, EventArgs.Empty);
-                }
+                if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);
                 if (saveSettings) Settings.Save(); // Together with one other line, fixes bug #1260
                 return true;
             }
@@ -497,10 +495,7 @@ namespace SolidGui
 
             _workingDictionary.Open(newPath, Settings, _recordFilters);
 
-            if (DictionaryProcessed != null)
-            {
-                DictionaryProcessed.Invoke(this, EventArgs.Empty);
-            }
+            if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);
         }
 
         public void SolidSettingsSaveAs(string filePath)

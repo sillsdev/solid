@@ -12,6 +12,7 @@ using System.Xml.Xsl;
 using Palaso.Code;
 using Palaso.Xml;
 using SolidGui.Engine;
+using SolidGui.Export;
 using SolidGui.MarkerSettings;
 
 namespace SolidGui.Mapping
@@ -26,38 +27,34 @@ namespace SolidGui.Mapping
         private List<MappingSystem> _systems;
         private MappingSystem _targetSystem;
         private SolidMarkerSetting _markerSetting;
-        private Concept _selectedConcept;
-        private SolidMarkerSetting.MappingType _type;
+        private Concept _selectedConcept;  // e.g. a LIFT field
         public MarkerSettingsPM MarkerModel;  //added so we can support WillNeedSave -JMC Feb 2014
+        public bool IsProcessing = false;  //flag for avoiding UI ping-ponging
 
         private const string MappingsFolder = "mappings";
 
         public MappingPM(MarkerSettingsPM markerSettings)
         {
             MarkerModel = markerSettings;
+            Type = SolidMarkerSetting.MappingType.Lift;  //by default
             _systems = new List<MappingSystem>();
 
             foreach (string path in Directory.GetFiles(PathToMappingsDirectory, "*.mappingSystem"))   
             {
                 _systems.Add(new MappingSystem(path));
             }
-            if (TargetChoices.Count > 0)
+
+            if (TargetChoices.Count > 1)
+            {
+                _targetSystem = TargetChoices[1];
+            }
+            else if (TargetChoices.Count > 0)
             {
                 _targetSystem = TargetChoices[0];
             }
         }
 
-        public SolidMarkerSetting.MappingType Type
-        {
-            get
-            {
-                return _type;
-            }
-            set
-            {
-                _type = value;
-            }
-        }
+        public SolidMarkerSetting.MappingType Type { get; set; }
 
         public SolidMarkerSetting MarkerSetting
         {
@@ -132,7 +129,10 @@ namespace SolidGui.Mapping
             }
             set
             {
+                if (IsProcessing || _selectedConcept == value) return; // not really an edit
                 _selectedConcept = value;
+                MarkerModel.WillNeedSave();
+                if (SettingChanged != null) SettingChanged.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -214,5 +214,8 @@ namespace SolidGui.Mapping
                 return _node.GetOptionalStringAttribute("id", null);
             }
         }
+
+        public event EventHandler SettingChanged;
+
     }
 }

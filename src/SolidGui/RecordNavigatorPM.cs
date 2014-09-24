@@ -99,16 +99,12 @@ namespace SolidGui
 
         private void SendRecordChangedEvent()
         {
-            if (RecordChanged != null)
-                RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter.HighlightMarkers));
+            if (RecordChanged != null) RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter.HighlightMarkers));
         }
 
         public void SendNavFilterChangedEvent()
         {
-            if (NavFilterChanged != null)
-            {
-                NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
-            }
+            if (NavFilterChanged != null) NavFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_recordFilter));
         }
 
         public void MoveToLast()

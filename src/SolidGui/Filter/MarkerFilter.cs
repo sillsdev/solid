@@ -9,12 +9,13 @@ namespace SolidGui.Filter
 {
     public sealed class MarkerFilter : RecordFilter
     {
-        private readonly string _marker;
+        public readonly string Marker;
+        public const string Label = "Marker ";
 
         public MarkerFilter(RecordManager recordManager, string marker) :
-            base(recordManager, String.Format("Marker {0}", marker))
+            base(recordManager, Label + marker)
         {
-            _marker = marker;
+            Marker = marker;
             UpdateFilter(); 
         }
 
@@ -25,7 +26,7 @@ namespace SolidGui.Filter
             for (int i = 0; i < _recordManager.Count; i++)
             {
                 _recordManager.MoveTo(i);
-                f = _recordManager.Current.GetFirstFieldWithMarker(_marker);
+                f = _recordManager.Current.GetFirstFieldWithMarker(Marker);
                 if (f != null) // fixed #1201 by checking for not null instead of not empty; i.e. include empty fields too. -JMC 2013-09
                 // if (_recordManager.Current.IsMarkerNotEmpty(_marker))  
                 {
@@ -36,11 +37,11 @@ namespace SolidGui.Filter
 
         public override IEnumerable<string> HighlightMarkers
         {
-            get { return new[] { _marker }; }
+            get { return new[] { Marker }; }
         }
         public override string Description(int index)
         {
-            return string.Format("Records containing {0}", _marker);
+            return string.Format("Records containing {0}", Marker);
         }
     
     }

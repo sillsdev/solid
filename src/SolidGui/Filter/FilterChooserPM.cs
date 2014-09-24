@@ -62,10 +62,7 @@ namespace SolidGui.Filter
             {
                 if (_activeWarningFilter == value) return;
                 _activeWarningFilter = value;
-                if (WarningFilterChanged != null)
-                {
-                    WarningFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeWarningFilter));
-                }
+                if (WarningFilterChanged != null) WarningFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeWarningFilter));
             }
         }
 

@@ -358,7 +358,7 @@ namespace SolidGui.Engine
             }
             SolidSettings settings;
 
-            //Migrate/load the file. (Previously, we would migrate first via XSLT, then deserialize from disk directly into objects) -JMC July 2014
+            //Migrate/load the file. (Previously (before the mapper), we would migrate first via XSLT, then deserialize from disk directly into objects) -JMC July 2014
             XDocument xdoc = XDocument.Load(filePath);
             settings = MarkerSettingsMapper.LoadMarkerSettings(xdoc);
 

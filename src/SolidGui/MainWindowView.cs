@@ -15,6 +15,7 @@ using Palaso.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Export;
+using SolidGui.MarkerSettings;
 using SolidGui.Model;
 using SolidGui.Properties;
 using SolidGui.Search;
@@ -30,7 +31,6 @@ namespace SolidGui
         private MainWindowPM _mainWindowPM;  // / was readonly, but I think it s/b be hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
         private int _filterIndex;
         private FindReplaceDialog _searchDialog;
-
 
         // No longer needed because it needs to be wired up from the start now. -JMC Mar 2014
 /*
@@ -88,9 +88,11 @@ namespace SolidGui
             _filterIndex = 0;
 
             this.Top = 10;
-            this.Left = Screen.FromControl(this).Bounds.Width - this.Width;  // top right
-            _searchDialog.Top = Screen.FromControl(this).Bounds.Height - (_searchDialog.Height + 35);  //bottom left + taskbar
-
+            Screen scr = Screen.FromControl(this);
+            this.Left = scr.WorkingArea.Width - this.Width;  // nearly top-right
+            _searchDialog.Top = scr.WorkingArea.Height - (_searchDialog.Height);
+            _searchDialog.Left = 0; //bottom left
+            //see also _markerSettingsListView._xOfDialog etc. (top left)
         }
 
         public void BindModels(MainWindowPM mainWindowPM) 
@@ -149,7 +151,7 @@ namespace SolidGui
             );
             */
 
-            UpdateDisplay();
+            UpdateDisplay(true);
         }
 
         private void OnOpenClick(object sender, EventArgs e)
@@ -197,6 +199,8 @@ namespace SolidGui
 
         private void ChooseAndOpenProject()
         {
+            _markerSettingsListView.CloseSettingsDialog(); //simplifies dealing with Open, and with Open-then-Cancel
+
             string initialDirectory = GetInitialDirectory();
             bool forceUnicode = false;
 
@@ -291,7 +295,7 @@ namespace SolidGui
 
             //if (_mainWindowPM.NavigatorModel.ActiveFilter.MoveToFirst()) _sfmEditorView.UpdateViewFromModel();
             _mainWindowPM.NavigatorModel.MoveToFirst(); // fixes issue #1200 (right pane's top labels empty on command-line launch) -JMC
-            UpdateDisplay();
+            UpdateDisplay(true);
 
         }
 
@@ -314,7 +318,7 @@ namespace SolidGui
             }
         }
 
-        public void UpdateDisplay()
+        public void UpdateDisplay(bool fullRefresh)
         {
             bool canProcess = _mainWindowPM.CanProcessLexicon;
 
@@ -339,16 +343,22 @@ namespace SolidGui
             //_sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
             _sfmEditorView.ContentsBox.ReadOnly = !canProcess;  // see also Initialize()  -JMC
 
-            _mainWindowPM.SfmEditorModel.MoveToFirst(); // Cheap way to "fix" #616 (and #274) -JMC 2013-09
-            _mainWindowPM.NavigatorModel.StartupOrReset();
-            _markerSettingsListView.UpdateDisplay();
-            _filterChooserView.Model.Reset(); // _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
-            _filterChooserView.UpdateDisplay(); // adding this helps the lower left pane...
-            _sfmEditorView.Focus();
+            if (fullRefresh)
+            {
+                _mainWindowPM.SfmEditorModel.MoveToFirst(); // Cheap way to "fix" #616 (and #274) -JMC 2013-09
+                _mainWindowPM.NavigatorModel.StartupOrReset();
+            }
+            _markerSettingsListView.UpdateDisplay(fullRefresh);
+            if (fullRefresh)
+            {
+                _filterChooserView.Model.Reset(); // _filterChooserView.Model.ActiveWarningFilter = _filterChooserView.Model.RecordFilters[0];  // Choose the "All Records" filter -JMC 2013-09
+                _filterChooserView.UpdateDisplay(); // adding this helps the lower left pane...
+                _sfmEditorView.Focus();
+            }
             _sfmEditorView.UpdateViewFromModel();  // JMC:! ...but this doesn't help with the right pane
             Hide();
             Show();
-            _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
+            if (fullRefresh) _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         
         }
 
@@ -380,7 +390,7 @@ namespace SolidGui
                 setSaveEnabled(true);
                 //_sfmEditorView.UpdateBoth(); // Using UpdateView() alone was losing edits. However, perhaps neither is necessary now thanks to ContentsBox_Leave() -JMC
                 // _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
-                this.UpdateDisplay();
+                this.UpdateDisplay(false);
             }
         }
 
@@ -396,6 +406,8 @@ namespace SolidGui
 
         private void Recheck()
         {
+            _markerSettingsListView.CloseSettingsDialog(); //simplifies things
+
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModelFromView();
             _mainWindowPM.ProcessLexicon();
@@ -477,7 +489,7 @@ namespace SolidGui
         private void OnRecordFormatterChanged(object sender, RecordFormatterChangedEventArgs e)
         {
             _mainWindowPM.SyncFormat(e.NewFormatter, false);
-            UpdateDisplay();
+            UpdateDisplay(false);
         }
 
 
@@ -514,13 +526,13 @@ namespace SolidGui
                 {
                     if (answer == System.Windows.Forms.DialogResult.Yes)
                     {
-                        e.Cancel = true;
                         OnSaveClick(this, null);
+                        Cleanup();
                     }
                     else if (answer == System.Windows.Forms.DialogResult.No)
                     {
+                        Cleanup();
                         //do nothing (allow close to happen)
-                        // Cleanup();  //might be useful -JMC
                     }
                 }
             }
@@ -533,6 +545,7 @@ namespace SolidGui
                 _searchDialog.Dispose();
             }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
 
+            _markerSettingsListView.CloseSettingsDialog();
         }
 
 
@@ -663,10 +676,7 @@ namespace SolidGui
 
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
-            if (_markerSettingsListView.OpenSettingsDialog(null))
-            {
-                UpdateDisplay();
-            }
+            _markerSettingsListView.OpenSettingsDialog(null);
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -687,9 +697,11 @@ namespace SolidGui
             var dialog = new WritingSystemsConfigDialog();
             var presenter = new WritingSystemsConfigPresenter(_mainWindowPM, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
             DialogResult result = dialog.ShowDialog(this);
-            _markerSettingsListView.UpdateDisplay(); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
+            /*
+            _markerSettingsListView.UpdateDisplay(false); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
             _markerSettingsListView.Refresh();
-            UpdateDisplay();
+             */
+            UpdateDisplay(false);  //I'm hoping this parameter enabling a "light refresh" is gentler. -JMC Sep 2014
         }
 
         private void reportAProblemsuggestionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -726,6 +738,12 @@ namespace SolidGui
 
         private void _exitMenuItem_Click(object sender, EventArgs e)
         {
+            ShutDown();
+        }
+
+        private void ShutDown()
+        {
+            Cleanup();
             Application.Exit();
         }
 
@@ -823,14 +841,14 @@ Notes:
         {
             _mainWindowPM.Settings.SetAllUnicodeTo(true);
             _mainWindowPM.needsSave = true;
-            this.UpdateDisplay();
+            this.UpdateDisplay(false);
         }
 
         private void _switchlToLegacyMenuItem_Click(object sender, EventArgs e)  // implements #1303
         {
             _mainWindowPM.Settings.SetAllUnicodeTo(false);
             _mainWindowPM.needsSave = true;
-            this.UpdateDisplay();
+            this.UpdateDisplay(false);
         }
 
 

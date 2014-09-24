@@ -19,7 +19,7 @@ namespace SolidGui
     {
         private StructurePropertiesPM _model;
         private bool _isProcessing = true;
-        private string _cachedLabel = "";
+        private string _cachedMarker = "";
         private const string InferLabel = "Infer ";
         private const string NewLabel = "(New)";
 
@@ -45,7 +45,6 @@ namespace SolidGui
             _isProcessing = true;
             UpdateParentMarkerListAndComboBox();
             UpdateRadioButtonsAndExplanation();
-            _isProcessing = false;
            
             //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
             
@@ -59,6 +58,7 @@ namespace SolidGui
             {
                 //_parentListView.FocusedItem = _parentListView.Items[0];
             }
+            _isProcessing = false;
         }
 
         public static string GetSelectedText(ListView parentListView)
@@ -140,15 +140,31 @@ namespace SolidGui
                             break;
                         }
                 }
-                flowLayoutPanelOccurs.Enabled = true;
+                _requiredCheckBox.Checked = property.Required;
+                setStructEnabled(true);
             }
             else
             {
-                flowLayoutPanelOccurs.Enabled = false;
+                setStructEnabled(false);
             }
 
             string selected = GetSelectedText(_parentListView);
             _explanationLabel.Text = string.Format("Under {1}, {0} can occur...", _model.MarkerSetting.Marker, selected);
+            _summaryTextBox.Text = "Summary: " + MarkerSettingsPM.MakeStructureLinkLabel(_model.MarkerSetting.StructureProperties, _model.MarkerSetting);
+            _commentTextBox.Text = _model.MarkerSetting.Comment;
+        }
+
+        private void setStructEnabled(bool value)
+        {
+            flowLayoutPanelOccurs.Enabled = value;
+            _InferComboBox.Enabled = value;
+        }
+
+        public void setLxEnabled(bool value)
+        {
+            flowLayoutPanelOccurs.Enabled = value;
+            _parentListView.Enabled = value;
+            _InferComboBox.Enabled = value;
         }
 
         private void _parentListView_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,17 +179,16 @@ namespace SolidGui
             if (!_isProcessing && _parentListView.SelectedItems.Count > 0)
             {
                 SolidStructureProperty selected = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
-                _model.UpdateMultiplicity(selected,
-                                            _onceRadioButton.Checked,
-                                            _multipleApartRadioButton.Checked,
-                                            _multipleTogetherRadioButton.Checked);
+                if (!_isProcessing)
+                {
+                    _model.UpdateMultiplicity(selected,
+                                                _onceRadioButton.Checked,
+                                                _multipleApartRadioButton.Checked,
+                                                _multipleTogetherRadioButton.Checked,
+                                                _requiredCheckBox.Checked);
+                }
                 UpdateDisplay();
             }
-        }
-
-        private void _aRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            int tmp = 1;
         }
 
         private void _InferComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -184,15 +199,23 @@ namespace SolidGui
             }
         }
 
+        public void CommentTextBoxNeedsCheck(object sender, EventArgs e)
+        {
+            if (!_isProcessing)
+            {
+                _model.UpdateComment(_commentTextBox.Text);
+            }
+        }
+
         private void _parentListView_BeforeLabelEdit(object sender, LabelEditEventArgs e)
         {
-            _cachedLabel = _parentListView.Items[e.Item].Text; // can't use e.Label because it's null at this point -JMC
+            _cachedMarker = _parentListView.Items[e.Item].Text; // can't use e.Label because it's null at this point -JMC
         }
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
             // Note that clicking twice and hitting Enter will give null; retyping it precisely will give _cachedLabel. -JMC
-            if (e.Label == null || e.Label == _cachedLabel)
+            if (e.Label == null || e.Label == _cachedMarker)
             {
                 e.CancelEdit = true;
                 return;
@@ -251,7 +274,6 @@ namespace SolidGui
                 }
             }
         }
-
 
     }
 }

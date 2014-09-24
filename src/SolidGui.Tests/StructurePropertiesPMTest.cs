@@ -39,7 +39,7 @@ namespace SolidGui.Tests
         public void UpdateMultilplicityChangesTheMultiplicityEnumToOnce()
         {
             SolidStructureProperty sp = new SolidStructureProperty();
-            _model.UpdateMultiplicity(sp, true, false, false);
+            _model.UpdateMultiplicity(sp, true, false, false, false);
 
             Assert.AreEqual(MultiplicityAdjacency.Once, sp.Multiplicity);
         }
@@ -48,7 +48,7 @@ namespace SolidGui.Tests
         public void UpdateMultilplicityChangesTheMultiplicityEnumToMultipleApart()
         {
             SolidStructureProperty sp = new SolidStructureProperty();
-            _model.UpdateMultiplicity(sp, false, true, false);
+            _model.UpdateMultiplicity(sp, false, true, false, false);
 
             Assert.AreEqual(MultiplicityAdjacency.MultipleApart, sp.Multiplicity);
         }
@@ -57,7 +57,7 @@ namespace SolidGui.Tests
         public void UpdateMultilplicityChangesTheMultiplicityEnumToMultipleTogether()
         {
             SolidStructureProperty sp = new SolidStructureProperty();
-            _model.UpdateMultiplicity(sp, false, false, true);
+            _model.UpdateMultiplicity(sp, false, false, true, false);
 
             Assert.AreEqual(MultiplicityAdjacency.MultipleTogether, sp.Multiplicity);
         }

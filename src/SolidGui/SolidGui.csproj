@@ -171,6 +171,12 @@
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="AppWritingSystems.cs" />
+    <Compile Include="MarkerSettings\MarkerSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MarkerSettings\MarkerSettingsDialog.Designer.cs">
+      <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="MarkerSettings\MarkerSettingsMapper.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsPM.cs" />
     <Compile Include="Engine\MultiplicityAdjacency.cs" />
@@ -214,18 +220,6 @@
     </Compile>
     <Compile Include="MarkerSettings\MarkerSettingsListView.Designer.cs">
       <DependentUpon>MarkerSettingsListView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsDialog.Designer.cs">
-      <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MarkerSettings\MarkerSettingsView.Designer.cs">
-      <DependentUpon>MarkerSettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -300,17 +294,12 @@
       <DependentUpon>MappingView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="MarkerSettings\MarkerSettingsDialog.resx">
+      <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MarkerSettings\MarkerSettingsListView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>MarkerSettingsListView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MarkerSettings\MarkerSettingsDialog.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MarkerSettingsDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MarkerSettings\MarkerSettingsView.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>MarkerSettingsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuickFixForm.resx">
       <DependentUpon>QuickFixForm.cs</DependentUpon>

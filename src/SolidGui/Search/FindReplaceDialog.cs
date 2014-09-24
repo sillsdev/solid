@@ -431,7 +431,7 @@ namespace SolidGui.Search
 
                 if (_searchResult != null)
                 {
-                    WordFound.Invoke(this, new SearchResultEventArgs(_searchResult));  // Used to be in SearchViewModel; note that this only gets invoked for the *last* Replace. -JMC Jun 2014
+                    if (WordFound != null) WordFound.Invoke(this, new SearchResultEventArgs(_searchResult));  // Used to be in SearchViewModel; note that this only gets invoked for the *last* Replace. -JMC Jun 2014
                 }
 
             }

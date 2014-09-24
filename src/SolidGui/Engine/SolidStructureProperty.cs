@@ -45,5 +45,7 @@ namespace SolidGui.Engine
         }
 
         public MultiplicityAdjacency Multiplicity { get; set; }
+
+        public bool Required { get; set; }
     }
 }

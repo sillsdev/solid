@@ -22,23 +22,21 @@ namespace SolidGui.Mapping
             InitializeComponent();
         }
 
-
         public MappingPM Model
         {
             get
             {
                 return _model;
             }
-            set
+        }
+        public void BindModel(MappingPM value)
             {
                 _model = value;
+                if (_targetCombo.SelectedIndex != (int)_model.Type)
+                {
+                    _targetCombo.SelectedIndex = (int)_model.Type;
+                }
             }
-        }
-
-        public void BindModel(MappingPM m)
-        {
-            _model = m;
-        }
         
         private void OnLoad(object sender, EventArgs e)
         {
@@ -50,32 +48,22 @@ namespace SolidGui.Mapping
             UsageReporter.SendNavigationNotice("MappingDialog");
 
             _targetCombo.SelectedIndex = (int)_model.Type;
-            //LoadConceptList();
-            //LoadInformationPane();
+            ApplyTarget();  //not sure why this is necessary, but without it the dialog's initial display of the right side isn't hooked up well. -JMC
+
+            UpdateDisplay();
         }
         
-        public void InitializeDisplay()
-        {
-            if (_targetCombo.SelectedIndex != (int)_model.Type)
-            {
-                _targetCombo.SelectedIndex = (int)_model.Type;
-            }
-            else
-            {
-                _targetCombo_SelectedIndexChanged(this, EventArgs.Empty);
-            }
-        }
-
         private void HighlightPreviouslySelectedConcept()
         {
+            Model.IsProcessing = true;
             // _model.SelectedConcept = (MappingPM.Concept)_conceptList.Items[0].Tag;
             // _conceptList.Items[0].Selected = true;
 
-            foreach(ListViewItem item in _conceptList.Items)
+            string storedConceptId = _model.MarkerSetting.GetMappingConceptId(CurrentMappingType());
+            foreach (ListViewItem item in _conceptList.Items)
             {
                 MappingPM.Concept concept = (MappingPM.Concept) item.Tag;
                 string conceptId = concept.GetId();
-                string storedConceptId = _model.MarkerSetting.GetMappingConceptId(CurrentMappingType());
                 if (conceptId == storedConceptId)
                 {
                     _conceptList.SelectedIndexChanged -= _conceptList_SelectedIndexChanged;
@@ -85,9 +73,11 @@ namespace SolidGui.Mapping
                     _conceptList.SelectedIndexChanged += _conceptList_SelectedIndexChanged;
                 }
             }
+            Model.IsProcessing = false;
         }
 
-        private void LoadConceptList()
+        // Clear and refill (from memory) the list of concepts (fields) for the current target system.
+        private void FillConceptList()
         {
             _conceptList.Items.Clear();
             ListViewItem none = new ListViewItem("(None)");
@@ -108,9 +98,11 @@ namespace SolidGui.Mapping
             {
                 return;
             }
-            _model.MarkerModel.WillNeedSave();  //Apparently we don't get here on dialog load, so need for an Initializing flag in this case. -JMC Feb 2014
-            _model.SelectedConcept = (MappingPM.Concept) _conceptList.SelectedItems[0].Tag;
-            _model.MarkerSetting.SetMappingConcept(CurrentMappingType(),_model.SelectedConcept.GetId());
+            if (!Model.IsProcessing)
+            {
+                _model.SelectedConcept = (MappingPM.Concept)_conceptList.SelectedItems[0].Tag;
+            }
+            _model.MarkerSetting.SetMappingConcept(CurrentMappingType(), _model.SelectedConcept.GetId());
             LoadInformationPane();
         }
 
@@ -132,18 +124,30 @@ namespace SolidGui.Mapping
             _htmlViewer.DocumentText = html;
         }
 
-        private void _conceptList_SizeChanged(object sender, EventArgs e)
+        public void UpdateDisplay()
         {
-            columnHeader1.Width = _conceptList.Width-40;
+            FillConceptList();
+            HighlightPreviouslySelectedConcept(); 
+            LoadInformationPane();
+            this.Hide();
+            this.Show();
+        }
+
+        private void ApplyTarget()
+        {
+            _model.TargetSystem = _model.TargetChoices[_targetCombo.SelectedIndex];
         }
 
         private void _targetCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _model.TargetSystem = _model.TargetChoices[_targetCombo.SelectedIndex];
-            
-            LoadConceptList();
-            HighlightPreviouslySelectedConcept(); 
-            LoadInformationPane();
+            ApplyTarget();
+            UpdateDisplay();
         }
+
+        private void _conceptList_SizeChanged(object sender, EventArgs e)
+        {
+            columnHeader1.Width = _conceptList.Width - 40;
+        }
+
     }
 }

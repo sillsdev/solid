@@ -136,26 +136,26 @@ namespace SolidGui.Search
                 possReplace = _reggie.Replace;
             }
             */
-        
-/*            if (this.Filter == null)
-            {
-                this.Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
-            }
-            _startRecordOfWholeSearch = startingRecord;
-            _startIndexOfWholeSearch = startingIndex;
 
-            SearchResult result;
+        /*            if (this.Filter == null)
+                    {
+                        this.Filter = AllRecordFilter.CreateAllRecordFilter(_dictionary, null);
+                    }
+                    _startRecordOfWholeSearch = startingRecord;
+                    _startIndexOfWholeSearch = startingIndex;
 
-            result = NextResult(recordIndex, textIndex);
-            if (result != null)
-            {
-                WordFound.Invoke(this, new SearchResultEventArgs(result));
-            }
-            else
-            {
-                CantFindWordErrorMessage(_reggie.Find);  //JMC:! Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model; my bad)
-            }
-        }*/
+                    SearchResult result;
+
+                    result = NextResult(recordIndex, textIndex);
+                    if (result != null)
+                    {
+                        if (WordFound != null) WordFound.Invoke(this, new SearchResultEventArgs(result));
+                    }
+                    else
+                    {
+                        CantFindWordErrorMessage(_reggie.Find);  //JMC:! Without Invoke this is a bit inconsistent; and it launches a messagebox! (a no-no in the model; my bad)
+                    }
+                }*/
 
 
         /*
@@ -324,7 +324,7 @@ namespace SolidGui.Search
                 // Mismatch. We now need to get in sync with the editing pane's indentation.
                 RecordFormatter = rf;
                 var arg = new RecordFormatterChangedEventArgs(rf);
-                SearchRecordFormatterChanged.Invoke(this, arg);
+                if (SearchRecordFormatterChanged != null) SearchRecordFormatterChanged.Invoke(this, arg);
                 /*
                 _recordFormatter = new RecordFormatter();
                 if (editorRF.Indented)

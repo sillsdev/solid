@@ -56,14 +56,20 @@ namespace Solid.Engine
             }
         }
 
+        public event EventHandler SettingChanged;
+
         private void MayNeedSave()
         {
-            if (_markerSettingsPm != null) _markerSettingsPm.WillNeedSave();
+            if (_markerSettingsPm != null)
+            {
+                _markerSettingsPm.WillNeedSave();
+                if (SettingChanged != null) SettingChanged.Invoke(this, EventArgs.Empty);
+
+            }
         }
 
         public void UpdateInferedParent(String comboBoxText)
         {
-            MayNeedSave();
             if (_markerSetting != null)
             {
                 if(comboBoxText == "Report Error")
@@ -76,11 +82,20 @@ namespace Solid.Engine
                     _markerSetting.InferedParent = comboBoxText.Substring(space+1);  // E.g. extract just the "sn" in "infer sn" or "infer an sn"
                 }
             }
+            MayNeedSave();
+        }
+
+        public void UpdateComment(string comment)
+        {
+            if(_markerSetting.Comment != comment)
+            {
+                _markerSetting.Comment = comment;
+                MayNeedSave();
+            }
         }
 
         public void UpdateParentMarkers(ListView.ListViewItemCollection items)
         {
-            MayNeedSave();
             _markerSetting.StructureProperties.Clear();
 
             foreach (ListViewItem item in items)
@@ -93,6 +108,7 @@ namespace Solid.Engine
                     _markerSetting.StructureProperties.Add(property);
                 }
             }
+            MayNeedSave();
         }
 
         public bool ValidParent(string marker)
@@ -117,27 +133,38 @@ namespace Solid.Engine
 
         public void UpdateMultiplicity(SolidStructureProperty selected, 
                                        bool onceChecked, 
-                                       bool multipleApartChecked, 
-                                       bool multipleTogetherChecked)
+                                       bool multipleApartChecked,
+                                       bool multipleTogetherChecked, 
+                                       bool requiredChecked)
         {
-            MayNeedSave();
+            MultiplicityAdjacency tmp;
             if (onceChecked)
             {
-                selected.Multiplicity = MultiplicityAdjacency.Once;
+                tmp = MultiplicityAdjacency.Once;
             }
             else if (multipleApartChecked)
             {
-                selected.Multiplicity = MultiplicityAdjacency.MultipleApart;
+                tmp = MultiplicityAdjacency.MultipleApart;
             }
             else
             {
-                selected.Multiplicity = MultiplicityAdjacency.MultipleTogether;
+                tmp = MultiplicityAdjacency.MultipleTogether;
+            }
+            if (selected.Multiplicity != tmp)
+            {
+                selected.Multiplicity = tmp;
+                MayNeedSave();
+            }
+            
+            if (selected.Required != requiredChecked)
+            {
+                selected.Required = requiredChecked;
+                MayNeedSave();
             }
         }
 
         public void RemoveStructureProperty(string marker)
         {
-            MayNeedSave();
             foreach (SolidStructureProperty property in StructureProperties)
             {
                 if(property.Parent == marker)
@@ -146,7 +173,8 @@ namespace Solid.Engine
                     break;
                 }
             }
-
+            MayNeedSave();
         }
+
     }
 }

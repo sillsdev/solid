@@ -315,10 +315,7 @@ namespace SolidGui
         private void _contentsBox_TextChanged(object sender, EventArgs e)
         {
             IsDirty = true;
-            if (RecordTextChanged != null)
-            {
-                RecordTextChanged.Invoke(this, EventArgs.Empty);
-            }
+            if (RecordTextChanged != null) RecordTextChanged.Invoke(this, EventArgs.Empty);
         }
 
         private void _contentsBox_MouseDown(object sender, MouseEventArgs e)
@@ -362,7 +359,7 @@ namespace SolidGui
                 case Keys.F5:
                     if (e.Control)
                     {
-                        RecheckKeystroke.Invoke(this, EventArgs.Empty);  // Ctrl+F5
+                        if (RecheckKeystroke != null) RecheckKeystroke.Invoke(this, EventArgs.Empty);  // Ctrl+F5
                     }
                     else
                     {

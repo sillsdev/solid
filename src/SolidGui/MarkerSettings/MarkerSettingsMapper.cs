@@ -111,7 +111,6 @@ namespace SolidGui.MarkerSettings
             return ss;
         }
 
-        // TODO: Consider returning a string instead. -JMC
         private static SolidMarkerSetting LoadOneMarkerSettingFromXml(XElement elem, SolidSettings ss)
         {
 
@@ -121,7 +120,6 @@ namespace SolidGui.MarkerSettings
 
             //if (solidSettings.getVersionNum() <= 8) // at some point we could maybe allow omitting this per-field (fall back to solidSettings.DefaultEncodingUnicode) -JMC
 
-
             string uni = GetElementValue(elem, "Unicode", null, ss.FileStatusReport, "Found {0} marker(s) with no Encoding: using legacy: {1}", ms.Marker);
             ms.Unicode = (uni != null) ? Convert.ToBoolean(uni) : SolidSettings.DetermineDefaultEncodingUnicode(ss);
 
@@ -129,13 +127,7 @@ namespace SolidGui.MarkerSettings
 
             ms.InferedParent = GetElementValue(elem, "InferedParent", "", ss.FileStatusReport, "Found {0} marker(s) with no InferedParent node; using '': {1}", ms.Marker);
 
-            string tmp = GetElementValue(elem, "Required", "false", ss.FileStatusReport, "Found {0} marker(s) with no Required node; using false: {1}", ms.Marker);
-            if (tmp != "")  // else will default to false
-            {
-                ms.IsRequired = Convert.ToBoolean(tmp);  // could crash
-            }
-
-            ms.NotesOrComments = GetElementValue(elem, "Comments", "", ss.FileStatusReport, "Found {0} marker(s) with no Comment node; using '': {1}", ms.Marker);
+            ms.Comment = GetElementValue(elem, "Comments", "", ss.FileStatusReport, "Found {0} marker(s) with no Comment node; using '': {1}", ms.Marker);
 
             ms.StructureProperties = LoadStructureProperties(elem.Element("StructureProperties"), ms.Marker, ss);
 
@@ -161,7 +153,7 @@ namespace SolidGui.MarkerSettings
 
         private static List<SolidStructureProperty> LoadStructureProperties(XElement elem, string marker, SolidSettings solidSettings)
         {
-            return elem.Elements("SolidStructureProperty").Select(e => LoadOneStructureProperty(e, marker, solidSettings)).ToList();
+            return elem.Elements("SolidStructureProperty").Select(e => LoadOneStructureProperty(e, marker, solidSettings)).ToList();  //linq
         }
 
         private static SolidStructureProperty LoadOneStructureProperty(XElement e, string marker, SolidSettings ss)
@@ -189,6 +181,14 @@ namespace SolidGui.MarkerSettings
             }
 
             parent.Multiplicity = multAdj;
+
+            string tmp = GetElementValue(e, "Required", "false", ss.FileStatusReport, "Found {0} marker(s) with no Required node; using false: {1}", marker);
+            if (tmp != "")  // else will default to false
+            {
+                parent.Required = Convert.ToBoolean(tmp);  // could crash
+            }
+
+
             return parent;
         }
 

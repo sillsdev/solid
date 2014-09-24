@@ -24,10 +24,9 @@ namespace SolidGui.MarkerSettings
         }
 
         /// <summary>
-        /// The calls to this (and avoiding calling it) are a poor man's implementation for allowing 
-        /// the user to look at (most) marker settings without triggering the "needs save" state.
-        /// A better implementation would be to make deep copies and compare them on OK click, or 
-        /// some such (see issue #70 about adding a Cancel button). -JMC Feb 2014
+        /// The calls to this (and avoiding calling it) are a way allowing 
+        /// the user to either edit or just look at marker settings. Just 
+        /// looking shouldn't triggering the "needs save" state. -JMC 2014
         /// </summary>
         public void WillNeedSave()
         {
@@ -36,13 +35,42 @@ namespace SolidGui.MarkerSettings
 
         private MainWindowPM _mainWindowPm { get; set; }
 
-    private MarkerFilter _activeMarkerFilter = null;
+        private MarkerFilter _activeMarkerFilter = null;
 
         public override string ToString()
         {
-            return string.Format("{{mrk: Active: {0}; All: {1}}}",
+            return String.Format("{{mrk: Active: {0}; All: {1}}}",
                 _activeMarkerFilter, SolidSettings);
         }
+
+        public static string MakeStructureLinkLabel(IEnumerable<SolidStructureProperty> properties, SolidMarkerSetting markerSetting)
+        {
+            string parents = "";
+
+            foreach (SolidStructureProperty property in properties)
+            {
+                if (!String.IsNullOrEmpty(property.Parent))
+                {
+                    if (parents != "")
+                    {
+                        parents += ", ";
+                    }
+                    parents += String.Format("{0} ({1})", property.Parent, property.Multiplicity.Abbr());
+                }
+            }
+            if (parents == "")
+            {
+                parents = "???";
+            }
+
+            if (!String.IsNullOrEmpty(markerSetting.InferedParent))  //implements issue #1272 -JMC Mar 2014
+            {
+                parents += "; [+" + markerSetting.InferedParent + "]";
+            }
+
+            return parents;
+        }
+
 
         public MarkerFilter ActiveMarkerFilter
         {
@@ -54,10 +82,7 @@ namespace SolidGui.MarkerSettings
             {
                 if (_activeMarkerFilter == value) return;
                 _activeMarkerFilter = value;
-                if (MarkerFilterChanged != null)
-                {
-                    MarkerFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeMarkerFilter));
-                }
+                if (MarkerFilterChanged != null) MarkerFilterChanged.Invoke(this, new RecordFilterChangedEventArgs(_activeMarkerFilter));
             }
         }
 
@@ -104,6 +129,5 @@ namespace SolidGui.MarkerSettings
                 ActiveMarkerFilter = null;
             }
         }
-
     }
 }

@@ -18,6 +18,12 @@ namespace SolidGui.MarkerSettings
         {
             if (disposing && (components != null))
             {
+                if (_markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
+                {
+                    _markerSettingsDialog.Cleanup();
+                    _markerSettingsDialog.Close();
+                    _markerSettingsDialog.Dispose();
+                }
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -35,8 +41,9 @@ namespace SolidGui.MarkerSettings
             GlacialComponents.Controls.GLColumn glColumn2 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn3 = new GlacialComponents.Controls.GLColumn();
             GlacialComponents.Controls.GLColumn glColumn4 = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumnLift = new GlacialComponents.Controls.GLColumn();
-            GlacialComponents.Controls.GLColumn glColumnUnicode = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn5 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn6 = new GlacialComponents.Controls.GLColumn();
+            GlacialComponents.Controls.GLColumn glColumn7 = new GlacialComponents.Controls.GLColumn();
             this._markerListView = new GlacialComponents.Controls.GlacialList();
             this.SuspendLayout();
             // 
@@ -85,33 +92,41 @@ namespace SolidGui.MarkerSettings
             glColumn4.Text = "Writing System";
             glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             glColumn4.Width = 90;
-            glColumnLift.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumnLift.CheckBoxes = false;
-            glColumnLift.ComparisonFunction = null;
-            glColumnLift.ImageIndex = -1;
-            glColumnLift.Name = "liftConcept";
-            glColumnLift.NumericSort = false;
-            glColumnLift.Text = "LIFT";
-            glColumnLift.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumnLift.Width = 65;
-
-            glColumnUnicode.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
-            glColumnUnicode.CheckBoxes = true;
-            glColumnUnicode.ComparisonFunction = null;
-            glColumnUnicode.ImageIndex = -1;
-            glColumnUnicode.Name = "unicode";
-            glColumnUnicode.NumericSort = false;
-            glColumnUnicode.Text = "utf8";
-            glColumnUnicode.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumnUnicode.Width = 35;
-            
+            glColumn5.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn5.CheckBoxes = true;
+            glColumn5.ComparisonFunction = null;
+            glColumn5.ImageIndex = -1;
+            glColumn5.Name = "unicode";
+            glColumn5.NumericSort = false;
+            glColumn5.Text = "utf8";
+            glColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn5.Width = 35;
+            glColumn6.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn6.CheckBoxes = false;
+            glColumn6.ComparisonFunction = null;
+            glColumn6.ImageIndex = -1;
+            glColumn6.Name = "liftConcept";
+            glColumn6.NumericSort = false;
+            glColumn6.Text = "LIFT";
+            glColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn6.Width = 65;
+            glColumn7.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
+            glColumn7.CheckBoxes = false;
+            glColumn7.ComparisonFunction = null;
+            glColumn7.ImageIndex = -1;
+            glColumn7.Name = "comment";
+            glColumn7.NumericSort = false;
+            glColumn7.Text = "Comment";
+            glColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            glColumn7.Width = 90;
             this._markerListView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
             glColumn1,
             glColumn2,
             glColumn3,
             glColumn4,
-            glColumnUnicode,
-            glColumnLift});
+            glColumn5,
+            glColumn6,
+            glColumn7});
             this._markerListView.ControlStyle = GlacialComponents.Controls.GLControlStyles.Normal;
             this._markerListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._markerListView.FullRowSelect = true;
