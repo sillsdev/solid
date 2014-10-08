@@ -1,14 +1,6 @@
 ﻿// Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
-// (A better name would be SpecifyWritingSystems, or some such. Maybe should name any unit tests accordingly.)
-// This is the Presenter part of a Model-View-Presenter (MVP) implementation. It seems to me to be the one in
-// which "Both hold a reference to each other forming a circular dependency... The view responds to 
-// events by calling methods in the presenter. The presenter read/modifies data from the view through 
-// exposed properties." http://programmers.stackexchange.com/questions/60774/model-view-presenter-implementation-thoughts?rq=1 (and also Bil's answer there)
-// This dialog was Cambell's latest addition prior to my involvement, so its MVP is likely to be preferred on those grounds too.
-// Presumably unit tests should be added as a parallel implementation of WritingSystemsConfigPresenter.IView.
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +11,13 @@ using SolidGui.Engine;
 
 namespace SolidGui.Setup
 {
+    /// (A better name than Config would be SpecifyWritingSystems, or some such. Maybe should name any unit tests accordingly.)
+    /// This is the Presenter part of a Model-View-Presenter (MVP) implementation. It seems to me to be the one in
+    /// which "Both hold a reference to each other forming a circular dependency... The view responds to 
+    /// events by calling methods in the presenter. The presenter reads/modifies data from the view through 
+    /// exposed properties." http://programmers.stackexchange.com/questions/60774/model-view-presenter-implementation-thoughts?rq=1 (and also Bil's answer there)
+    /// Seems simpler. This dialog was Cambell's latest addition prior to my involvement, so its MVP is likely to be preferred on those grounds too.
+    /// Presumably unit tests should be added as a parallel implementation of WritingSystemsConfigPresenter.IView. -JMC
     public class WritingSystemsConfigPresenter
     {
         public interface IView

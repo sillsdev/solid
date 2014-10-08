@@ -232,12 +232,14 @@ namespace SolidGui
             // _requiredCheckBox
             // 
             this._requiredCheckBox.AutoSize = true;
+            this._requiredCheckBox.Enabled = false;
             this._requiredCheckBox.Location = new System.Drawing.Point(3, 72);
             this._requiredCheckBox.Name = "_requiredCheckBox";
-            this._requiredCheckBox.Size = new System.Drawing.Size(126, 17);
+            this._requiredCheckBox.Size = new System.Drawing.Size(143, 17);
             this._requiredCheckBox.TabIndex = 1;
-            this._requiredCheckBox.Text = "Must occur (required)";
+            this._requiredCheckBox.Text = "Must occur (i.e. required)";
             this._requiredCheckBox.UseVisualStyleBackColor = true;
+            this._requiredCheckBox.CheckedChanged += new System.EventHandler(this._radioButton_Click);
             // 
             // _InferComboBox
             // 

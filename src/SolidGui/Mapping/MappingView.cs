@@ -3,6 +3,7 @@
 
 using System;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Palaso.Reporting;
 using SolidGui.Engine;
 
@@ -16,6 +17,7 @@ namespace SolidGui.Mapping
     public partial class MappingView : UserControl
     {
         private MappingPM _model;
+        private bool _isProcessing; //flag for avoiding UI ping-ponging
         
         public MappingView()
         {
@@ -29,13 +31,17 @@ namespace SolidGui.Mapping
                 return _model;
             }
         }
-        public void BindModel(MappingPM value)
+        public void BindModel(MappingPM value, SolidMarkerSetting markerSetting)
             {
                 _model = value;
+                _model.MarkerSetting = markerSetting;
+
                 if (_targetCombo.SelectedIndex != (int)_model.Type)
                 {
                     _targetCombo.SelectedIndex = (int)_model.Type;
                 }
+
+                _model.Init(markerSetting);
             }
         
         private void OnLoad(object sender, EventArgs e)
@@ -53,9 +59,8 @@ namespace SolidGui.Mapping
             UpdateDisplay();
         }
         
-        private void HighlightPreviouslySelectedConcept()
+        private void UpdateDisplayConcept()
         {
-            Model.IsProcessing = true;
             // _model.SelectedConcept = (MappingPM.Concept)_conceptList.Items[0].Tag;
             // _conceptList.Items[0].Selected = true;
 
@@ -66,18 +71,15 @@ namespace SolidGui.Mapping
                 string conceptId = concept.GetId();
                 if (conceptId == storedConceptId)
                 {
-                    _conceptList.SelectedIndexChanged -= _conceptList_SelectedIndexChanged;
                     item.Selected = true;
                     _conceptList.TopItem = item;
-                    _model.SelectedConcept = concept;
-                    _conceptList.SelectedIndexChanged += _conceptList_SelectedIndexChanged;
+                    //_model.SelectedConcept = concept;  //why is this here? Not a good way to set a default value in the model. -JMC
                 }
             }
-            Model.IsProcessing = false;
         }
 
         // Clear and refill (from memory) the list of concepts (fields) for the current target system.
-        private void FillConceptList()
+        private void UpdateDisplayConceptList()
         {
             _conceptList.Items.Clear();
             ListViewItem none = new ListViewItem("(None)");
@@ -94,16 +96,23 @@ namespace SolidGui.Mapping
 
         private void _conceptList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateModel();
+        }
+
+        private void UpdateModel()
+        {
             if (_conceptList.SelectedItems.Count == 0)
             {
                 return;
             }
-            if (!Model.IsProcessing)
+            if (!_isProcessing)
             {
-                _model.SelectedConcept = (MappingPM.Concept)_conceptList.SelectedItems[0].Tag;
+                var tmp = (MappingPM.Concept)_conceptList.SelectedItems[0].Tag;
+                _model.MarkerSetting.SetMappingConcept(CurrentMappingType(), tmp.GetId()); //TODO: This doesn't trigger Needsave -JMC Nov 2014
+                _model.SelectedConcept = tmp;  // (if a change, sets Needsave to true)
             }
-            _model.MarkerSetting.SetMappingConcept(CurrentMappingType(), _model.SelectedConcept.GetId());
-            LoadInformationPane();
+
+            UpdateDisplayInformationPane();  //partial UpdateDisplay
         }
 
         private SolidMarkerSetting.MappingType CurrentMappingType()
@@ -114,7 +123,7 @@ namespace SolidGui.Mapping
             return new SolidMarkerSetting.MappingType();
         }
 
-        private void LoadInformationPane()
+        private void UpdateDisplayInformationPane()
         {
             if (_model.SelectedConcept == null)
             {
@@ -126,11 +135,14 @@ namespace SolidGui.Mapping
 
         public void UpdateDisplay()
         {
-            FillConceptList();
-            HighlightPreviouslySelectedConcept(); 
-            LoadInformationPane();
+            if (_isProcessing) return;  //block ping-ponging
+            _isProcessing = true;
+            UpdateDisplayConceptList();
+            UpdateDisplayConcept(); 
+            UpdateDisplayInformationPane();
             this.Hide();
             this.Show();
+            _isProcessing = false;
         }
 
         private void ApplyTarget()

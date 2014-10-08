@@ -323,7 +323,7 @@ namespace SolidGui
             }
         }
 
-        public event EventHandler DictionaryProcessed;
+        public event EventHandler DictionaryProcessed;  //todo: consider eliminating this event; all it seems to do now is force an extra UpdateDisplay. -JMC
         public event EventHandler<RecordFormatterChangedEventArgs> EditorRecordFormatterChanged;
         private const string TemplatesFolder = "templates";
 
@@ -450,7 +450,7 @@ namespace SolidGui
 
             if (_workingDictionary.Open(f, Settings, _recordFilters))  
             {
-                if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);
+                //if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);  //unnecessary? -JMC Sep 2014
                 if (saveSettings) Settings.Save(); // Together with one other line, fixes bug #1260
                 return true;
             }
@@ -495,7 +495,7 @@ namespace SolidGui
 
             _workingDictionary.Open(newPath, Settings, _recordFilters);
 
-            if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);
+            //if (DictionaryProcessed != null) DictionaryProcessed.Invoke(this, EventArgs.Empty);  //unnecessary? -JMC Sep 2014
         }
 
         public void SolidSettingsSaveAs(string filePath)

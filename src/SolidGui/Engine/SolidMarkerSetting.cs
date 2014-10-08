@@ -120,9 +120,6 @@ namespace SolidGui.Engine
             }
         }
 
-        [XmlElement("Required", Order = 5)]
-        public bool IsRequired { get; set; }
-
         [XmlElement("Comments", Order = 6)]
         public string Comment { get; set; }
 

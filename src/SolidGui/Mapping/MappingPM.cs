@@ -26,17 +26,15 @@ namespace SolidGui.Mapping
     {
         private List<MappingSystem> _systems;
         private MappingSystem _targetSystem;
-        private SolidMarkerSetting _markerSetting;
         private Concept _selectedConcept;  // e.g. a LIFT field
         public MarkerSettingsPM MarkerModel;  //added so we can support WillNeedSave -JMC Feb 2014
-        public bool IsProcessing = false;  //flag for avoiding UI ping-ponging
 
         private const string MappingsFolder = "mappings";
 
         public MappingPM(MarkerSettingsPM markerSettings)
         {
             MarkerModel = markerSettings;
-            Type = SolidMarkerSetting.MappingType.Lift;  //by default
+            Type = SolidMarkerSetting.MappingType.Lift;  //LIFT by default
             _systems = new List<MappingSystem>();
 
             foreach (string path in Directory.GetFiles(PathToMappingsDirectory, "*.mappingSystem"))   
@@ -46,7 +44,7 @@ namespace SolidGui.Mapping
 
             if (TargetChoices.Count > 1)
             {
-                _targetSystem = TargetChoices[1];
+                _targetSystem = TargetChoices[1];  //LIFT by default
             }
             else if (TargetChoices.Count > 0)
             {
@@ -56,17 +54,7 @@ namespace SolidGui.Mapping
 
         public SolidMarkerSetting.MappingType Type { get; set; }
 
-        public SolidMarkerSetting MarkerSetting
-        {
-            set
-            {
-                _markerSetting = value;
-            }
-            get
-            {
-                return _markerSetting;
-            }
-        }
+        public SolidMarkerSetting MarkerSetting { get; set; }
 
         public MappingSystem TargetSystem
         {
@@ -77,9 +65,6 @@ namespace SolidGui.Mapping
             set
             {
                 _targetSystem = value;
-
-                //hack
-                _selectedConcept = TargetSystem.Concepts[0];
             }
         }
 
@@ -129,11 +114,25 @@ namespace SolidGui.Mapping
             }
             set
             {
-                if (IsProcessing || _selectedConcept == value) return; // not really an edit
+                if (_selectedConcept == value) return; // not really an edit
                 _selectedConcept = value;
                 MarkerModel.WillNeedSave();
-                if (SettingChanged != null) SettingChanged.Invoke(this, EventArgs.Empty);
+                if (MappingSettingChanged != null) MappingSettingChanged.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        public void Init(SolidMarkerSetting markerSetting)
+        {
+            var concept = GetConcept(markerSetting);
+            _selectedConcept = concept;
+        }
+
+        private MappingPM.Concept GetConcept(SolidMarkerSetting markerSetting)
+        {
+            var mappingSystem = TargetChoices[(int)Type];
+            var id = markerSetting.GetMappingConceptId(Type);
+            MappingPM.Concept concept = mappingSystem.GetConceptById(id);
+            return concept;
         }
 
         public class MappingSystem
@@ -215,7 +214,7 @@ namespace SolidGui.Mapping
             }
         }
 
-        public event EventHandler SettingChanged;
+        public event EventHandler MappingSettingChanged;
 
     }
 }

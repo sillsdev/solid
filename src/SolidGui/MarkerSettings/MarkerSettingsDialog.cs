@@ -21,7 +21,6 @@ namespace SolidGui.MarkerSettings
         public const string mappingTab = "mappingTabPage";
 
         private string _marker;  // todo: unify this with _currentMarkerSetting
-        private string _area;
 
         private readonly WritingSystemSetupModel _wsModel;
         private readonly IWritingSystemRepository _store;
@@ -31,12 +30,11 @@ namespace SolidGui.MarkerSettings
         // JMC: Would it be better to put it in Dispose()? Probably.
         private readonly WritingSystemSetupDialog _wsDialog;
 
-        private bool _initializing;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
+        private bool _isProcessing=false;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
 
         private SolidMarkerSetting _currentMarkerSetting;
         private MarkerSettingsPM MarkerModel { get; set; }
         private SolidMarkerSetting.MappingType _mappingType;
-
 
         /*
         public MarkerSettingsDialog()
@@ -47,16 +45,17 @@ namespace SolidGui.MarkerSettings
 
         public MarkerSettingsDialog(MarkerSettingsPM markerSettingsPm, string marker, string area)
         {
-            _initializing = true;
+            _isProcessing = true;
             InitializeComponent();
             if (DesignMode) return; // Without this, the Palaso code crashes Visual Studio's Designer because it now demands explicit Dispose() -JMC Feb 2014
 
             _store = AppWritingSystems.WritingSystems;
             _wsModel = new WritingSystemSetupModel(_store);
             _wsDialog = new WritingSystemSetupDialog(_wsModel); //-JMC
+            _wsDialog.ShowIcon = false;
 
             InitDisplay(markerSettingsPm, marker, area);
-            _initializing = false;
+            _isProcessing = false;
         }
 
         private void InitDisplay(MarkerSettingsPM markerSettingsPm, string marker, string area)
@@ -71,21 +70,19 @@ namespace SolidGui.MarkerSettings
 
             SetMarker(marker);
 
+            _wsModel.SelectionChanged -= _uiEditMade;
             _wsModel.SelectionChanged += _uiEditMade;
             wsPickerUsingComboBox1.BindToModel(_wsModel);
+            wsPickerUsingComboBox1.SelectedComboIndexChanged -= wsPickerUsingComboBox1_SelectedComboIndexChanged;
             wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
-            
-            _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646);
 
             _structurePropertiesView.Model.AllValidMarkers = MarkerModel.GetValidMarkers();
             _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
-            _structurePropertiesView.UpdateDisplay();
+            //_structurePropertiesView.UpdateDisplay();
 
-            _mappingView.Model.MarkerSetting = _currentMarkerSetting;
+            //_mappingView.Model.MarkerSetting = _currentMarkerSetting; 
             //_mappingView.Model.Type = type;
             //_mappingView.InitializeDisplay();
-
-            _cbUnicode.Checked = _currentMarkerSetting.Unicode;
 
             //SelectInitialArea(initialArea);
 
@@ -95,7 +92,7 @@ namespace SolidGui.MarkerSettings
                 _markersListBox.Items.Add(ms);
             }
 
-            UpdateDisplay();  //TODO: Fix update display to set marker title and active marker and both tabs 
+            UpdateDisplay();
         }
 
 
@@ -114,17 +111,20 @@ namespace SolidGui.MarkerSettings
         {
             _marker = marker;
             _currentMarkerSetting = MarkerModel.GetMarkerSetting(marker);
-            var ms = MarkerModel.GetMarkerSetting(marker);
+
+            _cbUnicode.Checked = _currentMarkerSetting.Unicode;
+            
+            bool success = _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646); // can silently fail, but that's ok
+            if (!success) _wsModel.ClearSelection();
 
             //setMarker for Mapping tab
-            _mappingView.BindModel(MarkerModel.MappingModel);
-            MarkerModel.MappingModel.MarkerSetting = ms;
+            _mappingView.BindModel(MarkerModel.MappingModel, _currentMarkerSetting);
 
             //setMarker for Structure tab
             _structurePropertiesView.Model = MarkerModel.StructurePropertiesModel;
             if (_structurePropertiesView.Model != null)
             {
-                _structurePropertiesView.Model.MarkerSetting = ms;
+                _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
             }
 
 
@@ -150,12 +150,14 @@ namespace SolidGui.MarkerSettings
 
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetArea(_tabControl.SelectedTab.Name);
-            UpdateDisplay();
+            // SetArea(_tabControl.SelectedTab.Name);
+            // UpdateDisplay();
         }
 
         public void UpdateDisplay()
         {
+            _isProcessing = true;
+
             // set selected item in marker list
             int i = _markersListBox.FindStringExact(_marker);
             if (i >= 0)
@@ -167,30 +169,32 @@ namespace SolidGui.MarkerSettings
                 _markersListBox.SetSelected(0, true);
             }
             
-            // update nested controls
+            // update own fields (WS and Unicode)
+            
+
+            // update nested controls (regardless of which one is showing--slower but simplifies life)
             _mappingView.UpdateDisplay();
+
             _structurePropertiesView.UpdateDisplay();
+
+            _isProcessing = false;
         }
 
         private void _markersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DesignMode || _initializing || _markersListBox.SelectedItem == null) return;
+            OnSelectedMarkerChanged();
+        }
+
+        private void OnSelectedMarkerChanged()
+        {
+            if (DesignMode || _isProcessing || _markersListBox.SelectedItem == null) return;
 
             string m = (string)_markersListBox.SelectedItem;
             SetMarker(m);
             _mappingView.UpdateDisplay();
             _structurePropertiesView.UpdateDisplay();
-
-            if ((_markersListBox.Text) != MarkerModel.Root)
-            {
-                _structurePropertiesView.setLxEnabled(true);
-            }
-            else
-            {
-                _structurePropertiesView.setLxEnabled(false);
-            }
-
         }
+
 
         private void SomeSettingChanged()
         {
@@ -208,13 +212,16 @@ namespace SolidGui.MarkerSettings
 
         void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
         {
-            if (DesignMode || _initializing) return;
+            if (DesignMode || _isProcessing) return;
             UpdateModel();
         }
 
+        /// <summary>
+        /// Updates the pieces of the model that aren't handled by embedded controls.
+        /// That is, WS and encoding. StructurePropertiesView and MappingView handle their data.
+        /// </summary>
         public void UpdateModel()
         {
-            if (_initializing) return;
 
             // update WS model
             if (!_wsModel.HasCurrentSelection)
@@ -244,13 +251,13 @@ namespace SolidGui.MarkerSettings
 
         private void _structureTabControl_Leave(object sender, EventArgs e)
         {
-            if (DesignMode || _initializing) return;
+            if (DesignMode || _isProcessing) return;
             UpdateModel();
         }
 
         private void _uiEditMade(object sender, EventArgs e)
         {
-            if (DesignMode || _initializing) return;
+            if (DesignMode || _isProcessing) return;
             UpdateModel();
         }
 
@@ -300,8 +307,8 @@ namespace SolidGui.MarkerSettings
         public void Listen(EventHandler listener)
         {
             SettingChanged += listener;
-            _structurePropertiesView.Model.SettingChanged += listener;
-            _mappingView.Model.SettingChanged += listener;
+            _structurePropertiesView.Model.StructureSettingChanged += listener;
+            _mappingView.Model.MappingSettingChanged += listener;
         }
 
         private void MarkerSettingsDialog_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)

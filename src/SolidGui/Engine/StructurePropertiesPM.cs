@@ -13,11 +13,11 @@ namespace Solid.Engine
     {
         private SolidMarkerSetting _markerSetting;
         private List<string> _allValidMarkers;
-        private MarkerSettingsPM _markerSettingsPm;
+        public MarkerSettingsPM MarkerSettingsPm;
 
         public StructurePropertiesPM(MarkerSettingsPM markerSettings)
         {
-            _markerSettingsPm = markerSettings;
+            MarkerSettingsPm = markerSettings;
         }
 
         public SolidMarkerSetting MarkerSetting
@@ -56,14 +56,14 @@ namespace Solid.Engine
             }
         }
 
-        public event EventHandler SettingChanged;
+        public event EventHandler StructureSettingChanged;
 
         private void MayNeedSave()
         {
-            if (_markerSettingsPm != null)
+            if (MarkerSettingsPm != null)
             {
-                _markerSettingsPm.WillNeedSave();
-                if (SettingChanged != null) SettingChanged.Invoke(this, EventArgs.Empty);
+                MarkerSettingsPm.WillNeedSave();
+                if (StructureSettingChanged != null) StructureSettingChanged.Invoke(this, EventArgs.Empty);
 
             }
         }
@@ -131,7 +131,7 @@ namespace Solid.Engine
         }
 
 
-        public void UpdateMultiplicity(SolidStructureProperty selected, 
+        public void UpdateOptions(SolidStructureProperty selected, 
                                        bool onceChecked, 
                                        bool multipleApartChecked,
                                        bool multipleTogetherChecked, 
@@ -150,6 +150,8 @@ namespace Solid.Engine
             {
                 tmp = MultiplicityAdjacency.MultipleTogether;
             }
+            // Or, the lines above could go in the UI. -JMC
+
             if (selected.Multiplicity != tmp)
             {
                 selected.Multiplicity = tmp;

@@ -55,10 +55,10 @@ namespace SolidGui.Tests.Migration
         <SolidStructureProperty>
           <Parent>entry</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Required>false</Required>
       <Comments />
       <Mappings>
         <string>lex</string>
@@ -160,10 +160,10 @@ namespace SolidGui.Tests.Migration
         <SolidStructureProperty>
           <Parent>entry</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Required>false</Required>
       <Comments />
       <Mappings>
         <string />
@@ -178,14 +178,15 @@ namespace SolidGui.Tests.Migration
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>se</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Required>false</Required>
       <Comments />
       <Mappings>
         <string />
@@ -215,10 +216,10 @@ namespace SolidGui.Tests.Migration
         <SolidStructureProperty>
           <Parent>entry</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Required>true</Required>
       <Comments>The root marker</Comments>
       <Mappings>
         <string>lex</string>
@@ -233,10 +234,10 @@ namespace SolidGui.Tests.Migration
         <SolidStructureProperty>
           <Parent>entry</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Required>false</Required>
       <Comments>Warning: no equivalent in FLEx. Lexical Function Gloss - English.</Comments>
       <Mappings>
         <string />

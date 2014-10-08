@@ -242,6 +242,7 @@
             this.MaximumSize = new System.Drawing.Size(310, 268);
             this.MinimumSize = new System.Drawing.Size(233, 218);
             this.Name = "SaveOptionsDialog";
+            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Formatting Options";

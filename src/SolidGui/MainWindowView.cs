@@ -72,16 +72,37 @@ namespace SolidGui
 
         }
 
+        private void SetEnabledGeneral(bool enable)
+        {
+            splitContainerLeftRight.Panel1.Enabled = enable;
+            splitContainerUpDown.Panel1.Enabled = enable;
+            splitContainerUpDown.Panel2.Enabled = enable;
+            //_sfmEditorView.Enabled = enable;
+            _sfmEditorView.ContentsBox.ReadOnly = !enable;
+        }
+
+        private void SetEnabledSpecific(bool enable)
+        {
+            _filterChooserView.Enabled = enable;
+            _changeWritingSystems.Enabled = enable;
+            _changeTemplate.Enabled = enable;
+            _exportButton.Enabled = enable;
+            _quickFixButton.Enabled = enable;
+            if (!enable)
+            {
+                setSaveEnabled(false);
+            }
+            else
+            {
+                setSaveEnabled(_mainWindowPM.needsSave);
+            }
+        }
+
         //Start fresh. (Helps the Find dialog see the active nav, anyway.)
         private void Initialize(MainWindowPM mainWindowPM)
         {
             this.KeyPreview = true;
-
-            splitContainerLeftRight.Panel1.Enabled = false;
-            splitContainerUpDown.Panel1.Enabled = false;
-            splitContainerUpDown.Panel2.Enabled = false;
-            //_sfmEditorView.Enabled = false;
-            _sfmEditorView.ContentsBox.ReadOnly = true;
+            SetEnabledGeneral(false);
 
             _mainWindowPM = mainWindowPM;
             _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
@@ -100,7 +121,6 @@ namespace SolidGui
             // cut any old wires first (does doing this make sense?)
             if (_mainWindowPM != null)
             {
-                _mainWindowPM.DictionaryProcessed -= OnDictionaryProcessed;
                 _searchDialog.WordFound -= OnWordFound;
                 _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
                 _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
@@ -109,10 +129,13 @@ namespace SolidGui
 
             _mainWindowPM = mainWindowPM;
 
-            _mainWindowPM.DictionaryProcessed += OnDictionaryProcessed;
+            _searchDialog.WordFound -= OnWordFound;
             _searchDialog.WordFound += OnWordFound;
+            _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
             _mainWindowPM.SearchModel.SearchRecordFormatterChanged += OnRecordFormatterChanged;
+            _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
             _mainWindowPM.EditorRecordFormatterChanged += _searchDialog.OnEditorRecordFormatterChanged;
+            _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
             _mainWindowPM.NavigatorModel.RecordChanged += _sfmEditorView.OnRecordChanged;
 
             _sfmEditorView.BindModel(_mainWindowPM);
@@ -127,31 +150,24 @@ namespace SolidGui
             // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged; //JMC: can be disabled? (redundant?)
 
             // JMC: verify that the following += don't stack up after several File Open.
+            _recordNavigatorView.RefreshButton.Click -= _sfmEditorView.OnRefreshClicked;
             _recordNavigatorView.RefreshButton.Click += _sfmEditorView.OnRefreshClicked;
+            _refreshMenuItem.Click -= _sfmEditorView.OnRefreshClicked;
             _refreshMenuItem.Click += _sfmEditorView.OnRefreshClicked;
+            _recordNavigatorView.SearchButtonClicked -= OnSearchClick;
             _recordNavigatorView.SearchButtonClicked += OnSearchClick;
+            _markerSettingsListView.MarkerSettingPossiblyChanged -= OnMarkerSettingPossiblyChanged;
             _markerSettingsListView.MarkerSettingPossiblyChanged += OnMarkerSettingPossiblyChanged;
+            _sfmEditorView.RecordTextChanged -= OnRecordTextChanged;
             _sfmEditorView.RecordTextChanged += OnRecordTextChanged;
+            _sfmEditorView.RecheckKeystroke -= OnRecheckKeystroke;
             _sfmEditorView.RecheckKeystroke += OnRecheckKeystroke;
-
+            return;
         }
 
         private bool ReturnFalse()
         {
             return false;
-        }
-
-        public void OnDictionaryProcessed(object sender, EventArgs e)
-        {
-            /* Moved this into BindModels()  -JMC 2013-10
-            //wire up the change of record event to our record display widget
-            _markerSettingsListView.BindModel(
-                _mainWindowPM.MarkerSettingsModel,
-                _mainWindowPM.WorkingDictionary
-            );
-            */
-
-            UpdateDisplay(true);
         }
 
         private void OnOpenClick(object sender, EventArgs e)
@@ -223,7 +239,7 @@ namespace SolidGui
             string templatePath = null;
             if (_mainWindowPM.ShouldAskForTemplateBeforeOpening(dlg.FileName))
             {
-                forceUnicode = EncodingChooser.UserWantsUnicode(dlg.FileName); // issue #1259
+                forceUnicode = EncodingChooser.UserWantsUnicode(dlg.FileName); // issue #1259 Reduce number of templates by half
                 templatePath = RequestTemplatePath(dlg.FileName, false);
                 if (string.IsNullOrEmpty(templatePath))
                 {
@@ -266,6 +282,7 @@ namespace SolidGui
                 //BindModels(origPm); // less destructive than Initialize(origPm);  -JMC
                 ReInit(origPm);
                 newPm.Dispose();
+                SetEnabledGeneral(_mainWindowPM.CanProcessLexicon);
                 setSaveEnabled(origPm.needsSave);
             }
 
@@ -318,7 +335,7 @@ namespace SolidGui
             }
         }
 
-        public void UpdateDisplay(bool fullRefresh)
+        public void UpdateDisplay(bool fullRefresh)  //I'm hoping this parameter allowing a "light refresh" is gentler (set to false). -JMC Sep 2014
         {
             bool canProcess = _mainWindowPM.CanProcessLexicon;
 
@@ -328,20 +345,12 @@ namespace SolidGui
                 Text += _mainWindowPM.DictionaryRealFilePath;
             }
 
-            _filterChooserView.Enabled = canProcess;
-            _changeWritingSystems.Enabled = canProcess;
-            _changeTemplate.Enabled = canProcess;
-            _exportButton.Enabled = canProcess;
+            SetEnabledSpecific(canProcess);
+
             //_recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;  
             _recordNavigatorView.UpdateDisplay();  //JMC: would this work?
-            _quickFixButton.Enabled = canProcess;
-            setSaveEnabled(_mainWindowPM.needsSave);
 
-            splitContainerLeftRight.Panel1.Enabled = canProcess;
-            splitContainerUpDown.Panel1.Enabled = canProcess;
-            splitContainerUpDown.Panel2.Enabled = canProcess;
-            //_sfmEditorView.Enabled = canProcess;  //JMC: but consider doing the following instead (see Open() too):
-            _sfmEditorView.ContentsBox.ReadOnly = !canProcess;  // see also Initialize()  -JMC
+            SetEnabledGeneral(canProcess);
 
             if (fullRefresh)
             {
@@ -390,7 +399,7 @@ namespace SolidGui
                 setSaveEnabled(true);
                 //_sfmEditorView.UpdateBoth(); // Using UpdateView() alone was losing edits. However, perhaps neither is necessary now thanks to ContentsBox_Leave() -JMC
                 // _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
-                this.UpdateDisplay(false);
+                UpdateDisplay(false);
             }
         }
 
@@ -411,10 +420,11 @@ namespace SolidGui
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModelFromView();
             _mainWindowPM.ProcessLexicon();
+            UpdateDisplay(true);
             _sfmEditorView.HighlightMarkers = _mainWindowPM.NavigatorModel.ActiveFilter.HighlightMarkers;
 
             //_mainWindowPM.NavigatorModel.SendNavFilterChangedEvent();  // Added this so the left panes' selection would reset -JMC 2013-10
-            _sfmEditorView.UpdateViewFromModel();
+            //_sfmEditorView.UpdateViewFromModel();  //now unnecessary? -JMC Sep 2014
             Cursor = Cursors.Default;
         }
 
@@ -556,6 +566,7 @@ namespace SolidGui
             {
                 _sfmEditorView.UpdateModelFromView();
                 _mainWindowPM.SwitchSolidSettingsTemplate(path);
+                UpdateDisplay(true);
                 CheckAndNotify();
             }
         }
@@ -565,7 +576,7 @@ namespace SolidGui
             TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings);
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
 
-            string tmp = _mainWindowPM.DictionaryRealFilePath; //quick hack to enfoce consistent behavior. -JMC Apr 2014
+            string tmp = _mainWindowPM.DictionaryRealFilePath; //quick hack to enforce consistent behavior. -JMC Apr 2014
             _mainWindowPM.DictionaryRealFilePath = dictionaryPath;  
             chooser.TemplatePaths = _mainWindowPM.TemplatePaths;
             _mainWindowPM.DictionaryRealFilePath = tmp;
@@ -676,7 +687,7 @@ namespace SolidGui
 
         private void OnEditMarkerPropertiesClick(object sender, EventArgs e)
         {
-            _markerSettingsListView.OpenSettingsDialog(null);
+            _markerSettingsListView.OpenSettingsDialog("", "");
         }
 
         private void OnQuickFix(object sender, EventArgs e)
@@ -688,7 +699,8 @@ namespace SolidGui
                 return;
             }
             _mainWindowPM.ProcessLexicon(); 
-            _sfmEditorView.UpdateViewFromModel();
+            UpdateDisplay(true);
+            _sfmEditorView.UpdateViewFromModel();  //unnecessary? -JMC Sep 2014
             setSaveEnabled(true);
         }
 
@@ -701,7 +713,7 @@ namespace SolidGui
             _markerSettingsListView.UpdateDisplay(false); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
             _markerSettingsListView.Refresh();
              */
-            UpdateDisplay(false);  //I'm hoping this parameter enabling a "light refresh" is gentler. -JMC Sep 2014
+            UpdateDisplay(false);
         }
 
         private void reportAProblemsuggestionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -841,16 +853,15 @@ Notes:
         {
             _mainWindowPM.Settings.SetAllUnicodeTo(true);
             _mainWindowPM.needsSave = true;
-            this.UpdateDisplay(false);
+            UpdateDisplay(false);
         }
 
         private void _switchlToLegacyMenuItem_Click(object sender, EventArgs e)  // implements #1303
         {
             _mainWindowPM.Settings.SetAllUnicodeTo(false);
             _mainWindowPM.needsSave = true;
-            this.UpdateDisplay(false);
+            UpdateDisplay(false);
         }
-
 
     }
 }

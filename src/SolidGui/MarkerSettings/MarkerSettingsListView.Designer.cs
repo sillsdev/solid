@@ -64,7 +64,7 @@ namespace SolidGui.MarkerSettings
             glColumn1.NumericSort = false;
             glColumn1.Text = "Marker";
             glColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn1.Width = 60;
+            glColumn1.Width = 47;
             glColumn2.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn2.CheckBoxes = false;
             glColumn2.ComparisonFunction = null;
@@ -73,7 +73,7 @@ namespace SolidGui.MarkerSettings
             glColumn2.NumericSort = false;
             glColumn2.Text = "Count";
             glColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn2.Width = 60;
+            glColumn2.Width = 45;
             glColumn3.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn3.CheckBoxes = false;
             glColumn3.ComparisonFunction = null;
@@ -91,7 +91,7 @@ namespace SolidGui.MarkerSettings
             glColumn4.NumericSort = false;
             glColumn4.Text = "Writing System";
             glColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn4.Width = 90;
+            glColumn4.Width = 39;
             glColumn5.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn5.CheckBoxes = true;
             glColumn5.ComparisonFunction = null;
@@ -100,7 +100,7 @@ namespace SolidGui.MarkerSettings
             glColumn5.NumericSort = false;
             glColumn5.Text = "utf8";
             glColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn5.Width = 35;
+            glColumn5.Width = 30;
             glColumn6.ActivatedEmbeddedType = GlacialComponents.Controls.GLActivatedEmbeddedTypes.None;
             glColumn6.CheckBoxes = false;
             glColumn6.ComparisonFunction = null;
@@ -118,7 +118,7 @@ namespace SolidGui.MarkerSettings
             glColumn7.NumericSort = false;
             glColumn7.Text = "Comment";
             glColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            glColumn7.Width = 90;
+            glColumn7.Width = 80;
             this._markerListView.Columns.AddRange(new GlacialComponents.Controls.GLColumn[] {
             glColumn1,
             glColumn2,
@@ -152,7 +152,7 @@ namespace SolidGui.MarkerSettings
             this._markerListView.SelectionColor = System.Drawing.Color.DarkBlue;
             this._markerListView.ShowBorder = true;
             this._markerListView.ShowFocusRect = false;
-            this._markerListView.Size = new System.Drawing.Size(421, 213);
+            this._markerListView.Size = new System.Drawing.Size(392, 213);
             this._markerListView.SortType = GlacialComponents.Controls.SortTypes.InsertionSort;
             this._markerListView.SuperFlatHeaderColor = System.Drawing.Color.White;
             this._markerListView.TabIndex = 0;
@@ -166,7 +166,7 @@ namespace SolidGui.MarkerSettings
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._markerListView);
             this.Name = "MarkerSettingsListView";
-            this.Size = new System.Drawing.Size(421, 213);
+            this.Size = new System.Drawing.Size(392, 213);
             this.ResumeLayout(false);
 
         }

@@ -51,17 +51,13 @@ namespace SolidGui
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainerLeftRight = new System.Windows.Forms.SplitContainer();
             this.splitContainerUpDown = new System.Windows.Forms.SplitContainer();
-            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this.panelMarkerSettings = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.buttonTree = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +106,10 @@ namespace SolidGui
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
+            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
+            this._sfmEditorView = new SolidGui.SfmEditorView();
+            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -145,7 +145,7 @@ namespace SolidGui
             toolStrip1.Location = new System.Drawing.Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            toolStrip1.Size = new System.Drawing.Size(823, 25);
+            toolStrip1.Size = new System.Drawing.Size(822, 25);
             toolStrip1.Stretch = true;
             toolStrip1.TabIndex = 3;
             toolStrip1.Text = "toolStrip1";
@@ -239,7 +239,7 @@ namespace SolidGui
             this._recheckButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._recheckButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._recheckButton.Image = ((System.Drawing.Image)(resources.GetObject("_recheckButton.Image")));
-            this._recheckButton.Location = new System.Drawing.Point(360, 2);
+            this._recheckButton.Location = new System.Drawing.Point(316, 2);
             this._recheckButton.Name = "_recheckButton";
             this._recheckButton.Size = new System.Drawing.Size(85, 31);
             this._recheckButton.TabIndex = 4;
@@ -255,11 +255,11 @@ namespace SolidGui
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainerLeftRight);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(823, 403);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(822, 403);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(823, 452);
+            this.toolStripContainer1.Size = new System.Drawing.Size(822, 452);
             this.toolStripContainer1.TabIndex = 4;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -285,8 +285,8 @@ namespace SolidGui
             this.splitContainerLeftRight.Panel2.Controls.Add(this._sfmEditorView);
             this.splitContainerLeftRight.Panel2.Controls.Add(this._recordNavigatorView);
             this.splitContainerLeftRight.Panel2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.splitContainerLeftRight.Size = new System.Drawing.Size(823, 403);
-            this.splitContainerLeftRight.SplitterDistance = 457;
+            this.splitContainerLeftRight.Size = new System.Drawing.Size(822, 403);
+            this.splitContainerLeftRight.SplitterDistance = 413;
             this.splitContainerLeftRight.SplitterWidth = 5;
             this.splitContainerLeftRight.TabIndex = 3;
             // 
@@ -306,18 +306,9 @@ namespace SolidGui
             // 
             this.splitContainerUpDown.Panel2.Controls.Add(this._filterChooserView);
             this.splitContainerUpDown.Panel2.Controls.Add(this.panelFilters);
-            this.splitContainerUpDown.Size = new System.Drawing.Size(455, 403);
+            this.splitContainerUpDown.Size = new System.Drawing.Size(411, 403);
             this.splitContainerUpDown.SplitterDistance = 265;
             this.splitContainerUpDown.TabIndex = 2;
-            // 
-            // _markerSettingsListView
-            // 
-            this._markerSettingsListView.AutoSize = true;
-            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
-            this._markerSettingsListView.Name = "_markerSettingsListView";
-            this._markerSettingsListView.Size = new System.Drawing.Size(455, 231);
-            this._markerSettingsListView.TabIndex = 0;
             // 
             // panelMarkerSettings
             // 
@@ -327,7 +318,7 @@ namespace SolidGui
             this.panelMarkerSettings.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMarkerSettings.Location = new System.Drawing.Point(0, 0);
             this.panelMarkerSettings.Name = "panelMarkerSettings";
-            this.panelMarkerSettings.Size = new System.Drawing.Size(455, 34);
+            this.panelMarkerSettings.Size = new System.Drawing.Size(411, 34);
             this.panelMarkerSettings.TabIndex = 1;
             // 
             // flowLayoutPanel1
@@ -336,7 +327,7 @@ namespace SolidGui
             this.flowLayoutPanel1.Controls.Add(this._editMarkerProperties);
             this.flowLayoutPanel1.Controls.Add(this.buttonTree);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(309, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(265, 2);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(145, 32);
@@ -388,16 +379,6 @@ namespace SolidGui
             this.label2.TabIndex = 5;
             this.label2.Text = "Marker Settings/Filters";
             // 
-            // _filterChooserView
-            // 
-            this._filterChooserView.AutoSize = true;
-            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(455, 100);
-            this._filterChooserView.TabIndex = 2;
-            // 
             // panelFilters
             // 
             this.panelFilters.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -406,7 +387,7 @@ namespace SolidGui
             this.panelFilters.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilters.Location = new System.Drawing.Point(0, 0);
             this.panelFilters.Name = "panelFilters";
-            this.panelFilters.Size = new System.Drawing.Size(455, 34);
+            this.panelFilters.Size = new System.Drawing.Size(411, 34);
             this.panelFilters.TabIndex = 4;
             // 
             // label1
@@ -419,28 +400,6 @@ namespace SolidGui
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Error Filters";
-            // 
-            // _sfmEditorView
-            // 
-            this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._sfmEditorView.HighlightMarkers = null;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
-            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(359, 369);
-            this._sfmEditorView.TabIndex = 2;
-            // 
-            // _recordNavigatorView
-            // 
-            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
-            this._recordNavigatorView.Enabled = false;
-            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
-            this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(359, 34);
-            this._recordNavigatorView.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -455,7 +414,7 @@ namespace SolidGui
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(823, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(822, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -829,11 +788,52 @@ namespace SolidGui
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
             // 
+            // _markerSettingsListView
+            // 
+            this._markerSettingsListView.AutoSize = true;
+            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
+            this._markerSettingsListView.Name = "_markerSettingsListView";
+            this._markerSettingsListView.Size = new System.Drawing.Size(411, 231);
+            this._markerSettingsListView.TabIndex = 0;
+            // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.AutoSize = true;
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(411, 100);
+            this._filterChooserView.TabIndex = 2;
+            // 
+            // _sfmEditorView
+            // 
+            this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sfmEditorView.HighlightMarkers = null;
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
+            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this._sfmEditorView.Name = "_sfmEditorView";
+            this._sfmEditorView.Size = new System.Drawing.Size(402, 369);
+            this._sfmEditorView.TabIndex = 2;
+            // 
+            // _recordNavigatorView
+            // 
+            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
+            this._recordNavigatorView.Enabled = false;
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
+            this._recordNavigatorView.Name = "_recordNavigatorView";
+            this._recordNavigatorView.Size = new System.Drawing.Size(402, 34);
+            this._recordNavigatorView.TabIndex = 3;
+            // 
             // MainWindowView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 452);
+            this.ClientSize = new System.Drawing.Size(822, 452);
             this.Controls.Add(this.toolStripContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(1, 1);

@@ -152,7 +152,11 @@ namespace SolidGui.MarkerSettings
             }
 
             Refresh();
-            UpdateDisplayOfSettingsDialog();
+
+            if (_markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
+            {
+                _markerSettingsDialog.UpdateDisplay();
+            }
 
         }
 
@@ -244,14 +248,14 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog(MarkerSettingsDialog.firstTab);
+            OpenSettingsDialog("", MarkerSettingsDialog.firstTab);
         }
 
         private void OnWritingSystemLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             var item = (GLItem) ((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog(MarkerSettingsDialog.firstTab);
+            OpenSettingsDialog("", MarkerSettingsDialog.firstTab);
         }
 
 
@@ -259,7 +263,7 @@ namespace SolidGui.MarkerSettings
         {
             var item = (GLItem)((LinkLabel)sender).Tag;
             item.Selected = true;
-            OpenSettingsDialog(MarkerSettingsDialog.mappingTab);
+            OpenSettingsDialog("", MarkerSettingsDialog.mappingTab);
         }
 
         // When someone changes the filter in the PM
@@ -317,12 +321,16 @@ namespace SolidGui.MarkerSettings
             _markerSettingsDialog = null;
         }
 
-        public bool OpenSettingsDialog(string area)
+        public bool OpenSettingsDialog(string marker, string area)
         {
 
             if(_markerListView.SelectedItems.Count == 0)
             {
                 return false;
+            }
+            if (String.IsNullOrEmpty(marker))
+            {
+                marker = _markerListView.SelectedItems[0].Text;
             }
             if (String.IsNullOrEmpty(area))
             {
@@ -331,7 +339,6 @@ namespace SolidGui.MarkerSettings
 
             UsageReporter.SendNavigationNotice("Settings/"+area);
 
-            string marker = _markerListView.SelectedItems[0].Text;
 
             if (_markerSettingsDialog == null || _markerSettingsDialog.IsDisposed)
             {
@@ -351,20 +358,13 @@ namespace SolidGui.MarkerSettings
             {
                 _markerSettingsDialog.SetArea(area);
                 _markerSettingsDialog.SetMarker(marker);
+                _markerSettingsDialog.Hide();
             }
-            _markerSettingsDialog.Hide();
-            _markerSettingsDialog.UpdateDisplay();
+            
+            _markerSettingsDialog.UpdateDisplay();  //Will the next line trigger this anyway? Yes, but it'll crash without this. -JMC
             _markerSettingsDialog.Show();  //was .ShowDialog();
 
             return true;
-        }
-
-        private void UpdateDisplayOfSettingsDialog()
-        {
-            if (_markerSettingsDialog != null && !_markerSettingsDialog.IsDisposed)
-            {
-                _markerSettingsDialog.UpdateDisplay();
-            }
         }
 
         private void OnMarkerSettingPossiblyChanged(object sender, EventArgs e)
@@ -375,6 +375,19 @@ namespace SolidGui.MarkerSettings
             UpdateDisplay(); //more effective at highlighting the row: rebuild all rows
             //UpdateSelectedItems(_markerSettingsPM.GetMarkerSetting(marker));  //this was more efficient: update one row; but it adds maintenance overhead, and doesn't highlight the row. Removed. -JMC Feb 2014
              */
+        }
+
+        public string SelectedMarker()
+        {
+            if (_markerListView.Items.Count > 0)
+            {
+                foreach (GLItem a in _markerListView.Items)
+                {
+                    if (a.Selected) return a.Text;
+                }
+
+            }
+            return "";
         }
 
         public void SelectMarker(string marker)
@@ -400,12 +413,6 @@ namespace SolidGui.MarkerSettings
             GLItem item = _markerListView.Items[e.ItemIndex];
             string marker = item.Text;
 
-            if (!_changingFilter)
-            {
-                _markerSettingsPm.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker); 
-                // JMC:! why did we create a new one here, but not for the same situation in FilterChooserView, _filterList_SelectedIndexChanged() ?
-            }
-
             // Handle the new unicode column -JMC
             SolidMarkerSetting m = _markerSettingsPm.GetMarkerSetting(marker);
             if (m.Unicode != item.SubItems[4].Checked)
@@ -414,12 +421,18 @@ namespace SolidGui.MarkerSettings
                 m.Unicode = !m.Unicode;
                 if (MarkerSettingPossiblyChanged != null) MarkerSettingPossiblyChanged.Invoke(this, EventArgs.Empty);
             }
-        
+
+            if (!_changingFilter)
+            {
+                _markerSettingsPm.ActiveMarkerFilter = new MarkerFilter(_dictionary, marker); 
+                // JMC:! why did we create a new one here, but not for the same situation in FilterChooserView, _filterList_SelectedIndexChanged() ?
+            }
+
         }
 
         private void _markerListView_DoubleClick(object sender, EventArgs e)
         {
-            OpenSettingsDialog(null);
+            OpenSettingsDialog("", "");
         }
     }
 

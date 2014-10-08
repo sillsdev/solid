@@ -18,7 +18,7 @@ namespace SolidGui
     public partial class StructurePropertiesView : UserControl
     {
         private StructurePropertiesPM _model;
-        private bool _isProcessing = true;
+        private bool _isProcessing = false;
         private string _cachedMarker = "";
         private const string InferLabel = "Infer ";
         private const string NewLabel = "(New)";
@@ -43,21 +43,18 @@ namespace SolidGui
         public void UpdateDisplay()
         {
             _isProcessing = true;
-            UpdateParentMarkerListAndComboBox();
-            UpdateRadioButtonsAndExplanation();
-           
-            //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
+            UpdateDisplayParentMarkerListAndComboBox(); //do this first
+            UpdateDisplayOptions();
+
+            SetEnabled(Model.MarkerSettingsPm.Root);
+
+            string selected = GetSelectedText(_parentListView);
+            _explanationLabel.Text = string.Format("Under {1}, {0} can occur...", _model.MarkerSetting.Marker, selected);
+
+            _summaryTextBox.Text = MarkerSettingsPM.MakeStructureLinkLabel(_model.MarkerSetting.StructureProperties, _model.MarkerSetting);
             
-            _parentListView.Hide();
-            _parentListView.Show();
-            if (_parentListView.SelectedItems.Count > 0)
-            {
-                _parentListView.FocusedItem = _parentListView.SelectedItems[0];
-            }
-            else
-            {
-                //_parentListView.FocusedItem = _parentListView.Items[0];
-            }
+            _commentTextBox.Text = _model.MarkerSetting.Comment;
+
             _isProcessing = false;
         }
 
@@ -71,9 +68,10 @@ namespace SolidGui
             return selected;
         }
 
-        private void UpdateParentMarkerListAndComboBox()
+        private void UpdateDisplayParentMarkerListAndComboBox()
         {
-            string selected = GetSelectedText(_parentListView);
+            string wasSelected = GetSelectedText(_parentListView);
+            bool found = false;
 
             _parentListView.Items.Clear(); // was _parentListView.Clear();
             _InferComboBox.Items.Clear();
@@ -81,7 +79,11 @@ namespace SolidGui
 
             ListViewItem item = new ListViewItem(NewLabel);
             item.Tag = new SolidStructureProperty();
-            if (selected == NewLabel) item.Selected = true;
+            if (wasSelected == NewLabel)
+            {
+                item.Selected = true;
+                found = true;
+            }
             item.SubItems.Add("--");
             _parentListView.Items.Add(item);
 
@@ -96,17 +98,19 @@ namespace SolidGui
 
                 _InferComboBox.Items.Add(InferLabel + property.Parent);
 
-                if (selected == "") 
-                {
-                    //The dialog just loaded; prepare to select the first listed parent.  // Added for convenience. -JMC Feb 2014
-                    selected = item.Text;
-                }
-
-                if (item.Text == selected)
+                if (item.Text == wasSelected)
                 {
                     item.Selected = true;
+                    found = true;
                 }
             }
+            if (!found && _parentListView.Items.Count >= 2)
+            {
+                //prepare to select the first listed parent (the first thing after "(New) --").  // Added for convenience. -JMC Feb 2014
+                _parentListView.Items[1].Selected = true;
+            }
+
+            
             if (Model.InferedParent == "")
             {
                 _InferComboBox.SelectedIndex = 0;
@@ -115,52 +119,70 @@ namespace SolidGui
             {
                 _InferComboBox.SelectedIndex = _InferComboBox.Items.IndexOf(InferLabel + _model.InferedParent);
             }
-        }
-        
-        private void UpdateRadioButtonsAndExplanation()
-        {
+
+            //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
+
+            _parentListView.Hide();
+            _parentListView.Show();
             if (_parentListView.SelectedItems.Count > 0)
             {
-                SolidStructureProperty property = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
-                switch (property.Multiplicity)
-                {
-                    case MultiplicityAdjacency.Once:
-                        {
-                            _onceRadioButton.Checked = true;
-                            break;
-                        }
-                    case MultiplicityAdjacency.MultipleApart:
-                        {
-                            _multipleApartRadioButton.Checked = true;
-                            break;
-                        }
-                    case MultiplicityAdjacency.MultipleTogether:
-                        {
-                            _multipleTogetherRadioButton.Checked = true;
-                            break;
-                        }
-                }
-                _requiredCheckBox.Checked = property.Required;
-                setStructEnabled(true);
+                _parentListView.FocusedItem = _parentListView.SelectedItems[0];
             }
             else
             {
-                setStructEnabled(false);
+                //_parentListView.FocusedItem = _parentListView.Items[0];
             }
-
-            string selected = GetSelectedText(_parentListView);
-            _explanationLabel.Text = string.Format("Under {1}, {0} can occur...", _model.MarkerSetting.Marker, selected);
-            _summaryTextBox.Text = "Summary: " + MarkerSettingsPM.MakeStructureLinkLabel(_model.MarkerSetting.StructureProperties, _model.MarkerSetting);
-            _commentTextBox.Text = _model.MarkerSetting.Comment;
         }
-
-        private void setStructEnabled(bool value)
+        
+        private void UpdateDisplayOptions()
         {
-            flowLayoutPanelOccurs.Enabled = value;
-            _InferComboBox.Enabled = value;
+            if (_parentListView.SelectedItems.Count > 0)
+            {
+                SolidStructureProperty property = (SolidStructureProperty) _parentListView.SelectedItems[0].Tag;
+                switch (property.Multiplicity)
+                {
+                    case MultiplicityAdjacency.Once:
+                    {
+                        _onceRadioButton.Checked = true;
+                        break;
+                    }
+                    case MultiplicityAdjacency.MultipleApart:
+                    {
+                        _multipleApartRadioButton.Checked = true;
+                        break;
+                    }
+                    case MultiplicityAdjacency.MultipleTogether:
+                    {
+                        _multipleTogetherRadioButton.Checked = true;
+                        break;
+                    }
+                }
+                _requiredCheckBox.Checked = property.Required;
+            }
+            else
+            {
+                _requiredCheckBox.Checked = false;
+                _onceRadioButton.Checked = true;
+            }
         }
 
-        public void setLxEnabled(bool value)
+        private void SetEnabled(string rootMarker)
+        {
+            if (Model.MarkerSetting.Marker == rootMarker)
+            {
+                SetLxEnabled(false);
+                return;
+            }
+            SetLxEnabled(true);
+
+            if (_parentListView.SelectedItems.Count < 1)
+            {
+                flowLayoutPanelOccurs.Enabled = false;
+                _InferComboBox.Enabled = false;
+            }
+        }
+
+        private void SetLxEnabled(bool value)
         {
             flowLayoutPanelOccurs.Enabled = value;
             _parentListView.Enabled = value;
@@ -170,7 +192,7 @@ namespace SolidGui
         private void _parentListView_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Alas, this always fires twice, once to deselect, then once correctly. -JMC Feb 2014
-            if (_isProcessing || _parentListView.SelectedItems.Count <= 0) return; //ignore the first firing
+            if (_isProcessing || _parentListView.SelectedItems.Count < 1) return; //ignore the first firing
             UpdateDisplay();
         }
 
@@ -181,13 +203,13 @@ namespace SolidGui
                 SolidStructureProperty selected = (SolidStructureProperty)_parentListView.SelectedItems[0].Tag;
                 if (!_isProcessing)
                 {
-                    _model.UpdateMultiplicity(selected,
+                    _model.UpdateOptions(selected,
                                                 _onceRadioButton.Checked,
                                                 _multipleApartRadioButton.Checked,
                                                 _multipleTogetherRadioButton.Checked,
                                                 _requiredCheckBox.Checked);
+                    UpdateDisplay();
                 }
-                UpdateDisplay();
             }
         }
 
@@ -214,7 +236,7 @@ namespace SolidGui
 
         private void _parentListView_AfterLabelEdit(object sender, LabelEditEventArgs e)
         {
-            // Note that clicking twice and hitting Enter will give null; retyping it precisely will give _cachedLabel. -JMC
+            // Note that clicking twice and hitting Enter will give null; retyping it precisely will give _cachedMarker. -JMC
             if (e.Label == null || e.Label == _cachedMarker)
             {
                 e.CancelEdit = true;

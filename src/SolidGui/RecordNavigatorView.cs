@@ -60,7 +60,9 @@ namespace SolidGui
             }
             // wire it up
             _model = model;
+            _model.RecordChanged -= OnRecordChanged;
             _model.RecordChanged += OnRecordChanged;
+            _model.NavFilterChanged -= OnNavFilterChanged;
             _model.NavFilterChanged += OnNavFilterChanged;
         }
 
