@@ -56,6 +56,7 @@ namespace SolidGui.MarkerSettings
                         parents += ", ";
                     }
                     parents += String.Format("{0} ({1})", property.Parent, property.Multiplicity.Abbr());
+                    if (property.Required) parents += "*";
                 }
             }
             if (parents == "")
@@ -101,7 +102,7 @@ namespace SolidGui.MarkerSettings
 
         public IEnumerable<string> MarkersInDictionary { get; set; }
 
-        public IList<string> GetValidMarkers()
+        public IList<string> GetAllMarkers()
         {
             List<string> allValidMarkers = new List<string>();
 
@@ -111,7 +112,7 @@ namespace SolidGui.MarkerSettings
             {
                 if (!allValidMarkers.Contains(marker))
                 {
-                    allValidMarkers.Add(marker);
+                     allValidMarkers.Add(marker);
                 }
             }
 

@@ -82,15 +82,19 @@ namespace SolidGui.MarkerSettings
 
             AddLinkSubItem(item, MakeMappingLinkLabel(SolidMarkerSetting.MappingType.Lift, markerSetting), OnLiftMappingLinkClicked); //LIFT 
 
-            item.SubItems.Add(markerSetting.Comment);  // COMMENT
+            string shortComment = FirstChars(markerSetting.Comment, 45);
+            AddLinkSubItem(item, shortComment, OnStructureLinkClicked); // COMMENT
 
             //FillInErrorColumn(item, _dictionary.MarkerErrors[pair.Key]);
             return item;
         }
 
-        public void UpdateDisplay()
+        private static string FirstChars(string s, int max)
         {
-            UpdateDisplay(false);
+            if (String.IsNullOrEmpty(s)) return "";
+            int n = Math.Min(max, s.Length);
+            string tmp = s.Substring(0, n);
+            return tmp;
         }
 
         public void UpdateDisplay(bool fullRefresh)
@@ -166,8 +170,7 @@ namespace SolidGui.MarkerSettings
 
 /*
             //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
-            gl.Hide();
-            gl.Show();
+            gl.Hide(); gl.Show();
             if (gl.SelectedItems.Count > 0)
             {
                 gl.FocusedItem = gl.SelectedItems[0];
@@ -358,7 +361,7 @@ namespace SolidGui.MarkerSettings
             {
                 _markerSettingsDialog.SetArea(area);
                 _markerSettingsDialog.SetMarker(marker);
-                _markerSettingsDialog.Hide();
+                //_markerSettingsDialog.Hide();
             }
             
             _markerSettingsDialog.UpdateDisplay();  //Will the next line trigger this anyway? Yes, but it'll crash without this. -JMC

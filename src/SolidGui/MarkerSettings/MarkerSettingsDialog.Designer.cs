@@ -68,7 +68,7 @@
             this._outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._outerTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this._outerTableLayoutPanel.Size = new System.Drawing.Size(426, 350);
+            this._outerTableLayoutPanel.Size = new System.Drawing.Size(449, 350);
             this._outerTableLayoutPanel.TabIndex = 0;
             // 
             // _cbUnicode
@@ -77,7 +77,7 @@
             this._cbUnicode.Location = new System.Drawing.Point(62, 293);
             this._cbUnicode.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this._cbUnicode.Name = "_cbUnicode";
-            this._cbUnicode.Size = new System.Drawing.Size(361, 20);
+            this._cbUnicode.Size = new System.Drawing.Size(384, 20);
             this._cbUnicode.TabIndex = 0;
             this._cbUnicode.Text = "Data for this marker is already encoded as UTF-8 Unicode";
             this._cbUnicode.UseVisualStyleBackColor = true;
@@ -92,7 +92,7 @@
             this._tabControl.Location = new System.Drawing.Point(58, 3);
             this._tabControl.Name = "_tabControl";
             this._tabControl.SelectedIndex = 0;
-            this._tabControl.Size = new System.Drawing.Size(365, 284);
+            this._tabControl.Size = new System.Drawing.Size(388, 284);
             this._tabControl.TabIndex = 0;
             this._tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             this._tabControl.Leave += new System.EventHandler(this._structureTabControl_Leave);
@@ -104,7 +104,7 @@
             this.structureTabPage.Location = new System.Drawing.Point(4, 22);
             this.structureTabPage.Name = "structureTabPage";
             this.structureTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.structureTabPage.Size = new System.Drawing.Size(357, 258);
+            this.structureTabPage.Size = new System.Drawing.Size(380, 258);
             this.structureTabPage.TabIndex = 0;
             this.structureTabPage.Text = "Settings";
             // 
@@ -123,7 +123,7 @@
             // 
             this.valuesTabPage.Location = new System.Drawing.Point(4, 22);
             this.valuesTabPage.Name = "valuesTabPage";
-            this.valuesTabPage.Size = new System.Drawing.Size(384, 258);
+            this.valuesTabPage.Size = new System.Drawing.Size(380, 258);
             this.valuesTabPage.TabIndex = 2;
             this.valuesTabPage.Text = "Values";
             this.valuesTabPage.UseVisualStyleBackColor = true;
@@ -134,7 +134,7 @@
             this.mappingTabPage.Location = new System.Drawing.Point(4, 22);
             this.mappingTabPage.Name = "mappingTabPage";
             this.mappingTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.mappingTabPage.Size = new System.Drawing.Size(384, 258);
+            this.mappingTabPage.Size = new System.Drawing.Size(380, 258);
             this.mappingTabPage.TabIndex = 1;
             this.mappingTabPage.Text = "Export";
             this.mappingTabPage.UseVisualStyleBackColor = true;
@@ -144,7 +144,7 @@
             this._mappingView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._mappingView.Location = new System.Drawing.Point(3, 3);
             this._mappingView.Name = "_mappingView";
-            this._mappingView.Size = new System.Drawing.Size(378, 252);
+            this._mappingView.Size = new System.Drawing.Size(374, 252);
             this._mappingView.TabIndex = 0;
             // 
             // _markersListBox
@@ -171,14 +171,14 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(371, 30);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(394, 30);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // _closeButton
             // 
             this._closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this._closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._closeButton.Location = new System.Drawing.Point(293, 3);
+            this._closeButton.Location = new System.Drawing.Point(316, 3);
             this._closeButton.Name = "_closeButton";
             this._closeButton.Size = new System.Drawing.Size(75, 23);
             this._closeButton.TabIndex = 3;
@@ -195,7 +195,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(289, 30);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(312, 30);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // label1
@@ -243,7 +243,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelButton = this._closeButton;
-            this.ClientSize = new System.Drawing.Size(426, 350);
+            this.ClientSize = new System.Drawing.Size(449, 350);
             this.Controls.Add(this._outerTableLayoutPanel);
             this.MinimumSize = new System.Drawing.Size(433, 355);
             this.Name = "MarkerSettingsDialog";

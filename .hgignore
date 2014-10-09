@@ -11,3 +11,4 @@ src/_ReSharper.solid
 *Thumbs.db
 lib/Palaso*.dll
 lib/Palaso*.XML
+lib\*.xml

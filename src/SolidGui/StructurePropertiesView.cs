@@ -122,8 +122,7 @@ namespace SolidGui
 
             //Workaround so that we don't lose our row highlight. (Not needed when debugging with breakpoints!) -JMC Feb 2014
 
-            _parentListView.Hide();
-            _parentListView.Show();
+            //_parentListView.Hide(); _parentListView.Show();
             if (_parentListView.SelectedItems.Count > 0)
             {
                 _parentListView.FocusedItem = _parentListView.SelectedItems[0];
@@ -221,11 +220,12 @@ namespace SolidGui
             }
         }
 
-        public void CommentTextBoxNeedsCheck(object sender, EventArgs e)
+        public void CommentTextBoxMaybeChanged(object sender, EventArgs e)
         {
             if (!_isProcessing)
             {
-                _model.UpdateComment(_commentTextBox.Text);
+                string s =_model.UpdateComment(_commentTextBox.Text);
+                if (_commentTextBox.Text != s) _commentTextBox.Text = s;
             }
         }
 
@@ -258,7 +258,7 @@ namespace SolidGui
             {
                 var d = new ProblemNotificationDialog(
                     String.Format(
-                        "'{0}' isn't a valid parent marker. It must be a valid marker, such as \\sn or \\lx .",
+                        "'{0}' isn't a valid parent marker. It must be an existing marker, such as \\sn or \\lx .",
                         e.Label
                     ),
                     "Solid Error"

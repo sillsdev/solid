@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;
@@ -12,7 +13,7 @@ namespace Solid.Engine
     public class StructurePropertiesPM
     {
         private SolidMarkerSetting _markerSetting;
-        private List<string> _allValidMarkers;
+        //private List<string> _allValidMarkers;
         public MarkerSettingsPM MarkerSettingsPm;
 
         public StructurePropertiesPM(MarkerSettingsPM markerSettings)
@@ -48,13 +49,15 @@ namespace Solid.Engine
             }
         }
 
-        public IEnumerable<string> AllValidMarkers
+        /*
+        public IList<string> AllValidMarkers
         {
+            private get { return _allValidMarkers; }
             set
             {
                 _allValidMarkers = (List<string>)value;
             }
-        }
+        }*/
 
         public event EventHandler StructureSettingChanged;
 
@@ -85,13 +88,21 @@ namespace Solid.Engine
             MayNeedSave();
         }
 
-        public void UpdateComment(string comment)
+        public string UpdateComment(string comment)
         {
+            string safe = Sanitize(comment);
             if(_markerSetting.Comment != comment)
             {
-                _markerSetting.Comment = comment;
+                _markerSetting.Comment = safe;
                 MayNeedSave();
             }
+            return safe;
+        }
+
+        public static string Sanitize(string s)
+        {
+            string tmp = Regex.Replace(s, @"[^a-zA-Z0-9 ;:,.!?()\-=+_']", "");
+            return tmp;
         }
 
         public void UpdateParentMarkers(ListView.ListViewItemCollection items)
@@ -114,8 +125,9 @@ namespace Solid.Engine
         public bool ValidParent(string marker)
         {
             string markerWithoutLeadingBackslash = RemoveLeadingBackslash(marker);
+            IList<string> markers = MarkerSettingsPm.GetAllMarkers();
             return (
-                       _allValidMarkers.Contains(markerWithoutLeadingBackslash) &&
+                       markers.Contains(markerWithoutLeadingBackslash) &&
                        !_markerSetting.ParentExists(markerWithoutLeadingBackslash) &&
                        _markerSetting.Marker != markerWithoutLeadingBackslash
                    );

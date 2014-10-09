@@ -55,8 +55,8 @@ namespace SolidGui
             // _nestedTableLayoutPanel
             // 
             this._nestedTableLayoutPanel.ColumnCount = 2;
-            this._nestedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this._nestedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
+            this._nestedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.19718F));
+            this._nestedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.80282F));
             this._nestedTableLayoutPanel.Controls.Add(this._parentListView, 0, 1);
             this._nestedTableLayoutPanel.Controls.Add(this.summaryLabel, 0, 3);
             this._nestedTableLayoutPanel.Controls.Add(this._commentsLabel, 0, 4);
@@ -76,7 +76,7 @@ namespace SolidGui
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this._nestedTableLayoutPanel.Size = new System.Drawing.Size(381, 266);
+            this._nestedTableLayoutPanel.Size = new System.Drawing.Size(355, 266);
             this._nestedTableLayoutPanel.TabIndex = 1;
             // 
             // _parentListView
@@ -91,7 +91,7 @@ namespace SolidGui
             this._parentListView.Location = new System.Drawing.Point(3, 33);
             this._parentListView.MultiSelect = false;
             this._parentListView.Name = "_parentListView";
-            this._parentListView.Size = new System.Drawing.Size(89, 104);
+            this._parentListView.Size = new System.Drawing.Size(86, 104);
             this._parentListView.TabIndex = 9;
             this._parentListView.UseCompatibleStateImageBehavior = false;
             this._parentListView.View = System.Windows.Forms.View.Details;
@@ -118,7 +118,7 @@ namespace SolidGui
             this.summaryLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.summaryLabel.Location = new System.Drawing.Point(3, 173);
             this.summaryLabel.Name = "summaryLabel";
-            this.summaryLabel.Size = new System.Drawing.Size(89, 13);
+            this.summaryLabel.Size = new System.Drawing.Size(86, 13);
             this.summaryLabel.TabIndex = 0;
             this.summaryLabel.TabStop = false;
             this.summaryLabel.Text = "Summary:";
@@ -129,7 +129,7 @@ namespace SolidGui
             this._commentsLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._commentsLabel.Location = new System.Drawing.Point(3, 203);
             this._commentsLabel.Name = "_commentsLabel";
-            this._commentsLabel.Size = new System.Drawing.Size(89, 13);
+            this._commentsLabel.Size = new System.Drawing.Size(86, 13);
             this._commentsLabel.TabIndex = 0;
             this._commentsLabel.TabStop = false;
             this._commentsLabel.Text = "Comments:";
@@ -137,22 +137,22 @@ namespace SolidGui
             // _commentTextBox
             // 
             this._commentTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._commentTextBox.Location = new System.Drawing.Point(98, 203);
+            this._commentTextBox.Location = new System.Drawing.Point(95, 203);
             this._commentTextBox.Multiline = true;
             this._commentTextBox.Name = "_commentTextBox";
-            this._commentTextBox.Size = new System.Drawing.Size(280, 60);
+            this._commentTextBox.Size = new System.Drawing.Size(257, 60);
             this._commentTextBox.TabIndex = 3;
-            this._commentTextBox.Leave += new System.EventHandler(this.CommentTextBoxNeedsCheck);
-            this._commentTextBox.Validated += new System.EventHandler(this.CommentTextBoxNeedsCheck);
+            this._commentTextBox.Leave += new System.EventHandler(this.CommentTextBoxMaybeChanged);
+            this._commentTextBox.Validated += new System.EventHandler(this.CommentTextBoxMaybeChanged);
             // 
             // _summaryTextBox
             // 
             this._summaryTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._summaryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._summaryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._summaryTextBox.Location = new System.Drawing.Point(98, 173);
+            this._summaryTextBox.Location = new System.Drawing.Point(95, 173);
             this._summaryTextBox.Name = "_summaryTextBox";
-            this._summaryTextBox.Size = new System.Drawing.Size(280, 13);
+            this._summaryTextBox.Size = new System.Drawing.Size(257, 13);
             this._summaryTextBox.TabIndex = 0;
             this._summaryTextBox.TabStop = false;
             this._summaryTextBox.Text = "i";
@@ -164,7 +164,7 @@ namespace SolidGui
             this._parentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._parentLabel.Location = new System.Drawing.Point(3, 3);
             this._parentLabel.Name = "_parentLabel";
-            this._parentLabel.Size = new System.Drawing.Size(89, 13);
+            this._parentLabel.Size = new System.Drawing.Size(86, 13);
             this._parentLabel.TabIndex = 0;
             this._parentLabel.TabStop = false;
             this._parentLabel.Text = "Parent Marker(s):";
@@ -174,9 +174,9 @@ namespace SolidGui
             this._explanationLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._explanationLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._explanationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._explanationLabel.Location = new System.Drawing.Point(98, 3);
+            this._explanationLabel.Location = new System.Drawing.Point(95, 3);
             this._explanationLabel.Name = "_explanationLabel";
-            this._explanationLabel.Size = new System.Drawing.Size(280, 13);
+            this._explanationLabel.Size = new System.Drawing.Size(257, 13);
             this._explanationLabel.TabIndex = 0;
             this._explanationLabel.TabStop = false;
             this._explanationLabel.Text = "Under {0}, {1} can occur...";
@@ -189,9 +189,9 @@ namespace SolidGui
             this.flowLayoutPanelOccurs.Controls.Add(this._requiredCheckBox);
             this.flowLayoutPanelOccurs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelOccurs.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(98, 33);
+            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(95, 33);
             this.flowLayoutPanelOccurs.Name = "flowLayoutPanelOccurs";
-            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(280, 104);
+            this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(257, 104);
             this.flowLayoutPanelOccurs.TabIndex = 2;
             // 
             // _onceRadioButton
@@ -212,9 +212,9 @@ namespace SolidGui
             this._multipleTogetherRadioButton.AutoSize = true;
             this._multipleTogetherRadioButton.Location = new System.Drawing.Point(3, 26);
             this._multipleTogetherRadioButton.Name = "_multipleTogetherRadioButton";
-            this._multipleTogetherRadioButton.Size = new System.Drawing.Size(247, 17);
+            this._multipleTogetherRadioButton.Size = new System.Drawing.Size(250, 17);
             this._multipleTogetherRadioButton.TabIndex = 0;
-            this._multipleTogetherRadioButton.Text = "One or more times together (excepting children)";
+            this._multipleTogetherRadioButton.Text = "One or more times \'together\' (excluding children)";
             this._multipleTogetherRadioButton.UseVisualStyleBackColor = true;
             this._multipleTogetherRadioButton.CheckedChanged += new System.EventHandler(this._radioButton_Click);
             // 
@@ -232,7 +232,6 @@ namespace SolidGui
             // _requiredCheckBox
             // 
             this._requiredCheckBox.AutoSize = true;
-            this._requiredCheckBox.Enabled = false;
             this._requiredCheckBox.Location = new System.Drawing.Point(3, 72);
             this._requiredCheckBox.Name = "_requiredCheckBox";
             this._requiredCheckBox.Size = new System.Drawing.Size(143, 17);
@@ -247,9 +246,9 @@ namespace SolidGui
             this._InferComboBox.FormattingEnabled = true;
             this._InferComboBox.Items.AddRange(new object[] {
             "Report Error"});
-            this._InferComboBox.Location = new System.Drawing.Point(98, 143);
+            this._InferComboBox.Location = new System.Drawing.Point(95, 143);
             this._InferComboBox.Name = "_InferComboBox";
-            this._InferComboBox.Size = new System.Drawing.Size(280, 21);
+            this._InferComboBox.Size = new System.Drawing.Size(257, 21);
             this._InferComboBox.TabIndex = 2;
             this._InferComboBox.SelectedIndexChanged += new System.EventHandler(this._InferComboBox_SelectedIndexChanged);
             // 
@@ -259,7 +258,7 @@ namespace SolidGui
             this._inferComboLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._inferComboLabel.Location = new System.Drawing.Point(3, 143);
             this._inferComboLabel.Name = "_inferComboLabel";
-            this._inferComboLabel.Size = new System.Drawing.Size(89, 13);
+            this._inferComboLabel.Size = new System.Drawing.Size(86, 13);
             this._inferComboLabel.TabIndex = 0;
             this._inferComboLabel.TabStop = false;
             this._inferComboLabel.Text = "If no parent, then";
@@ -270,10 +269,10 @@ namespace SolidGui
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Controls.Add(this._nestedTableLayoutPanel);
-            this.MinimumSize = new System.Drawing.Size(377, 239);
+            this.MinimumSize = new System.Drawing.Size(355, 266);
             this.Name = "StructurePropertiesView";
-            this.Size = new System.Drawing.Size(381, 266);
-            this.Leave += new System.EventHandler(this.CommentTextBoxNeedsCheck);
+            this.Size = new System.Drawing.Size(355, 266);
+            this.Leave += new System.EventHandler(this.CommentTextBoxMaybeChanged);
             this._nestedTableLayoutPanel.ResumeLayout(false);
             this._nestedTableLayoutPanel.PerformLayout();
             this.flowLayoutPanelOccurs.ResumeLayout(false);

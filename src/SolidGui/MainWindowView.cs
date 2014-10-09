@@ -365,8 +365,7 @@ namespace SolidGui
                 _sfmEditorView.Focus();
             }
             _sfmEditorView.UpdateViewFromModel();  // JMC:! ...but this doesn't help with the right pane
-            Hide();
-            Show();
+            //Hide(); Show();
             if (fullRefresh) _sfmEditorView.ContentsBox.Focus(); // possibly redundant -JMC
         
         }
@@ -524,6 +523,7 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
+            _markerSettingsListView.CloseSettingsDialog();
             if (_mainWindowPM.needsSave) 
             {
                 DialogResult answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,

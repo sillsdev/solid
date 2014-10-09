@@ -140,8 +140,7 @@ namespace SolidGui.Mapping
             UpdateDisplayConceptList();
             UpdateDisplayConcept(); 
             UpdateDisplayInformationPane();
-            this.Hide();
-            this.Show();
+            //this.Hide(); this.Show();
             _isProcessing = false;
         }
 

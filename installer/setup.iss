@@ -46,6 +46,7 @@ Name: {userdocs}\Solid Examples
 Source: ..\installer\isxdl.dll; Flags: dontcopy
 Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Keyman7Interop.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion

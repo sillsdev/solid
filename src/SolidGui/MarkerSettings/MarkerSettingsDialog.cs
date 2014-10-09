@@ -76,7 +76,7 @@ namespace SolidGui.MarkerSettings
             wsPickerUsingComboBox1.SelectedComboIndexChanged -= wsPickerUsingComboBox1_SelectedComboIndexChanged;
             wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
 
-            _structurePropertiesView.Model.AllValidMarkers = MarkerModel.GetValidMarkers();
+            //_structurePropertiesView.Model.AllValidMarkers = MarkerModel.GetAllMarkers();
             _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
             //_structurePropertiesView.UpdateDisplay();
 
@@ -86,11 +86,6 @@ namespace SolidGui.MarkerSettings
 
             //SelectInitialArea(initialArea);
 
-
-            foreach (var ms in MarkerModel.MarkersInDictionary)
-            {
-                _markersListBox.Items.Add(ms);
-            }
 
             UpdateDisplay();
         }
@@ -217,18 +212,14 @@ namespace SolidGui.MarkerSettings
         }
 
         /// <summary>
-        /// Updates the pieces of the model that aren't handled by embedded controls.
-        /// That is, WS and encoding. StructurePropertiesView and MappingView handle their data.
+        /// Updates the pieces of the model that aren't handled by embedded controls. That is,
+        /// it updates WS and encoding. (StructurePropertiesView and MappingView handle their own data.)
         /// </summary>
         public void UpdateModel()
         {
 
             // update WS model
-            if (!_wsModel.HasCurrentSelection)
-            {
-                _currentMarkerSetting.WritingSystemRfc4646 = string.Empty;  //todo: add a SomethingChanged() here?
-            }
-            else
+            if (_wsModel.HasCurrentSelection)
             {
                 string a = _currentMarkerSetting.WritingSystemRfc4646;
                 string b = _wsModel.CurrentRFC4646;
@@ -238,6 +229,7 @@ namespace SolidGui.MarkerSettings
                     SomeSettingChanged();
                 }
             }
+            // else do nothing; we don't want to blow away temporary non-WSes: "vern" and "nat" and "reg"
 
             bool aa = _currentMarkerSetting.Unicode;
             bool bb = _cbUnicode.Checked;
@@ -306,8 +298,11 @@ namespace SolidGui.MarkerSettings
         /// </summary>
         public void Listen(EventHandler listener)
         {
+            SettingChanged -= listener;
             SettingChanged += listener;
+            _structurePropertiesView.Model.StructureSettingChanged -= listener;
             _structurePropertiesView.Model.StructureSettingChanged += listener;
+            _mappingView.Model.MappingSettingChanged -= listener;
             _mappingView.Model.MappingSettingChanged += listener;
         }
 
@@ -318,7 +313,7 @@ namespace SolidGui.MarkerSettings
 
         private void MarkerSettingsDialog_Deactivate(object sender, System.EventArgs e)
         {
-            _structurePropertiesView.CommentTextBoxNeedsCheck(sender, e);
+            _structurePropertiesView.CommentTextBoxMaybeChanged(sender, e);
         }
 
 
