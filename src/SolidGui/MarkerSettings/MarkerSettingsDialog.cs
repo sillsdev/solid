@@ -20,14 +20,14 @@ namespace SolidGui.MarkerSettings
         public const string firstTab = "structureTabPage";
         public const string mappingTab = "mappingTabPage";
 
-        private string _marker;  // todo: unify this with _currentMarkerSetting
+        private string _marker;  // TODO: unify this with _currentMarkerSetting -JMC
 
         private readonly WritingSystemSetupModel _wsModel;
         private readonly IWritingSystemRepository _store;
 
         // Added the following reference because of what seems to be new behavior in Palaso's BetterLabel. Now trying to make sure the WS dialog is not disposed each time.
         // So, need to dispose of these things prior to app shutdown? Yes, added a Cleanup() method and called it from the parent dialog's FormClose event -JMC Feb 2014
-        // JMC: Would it be better to put it in Dispose()? Probably.
+        // TODO: Would it be better to put it in Dispose()? Probably, but this seems to happen too late to make Palaso lib happy. -JMC
         private readonly WritingSystemSetupDialog _wsDialog;
 
         private bool _isProcessing=false;  // added to avoid triggering "Changed" events during initial loading. -JMC Feb 2014
@@ -122,8 +122,6 @@ namespace SolidGui.MarkerSettings
                 _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
             }
 
-
-            //TODO: and for Values tab too
         }
 
         public void SetArea(string area)
@@ -143,11 +141,13 @@ namespace SolidGui.MarkerSettings
             }           
         }
 
+        /*
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             // SetArea(_tabControl.SelectedTab.Name);
             // UpdateDisplay();
         }
+         */
 
         public void UpdateDisplay()
         {
@@ -286,7 +286,7 @@ namespace SolidGui.MarkerSettings
             } 
         }
 
-        public void Cleanup()  //JMC: I would think this really belongs in this.Dispose(), but Palaso wants its stuff disposed sooner. 
+        public void Cleanup()  //TODO: I would think this really belongs in this.Dispose(), but Palaso wants its stuff disposed sooner. -JMC
         {
             _wsDialog.Dispose();
         }

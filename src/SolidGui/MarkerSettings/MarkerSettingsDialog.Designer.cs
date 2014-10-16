@@ -33,7 +33,6 @@
             this._tabControl = new System.Windows.Forms.TabControl();
             this.structureTabPage = new System.Windows.Forms.TabPage();
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
-            this.valuesTabPage = new System.Windows.Forms.TabPage();
             this.mappingTabPage = new System.Windows.Forms.TabPage();
             this._mappingView = new SolidGui.Mapping.MappingView();
             this._markersListBox = new System.Windows.Forms.ListBox();
@@ -86,7 +85,6 @@
             // _tabControl
             // 
             this._tabControl.Controls.Add(this.structureTabPage);
-            this._tabControl.Controls.Add(this.valuesTabPage);
             this._tabControl.Controls.Add(this.mappingTabPage);
             this._tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._tabControl.Location = new System.Drawing.Point(58, 3);
@@ -94,7 +92,6 @@
             this._tabControl.SelectedIndex = 0;
             this._tabControl.Size = new System.Drawing.Size(388, 284);
             this._tabControl.TabIndex = 0;
-            this._tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             this._tabControl.Leave += new System.EventHandler(this._structureTabControl_Leave);
             // 
             // structureTabPage
@@ -118,15 +115,6 @@
             this._structurePropertiesView.Name = "_structurePropertiesView";
             this._structurePropertiesView.Size = new System.Drawing.Size(377, 252);
             this._structurePropertiesView.TabIndex = 0;
-            // 
-            // valuesTabPage
-            // 
-            this.valuesTabPage.Location = new System.Drawing.Point(4, 22);
-            this.valuesTabPage.Name = "valuesTabPage";
-            this.valuesTabPage.Size = new System.Drawing.Size(380, 258);
-            this.valuesTabPage.TabIndex = 2;
-            this.valuesTabPage.Text = "Values";
-            this.valuesTabPage.UseVisualStyleBackColor = true;
             // 
             // mappingTabPage
             // 
@@ -267,7 +255,6 @@
         private System.Windows.Forms.TableLayoutPanel _outerTableLayoutPanel;
         private System.Windows.Forms.TabControl _tabControl;
         private System.Windows.Forms.TabPage structureTabPage;
-        private System.Windows.Forms.TabPage valuesTabPage;
         private System.Windows.Forms.TabPage mappingTabPage;
         private System.Windows.Forms.ListBox _markersListBox;
         private Mapping.MappingView _mappingView;

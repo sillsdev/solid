@@ -259,7 +259,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments>Usage (en). FLEx: Yes, but it's a list field; use custom field for free text.</Comments>
+      <Comments>Usage (en). FLEx: Yes, but it's a list field; consider using a freeform text field instead (such as Restrictions). See oe.</Comments>
       <Mappings>
         <string>utyp</string>
         <string />
@@ -1119,7 +1119,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments>Restriction (en). FLEx: Yes, but consider using a list field instead.</Comments>
+      <Comments>Restriction (en). FLEx: Yes, but it's a freeform text field; consider using a list field instead (such as Usages). See ue.</Comments>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1209,7 +1209,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments>Paradigm label such as 'fem' for feminine. Use a range list See also pdl and pdv. FLEx: use a custom list and custom list field.</Comments>
+      <Comments>Paradigm label such as 'fem' for feminine. Use a range set. See also pdl and pdv. FLEx: use a custom list and custom list field.</Comments>
       <Mappings>
         <string>eires</string>
         <string />

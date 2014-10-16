@@ -1,2165 +1,1945 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RecordMarker>lx</RecordMarker>
-  <Version>1.0</Version>
+  <Version>3</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
+      <Marker>lx</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>lexicalUnit</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>entry</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>lx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>no</Marker>
+      <Comments>Lexical Item (Lexeme Form) with homonym number and cognate index. FLEx: Yes, but do not embed dialectal variants here (no d1 d2 d3 inline markers), nor any cognate index.</Comments>
+      <Mappings>
+        <string />
+        <string>lexicalUnit</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>no</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments />
       <Mappings>
-        <string xsi:nil="true" />
-        <string>grammi</string>
+        <string />
+        <string />
       </Mappings>
-      <InferedParent>ms</InferedParent>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ps</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ps</Marker>
+      <InferedParent>ms</InferedParent>
+      <Comments>Part of Speech AND the head of each subsense. FLEx: Yes, Grammatical Category. But if there are multiple ps per ms, see notes on ms.</Comments>
+      <Mappings>
+        <string />
+        <string>grammi</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>gl</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Definition (a.k.a 'Gloss'); translation equivalent--mark reversals with an asterisk For subentries, this corresponds more to Summary Definition. FLEx: Yes, but split out any embedded reversals marked with asterisk (see ie).</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>definition</string>
       </Mappings>
-      <InferedParent />
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ie</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>gl</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
+      <InferedParent />
+      <Comments>Index - English; i.e. Reversal. FLEx: Yes, but each distinct value should be a distinct ie field (multiple together). And split out reversals embedded in gl.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>reversal</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ie</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>ex</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>exampleSentence</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>eg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ec</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ar</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ex</Marker>
+      <InferedParent />
+      <Comments>Example of usage</Comments>
+      <Mappings>
+        <string />
+        <string>exampleSentence</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>tr</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>exampleSentenceTranslation</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ex</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>tr</Marker>
+      <InferedParent />
+      <Comments>Translation of Example - English</Comments>
+      <Mappings>
+        <string />
+        <string>exampleSentenceTranslation</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>exx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>exx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>trx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>dqx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>tb</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Table. FLEx: NO. Maybe some sort of embedded markup (HTML?) could be stored and published later as a table.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>sc</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem />
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>rx</Marker>
+      <InferedParent />
+      <Comments>Subfile - Classification (appendix), i.e. Semantic Domain code (see MDF's is and sd fields). FLEx: Yes.</Comments>
+      <Mappings>
+        <string />
+        <string>semanticDomain</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>oc</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>oc</Marker>
+      <InferedParent />
+      <Comments>Case frame.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>oa</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Affixation (inflection). FLEx: custom field; or, for totally predictable items, consider alternatives such as inflection classes and parser rules.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>re</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Reference - Encyclopedic (a cross-reference). (Also, re was an old marker for mr.)</Comments>
+      <Mappings>
+        <string />
         <string>confer</string>
       </Mappings>
-      <InferedParent />
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ec</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>re</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
+      <InferedParent />
+      <Comments>Encyclopedic  and  cultural  information</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>noteEncyclopedic</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ec</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>mr</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>mr</Marker>
+      <InferedParent />
+      <Comments>Points (from a minor entry) to the main entry. Means, 'my lx is referred to in the main entry in one of these fields: oa oc oi op or os.'  See rf.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>va</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lk</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lc</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ls</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>li</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ld</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Variant form</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>variant</string>
       </Mappings>
-      <InferedParent />
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>rt</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Reference: table location. I.e. this points to an entry that contains a relevant table. FLEx: custom Cross-Reference; OR, Ignore, since FLEx doesn't support tables. (Also, old marker for Contrast; see ra?)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>oi</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Inflected wordform. FLEx: custom field. Or, see oa for alternatives. Or, find a way to import as a subentry of a sense (not yet supported by FLEx import). Subentries are best reserved for true derivatives (where meaning is not fully predictable).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ls</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>va</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>cox</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
+      <Comments>Subentry - Saying; see ld. (Also: ls was an old marker for ds.)</Comments>
       <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>rt</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>oi</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>subentry</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ls</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>co</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>Comment. (Old marker was: c). FLEx: Yes, but you need a distinct marker for each level you put comments on, potentially up to four markers: Entry, Subentry, Sense, Example.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>note</string>
       </Mappings>
-      <InferedParent />
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ms</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Parent>ls</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ld</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Parent>lx</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>co</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
+      <InferedParent />
+      <Comments>Main Sense (a.k.a 'Lexeme'). The original PLB SFM allowed only one sense per 'subentry'. FLEx: Yes, but FLEx senses are simpler, allowing just one definition each, etc. You might need to import subsenses under ms, or perhaps subentries of senses. Or better, merge things and simplify down to a true single sense.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>sense</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ms</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ecx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>sn</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Scientific Name - Latin. FLEx: Scientific Name (English is fine as the WS), which is stored at the sense level.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>eg</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Note - expanded grammatical info</Comments>
+      <Mappings>
+        <string />
         <string>noteGrammar</string>
       </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ld</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments>Subentry - Derivative. (Original PLB standard really described a simple link--a minor subentry.) FLEx: Yes, import as a Subentry with a 'derivative' Complex Form Type, but publish using stem-based mode.</Comments>
+      <Mappings>
+        <string />
+        <string>subentry</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>de</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Donor language and form - English. (Old marker was: le) See da. (Also, de was an old marker for sp.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ar</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>eg</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>subentry</string>
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ld</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
+      <Comments>Archaic. (Old marker was: mu) FLEx: Usages (or maybe Restrictions). Note that empty fields are ignored by the importer, so 'ue ar' or 'ar yes' is better than an empty 'ar'. See also: da.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>Once</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>de</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>noteRestriction</string>
       </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>dd1</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments>Donor language and form - Dialect 1. See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ra</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ar</Marker>
+      <InferedParent />
+      <Comments>Reference - Antonym. FLEx: Lexical Relations.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <Marker>lc</Marker>
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dd1</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>egx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
+      <Comments>Subentry - Compound; see ld.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ra</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>subentry</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>lc</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>da</Marker>
       <WritingSystem />
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>da</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Arabic. (Old marker was: la) FLEx: Yes; probably corresponds best to Etymology Source. But importer won't create data for empty 'da', 'dc', and 'ds' fields. Non-empty labels like 'd ar', 'd ceb' and 'd sp', etc. are better, perhaps next to another field (dlx?) if wordforms are ever provided. See also MDF's field pair (et es).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
+      <Marker>dd2</Marker>
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dd2</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Dialect 2. See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>rg</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>rg</Marker>
+      <InferedParent />
+      <Comments>Reference - Generic. FLEx: Lexical Relations.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>dc</Marker>
       <WritingSystem>ceb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dc</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Cebuano, Visayan. (Old marker was: lv) See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>li</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Subentry - Idiom. See ld. (Also, li was an old marker for di.)</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>subentry</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>li</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>rs</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>or</Marker>
+      <InferedParent />
+      <Comments>Reference - Synonym. FLEx: Lexical Relations.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>or</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Reduplicated Form. See oi.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ds</Marker>
       <WritingSystem>es</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ds</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Spanish. (Old marker was: ls) See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>dt</Marker>
       <WritingSystem>tgl</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dt</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>snx</Marker>
+      <Comments>Donor language and form - Tagalog. (Old marker was: lt) See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>ad</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Parent>rf</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>oax</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>psx</Marker>
+      <Comments>Derivational affix. PLB allows an 'ad rf ad' sequence for 'prefix root suffix'! FLEx: merge the three and treat like MDF's mr field--e.g. import into one custom field. Or, into three fields after, say, replacing all suffixing 'ad' markers with 'adsuf'. The second option is best in minor entries (where rf also functions like MDF's mn).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>dd3</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>oix</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Dialect 3. See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
+      <Marker>vd1</Marker>
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>glx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>custom</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>li</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ld</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>iex</Marker>
+      <InferedParent />
+      <Comments>Is it vd1 or vdl?? Variant from Dialect 1.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>sp</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>subentry</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>lsx</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ad</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
       <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>rex</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
+      <Comments>Subfile: proto form, etymology</Comments>
       <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
+        <string />
+        <string />
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>dd3</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>vd1</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>sp</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
+      <Marker>dq</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments>Data  quality  or  source</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>lk</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dq</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
+      <InferedParent />
+      <Comments>Subentry - Key term phrase; see ld. FLEx: Yes; create a custom complex form type (and exclude from publishing?)</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>subentry</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>lk</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>op</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>op</Marker>
+      <InferedParent />
+      <Comments>Plural form. See oi.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>vd2</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
+          <Parent>lk</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lc</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ls</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>li</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ld</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>vd2</Marker>
+      <InferedParent />
+      <Comments>see vd1</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>rf</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ad</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>rf</Marker>
+      <InferedParent />
+      <Comments>Root form, used in the main entry of a complex form. Official PLB SFM uses a stem-based structure, so a full entry exists and info like 'ad rf ad' goes there. The root entry's subentry (really a minor subentry) points to it. (But if the user has more root-based data, then compare with mr and md1--and MDF's mn field.) See ad.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>mb</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Minor entry - Basic Form. Typically points to the main entry (from an ordinary variant's minor entry). See md1.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>md1</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Minor entry - Dialect 1. Typically points to the main entry (from a dialectal variant's minor entry), like MDF's mn field. FLEx: map this minor entry to a custom variant type created for Dialect 1.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>md2</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Minor entry - Dialect 2. See md1.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>ro</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>rm</Marker>
+      <InferedParent />
+      <Comments>Reference - Overlapping Synonym. See rs. FLEx: Lexical Relations. (OLD: old marker for ra)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>rm</Marker>
       <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Reference - Member of a limited set. FLEx: Lexical Relations.</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>df</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Definition - vernacular. Typically used in monolingual dictionaries.</Comments>
+      <Mappings>
+        <string />
         <string>definition</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>df</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>g2</Marker>
       <WritingSystem>tgl</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>definition</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>g2</Marker>
+      <InferedParent />
+      <Comments>Gloss: Translation equivalent in Tagalog or some other second language</Comments>
+      <Mappings>
+        <string />
+        <string>definition</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>g3</Marker>
       <WritingSystem />
       <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Gloss: Translation equivalentin a third language</Comments>
       <Mappings>
-        <string xsi:nil="true" />
+        <string />
         <string>definition</string>
       </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>g3</Marker>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>es</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
+      <StructureProperties />
       <InferedParent />
+      <Comments />
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>pn</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>pn</Marker>
+      <InferedParent />
+      <Comments>Pronunciation. FLEx: Pronunciations; or, a single IPA form in a separate writing system in Lexeme Form.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>ic</Marker>
       <WritingSystem>ceb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ic</Marker>
+      <InferedParent />
+      <Comments>Index - Cebuano. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
       <Marker>id1</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Index - Dialect 1. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>id2</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Index - Dialect 2. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>id3</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ilo</WritingSystem>
+      <WritingSystem>ivb</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
+      <InferedParent />
+      <Comments>Index - Dialect 3. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
       <Marker>ii</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>im</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>tgl</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ro</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rm</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rt</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rg</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>rs</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>re</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ra</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>it</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>Once</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>mo</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>od</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>oid</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>os</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>tgl</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>exampleSentenceTranslation</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ex</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>t2</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>exampleSentenceTranslation</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ex</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>t3</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>sg</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ls</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ld</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lk</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>li</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>lc</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
-          <Parent>ms</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>sk</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>vd3</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string>reversal</string>
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>iv</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties />
-      <Marker>sy</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ode</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem>ivb</WritingSystem>
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>ps</Parent>
-          <Multiplicity>MultipleApart</Multiplicity>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>ose</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
       <WritingSystem>ilo</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments>Index - Ilocano. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>im</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Index for Minor Entry Generation. (??)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>it</Marker>
+      <WritingSystem>tgl</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>MultipleTogether</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Index - Tagalog. See ie.</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>mo</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>di</Marker>
+      <InferedParent />
+      <Comments>Morphophonemics.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>od</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments />
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>oid</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments />
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>os</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Stem class. See oa.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>t2</Marker>
+      <WritingSystem>tgl</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ex</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Translation of example - Tagalog or another second language</Comments>
+      <Mappings>
+        <string />
+        <string>exampleSentenceTranslation</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>t3</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ex</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Translation of example - Third language</Comments>
+      <Mappings>
+        <string />
+        <string>exampleSentenceTranslation</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>sg</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Subfile: Key Term Translation Eqv - Greek. The sg and the sk fields are used to mark a certain sense as a translational equivalent for a key term in Scripture, referring either to the Greek word (sg) or the English equivalent (sk). See also: ie. FLEx: No, although it could be imported into Reversals, like ie.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>sk</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Subfile: Key Term Translation Eqv - English. See sg.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>vd3</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lk</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lc</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ls</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>li</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ld</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>see vd1</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>iv</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Index - vernacular? (Might not be official PLB SFM.)</Comments>
+      <Mappings>
+        <string />
+        <string>reversal</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>sy</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Synonym. (Might not be official PLB SFM.) See rs.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ode</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments />
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ose</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments />
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>di</Marker>
+      <WritingSystem>ilo</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Donor language and form - Ilocano. (Old marker was: li) See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>dj</Marker>
       <WritingSystem>ja</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dj</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Japanese. (Might not be official PLB SFM.) See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>dch</Marker>
       <WritingSystem>zh</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
-      <InferedParent />
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>dch</Marker>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <WritingSystem />
-      <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
       <InferedParent />
-      <StructureProperties />
-      <Marker>so</Marker>
+      <Comments>Donor language and form - Chinese. See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
+      <Marker>so</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
-      <Mappings>
-        <string xsi:nil="true" />
-        <string xsi:nil="true" />
-      </Mappings>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments>Source. (Might not be official PLB SFM.) See dq.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ud</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>Update.  (Might not be official PLB SFM.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>lg</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>ps</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Gloss (used more for interlinear texts than for the published dictionary). Not sure if PLB SFM officially had this kind of gloss or not; some newer lexicon do use lg. FLEx: Yes.</Comments>
+      <Mappings>
+        <string />
+        <string>gloss</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>dm</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <Marker>ud</Marker>
+      <InferedParent />
+      <Comments>Donor language and form - Malay. See da.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>mu</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: mu was an old marker for ar.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>md3</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Minor entry - Dialect 3. See md1.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>c</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: c was an old marker for co, and gl.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>la</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: la was an old marker for da.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>lv</Marker>
+      <WritingSystem>ceb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: lv was an old marker for dc.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>le</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: le was an old marker for de.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>lt</Marker>
+      <WritingSystem>tl</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: lt was an old marker for dt.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>e</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: e was an old marker for ex.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>t</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: t was an old marker for gl.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>we</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: we was an old marker for ie.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ws</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD:  was an old marker for lc and ld.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>w</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD:  was an old marker for lx.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>n</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: n was an old marker for ms.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>d</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: d was an old marker for oa.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>do</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: do was an old marker for oi.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>dr</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: dr was an old marker for or.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>g</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: g was an old marker for ps.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>rc</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: rc was an old marker for re.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>b</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: b was an old marker for rf.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>s</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: s was an old marker for sc.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>f</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: f was an old marker for tr.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>a</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: a was an old marker for va.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>rd</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: rd was an old marker for vd1.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>hd</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>(OLD: hd was an old marker for Header.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>i</Marker>
+      <WritingSystem>ivb</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>OLD: i was an old marker for Example (ex?).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>j</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>OLD: j was an old marker for Example Translation (tr?).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>wes</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>OLD: wes was an old marker for English reversing (ie).</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>id</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties />
+      <InferedParent />
+      <Comments>File ID - footer with page number. FLEx: No? Even in Toolbox this field would be awkward, as the parent of lx.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
     </SolidMarkerSetting>
   </MarkerSettings>
 </SolidSettings>

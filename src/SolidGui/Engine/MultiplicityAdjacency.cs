@@ -18,13 +18,13 @@ namespace SolidGui.Engine
             switch (m)
             {
                 case MultiplicityAdjacency.Once:
-                    s = "i";
+                    s = "1";
                     break;
                 case MultiplicityAdjacency.MultipleTogether:
-                    s = "ii";
+                    s = "2";
                     break;
                 case MultiplicityAdjacency.MultipleApart:
-                    s = "i_i";
+                    s = "2..2";
                     break;
             }
             return s;

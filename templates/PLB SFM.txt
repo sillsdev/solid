@@ -1,0 +1,192 @@
+\lx basic structure1
+\ms 1
+\ps n
+\oa -ally
+\oi basically
+\gl definition A
+\ex example one
+\tr translation
+\ex example two
+\tr translation
+\ms 2
+\ms 2.1
+\ps v
+\gl definition B
+\ms 2.2
+\ps n
+\oa -ish
+\gl definition C
+\li just the basics
+\ps
+\gl This is a "minor subentry"; i.e. it should point to a "just the basics" main entry.
+\lc basictraining
+\ps
+\gl Let's pretend this is a compound.
+\co The two extra ms fields above are for the sake of FLEx import.
+(That's assuming ms sometimes has multiple ps, or multiple oi, 
+and that we chose an import-to-subsenses approach.)
+\lx basic structure2
+\pn Pronunciation
+\mo Morphophonemics
+\va Variant form
+\vd2 zz
+\da Donor lang & form: Arabic
+\de Donor lang & form: English
+\dt Donor lang & form: Tagalog
+\dm Donor lang & form: Malay
+\di Donor lang & form: Ilocano
+\li
+\dj Donor lang & form: Japanese
+\dch Donor lang & form: Chinese
+\ds Donor lang & form: Spanish
+\dc Donor lang & form: Cebuano
+\ms Main sense discrimination
+\ps Part of speech
+\oc case frame
+\os stem class
+\oa available affixes
+\oi Inflected Form (G.I.)
+\op plural form
+\or redup form
+\df Definition - vernacular
+\dq Data quality or source
+\gl Definition ('Gloss'), English
+\lg Gloss. (Possibly not really part of the standard.)
+\ie Index: English
+\ie ** i% etc.
+\sc Subfile: Classification
+\ex Example of usage
+\tr Transl of example
+\tb Table**
+\re Reference: Encyclopedic; ** r% etc.
+\ra Reference: Antonym
+\ar Archaic
+\ec Encylopedic & cultural info
+\eg Expanded grammatical info
+\lc Compound (lexical item in subentry)
+\ps
+\gl def
+\ld Derivative (in subentry);
+
+\sp subfile proto
+\lk subentry: key term
+
+
+\mb Minor entry: basic form
+\mr Minor entry: Reference
+\md1 Minor entry: Dialect 1
+\md2 Minor entry: Dialect 2
+\md3 Minor entry: Dialect 3
+
+\ad Derivational affix
+\rf Root form (or stem)
+\ad Derivational affix  (might need to use this sequence instead: ad rf adsfx)
+
+\lx non-standard fields
+\w OLD; see lx
+\va Variant form
+\a OLD; see va
+\vd1 zz
+\rd OLD; see vd1 (vdl?)
+\rf Root form (or stem)
+\ad Derivational affix
+\b OLD; see rf
+\da Donor lang & form: Arabic
+\la OLD; see \da
+\de Donor lang & form: English
+\le see de
+\dt Donor lang & form: Tagalog
+\lt OLD: see dt
+\dc Donor Cebuano
+\lv OLD; see \dc
+\id file ID
+\hd OLD (header)
+\no zz
+\ls zz
+\dd1 zz
+\dd2 zz
+\dd3 zz
+\dc zz
+\li zz
+\ms
+\n OLD; see ms
+\ps
+\g OLD; see ps
+\or
+\dr OLD; see or (redup)
+\oi inflected form
+\do OLD; see oi
+\od zz
+\oid zz
+\ode zz
+\ose zz
+\gl Definition ('Gloss'), English
+\t OLD markers for gl
+\g2 zz
+\g3 zz
+\sn Scientific name: Latin
+\ex example
+\tr translation
+\t2 zz
+\t3 zz
+
+\rg Reference: Generic
+\rs Reference: Synonym
+\rt ref: table
+\ro zz
+\rm zz
+\ic zz
+\id1 zz
+\id2 zz
+\id3 zz
+\ii zz
+\it zz
+\sc subfile: classification
+\sg zz
+\sk zz
+\vd3 zz
+\iv zz
+\sy zz
+\so source (non-standard field??)
+\ar Archaic
+\mu OLD; see \ar
+\im zz
+
+
+
+\dq Data quality or source
+\gl Definition ('Gloss'), English
+\lg Gloss. (Possibly not really part of the standard.)
+\ie Index: English
+\ie ** i% etc.
+\sc Subfile: Classification
+\s OLD; see sc
+\ex Example of usage
+\e OLD: see ex
+\i OLD: see ex
+\tr Transl of example
+\f OLD; see tr
+\j OLD; see tr
+\co Comment
+\c OLD; see \co
+\tb Table**
+\oa Affixation (G.I.); ** o% etc.
+\d OLD; see oa
+\oi Inflected Form (G.I.)
+\re Reference: Encyclopedic; ** r% etc.
+\rc OLD; see re
+\ra Reference: Antonym
+\ro OLD; see ra
+\ar Archaic
+\ec Encylopedic & cultural info
+\eg Expanded grammatical info
+\lc Compound (lexical item in subentry)
+\ms Main sense discr.
+\ld Derivative (in subentry);
+\we OLD: see ie
+\wes OLD; see ie
+\ws OLD; see lc or ld
+
+\ud Update **
+\es ?? Etymology source?
+

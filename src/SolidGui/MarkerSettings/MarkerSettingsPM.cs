@@ -26,7 +26,7 @@ namespace SolidGui.MarkerSettings
         /// <summary>
         /// The calls to this (and avoiding calling it) are a way allowing 
         /// the user to either edit or just look at marker settings. Just 
-        /// looking shouldn't triggering the "needs save" state. -JMC 2014
+        /// looking shouldn't trigger the "needs save" state. -JMC 2014
         /// </summary>
         public void WillNeedSave()
         {
@@ -55,7 +55,7 @@ namespace SolidGui.MarkerSettings
                     {
                         parents += ", ";
                     }
-                    parents += String.Format("{0} ({1})", property.Parent, property.Multiplicity.Abbr());
+                    parents += String.Format("{0} {1}", property.Parent, property.Multiplicity.Abbr());
                     if (property.Required) parents += "*";
                 }
             }

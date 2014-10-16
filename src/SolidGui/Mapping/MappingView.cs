@@ -46,10 +46,7 @@ namespace SolidGui.Mapping
         
         private void OnLoad(object sender, EventArgs e)
         {
-            if (this.DesignMode)
-            {
-                return;
-            }
+            if (DesignMode) return;
 
             UsageReporter.SendNavigationNotice("MappingDialog");
 
@@ -72,7 +69,7 @@ namespace SolidGui.Mapping
                 if (conceptId == storedConceptId)
                 {
                     item.Selected = true;
-                    _conceptList.TopItem = item;
+                    _conceptList.TopItem = item; // scroll down
                     //_model.SelectedConcept = concept;  //why is this here? Not a good way to set a default value in the model. -JMC
                 }
             }
@@ -96,23 +93,18 @@ namespace SolidGui.Mapping
 
         private void _conceptList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (DesignMode) return;
             UpdateModel();
+            UpdateDisplayInformationPane();  //partial UpdateDisplay
         }
 
         private void UpdateModel()
         {
-            if (_conceptList.SelectedItems.Count == 0)
-            {
-                return;
-            }
-            if (!_isProcessing)
-            {
-                var tmp = (MappingPM.Concept)_conceptList.SelectedItems[0].Tag;
-                _model.MarkerSetting.SetMappingConcept(CurrentMappingType(), tmp.GetId()); //TODO: This doesn't trigger Needsave -JMC Nov 2014
-                _model.SelectedConcept = tmp;  // (if a change, sets Needsave to true)
-            }
+            if (_isProcessing || _conceptList.SelectedItems.Count == 0 || DesignMode) return;
 
-            UpdateDisplayInformationPane();  //partial UpdateDisplay
+            var tmp = (MappingPM.Concept)_conceptList.SelectedItems[0].Tag;
+            _model.MarkerSetting.SetMappingConcept(CurrentMappingType(), tmp.GetId());
+            _model.SelectedConcept = tmp;  // (if a change, sets Needsave to true)
         }
 
         private SolidMarkerSetting.MappingType CurrentMappingType()
@@ -125,22 +117,22 @@ namespace SolidGui.Mapping
 
         private void UpdateDisplayInformationPane()
         {
-            if (_model.SelectedConcept == null)
+            string html = "";
+            if (_model.SelectedConcept != null)
             {
-                return;
+                html = _model.TransformInformationToHtml(_model.SelectedConcept.InformationAsXml);
             }
-            string html = _model.TransformInformationToHtml(_model.SelectedConcept.InformationAsXml);
             _htmlViewer.DocumentText = html;
         }
 
         public void UpdateDisplay()
         {
-            if (_isProcessing) return;  //block ping-ponging
+            if (_isProcessing || DesignMode) return;  //block ping-ponging
             _isProcessing = true;
             UpdateDisplayConceptList();
             UpdateDisplayConcept(); 
             UpdateDisplayInformationPane();
-            //this.Hide(); this.Show();
+            this.Hide(); this.Show();  //necessary to preserve highlight after user clicks to change mapping -JMC
             _isProcessing = false;
         }
 
@@ -151,6 +143,7 @@ namespace SolidGui.Mapping
 
         private void _targetCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (DesignMode) return;
             ApplyTarget();
             UpdateDisplay();
         }
