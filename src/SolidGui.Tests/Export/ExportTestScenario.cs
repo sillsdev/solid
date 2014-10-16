@@ -50,7 +50,7 @@ namespace SolidGui.Tests.Export
         {
             set
             {
-                //don't make the tests line each line up against the margin.  //JMC: I think this comment is a TODO item.
+                //don't make the tests line each line up against the margin.  //I think this comment is a TODO item. -JMC
                 var builder = new StringBuilder();
                 foreach (var line in value.Split(new char[]{'\n'}))
                 {

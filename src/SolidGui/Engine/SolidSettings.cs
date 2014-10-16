@@ -40,7 +40,7 @@ namespace SolidGui.Engine
         {}
 
 
-        // JMC: Candidates that could be global 'constants' (or public static...): "lx", "entry", ".solid", "infer ", "Report Error"
+        // TODO! Candidates that could be global 'constants' (or public static readonly): "lx", "entry", ".solid", "infer ", "Report Error"
         // e.g. public static readonly string DotSolid = ".solid"
 
         private static List<string> _fileExtensions = new List<string> { ".db", ".sfm", ".mdf", ".dic", ".txt", ".lex" };  // added by JMC 2013-09
@@ -118,8 +118,7 @@ namespace SolidGui.Engine
         public string Version { get; set; } // set needs to be public for XmlSerialize to work CP.
 
         // TODO : Ideally, this shouldn't be public, and _markerSettings should be readonly
-        // don't rename this property unless you're willing to create a new version of .solid -JMC
-        ///
+
         /// WARNING: This property's setter should only be used by the xml-mapping code  
         [XmlArray("MarkerSettings", Order = 2)]
         [XmlArrayItem("SolidMarkerSetting", typeof(SolidMarkerSetting))]
@@ -172,7 +171,7 @@ namespace SolidGui.Engine
         /// </summary>
         /// <param name="marker">The marker to search for.</param>
         /// <returns>Returns an existing setting if possible; otherwise a newly created one.</returns>
-        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker) //JMC: I think this is maybe overused and could likely mask error conditions; replace some calls with plain FindMarkerSetting()?
+        public SolidMarkerSetting FindOrCreateMarkerSetting(string marker) //TODO: I think this is maybe overused and could likely mask error conditions; replace some calls with plain FindMarkerSetting()? -JMC
         {
             // Search for the marker. If not found return default marker settings.
             SolidMarkerSetting result = FindMarkerSetting(marker);
@@ -197,7 +196,8 @@ namespace SolidGui.Engine
                     count++;
                 }
             }
-            // TODO: I think we want something like the following any time anything is modified. But we'd need a handle on the model. -JMC Jan 2014
+            // TODO: I think we want something like the following any time anything is modified. But we'd need to hold a reference to the model. 
+            // So for now, the onus is on the calling code to set NeedsSave. -JMC Jan 2014
             /* 
             if (count > 0)
             {
@@ -209,7 +209,7 @@ namespace SolidGui.Engine
         }
 
 
-        public void NotifyIfNewMarkers(bool thenCheckMixedEncodings)  // Added -JMC 2013-09 ; JMC: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here.
+        public void NotifyIfNewMarkers(bool thenCheckMixedEncodings)  // Added -JMC 2013-09 ; TODO: The MessageBox part probably belongs in a "View" class instead, but the logic should stay here. -JMC
         {
             if (_newlyAdded == null || _newlyAdded.Count < 1) return;
             var sb = new StringBuilder("New marker(s) added: ");
@@ -226,8 +226,8 @@ namespace SolidGui.Engine
             }
         }
 
-        // JMC: This should probably be called once after every File Open. Especially because, even though most users don't need mixed encodings,
-        // Solid used to silently create legacy-encoded markers whenever a new marker was identified in any file (even a unicode one).
+        // This should be called once after every File Open. Especially because, even though most users don't need mixed encodings,
+        // Solid used to silently create legacy-encoded markers whenever a new marker was identified in any file (even a unicode one). -JMC
         public string NotifyIfMixedEncodings()
         {
             int uni = 0;
@@ -306,7 +306,7 @@ namespace SolidGui.Engine
         /// </summary>
         /// <param name="settings">A valid, already loaded set of settings, preferably including the record marker.</param>
         /// <returns>true (unicode) or false (legacy)</returns>
-        public static bool DetermineDefaultEncodingUnicode(SolidSettings settings) // Added by JMC 2013-09  //TODO: move this into a private, non-static method called on first get. -JMC
+        public static bool DetermineDefaultEncodingUnicode(SolidSettings settings) // Added by JMC 2013-09
         {
             SolidMarkerSetting recordMarker = settings.FindMarkerSetting(settings.RecordMarker);
             if (!(recordMarker == null))

@@ -43,7 +43,7 @@ namespace SolidGui
             form.BindModels(model);
 
 
-            KeyboardController.Initialize();  //JMC:! verify that calling this repeatedly is ok
+            KeyboardController.Initialize();  //TODO: verify that calling this repeatedly is ok -JMC
 
             if (args.Length > 0) TryToOpen(args[0], model, form);           
 

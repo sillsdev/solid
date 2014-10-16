@@ -42,7 +42,7 @@ namespace SolidGui.Model
         }
 
         /// <summary>
-        /// Call this during construction [JMC: and maybe after cancelling a File Open. Is that really needed? If so, do a recheck too.]
+        /// Call this during construction [JMC: and maybe after cancelling a File Open. Is that really needed? If so, do a Recheck too.]
         /// </summary>
         public void Reset()
         {
@@ -140,7 +140,8 @@ namespace SolidGui.Model
 
         public string GetDirectoryPath()
         {
-            return _filePath.Substring(0, _filePath.LastIndexOf(@"\"));  //JMC: Try using Path.GetDirectoryName() instead
+            return Path.GetDirectoryName(_filePath);
+            //was return _filePath.Substring(0, _filePath.LastIndexOf(@"\")); -JMC
         }
  
         public void Clear()
@@ -222,7 +223,7 @@ namespace SolidGui.Model
 
         private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments)
         {
-            //JMC:! Merge some of this code with ProcessEncoding.Process ("hacked fonts") . See esp FilterSet.AddRecord and CreateSolidErrorRecordFilter
+            //TODO! Merge some of this code with ProcessEncoding.Process ("hacked fonts") . See esp FilterSet.AddRecord and CreateSolidErrorRecordFilter  -JMC
 
             var processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.SolidSettings));
@@ -233,8 +234,8 @@ namespace SolidGui.Model
                 progressState.TotalNumberOfSteps = reader.SizeEstimate;  // added -JMC 2013-09
                 while (reader.ReadRecord())
                 {
-                    // TODO Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08
-                    // JMC: Partly done. But maybe should do this: divide elapsed time by what "should" have elapsed, then make a new (separate) estimate using that multiplier. -JMC 2013-09
+                    // TODO: Fix the progress to use file size and progress through the file from SfmRecordReader CP 2010-08
+                    // Partly done. But maybe should do this: divide elapsed time by what "should" have elapsed, then make a new (separate) estimate using that multiplier. -JMC 2013-09
                     progressState.NumberOfStepsCompleted += 1; 
 
                     SfmLexEntry lexEntry = SfmLexEntry.CreateFromReaderFields(reader.Fields);
@@ -263,12 +264,10 @@ namespace SolidGui.Model
             _filePath = path;
             //            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
 
-            _recordList.Clear();  // JMC: Call Clear() instead?
-            _markerFrequencies.Clear();
-            _markerErrors.Clear();
+            Clear();
 
-            // Show zero-count markers in the UI list too... bug # -JMC
-/*
+            /*
+            //TODO: #1291 Show zero-count markers in the UI list too... -JMC
             foreach (string s in solidSettings.Markers)
             {
                 try
@@ -280,9 +279,8 @@ namespace SolidGui.Model
                     Palaso.Reporting.ErrorReport.ReportFatalException(new ArgumentException("The .solid configuration file appears to have multiple settings for this marker: \\" + s + " \r\n" + e.Message, e));
                 }
             }
-*/
-            
-
+            */
+             
             using (var dlg = new ProgressDialog())  // JMC:! Move this UI stuff elsewhere?
             {
                 dlg.Overview = "Loading and checking data...";

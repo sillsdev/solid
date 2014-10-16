@@ -25,9 +25,8 @@ namespace SolidGui.MarkerSettings
 
         // Static methods only, so far. -JMC Aug 2014
 
-        // TODO: Bucket list for version 3 of the .solid format. See also: all issues blocked by #1218 (http://projects.palaso.org/issues/1218)
-        // See bug: #
-        // Note: no need to "correct" infered to inferred; http://www.verbix.com/webverbix/English/infer.html
+        // TODO: See all issues blocked by #1218 (http://projects.palaso.org/issues/1218) -JMC
+        // Note: no need to "correct" infered to inferred; http://www.verbix.com/webverbix/English/infer.html -JMC
 
         private const string MissingMultiplicity = "MissingMultiplicity";
 
@@ -55,36 +54,19 @@ namespace SolidGui.MarkerSettings
             }
         }
 
-        /// <summary>
-        /// DELETE ME WHEN FEASIBLE
-        /// </summary>
-/*
-        private static string GetElementValue(XElement elem, string xname, string defaultValue)
-        {
-            XElement tmp = elem.Element(xname);
-            if (tmp != null)
-            {
-                return tmp.Value;
-            }
-            else
-            {
-                return defaultValue;
-            }
-        }
-        */
         public static SolidSettings LoadMarkerSettings(XDocument xdoc)
         {
             XElement elem = xdoc.Element("SolidSettings");
 
             var ss = new SolidSettings();
 
-            // TODO: wrap all this body in a try/catch, and rethrow any exceptions after adding the ss.FileStatusReport to it
+            // TODO! wrap all this body in a try/catch, and rethrow any exceptions after adding the ss.FileStatusReport to it
 
             ss.Version = GetElementValue(elem, "Version", "1", ss.FileStatusReport, "No version indicated{1}; assuming v1. (x{0})", ""); // we'll "tally up" just zero or one of these; hence the "" below.
 
             ss.RecordMarker = GetElementValue(elem, "RecordMarker", ss.RecordMarker, ss.FileStatusReport, "No record marker specified{1}; assuming " + ss.RecordMarker + ". (x{0})", "");
 
-            XElement xParent = elem.Element("MarkerSettings"); // TODO: if missing (XML file is bad) we'll crash on null here
+            XElement xParent = elem.Element("MarkerSettings"); // TODO! if missing (XML file is bad) we'll crash on null here
 
             ss.FileStatusReport.AddKey(MissingMultiplicity, "Found {0} marker(s) with no Multiplicity node; using Once: {1}");
 
@@ -92,6 +74,7 @@ namespace SolidGui.MarkerSettings
             ss.MarkerSettings = msets; // Doing this up front and iteratively (not assigning from ToList() from linq) because DetermineDefaultEncoding may need to run part-way through. -JMC
             foreach (var mset in xParent.Elements("SolidMarkerSetting"))
             {
+                //TODO! #1292 Check here whether a marker with the same name (matching case) already has been loaded. If so, drop this one. -JMC
                 msets.Add(LoadOneMarkerSettingFromXml(mset, ss));
             }
 

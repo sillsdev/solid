@@ -16,7 +16,7 @@ namespace SolidGui.Engine
         {
         }
 
-        public SfmRecord(SfmRecord rhs)  // JMC: decipher cryptic meaning of "rhs" before deleting? (unused)
+        public SfmRecord(SfmRecord rhs)  // TODO: decipher cryptic meaning of "rhs" before deleting? (unused) -JMC
             :
                 base(rhs)
         {

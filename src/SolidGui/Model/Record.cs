@@ -32,11 +32,11 @@ namespace SolidGui.Model
             return Equals((Record)obj);
         }
 
-        public bool Equals(Record obj)  //JMC: is this superfluous?
+        public bool Equals(Record obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj._recordID == _recordID;
+            return obj._recordID == _recordID;  // Will this line ever execute as true? If not, this whole method seems superfluous. -JMC
         }
 
         public int ID

@@ -35,7 +35,7 @@ namespace SolidGui
         private FilterChooserPM _warningFilterChooserModel;
         private MarkerSettingsPM _markerSettingsModel;
         private RecordNavigatorPM _navigatorModel;
-        private RecordFilterSet _recordFilters;  // JMC: redundant with the property in the RecordFilter model?
+        private RecordFilterSet _recordFilters;  // TODO! redundant with the property in the RecordFilter model? -JMC
         private SfmEditorPM _sfmEditorModel;
         private SfmDictionary _workingDictionary;
         // private List<Record> _masterRecordList;
@@ -88,8 +88,8 @@ namespace SolidGui
             WarningFilterChooserModel.RecordFilters = _recordFilters;  // JMC:!! get rid of this too? (i.e. use the main PM instead)
             _searchModel.Dictionary = _workingDictionary;
             //!!!_navigatorModel.MasterRecordList = MasterRecordList;
-            _navigatorModel.ActiveFilter = new NullRecordFilter();  // JMC: remove? (try setting to null first and fixing what breaks)
-            _markerSettingsModel.MarkersInDictionary = _workingDictionary.AllMarkers;   // JMC:!! get rid of this too?
+            _navigatorModel.ActiveFilter = new NullRecordFilter();  // TODO: remove the NullRecordFilter class? (try setting to null first and fixing what breaks) -JMC
+            _markerSettingsModel.MarkersInDictionary = _workingDictionary.AllMarkers;   // TODO! get rid of this too? It's safer (e.g. after canceling File Open) to have fewer handles to manage. -JMC
 
             // Wiring: the nav should update its own filter whenever something (other than null) is selected in a chooser -JMC 2013-10
             WarningFilterChooserModel.WarningFilterChanged += NavigatorModel.OnFilterChanged;
@@ -323,7 +323,6 @@ namespace SolidGui
             }
         }
 
-        public event EventHandler DictionaryProcessed;  //todo: consider eliminating this event; all it seems to do now is force an extra UpdateDisplay. -JMC
         public event EventHandler<RecordFormatterChangedEventArgs> EditorRecordFormatterChanged;
         private const string TemplatesFolder = "templates";
 
@@ -435,18 +434,19 @@ namespace SolidGui
             
             string f;
             /*
+            // TODO: #1274 Use regex to discard anything added by Save a Copy (leading spaces, tabs, closing tags). Disabled until more testing with encodings (esp. mixed ones) can be done. -JMC
             f = TempDictionaryPath();
             string report = CleanupToTempFile(_realDictionaryPath, f);
             if (report != "")
             {
                 string msg = String.Format("Did the following cleanup: \n{0}\nChange(s) will become permanent if you save.\n", report);
                 msg += @"Actually, so far this prototype feature only makes those changes here (please verify special character encodings): %appdata%\..\local\temp\TempDictionary.db"; //JMC:! delete this
-                MessageBox.Show(msg, "Preprocessing made changes"); //JMC: move to UI? (my bad)
+                MessageBox.Show(msg, "Preprocessing made changes"); //TODO: move to UI? (my bad) -JMC
                 Logger.WriteEvent(msg);
                 needsSave = true;
             }
              */
-            f = _realDictionaryPath; //JMC: means ignore the cleanup
+            f = _realDictionaryPath;
 
             if (_workingDictionary.Open(f, Settings, _recordFilters))  
             {
@@ -539,11 +539,6 @@ namespace SolidGui
             GiveSolidSettingsToModels();
             ProcessLexicon();
             Settings.Save(); // Together with one other line, fixes bug #1260
-
-            //???? do we replace these settings, or ask the settings to do the switch?
-            // TODO: copy over this set of settings
-            // TODO: reload settings UI
-            // TODO: clear out the report
         }
 
         public void Export(int filterIndex, string destinationFilePath)
@@ -561,7 +556,7 @@ namespace SolidGui
                 destinationFilePath = exporter.ModifyDestinationIfNeeded(destinationFilePath);
 
                 _workingDictionary.SaveAs(TempDictionaryPath(), Settings);
-                //WorkingDictionary.FilePath = TempDictionaryPath(); //JMC: No, right?
+                //WorkingDictionary.FilePath = TempDictionaryPath(); //No, right? -JMC
                 Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(TempDictionaryPath()));
                 string sourceFilePath = TempDictionaryPath();
 

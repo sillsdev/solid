@@ -147,9 +147,9 @@ namespace SolidGui
             //   Or, we could create a private property for it, such as _markerSettingsDialog
             //   var test = new MarkerSettings.MarkerSettingsDialog(_mainWindowPM.MarkerSettingsModel, "");
 
-            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged; //JMC: can be disabled? (redundant?)
+            // _mainWindowPM.NavigatorModel.NavFilterChanged += _sfmEditorView.OnNavFilterChanged; //can be disabled? (redundant?) -JMC
 
-            // JMC: verify that the following += don't stack up after several File Open.
+            // Some of the following += were eventually piling up. That's why here and elsewhere I've put a -= before each += -JMC
             _recordNavigatorView.RefreshButton.Click -= _sfmEditorView.OnRefreshClicked;
             _recordNavigatorView.RefreshButton.Click += _sfmEditorView.OnRefreshClicked;
             _refreshMenuItem.Click -= _sfmEditorView.OnRefreshClicked;
@@ -264,7 +264,7 @@ namespace SolidGui
             MainWindowPM origPm = _mainWindowPM;
             var newPm = new MainWindowPM();
             ReInit(newPm);
-            //JMC: consider calling origPm.WorkingDictionary.Reset() here
+            //TODO: consider calling origPm.WorkingDictionary.Reset() here -JMC
 
             if (_mainWindowPM.OpenDictionary(fileName, templatePath, forceUnicode))
             {
@@ -348,7 +348,7 @@ namespace SolidGui
             SetEnabledSpecific(canProcess);
 
             //_recordNavigatorView.Enabled = _mainWindowPM.WorkingDictionary.Count > 0;  
-            _recordNavigatorView.UpdateDisplay();  //JMC: would this work?
+            _recordNavigatorView.UpdateDisplay();  //Switched to this; might be overkill. -JMC
 
             SetEnabledGeneral(canProcess);
 
@@ -396,8 +396,6 @@ namespace SolidGui
             if (_mainWindowPM.needsSave)
             {
                 setSaveEnabled(true);
-                //_sfmEditorView.UpdateBoth(); // Using UpdateView() alone was losing edits. However, perhaps neither is necessary now thanks to ContentsBox_Leave() -JMC
-                // _sfmEditorView.UpdateView(); //JMC: was .OnSolidSettingsChange();
                 UpdateDisplay(false);
             }
         }
@@ -477,7 +475,7 @@ namespace SolidGui
                 return; // user cancelled
             }
 
-            //JMC: If we save A.txt as B.txt and B.solid already exists, the following will silently overwrite B.solid
+            //TODO: If we save A.txt as B.txt and B.solid already exists, the following will silently overwrite B.solid -JMC
             // That's usually the right thing to do, but we could check, and provide a confirmation dialog here if needed, and bail on Cancel.
 
             string remember = _mainWindowPM.WorkingDictionary.FilePath;  // Not really a Save As, but a Save a Copy -JMC Apr 2014
@@ -486,7 +484,7 @@ namespace SolidGui
             if (_mainWindowPM.DictionaryAndSettingsSaveAs(dlg.FileName, rf))
             {
                 setSaveEnabled(false);
-                //JMC: For true Save As, we'd need to switch over to the other file. And to be safe, just reload?
+                //For true Save As (which I don't prefer), we'd need to switch over to the other file. And to be safe, just reload? -JMC
             }
             */
             _mainWindowPM.WorkingDictionary.FilePath = remember;
@@ -603,8 +601,7 @@ namespace SolidGui
             _searchView.Show();
             _searchView.Focus();*/ 
 
-            //JMC: New dialog: -JMC Feb 2014
-            //_searchView2 = CreateSearchView(_mainWindowPM, _sfmEditorView);  //dialog is no longer a singleton
+            //New dialog: -JMC Feb 2014
             _searchDialog.Hide();
             _searchDialog.TopMost = true; // means that this form should always be in front of all others
             _searchDialog.SelectFind();
@@ -709,10 +706,6 @@ namespace SolidGui
             var dialog = new WritingSystemsConfigDialog();
             var presenter = new WritingSystemsConfigPresenter(_mainWindowPM, AppWritingSystems.WritingSystems, dialog.WritingSystemsConfigView);
             DialogResult result = dialog.ShowDialog(this);
-            /*
-            _markerSettingsListView.UpdateDisplay(false); // TODO this is quite heavy handed. Make an UpdateWritingSystems, or notify off solid settings better. CP 2012-02
-            _markerSettingsListView.Refresh();
-             */
             UpdateDisplay(false);
         }
 
@@ -782,7 +775,7 @@ namespace SolidGui
         {
             if (_sfmEditorView.IsDirty)
             {
-                _sfmEditorView.UpdateModelAndView();  // JMC: Why do this now?
+                _sfmEditorView.UpdateModelAndView();  // Do we really need to do this now? (I think it's here because things like Alt-Tab may not trigger RichTextBox.Leave) -JMC
             }
         }
 
@@ -795,23 +788,23 @@ namespace SolidGui
             /* 
 Example (of plain-text report):
 lx
-. ps (ii)
-. . sn (ii)
-. . . ge (+sn, i)
-. . . de (+sn, i)
-. . . re (ii)
-. se (i_i)
-. . ps (ii) .
-. . et (i)
-. . . ec (i)
-. seco (i_i)
-. . ps (ii) .
-. . et (i) .
-. et (i) .
+. ps (2)
+. . sn (2)
+. . . ge (+sn, 1)
+. . . de (+sn, 1)
+. . . re (2)
+. se (2..2)
+. . ps (2) .
+. . et (1)
+. . . ec (1)
+. seco (2..2)
+. . ps (2) .
+. . et (1) .
+. et (1) .
 . dt
 
 Notes:
-- that fields that can infer a parent (ge, de above) should probably be listed first. 
+- fields that can infer a parent (ge, de above) should probably be listed first. 
 - The second occurrence of a parent marker would not show all the children again. 
              */
         }

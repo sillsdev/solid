@@ -7,7 +7,7 @@ using SolidGui.Model;
 
 namespace SolidGui.Filter
 {
-    public class NullRecordFilter : RecordFilter  // JMC: if this really serves a purpose, I should document it
+    public class NullRecordFilter : RecordFilter  // TODO: if this really serves a purpose, we should document it -JMC
     {
         public NullRecordFilter()
             : base(null, "None")
@@ -150,8 +150,8 @@ namespace SolidGui.Filter
 
         public override bool MoveTo(int index)
         {
-            if (index > Count - 1) index = Count - 1; // JMC: Trying to add robustness; is this a good idea?
-            if (index < 0) index = 0;                 // Note that now we'll only return false if the filter is empty.
+            if (index > Count - 1) index = Count - 1; // I did this trying to add robustness; is this a good idea?
+            if (index < 0) index = 0;                 // Note that now we'll only return false if the filter is empty. -JMC
 
             if (index >= 0 && index < Count)
             {

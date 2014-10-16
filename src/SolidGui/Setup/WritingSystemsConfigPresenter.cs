@@ -77,11 +77,12 @@ namespace SolidGui.Setup
         {
             string fromWritingSystem = View.FromWritingSystem;
 
-            // TODO Rename markers as per the advanced view
+            // TODO Rename markers as per the advanced view -CP
+
             int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentRFC4646);
             if (c > 0)
             {
-                _mainWindowPm.needsSave = true;  // JMC: Should we also trigger a MarkerSettingPossiblyChanged event? Probably no need.
+                _mainWindowPm.needsSave = true;
             }
             return c;
         }

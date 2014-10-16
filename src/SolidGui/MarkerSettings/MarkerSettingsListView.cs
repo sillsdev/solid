@@ -1,7 +1,7 @@
 // Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
-// JMC: I'm not sure why, but these two GUI elements (this and FilterChooserView) aren't embedding quite right with Dock = Fill.
+// I'm not sure why, but these two GUI elements (this and FilterChooserView) aren't embedding quite right with Dock = Fill.
 // I had to add some top padding so the top part (e.g. column headings) would be visible. -JMC Jan 2014
 
 using System;
@@ -41,7 +41,7 @@ namespace SolidGui.MarkerSettings
             InitializeComponent();
 
             GLColumn frequencyCount = (from GLColumn c in _markerListView.Columns where c.Text == "Count" select c).First();
-            frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));   // JMC: Consider doing the same to make other columns sortable too
+            frequencyCount.ComparisonFunction = (a, b) => int.Parse(a).CompareTo(int.Parse(b));   // TODO! Consider doing the same to make other columns sortable too -JMC
             _markerListView.GridLineStyle = GLGridLineStyles.gridNone;
             _markerListView.SelectionColor = Color.LightYellow;
             _markerListView.SelectedTextColor = Color.Black;
@@ -216,12 +216,13 @@ namespace SolidGui.MarkerSettings
         {
             string conceptId = markerSetting.GetMappingConceptId(type);
             var mappingSystem = _markerSettingsPm.MappingModel.TargetChoices[(int)type];
-
-            MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId); // JMC: often null; is it safe to wrap this in an if (conceptId != null) ? w/b faster but check the called functions
-
-            string mapping = (concept != null) ? concept.Label() : null;
-            
-            return mapping ?? "??";
+            string mapping = "??";
+            if (conceptId != null)
+            {
+                MappingPM.Concept concept = mappingSystem.GetConceptById(conceptId);
+                if (concept != null) mapping = concept.Label();
+            }
+            return mapping;
         }
 
         private static void AddLinkSubItem(GLItem item, string text, LinkLabelLinkClickedEventHandler clickHandler)
@@ -366,6 +367,7 @@ namespace SolidGui.MarkerSettings
             
             _markerSettingsDialog.UpdateDisplay();  //Will the next line trigger this anyway? Yes, but it'll crash without this. -JMC
             _markerSettingsDialog.Show();  //was .ShowDialog();
+            _markerSettingsDialog.BringToFront();
 
             return true;
         }

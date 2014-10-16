@@ -330,7 +330,7 @@ namespace SolidGui.Tests
                 var b = new StringBuilder();
                 do
                 {
-                    b.AppendLine("\\" + fields[i]);  //JMC: probably should globally find all .AppendLine and instead use .Append(SolidSettings.Newline)
+                    b.AppendLine("\\" + fields[i]);  //TODO! probably should globally find all .AppendLine and instead use .Append(SolidSettings.Newline) -JMC
                     ++i;
                 } while (i < fields.Length && !fields[i].StartsWith("lx"));
  

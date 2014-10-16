@@ -30,7 +30,7 @@ namespace SolidGui.Engine
         private SfmRecord _record;
         private string _headerLinux = ""; 
 
-        string _startKey = "lx";  // JMC: use global setting!
+        string _startKey = "lx";  // TODO! use global setting! -JMC
         private readonly List<char> _enders = new List<char> {' ', '\t', '\r', '\n', '\\', '\0'}; // All chars that end an SFM marker (SFM key)
 
         private static Regex ReggieLeading = new Regex(
@@ -381,7 +381,7 @@ namespace SolidGui.Engine
         {
             string tmp = headerLinux.Replace("\r\n", "\n");
             tmp = tmp.Replace("\r", "\n");
-            return tmp.Replace("\n", newLine); //JMC: a single regex would be better
+            return tmp.Replace("\n", newLine); //TODO: a single regex would be better, replacing (\r|\r?\n) with newLine -JMC
         }
 
 
@@ -433,13 +433,11 @@ namespace SolidGui.Engine
             return result.Trailing;
         }
 
-        // Given a string read it into one or more records. -JMC
+        // Given a string, read it in as one or more records. -JMC
         public static SfmRecordReader CreateFromText(string text)
         {
 
             // Start with regex cleanup to remove tabs, and leading spaces -JMC 2013-09
-            // JMC: Could also paste these two lines into a toolbar button method that does "plain-text copy" (includes inferred like \+sn but no formatting).
-            //   Toolbar button and/or add Ctrl-C to SfmEditorView, _contentsBox_KeyDown .
             string s = ReggieLeading.Replace(text, "\\");
             s = ReggieTab.Replace(s, " ");
 

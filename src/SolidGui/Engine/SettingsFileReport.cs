@@ -92,14 +92,6 @@ namespace SolidGui.Engine
             _reportBuilder.AppendLine(s);
         }
 
-        // TODO: add methods for tallying up a given error/change across a bunch of markers, returning a
-        // message such as "Added required=false to 36 fields. \nFor 3 markers (le lv sb), no mappings found--setting them to blank."
-        // E.g. calling the following would increment a tally and append to a list (or string) of affected markers
-        //   public void tallyProblem(string key, string markerAffected, int maxToShow)
-        // The key could be "NoMappingsFound" or "MissingRequired", etc. Not sure about maxToShow, but without it the messagebox could be overwhelming.
-        // -JMC Aug 2014
-
-
         /// <summary>
         /// Adds the key and initializes the value. Or, does nothing if the key already exists.
         /// </summary>
