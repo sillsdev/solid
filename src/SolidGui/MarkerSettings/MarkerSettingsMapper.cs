@@ -72,15 +72,24 @@ namespace SolidGui.MarkerSettings
 
             var msets = new List<SolidMarkerSetting>();
             ss.MarkerSettings = msets; // Doing this up front and iteratively (not assigning from ToList() from linq) because DetermineDefaultEncoding may need to run part-way through. -JMC
+            var alreadyLoaded = new HashSet<string>();
             foreach (var mset in xParent.Elements("SolidMarkerSetting"))
             {
-                //TODO! #1292 Check here whether a marker with the same name (matching case) already has been loaded. If so, drop this one. -JMC
-                msets.Add(LoadOneMarkerSettingFromXml(mset, ss));
+                //#1292 : Check here whether a marker with the same name (matching case) already has been loaded. If so, drop this one. -JMC
+                SolidMarkerSetting setting = LoadOneMarkerSettingFromXml(mset, ss);
+                if (alreadyLoaded.Contains(setting.Marker))
+                {
+                    ss.FileStatusReport.ReportProblem("Found {0} marker(s) more than once in the settings file; dropped: {1}", setting.Marker);
+                }
+                else
+                {
+                    msets.Add(setting);
+                    alreadyLoaded.Add(setting.Marker);
+                }
+
             }
 
-            // TODO: We may need a fix here, or in the method called above, to report any ignored duplicates 
-            // (multiple marker settings using the same marker); see bug #1292  
-            // Likewise, can we identify any other extraneous markers and inform the user of exactly what was dropped?
+            // TODO: Likewise, can we identify any other extraneous markers and inform the user of exactly what was dropped?
             // Long-term, however, if inter-operating with FLEx (e.g. if .solid and .map formats are merged), 
             // then preserving unused elements could become important. -JMC Jul 2014
 

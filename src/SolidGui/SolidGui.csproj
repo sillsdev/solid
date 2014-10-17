@@ -10,8 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SolidGui</RootNamespace>
     <AssemblyName>Solid</AssemblyName>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>SolidGui.Program</StartupObject>
     <ApplicationIcon>Resources\solid.ico</ApplicationIcon>
     <FileUpgradeFlags>
     </FileUpgradeFlags>

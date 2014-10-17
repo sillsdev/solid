@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SolidSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RecordMarker>lx</RecordMarker>
-  <Version>1.0</Version>
+  <Version>3</Version>
   <MarkerSettings>
     <SolidMarkerSetting>
+      <Marker>lx</Marker>
+      <WritingSystem />
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>entry</Parent>
+          <Multiplicity>MultipleApart</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
+      <Comments />
       <Mappings>
         <string>lex</string>
         <string>lexicalUnit</string>
       </Mappings>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>entry</Parent>
-          <MultipleAdjacent>MultipleApart</MultipleAdjacent>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <Marker>lx</Marker>
     </SolidMarkerSetting>
   </MarkerSettings>
-
 </SolidSettings>
