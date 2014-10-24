@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Model;
+using SolidGui.Tests.Engine;
 
 
 namespace SolidGui.Tests
@@ -90,6 +91,21 @@ namespace SolidGui.Tests
         }
 
         [Test]
+        public void MoveCommonItemsUp_ExtraTrailing_DoesntMove()
+        {
+            string tr =   "\r\n  \r\n \r\n";
+            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "se", "b", "p1", "p2", "se", "c", "p1", "p2");
+            dict.Records[0].Fields[4].Trailing = tr;  //p1
+            dict.Records[0].Fields[8].Trailing = " " + tr; //2nd p1
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"));
+            var rec = dict.Records[0];
+            AssertFieldOrder(rec, "lx", "a", "se", "p1", "p2", "b", "se", "p1", "p2", "c");
+            Assert.IsTrue(rec.Fields[5].Trailing == tr);   //b now has it
+            Assert.IsTrue(rec.Fields[7].Trailing == " \r\n"); 
+            Assert.IsTrue(rec.Fields[9].Trailing == tr);  //c now has all but the first space
+        }
+
+        [Test]
         public void MoveCommonItemsUp_SomeToEntrySomeToSubEntry()
         {
             var dict = MakeDictionary(new SolidSettings(), "lx", "a", "ph", "se", "b", "ph", "c");
@@ -106,6 +122,7 @@ namespace SolidGui.Tests
             new QuickFixer(dict).MoveCommonItemsUp(M("sn"), M("ge"));
             AssertFieldOrder(dict.Records[0], s2);
         }
+
 
         [Test]
         public void RemoveEmptyFields_LastOne_Ok()

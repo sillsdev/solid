@@ -556,7 +556,6 @@ namespace SolidGui
                 destinationFilePath = exporter.ModifyDestinationIfNeeded(destinationFilePath);
 
                 _workingDictionary.SaveAs(TempDictionaryPath(), Settings);
-                //WorkingDictionary.FilePath = TempDictionaryPath(); //No, right? -JMC
                 Settings.SaveAs(SolidSettings.GetSettingsFilePathFromDictionaryPath(TempDictionaryPath()));
                 string sourceFilePath = TempDictionaryPath();
 

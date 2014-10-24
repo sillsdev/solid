@@ -24,12 +24,13 @@ namespace Solid.Engine
         }
 
         //JMC: Issue #1243. All of these need to return an int instead (or maybe bool) representing how many changes the quick fix made, to decide whether a Save will be needed or not
+
         public void MoveCommonItemsUp(List<string> roots, List<string> markers)
         {
-            /* bw any other non-bundle fields are the only safe ones
-             * to use with this method
+            /* non-bundle fields are the only safe ones to use with this method
              * 
-             * ph isn't safe, because it could be in an \se
+             * E.g. ph isn't safe, because it could be in an \se
+             * bw is safe, assuming it only occurs under \lx
              */
             foreach (Record record in _dictionary.AllRecords)
             {
@@ -54,31 +55,7 @@ namespace Solid.Engine
             }
         }
 
-        public void MoveCommonItemsUpToLx(List<string> markers)
-        {
-            /* bw any other non-bundle fields are the only safe ones
-             * to use with this method
-             * 
-             * ph isn't safe, because it could be in an \se
-             */
-            foreach (Record record in _dictionary.AllRecords)
-            {
-                int indexToMoveAfter = 0;
-                for (int i = 1; //start with the 2nd line, even though we wouldn't move it
-                    i < record.Fields.Count; i++)
-                {
-                    if (markers.Contains(record.Fields[i].Marker))
-                    {
-                        if (i > indexToMoveAfter)
-                        {
-                            record.MoveField(record.Fields[i], indexToMoveAfter);
-                        }
-                        ++indexToMoveAfter; // the next guy goes after, so they stay in relative order
-                    }
 
-                }
-            }
-        }
         public void RemoveEmptyFields(List<string> markersToLeaveAlone)
         {
             if(!markersToLeaveAlone.Contains("lx"))//that'd be too dangerous

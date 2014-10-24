@@ -281,7 +281,7 @@ namespace SolidGui.Model
             }
             */
              
-            using (var dlg = new ProgressDialog())  // JMC:! Move this UI stuff elsewhere?
+            using (var dlg = new ProgressDialog())  // JMC:! Move this UI stuff elsewhere? E.g. unit tests that call this are popping up progress dialogs.
             {
                 dlg.Overview = "Loading and checking data...";
 

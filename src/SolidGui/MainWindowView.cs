@@ -698,7 +698,7 @@ namespace SolidGui
             _mainWindowPM.ProcessLexicon(); 
             UpdateDisplay(true);
             _sfmEditorView.UpdateViewFromModel();  //unnecessary? -JMC Sep 2014
-            setSaveEnabled(true);
+            setSaveEnabled(true);  // Issue #1243 : temporary; really, the QuickFixForm ought to do this--only when it changes stuff. -JMC
         }
 
         private void OnChangeWritingSystems_Click(object sender, EventArgs e)

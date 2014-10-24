@@ -60,7 +60,7 @@ namespace SolidGui
                 }
                 else
                 {
-                    ErrorReport.NotifyUserOfProblem("Is a one of the fields empty?");
+                    ErrorReport.NotifyUserOfProblem("Is one of the fields empty?");
                 }
             }
             catch(Exception error)

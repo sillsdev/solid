@@ -16,7 +16,7 @@ namespace SolidGui.Tests.Engine
         {
         }
 
-        public string InputProduces (string input)
+        public static string InputProduces (string input)
         {
             string result = "";
             using (var e = new EnvironmentForTest())
@@ -62,33 +62,18 @@ namespace SolidGui.Tests.Engine
         }
 
         [Test]
-        // [Ignore] // I'm not sure how important this is, but otherwise those last two lines will take three saves to "settle down". -JMC
+        // I'm not sure how important this is, but without this behavior lines like those last two will take three saves to "settle down". -JMC
         public void ReadPreserveSeparatorBeforeEmpty_Correct()
         {
             string sfm = "hh\r\n" +
                                 "\\lx a\r\n" +
                                "\\ge b\r\n\r\n" +
+                               "\\ge c \r\n\r\n" +
                                "\\lx  \r\n" +
+                               "\\sn\r\n" +
                                "\\ge \r\n" +
                                "\\ge   \r\n\r\n" +
                                "\\lx\r\n   \r\n";
-            sfm = "\\lx a\r\n \\lx \r\n\\ge   \r\n";
-            sfm = @"\_sh v3.0  400  MDF 4 U
-
-\lx a
-\un
-\ps pro
-\gn tu
-\rf
-\xv ~ yahii? 
-\xn Es-tu alle ?
-\lv
-\ln
-\dt 20/Jul/2008
-\lx a piccudo
-\un inform
-\hm
-";
             var result = InputProduces(sfm);
             var result2 = InputProduces(result); // chain it
             Assert.AreEqual(sfm, result);

@@ -5,7 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using SolidGui.Engine;
 using System.Linq;
@@ -172,6 +174,32 @@ namespace SolidGui.Model
             set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
+
+        private static Regex RegexSplitTrailing = new Regex(
+            @"^(.*?\r?\n)", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+        /// <summary>
+        /// Trailing may consist of two pieces:
+        /// 1. Trailing whitespace up to and including the first newline
+        /// 2. All whitespace after that (should NOT move/delete with the field)
+        /// If 2 exists, this removes it from the current record.
+        /// Fixes #1286: Move Up shouldn't move trailing whitespace too -JMC Nov 2014
+        /// </summary>
+        /// <returns>Whatever it removed.</returns>
+        public string RemoveExtraTrailing()
+
+        {
+            if (_trailing == SfmField.DefaultTrailing) return "";
+
+            var m = RegexSplitTrailing.Match(_trailing);
+            if (!m.Success) return "";
+            int split = m.Index + m.Length;
+
+            string extra = _trailing.Substring(split);
+            _trailing = _trailing.Substring(0, split);
+            
+            return extra;
+        }
 
         public int Depth { get; set; }
 

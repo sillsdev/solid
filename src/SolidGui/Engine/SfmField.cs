@@ -11,7 +11,7 @@ namespace SolidGui.Engine
     public class SfmField
     {
         public static string DefaultTrailing = SolidSettings.NewLine; // s/b "\r\n" on Windows
-        private static Regex RegWhitespace = new Regex(
+        private static Regex RegexTrailingWhitespace = new Regex(
             @"[\t \r\n]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         public SfmField()
@@ -41,11 +41,11 @@ namespace SolidGui.Engine
                 // for empty fields, remember the first trailing whitespace (the separator) too
                 if (separator == "\n") separator = SolidSettings.NewLine;
                 Value = "";
-                Trailing = separator + val;  //JMC:! Isn't this often going to result in extra trailing spaces? Remove separator?
+                Trailing = separator + val; 
                 return;
             }
 
-            MatchCollection m = RegWhitespace.Matches(val);
+            MatchCollection m = RegexTrailingWhitespace.Matches(val);
             if (m.Count > 2)
             {
                 throw new ArgumentException("Bug: a single field shouldn't be able to end in whitespace twice.");

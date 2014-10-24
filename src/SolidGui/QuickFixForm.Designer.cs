@@ -39,7 +39,7 @@ namespace SolidGui
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this._moveUpGoLink = new System.Windows.Forms.LinkLabel();
+            this._executeMoveUp = new System.Windows.Forms.LinkLabel();
             this._moveUpRoots = new System.Windows.Forms.TextBox();
             this._moveUpMarkers = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,9 +52,9 @@ namespace SolidGui
             this.label7 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this._showPushPSInfo = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.linkFlexFixesInfo = new System.Windows.Forms.LinkLabel();
             this.label5 = new System.Windows.Forms.Label();
-            this._exectueFLExFixes = new System.Windows.Forms.LinkLabel();
+            this._executeFLExFixes = new System.Windows.Forms.LinkLabel();
             this._pushPsDownToSns = new System.Windows.Forms.CheckBox();
             this._createReferredToItems = new System.Windows.Forms.CheckBox();
             this._makeInferedRealBox = new System.Windows.Forms.CheckBox();
@@ -105,7 +105,7 @@ namespace SolidGui
             this.tabPage3.Controls.Add(this.linkLabel3);
             this.tabPage3.Controls.Add(this.linkLabel2);
             this.tabPage3.Controls.Add(this.linkLabel1);
-            this.tabPage3.Controls.Add(this._moveUpGoLink);
+            this.tabPage3.Controls.Add(this._executeMoveUp);
             this.tabPage3.Controls.Add(this._moveUpRoots);
             this.tabPage3.Controls.Add(this._moveUpMarkers);
             this.tabPage3.Controls.Add(this.label6);
@@ -166,18 +166,18 @@ namespace SolidGui
             this.linkLabel1.Text = "(lt, ph) to under (lx, se, va)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
             // 
-            // _moveUpGoLink
+            // _executeMoveUp
             // 
-            this._moveUpGoLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._moveUpGoLink.AutoSize = true;
-            this._moveUpGoLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._moveUpGoLink.Location = new System.Drawing.Point(15, 380);
-            this._moveUpGoLink.Name = "_moveUpGoLink";
-            this._moveUpGoLink.Size = new System.Drawing.Size(258, 16);
-            this._moveUpGoLink.TabIndex = 13;
-            this._moveUpGoLink.TabStop = true;
-            this._moveUpGoLink.Text = "I know what I\'m doing and have backed up";
-            this._moveUpGoLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteMoveUp);
+            this._executeMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._executeMoveUp.AutoSize = true;
+            this._executeMoveUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._executeMoveUp.Location = new System.Drawing.Point(15, 380);
+            this._executeMoveUp.Name = "_executeMoveUp";
+            this._executeMoveUp.Size = new System.Drawing.Size(258, 16);
+            this._executeMoveUp.TabIndex = 13;
+            this._executeMoveUp.TabStop = true;
+            this._executeMoveUp.Text = "I know what I\'m doing and have backed up";
+            this._executeMoveUp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteMoveUp);
             // 
             // _moveUpRoots
             // 
@@ -286,9 +286,9 @@ namespace SolidGui
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this._showPushPSInfo);
-            this.tabPage1.Controls.Add(this.linkLabel4);
+            this.tabPage1.Controls.Add(this.linkFlexFixesInfo);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this._exectueFLExFixes);
+            this.tabPage1.Controls.Add(this._executeFLExFixes);
             this.tabPage1.Controls.Add(this._pushPsDownToSns);
             this.tabPage1.Controls.Add(this._createReferredToItems);
             this.tabPage1.Controls.Add(this._makeInferedRealBox);
@@ -311,16 +311,16 @@ namespace SolidGui
             this._showPushPSInfo.Text = "Important Information";
             this._showPushPSInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._showPushPSInfo_LinkClicked);
             // 
-            // linkLabel4
+            // linkFlexFixesInfo
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(58, 122);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(106, 13);
-            this.linkLabel4.TabIndex = 19;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Important Information";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.linkFlexFixesInfo.AutoSize = true;
+            this.linkFlexFixesInfo.Location = new System.Drawing.Point(58, 122);
+            this.linkFlexFixesInfo.Name = "linkFlexFixesInfo";
+            this.linkFlexFixesInfo.Size = new System.Drawing.Size(106, 13);
+            this.linkFlexFixesInfo.TabIndex = 19;
+            this.linkFlexFixesInfo.TabStop = true;
+            this.linkFlexFixesInfo.Text = "Important Information";
+            this.linkFlexFixesInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
             // 
             // label5
             // 
@@ -333,18 +333,18 @@ namespace SolidGui
             this.label5.Text = "Increases the chance that FLEx has the same idea about the structure as your SOLI" +
     "D rules.";
             // 
-            // _exectueFLExFixes
+            // _executeFLExFixes
             // 
-            this._exectueFLExFixes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._exectueFLExFixes.AutoSize = true;
-            this._exectueFLExFixes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._exectueFLExFixes.Location = new System.Drawing.Point(15, 380);
-            this._exectueFLExFixes.Name = "_exectueFLExFixes";
-            this._exectueFLExFixes.Size = new System.Drawing.Size(258, 16);
-            this._exectueFLExFixes.TabIndex = 17;
-            this._exectueFLExFixes.TabStop = true;
-            this._exectueFLExFixes.Text = "I know what I\'m doing and have backed up";
-            this._exectueFLExFixes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteFLExFixes_LinkClicked);
+            this._executeFLExFixes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._executeFLExFixes.AutoSize = true;
+            this._executeFLExFixes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._executeFLExFixes.Location = new System.Drawing.Point(15, 380);
+            this._executeFLExFixes.Name = "_executeFLExFixes";
+            this._executeFLExFixes.Size = new System.Drawing.Size(258, 16);
+            this._executeFLExFixes.TabIndex = 17;
+            this._executeFLExFixes.TabStop = true;
+            this._executeFLExFixes.Text = "I know what I\'m doing and have backed up";
+            this._executeFLExFixes.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnExecuteFLExFixes_LinkClicked);
             // 
             // _pushPsDownToSns
             // 
@@ -502,7 +502,7 @@ namespace SolidGui
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.LinkLabel _moveUpGoLink;
+        private System.Windows.Forms.LinkLabel _executeMoveUp;
         private System.Windows.Forms.TextBox _moveUpMarkers;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -516,11 +516,11 @@ namespace SolidGui
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.LinkLabel _exectueFLExFixes;
+        private System.Windows.Forms.LinkLabel _executeFLExFixes;
         private System.Windows.Forms.CheckBox _createReferredToItems;
         private System.Windows.Forms.CheckBox _makeInferedRealBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.LinkLabel linkLabel4;
+        private System.Windows.Forms.LinkLabel linkFlexFixesInfo;
         private System.Windows.Forms.CheckBox _pushPsDownToSns;
         private System.Windows.Forms.LinkLabel _showPushPSInfo;
         private System.Windows.Forms.TabPage tabPage2;

@@ -135,14 +135,14 @@ namespace SolidGui.Model
         public void MoveField(SfmFieldModel field, int after)
         {
             int from = _fields.IndexOf(field);
-            _fields.RemoveAt(from);
+            RemoveField(from);
             if (from > after)
             {
-                _fields.Insert(after + 1, field);
+                InsertFieldAt(field, after + 1);
             }
             else
             {
-                _fields.Insert(after, field);
+                InsertFieldAt(field, after);
             }
         }
 
@@ -154,11 +154,15 @@ namespace SolidGui.Model
             if (index < 0 || index >= _fields.Count)
                 throw new ArgumentOutOfRangeException(string.Format("RemoveField({0}) was asked to remove an index which is out of range", index));
 
+            string extra = _fields[index].RemoveExtraTrailing();
+            _fields[index - 1].Trailing += extra;
             _fields.RemoveAt(index);
         }
 
         public void InsertFieldAt(SfmFieldModel field, int indexForThisField)
         {
+            string extra = _fields[indexForThisField - 1].RemoveExtraTrailing();
+            field.Trailing += extra;
             _fields.Insert(indexForThisField, field);
         }
 
