@@ -54,7 +54,7 @@ namespace SolidGui
                 List<string> rootMarkers = _moveUpRoots.Text.SplitTrimmed(',');
                 if (moveMarkers.Count > 0 && rootMarkers.Count > 0)
                 {
-                    _fixer.MoveCommonItemsUp(rootMarkers, moveMarkers);
+                    _fixer.MoveCommonItemsUp(rootMarkers, moveMarkers, _minimalCheckBox.Checked);
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                     Close();
                 }

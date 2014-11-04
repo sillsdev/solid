@@ -10,6 +10,7 @@ using SolidGui;
 using System.Linq;
 using Palaso.Extensions;
 using SolidGui.Engine;
+using SolidGui.Export;
 using SolidGui.Model;
 
 namespace Solid.Engine
@@ -18,41 +19,80 @@ namespace Solid.Engine
     {
         private readonly SfmDictionary _dictionary;
 
+        public int ChangesMade = 0;
+
         public QuickFixer(SfmDictionary dictionary)
         {
             _dictionary = dictionary;
         }
 
-        //JMC: Issue #1243. All of these need to return an int instead (or maybe bool) representing how many changes the quick fix made, to decide whether a Save will be needed or not
+        //JMC: Issue #1243. All of these need to increment a counter representing how many changes the quick fix made, to decide whether a Save will be needed or not
+
 
         public void MoveCommonItemsUp(List<string> roots, List<string> markers)
         {
+            MoveCommonItemsUp(roots, markers, true);
+        }
+
+        public void MoveCommonItemsUp(List<string> roots, List<string> markers, bool minimal)
+        {
             /* non-bundle fields are the only safe ones to use with this method
              * 
-             * E.g. ph isn't safe, because it could be in an \se
-             * bw is safe, assuming it only occurs under \lx
+             * E.g. \ph isn't safe to move up under \lx, because it could be in an \se
+             * \bw is safe, assuming it only occurs under \lx
              */
+            int count = 0;
+            int rootDepth = 0;
+            bool stillShallow = false;
             foreach (Record record in _dictionary.AllRecords)
             {
                 int indexToMoveAfter = -1;//-1 means we haven't found a root yet
-                for (int i = 0; 
-                    i < record.Fields.Count; i++) 
+                int lastRootFound = -1;
+                for (int i = 0; i < record.Fields.Count; i++)
                 {
-                    if (roots.Contains(record.Fields[i].Marker))
-                    {
+                    var f = record.Fields[i];
+                    if (roots.Contains(f.Marker))
+                    {   
+                        rootDepth = f.Depth;
+                        stillShallow = true;
                         indexToMoveAfter = i; // found a new root (e.g. \se or \sn)
+                        lastRootFound = i;
                     }
-                    if (indexToMoveAfter>-1 && markers.Contains(record.Fields[i].Marker))
-                    {
-                        Debug.Assert(i > indexToMoveAfter, "There is a bug in MoveCommonItemsUp; please let the developers know.");
+                    else if (minimal && stillShallow) 
+                    {   //possible sibling
+                        if (f.Depth > rootDepth + 1)
+                        {
+                            // too deep; any markers should be moved up to above this position, and above any non-root parent it may have
+                            stillShallow = false;
+                            indexToMoveAfter = Math.Max(indexToMoveAfter-1, lastRootFound); 
+                        }
+                        else
+                        {
+                            //after me is fine, as I am a sibling that precedes all nephews
+                            indexToMoveAfter = i;  // implements #1223: minimal Move Up
+                        }
+                    }
 
-                        record.MoveField(record.Fields[i], indexToMoveAfter);
-                        
-                        ++indexToMoveAfter; // the next guy goes after, so they stay in relative order
+                    if (indexToMoveAfter > -1 && markers.Contains(f.Marker))
+                    {
+                        //Debug.Assert(i > indexToMoveAfter, "There is a bug in MoveCommonItemsUp; please let the developers know.");
+                        if (indexToMoveAfter >= i - 1)
+                        {
+                            // no-op 'move up' to own location
+                            count = count;
+                        }
+                        else
+                        {
+                            // move up
+                            count++;
+                            record.MoveField(f, indexToMoveAfter);
+                        }
+                        ++indexToMoveAfter; // the next guy goes after, so the fields being moved stay in relative order
                     }
                 
                 }
             }
+            ChangesMade += count;
         }
 
 

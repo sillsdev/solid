@@ -51,17 +51,13 @@ namespace SolidGui
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.splitContainerLeftRight = new System.Windows.Forms.SplitContainer();
             this.splitContainerUpDown = new System.Windows.Forms.SplitContainer();
-            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
             this.panelMarkerSettings = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._editMarkerProperties = new System.Windows.Forms.Button();
             this.buttonTree = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
             this.panelFilters = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this._sfmEditorView = new SolidGui.SfmEditorView();
-            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this._fileMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +106,10 @@ namespace SolidGui
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._markerSettingsListView = new SolidGui.MarkerSettings.MarkerSettingsListView();
+            this._filterChooserView = new SolidGui.Filter.FilterChooserView();
+            this._sfmEditorView = new SolidGui.SfmEditorView();
+            this._recordNavigatorView = new SolidGui.RecordNavigatorView();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -310,16 +310,6 @@ namespace SolidGui
             this.splitContainerUpDown.SplitterDistance = 265;
             this.splitContainerUpDown.TabIndex = 2;
             // 
-            // _markerSettingsListView
-            // 
-            this._markerSettingsListView.AutoSize = true;
-            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
-            this._markerSettingsListView.MinimumSize = new System.Drawing.Size(359, 213);
-            this._markerSettingsListView.Name = "_markerSettingsListView";
-            this._markerSettingsListView.Size = new System.Drawing.Size(382, 231);
-            this._markerSettingsListView.TabIndex = 0;
-            // 
             // panelMarkerSettings
             // 
             this.panelMarkerSettings.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -389,16 +379,6 @@ namespace SolidGui
             this.label2.TabIndex = 5;
             this.label2.Text = "Marker Settings/Filters";
             // 
-            // _filterChooserView
-            // 
-            this._filterChooserView.AutoSize = true;
-            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._filterChooserView.Enabled = false;
-            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
-            this._filterChooserView.Name = "_filterChooserView";
-            this._filterChooserView.Size = new System.Drawing.Size(382, 100);
-            this._filterChooserView.TabIndex = 2;
-            // 
             // panelFilters
             // 
             this.panelFilters.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -420,28 +400,6 @@ namespace SolidGui
             this.label1.Size = new System.Drawing.Size(104, 20);
             this.label1.TabIndex = 3;
             this.label1.Text = "Error Filters";
-            // 
-            // _sfmEditorView
-            // 
-            this._sfmEditorView.AutoScroll = true;
-            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._sfmEditorView.HighlightMarkers = null;
-            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
-            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this._sfmEditorView.Name = "_sfmEditorView";
-            this._sfmEditorView.Size = new System.Drawing.Size(377, 369);
-            this._sfmEditorView.TabIndex = 2;
-            // 
-            // _recordNavigatorView
-            // 
-            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
-            this._recordNavigatorView.Enabled = false;
-            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
-            this._recordNavigatorView.Name = "_recordNavigatorView";
-            this._recordNavigatorView.Size = new System.Drawing.Size(377, 34);
-            this._recordNavigatorView.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -493,7 +451,7 @@ namespace SolidGui
             // 
             this._saveAsMenuItem.Name = "_saveAsMenuItem";
             this._saveAsMenuItem.Size = new System.Drawing.Size(261, 22);
-            this._saveAsMenuItem.Text = "Save a Copy As...";
+            this._saveAsMenuItem.Text = "Save a Copy &As...";
             this._saveAsMenuItem.Click += new System.EventHandler(this.OnSaveAsClick);
             // 
             // _exportXmlMenuItem
@@ -547,14 +505,14 @@ namespace SolidGui
             // 
             this._switchlToUnicodeMenuItem.Name = "_switchlToUnicodeMenuItem";
             this._switchlToUnicodeMenuItem.Size = new System.Drawing.Size(243, 22);
-            this._switchlToUnicodeMenuItem.Text = "Switch all to Unicode";
+            this._switchlToUnicodeMenuItem.Text = "Switch all to &Unicode";
             this._switchlToUnicodeMenuItem.Click += new System.EventHandler(this._switchlToUnicodeMenuItem_Click);
             // 
             // _switchlToLegacyMenuItem
             // 
             this._switchlToLegacyMenuItem.Name = "_switchlToLegacyMenuItem";
             this._switchlToLegacyMenuItem.Size = new System.Drawing.Size(243, 22);
-            this._switchlToLegacyMenuItem.Text = "Switch all to Legacy";
+            this._switchlToLegacyMenuItem.Text = "Switch all to &Legacy";
             this._switchlToLegacyMenuItem.Click += new System.EventHandler(this._switchlToLegacyMenuItem_Click);
             // 
             // _editMenuItem
@@ -572,20 +530,20 @@ namespace SolidGui
             // _findMenuItem
             // 
             this._findMenuItem.Name = "_findMenuItem";
-            this._findMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._findMenuItem.Size = new System.Drawing.Size(152, 22);
             this._findMenuItem.Text = "&Find... (Ctrl+F)";
             this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // _cutMenuItem
             // 
             this._cutMenuItem.Enabled = false;
             this._cutMenuItem.Name = "_cutMenuItem";
-            this._cutMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._cutMenuItem.Size = new System.Drawing.Size(152, 22);
             this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
             this._cutMenuItem.Visible = false;
             // 
@@ -593,7 +551,7 @@ namespace SolidGui
             // 
             this._copyMenuItem.Enabled = false;
             this._copyMenuItem.Name = "_copyMenuItem";
-            this._copyMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._copyMenuItem.Size = new System.Drawing.Size(152, 22);
             this._copyMenuItem.Text = "&Copy (Ctrl+C)";
             this._copyMenuItem.Visible = false;
             this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
@@ -602,7 +560,7 @@ namespace SolidGui
             // 
             this._pasteMenuItem.Enabled = false;
             this._pasteMenuItem.Name = "_pasteMenuItem";
-            this._pasteMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._pasteMenuItem.Size = new System.Drawing.Size(152, 22);
             this._pasteMenuItem.Text = "&Paste (Ctrl+V)";
             this._pasteMenuItem.Visible = false;
             // 
@@ -681,6 +639,7 @@ namespace SolidGui
             this._moveUpMenuItem.Size = new System.Drawing.Size(229, 22);
             this._moveUpMenuItem.Text = "Move &Up...";
             this._moveUpMenuItem.Visible = false;
+            this._moveUpMenuItem.Click += new System.EventHandler(this._moveUpMenuItem_Click);
             // 
             // _deleteFieldsMenuItem
             // 
@@ -829,6 +788,48 @@ namespace SolidGui
             this._reportProblemMenuItem.Size = new System.Drawing.Size(238, 22);
             this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
             this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
+            // 
+            // _markerSettingsListView
+            // 
+            this._markerSettingsListView.AutoSize = true;
+            this._markerSettingsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markerSettingsListView.Location = new System.Drawing.Point(0, 34);
+            this._markerSettingsListView.MinimumSize = new System.Drawing.Size(359, 213);
+            this._markerSettingsListView.Name = "_markerSettingsListView";
+            this._markerSettingsListView.Size = new System.Drawing.Size(382, 231);
+            this._markerSettingsListView.TabIndex = 0;
+            // 
+            // _filterChooserView
+            // 
+            this._filterChooserView.AutoSize = true;
+            this._filterChooserView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._filterChooserView.Enabled = false;
+            this._filterChooserView.Location = new System.Drawing.Point(0, 34);
+            this._filterChooserView.Name = "_filterChooserView";
+            this._filterChooserView.Size = new System.Drawing.Size(382, 100);
+            this._filterChooserView.TabIndex = 2;
+            // 
+            // _sfmEditorView
+            // 
+            this._sfmEditorView.AutoScroll = true;
+            this._sfmEditorView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._sfmEditorView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._sfmEditorView.HighlightMarkers = null;
+            this._sfmEditorView.Location = new System.Drawing.Point(0, 34);
+            this._sfmEditorView.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this._sfmEditorView.Name = "_sfmEditorView";
+            this._sfmEditorView.Size = new System.Drawing.Size(377, 369);
+            this._sfmEditorView.TabIndex = 2;
+            // 
+            // _recordNavigatorView
+            // 
+            this._recordNavigatorView.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this._recordNavigatorView.Dock = System.Windows.Forms.DockStyle.Top;
+            this._recordNavigatorView.Enabled = false;
+            this._recordNavigatorView.Location = new System.Drawing.Point(0, 0);
+            this._recordNavigatorView.Name = "_recordNavigatorView";
+            this._recordNavigatorView.Size = new System.Drawing.Size(377, 34);
+            this._recordNavigatorView.TabIndex = 3;
             // 
             // MainWindowView
             // 

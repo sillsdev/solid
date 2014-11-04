@@ -48,9 +48,12 @@ namespace SolidGui.Tests
             string s1 = @"\lx \ps \bw";
             string s2 = @"\lx \bw \ps";
             var dict = MakeDictionary(new SolidSettings(), s1);
+
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"), M("bw", "hm"), true);
+            AssertFieldOrder(dict.Records[0], s1);  // minimal Move Up makes no change
             
-            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"));           
-            AssertFieldOrder(dict.Records[0], s2);
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"),M("bw", "hm"), false);           
+            AssertFieldOrder(dict.Records[0], s2);  // original Move Up still does
         }
 
         [Test]
@@ -85,32 +88,83 @@ namespace SolidGui.Tests
         [Test]
         public void MoveCommonItemsUp_HasSubEntry_MultipleMovedUpToSubEntry()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "se", "b", "p1", "p2");
-            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"));
-            AssertFieldOrder(dict.Records[0], "lx", "a", "se", "p1", "p2", "b");
+            string[] s = {"lx", "a", "se", "b", "p1", "p2"};
+            var dict = MakeDictionary(new SolidSettings(), s);
+
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"), true);
+            AssertFieldOrder(dict.Records[0], s); // no change with minimal Move Up
+
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"), false);
+            AssertFieldOrder(dict.Records[0], "lx", "a", "se", "p1", "p2", "b"); // original Move Up
         }
 
         [Test]
         public void MoveCommonItemsUp_ExtraTrailing_DoesntMove()
         {
-            string tr =   "\r\n  \r\n \r\n";
-            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "se", "b", "p1", "p2", "se", "c", "p1", "p2");
-            dict.Records[0].Fields[4].Trailing = tr;  //p1
+            string tr = "\r\n  \r\n \r\n";
+            string[] tfields = {"lx", "a", "se", "b", "p1", "p2", "se", "c", "p1", "p2"};
+            var dict = MakeDictionary(new SolidSettings(), tfields);
+            dict.Records[0].Fields[4].Trailing = tr; //p1
             dict.Records[0].Fields[8].Trailing = " " + tr; //2nd p1
-            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"));
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("p1", "p2"), false); //original Move Up
             var rec = dict.Records[0];
             AssertFieldOrder(rec, "lx", "a", "se", "p1", "p2", "b", "se", "p1", "p2", "c");
-            Assert.IsTrue(rec.Fields[5].Trailing == tr);   //b now has it
-            Assert.IsTrue(rec.Fields[7].Trailing == " \r\n"); 
-            Assert.IsTrue(rec.Fields[9].Trailing == tr);  //c now has all but the first space
+            Assert.IsTrue(rec.Fields[5].Trailing == tr); //b now has p1's extra trailing
+            Assert.IsTrue(rec.Fields[7].Trailing == " \r\n");
+            Assert.IsTrue(rec.Fields[9].Trailing == tr); //c now has all its p1's extra trailing, but its p1 keep the one space
+        }
+
+        [Test]
+        public void MoveCommonItemsUp_MinimalWorks()
+        {
+            string[] tfields = { "lx", "a", "se", "b", "b2", "bw", "seco", "c", "p1", "p2", "p3" };
+            var dict = MakeDictionary(new SolidSettings(), tfields);
+            dict.Records[0].Fields[2].Depth = 1; //se
+            dict.Records[0].Fields[3].Depth = 2; //b
+            dict.Records[0].Fields[6].Depth = 1; //seco
+            dict.Records[0].Fields[7].Depth = 2; //c is now at least a nephew of 0-depth p2/p3
+            dict.Records[0].Fields[8].Depth = 3; //p1 is now at least a nephew of 0-depth p2/p3
+
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "seco"), M("bw", "p2", "p1"), true);  //minimal Move Up
+            var rec = dict.Records[0];
+            string[] tfields2 = {"lx", "a", "bw", "se", "b", "b2", "seco", "p1", "p2", "c", "p3"};
+            AssertFieldOrder(rec, tfields2); // the 1 2 order is preserved
+            //Note that the depth of \a was unknown
+
+            dict.Records[0].Fields[7].Depth = 2; // assume p1 gets reinterpreted now, to (no deeper than) depth 2, which p2/p3 will aim for
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "seco"), M("bw", "se", "p2", "p3"), true);  //minimal Move Up
+            rec = dict.Records[0];
+            AssertFieldOrder(rec, tfields2); // bw/se/p2 all ok, and p3 won't move because no nephews under c to force it up
+
+        }
+
+        [Test]
+        public void MoveCommonItemsUp_LessMangled()
+        {
+            string[] s =  { "lx", "hm", "se", "ps", "sn", "de", "se", "ps", "de", "dt", "se" };
+            string[] s2 = { "lx", "hm", "se", "se", "dt", "se", "ps", "sn", "de", "ps", "de" };
+            var dict = MakeDictionary(new SolidSettings(), s);
+            int[] depths = {0, 1, 1, 2, 3, 4, 1, 2, 3, 1, 1};
+            for (int i = 0; i < depths.Length; i++)
+            {
+                dict.Records[0].Fields[i].Depth = depths[i];
+            }
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx"), M("se", "dt"), true);
+            
+            AssertFieldOrder(dict.Records[0], s2); // minimal Move Up still mangles subentries, but not hm
+
         }
 
         [Test]
         public void MoveCommonItemsUp_SomeToEntrySomeToSubEntry()
         {
-            var dict = MakeDictionary(new SolidSettings(), "lx", "a", "ph", "se", "b", "ph", "c");
-            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("ph"));
-            AssertFieldOrder(dict.Records[0], "lx", "ph", "a", "se", "ph","b", "c");
+            string[] s = {"lx", "a", "ph", "se", "b", "ph", "c"};
+            var dict = MakeDictionary(new SolidSettings(), s);
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("ph"), true);
+            AssertFieldOrder(dict.Records[0], s); // minimal Move Up makes no change
+
+            new QuickFixer(dict).MoveCommonItemsUp(M("lx", "se"), M("ph"), false);
+            AssertFieldOrder(dict.Records[0], "lx", "ph", "a", "se", "ph", "b", "c"); //original Move Up
         }
 
         [Test]

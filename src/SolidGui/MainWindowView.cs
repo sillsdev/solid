@@ -695,10 +695,19 @@ namespace SolidGui
             {
                 return;
             }
-            _mainWindowPM.ProcessLexicon(); 
-            UpdateDisplay(true);
-            _sfmEditorView.UpdateViewFromModel();  //unnecessary? -JMC Sep 2014
-            setSaveEnabled(true);  // Issue #1243 : temporary; really, the QuickFixForm ought to do this--only when it changes stuff. -JMC
+            if (fixer.ChangesMade > 0)
+            {
+                _mainWindowPM.ProcessLexicon();
+                UpdateDisplay(true);
+                _sfmEditorView.UpdateViewFromModel(); //unnecessary? -JMC Sep 2014
+                setSaveEnabled(true);
+                    // Issue #1243 : temporary; really, the QuickFixForm ought to do this--only when it changes stuff. -JMC
+                MessageBox.Show("Made " + fixer.ChangesMade + " changes.", "Done Moving Up", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show("Nothing to change.", "Move Up", MessageBoxButtons.OK);
+            }
         }
 
         private void OnChangeWritingSystems_Click(object sender, EventArgs e)
@@ -854,6 +863,11 @@ Notes:
             _mainWindowPM.Settings.SetAllUnicodeTo(false);
             _mainWindowPM.needsSave = true;
             UpdateDisplay(false);
+        }
+
+        private void _moveUpMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
