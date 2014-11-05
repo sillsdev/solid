@@ -135,7 +135,7 @@ namespace Solid.Engine
             }          
         }
 
-        struct RecordAdddition  //JMC:! rename  :)
+        struct RecordAddition
         {
 
             public string targetHeadWord;
@@ -144,7 +144,7 @@ namespace Solid.Engine
             public string pos;
             public readonly SfmFieldModel sourceField;
 
-            public RecordAdddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, SfmFieldModel sourceField)
+            public RecordAddition(string targetHeadWord, string fromHeadWord, string fromMarker, string POS, SfmFieldModel sourceField)
             {
                 this.targetHeadWord = targetHeadWord;
                 this.fromMarker = fromMarker;
@@ -164,7 +164,7 @@ namespace Solid.Engine
             var log = new StringBuilder();
 
             SplitFieldsWithMultipleItems(markers, log);
-            List<RecordAdddition> additions = FindNeededEntryAdditions(markers);
+            List<RecordAddition> additions = FindNeededEntryAdditions(markers);
             AddNewEntries(additions, log);
             return log.ToString();
         }
@@ -176,7 +176,7 @@ namespace Solid.Engine
             //this isn't safe with \lv, 'cause each needs an \lf preceding.  That code
             //could be written, but hasn't been.  SplitFieldsWithMultipleItems(markers, log);
             PropagateField("lf", "lv", log);
-            List<RecordAdddition> additions = FindNeededEntryAdditions(new List<string>{"lv"});
+            List<RecordAddition> additions = FindNeededEntryAdditions(new List<string>{"lv"});
             AddNewEntries(additions, log);
             return log.ToString();
         }
@@ -208,9 +208,9 @@ namespace Solid.Engine
             }
         }
 
-        private List<RecordAdddition> FindNeededEntryAdditions(List<string> markers)
+        private List<RecordAddition> FindNeededEntryAdditions(List<string> markers)
         {
-            var additions = new List<RecordAdddition>();
+            var additions = new List<RecordAddition>();
             foreach (Record record in _dictionary.AllRecords)
             {
                 string lastPOS = "FIXME";
@@ -228,7 +228,8 @@ namespace Solid.Engine
                         if( !string.IsNullOrEmpty(headword) &&
                             !additions.Any( x => x.targetHeadWord == headword) )
                         {
-                            additions.Add(new RecordAdddition(headword, record.Fields[0].Value, field.Marker, lastPOS, field));
+                            additions.Add(new RecordAddition(headword, record.Fields[0].Value, field.Marker, lastPOS, field));
+                            // TODO: #1231 Right there, we just lost encoding information by assuming these bytes in memory are plain strings. -JMC Nov 2014
                         }
                     }
                 }
@@ -236,10 +237,10 @@ namespace Solid.Engine
             return additions;
         }
 
-        private void AddNewEntries(List<RecordAdddition> additions, StringBuilder log)
+        private void AddNewEntries(List<RecordAddition> additions, StringBuilder log)
         {
             SolidSettings nullSettings = new SolidSettings();  // JMC: why a new bunch?
-            foreach (RecordAdddition addition in additions)
+            foreach (RecordAddition addition in additions)
             {
                 string switchToCitationForm;
                 Record targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);

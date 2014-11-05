@@ -128,7 +128,7 @@ namespace Solid.Engine
             IList<string> markers = MarkerSettingsPm.GetAllMarkers();
             return (
                        markers.Contains(markerWithoutLeadingBackslash) &&
-                       !_markerSetting.ParentExists(markerWithoutLeadingBackslash) &&
+                       !_markerSetting.IsAnAllowedParent(markerWithoutLeadingBackslash) &&
                        _markerSetting.Marker != markerWithoutLeadingBackslash
                    );
         }

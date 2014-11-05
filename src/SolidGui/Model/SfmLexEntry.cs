@@ -28,7 +28,10 @@ namespace SolidGui.Model
         {
             foreach (SfmField f in fields)
             {
-                _fields.Add(new SfmFieldModel(f.Marker, f.Value, f.Trailing, 0, false));
+                var fm = new SfmFieldModel(f.Marker, f.Value, f.Trailing, 0, false);
+                // TODO: fill in fm._requiredChildren
+                _fields.Add(fm);
+
             }
         }
 

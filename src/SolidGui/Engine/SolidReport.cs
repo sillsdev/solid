@@ -18,7 +18,9 @@ namespace SolidGui.Engine
             StructureInsertInInferredFailed = 1, 
             StructureParentNotFound = 2, 
             StructureParentNotFoundForInferred = 4,
-            EncodingUpperAscii = 8
+            EncodingUpperAscii = 8,
+            StructureRequiredMissing = 16,
+            StructureKickout = 32
         }
 
         public const int NumTypes = 5;
@@ -66,6 +68,7 @@ namespace SolidGui.Engine
             return retVal;
         }
 
+        // Create a report entry and add it to both the report and the field itself
         public void AddEntry(EntryType type, SfmLexEntry entry, SfmFieldModel field, string description)
         {
             var reportEntry = new ReportEntry(type, entry, field, description);

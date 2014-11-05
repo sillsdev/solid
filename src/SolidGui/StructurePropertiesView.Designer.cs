@@ -48,8 +48,11 @@ namespace SolidGui
             this._requiredCheckBox = new System.Windows.Forms.CheckBox();
             this._InferComboBox = new System.Windows.Forms.ComboBox();
             this._inferComboLabel = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this._deleteButton = new System.Windows.Forms.Button();
             this._nestedTableLayoutPanel.SuspendLayout();
             this.flowLayoutPanelOccurs.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _nestedTableLayoutPanel
@@ -63,15 +66,15 @@ namespace SolidGui
             this._nestedTableLayoutPanel.Controls.Add(this._commentTextBox, 1, 4);
             this._nestedTableLayoutPanel.Controls.Add(this._summaryTextBox, 1, 3);
             this._nestedTableLayoutPanel.Controls.Add(this._parentLabel, 0, 0);
-            this._nestedTableLayoutPanel.Controls.Add(this._explanationLabel, 1, 0);
             this._nestedTableLayoutPanel.Controls.Add(this.flowLayoutPanelOccurs, 1, 1);
             this._nestedTableLayoutPanel.Controls.Add(this._InferComboBox, 1, 2);
             this._nestedTableLayoutPanel.Controls.Add(this._inferComboLabel, 0, 2);
+            this._nestedTableLayoutPanel.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this._nestedTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._nestedTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this._nestedTableLayoutPanel.Name = "_nestedTableLayoutPanel";
             this._nestedTableLayoutPanel.RowCount = 5;
-            this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -88,7 +91,7 @@ namespace SolidGui
             this._parentListView.FullRowSelect = true;
             this._parentListView.HideSelection = false;
             this._parentListView.LabelEdit = true;
-            this._parentListView.Location = new System.Drawing.Point(3, 33);
+            this._parentListView.Location = new System.Drawing.Point(3, 38);
             this._parentListView.MultiSelect = false;
             this._parentListView.Name = "_parentListView";
             this._parentListView.Size = new System.Drawing.Size(86, 104);
@@ -116,7 +119,7 @@ namespace SolidGui
             this.summaryLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.summaryLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.summaryLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.summaryLabel.Location = new System.Drawing.Point(3, 173);
+            this.summaryLabel.Location = new System.Drawing.Point(3, 178);
             this.summaryLabel.Name = "summaryLabel";
             this.summaryLabel.Size = new System.Drawing.Size(86, 13);
             this.summaryLabel.TabIndex = 0;
@@ -127,7 +130,7 @@ namespace SolidGui
             // 
             this._commentsLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._commentsLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._commentsLabel.Location = new System.Drawing.Point(3, 203);
+            this._commentsLabel.Location = new System.Drawing.Point(3, 208);
             this._commentsLabel.Name = "_commentsLabel";
             this._commentsLabel.Size = new System.Drawing.Size(86, 13);
             this._commentsLabel.TabIndex = 0;
@@ -137,10 +140,10 @@ namespace SolidGui
             // _commentTextBox
             // 
             this._commentTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._commentTextBox.Location = new System.Drawing.Point(95, 203);
+            this._commentTextBox.Location = new System.Drawing.Point(95, 208);
             this._commentTextBox.Multiline = true;
             this._commentTextBox.Name = "_commentTextBox";
-            this._commentTextBox.Size = new System.Drawing.Size(257, 60);
+            this._commentTextBox.Size = new System.Drawing.Size(257, 55);
             this._commentTextBox.TabIndex = 3;
             this._commentTextBox.Leave += new System.EventHandler(this.CommentTextBoxMaybeChanged);
             this._commentTextBox.Validated += new System.EventHandler(this.CommentTextBoxMaybeChanged);
@@ -150,7 +153,7 @@ namespace SolidGui
             this._summaryTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._summaryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._summaryTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._summaryTextBox.Location = new System.Drawing.Point(95, 173);
+            this._summaryTextBox.Location = new System.Drawing.Point(95, 178);
             this._summaryTextBox.Name = "_summaryTextBox";
             this._summaryTextBox.Size = new System.Drawing.Size(257, 13);
             this._summaryTextBox.TabIndex = 0;
@@ -171,12 +174,12 @@ namespace SolidGui
             // 
             // _explanationLabel
             // 
+            this._explanationLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._explanationLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._explanationLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._explanationLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._explanationLabel.Location = new System.Drawing.Point(95, 3);
+            this._explanationLabel.Location = new System.Drawing.Point(38, 8);
             this._explanationLabel.Name = "_explanationLabel";
-            this._explanationLabel.Size = new System.Drawing.Size(257, 13);
+            this._explanationLabel.Size = new System.Drawing.Size(211, 13);
             this._explanationLabel.TabIndex = 0;
             this._explanationLabel.TabStop = false;
             this._explanationLabel.Text = "Under {0}, {1} can occur...";
@@ -189,7 +192,7 @@ namespace SolidGui
             this.flowLayoutPanelOccurs.Controls.Add(this._requiredCheckBox);
             this.flowLayoutPanelOccurs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelOccurs.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(95, 33);
+            this.flowLayoutPanelOccurs.Location = new System.Drawing.Point(95, 38);
             this.flowLayoutPanelOccurs.Name = "flowLayoutPanelOccurs";
             this.flowLayoutPanelOccurs.Size = new System.Drawing.Size(257, 104);
             this.flowLayoutPanelOccurs.TabIndex = 2;
@@ -246,7 +249,7 @@ namespace SolidGui
             this._InferComboBox.FormattingEnabled = true;
             this._InferComboBox.Items.AddRange(new object[] {
             "Report Error"});
-            this._InferComboBox.Location = new System.Drawing.Point(95, 143);
+            this._InferComboBox.Location = new System.Drawing.Point(95, 148);
             this._InferComboBox.Name = "_InferComboBox";
             this._InferComboBox.Size = new System.Drawing.Size(257, 21);
             this._InferComboBox.TabIndex = 2;
@@ -256,12 +259,34 @@ namespace SolidGui
             // 
             this._inferComboLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._inferComboLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._inferComboLabel.Location = new System.Drawing.Point(3, 143);
+            this._inferComboLabel.Location = new System.Drawing.Point(3, 148);
             this._inferComboLabel.Name = "_inferComboLabel";
             this._inferComboLabel.Size = new System.Drawing.Size(86, 13);
             this._inferComboLabel.TabIndex = 0;
             this._inferComboLabel.TabStop = false;
             this._inferComboLabel.Text = "If no parent, then";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this._deleteButton);
+            this.flowLayoutPanel1.Controls.Add(this._explanationLabel);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(95, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 29);
+            this.flowLayoutPanel1.TabIndex = 10;
+            // 
+            // _deleteButton
+            // 
+            this._deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._deleteButton.Location = new System.Drawing.Point(3, 4);
+            this._deleteButton.Margin = new System.Windows.Forms.Padding(3, 4, 1, 3);
+            this._deleteButton.Name = "_deleteButton";
+            this._deleteButton.Size = new System.Drawing.Size(31, 22);
+            this._deleteButton.TabIndex = 1;
+            this._deleteButton.Text = "&del";
+            this._deleteButton.UseVisualStyleBackColor = true;
+            this._deleteButton.Click += new System.EventHandler(this._deleteButton_Click);
             // 
             // StructurePropertiesView
             // 
@@ -277,6 +302,8 @@ namespace SolidGui
             this._nestedTableLayoutPanel.PerformLayout();
             this.flowLayoutPanelOccurs.ResumeLayout(false);
             this.flowLayoutPanelOccurs.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -300,6 +327,8 @@ namespace SolidGui
         private System.Windows.Forms.RadioButton _multipleTogetherRadioButton;
         private System.Windows.Forms.RadioButton _multipleApartRadioButton;
         private System.Windows.Forms.CheckBox _requiredCheckBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button _deleteButton;
 
     }
 }

@@ -82,7 +82,7 @@ namespace SolidGui.Engine
             return Mappings[(int) mappingType];
         }
 
-        public bool ParentExists(string marker)
+        public bool IsAnAllowedParent(string marker)
         {
             SolidStructureProperty result = _structureProperties.Find(item => item.Parent == marker);
             return result != null;
@@ -106,7 +106,7 @@ namespace SolidGui.Engine
                 _structureProperties = value;
             }
         }
-
+                
         [XmlElement("InferedParent", Order = 4)]
         public string InferedParent 
         {

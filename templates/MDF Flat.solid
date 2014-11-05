@@ -15,7 +15,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Lexeme Form</Comments>
       <Mappings>
         <string>lex</string>
         <string>lexicalUnit</string>
@@ -38,7 +38,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Alternate Form. NOT MDF. (Some people use this instead of va in Toolbox.)</Comments>
       <Mappings>
         <string>allo</string>
         <string>variant</string>
@@ -52,11 +52,11 @@
         <SolidStructureProperty>
           <Parent>sn</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>Part of Speech (en); applies to one or more sn below it. Use a range set. FLEx: Yes (Grammatical Category), but ps is not a node in FLEx, so don't do the 'or more'; keep ps and sn one-to-one. Best to prep FLEx with matching categories prior to import.</Comments>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
@@ -74,7 +74,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent>sn</InferedParent>
-      <Comments />
+      <Comments>Gloss (en). FLEx: Yes, used primarily for interlinear.</Comments>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -92,7 +92,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Reversals (en). FLEx: Yes, but use a separate re field for each value.</Comments>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -110,7 +110,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Definition (en). FLEx: Yes.</Comments>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -127,8 +127,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -146,7 +146,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see re</Comments>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -164,7 +164,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see de</Comments>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -182,7 +182,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Reference of Example. Recommend always using even when empty. FLEx: Yes.</Comments>
       <Mappings>
         <string>ref</string>
         <string>example</string>
@@ -196,11 +196,11 @@
         <SolidStructureProperty>
           <Parent>rf</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent>rf</InferedParent>
-      <Comments />
+      <Comments>Example sentence or phrase (vern). One per rf. FLEx: Yes.</Comments>
       <Mappings>
         <string>sent</string>
         <string>exampleSentence</string>
@@ -217,8 +217,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>Example Translation (en). One per xv.</Comments>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
@@ -235,8 +235,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>see xe</Comments>
       <Mappings>
         <string>trans</string>
         <string>exampleSentenceTranslation</string>
@@ -244,7 +244,7 @@
     </SolidMarkerSetting>
     <SolidMarkerSetting>
       <Marker>ue</Marker>
-      <WritingSystem>reg</WritingSystem>
+      <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
@@ -254,7 +254,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Usage (en). FLEx: Yes, but it's a list field; consider using a freeform text field instead (such as Restrictions). See oe.</Comments>
       <Mappings>
         <string>utyp</string>
         <string />
@@ -272,7 +272,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ue</Comments>
       <Mappings>
         <string>utyp</string>
         <string />
@@ -290,7 +290,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Cross-reference (Confer, See Also). At entry level use lf lv instead. FLEx: Yes, but you may need cfse too. (Probably not cfsn, since lf lv works there.)</Comments>
       <Mappings>
         <string>cref</string>
         <string>confer</string>
@@ -308,7 +308,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Gloss of cf, in English. FLEx: No. (Or, hijack Summary Definition once per entry) Similar problem: le.</Comments>
       <Mappings>
         <string>cref</string>
         <string />
@@ -326,7 +326,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Note. Loose MDF allows nt in four places. FLEx: change those to ntlx, ntse, nt (or ntsn), and ntrf, as needed. Similar problem as ltse and lt. (LT-10905)</Comments>
       <Mappings>
         <string>com</string>
         <string>note</string>
@@ -344,7 +344,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Date Modified. FLEx: Yes. (Importing into Date Created is better.)</Comments>
       <Mappings>
         <string>mod</string>
         <string>dateModified</string>
@@ -361,8 +361,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -380,7 +380,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see re</Comments>
       <Mappings>
         <string>rev</string>
         <string>reversal</string>
@@ -398,7 +398,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see de</Comments>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -415,8 +415,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>see xe</Comments>
       <Mappings>
         <string>sent</string>
         <string>exampleSentenceTranslation</string>
@@ -434,7 +434,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ue</Comments>
       <Mappings>
         <string>utyp</string>
         <string />
@@ -452,7 +452,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Index of Semantics. FLEx: Yes, should generally use the official numbers--search the internet for Rapid Word Collection. See sd.</Comments>
       <Mappings>
         <string />
         <string>semanticDomain</string>
@@ -476,18 +476,13 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Borrowed Word. FLEx: custom field. Or, convert it to es, and insert empty et above it. Might need bwse too.</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -505,7 +500,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ce</Comments>
       <Mappings>
         <string>cref</string>
         <string />
@@ -523,7 +518,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ce</Comments>
       <Mappings>
         <string>cref</string>
         <string />
@@ -541,7 +536,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Homograph Number</Comments>
       <Mappings>
         <string>hom</string>
         <string>homonym</string>
@@ -559,7 +554,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Citation Form. FLEx: yes, but use sec when it occurs in a subentry.</Comments>
       <Mappings>
         <string>cit</string>
         <string>citation</string>
@@ -595,7 +590,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Main entry. Used only in minor entries! FLEx: Yes, but removing minor entries can be simpler. For va, FLEx creates entries; for se, it merges with the main entry (since FLEx auto-generates those minor entries). See mnse mnva.</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -607,18 +602,13 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>se</Parent>
-          <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-        <SolidStructureProperty>
           <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Morphemes. E.g. can explain derivations prior to morphophemics. FLEx: custom field (though the ideal would be Wordform Analysis). Create mrse if needed in subentries too.</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -641,7 +631,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Phonetic form (pronunciation). FLEx: Pronunciations (or an IPA WS under Lexeme--is limited to one). DOES work under both lx and se. Use a WS whose font supports the needed charactersdiacritics (for IPA, try scripts.sil.org fonts).</Comments>
       <Mappings>
         <string>prnf</string>
         <string>pronunciation</string>
@@ -669,7 +659,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Variant wordform. FLEx: Yes, and it DOES work under lx, se, or sn and is auto-assigned. Must be properly located (merely changing to valx won't work). See LT-10905</Comments>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -687,7 +677,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Variant comments (en). FLEx: maybe possible to import into Gloss or other field on the variant itself.</Comments>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -705,7 +695,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ve</Comments>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -723,7 +713,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ve</Comments>
       <Mappings>
         <string>vars</string>
         <string>variant</string>
@@ -741,7 +731,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Subentry wordform. FLEx: Yes, though FLEx uses a more dynamic approach (it supports both stem-based and root-based). Be aware of LT-10905.</Comments>
       <Mappings>
         <string>subc</string>
         <string>subentry</string>
@@ -755,7 +745,7 @@
         <SolidStructureProperty>
           <Parent>se</Parent>
           <Multiplicity>MultipleTogether</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
         <SolidStructureProperty>
           <Parent>lx</Parent>
@@ -764,7 +754,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Sense number. Recommend always using it even if empty. FLEx: Yes.</Comments>
       <Mappings>
         <string>sn</string>
         <string>sense</string>
@@ -787,7 +777,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Etymology (historical). See bw (borrowed). FLEx: use Etymology for both, or custom field for bw. DOES work under both lx and se, as do eg es ec.</Comments>
       <Mappings>
         <string>etf</string>
         <string>etymology</string>
@@ -805,7 +795,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Etymology Comment (en). FLEx: Yes.</Comments>
       <Mappings>
         <string>etc</string>
         <string>etymologyComment</string>
@@ -823,7 +813,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Etymology Gloss (en). FLEx: Yes.</Comments>
       <Mappings>
         <string>etg</string>
         <string>etymologyGloss</string>
@@ -841,7 +831,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Etymology Source. FLEx: Yes. Consider converting bw to es.</Comments>
       <Mappings>
         <string>ets</string>
         <string>etymologySource</string>
@@ -859,7 +849,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Antonym relation. FLEx: see lf lv</Comments>
       <Mappings>
         <string>eires</string>
         <string>antonym</string>
@@ -877,7 +867,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Bibliographical reference</Comments>
       <Mappings>
         <string>ebib</string>
         <string>noteBibliographic</string>
@@ -895,7 +885,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see de</Comments>
       <Mappings>
         <string>def</string>
         <string>definition</string>
@@ -913,7 +903,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Encyclopedic information (en). FLEx: Yes.</Comments>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -931,7 +921,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ee</Comments>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -949,7 +939,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ee</Comments>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -967,7 +957,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ee</Comments>
       <Mappings>
         <string>enc</string>
         <string>noteEncyclopedic</string>
@@ -984,8 +974,8 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
-      <Comments />
+      <InferedParent />
+      <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
         <string>gloss</string>
@@ -1003,7 +993,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Literal Meaning. FLEx: Yes, but see ltse.</Comments>
       <Mappings>
         <string>litm</string>
         <string />
@@ -1021,7 +1011,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Anthropology note</Comments>
       <Mappings>
         <string>anote</string>
         <string>noteAnthropology</string>
@@ -1039,7 +1029,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Discourse note</Comments>
       <Mappings>
         <string>dnote</string>
         <string>noteDiscourse</string>
@@ -1057,7 +1047,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Grammar note</Comments>
       <Mappings>
         <string>grnote</string>
         <string>noteGrammar</string>
@@ -1075,7 +1065,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Phonology Note</Comments>
       <Mappings>
         <string>pnote</string>
         <string>notePhonology</string>
@@ -1093,7 +1083,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Question Note</Comments>
       <Mappings>
         <string>com</string>
         <string>noteQuestion</string>
@@ -1111,7 +1101,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Sociolinguistic note</Comments>
       <Mappings>
         <string>slnote</string>
         <string>noteSociolinguistic</string>
@@ -1129,7 +1119,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Restriction (en). FLEx: Yes, but it's a freeform text field; consider using a list field instead (such as Usages). See ue.</Comments>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1147,7 +1137,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see oe</Comments>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1165,7 +1155,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see oe</Comments>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1183,7 +1173,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see oe</Comments>
       <Mappings>
         <string>erest</string>
         <string>noteRestriction</string>
@@ -1201,7 +1191,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Picture, Illustration. This is a filepath, preferably a relative one. FLEx: Probably.</Comments>
       <Mappings>
         <string>picf</string>
         <string>illustration</string>
@@ -1219,7 +1209,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Paradigm label such as 'fem' for feminine. Use a range set. See also pdl and pdv. FLEx: use a custom list and custom list field.</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -1237,7 +1227,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Gloss (en) of pdv paradigm wordform (although all inflected forms, and some derived ones, have predictable meanings).</Comments>
       <Mappings>
         <string />
         <string />
@@ -1255,7 +1245,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Paradigm label, describing the pdv that follows it. (Just like the relationship of lf and lv.) This is the newer way, rather than having separate markers such as pl and sg.</Comments>
       <Mappings>
         <string />
         <string />
@@ -1273,7 +1263,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see pde</Comments>
       <Mappings>
         <string />
         <string />
@@ -1291,7 +1281,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see pde</Comments>
       <Mappings>
         <string />
         <string />
@@ -1305,11 +1295,11 @@
         <SolidStructureProperty>
           <Parent>pdl</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Paradigm wordform. See pdl.</Comments>
       <Mappings>
         <string />
         <string />
@@ -1321,13 +1311,13 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>plural form (paradigm; see pdl pdv)</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -1345,7 +1335,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Part of Speech (nat). AVOID! This should always be redundant with ps. FLEx: Yes, but consider ignoring pn on import and adding translations to Lists.</Comments>
       <Mappings>
         <string>pos</string>
         <string>grammi</string>
@@ -1357,13 +1347,13 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>reduplication form (paradigm; see pdl pdv)</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -1381,7 +1371,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Scientific Name. FLEx: Yes.</Comments>
       <Mappings>
         <string>sci</string>
         <string>scientificName</string>
@@ -1393,13 +1383,13 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>singular form (paradigm; see pdl pdv)</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -1417,7 +1407,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Source of data</Comments>
       <Mappings>
         <string>src</string>
         <string>noteSource</string>
@@ -1435,7 +1425,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Status. Can be used for workflow. FLEx: Yes, sense level only. Consider using stlx and stse too, targeting custom fields, if needed there.</Comments>
       <Mappings>
         <string>stat</string>
         <string />
@@ -1453,7 +1443,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Synonym relation. FLEx: see lf lv</Comments>
       <Mappings>
         <string>eires</string>
         <string>synonym</string>
@@ -1471,7 +1461,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Table. FLEx: No support.</Comments>
       <Mappings>
         <string>eires</string>
         <string />
@@ -1489,7 +1479,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see ue</Comments>
       <Mappings>
         <string>utyp</string>
         <string />
@@ -1507,7 +1497,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Word-level Gloss. Marginal MDF marker. FLEx: No.</Comments>
       <Mappings>
         <string />
         <string />
@@ -1525,7 +1515,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see we</Comments>
       <Mappings>
         <string />
         <string />
@@ -1538,12 +1528,12 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>sn</Parent>
-          <Multiplicity>MultipleTogether</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see wr</Comments>
       <Mappings>
         <string />
         <string />
@@ -1556,12 +1546,12 @@
       <StructureProperties>
         <SolidStructureProperty>
           <Parent>is</Parent>
-          <Multiplicity>MultipleTogether</Multiplicity>
+          <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Semantic Domain. See the is field. FLEx: Yes, but can ignore these if definitely using standard labels anyway.</Comments>
       <Mappings>
         <string>seme</string>
         <string />
@@ -1579,7 +1569,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Thesaurus (vern). Rarely used. A vernacular emic domain, vs. the etic domains used in sd. FLEx: Yes; if using sd too, use a custom list field; otherwise use Semantic Domain.</Comments>
       <Mappings>
         <string>semv</string>
         <string />
@@ -1597,7 +1587,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Lexical Relation label (lexical function). FLEx: Yes. The lf lv combo is the best way to do sense-level lexical relations, but shortcuts like an and sy exist too.</Comments>
       <Mappings>
         <string>func</string>
         <string>lexicalRelationType</string>
@@ -1611,11 +1601,11 @@
         <SolidStructureProperty>
           <Parent>lf</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Lexical Relation wordform; lv is usually crucial, required, unless you're stuffing both label and value in lf together.</Comments>
       <Mappings>
         <string>lex</string>
         <string>lexicalRelationLexeme</string>
@@ -1633,7 +1623,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Gloss of lf, in English. FLEx: No. (Or, hijack Summary Definition once per entry) Similar problem: ce. LT-15034</Comments>
       <Mappings>
         <string />
         <string />
@@ -1651,7 +1641,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see le</Comments>
       <Mappings>
         <string />
         <string />
@@ -1674,7 +1664,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Underlying form. NOT MDF. (some people use this instead of mr, or perhaps instead of lx lc).</Comments>
       <Mappings>
         <string />
         <string />
@@ -1692,7 +1682,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>1st person singular (paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1710,7 +1700,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1728,7 +1718,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1746,7 +1736,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1764,7 +1754,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>1st person dual (paradigm wordform). The newer way is to use pdl pdv pairs. FLEx: custom field, or maybe custom variant.</Comments>
       <Mappings>
         <string />
         <string />
@@ -1782,7 +1772,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1800,7 +1790,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1818,7 +1808,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see pdl)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1836,7 +1826,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>1st person plural (paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1854,7 +1844,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>1st person plural exclusive (paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1872,7 +1862,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>1st person plural inclusive (paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1890,7 +1880,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1908,7 +1898,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1926,7 +1916,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(paradigm; see 1d)</Comments>
       <Mappings>
         <string />
         <string />
@@ -1944,7 +1934,7 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>see le</Comments>
       <Mappings>
         <string />
         <string />
@@ -1954,16 +1944,23 @@
       <Marker>xg</Marker>
       <WritingSystem>vern</WritingSystem>
       <Unicode>false</Unicode>
-      <StructureProperties />
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>xv</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>NOT MDF: example sentence-interlinear gloss (child of xv). FLEx: No (or custom field).
+</Comments>
       <Mappings>
         <string />
         <string />
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <Marker>st_lx</Marker>
+      <Marker>stlx</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties>
@@ -1974,32 +1971,14 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(unofficial) see st</Comments>
       <Mappings>
         <string />
         <string />
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <Marker>nt_lx</Marker>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>lx</Parent>
-          <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>st_se</Marker>
+      <Marker>stse</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties>
@@ -2010,14 +1989,14 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(unofficial) see st</Comments>
       <Mappings>
         <string />
         <string />
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <Marker>lc_se</Marker>
+      <Marker>sec</Marker>
       <WritingSystem>vern</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties>
@@ -2028,50 +2007,14 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>Citation Form of Subentry. (unofficial) See lc (sec basically means lcse, which FLEx has trouble with). FLEx: Yes.</Comments>
       <Mappings>
         <string />
         <string>citation</string>
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <Marker>nt_se</Marker>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>lt_se</Marker>
-      <WritingSystem>en</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>se</Parent>
-          <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>cf_se</Marker>
+      <Marker>cfse</Marker>
       <WritingSystem>vern</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties>
@@ -2082,14 +2025,14 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>(unofficial) see cf</Comments>
       <Mappings>
         <string />
         <string>confer</string>
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
-      <Marker>ce_se</Marker>
+      <Marker>cese</Marker>
       <WritingSystem>en</WritingSystem>
       <Unicode>false</Unicode>
       <StructureProperties />
@@ -2098,48 +2041,6 @@
       <Mappings>
         <string />
         <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>cn_se</Marker>
-      <WritingSystem>nat</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties />
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>cr_se</Marker>
-      <WritingSystem>reg</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties />
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string />
-      </Mappings>
-    </SolidMarkerSetting>
-    <SolidMarkerSetting>
-      <Marker>cf_sn</Marker>
-      <WritingSystem>vern</WritingSystem>
-      <Unicode>false</Unicode>
-      <StructureProperties>
-        <SolidStructureProperty>
-          <Parent>sn</Parent>
-          <Multiplicity>MultipleTogether</Multiplicity>
-          <Required>false</Required>
-        </SolidStructureProperty>
-      </StructureProperties>
-      <InferedParent />
-      <Comments />
-      <Mappings>
-        <string />
-        <string>confer</string>
       </Mappings>
     </SolidMarkerSetting>
     <SolidMarkerSetting>
@@ -2154,10 +2055,136 @@
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments />
+      <Comments>A field created and filled by certain Solid quick fixes. FLEx: custom field, or Import Residue (Entry)</Comments>
       <Mappings>
         <string />
         <string>custom</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ltse</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Literal Meaning of subentry. (non-MDF) See lt. FLEx: Rename lt to ltse when found in subentries, or else itll get dumped into the root entry.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ntlx</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Note regarding whole entry. (unofficial) See nt</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ntse</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>se</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Note regarding subentry. (unofficial) For FLEx; see nt.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ntrf</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>rf</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Note regarding example. (unofficial) See nt.</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>ntsn</Marker>
+      <WritingSystem>en</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>sn</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>Same as nt, if you are limiting nt to senses only. (unofficial)</Comments>
+      <Mappings>
+        <string />
+        <string>note</string>
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>mnva</Marker>
+      <WritingSystem>vern</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>(unofficial) same as mn, but this is explicitly a minor entry for a subentry. Typically matches a va field. (The minor entry can be deleted IFF main entry has that va field.)</Comments>
+      <Mappings>
+        <string />
+        <string />
+      </Mappings>
+    </SolidMarkerSetting>
+    <SolidMarkerSetting>
+      <Marker>mnse</Marker>
+      <WritingSystem>vern</WritingSystem>
+      <Unicode>false</Unicode>
+      <StructureProperties>
+        <SolidStructureProperty>
+          <Parent>lx</Parent>
+          <Multiplicity>Once</Multiplicity>
+          <Required>false</Required>
+        </SolidStructureProperty>
+      </StructureProperties>
+      <InferedParent />
+      <Comments>(unofficial) same as mn, but this is explicitly a minor entry for a subentry. Must match an se field. (Or, the minor entry can be deleted.)</Comments>
+      <Mappings>
+        <string />
+        <string />
       </Mappings>
     </SolidMarkerSetting>
   </MarkerSettings>

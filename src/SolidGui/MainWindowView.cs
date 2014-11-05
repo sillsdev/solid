@@ -702,11 +702,13 @@ namespace SolidGui
                 _sfmEditorView.UpdateViewFromModel(); //unnecessary? -JMC Sep 2014
                 setSaveEnabled(true);
                     // Issue #1243 : temporary; really, the QuickFixForm ought to do this--only when it changes stuff. -JMC
-                MessageBox.Show("Made " + fixer.ChangesMade + " changes.", "Done Moving Up", MessageBoxButtons.OK);
+                MessageBox.Show("Made " + fixer.ChangesMade + " changes.", "Done Applying Fix", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("Nothing to change.", "Move Up", MessageBoxButtons.OK);
+                // Enable this once all quick fixes return int for real
+                int z;
+                //MessageBox.Show("Nothing was changed.", "Done Running Fix", MessageBoxButtons.OK);
             }
         }
 

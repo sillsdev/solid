@@ -51,6 +51,7 @@ namespace SolidGui.Model
         private readonly Color _defaultTextColor = Color.Black; // DarkGreen; // 
         private readonly Color _reminderTextColor = Color.DarkRed;
         private readonly Color _legacyTextColor = Color.DarkMagenta;
+        private readonly Color _suggestionTextColor = Color.Indigo;
 
 
         public RecordFormatter()
@@ -331,6 +332,7 @@ namespace SolidGui.Model
                 }
 
                 bool encodingIssue = false;
+                bool structuralError = false;
                 foreach (ReportEntry reportEntry in field.ReportEntries)
                 {
                     markerTip.AddLineMessage(lineNumber, reportEntry.Description);
@@ -339,11 +341,16 @@ namespace SolidGui.Model
                     {
                         encodingIssue = true;
                     }
+                    else if (reportEntry.EntryType == SolidReport.EntryType.StructureKickout)
+                    {
+                        rb.SelectionColor = _suggestionTextColor;
+                    }
                     else
                     {
-                        rb.SelectionColor = _errorTextColor;
+                        structuralError = true;
                     }
                 }
+                if (structuralError) rb.SelectionColor = _errorTextColor;
                 rb.AppendText(markerPrefix + marker);
                 rb.SelectionColor = _defaultTextColor;
 

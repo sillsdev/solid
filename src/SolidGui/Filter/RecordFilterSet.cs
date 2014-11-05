@@ -66,6 +66,22 @@ namespace SolidGui.Filter
                         string.Format("Inferred marker {0} could not be placed in structure", marker)
                         );
                     break;
+                case SolidReport.EntryType.StructureRequiredMissing:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        marker,
+                        type,
+                        string.Format("Required field(s) missing under {0}", marker)
+                        );
+                    break;
+                case SolidReport.EntryType.StructureKickout:
+                    retval = new SolidErrorRecordFilter(
+                        _currentDictionary,
+                        marker,
+                        type,
+                        string.Format("Consider whether moving {0} up would improve clarity.", marker)
+                        );
+                    break;
                 case SolidReport.EntryType.EncodingUpperAscii:
                     retval = new SolidErrorRecordFilter(
                         _currentDictionary,

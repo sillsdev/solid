@@ -272,16 +272,21 @@ namespace SolidGui
             e.CancelEdit = true;
         }
 
+        private void DeleteSelectedParent()
+        {
+            string selectedMarker = GetSelectedText(_parentListView);
+            _model.RemoveStructureProperty(selectedMarker);
+            if (_model.InferedParent == selectedMarker)
+            {
+                _InferComboBox.SelectedIndex = 0;
+            }
+        }
+
         private void _parentListView_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                string selectedMarker = GetSelectedText(_parentListView);
-                _model.RemoveStructureProperty(selectedMarker);
-                if (_model.InferedParent == selectedMarker)
-                {
-                    _InferComboBox.SelectedIndex = 0;
-                }
+                DeleteSelectedParent();
             }
         }
 
@@ -294,6 +299,11 @@ namespace SolidGui
                     _parentListView.SelectedItems[0].BeginEdit();
                 }
             }
+        }
+
+        private void _deleteButton_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedParent();
         }
 
     }

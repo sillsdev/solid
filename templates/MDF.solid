@@ -132,7 +132,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
@@ -201,7 +201,7 @@
         <SolidStructureProperty>
           <Parent>rf</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent>rf</InferedParent>
@@ -222,7 +222,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
+      <InferedParent />
       <Comments>Example Translation (en). One per xv.</Comments>
       <Mappings>
         <string>trans</string>
@@ -240,7 +240,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
+      <InferedParent />
       <Comments>see xe</Comments>
       <Mappings>
         <string>trans</string>
@@ -366,7 +366,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
@@ -420,7 +420,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>rf</InferedParent>
+      <InferedParent />
       <Comments>see xe</Comments>
       <Mappings>
         <string>sent</string>
@@ -750,7 +750,7 @@
         <SolidStructureProperty>
           <Parent>ps</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
@@ -974,7 +974,7 @@
           <Required>false</Required>
         </SolidStructureProperty>
       </StructureProperties>
-      <InferedParent>sn</InferedParent>
+      <InferedParent />
       <Comments>see ge</Comments>
       <Mappings>
         <string>glos</string>
@@ -1295,7 +1295,7 @@
         <SolidStructureProperty>
           <Parent>pdl</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
@@ -1311,7 +1311,7 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
@@ -1347,7 +1347,7 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
@@ -1383,7 +1383,7 @@
       <Unicode>false</Unicode>
       <StructureProperties>
         <SolidStructureProperty>
-          <Parent>sn</Parent>
+          <Parent>lx</Parent>
           <Multiplicity>Once</Multiplicity>
           <Required>false</Required>
         </SolidStructureProperty>
@@ -1601,11 +1601,11 @@
         <SolidStructureProperty>
           <Parent>lf</Parent>
           <Multiplicity>Once</Multiplicity>
-          <Required>false</Required>
+          <Required>true</Required>
         </SolidStructureProperty>
       </StructureProperties>
       <InferedParent />
-      <Comments>Lexical Relation wordform.</Comments>
+      <Comments>Lexical Relation wordform; lv is usually crucial, required, unless you're stuffing both label and value in lf together.</Comments>
       <Mappings>
         <string>lex</string>
         <string>lexicalRelationLexeme</string>

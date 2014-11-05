@@ -24,7 +24,7 @@ namespace SolidGui.Engine
         private string _recordMarker = "lx";
         public static readonly int LatestVersion = 3; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
         //public static readonly Encoding LegacyEncoding = Encoding.GetEncoding("iso-8859-1"); //the original
-        public static readonly Encoding LegacyEncoding = Encoding.GetEncoding(1252); //my preference -JMC Feb 2014
+        public static readonly Encoding LegacyEncoding = Encoding.GetEncoding(1252); //my preference--handles curly quotes -JMC Feb 2014
 
         public SolidSettings(List<SolidMarkerSetting> ms)
         {
@@ -106,6 +106,30 @@ namespace SolidGui.Engine
                 return _markerSettings.Select(item => item.Marker);   //LINQ
             }
         }
+
+        // Build a compilation of required fields in a form accessible by parent marker.
+        // (This avoids caching a copy of each requirement in the parent object itself,
+        // while avoiding the performance issue of creating this list thousands of times.) 
+        public static IDictionary<string, HashSet<string>> AllRequiredChildren(IEnumerable<SolidMarkerSetting> markerSettings)
+        {
+            var dict = new Dictionary<string, HashSet<string>>();
+            foreach (var m in markerSettings)
+            {
+                foreach (var sp in m.StructureProperties)
+                {
+                    if (sp.Required)
+                    {
+                        if (!dict.ContainsKey(sp.Parent))
+                        {
+                            dict.Add(sp.Parent, new HashSet<string>());
+                        }
+                        dict[sp.Parent].Add(m.Marker);
+                    }
+                }
+            }
+            return dict;
+        }
+        
 
         [XmlElement("RecordMarker", Order = 0)]
         public string RecordMarker
@@ -368,7 +392,7 @@ namespace SolidGui.Engine
             SolidMarkerSetting markerSetting = settings.FindOrCreateMarkerSetting(settings.RecordMarker);
             //!!! Assert if null
             // Check that it has 'entry' as the parent.
-            if (!markerSetting.ParentExists("entry"))
+            if (!markerSetting.IsAnAllowedParent("entry"))
             {
                 markerSetting.StructureProperties.Add(new SolidStructureProperty("entry"));
             }

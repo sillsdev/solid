@@ -40,7 +40,7 @@
             this._closeButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this.wsPickerUsingComboBox1 = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
+            this._wsPalasoPicker = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
             this._setupWsLink = new System.Windows.Forms.LinkLabel();
             this._outerTableLayoutPanel.SuspendLayout();
             this._tabControl.SuspendLayout();
@@ -177,7 +177,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.wsPickerUsingComboBox1);
+            this.flowLayoutPanel1.Controls.Add(this._wsPalasoPicker);
             this.flowLayoutPanel1.Controls.Add(this._setupWsLink);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -198,18 +198,18 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Writing System:";
             // 
-            // wsPickerUsingComboBox1
+            // _wsPalasoPicker
             // 
-            this.wsPickerUsingComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this._wsPalasoPicker.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.wsPickerUsingComboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.wsPickerUsingComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.wsPickerUsingComboBox1.FormattingEnabled = true;
-            this.wsPickerUsingComboBox1.Location = new System.Drawing.Point(88, 3);
-            this.wsPickerUsingComboBox1.Name = "wsPickerUsingComboBox1";
-            this.wsPickerUsingComboBox1.Size = new System.Drawing.Size(121, 21);
-            this.wsPickerUsingComboBox1.TabIndex = 1;
-            this.wsPickerUsingComboBox1.SelectedIndexChanged += new System.EventHandler(this._uiEditMade);
+            this._wsPalasoPicker.BackColor = System.Drawing.SystemColors.Window;
+            this._wsPalasoPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._wsPalasoPicker.FormattingEnabled = true;
+            this._wsPalasoPicker.Location = new System.Drawing.Point(88, 3);
+            this._wsPalasoPicker.Name = "_wsPalasoPicker";
+            this._wsPalasoPicker.Size = new System.Drawing.Size(121, 21);
+            this._wsPalasoPicker.TabIndex = 1;
+            this._wsPalasoPicker.SelectedIndexChanged += new System.EventHandler(this._uiEditMade);
             // 
             // _setupWsLink
             // 
@@ -263,7 +263,7 @@
         private System.Windows.Forms.CheckBox _cbUnicode;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox wsPickerUsingComboBox1;
+        private Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox _wsPalasoPicker;
         private System.Windows.Forms.LinkLabel _setupWsLink;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }

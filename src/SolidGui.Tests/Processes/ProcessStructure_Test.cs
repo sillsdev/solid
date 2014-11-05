@@ -7,6 +7,8 @@ using SolidGui.Processes;
 
 namespace SolidGui.Tests.Processes
 {
+    //TODO: need a test for detection of missing required field.
+
     [TestFixture]
     public class ProcessStructureTest
     {
@@ -1695,6 +1697,8 @@ namespace SolidGui.Tests.Processes
 
             }
         }
+
+  
 
         [Test]
         public void ProcessStructure_MarkerCannotBePlacedInStructureAndNothingCouldBeInferred_GeneratesReport()

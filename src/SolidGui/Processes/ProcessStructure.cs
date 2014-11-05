@@ -2,8 +2,11 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing.Text;
+using System.Globalization;
+using System.Linq;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -13,15 +16,17 @@ namespace SolidGui.Processes
     {
         readonly SolidSettings _settings;
 
+        private IDictionary<string, HashSet<string>> _requiredChildren;
+
         public ProcessStructure(SolidSettings settings)
         {
             _settings = settings;
+            _requiredChildren = SolidSettings.AllRequiredChildren(settings.MarkerSettings);
         }
 
-        private static void InsertInTreeAnyway(SfmFieldModel source, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry)
+        private static void InsertInTreeAnyway(SfmFieldModel source, List<SfmFieldModel> scope, SfmLexEntry outputEntry, SolidReport report)
         {
-            UpdateScope(scope, scope.Count, source);
-//            TruncateScope(scope.Count - 1, scope);
+            UpdateScope(scope, scope.Count, source, outputEntry, report);  // I believe this is why the children of a bad parent don't all turn red. Nice. -JMC
             outputEntry.AppendField(source);
         }
 
@@ -33,7 +38,7 @@ namespace SolidGui.Processes
                 return false;
             }
             scope[index].AppendChild(source);  // Add the node under this parent
-            UpdateScope(scope, index, source); // Add to list of possible parents
+            UpdateScope(scope, index, source, outputEntry, report); // Add to list of possible parents
 
             //source.Depth = scope.Count - 1;
             
@@ -69,7 +74,9 @@ namespace SolidGui.Processes
                                 foundParent = true;
                                 bool foundSelfAsSibling = false;
 
-                                //make sure the parent doesn't allready contain the node we want to add
+                                //make sure the parent doesn't already contain the node we want to add,
+                                //except immediately preceding the current one. (Note that 'immediately'
+                                //assumes the tree has been pruned regularly.
                                 foreach (SfmFieldModel childNode in scope[i].Children)
                                 {
                                     if (childNode.Marker == source.Marker)
@@ -80,7 +87,7 @@ namespace SolidGui.Processes
                                     {
                                         if (foundSelfAsSibling)
                                         {
-                                            foundParent = false;
+                                            foundParent = false; //non-sibling found after sibling(s) had already been found
                                         }
                                     }
                                 }
@@ -95,28 +102,74 @@ namespace SolidGui.Processes
             return foundParent ? i : -1;
         }
 
-        private static void UpdateScope(List<SfmFieldModel> scope, int i, SfmFieldModel n)
+        private static void UpdateScope(List<SfmFieldModel> scope, int i, SfmFieldModel n, SfmLexEntry outputEntry, SolidReport report)
         {
-            TruncateScope(i, scope);
+            bool kickout = false;
+            for (int j = scope.Count - 1; j > i; j--)
+            {
+                var s = scope[j];
+
+                CheckForRequired(s, outputEntry, report);
+
+                if (s.Depth > n.Depth)
+                {
+                    kickout = true;
+                }
+                else if (s.Marker == n.Marker && s.Depth == n.Depth)  //the latter should be guaranteed anyway
+                {
+                    kickout = false; // there's no "Move Up" recommendation for repeating field bundles
+                }
+                
+                scope.RemoveAt(j);
+
+            }
+
+            if (kickout)
+            {
+                //report
+                report.AddEntry(
+                    SolidReport.EntryType.StructureKickout,
+                    outputEntry,
+                    n,
+                    String.Format("Optional: Check whether marker \\{0} should be moved up.", n.Marker)
+                    );
+            }
+
+            /*
+            if (i < scope.Count - 1)
+            {
+                scope.RemoveRange(i + 1, scope.Count-1 - i);  // remove i+1 and following--those nephews are now closed out
+            }
+
+             */
+
             if (n != null) scope.Add(n);
         }
 
-        private static void TruncateScope(int i, List<SfmFieldModel> scope)
+        private static void CheckForRequired(SfmFieldModel parentField, SfmLexEntry outputEntry, SolidReport report)
         {
-            if (i < scope.Count - 1)
+            var mr = parentField.MissingRequiredChildren();
+            if (mr.Any())
             {
-                scope.RemoveRange(i + 1, scope.Count - i - 1);
+                report.AddEntry(
+                    SolidReport.EntryType.StructureRequiredMissing,
+                    outputEntry,
+                    parentField,
+                    "Required field missing : " + string.Join(", ", mr)
+                    );
             }
         }
 
+
         private bool InferNode(SfmFieldModel sourceField, SolidReport report, List<SfmFieldModel> scope, SfmLexEntry outputEntry, ref int recurseCount)
         {
-            // Can we infer a node.
-            bool retval = false;
+            // Can we infer a node?
+            bool retval = false;  // assume the worst
             SolidMarkerSetting setting = _settings.FindOrCreateMarkerSetting(sourceField.Marker);
             if (setting.InferedParent != String.Empty)
             {
                 var inferredNode = new SfmFieldModel(setting.InferedParent);
+                // TODO: fill in inferredNode._requiredChildren
                 inferredNode.Inferred = true;
 //!!!                inferredNode.AppendChild(sourceField);
 
@@ -139,7 +192,7 @@ namespace SolidGui.Processes
                             sourceField,
                             String.Format("ERROR: Inferred marker \\{0} is not a valid parent of \\{1}. Someone may have manually edited your settings file.", setting.InferedParent, sourceField.Marker)
                             );
-                        InsertInTreeAnyway(sourceField, report, scope, outputEntry);
+                        InsertInTreeAnyway(sourceField, scope, outputEntry, report);
                     }
                 }
                 else
@@ -163,7 +216,7 @@ namespace SolidGui.Processes
                                     sourceField,
                                     String.Format("ERROR: Inferred marker \\{0} is not a valid parent of \\{1}", setting.InferedParent, sourceField.Marker)
                                     );
-                                InsertInTreeAnyway(sourceField, report, scope, outputEntry);
+                                InsertInTreeAnyway(sourceField, scope, outputEntry, report);
                             }
                         }
                         else
@@ -195,7 +248,7 @@ namespace SolidGui.Processes
                             sourceField,
                             string.Format("Marker \\{0} could not be placed in structure", sourceField.Marker)
                             );
-                        InsertInTreeAnyway(sourceField, report, scope, outputEntry);
+                        InsertInTreeAnyway(sourceField, scope, outputEntry, report);
                     }
                 }
             }
@@ -208,20 +261,23 @@ namespace SolidGui.Processes
                     sourceField,
                     string.Format("Marker \\{0} could not be placed in structure, and nothing could be inferred.", sourceField.Marker)
                     );
-                InsertInTreeAnyway(sourceField, report, scope, outputEntry);
+                InsertInTreeAnyway(sourceField, scope, outputEntry, report);
             }
             return retval;
         }
 
         public SfmLexEntry Process(SfmLexEntry lexEntry, SolidReport report)
         {
-            // Iterate through each (flat) node in the src d
+            // Iterate through each (flat) node in the src
             var scope = new List<SfmFieldModel>();
             scope.Add(lexEntry.FirstField/* The lx field */);
             var outputEntry = SfmLexEntry.CreateDefault(lexEntry.FirstField);
             bool passedFirst = false;  // adding a check; don't want to bother/risk refactoring this. -JMC Mar 2014
             foreach (SfmFieldModel sfmField in lexEntry.Fields)
             {
+                var rc = new HashSet<string>();
+                _requiredChildren.TryGetValue(sfmField.Marker, out rc); //it's important to *copy* the object
+                sfmField.SetRequiredChildren(rc);
                 if(sfmField != lexEntry.FirstField)
                 {
                     passedFirst = true;
@@ -238,7 +294,12 @@ namespace SolidGui.Processes
                         throw new DataMisalignedException ("The marker " + lexEntry.FirstField + " was found in the middle of a field.");
                     }
                 }
-                
+            }
+
+            foreach (var s in scope)
+            {
+                CheckForRequired(s, outputEntry, report);
+                //CheckForRequired(lexEntry.FirstField, outputEntry, report, lexEntry.Fields.Last());
             }
             
             // Walk the tree of nodes, appending closing tags as needed.

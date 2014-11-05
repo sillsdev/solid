@@ -22,6 +22,8 @@ namespace SolidGui.Model
         private readonly List<SfmFieldModel> _children;
         private static int _fieldId = 0;
         private readonly List<ReportEntry> _reportEntries;
+        private HashSet<string> _missingRequiredChildren;
+
 
         public SfmFieldModel(string marker) :
             this(marker, "")
@@ -48,6 +50,26 @@ namespace SolidGui.Model
             _id = _fieldId++;
             _children = new List<SfmFieldModel>();
             _reportEntries = new List<ReportEntry>();
+            _missingRequiredChildren = new HashSet<string>(); 
+        }
+
+        // This cached set is created/set by calling code right before processing a record, 
+        // then reduced (hopefully to empty set) by AppendChild() calls.
+        public void SetRequiredChildren(IEnumerable<string> children)
+        {
+            if (children == null)
+            {
+                _missingRequiredChildren = new HashSet<string>();
+            }
+            else
+            {
+                _missingRequiredChildren = new HashSet<string>(children); //alternative to else would be .IntersectWith()
+            }
+
+        }
+        public ISet<string> MissingRequiredChildren()
+        {
+            return _missingRequiredChildren;
         }
 
         public List<SfmFieldModel> Children
@@ -129,7 +151,7 @@ namespace SolidGui.Model
             }
         }
 
-        private static string AsUtf8 (string value)
+        public static string AsUtf8 (string value)
         {
             byte[] valueAsBytes = SolidSettings.LegacyEncoding.GetBytes(value);  // replaced Encoding.GetEncoding("iso-8859-1") with Legacy -JMC 
             var utf8 = new UTF8Encoding(false, false); // no BOM, nor errors yet (that is up to ProcessEncoding). -JMC
@@ -154,11 +176,13 @@ namespace SolidGui.Model
             return value;
         }
 
+        // cross-link self (the parent) with the given child node
         public void AppendChild(SfmFieldModel node)
         {
-            node.Parent = this;
-            _children.Add(node);
+            node.Parent = this;  // "I am your father"
             node.Depth = Depth + 1;
+            _children.Add(node);
+            _missingRequiredChildren.Remove(node.Marker);
         }
 
 

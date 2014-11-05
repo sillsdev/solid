@@ -5,11 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using Palaso.Reporting;
 
 using Palaso.Extensions;
 using Solid.Engine;
+using SolidGui.Model;
 
 namespace SolidGui
 {
@@ -107,10 +109,11 @@ namespace SolidGui
             {
                 UsageReporter.SendNavigationNotice("QuickFix/CreateReferredToItems");
                 string log = _fixer.MakeEntriesForReferredItems(new List<string>(new []{"cf","sy","an"}));
+                log = SfmFieldModel.AsUtf8(log);  //quick hack to work around #1231 -JMC Nov 2014
                 string path = Path.GetTempFileName()+".txt";
-                File.WriteAllText(path, log);
+                File.WriteAllText(path, log, Encoding.UTF8);
                 log = _fixer.MakeEntriesForReferredItemsOfLv();
-                File.AppendAllText(path, log);
+                File.AppendAllText(path, log, Encoding.UTF8);
                 Process.Start(path);
                 
             }

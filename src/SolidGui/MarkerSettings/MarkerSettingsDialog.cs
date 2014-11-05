@@ -72,9 +72,9 @@ namespace SolidGui.MarkerSettings
 
             _wsModel.SelectionChanged -= _uiEditMade;
             _wsModel.SelectionChanged += _uiEditMade;
-            wsPickerUsingComboBox1.BindToModel(_wsModel);
-            wsPickerUsingComboBox1.SelectedComboIndexChanged -= wsPickerUsingComboBox1_SelectedComboIndexChanged;
-            wsPickerUsingComboBox1.SelectedComboIndexChanged += wsPickerUsingComboBox1_SelectedComboIndexChanged;
+            _wsPalasoPicker.BindToModel(_wsModel);
+            _wsPalasoPicker.SelectedComboIndexChanged -= WsPalasoPickerSelectedComboIndexChanged;
+            _wsPalasoPicker.SelectedComboIndexChanged += WsPalasoPickerSelectedComboIndexChanged;
 
             //_structurePropertiesView.Model.AllValidMarkers = MarkerModel.GetAllMarkers();
             _structurePropertiesView.Model.MarkerSetting = _currentMarkerSetting;
@@ -202,10 +202,9 @@ namespace SolidGui.MarkerSettings
             this.Close();
         }
 
+        
 
-
-
-        void wsPickerUsingComboBox1_SelectedComboIndexChanged(object sender, EventArgs e)
+        void WsPalasoPickerSelectedComboIndexChanged(object sender, EventArgs e)
         {
             if (DesignMode || _isProcessing) return;
             UpdateModel();
@@ -223,7 +222,7 @@ namespace SolidGui.MarkerSettings
             {
                 string a = _currentMarkerSetting.WritingSystemRfc4646;
                 string b = _wsModel.CurrentRFC4646;
-                if (a != b)
+                if (a != b && String.IsNullOrEmpty(b))   // The check for empty 'fixes' #1309. -JMC Nov 2014
                 {
                     _currentMarkerSetting.WritingSystemRfc4646 = b;
                     SomeSettingChanged();
