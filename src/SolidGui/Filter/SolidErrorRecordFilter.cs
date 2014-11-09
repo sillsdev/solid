@@ -3,6 +3,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using SolidGui.Engine;
 using SolidGui.Filter;
 
@@ -39,7 +41,27 @@ namespace SolidGui.Model
             return _errorMessages[index];
         }
 
-
+        /// <summary>
+        /// Which line number should be scrolled to when first opening the current record. 
+        /// </summary>
+        public override int CurrentInitialLine()
+        {
+            string m = _marker;
+            int i = 0;
+            foreach (SfmFieldModel f in Current.Fields)
+            {
+                if (f.Marker == _marker && f.HasReportEntry)
+                    foreach (var e in f.ReportEntries)
+                    {
+                        if (e.EntryType == _errorType)
+                        {
+                            return i;
+                        }
+                    }
+                i += f.Newlines();
+            }
+            return 0;
+        }
 
     }
 }

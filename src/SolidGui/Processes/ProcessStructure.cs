@@ -148,6 +148,7 @@ namespace SolidGui.Processes
 
         private static void CheckForRequired(SfmFieldModel parentField, SfmLexEntry outputEntry, SolidReport report)
         {
+            if (parentField == null) return;
             var mr = parentField.MissingRequiredChildren();
             if (mr.Any())
             {

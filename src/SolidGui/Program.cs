@@ -10,6 +10,7 @@ using Palaso.Reporting;
 using SolidGui.Properties;
 using SolidGui.Engine;
 using Palaso.UI.WindowsForms.Keyboarding;
+using SolidGui.Search;
 using SolidGui.Setup;
 
 namespace SolidGui

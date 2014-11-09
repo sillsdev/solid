@@ -55,6 +55,21 @@ namespace SolidGui.Search
             ReggieContext = MakeReggie(findContext, cs);
         }
 
+        /// <summary>
+        /// Creates a regex object based on the parameters.
+        /// </summary>
+        /// <returns></returns>
+        public static RegexItem GetCustomRegex(string f, string r, string helpMsg, bool caseSensitive)
+        {
+            var reg = new RegexItem();
+            reg.Find = f;
+            reg.Replace = r;
+            reg.HelpMessage = helpMsg;
+            reg.Reggie = MakeReggie(f, caseSensitive);
+            return reg;
+        }
+
+
         // Utility regexes follow. (These could perhaps be stored in a config file.) -JMC Apr 2014
 
         /// <summary>

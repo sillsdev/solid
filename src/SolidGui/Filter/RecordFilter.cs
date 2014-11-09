@@ -83,6 +83,7 @@ namespace SolidGui.Filter
             }
         }
 
+
         public override int CurrentIndex
         {
             get

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Palaso.Reporting;
@@ -52,8 +53,9 @@ namespace SolidGui
             try
             {
                 UsageReporter.SendNavigationNotice("QuickFix/MoveUp");
-                List<string> moveMarkers = _moveUpMarkers.Text.SplitTrimmed(',');
-                List<string> rootMarkers = _moveUpRoots.Text.SplitTrimmed(',');
+                string[] splitOn = new string[] {", ", " ", ","};
+                List<string> moveMarkers = _moveUpMarkers.Text.Split(splitOn, StringSplitOptions.RemoveEmptyEntries).ToList();
+                List<string> rootMarkers = _moveUpRoots.Text.Split(splitOn, StringSplitOptions.RemoveEmptyEntries).ToList();
                 if (moveMarkers.Count > 0 && rootMarkers.Count > 0)
                 {
                     _fixer.MoveCommonItemsUp(rootMarkers, moveMarkers, _minimalCheckBox.Checked);

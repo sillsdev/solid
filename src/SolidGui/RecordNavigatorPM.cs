@@ -22,13 +22,13 @@ namespace SolidGui
         {
             public Record Record{ get; set;}
 
-            public RecordChangedEventArgs(Record record, IEnumerable<string> _highlightMarkers)
+            public RecordChangedEventArgs(Record record, RecordFilter recordFilter)
             {
                 Record = record;
-                HighlightMarkers = _highlightMarkers;
+                RecordFilter = recordFilter;
             }
 
-            public IEnumerable<string> HighlightMarkers
+            public RecordFilter RecordFilter
             {
                 get; set;
             }
@@ -99,7 +99,7 @@ namespace SolidGui
 
         private void SendRecordChangedEvent()
         {
-            if (RecordChanged != null) RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter.HighlightMarkers));
+            if (RecordChanged != null) RecordChanged.Invoke(this, new RecordChangedEventArgs(CurrentRecord, _recordFilter));
         }
 
         public void SendNavFilterChangedEvent()

@@ -35,6 +35,7 @@ namespace SolidGui
             this.button1 = new System.Windows.Forms.Button();
             this._tbFixes = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this._minimalCheckBox = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
@@ -44,6 +45,10 @@ namespace SolidGui
             this._moveUpMarkers = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -66,11 +71,6 @@ namespace SolidGui
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this._executeAddGuids = new System.Windows.Forms.LinkLabel();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this._minimalCheckBox = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this._tbFixes.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -130,6 +130,18 @@ namespace SolidGui
             this.tabPage3.Text = "Move Up";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // _minimalCheckBox
+            // 
+            this._minimalCheckBox.AutoSize = true;
+            this._minimalCheckBox.Checked = true;
+            this._minimalCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this._minimalCheckBox.Location = new System.Drawing.Point(247, 158);
+            this._minimalCheckBox.Name = "_minimalCheckBox";
+            this._minimalCheckBox.Size = new System.Drawing.Size(42, 17);
+            this._minimalCheckBox.TabIndex = 13;
+            this._minimalCheckBox.Text = "yes";
+            this._minimalCheckBox.UseVisualStyleBackColor = true;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SolidGui.Properties.Resources.WarningHS;
@@ -148,6 +160,7 @@ namespace SolidGui
             this.linkLabel3.Name = "linkLabel3";
             this.linkLabel3.Size = new System.Drawing.Size(144, 16);
             this.linkLabel3.TabIndex = 13;
+            this.linkLabel3.TabStop = true;
             this.linkLabel3.Text = "(hm, lc, bw) to under (lx)";
             this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
             // 
@@ -159,6 +172,7 @@ namespace SolidGui
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(108, 16);
             this.linkLabel2.TabIndex = 13;
+            this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "(sd) to under (ps)";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
             // 
@@ -170,6 +184,7 @@ namespace SolidGui
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(156, 16);
             this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "(lt, ph) to under (lx, se, va)";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnPremadeLabelClick);
             // 
@@ -193,7 +208,7 @@ namespace SolidGui
             this._moveUpRoots.Name = "_moveUpRoots";
             this._moveUpRoots.Size = new System.Drawing.Size(120, 22);
             this._moveUpRoots.TabIndex = 12;
-            this._moveUpRoots.Text = "lx";
+            this._moveUpRoots.Text = "lx, hm, lc";
             // 
             // _moveUpMarkers
             // 
@@ -202,7 +217,7 @@ namespace SolidGui
             this._moveUpMarkers.Name = "_moveUpMarkers";
             this._moveUpMarkers.Size = new System.Drawing.Size(120, 22);
             this._moveUpMarkers.TabIndex = 11;
-            this._moveUpMarkers.Text = "hm";
+            this._moveUpMarkers.Text = "valx";
             // 
             // label6
             // 
@@ -224,6 +239,46 @@ namespace SolidGui
             this.label3.Size = new System.Drawing.Size(256, 16);
             this.label3.TabIndex = 9;
             this.label3.Text = "Click one of these to fill in the fields above:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(42, 214);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(273, 16);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "Works best with: single fields, error-free files.)";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(42, 195);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(319, 16);
+            this.label12.TabIndex = 9;
+            this.label12.Text = "and will still force markers up just above all nephews.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(42, 176);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(278, 16);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "(Will still tear parents away from their children, ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(21, 157);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(212, 16);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Reduce move amount (a bit safer):";
             // 
             // label1
             // 
@@ -471,58 +526,6 @@ namespace SolidGui
             this.label9.Size = new System.Drawing.Size(434, 73);
             this.label9.TabIndex = 22;
             this.label9.Text = resources.GetString("label9.Text");
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(21, 157);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(212, 16);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "Reduce move amount (a bit safer):";
-            // 
-            // _minimalCheckBox
-            // 
-            this._minimalCheckBox.AutoSize = true;
-            this._minimalCheckBox.Checked = true;
-            this._minimalCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this._minimalCheckBox.Location = new System.Drawing.Point(247, 158);
-            this._minimalCheckBox.Name = "_minimalCheckBox";
-            this._minimalCheckBox.Size = new System.Drawing.Size(42, 17);
-            this._minimalCheckBox.TabIndex = 13;
-            this._minimalCheckBox.Text = "yes";
-            this._minimalCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(42, 176);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(278, 16);
-            this.label11.TabIndex = 9;
-            this.label11.Text = "(Will still tear parents away from their children, ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(42, 195);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(319, 16);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "and will still force markers up just above all nephews.";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(42, 214);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(273, 16);
-            this.label13.TabIndex = 9;
-            this.label13.Text = "Works best with: single fields, error-free files.)";
             // 
             // QuickFixForm
             // 

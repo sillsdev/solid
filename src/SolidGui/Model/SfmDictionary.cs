@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
+using Palaso.Extensions;
 using Palaso.Reporting;
 using Palaso.Progress;
 using Palaso.UI.WindowsForms.Progress;
@@ -25,6 +27,24 @@ namespace SolidGui.Model
 
     public class SfmDictionary : RecordManager
     {
+
+        public class DataShape
+        {
+            public string Shape = "";
+            public IEnumerable<string> ShapeMarkers()
+            {
+                char c = ' ';
+                var ret = Shape.Split(' ');
+                return ret.AsEnumerable();
+            }
+            public string FocusedMarker = "";
+            public int Occurs = 0;
+            public override string ToString()
+            {
+                return Shape;  // this currently affects a ListView column -JMC
+            }
+        }
+        
         private List<Record> _recordList;
         private string _filePath;
         private Dictionary<string, int> _markerFrequencies;
@@ -224,6 +244,8 @@ namespace SolidGui.Model
         private void ReadDictionary(ProgressState progressState, DictionaryOpenArguments openArguments)
         {
             //TODO! Merge some of this code with ProcessEncoding.Process ("hacked fonts") . See esp FilterSet.AddRecord and CreateSolidErrorRecordFilter  -JMC
+
+            SfmLexEntry.ResetCounter();
 
             var processes = new List<IProcess>();
             processes.Add(new ProcessEncoding(openArguments.SolidSettings));
@@ -433,5 +455,121 @@ namespace SolidGui.Model
             //int i = FindRecord(id);
             return _recordList.Remove(rec);
         }
+
+
+        public IEnumerable<string> GetAllDataValues(string marker, int max, SolidSettings settings)
+        {
+            var dict = new SortedDictionary<string, int>();
+            
+            int c = 0;
+            foreach (Record rec in _recordList)
+            {
+                foreach (SfmFieldModel f in rec.Fields)
+                {
+                    if (marker == f.Marker)
+                    {
+                        string s = f.ValueForceUtf8(settings);
+                        int tally = dict.GetOrDefault(s, 0);
+                        dict[s] = tally+1;
+                    }
+                }
+            }
+
+            var ss = new List<string>();
+            foreach (var k in dict.Keys)
+            {
+                ss.Add(string.Format("[{0}] x{1}", k, dict[k]));
+            }
+            return ss;
+        }
+
+        public IEnumerable<DataShape> GetAllDataShapes(int linesAbove, int linesBelow, ISet<string> limitTo)
+        {
+            if (limitTo == null) limitTo = new HashSet<string>();
+            bool all = (limitTo.Count < 1);
+
+            var re = new Regex(@"\b(\w+) (\1\b[ ]?)+", RegexOptions.CultureInvariant|RegexOptions.Compiled);
+            string rw = "$1+ ";
+            var shapes = new Dictionary<string, DataShape>(); // SortedDictionary<string, int>();
+
+            //var slidingWindow = new List<Record>(80);
+            //var contextBefore = new List<Record>();
+            //var contextAfter = new List<Record>();
+            foreach (Record rec in _recordList)
+            {
+                int i = -1;
+                foreach (var f in rec.Fields)
+                {
+                    i++;
+                    if (!all && !limitTo.Contains(f.Marker)) 
+                        continue;
+                    string sh = 
+                        MarkersBefore(rec.Fields, i, linesAbove)
+                        + f.Marker 
+                        + MarkersAfter(rec.Fields, i, linesBelow);
+                    sh = re.Replace(sh, rw); // collapse multiple-together, adding +
+                    sh = sh.Trim();
+                    string key = f.Marker + " : " + sh;
+
+                    if (shapes.ContainsKey(key))
+                    {
+                        shapes[key].Occurs++;
+                    }
+                    else
+                    {
+                        var shape = new DataShape();
+                        shape.Shape = sh;
+                        shape.Occurs = 1;
+                        shape.FocusedMarker = f.Marker;
+                        shapes[key] = shape;
+                    }
+                }
+            }
+
+            return shapes.Values;
+        }
+
+        public static readonly string StartOfRecord = @"^";
+        private static string MarkersBefore(List<SfmFieldModel> list, int i, int radius)
+        {
+            if (radius == 0) return "";
+            if (i <= 0) return StartOfRecord + " ";
+            int stopAt = Math.Max(i-radius, 0);
+            var sb = new StringBuilder();
+            for (int j = i-1; j >= stopAt; j--)
+            {
+                sb.Insert(0, list[j].Marker + " ");  //prepend
+            }
+            if (stopAt > i-radius)
+            {
+                sb.Insert(0, StartOfRecord + " ");
+            }
+            return sb.ToString();
+        }
+
+        public static readonly string EndOfRecord = @"$";
+        private static string MarkersAfter(List<SfmFieldModel> list, int i, int radius)
+        {
+            if (radius == 0) return "";
+            int max = list.Count - 1;
+            if (i >= max)
+            {
+                return " " + EndOfRecord;
+            }
+
+            int stopAt = Math.Min(i + radius, max);
+            var sb = new StringBuilder();
+            for (int j = i+1; j <= stopAt; j++)
+            {
+                sb.Append(" " + list[j].Marker);  //append
+            }
+            if (stopAt < i + radius)
+            {
+                sb.Append(" " + EndOfRecord); 
+            }
+            return sb.ToString();
+        }
+
+
     }
 }

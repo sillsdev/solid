@@ -141,6 +141,12 @@
     <Compile Include="AboutBox.designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataShapesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataShapesDialog.Designer.cs">
+      <DependentUpon>DataShapesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Engine\ReportEntry.cs" />
     <Compile Include="Engine\SettingsFileReport.cs" />
     <Compile Include="Engine\SfmField.cs" />
@@ -168,6 +174,12 @@
     <Compile Include="Filter\MarkerFilter.cs" />
     <Compile Include="Filter\RecordFilterChangedEventArgs.cs" />
     <Compile Include="Filter\SolidErrorRecordFilter.cs" />
+    <Compile Include="DataValuesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataValuesDialog.Designer.cs">
+      <DependentUpon>DataValuesDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mapping\MappingPM.cs" />
     <Compile Include="AppWritingSystems.cs" />
     <Compile Include="MarkerSettings\MarkerSettingsDialog.cs">
@@ -274,6 +286,9 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="DataShapesDialog.resx">
+      <DependentUpon>DataShapesDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Export\ExportLogDialog.resx">
       <DependentUpon>ExportLogDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -284,6 +299,9 @@
     <EmbeddedResource Include="Filter\FilterChooserView.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FilterChooserView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataValuesDialog.resx">
+      <DependentUpon>DataValuesDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindowView.resx">
       <SubType>Designer</SubType>

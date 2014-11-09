@@ -2,6 +2,7 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
+using System.Collections.Generic;
 using System.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -74,10 +75,13 @@ namespace SolidGui.Search
         // Multiline (ticked checkbox: "allow inline ^ $")
         // Singleline (unticked checkbox: "dot matches newline")
 
+        public static HashSet<string> AlreadyShown; // basically a global variable (I added) -JMC
+        
         public SearchViewModel(MainWindowPM model, RecordFormatter recordFormatter)
         {
             _model = model;
             RecordFormatter = recordFormatter;
+            AlreadyShown = AlreadyShown ?? new HashSet<string>(); // avoiding null
         }
 
         public void Setup(RegexItem ri, int recordIndex, int textIndex, bool currentFilter)

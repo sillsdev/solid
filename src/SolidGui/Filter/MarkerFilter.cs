@@ -43,6 +43,22 @@ namespace SolidGui.Filter
         {
             return string.Format("Records containing {0}", Marker);
         }
-    
+
+        /// <summary>
+        /// Which line number should be scrolled to when first opening the current record. 
+        /// </summary>
+        public override int CurrentInitialLine()
+        {
+            string m = Marker;
+            int i = 0;
+            foreach (SfmFieldModel f in Current.Fields)
+            {
+                if (f.Marker == Marker)
+                    return i;
+                i +=  f.Newlines();
+            }
+            return 0;
+        }
+
     }
 }

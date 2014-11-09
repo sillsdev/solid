@@ -121,12 +121,13 @@ namespace SolidGui
                 ClearContentsOfTextBox();
                 return;
             }
-            if (_currentRecord != e.Record || HighlightMarkers != e.HighlightMarkers)
+            if (_currentRecord != e.Record || HighlightMarkers != e.RecordFilter.HighlightMarkers)
             {
                 UpdateModelFromView();
                 _currentRecord = e.Record;
-                HighlightMarkers =  e.HighlightMarkers;
-                UpdateViewFromModel();
+                HighlightMarkers = e.RecordFilter.HighlightMarkers;
+                int line = e.RecordFilter.CurrentInitialLine();
+                UpdateViewFromModel(line);
             }
             ContentsBox.Focus();
         }
@@ -157,7 +158,7 @@ namespace SolidGui
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
-        public void DisplayEachFieldInCurrentRecord()
+        public void DisplayEachFieldInCurrentRecord(int lineToScrollTo)
         {
             // Note: This uses a non visible control to render in, and then copies the RTF to the visible control.
             // This prevents undesirable visual effects caused by moving the selection point in the visible control.
@@ -179,35 +180,55 @@ namespace SolidGui
 
             //The new way, using RecordFormatter (note all the side effects)
             _model.EditorRecordFormatter.FormatRich(_currentRecord, _model, _contentsBoxDB, HighlightMarkers, _markerTip);  //JMC:! Consider switching to _model.NavigatorModel.ActiveFilter.HighlightMarkers and eliminating the HighlightMarkers property entirely.
-            
-            _contentsBoxDB.SelectionStart = 0;  // = (foundProcessingMark) ? currentPosition - 1 : 0;
+
             // Copy the buffer to the real control.
             ContentsBox.Rtf = _contentsBoxDB.Rtf;
 
-            // JMC:! Temporary check
+            if (lineToScrollTo > 0)  // hopefully will better preserve our cursor. -JMC
+            {
+                // attempt to implement issue #284 (auto-scroll); failed--very imprecise. -JMC Nov 2014
+                int tmp = Math.Max(0, lineToScrollTo - 10);  //so that it's not right at the top
+                tmp = ContentsBox.GetFirstCharIndexFromLine(tmp);
+                ContentsBox.SelectionStart = tmp;
+                ContentsBox.ScrollToCaret();
+                
+                int pos = ContentsBox.GetFirstCharIndexFromLine(lineToScrollTo);
+                ContentsBox.SelectionStart = pos;
+                
+                // I'm guessing this was a workaround for auto-scroll. Might work, given a unique (i.e. safe to remove) mark. -JMC
+                //ContentsBox.SelectionStart = (foundProcessingMark) ? currentPosition - 1 : 0; 
+            }
+            
+            /*
+            // Temporary check
             string plain = _model.EditorRecordFormatter.FormatPlain(_currentRecord, _model.Settings);
             if (_contentsBoxDB.Text != plain)
             {
                 throw new Exception("RecordFormatter failed to provide an identical copy for Find/Replace.\nXX" + _contentsBoxDB.Text + "XX" + plain + "XX");
             }
+             */
 
             ContentsBox.TextChanged += _contentsBox_TextChanged;
         }
 
+        public void UpdateViewFromModel()
+        {
+            UpdateViewFromModel(0);
+        }
+
         /// <summary>
-        /// Refresh the editing pane to matach the model. Warning: You should almost always call UpdateModelFromView 
+        /// Refresh the editing pane to match the model. Warning: You should almost always call UpdateModelFromView 
         /// first, or edits may be lost!
         /// </summary>
  
-        public void UpdateViewFromModel()
+        public void UpdateViewFromModel(int lineToScrollTo)
         {
             //int currentIndex = ContentsBox.SelectionStart;
             string backup = ContentsBox.Text;
             try
             {
                 ClearContentsOfTextBox();
-                DisplayEachFieldInCurrentRecord();
-                ContentsBox.ScrollToCaret();
+                DisplayEachFieldInCurrentRecord(lineToScrollTo);
             }
             catch (Exception error)
             {
@@ -407,7 +428,7 @@ namespace SolidGui
 
         public void AddLineMessage(int line, string message)
         {
-            var ret = _lineMessage.GetSetDefault(line, ""); // Fixes #1256 (using the new Extensions class)
+            var ret = _lineMessage.GetSetDefault(line, ""); // using the new Extensions class, fixes #1256 (only up to one error showing per line)
 
             _lineMessage[line] = ret + message + "\n\n";
         }

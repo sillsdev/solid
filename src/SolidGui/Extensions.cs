@@ -8,14 +8,22 @@ namespace SolidGui
     public static class Extensions
     {
 
-        // of IDictionary
+        // Extension methods for IDictionary
 
+        /// <summary>
+        /// Extension method: If the value exists, returns it.
+        /// If not, default is both set and returned.
+        /// </summary>
         public static V GetSetDefault<K, V>
             (this IDictionary<K, V> dictionary, K key, V def)
         {
             return DefaultOrGetSetValue(dictionary, key, def, true);
         }
 
+        /// <summary>
+        /// Extension method: If the value exists, returns it.
+        /// If not, default is returned.
+        /// </summary>
         public static V GetOrDefault<K, V>
             (this IDictionary<K, V> dictionary, K key, V def)
         {

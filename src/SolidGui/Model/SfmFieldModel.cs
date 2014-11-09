@@ -137,7 +137,7 @@ namespace SolidGui.Model
         {
             if (IsUnicode(Marker, solidSettings))
             {
-                // Already utf8, basically
+                // Already unicode
                 return AsUtf8(Value);
             }
             else
@@ -198,6 +198,13 @@ namespace SolidGui.Model
             set { _trailing = value.Contains("\n") ? value : null; } 
         }
 
+
+        public int Newlines()
+        {
+            string tmp = Value + Trailing;
+            int newlines = Regex.Matches(tmp, "\n").Count;
+            return newlines;
+        }
 
         private static Regex RegexSplitTrailing = new Regex(
             @"^(.*?\r?\n)", RegexOptions.Compiled | RegexOptions.CultureInvariant);

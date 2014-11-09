@@ -39,6 +39,17 @@ namespace SolidGui.Model
             set { MoveTo(value); }
         }
 
+        /// <summary>
+        /// Indicates which line number should be scrolled to when first opening the current record. 
+        /// Marker filters should simply return the first highlighted line's number.
+        /// Error filters should return the first highlighted line that has this filter's error.
+        /// </summary>
+        /// <returns></returns>
+        public virtual int CurrentInitialLine()
+        {
+            return 0;
+        }
+
         public virtual bool HasPrevious()
         {
             return false;

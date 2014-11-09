@@ -31,6 +31,7 @@ namespace SolidGui
         private MainWindowPM _mainWindowPM;  // / was readonly, but I think it s/b be hot-swappable (e.g. so we can roll back after cancelling a File Open, issue #1205) -JMC 2013-10
         private int _filterIndex;
         private FindReplaceDialog _searchDialog;
+        private DataShapesDialog _dataShapesDialog;
 
         // No longer needed because it needs to be wired up from the start now. -JMC Mar 2014
 /*
@@ -105,7 +106,7 @@ namespace SolidGui
             SetEnabledGeneral(false);
 
             _mainWindowPM = mainWindowPM;
-            _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
+            GetFindReplaceDialog();
             _filterIndex = 0;
 
             this.Top = 10;
@@ -116,21 +117,35 @@ namespace SolidGui
             //see also _markerSettingsListView._xOfDialog etc. (top left)
         }
 
-        public void BindModels(MainWindowPM mainWindowPM) 
+        // ASSUMES _sfmEditorView, _mainWindowPM are up-to-date and not null
+        private FindReplaceDialog GetFindReplaceDialog()
         {
-            // cut any old wires first (does doing this make sense?)
-            if (_mainWindowPM != null)
-            {
-                _searchDialog.WordFound -= OnWordFound;
-                _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
-                _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
-                _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
-            }
-
-            _mainWindowPM = mainWindowPM;
+            if (_searchDialog == null)
+                _searchDialog = new FindReplaceDialog(_sfmEditorView, _mainWindowPM);
 
             _searchDialog.WordFound -= OnWordFound;
             _searchDialog.WordFound += OnWordFound;
+            return _searchDialog;
+        }
+
+        public void BindModels(MainWindowPM mainWindowPM) 
+        {
+            // cut any old wires first, just in case
+            if (_mainWindowPM != null)
+            {
+                _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
+                _mainWindowPM.NavigatorModel.RecordChanged -= _sfmEditorView.OnRecordChanged;
+                if (_searchDialog != null)
+                {
+                    _searchDialog.WordFound -= OnWordFound;
+                    _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
+                } 
+
+            }
+
+            _mainWindowPM = mainWindowPM;
+            GetFindReplaceDialog();
+
             _mainWindowPM.SearchModel.SearchRecordFormatterChanged -= OnRecordFormatterChanged;
             _mainWindowPM.SearchModel.SearchRecordFormatterChanged += OnRecordFormatterChanged;
             _mainWindowPM.EditorRecordFormatterChanged -= _searchDialog.OnEditorRecordFormatterChanged;
@@ -215,7 +230,7 @@ namespace SolidGui
 
         private void ChooseAndOpenProject()
         {
-            _markerSettingsListView.CloseSettingsDialog(); //simplifies dealing with Open, and with Open-then-Cancel
+            Cleanup();
 
             string initialDirectory = GetInitialDirectory();
             bool forceUnicode = false;
@@ -412,7 +427,7 @@ namespace SolidGui
 
         private void Recheck()
         {
-            _markerSettingsListView.CloseSettingsDialog(); //simplifies things
+            Cleanup();
 
             Cursor = Cursors.WaitCursor;
             _sfmEditorView.UpdateModelFromView();
@@ -521,7 +536,7 @@ namespace SolidGui
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _markerSettingsListView.CloseSettingsDialog();
+            Cleanup();
             if (_mainWindowPM.needsSave) 
             {
                 DialogResult answer = MessageBox.Show("Save changes before quitting?", "Solid: Save first?", MessageBoxButtons.YesNoCancel,
@@ -547,15 +562,26 @@ namespace SolidGui
         }
 
         private void Cleanup()
+
+        // Simplifies dealing with Open, and with Open-then-Cancel
+        // Wouldn't want those non-modal dialogs to stick around with handles to the wrong file's objects.
         {
-            if (_searchDialog != null)
-            {
-                _searchDialog.Dispose();
-            }  // this may be helpful, now that cancel Find only hides rather than closing. -JMC
-
             _markerSettingsListView.CloseSettingsDialog();
+            CloseDialog(_searchDialog); // this helps now that cancel Find only hides rather than closing. -JMC
+            _searchDialog = null;
+            CloseDialog(_dataShapesDialog);
+            _dataShapesDialog = null;
+            CloseDialog(_dataValuesDialog);
+            _dataValuesDialog = null;
         }
-
+        private static void CloseDialog(Form d)
+        {
+            if (d != null && !d.IsDisposed)
+            {
+                d.Close();
+                d.Dispose();
+            }
+        }
 
         private void OnChangeTemplate_Click(object sender, EventArgs e)
         {
@@ -602,14 +628,7 @@ namespace SolidGui
             _searchView.Focus();*/ 
 
             //New dialog: -JMC Feb 2014
-            _searchDialog.Hide();
-            _searchDialog.TopMost = true; // means that this form should always be in front of all others
-            _searchDialog.SelectFind();
-            _searchDialog.Show();
-            _searchDialog.WindowState = FormWindowState.Minimized;
-            _searchDialog.WindowState = FormWindowState.Normal;
-            _searchDialog.Focus();
-            _searchDialog.ShowHelp();
+            GetFindReplaceDialog().LaunchSearch();
         }
 
         // These keystrokes are mostly redundant now that I've underlined button letters, but I'm leaving them in in case anyone's used to them. -JMC 2013-10
@@ -827,21 +846,21 @@ Notes:
         private void SplitOnSemicolon()
         {
             RegexItem r = RegexItem.GetSplitOnSemicolon();
-            _searchDialog.SetFields(r);
+            GetFindReplaceDialog().SetFields(r);
             Search();
         }
 
         private void trimSpacesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegexItem r = RegexItem.GetTrim();
-            _searchDialog.SetFields(r);
+            GetFindReplaceDialog().SetFields(r);
             Search();
         }
 
         private void unwrapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RegexItem reg = RegexItem.GetUnwrap();
-            _searchDialog.SetFields(reg);
+            GetFindReplaceDialog().SetFields(reg);
             Search();
         }
 
@@ -849,7 +868,7 @@ Notes:
         private void _globallyDeleteFieldsMenuItem_Click(object sender, EventArgs e)
         {
             RegexItem reg = RegexItem.GetDeleteFields();
-            _searchDialog.SetFields(reg);
+            GetFindReplaceDialog().SetFields(reg);
             Search();
         }
 
@@ -870,6 +889,21 @@ Notes:
         private void _moveUpMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataShapeInventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseDialog(_dataShapesDialog);
+            _dataShapesDialog = new DataShapesDialog(GetFindReplaceDialog(), _mainWindowPM);
+            _dataShapesDialog.Show();
+        }
+
+        private DataValuesDialog _dataValuesDialog;
+        private void dataValueInventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseDialog(_dataValuesDialog);
+            _dataValuesDialog = new DataValuesDialog(_mainWindowPM);
+            _dataValuesDialog.Show();
         }
 
     }

@@ -109,9 +109,9 @@
             this.tableLayoutPanelFindReplace.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelFindReplace.Name = "tableLayoutPanelFindReplace";
             this.tableLayoutPanelFindReplace.RowCount = 4;
-            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
-            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelFindReplace.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanelFindReplace.Size = new System.Drawing.Size(426, 208);
             this.tableLayoutPanelFindReplace.TabIndex = 18;
@@ -119,7 +119,7 @@
             // textBoxReplace
             // 
             this.textBoxReplace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxReplace.Location = new System.Drawing.Point(123, 61);
+            this.textBoxReplace.Location = new System.Drawing.Point(123, 55);
             this.textBoxReplace.Name = "textBoxReplace";
             this.textBoxReplace.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxReplace.Size = new System.Drawing.Size(280, 20);
@@ -163,11 +163,11 @@
             this.flowLayoutPanelReplaceButtons.Controls.Add(this.buttonReplace);
             this.flowLayoutPanelReplaceButtons.Controls.Add(this.buttonReplaceFind);
             this.flowLayoutPanelReplaceButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelReplaceButtons.Location = new System.Drawing.Point(0, 58);
+            this.flowLayoutPanelReplaceButtons.Location = new System.Drawing.Point(0, 52);
             this.flowLayoutPanelReplaceButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelReplaceButtons.Name = "flowLayoutPanelReplaceButtons";
             this.flowLayoutPanelReplaceButtons.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.flowLayoutPanelReplaceButtons.Size = new System.Drawing.Size(120, 58);
+            this.flowLayoutPanelReplaceButtons.Size = new System.Drawing.Size(120, 52);
             this.flowLayoutPanelReplaceButtons.TabIndex = 25;
             // 
             // buttonReplace
@@ -194,11 +194,11 @@
             // 
             this.textBoxReplacePreview.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxReplacePreview.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxReplacePreview.Location = new System.Drawing.Point(123, 119);
+            this.textBoxReplacePreview.Location = new System.Drawing.Point(123, 107);
             this.textBoxReplacePreview.Multiline = true;
             this.textBoxReplacePreview.Name = "textBoxReplacePreview";
             this.textBoxReplacePreview.ReadOnly = true;
-            this.textBoxReplacePreview.Size = new System.Drawing.Size(280, 52);
+            this.textBoxReplacePreview.Size = new System.Drawing.Size(280, 66);
             this.textBoxReplacePreview.TabIndex = 24;
             this.textBoxReplacePreview.TabStop = false;
             this.textBoxReplacePreview.Text = "\\re hum, to\r\n\\re sing, to\r\n\\re croon, to";
@@ -207,7 +207,7 @@
             // 
             this.buttonHintReplace2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonHintReplace2.Enabled = false;
-            this.buttonHintReplace2.Location = new System.Drawing.Point(409, 61);
+            this.buttonHintReplace2.Location = new System.Drawing.Point(409, 55);
             this.buttonHintReplace2.Name = "buttonHintReplace2";
             this.buttonHintReplace2.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
             this.buttonHintReplace2.Size = new System.Drawing.Size(14, 20);
@@ -223,9 +223,9 @@
             this.flowLayoutPanel2.Controls.Add(this.labelReplaceAll);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 177);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 179);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(400, 28);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(400, 26);
             this.flowLayoutPanel2.TabIndex = 31;
             // 
             // buttonCancel
@@ -241,6 +241,7 @@
             // 
             // buttonReplaceAll
             // 
+            this.buttonReplaceAll.Enabled = false;
             this.buttonReplaceAll.Location = new System.Drawing.Point(178, 3);
             this.buttonReplaceAll.Name = "buttonReplaceAll";
             this.buttonReplaceAll.Size = new System.Drawing.Size(139, 23);
@@ -269,7 +270,7 @@
             this.buttonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHelp.ForeColor = System.Drawing.Color.Yellow;
-            this.buttonHelp.Location = new System.Drawing.Point(409, 119);
+            this.buttonHelp.Location = new System.Drawing.Point(409, 107);
             this.buttonHelp.Name = "buttonHelp";
             this.buttonHelp.Size = new System.Drawing.Size(14, 20);
             this.buttonHelp.TabIndex = 11;
@@ -280,7 +281,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 119);
+            this.label1.Location = new System.Drawing.Point(3, 107);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);

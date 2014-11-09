@@ -79,7 +79,7 @@ namespace SolidGui.Filter
                         _currentDictionary,
                         marker,
                         type,
-                        string.Format("Consider whether moving {0} up would improve clarity.", marker)
+                        string.Format("Consider whether moving {0} up would clarify its location.", marker)
                         );
                     break;
                 case SolidReport.EntryType.EncodingUpperAscii:
@@ -109,7 +109,7 @@ namespace SolidGui.Filter
             var v = EnumUtil.GetEnumValues<SolidReport.EntryType>();
 
             // Initialize a dict entry for each one. Another option would be to remove this and instead
-            // use the GetSetDefault() extension method, but the new RecordFilterSet() constructor would be awkward. -JMC Mar 2014
+            // could use the GetSetDefault() extension method, but the new RecordFilterSet() constructor would be awkward. -JMC Mar 2014
             foreach(var x in v)
             {
                 _solidErrors[x] = new ErrorFilterForType();
@@ -166,6 +166,7 @@ namespace SolidGui.Filter
 
         public void AddRecord(int index, SolidReport report)
         {
+            if (_solidErrors == null) return;
             foreach (ReportEntry entry in report.Entries)
             {
                 ErrorFilterForType filter = _solidErrors.GetOrDefault(entry.EntryType, new ErrorFilterForType());

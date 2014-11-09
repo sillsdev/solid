@@ -2,6 +2,7 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Media;
@@ -85,7 +86,7 @@ namespace SolidGui.Search
             // JMC: Add a call here to KeyboardController.Register() ? Would not need to be as smart as for the rich edit control. Ideally, we'd probably default to the vernacular keyboard?
             _sfmEditorView = sfmEditorView;
 
-            _searchModel = model.SearchModel;
+            if (model != null) _searchModel = model.SearchModel;
             _model = model;
             ResetStartingPoint();
         }
@@ -161,7 +162,8 @@ namespace SolidGui.Search
 
         public void ShowHelp()
         {
-            if (String.IsNullOrEmpty(this.HelpMessage)) return;
+            if (String.IsNullOrEmpty(this.HelpMessage) || SearchViewModel.AlreadyShown.Contains(HelpMessage)) return;
+            SearchViewModel.AlreadyShown.Add(HelpMessage);
             MessageBox.Show(HelpMessage, "About the selected recipe", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -619,5 +621,22 @@ namespace SolidGui.Search
             textBoxFind.Focus();
         }
 
+        public void LaunchSearch (RegexItem r)
+        {
+            SetFields(r);
+            LaunchSearch();
+        }
+
+        public void LaunchSearch()
+        {
+            this.Hide();
+            this.TopMost = true; // means that this form should always be in front of all others
+            this.SelectFind();
+            this.Show();
+            this.WindowState = FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Normal;
+            this.Focus();
+            this.ShowHelp();
+        }
     }
 }

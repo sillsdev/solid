@@ -17,6 +17,12 @@ namespace SolidGui.Model
         public int RecordId { get; private set; }
         private static int _recordID = 1;
 
+        public static int ResetCounter()  //fixes the infinite loops that were happening when doing Find after Recheck.
+        {
+            _recordID = 0;
+            return _recordID;
+        }
+
         public SfmLexEntry()
         {
             _fields = new List<SfmFieldModel>();
@@ -169,7 +175,7 @@ namespace SolidGui.Model
             _fields.Insert(indexForThisField, field);
         }
 
-        public SfmFieldModel GetFirstFieldWithMarker(string marker)  // JMC: can we also auto-scroll the UI to this marker? (#284)
+        public SfmFieldModel GetFirstFieldWithMarker(string marker) 
         {
             return _fields.FirstOrDefault(f => f.Marker == marker);
         }

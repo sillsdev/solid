@@ -60,9 +60,9 @@ namespace Solid.Engine
                     }
                     else if (minimal && stillShallow) 
                     {   //possible sibling
-                        if (f.Depth > rootDepth + 1)
+                        if ((f.Depth != rootDepth + 1) && (f.Depth != 0))  //ignore unplaceable markers
                         {
-                            // too deep; any markers should be moved up to above this position, and above any non-root parent it may have
+                            // too deep or shallow; any markers should be moved up to above this position, and above any non-root parent it may have
                             stillShallow = false;
                             indexToMoveAfter = Math.Max(indexToMoveAfter-1, lastRootFound); 
                         }
@@ -75,7 +75,6 @@ namespace Solid.Engine
 
                     if (indexToMoveAfter > -1 && markers.Contains(f.Marker))
                     {
-                        //Debug.Assert(i > indexToMoveAfter, "There is a bug in MoveCommonItemsUp; please let the developers know.");
                         if (indexToMoveAfter >= i - 1)
                         {
                             // no-op 'move up' to own location
