@@ -5,9 +5,11 @@
   <UsingTask TaskName="FileUpdate" AssemblyFile="$(teamcity_build_checkoutDir)/build/Palaso.BuildTasks.dll" />
   <UsingTask TaskName="NUnitTeamCity" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)"/>
 
+  <Import Project="$(teamcity_build_checkoutDir)/build/NuGet.targets"/>
   <PropertyGroup>
 	<Solution>src\solid.sln</Solution>
 	<ApplicationName>Solid</ApplicationName>
+	<SolutionPath>$(teamcity_build_checkoutDir)\$(Solution)</SolutionPath>
   </PropertyGroup>
   
   <Target Name="VersionNumbers">
@@ -39,7 +41,7 @@
       <StampAssemblies Version="$(BUILD_NUMBER)" InputAssemblyPaths="@(AssemblyInfoFiles)" />
     </Target>
 
-  <Target Name="Compile" DependsOnTargets="SetAssemblyVersion">
+  <Target Name="Compile" DependsOnTargets="SetAssemblyVersion; RestorePackages">
     <MSBuild Projects="$(teamcity_build_checkoutDir)\$(Solution)"
              Targets="Rebuild"
              Properties="Configuration=Release" />
