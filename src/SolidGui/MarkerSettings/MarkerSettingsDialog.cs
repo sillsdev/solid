@@ -222,7 +222,7 @@ namespace SolidGui.MarkerSettings
             {
                 string a = _currentMarkerSetting.WritingSystemRfc4646;
                 string b = _wsModel.CurrentRFC4646;
-                if (a != b && String.IsNullOrEmpty(b))   // The check for empty 'fixes' #1309. -JMC Nov 2014
+                if (a != b && !String.IsNullOrEmpty(b))   // The check for empty 'fixes' #1309. -JMC Nov 2014
                 {
                     _currentMarkerSetting.WritingSystemRfc4646 = b;
                     SomeSettingChanged();
