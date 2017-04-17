@@ -47,7 +47,7 @@
              Properties="Configuration=Release" />
 
     <!-- sign with SIL certificate -->
-    <Exec Command='sign "$(RootDir)\output\Release\Solid.exe"' ContinueOnError="false"></Exec>
+    <Exec Command='sign "$(teamcity_build_checkoutDir)\output\Release\Solid.exe"' ContinueOnError="false"></Exec>
   </Target>
 
   <Target Name="Test" DependsOnTargets="Build">
