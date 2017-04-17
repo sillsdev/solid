@@ -45,6 +45,9 @@
     <MSBuild Projects="$(teamcity_build_checkoutDir)\$(Solution)"
              Targets="Rebuild"
              Properties="Configuration=Release" />
+
+    <!-- sign with SIL certificate -->
+    <Exec Command='sign "$(RootDir)\output\Release\Solid.exe"' ContinueOnError="false"></Exec>
   </Target>
 
   <Target Name="Test" DependsOnTargets="Build">
@@ -108,6 +111,10 @@
 
     <!-- remove an existing one with the same name, if necessary -->
     <Delete Files="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).exe" TreatErrorsAsWarnings="false" />
+
+    <!-- sign with SIL certificate -->
+    <Exec Command='sign "$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe"'></Exec>
+
     <Copy SourceFiles="$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe"
           DestinationFiles="$(teamcity_build_checkoutDir)\output\installer\$(ApplicationName)Installer.$(Version).exe" />
 
