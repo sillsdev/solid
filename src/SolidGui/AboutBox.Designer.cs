@@ -38,9 +38,9 @@ namespace SolidGui
             this.goWeb = new System.Windows.Forms.LinkLabel();
             this.labelVersion = new System.Windows.Forms.Label();
             this.license = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.okButton = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.okButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +96,7 @@ namespace SolidGui
             this.labelCopyright.Name = "labelCopyright";
             this.labelCopyright.Size = new System.Drawing.Size(197, 13);
             this.labelCopyright.TabIndex = 29;
-            this.labelCopyright.Text = "Copyright © 2007-2014 SIL International";
+            this.labelCopyright.Text = "Copyright © 2007-2017 SIL International";
             // 
             // goWeb
             // 
@@ -109,7 +109,7 @@ namespace SolidGui
             this.goWeb.Size = new System.Drawing.Size(292, 13);
             this.goWeb.TabIndex = 25;
             this.goWeb.TabStop = true;
-            this.goWeb.Text = "http://palaso.org/solid";
+            this.goWeb.Text = "http://solid.palaso.org/";
             this.goWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goWeb_LinkClicked);
             // 
             // labelVersion
@@ -137,26 +137,7 @@ namespace SolidGui
             this.license.TabIndex = 30;
             this.license.TabStop = true;
             this.license.Text = "Free and open source (MIT license)";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.tableLayoutPanel.SetColumnSpan(this.label1, 2);
-            this.label1.Location = new System.Drawing.Point(3, 132);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(412, 78);
-            this.label1.TabIndex = 26;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // okButton
-            // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(340, 221);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 24;
-            this.okButton.Text = "&OK";
+            this.license.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.license_LinkClicked);
             // 
             // pictureBox2
             // 
@@ -168,6 +149,26 @@ namespace SolidGui
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 31;
             this.pictureBox2.TabStop = false;
+            // 
+            // okButton
+            // 
+            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.okButton.Location = new System.Drawing.Point(340, 221);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 24;
+            this.okButton.Text = "&OK";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.tableLayoutPanel.SetColumnSpan(this.label1, 2);
+            this.label1.Location = new System.Drawing.Point(3, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(412, 78);
+            this.label1.TabIndex = 26;
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // AboutBox
             // 

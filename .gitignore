@@ -1,0 +1,13 @@
+lib/
+output/
+obj/
+bin/
+src/_ReSharper*
+*.user
+*.suo
+*.pdb
+*.ReSharper
+*Thumbs.db
+*.orig
+
+src/packages/NUnit\.2\.6\.4/

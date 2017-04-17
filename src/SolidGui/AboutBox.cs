@@ -117,9 +117,12 @@ namespace SolidGui
 
         private void goWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://projects.palaso.org/projects/solid");
+            System.Diagnostics.Process.Start("http://solid.palaso.org/");
         }
 
-
+        private void license_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://sil.mit-license.org/");
+        }
     }
 }
