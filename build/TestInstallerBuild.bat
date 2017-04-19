@@ -1,5 +1,5 @@
 rem call "c:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat"
-call "C:\Program Files\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat"
 
 rem pushd c:\src\sil\solid\build
 pushd C:\dev\solid\build
@@ -10,4 +10,4 @@ MSbuild /target:installer /property:teamcity_build_checkoutDir=c:\dev\solid  /pr
 popd
 PAUSE
 
-#/verbosity:detailed
+rem /verbosity:detailed

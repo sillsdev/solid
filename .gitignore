@@ -11,3 +11,7 @@ src/_ReSharper*
 *.orig
 
 src/packages/NUnit\.2\.6\.4/
+
+installer/setup-tmp\.iss
+
+build/NuGet\.exe
