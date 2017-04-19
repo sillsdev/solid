@@ -1,7 +1,6 @@
 <Project
   xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <UsingTask TaskName="StampAssemblies" AssemblyFile="$(teamcity_build_checkoutDir)/build/Palaso.BuildTasks.dll" />
-  <UsingTask TaskName="MakeWixForDirTree" AssemblyFile="$(teamcity_build_checkoutDir)/build/Palaso.BuildTasks.dll" />
   <UsingTask TaskName="Split" AssemblyFile="$(teamcity_build_checkoutDir)/build/Palaso.BuildTasks.dll" />
   <UsingTask TaskName="FileUpdate" AssemblyFile="$(teamcity_build_checkoutDir)/build/Palaso.BuildTasks.dll" />
   <UsingTask TaskName="NUnitTeamCity" AssemblyFile="$(teamcity_dotnet_nunitlauncher_msbuild_task)"/>
@@ -12,6 +11,7 @@
     <SolutionPath>$(teamcity_build_checkoutDir)\$(Solution)</SolutionPath>
     <InstallerPath>../output/installer/$(ApplicationName)Installer.$(Version).exe</InstallerPath>
   </PropertyGroup>
+
   <Target Name="VersionNumbers">
     <Message Text="BUILD_NUMBER: $(BUILD_NUMBER)" Importance="high"/>
     <Split Input="$(BUILD_NUMBER)" Delimiter="." OutputSubString="2">
@@ -24,27 +24,32 @@
     </CreateProperty>
     <Message Text="Version: $(Version)" Importance="high"/>
   </Target>
+
   <Target Name="Build">
     <CallTarget Targets="Compile"/>
     <Message Text="Build Complete"/>
   </Target>
+
   <Target Name="SetAssemblyVersion">
     <ItemGroup>
       <AssemblyInfoFiles Include="$(teamcity_build_checkoutDir)/src/**/assemblyinfo.cs"/>
     </ItemGroup>
     <StampAssemblies Version="$(BUILD_NUMBER)" InputAssemblyPaths="@(AssemblyInfoFiles)" />
   </Target>
+
   <Target Name="Compile" DependsOnTargets="SetAssemblyVersion; RestorePackages">
     <MSBuild Projects="$(teamcity_build_checkoutDir)\$(Solution)" Targets="Rebuild" Properties="Configuration=Release" />
     <!-- sign with SIL certificate -->
     <Exec Command='sign "$(teamcity_build_checkoutDir)\output\Release\Solid.exe"' ContinueOnError="true"></Exec>
   </Target>
+
   <Target Name="Test" DependsOnTargets="Build">
     <ItemGroup>
       <TestAssemblies Include="$(teamcity_build_checkoutDir)/output/release/*Tests.dll;" Exclude="" />
     </ItemGroup>
     <NUnitTeamCity Assemblies="@(TestAssemblies)" ExcludeCategory="SkipOnTeamCity" />
   </Target>
+
   <Target Name="MakeDownloadPointers" DependsOnTargets="VersionNumbers">
     <PropertyGroup>
       <DownloadInfoPath>$(RootDir)\output\Installer\$(ApplicationName)Installer.$(Version).download_info</DownloadInfoPath>
@@ -58,11 +63,13 @@
     <Message Text="Attempting rsync of $(DownloadInfoPath) to software.sil.org" Importance="high"/>
     <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --dry-run --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(DownloadInfoPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationName)/' />
   </Target>
+
   <Target Name="Upload" DependsOnTargets="VersionNumbers; Installer">
     <Message Text="Attempting rsync of $(InstallerPath) to software.sil.org" Importance="high"/>
     <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --dry-run --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(InstallerPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationName)/' />
     <CallTarget Targets ='MakeDownloadPointers'/>
   </Target>
+
   <Target Name="Installer" DependsOnTargets="VersionNumbers; Build ">
     <ItemGroup>
       <InstallerOutputFiles Include="$(teamcity_build_checkoutDir)/output/installer/*;" Exclude="" />
