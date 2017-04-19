@@ -72,6 +72,7 @@ namespace SolidGui
             this._markersMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._propertiesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataShapeInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataValueInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._switchTemplatesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._changeWritingSystemsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._switchlToUnicodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,9 +110,8 @@ namespace SolidGui
             this._addFilterDataShapeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._openHelpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._getSupportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._reportProblemMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataValueInventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             toolStrip1 = new System.Windows.Forms.ToolStrip();
             toolStrip1.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -196,7 +196,7 @@ namespace SolidGui
             this._changeTemplate.Image = global::SolidGui.Properties.Resources.template;
             this._changeTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this._changeTemplate.Name = "_changeTemplate";
-            this._changeTemplate.Size = new System.Drawing.Size(130, 22);
+            this._changeTemplate.Size = new System.Drawing.Size(129, 22);
             this._changeTemplate.Text = "&Change Template...";
             this._changeTemplate.Visible = false;
             this._changeTemplate.Click += new System.EventHandler(this.OnChangeTemplate_Click);
@@ -450,10 +450,10 @@ namespace SolidGui
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._fileMenuItem,
-            this._markersMenuItem,
             this._editMenuItem,
-            this._fixMenuItem,
             this._viewMenuItem,
+            this._markersMenuItem,
+            this._fixMenuItem,
             this._helpMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -540,6 +540,13 @@ namespace SolidGui
             this.dataShapeInventoryToolStripMenuItem.Text = "&Data Shape Inventory...";
             this.dataShapeInventoryToolStripMenuItem.Click += new System.EventHandler(this.dataShapeInventoryToolStripMenuItem_Click);
             // 
+            // dataValueInventoryToolStripMenuItem
+            // 
+            this.dataValueInventoryToolStripMenuItem.Name = "dataValueInventoryToolStripMenuItem";
+            this.dataValueInventoryToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.dataValueInventoryToolStripMenuItem.Text = "Data &Value Inventory...";
+            this.dataValueInventoryToolStripMenuItem.Click += new System.EventHandler(this.dataValueInventoryToolStripMenuItem_Click);
+            // 
             // _switchTemplatesMenuItem
             // 
             this._switchTemplatesMenuItem.Name = "_switchTemplatesMenuItem";
@@ -583,20 +590,20 @@ namespace SolidGui
             // _findMenuItem
             // 
             this._findMenuItem.Name = "_findMenuItem";
-            this._findMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._findMenuItem.Size = new System.Drawing.Size(152, 22);
             this._findMenuItem.Text = "&Find... (Ctrl+F)";
             this._findMenuItem.Click += new System.EventHandler(this._findMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // _cutMenuItem
             // 
             this._cutMenuItem.Enabled = false;
             this._cutMenuItem.Name = "_cutMenuItem";
-            this._cutMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._cutMenuItem.Size = new System.Drawing.Size(152, 22);
             this._cutMenuItem.Text = "Cu&t (Ctrl+X)";
             this._cutMenuItem.Visible = false;
             // 
@@ -604,7 +611,7 @@ namespace SolidGui
             // 
             this._copyMenuItem.Enabled = false;
             this._copyMenuItem.Name = "_copyMenuItem";
-            this._copyMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._copyMenuItem.Size = new System.Drawing.Size(152, 22);
             this._copyMenuItem.Text = "&Copy (Ctrl+C)";
             this._copyMenuItem.Visible = false;
             this._copyMenuItem.Click += new System.EventHandler(this._copyMenuItem_Click);
@@ -613,7 +620,7 @@ namespace SolidGui
             // 
             this._pasteMenuItem.Enabled = false;
             this._pasteMenuItem.Name = "_pasteMenuItem";
-            this._pasteMenuItem.Size = new System.Drawing.Size(150, 22);
+            this._pasteMenuItem.Size = new System.Drawing.Size(152, 22);
             this._pasteMenuItem.Text = "&Paste (Ctrl+V)";
             this._pasteMenuItem.Visible = false;
             // 
@@ -815,8 +822,8 @@ namespace SolidGui
             // 
             this._helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._openHelpMenuItem,
-            this._aboutMenuItem,
-            this._reportProblemMenuItem});
+            this._getSupportMenuItem,
+            this._aboutMenuItem});
             this._helpMenuItem.Name = "_helpMenuItem";
             this._helpMenuItem.Size = new System.Drawing.Size(44, 22);
             this._helpMenuItem.Text = "&Help";
@@ -824,30 +831,23 @@ namespace SolidGui
             // _openHelpMenuItem
             // 
             this._openHelpMenuItem.Name = "_openHelpMenuItem";
-            this._openHelpMenuItem.Size = new System.Drawing.Size(238, 22);
+            this._openHelpMenuItem.Size = new System.Drawing.Size(221, 22);
             this._openHelpMenuItem.Text = "Open PDF &Help Manual (F1)";
             this._openHelpMenuItem.Click += new System.EventHandler(this._openHelpMenuItem_Click);
+            // 
+            // _getSupportMenuItem
+            // 
+            this._getSupportMenuItem.Name = "_getSupportMenuItem";
+            this._getSupportMenuItem.Size = new System.Drawing.Size(221, 22);
+            this._getSupportMenuItem.Text = "&Get support (web)";
+            this._getSupportMenuItem.Click += new System.EventHandler(this.getSupportMenuItem_Click);
             // 
             // _aboutMenuItem
             // 
             this._aboutMenuItem.Name = "_aboutMenuItem";
-            this._aboutMenuItem.Size = new System.Drawing.Size(238, 22);
+            this._aboutMenuItem.Size = new System.Drawing.Size(221, 22);
             this._aboutMenuItem.Text = "&About Solid...";
             this._aboutMenuItem.Click += new System.EventHandler(this.OnAboutBoxButton_Click);
-            // 
-            // _reportProblemMenuItem
-            // 
-            this._reportProblemMenuItem.Name = "_reportProblemMenuItem";
-            this._reportProblemMenuItem.Size = new System.Drawing.Size(238, 22);
-            this._reportProblemMenuItem.Text = "&Report a problem/suggestion...";
-            this._reportProblemMenuItem.Click += new System.EventHandler(this.reportAProblemsuggestionToolStripMenuItem_Click);
-            // 
-            // dataValueInventoryToolStripMenuItem
-            // 
-            this.dataValueInventoryToolStripMenuItem.Name = "dataValueInventoryToolStripMenuItem";
-            this.dataValueInventoryToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.dataValueInventoryToolStripMenuItem.Text = "Data &Value Inventory...";
-            this.dataValueInventoryToolStripMenuItem.Click += new System.EventHandler(this.dataValueInventoryToolStripMenuItem_Click);
             // 
             // MainWindowView
             // 
@@ -943,7 +943,7 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripMenuItem _goLastMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _openHelpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _aboutMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _reportProblemMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem _getSupportMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _goFirstMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem _cutMenuItem;

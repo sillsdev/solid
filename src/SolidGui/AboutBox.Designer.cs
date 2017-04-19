@@ -109,7 +109,7 @@ namespace SolidGui
             this.goWeb.Size = new System.Drawing.Size(292, 13);
             this.goWeb.TabIndex = 25;
             this.goWeb.TabStop = true;
-            this.goWeb.Text = "http://solid.palaso.org/";
+            this.goWeb.Text = "http://software.sil.org/solid";
             this.goWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.goWeb_LinkClicked);
             // 
             // labelVersion

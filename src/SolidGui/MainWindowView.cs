@@ -739,11 +739,15 @@ namespace SolidGui
             UpdateDisplay(false);
         }
 
-        private void reportAProblemsuggestionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void getSupportMenuItem_Click(object sender, EventArgs e)
         {
             // (#249) I added this ability to trigger the yellow (non-fatal) Palaso error report. -JMC 2013-10
-            var tmp = new Palaso.UI.WindowsForms.Reporting.WinFormsErrorReporter();
-            tmp.ReportNonFatalException(new Exception("I would like to make a suggestion."), new ShowAlwaysPolicy());
+            // var tmp = new Palaso.UI.WindowsForms.Reporting.WinFormsErrorReporter();
+            //tmp.ReportNonFatalException(new Exception("I would like to make a suggestion."), new ShowAlwaysPolicy());
+
+            //Updating (JH) in 2017. I could not figure out where emails go, so to be safe, I'm changing to point to our standard website
+            //which we can then keep up to date.
+            Process.Start("http://software.sil.org/solid/support/");
         }
 
         private void _goFirstMenuItem_Click(object sender, EventArgs e)
