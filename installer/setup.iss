@@ -3,7 +3,7 @@ EnableISX=true
 
 #define MyAppName "Solid"
 #define MyAppVersion "0.0.0"
-#define MyAppPublisher "Payap Language Software"
+#define MyAppPublisher "SIL International"
 #define MyAppURL "http://solid.palaso.org"
 #define MyAppExeName "Solid.exe"
 
@@ -90,11 +90,22 @@ external 'isxdl_DownloadFiles@files:isxdl.dll stdcall';
 function isxdl_SetOption(Option, Value: String): Integer;
 external 'isxdl_SetOption@files:isxdl.dll stdcall';
 
+// Detect .NET framework 4.6.1 is missing
+// See https://msdn.microsoft.com/en-us/library/hh925568(v=vs.110).aspx
+function DotNetIsMissing(): Boolean;
+var
+  readVal: cardinal;
+  success: Boolean;
+begin               
+  success := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', readVal);
+  success := success and ((readVal = 394254) or (readVal = 394271) 
+    // 4.6.2 is ok too
+    or (readVal = 394802) or (readVal =394806))
+    // 4.7 is ok too
+    or (readVal = 460798);   //<- that is for Windows 10 Creators Update. If later 4.7 becomes available for Windows 7 and 8, we'll need a new number! Yuck.
 
-const
-  dotnetRedistURL = 'http://palaso.org/install/dotnet2/dotnetfx.exe';
-  // local system for testing...
-  //dotnetRedistURL = 'http://localhost/install/dotnet2/dotnetfx.exe';
+  Result := not success;
+end;
 
 function InitializeSetup(): Boolean;
 
@@ -103,34 +114,10 @@ begin
   dotNetNeeded := false;
 
   // Check for required netfx installation
-  if (not RegKeyExists(HKLM, 'Software\Microsoft\.NETFramework\policy\v2.0')) then begin
-    dotNetNeeded := true;
-    if (not IsAdminLoggedOn()) then begin
-      MsgBox('Solid needs the Microsoft .NET Framework to be installed by an Administrator', mbInformation, MB_OK);
+  if DotNetIsMissing() then begin
+      MsgBox('Solid needs the Microsoft .NET Framework 4.6.1 or greater to be installed by an Administrator', mbInformation, MB_OK);
       Result := false;
-    end else begin
-      memoDependenciesNeeded := memoDependenciesNeeded + '      .NET Framework' #13;
-      dotnetRedistPath := ExpandConstant('{src}\dotnetfx.exe');
-      if not FileExists(dotnetRedistPath) then begin
-        dotnetRedistPath := ExpandConstant('{tmp}\dotnetfx.exe');
-        if not FileExists(dotnetRedistPath) then begin
-          isxdl_AddFile(dotnetRedistURL, dotnetRedistPath);
-          downloadNeeded := true;
-        end;
-      end;
-      SetIniString('install', 'dotnetRedist', dotnetRedistPath, ExpandConstant('{tmp}\dep.ini'));
     end;
-  end;
-
-  // For testing
-  //dotNetNeeded := true;
-  //downloadNeeded := true;
-  //SetIniString('install', 'dotnetRedist', dotnetRedistPath, ExpandConstant('{tmp}\dep.ini'));
-
-
-  // I wanted to do the following since it isn't really just "Next", but this errors because WizardForm is not yet created. -JMC July 2014
-  // WizardForm.NextButton.Caption := 'Install';
-
 end;
 
 function NextButtonClick(CurPage: Integer): Boolean;
