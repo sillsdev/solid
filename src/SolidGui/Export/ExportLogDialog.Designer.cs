@@ -33,7 +33,7 @@ namespace SolidGui.Export
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExportLogDialog));
-            this._logBox = new Palaso.UI.WindowsForms.Progress.LogBox();
+            this._logBox = new SIL.Windows.Forms.Progress.LogBox();
             this._close = new System.Windows.Forms.Button();
             this.BackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this._updateDisplayTimer = new System.Windows.Forms.Timer(this.components);
@@ -92,7 +92,7 @@ namespace SolidGui.Export
 
         #endregion
 
-        private Palaso.UI.WindowsForms.Progress.LogBox _logBox;
+        private SIL.Windows.Forms.Progress.LogBox _logBox;
         private System.Windows.Forms.Button _close;
         public System.ComponentModel.BackgroundWorker BackgroundWorker;
         private System.Windows.Forms.Timer _updateDisplayTimer;

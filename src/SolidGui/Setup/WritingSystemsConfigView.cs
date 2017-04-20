@@ -9,8 +9,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Palaso.Code;
-using Palaso.UI.WindowsForms.WritingSystems;
+using SIL.Code;
+using SIL.Windows.Forms.WritingSystems;
 
 namespace SolidGui.Setup
 {

@@ -9,10 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Palaso.Extensions;
-using Palaso.Reporting;
-using Palaso.Progress;
-using Palaso.UI.WindowsForms.Progress;
+using SIL.Extensions;
+using SIL.Progress;
+using SIL.Reporting;
+using SIL.Windows.Forms.Progress;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Processes;
@@ -281,7 +281,7 @@ namespace SolidGui.Model
 
         public bool Open(string path, SolidSettings solidSettings, RecordFilterSet filterSet)
         {
-            Palaso.Reporting.Logger.WriteEvent("Opening {0}",path);
+            SIL.Reporting.Logger.WriteEvent("Opening {0}",path);
 
             _filePath = path;
             //            File.GetLastWriteTime(_filePath);  // Not sure where this was heading. Disabled for now. -JMC
@@ -298,7 +298,7 @@ namespace SolidGui.Model
                 }
                 catch (ArgumentException e)
                 {
-                    Palaso.Reporting.ErrorReport.ReportFatalException(new ArgumentException("The .solid configuration file appears to have multiple settings for this marker: \\" + s + " \r\n" + e.Message, e));
+                    SIL.Reporting.ErrorReport.ReportFatalException(new ArgumentException("The .solid configuration file appears to have multiple settings for this marker: \\" + s + " \r\n" + e.Message, e));
                 }
             }
             */
@@ -320,7 +320,7 @@ namespace SolidGui.Model
                 dlg.ShowDialog();
                 if (dlg.ProgressStateResult != null && dlg.ProgressStateResult.ExceptionThatWasEncountered != null)
                 {
-                    Palaso.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  
+                    SIL.Reporting.ErrorReport.ReportNonFatalException(dlg.ProgressStateResult.ExceptionThatWasEncountered);  
                     //I suppose this is non-fatal because we'll just fall back to whatever was already open, same as with Cancel. -JMC
                     return false;
                 }
@@ -331,7 +331,7 @@ namespace SolidGui.Model
             {
                 _currentIndex = 0;
             }
-            Palaso.Reporting.Logger.WriteEvent("Done Opening.");
+            SIL.Reporting.Logger.WriteEvent("Done Opening.");
             return true;
         }
 
@@ -405,7 +405,7 @@ namespace SolidGui.Model
                 MessageBox.Show(null, exception.Message + "\r\n\r\nYou might try saving to a different location.", "Error on saving data file.");
                 return false;
             }
-            Palaso.Reporting.Logger.WriteEvent("Done saving data file.");
+            SIL.Reporting.Logger.WriteEvent("Done saving data file.");
             return true;
         }
 

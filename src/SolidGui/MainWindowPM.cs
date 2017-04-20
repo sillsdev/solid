@@ -12,14 +12,12 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Xml;
-using Palaso.Reporting;
-using Palaso.UI.WindowsForms.Progress;
+using SIL.Reporting;
 using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Filter;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;
-using SolidGui.Properties;
 using SolidGui.Search;
 using SolidGui.Setup;
 
@@ -468,7 +466,7 @@ namespace SolidGui
         // using the report object, but that's optional because the user hasn't tweaked settings yet. (Also, it's just a copy.) -JMC July 2014
         private SolidSettings LoadSettingsFromTemplate(string templatePath)
         {
-            Palaso.Reporting.Logger.WriteEvent("Loading Solid file from template located at {0}", templatePath);
+            Logger.WriteEvent("Loading Solid file from template located at {0}", templatePath);
             Trace.Assert(!string.IsNullOrEmpty(templatePath), "Bug: no path provided for the templates folder.");
             SolidSettings s = SolidSettings.CreateSolidFileFromTemplate(
                 templatePath, 
@@ -479,7 +477,7 @@ namespace SolidGui
 
         private SolidSettings LoadSettingsFromExistingFile(string solidFilePath)
         {
-            Palaso.Reporting.Logger.WriteEvent("Loading Solid file from {0}", solidFilePath);
+            Logger.WriteEvent("Loading Solid file from {0}", solidFilePath);
             return SolidSettings.OpenSolidFile(
                 Path.Combine(WorkingDictionary.GetDirectoryPath(), solidFilePath) //The first half will only be used if solidFilePath is not absolute -JMC
             );

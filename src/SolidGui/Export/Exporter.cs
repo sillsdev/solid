@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using Palaso.Progress;
+using SIL.Progress;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;
 using SolidGui.Model;

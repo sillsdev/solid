@@ -2,10 +2,9 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
-using System.ComponentModel.Design;
 using System.Windows.Forms;
 using System.Reflection;
-using Palaso.Reporting;
+using SIL.Reporting;
 
 namespace SolidGui
 {
@@ -52,7 +51,7 @@ namespace SolidGui
         {
             get
             {
-                //string retval = Palaso.Reporting.ErrorReport.UserFriendlyVersionString;
+                //string retval = SIL.Reporting.ErrorReport.UserFriendlyVersionString;
                 string retval = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 return retval;
             }

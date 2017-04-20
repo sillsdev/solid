@@ -7,11 +7,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Palaso.UI.WindowsForms.SuperToolTip;
-using SolidGui.Engine;
+using SIL.Windows.Forms.SuperToolTip;
 using SolidGui.Model;
-using Spart.Parsers.NonTerminal;
-
 
 namespace SolidGui
 {
@@ -233,7 +230,7 @@ namespace SolidGui
             catch (Exception error)
             {
                 string msg = string.Format("An unexpected error occurred; it's safest if you now Save As and compare with the previous version. (Or, don't save.):\r\n{0}\r\n", error);
-                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
+                SIL.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
                 IsDirty = false;  // a little white lie that lets us exit. -JMC
                 //ContentsBox.Text = backup;
             }

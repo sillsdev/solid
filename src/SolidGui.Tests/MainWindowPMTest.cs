@@ -1,10 +1,10 @@
 using System;
 using System.IO;
 using System.Text;
-using Palaso.Reporting;
+using SIL.Reporting;
 
 using NUnit.Framework;
-using Palaso.TestUtilities;
+using SIL.TestUtilities;
 using SolidGui.Engine;
 
 

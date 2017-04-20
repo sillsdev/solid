@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using Palaso.Progress;
-using Palaso.TestUtilities;
+using SIL.Progress;
+using SIL.TestUtilities;
 using SolidGui.Export;
 
 namespace SolidGui.Tests.Export

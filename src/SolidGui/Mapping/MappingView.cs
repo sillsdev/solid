@@ -4,7 +4,7 @@
 using System;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using Palaso.Reporting;
+using SIL.Reporting;
 using SolidGui.Engine;
 
 namespace SolidGui.Mapping
