@@ -5,10 +5,7 @@
 // JMC: Shouldn't this be moved into the MarkerSettings folder/namespace?
 
 using System;
-using Palaso.Reporting;
-
 using System.Windows.Forms;
-using Palaso.UI.WindowsForms.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;

@@ -5,8 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using Palaso.Progress;
-using Palaso.UI.WindowsForms.Progress;
+using SIL.Progress;
+using SIL.Windows.Forms.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
 

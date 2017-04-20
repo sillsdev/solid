@@ -40,7 +40,7 @@
             this._closeButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
-            this._wsPalasoPicker = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
+            this._wsPalasoPicker = new SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox();
             this._setupWsLink = new System.Windows.Forms.LinkLabel();
             this._outerTableLayoutPanel.SuspendLayout();
             this._tabControl.SuspendLayout();
@@ -263,7 +263,7 @@
         private System.Windows.Forms.CheckBox _cbUnicode;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label1;
-        private Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox _wsPalasoPicker;
+        private SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox _wsPalasoPicker;
         private System.Windows.Forms.LinkLabel _setupWsLink;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }

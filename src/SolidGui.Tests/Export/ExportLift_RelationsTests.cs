@@ -2,7 +2,8 @@
 using System.Globalization;
 using System.Xml;
 using NUnit.Framework;
-using Palaso.TestUtilities;
+using SIL.TestUtilities;
+using SIL.TestUtilities;
 
 namespace SolidGui.Tests.Export
 {

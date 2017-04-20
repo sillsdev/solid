@@ -7,8 +7,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Palaso.Reporting;
-using Palaso.WritingSystems;
+using SIL.Reporting;
+using SIL.Windows.Forms.WritingSystems;
+using SIL.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Model;
 
@@ -212,9 +213,9 @@ namespace SolidGui
                 IWritingSystemRepository repository = AppWritingSystems.WritingSystems;
                 if (repository.Contains(writingSystemId))
                 {
-                    IWritingSystemDefinition definition = repository.Get(writingSystemId);
+                    WritingSystemDefinition definition = repository.Get(writingSystemId);
                     float fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
-                    return new Font(definition.DefaultFontName, fontSize);
+                    return new Font(definition.DefaultFont.Name, fontSize);
                 }
             }
             // Failing that use Doulos if it's installed.

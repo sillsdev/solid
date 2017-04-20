@@ -11,7 +11,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Text;
-using Palaso.Reporting;
+using SIL.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Export;

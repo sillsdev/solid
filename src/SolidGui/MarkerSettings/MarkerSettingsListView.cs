@@ -12,8 +12,9 @@ using System.Text;
 using System.Windows.Forms;
 
 using GlacialComponents.Controls;
-using Palaso.Reporting;
-using Palaso.WritingSystems;
+using SIL.Reporting;
+using SIL.Windows.Forms.WritingSystems;
+using SIL.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Mapping;
@@ -208,7 +209,7 @@ namespace SolidGui.MarkerSettings
             {
                 return writingSystemId;
             }
-            IWritingSystemDefinition definition = repository.Get(writingSystemId);
+            WritingSystemDefinition definition = repository.Get(writingSystemId);
             return (definition != null) ? definition.DisplayLabel : "??";
         }
 

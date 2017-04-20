@@ -8,15 +8,7 @@ using System.Drawing;
 using System.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-/*
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text; */
 using SolidGui.Model;
-using Spart.Parsers.Primitives;
 
 namespace SolidGui.Search
 {
@@ -445,8 +437,8 @@ namespace SolidGui.Search
             {
                 string msg = string.Format("An unexpected error occurred while searching:\r\n{0}\r\n", error);
                 // JMC:! Palaso bug? If I don't include error here, the real exception name won't be in the report at all!
-                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
-                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
+                //SIL.Reporting.ErrorReport.ReportNonFatalException(error);
+                SIL.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
             }
 
             // bring the search form back into focus -JMC

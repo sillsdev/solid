@@ -8,7 +8,7 @@ using System.Text;
 using System.Xml;
 using SolidGui;
 using System.Linq;
-using Palaso.Extensions;
+using SIL.Extensions;
 using SolidGui.Engine;
 using SolidGui.Export;
 using SolidGui.Model;

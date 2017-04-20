@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Palaso.UI.WindowsForms.WritingSystems.WSIdentifiers;
-using System;
-using System.Windows.Forms;
-using Palaso.UI.WindowsForms.WritingSystems;
-using Palaso.WritingSystems;
+using SIL.Windows.Forms.WritingSystems.WSIdentifiers;
+using SIL.Windows.Forms.WritingSystems;
+using SIL.WritingSystems;
 using SolidGui.Engine;
 
 namespace SolidGui.MarkerSettings
@@ -109,7 +102,7 @@ namespace SolidGui.MarkerSettings
 
             _cbUnicode.Checked = _currentMarkerSetting.Unicode;
             
-            bool success = _wsModel.SetCurrentIndexFromRfc46464(_currentMarkerSetting.WritingSystemRfc4646); // can silently fail, but that's ok
+            bool success = _wsModel.SetCurrentIndexFromLanguageTag(_currentMarkerSetting.WritingSystemRfc4646); // can silently fail, but that's ok
             if (!success) _wsModel.ClearSelection();
 
             //setMarker for Mapping tab
@@ -221,7 +214,7 @@ namespace SolidGui.MarkerSettings
             if (_wsModel.HasCurrentSelection)
             {
                 string a = _currentMarkerSetting.WritingSystemRfc4646;
-                string b = _wsModel.CurrentRFC4646;
+                string b = _wsModel.CurrentLanguageTag;
                 if (a != b && !String.IsNullOrEmpty(b))   // The check for empty 'fixes' #1309. -JMC Nov 2014
                 {
                     _currentMarkerSetting.WritingSystemRfc4646 = b;
@@ -277,7 +270,7 @@ namespace SolidGui.MarkerSettings
             if (_wsModel.HasCurrentSelection)
             {
                 Cursor.Current = Cursors.WaitCursor;
-                d.ShowDialog(_wsModel.CurrentRFC4646);
+                d.ShowDialog(_wsModel.CurrentLanguageTag);
             }
             else
             {

@@ -5,8 +5,8 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using Palaso.TestUtilities;
-using Palaso.IO;
+using SIL.TestUtilities;
+using SIL.IO;
 using SolidGui.Engine;
 
 using NUnit.Framework;

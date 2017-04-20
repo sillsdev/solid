@@ -6,16 +6,21 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
-using Palaso.DictionaryServices.Lift;
-using Palaso.DictionaryServices.Model;
-using Palaso.Lift.Validation;
-using Palaso.Progress;
-using Palaso.Reporting;
-using Palaso.WritingSystems;
+using SIL.DictionaryServices.Lift;
+using SIL.DictionaryServices.Model;
+using SIL.Lift.Validation;
+using SIL.Progress;
+using SIL.Reporting;
+using SIL.WritingSystems;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Model;
 using System.Linq;
+using SIL.DictionaryServices.Lift;
+using SIL.DictionaryServices.Model;
+using SIL.Lift.Validation;
+using SIL.Progress;
+using SIL.WritingSystems;
 
 namespace SolidGui.Export
 {
@@ -69,11 +74,15 @@ namespace SolidGui.Export
 
         private static void WriteWritingSystemFolder(string outputFilePath, IEnumerable<SolidMarkerSetting> markerSettings, IProgress outerProgress)
         {
+            outerProgress.WriteMessage("Writing of LDML files in LIFT export needs to be re-implemented to work with libpalaso 3.1");
+//# if needsToBeFIxed
             outerProgress.WriteMessage("Copying Writing System files...");
             try
             {
                 // ReSharper disable AssignNullToNotNullAttribute
-                var repository = AppWritingSystems.WritingSystems as LdmlInFolderWritingSystemRepository;
+                //var repository = AppWritingSystems.WritingSystems as LdmlInFolderWritingSystemRepository; //<---- this is broken because AppWritingSystems.WritingSystems is no longer an instance of LdmlInFolderWritingSystemRepository
+                var repository = (GlobalWritingSystemRepository) AppWritingSystems.WritingSystems;
+
                 string dir = Path.GetDirectoryName(outputFilePath);
                 string writingSystemsPath = Path.Combine(dir, "WritingSystems");
                 if (!Directory.Exists(writingSystemsPath))
@@ -82,12 +91,12 @@ namespace SolidGui.Export
                 }
                 
                 //only copy the ones being used
-                foreach (IWritingSystemDefinition definition in repository.AllWritingSystems)
+                foreach (WritingSystemDefinition definition in repository.AllWritingSystems)
                 {
-                    IWritingSystemDefinition definition1 = definition; //avoid "access to modified closure"
-                    if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.Bcp47Tag))
+                    WritingSystemDefinition definition1 = definition; //avoid "access to modified closure"
+                    if (null != markerSettings.FirstOrDefault(m => m.WritingSystemRfc4646 == definition1.LanguageTag))
                     {
-                        string existing = repository.GetFilePathFromIdentifier(definition.StoreID);
+                        string existing = repository.GetFilePathFromLanguageTag(definition.LanguageTag);
                         string path = Path.Combine(writingSystemsPath, Path.GetFileName(existing));
                         File.Copy(existing, path, true);
                     }

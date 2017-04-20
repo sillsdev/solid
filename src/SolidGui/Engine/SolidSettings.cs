@@ -11,7 +11,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Xml.Linq;
-using Palaso.Reporting;
+using SIL.Reporting;
 using SolidGui.MarkerSettings;
 
 namespace SolidGui.Engine

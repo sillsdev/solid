@@ -8,9 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Palaso.Reporting;
+using SIL.Reporting;
 
-using Palaso.Extensions;
+using SIL.Extensions;
 using Solid.Engine;
 using SolidGui.Model;
 
@@ -43,7 +43,7 @@ namespace SolidGui
             }
             catch (Exception error)
             {
-                Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
+                SIL.Reporting.ErrorReport.ReportNonFatalException(error);
             }
         }
 
@@ -70,7 +70,7 @@ namespace SolidGui
             catch(Exception error)
             {
                 string msg = "An unexpected error occurred:\r\n" + error.Message;
-                Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error); // since quick fixes modify data, I would think this s/b fatal (data in unknown state) -JMC Feb 2014 
+                SIL.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error); // since quick fixes modify data, I would think this s/b fatal (data in unknown state) -JMC Feb 2014 
             }
         }
 
@@ -85,7 +85,7 @@ namespace SolidGui
             catch (Exception error)
             {
                 string msg = "An unexpected error occurred:\r\n" + error.Message;
-                Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error); // since quick fixes modify data, I would think this s/b fatal (data in unknown state) -JMC Feb 2014 
+                SIL.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error); // since quick fixes modify data, I would think this s/b fatal (data in unknown state) -JMC Feb 2014 
             }
             DialogResult = System.Windows.Forms.DialogResult.OK;
             Close();
