@@ -9,7 +9,6 @@
     <Solution>src\solid.sln</Solution>
     <ApplicationName>Solid</ApplicationName>
     <SolutionPath>$(teamcity_build_checkoutDir)\$(Solution)</SolutionPath>
-    <InstallerPath>../output/installer/$(ApplicationName)Installer.$(Version).exe</InstallerPath>
   </PropertyGroup>
 
   <Target Name="VersionNumbers">
@@ -22,6 +21,9 @@
     <CreateProperty Value="1.0.$(BuildCounter)">
       <Output PropertyName="Version" TaskParameter="Value"/>
     </CreateProperty>
+    <PropertyGroup>
+      <InstallerPath>../output/installer/$(ApplicationName)Installer.$(Version).exe</InstallerPath>
+    </PropertyGroup>
     <Message Text="Version: $(Version)" Importance="high"/>
   </Target>
 
