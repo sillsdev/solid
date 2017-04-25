@@ -66,7 +66,7 @@ cd -
 
 
 # *** Results ***
-# build: solid-win32-default Continuous (bt10)
+# build: Solid master continuous (bt10)
 # project: Solid
 # URL: http://build.palaso.org/viewType.html?buildTypeId=bt10
 # VCS: https://github.com/sillsdev/solid [refs/heads/master]
@@ -76,10 +76,11 @@ cd -
 #     URL: http://build.palaso.org/viewType.html?buildTypeId=PalasoWin32v26nostrongCont
 #     clean: false
 #     revision: latest.lastSuccessful
-#     paths: {"*.dll"=>"lib"}
+#     paths: {"*.dll"=>"lib", "*.pdb"=>"lib", "Palaso.BuildTasks.dll"=>"build/"}
 #     VCS: https://github.com/sillsdev/libpalaso.git []
 
 # make sure output directories exist
+mkdir -p ../build/
 mkdir -p ../lib
 
 # download artifact dependencies
@@ -134,4 +135,33 @@ copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26no
 copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/icuuc54.dll ../lib/icuuc54.dll
 copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/irrKlang.NET4.dll ../lib/irrKlang.NET4.dll
 copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/taglib-sharp.dll ../lib/taglib-sharp.dll
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/L10NSharp.pdb ../lib/L10NSharp.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.BuildTasks.pdb ../lib/Palaso.BuildTasks.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.DictionaryServices.pdb ../lib/Palaso.DictionaryServices.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.Lift.pdb ../lib/Palaso.Lift.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.Media.pdb ../lib/Palaso.Media.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.TestUtilities.pdb ../lib/Palaso.TestUtilities.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.Tests.pdb ../lib/Palaso.Tests.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.pdb ../lib/Palaso.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/PalasoUIWindowsForms.GeckoBrowserAdapter.pdb ../lib/PalasoUIWindowsForms.GeckoBrowserAdapter.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/PalasoUIWindowsForms.pdb ../lib/PalasoUIWindowsForms.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/SIL.Archiving.pdb ../lib/SIL.Archiving.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/SIL.ScriptureControls.Tests.pdb ../lib/SIL.ScriptureControls.Tests.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/SIL.ScriptureControls.pdb ../lib/SIL.ScriptureControls.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/SIL.ScriptureUtils.Tests.pdb ../lib/SIL.ScriptureUtils.Tests.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/SIL.ScriptureUtils.pdb ../lib/SIL.ScriptureUtils.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/L10NSharp.pdb ../lib/L10NSharp.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.BuildTasks.pdb ../lib/Palaso.BuildTasks.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.DictionaryServices.pdb ../lib/Palaso.DictionaryServices.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.Lift.pdb ../lib/Palaso.Lift.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.Media.pdb ../lib/Palaso.Media.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.TestUtilities.pdb ../lib/Palaso.TestUtilities.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.Tests.pdb ../lib/Palaso.Tests.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/Palaso.pdb ../lib/Palaso.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/PalasoUIWindowsForms.GeckoBrowserAdapter.pdb ../lib/PalasoUIWindowsForms.GeckoBrowserAdapter.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/PalasoUIWindowsForms.pdb ../lib/PalasoUIWindowsForms.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/SIL.Archiving.pdb ../lib/SIL.Archiving.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/SIL.ScriptureControls.Tests.pdb ../lib/SIL.ScriptureControls.Tests.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/debug/SIL.ScriptureControls.pdb ../lib/SIL.ScriptureControls.pdb
+copy_auto http://build.palaso.org/guestAuth/repository/download/PalasoWin32v26nostrongCont/latest.lastSuccessful/Palaso.BuildTasks.dll ../build/Palaso.BuildTasks.dll
 # End of script

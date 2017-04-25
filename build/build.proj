@@ -56,10 +56,10 @@
 
   <Target Name="MakeDownloadPointers" DependsOnTargets="VersionNumbers">
     <PropertyGroup>
-      <DownloadInfoPath>$(RootDir)\output\Installer\$(ApplicationName)Installer.$(Version).download_info</DownloadInfoPath>
+      <DownloadInfoPath>$(teamcity_build_checkoutDir)\output\Installer\$(ApplicationName)Installer.$(Version).download_info</DownloadInfoPath>
     </PropertyGroup>
     <!-- For use on software.sil.org download page -->
-    <Copy SourceFiles ="$(RootDir)\installer\template.download_info"        DestinationFiles ="$(DownloadInfoPath)"/>
+    <Copy SourceFiles ="$(teamcity_build_checkoutDir)\installer\template.download_info"        DestinationFiles ="$(DownloadInfoPath)"/>
     <FileUpdate File="$(DownloadInfoPath)" DatePlaceHolder='_DATE_' DateFormat='yyyy-MM-dd' Regex='_VERSION_'        ReplacementText ="$(Version)" />
     <FileUpdate File="$(DownloadInfoPath)" Regex='_BUILD'        ReplacementText ="$(BUILD_NUMBER)" />
     <FileUpdate File="$(DownloadInfoPath)" Regex='_CHANNEL_'        ReplacementText ="Release" />
