@@ -65,12 +65,12 @@
     <FileUpdate File="$(DownloadInfoPath)" Regex='_CHANNEL_'        ReplacementText ="Release" />
     <!--  push up to software.sil.org download page -->
     <Message Text="Attempting rsync of $(DownloadInfoPath) to software.sil.org" Importance="high"/>
-    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --dry-run --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(DownloadInfoPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationServerFolderName)/' />
+    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(DownloadInfoPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationServerFolderName)/' />
   </Target>
 
   <Target Name="Upload" DependsOnTargets="VersionNumbers; Installer">
     <Message Text="Attempting rsync of $(InstallerPath) to software.sil.org" Importance="high"/>
-    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --dry-run --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(InstallerPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationServerFolderName)/' />
+    <Exec Command ='"c:\program files\cwRsync\bin\rsync.exe" -vzlt --chmod=Dug=rwx,Fu=rw,go=r --stats --rsync-path="sudo -u vu2004 rsync" -e"\"c:\program files\cwRsync\bin\ssh\" -oUserKnownHostsFile=C:\BuildAgent\conf\known_hosts -oIdentityFile=/cygdrive/c/BuildAgent/conf/bob.key -l root"  "$(InstallerPath)" root@software.sil.org:/var/www/virtual/software.sil.org/htdocs/downloads/r/$(ApplicationServerFolderName)/' />
     <CallTarget Targets ='MakeDownloadPointers'/>
   </Target>
 
