@@ -6,8 +6,8 @@
   "platform_version": "",
   "architecture": "",
   "stability": "_CHANNEL_",
-  "file": "SolidInstaller-_VERSION_.msi",
+  "file": "SolidInstaller-_VERSION_.exe",
   "md5": "",
   "type": "exe",
-  "build": "_BUILD_"
+  "build": ""
 }
