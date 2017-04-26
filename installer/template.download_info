@@ -9,5 +9,5 @@
   "file": "SolidInstaller-_VERSION_.msi",
   "md5": "",
   "type": "exe",
-  "build": ""
+  "build": "_BUILD_"
 }
