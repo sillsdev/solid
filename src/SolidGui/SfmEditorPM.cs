@@ -207,6 +207,8 @@ namespace SolidGui
         {
             string writingSystemId = _model.Settings.FindOrCreateMarkerSetting(marker).WritingSystemRfc4646;
 
+            float fontSize = 12;
+
             // Get the default font information from the writing system.
             if (!String.IsNullOrEmpty(writingSystemId))
             {
@@ -214,17 +216,18 @@ namespace SolidGui
                 if (repository.Contains(writingSystemId))
                 {
                     WritingSystemDefinition definition = repository.Get(writingSystemId);
-                    float fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
-                    return new Font(definition.DefaultFont.Name, fontSize);
+                    fontSize = (definition.DefaultFontSize < 10) ? 10 : definition.DefaultFontSize;
+                    if (definition.DefaultFont != null)
+                        return new Font(definition.DefaultFont.Name, fontSize);
                 }
             }
             // Failing that use Doulos if it's installed.
             if (FontIsInstalled("Doulos SIL"))
             {
-                return new Font("Doulos SIL", 12);
+                return new Font("Doulos SIL", fontSize);
             }
             // Failing that use the default system font.
-            return new Font(FontFamily.GenericSansSerif, 12);
+            return new Font(FontFamily.GenericSansSerif, fontSize);
         }
 
 

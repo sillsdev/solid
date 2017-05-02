@@ -1,12 +1,25 @@
 ﻿using System.Xml;
 using NUnit.Framework;
 using SIL.TestUtilities;
+using SIL.WritingSystems;
 
 namespace SolidGui.Tests.Export
 {
     [TestFixture]
     public class ExportLift_RelationTests
     {
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            Sldr.Initialize();
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Sldr.Cleanup();
+        }
+
         [Test]
         public void Confer_cfInFirstEntry_ExportsRelationInFirstEntry()
         {

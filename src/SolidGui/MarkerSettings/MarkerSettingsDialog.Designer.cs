@@ -236,7 +236,7 @@
             this.MinimumSize = new System.Drawing.Size(433, 355);
             this.Name = "MarkerSettingsDialog";
             this.ShowIcon = false;
-            this.Text = "MarkerSettingsDialog";
+            this.Text = "Marker Settings";
             this.Deactivate += new System.EventHandler(this.MarkerSettingsDialog_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MarkerSettingsDialog_FormClosing);
             this._outerTableLayoutPanel.ResumeLayout(false);

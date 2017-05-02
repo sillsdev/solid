@@ -76,13 +76,15 @@ cd -
 #     URL: http://build.palaso.org/viewType.html?buildTypeId=Libpalaso_PalasoWin32masterNostrongnameContinuous
 #     clean: false
 #     revision: solid-1.0.tcbuildtag
-#     paths: {"*.dll"=>"lib", "*.pdb"=>"lib"}
+#     paths: {"Palaso.BuildTasks.dll"=>"build/", "*.dll"=>"lib", "*.pdb"=>"lib"}
 #     VCS: https://github.com/sillsdev/libpalaso.git []
 
 # make sure output directories exist
+mkdir -p ../build/
 mkdir -p ../lib
 
 # download artifact dependencies
+copy_auto http://build.palaso.org/guestAuth/repository/download/Libpalaso_PalasoWin32masterNostrongnameContinuous/solid-1.0.tcbuildtag/Palaso.BuildTasks.dll ../build/Palaso.BuildTasks.dll
 copy_auto http://build.palaso.org/guestAuth/repository/download/Libpalaso_PalasoWin32masterNostrongnameContinuous/solid-1.0.tcbuildtag/Commons.Xml.Relaxng.dll ../lib/Commons.Xml.Relaxng.dll
 copy_auto http://build.palaso.org/guestAuth/repository/download/Libpalaso_PalasoWin32masterNostrongnameContinuous/solid-1.0.tcbuildtag/Enchant.Net.dll ../lib/Enchant.Net.dll
 copy_auto http://build.palaso.org/guestAuth/repository/download/Libpalaso_PalasoWin32masterNostrongnameContinuous/solid-1.0.tcbuildtag/Interop.WIA.dll ../lib/Interop.WIA.dll

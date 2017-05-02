@@ -10,7 +10,8 @@ src/_ReSharper*
 *Thumbs.db
 *.orig
 
-src/packages/NUnit\.2\.6\.4/
+src/packages/NewtonSoft.Json*
+src/packages/NUnit*
 
 installer/setup-tmp\.iss
 
