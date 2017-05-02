@@ -178,7 +178,7 @@ if any of the fields have hard-wrapped data.";
         private void _markersTextBox_Validating(object sender, CancelEventArgs e)
         {
             return; // not sure we need validation after all; will try/catch instead.
-            _markersTextBox.Text = Regex.Replace(_markersTextBox.Text, @"[^ a-zA-Z_0-9]", "");
+            //_markersTextBox.Text = Regex.Replace(_markersTextBox.Text, @"[^ a-zA-Z_0-9]", "");
         }
     }
 }

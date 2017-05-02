@@ -33,7 +33,6 @@ namespace SolidGui.Model
             public string Shape = "";
             public IEnumerable<string> ShapeMarkers()
             {
-                char c = ' ';
                 var ret = Shape.Split(' ');
                 return ret.AsEnumerable();
             }
@@ -461,7 +460,6 @@ namespace SolidGui.Model
         {
             var dict = new SortedDictionary<string, int>();
             
-            int c = 0;
             foreach (Record rec in _recordList)
             {
                 foreach (SfmFieldModel f in rec.Fields)

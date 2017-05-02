@@ -295,7 +295,7 @@ namespace SolidGui.MarkerSettings
             {
                 foreach (GLItem gItem in _markerListView.Items)
                 {
-                    string m = MarkerFilter.Label + gItem.Text;
+                    string m = MarkerFilter.MarkerLabel + gItem.Text;
                     if (m == e.RecordFilter.Name)
                     {
                         marker = gItem.Text;

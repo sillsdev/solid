@@ -726,7 +726,6 @@ namespace SolidGui
             else
             {
                 // Enable this once all quick fixes return int for real
-                int z;
                 //MessageBox.Show("Nothing was changed.", "Done Running Fix", MessageBoxButtons.OK);
             }
         }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using SIL.Windows.Forms.WritingSystems.WSIdentifiers;
 using SIL.Windows.Forms.WritingSystems;
 using SIL.WritingSystems;
 using SolidGui.Engine;
@@ -27,7 +26,6 @@ namespace SolidGui.MarkerSettings
 
         private SolidMarkerSetting _currentMarkerSetting;
         private MarkerSettingsPM MarkerModel { get; set; }
-        private SolidMarkerSetting.MappingType _mappingType;
 
         /*
         public MarkerSettingsDialog()

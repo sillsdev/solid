@@ -1,8 +1,5 @@
-﻿using System;
-using System.Globalization;
-using System.Xml;
+﻿using System.Xml;
 using NUnit.Framework;
-using SIL.TestUtilities;
 using SIL.TestUtilities;
 
 namespace SolidGui.Tests.Export

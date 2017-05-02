@@ -16,11 +16,6 @@ using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Model;
 using System.Linq;
-using SIL.DictionaryServices.Lift;
-using SIL.DictionaryServices.Model;
-using SIL.Lift.Validation;
-using SIL.Progress;
-using SIL.WritingSystems;
 
 namespace SolidGui.Export
 {

@@ -78,7 +78,7 @@ namespace Solid.Engine
                         if (indexToMoveAfter >= i - 1)
                         {
                             // no-op 'move up' to own location
-                            count = count;
+                            //count = count;
                         }
                         else
                         {

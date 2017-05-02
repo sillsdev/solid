@@ -2,8 +2,6 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Text.RegularExpressions;
@@ -27,8 +25,6 @@ namespace SolidGui.Search
             RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private int _cursorIndex;
-        private int _startingTextIndex = -1;
-        private int _startingRecordIndex = -1;
 
         private SearchResult _searchResult;
 
@@ -105,8 +101,6 @@ namespace SolidGui.Search
 
         private void ResetStartingPoint() // and Refresh
         {
-            _startingRecordIndex = -1;
-            _startingTextIndex = -1;
             _searchResult = null; // has ch
             //_sfmEditorView. Select();
 
@@ -327,7 +321,6 @@ namespace SolidGui.Search
             textBoxReplacePreview.Text = "";
             bool scopeCurrent = (_scopeComboBox.SelectedIndex == 0); // "Current Filter" (formerly "Check Result") -JMC
             RecordIndex = GetRecordIndex(scopeCurrent);
-            _startingRecordIndex = RecordIndex;  //do we need this?
             bool single = radioButtonRegex.Checked;
             bool dubble = radioButtonDoubleRegex.Checked;
             bool reg = single || dubble;
@@ -350,7 +343,6 @@ namespace SolidGui.Search
             _searchModel.UseDoubleRegex = dubble;
             _searchModel.CaseSensitive = checkBoxCaseSensitive.Checked;
 
-            string f = null;
             string rw = null;
             if (_searchResult != null)
             {  // result of previous find

@@ -105,7 +105,6 @@ namespace SolidGui.Tests.Migration
             {
                 ss = SolidSettings.OpenSolidFile(f.Path);
             }
-            SolidSettings ss2;
 
             var f2Path = System.IO.Path.GetTempFileName();
             ss.SaveAs(f2Path);
