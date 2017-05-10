@@ -34,7 +34,7 @@ namespace SolidGui.Setup
             this._lblFrom = new System.Windows.Forms.Label();
             this._btnAdvanced = new System.Windows.Forms.Button();
             this._lblTo = new System.Windows.Forms.Label();
-            this._wscTo = new Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox();
+            this._wscTo = new SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this._btnApply = new System.Windows.Forms.Button();
             this._cbFrom = new System.Windows.Forms.ComboBox();
@@ -154,7 +154,7 @@ namespace SolidGui.Setup
 
 		private System.Windows.Forms.Label _lblFrom;
         private System.Windows.Forms.Button _btnAdvanced;
-        private Palaso.UI.WindowsForms.WritingSystems.WSPickerUsingComboBox _wscTo;
+        private SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox _wscTo;
 		private System.Windows.Forms.Label _lblTo;
 		private System.Windows.Forms.Label label6;
 		private System.Windows.Forms.Button _btnApply;

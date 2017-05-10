@@ -1,0 +1,33 @@
+BODY
+{
+    font-family: arial;
+    font-size: 10pt;
+    width: 335px;
+}
+H1
+{
+    font-size: 14pt;
+}
+H2
+{
+    font-size: 12pt;
+}
+P, LI
+{
+    text-align: left;
+    margin-top: 6px;
+}
+UL, LI
+{
+    list-style-type: none;
+    padding-left: 0px;
+}
+img.main-logo
+{
+    float: left;
+    width: 75px;
+}
+.clear
+{
+    clear: both;
+}

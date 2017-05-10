@@ -67,7 +67,7 @@ namespace SolidGui.Setup
                     string s = r.ReadToEnd();
 
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //swallow
                     return false;

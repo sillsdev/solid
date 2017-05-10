@@ -4,7 +4,7 @@ using NUnit.Framework;
 using SolidGui.Engine;
 using SolidGui.Filter;
 using SolidGui.Model;
-using Palaso.TestUtilities;
+using SIL.TestUtilities;
 
 namespace SolidGui.Tests
 {
@@ -18,7 +18,7 @@ namespace SolidGui.Tests
 
 			public EnvironmentForTest()
 			{
-				Palaso.Reporting.ErrorReport.IsOkToInteractWithUser = false;
+				SIL.Reporting.ErrorReport.IsOkToInteractWithUser = false;
 				_folder = new TemporaryFolder("SfmDictionaryTests");
 				_defaultSolidSettings = new SolidSettings();
 			}

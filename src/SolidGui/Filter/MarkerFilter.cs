@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2007-2014 SIL International
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
-using System;
 using System.Collections.Generic;
 using SolidGui.Model;
 
@@ -10,10 +9,10 @@ namespace SolidGui.Filter
     public sealed class MarkerFilter : RecordFilter
     {
         public readonly string Marker;
-        public const string Label = "Marker ";
+        public const string MarkerLabel = "Marker ";
 
         public MarkerFilter(RecordManager recordManager, string marker) :
-            base(recordManager, Label + marker)
+            base(recordManager, MarkerLabel + marker)
         {
             Marker = marker;
             UpdateFilter(); 

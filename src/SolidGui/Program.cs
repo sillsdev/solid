@@ -2,15 +2,13 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
-using Palaso.Reporting;
+using SIL.Reporting;
 using SolidGui.Properties;
 using SolidGui.Engine;
-using Palaso.UI.WindowsForms.Keyboarding;
-using SolidGui.Search;
+using SIL.Windows.Forms.Keyboarding;
+using SIL.WritingSystems;
 using SolidGui.Setup;
 
 namespace SolidGui
@@ -39,6 +37,8 @@ namespace SolidGui
             SetupErrorHandling(); 
             SetupUsageTracking();
 
+            Sldr.Initialize();
+
             MainWindowPM model = new MainWindowPM();  
             MainWindowView form = new MainWindowView(model);
             form.BindModels(model);
@@ -57,13 +57,14 @@ namespace SolidGui
             catch (Exception error)
             {
                 string msg = "There was an unexpected error:\r\n" + error.Message;
-                Palaso.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
+                SIL.Reporting.ErrorReport.ReportFatalMessageWithStackTrace(msg, error);
             }
             finally
             {
                 KeyboardController.Shutdown();
             }
             Settings.Default.Save();
+            Sldr.Cleanup();
         }
 
         static void TryToOpen(string fileName, MainWindowPM model, MainWindowView form)

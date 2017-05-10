@@ -4,7 +4,7 @@ EnableISX=true
 #define MyAppName "Solid"
 #define MyAppVersion "0.0.0"
 #define MyAppPublisher "SIL International"
-#define MyAppURL "http://solid.palaso.org"
+#define MyAppURL "http://software.sil.org/solid"
 #define MyAppExeName "Solid.exe"
 
 [Setup]
@@ -28,7 +28,7 @@ LicenseFile=license.rtf
 OutputBaseFilename=SolidInstaller
 Compression=lzma
 SolidCompression=yes
-WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP 
+WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP
 CreateUninstallRegKey=true
 ;JMC: If we do switch over to installing just for the current user, then do the following.
 ; PrivilegesRequired=lowest
@@ -48,11 +48,19 @@ Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Keyman7Interop.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Palaso.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\PalasoUIWindowsForms.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Palaso.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Palaso.Lift.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.Core.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.Windows.Forms.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.Windows.Forms.Keyboarding.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.Windows.Forms.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\SIL.Lift.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\L10NSharp.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\icu.net.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\icudt54.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\icuin54.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\icuuc54.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\release\Newtonsoft.Json.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\release\Enchant.Net.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
@@ -68,6 +76,8 @@ Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Example
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 Source: ..\doc\Solid Manual\Solid Documentation.pdf; DestDir: {app}
 Source: ..\license_MIT.txt; DestDir: {app}
+Source: ..\DistFiles\*.*; DestDir: {app}\DistFiles
+Source: ..\ArtWork\solid.png; DestDir: {app}\ArtWork
 
 [Messages]
 WinVersionTooLowError=Solid requires Windows 2000 or later.
@@ -96,9 +106,9 @@ function DotNetIsMissing(): Boolean;
 var
   readVal: cardinal;
   success: Boolean;
-begin               
+begin
   success := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', readVal);
-  success := success and ((readVal = 394254) or (readVal = 394271) 
+  success := success and ((readVal = 394254) or (readVal = 394271)
     // 4.6.2 is ok too
     or (readVal = 394802) or (readVal =394806))
     // 4.7 is ok too

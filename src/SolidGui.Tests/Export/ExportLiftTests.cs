@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using System.Xml;
 using NUnit.Framework;
-using Palaso.TestUtilities;
+using SIL.TestUtilities;
+using SIL.WritingSystems;
 
 namespace SolidGui.Tests.Export
 {
     [TestFixture]
     public class ExportLiftTests
     {
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            Sldr.Initialize();
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Sldr.Cleanup();
+        }
 
         [Test]
         public void Variant_aInSingleEntry_ExportsVariant()

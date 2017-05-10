@@ -5,10 +5,7 @@
 // JMC: Shouldn't this be moved into the MarkerSettings folder/namespace?
 
 using System;
-using Palaso.Reporting;
-
 using System.Windows.Forms;
-using Palaso.UI.WindowsForms.Reporting;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.MarkerSettings;
@@ -251,7 +248,7 @@ namespace SolidGui
             {
                 if (e.Item > 0)
                 {
-                    string msg = "The parent marker cannot be empty. Try a valid marker like \\sn or \\lx. To delete, click just once and press Delete.";
+                    //string msg = "The parent marker cannot be empty. Try a valid marker like \\sn or \\lx. To delete, click just once and press Delete.";
                     //MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // Fix for issue #1308 (was using ProblemNotificationDialog, which Palaso now hides)
                 }
                 e.CancelEdit = true;
@@ -260,7 +257,7 @@ namespace SolidGui
 
             if (!_model.ValidParent(e.Label))
             {
-                string msg = String.Format("'{0}' isn't a valid parent marker. It must be an existing marker, such as \\sn or \\lx .", e.Label);
+                //string msg = String.Format("'{0}' isn't a valid parent marker. It must be an existing marker, such as \\sn or \\lx .", e.Label);
                 //MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // Fix for issue #1308 (was using ProblemNotificationDialog, which Palaso now hides)
 
                 e.CancelEdit = true;

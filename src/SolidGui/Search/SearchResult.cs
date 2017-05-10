@@ -9,7 +9,6 @@ namespace SolidGui.Search
     {
         private int _recordIndex;
         private int _textIndex;
-        private int _resultLength;
         private RecordFilter _filter;
         private string _found;
         private string _replaceWith;

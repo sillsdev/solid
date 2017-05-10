@@ -5,8 +5,8 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-using Palaso.TestUtilities;
-using Palaso.IO;
+using SIL.TestUtilities;
+using SIL.IO;
 using SolidGui.Engine;
 
 using NUnit.Framework;
@@ -105,7 +105,6 @@ namespace SolidGui.Tests.Migration
             {
                 ss = SolidSettings.OpenSolidFile(f.Path);
             }
-            SolidSettings ss2;
 
             var f2Path = System.IO.Path.GetTempFileName();
             ss.SaveAs(f2Path);

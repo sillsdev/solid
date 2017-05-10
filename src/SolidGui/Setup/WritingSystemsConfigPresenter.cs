@@ -2,11 +2,9 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Palaso.UI.WindowsForms.WritingSystems;
-using Palaso.WritingSystems;
+using SIL.Windows.Forms.WritingSystems;
+using SIL.WritingSystems;
 using SolidGui.Engine;
 
 namespace SolidGui.Setup
@@ -79,7 +77,7 @@ namespace SolidGui.Setup
 
             // TODO Rename markers as per the advanced view -CP
 
-            int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentRFC4646);
+            int c = SolidSettings.FindReplaceWs(fromWritingSystem, _toWritingSystemSetupModel.CurrentLanguageTag);
             if (c > 0)
             {
                 _mainWindowPm.needsSave = true;

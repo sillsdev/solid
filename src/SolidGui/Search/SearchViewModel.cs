@@ -179,8 +179,6 @@ namespace SolidGui.Search
         /// Find within the specified filter
         public SearchResult NextResult(int recordIndex, int startIndexChar)
         {
-            Regex reg = null;
-
             int startingRecordIndex = recordIndex;
             SearchResult searchResult = null;
             int searchResultIndex = -1;
@@ -193,8 +191,6 @@ namespace SolidGui.Search
             while (true)  // loops once per record until match found (returns immediately) or we pass the starting point.
             {
                 searchResultIndex = -1;
-
-                string context = null;
 
                 if (UseDoubleRegex) 
                 {
@@ -248,8 +244,6 @@ namespace SolidGui.Search
                 recordIndex++;
                 recordIndex = WrapRecordIndex(recordIndex, this.Filter);
             }
-            
-            return null;
         }
 
         private int WrapRecordIndex(int recordIndex, RecordFilter filter)  //probably should be static -JMC

@@ -2,8 +2,9 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System.Collections.Generic;
-using Palaso.WritingSystems;
-using Palaso.WritingSystems.Migration.WritingSystemsLdmlV0To1Migration;
+using SIL.Windows.Forms.WritingSystems;
+using SIL.WritingSystems.Migration.WritingSystemsLdmlV0To1Migration;
+using SIL.WritingSystems;
 
 namespace SolidGui
 {
@@ -15,15 +16,8 @@ namespace SolidGui
         {
             get
             {
-                return _sWritingSystemsRepository ?? (_sWritingSystemsRepository = GlobalWritingSystemRepository.Initialize(
-                    MigrationHandler
-                ));
+                return _sWritingSystemsRepository ?? (_sWritingSystemsRepository = GlobalWritingSystemRepository.Initialize());
             }
-        }
-
-
-        public static void MigrationHandler(IEnumerable<LdmlVersion0MigrationStrategy.MigrationInfo> migrationinfo)
-        {
         }
     }
 }

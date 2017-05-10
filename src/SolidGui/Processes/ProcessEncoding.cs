@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
-using Palaso.Reporting;
+using SIL.Reporting;
 using SolidGui.Engine;
 using SolidGui.Model;
 

@@ -2,21 +2,11 @@
 // Licensed under the MIT license: opensource.org/licenses/MIT
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Media;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-/*
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text; */
 using SolidGui.Model;
-using Spart.Parsers.Primitives;
 
 namespace SolidGui.Search
 {
@@ -35,8 +25,6 @@ namespace SolidGui.Search
             RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private int _cursorIndex;
-        private int _startingTextIndex = -1;
-        private int _startingRecordIndex = -1;
 
         private SearchResult _searchResult;
 
@@ -113,8 +101,6 @@ namespace SolidGui.Search
 
         private void ResetStartingPoint() // and Refresh
         {
-            _startingRecordIndex = -1;
-            _startingTextIndex = -1;
             _searchResult = null; // has ch
             //_sfmEditorView. Select();
 
@@ -335,7 +321,6 @@ namespace SolidGui.Search
             textBoxReplacePreview.Text = "";
             bool scopeCurrent = (_scopeComboBox.SelectedIndex == 0); // "Current Filter" (formerly "Check Result") -JMC
             RecordIndex = GetRecordIndex(scopeCurrent);
-            _startingRecordIndex = RecordIndex;  //do we need this?
             bool single = radioButtonRegex.Checked;
             bool dubble = radioButtonDoubleRegex.Checked;
             bool reg = single || dubble;
@@ -358,7 +343,6 @@ namespace SolidGui.Search
             _searchModel.UseDoubleRegex = dubble;
             _searchModel.CaseSensitive = checkBoxCaseSensitive.Checked;
 
-            string f = null;
             string rw = null;
             if (_searchResult != null)
             {  // result of previous find
@@ -445,8 +429,8 @@ namespace SolidGui.Search
             {
                 string msg = string.Format("An unexpected error occurred while searching:\r\n{0}\r\n", error);
                 // JMC:! Palaso bug? If I don't include error here, the real exception name won't be in the report at all!
-                //Palaso.Reporting.ErrorReport.ReportNonFatalException(error);
-                Palaso.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
+                //SIL.Reporting.ErrorReport.ReportNonFatalException(error);
+                SIL.Reporting.ErrorReport.ReportNonFatalExceptionWithMessage(error, msg);
             }
 
             // bring the search form back into focus -JMC

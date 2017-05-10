@@ -11,7 +11,9 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Text;
-using Palaso.Reporting;
+using SIL.IO;
+using SIL.Reporting;
+using SIL.Windows.Forms.Miscellaneous;
 using Solid.Engine;
 using SolidGui.Engine;
 using SolidGui.Export;
@@ -529,9 +531,10 @@ namespace SolidGui
 
         private void OnAboutBoxButton_Click(object sender, EventArgs e)
         {
-            AboutBox box = new AboutBox();
-            box.ShowDialog();
-            box.Dispose();
+            using (SILAboutBox box = new SILAboutBox(FileLocator.GetFileDistributedWithApplication("aboutBox.htm")))
+            {
+                box.ShowDialog();
+            }
         }
 
         private void MainWindowView_FormClosing(object sender, FormClosingEventArgs e)
@@ -726,7 +729,6 @@ namespace SolidGui
             else
             {
                 // Enable this once all quick fixes return int for real
-                int z;
                 //MessageBox.Show("Nothing was changed.", "Done Running Fix", MessageBoxButtons.OK);
             }
         }

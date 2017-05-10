@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Palaso.Code;
+using SIL.Code;
 using SolidGui.Model;
 
 namespace SolidGui.Engine
