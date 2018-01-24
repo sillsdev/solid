@@ -2,7 +2,7 @@
 EnableISX=true
 
 #define MyAppName "Solid"
-#define MyAppVersion "0.0.0"
+#define MyAppVersion "0.21.0"
 #define MyAppPublisher "SIL International"
 #define MyAppURL "http://software.sil.org/solid"
 #define MyAppExeName "Solid.exe"
@@ -108,12 +108,7 @@ var
   success: Boolean;
 begin
   success := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', readVal);
-  success := success and ((readVal = 394254) or (readVal = 394271)
-    // 4.6.2 is ok too
-    or (readVal = 394802) or (readVal =394806))
-    // 4.7 is ok too
-    or (readVal = 460798);   //<- that is for Windows 10 Creators Update. If later 4.7 becomes available for Windows 7 and 8, we'll need a new number! Yuck.
-
+  success := success and (readVal >= 394254); // 394254 is the number for 4.6.1
   Result := not success;
 end;
 
