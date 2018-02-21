@@ -87,7 +87,7 @@
     <!-- remove an existing one with the same name, if necessary -->
     <Delete Files="$(InstallerPath)" TreatErrorsAsWarnings="false" />
     <!-- sign with SIL certificate -->
-    <!--    <Exec Command='sign "$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe"'></Exec>-->
+    <Exec Command='sign "$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe"'></Exec>
     <Copy SourceFiles="$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe" DestinationFiles="$(InstallerPath)" />
     <!-- remove the installer which has no version number (wouldn't need this if the copy above was a move, instead) -->
     <Delete Files="$(teamcity_build_checkoutDir)\installer\output\$(ApplicationName)Installer.exe" TreatErrorsAsWarnings="false" />
