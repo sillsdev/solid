@@ -1,0 +1,70 @@
+name: Build Solid
+
+on: 
+  push:
+
+jobs:
+  build:
+    # note that the older .Net 4.6.1 isn't installed on windows-latest anymore
+    # see https://github.com/actions/runner-images/issues/5055
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: microsoft/setup-msbuild@v2
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            src\packages
+            lib
+          key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
+
+      - name: Restore NuGet packages
+        if: ${{ hashFiles('src/packages/repositories.config') == '' }}
+        working-directory: src
+        run: nuget restore
+
+      - name: inspect packages dir
+        shell: bash
+        working-directory: src/packages
+        run: find .
+     
+      - name: Get dependencies from TeamCity
+        if: ${{ hashFiles('lib/SIL.Core.dll') == '' }}
+        shell: bash
+        working-directory: build
+        run: ./getDependencies-windows.sh
+
+      - name: inspect lib dir
+        shell: bash
+        working-directory: lib
+        run: find .
+
+      - name: Build Solid
+        run: msbuild /p:Configuration=Debug /p:Platform=x86 src/solid.sln
+      
+      - name: Install NUnit.Runner
+        run: nuget install NUnit.Runners -Version 2.6.4 -DirectDownload -OutputDirectory .
+
+      - name: inspect root dir
+        shell: bash
+        run: find .
+
+      # - name: Run NUnit Tests
+      #   working-directory: output/x86/Debug
+      #   run: ../../../NUnit.Runners.2.6.4/tools/nunit-console.exe ./SolidGui.Tests.dll
+
+        # clear output directory
+        # build for release ?
+      
+      - name: Capture build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: solid-buildoutput
+          path: |
+            output/
+            lib/
+          if-no-files-found: error
+          retention-days: 1
