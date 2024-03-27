@@ -1,10 +1,11 @@
-name: Solid - Build, Test, Installer
+name: Solid - Build, Test, Installer, Release
 
 on: 
   push:
 
 jobs:
   build-and-test:
+    name: Build and Run Tests
     # note that the older .Net 4.6.1 isn't installed on windows-latest anymore
     # see https://github.com/actions/runner-images/issues/5055
     runs-on: windows-2019
@@ -24,23 +25,23 @@ jobs:
             lib
           key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
 
-      - name: Restore NuGet packages
+      - name: Restore NuGet Packages
         if: ${{ hashFiles('src/packages/repositories.config') == '' }}
         working-directory: src
         run: nuget restore
 
-      - name: inspect packages dir
+      - name: Inspect packages dir
         shell: bash
         working-directory: src/packages
         run: find .
      
-      - name: Get dependencies from TeamCity
+      - name: Get Dependencies from TeamCity
         if: ${{ hashFiles('lib/SIL.Core.dll') == '' }}
         shell: bash
         working-directory: build
         run: ./getDependencies-windows.sh
 
-      - name: inspect lib dir
+      - name: Inspect lib dir
         shell: bash
         working-directory: lib
         run: find .
@@ -52,7 +53,7 @@ jobs:
       - name: Install NUnit.Runner
         run: nuget install NUnit.Runners -Version 2.6.4 -DirectDownload -OutputDirectory .
 
-      - name: inspect root dir
+      - name: Inspect root dir
         shell: bash
         run: find .
 
@@ -63,7 +64,7 @@ jobs:
         # clear output directory
         # build for release ?
       
-      - name: Capture build artifacts
+      - name: Capture Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: solid-buildoutput
@@ -74,7 +75,7 @@ jobs:
           retention-days: 1
 
   installer:
-    name: Make Solid installer
+    name: Make installer
     needs: build-and-test
     runs-on: windows-2019
 
@@ -102,3 +103,26 @@ jobs:
           name: solid-installer
           path: installer\Output\SolidInstaller.exe
           if-no-files-found: error
+
+  create-release:
+    name: Create release
+    needs: installer
+    runs-on: ubuntu-latest
+    # if: startsWith(github.ref, 'refs/tags/v')
+
+    steps:
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: solid-installer
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SolidInstaller.exe
+          body: |
+            Release for version ${{ github.ref }}
+          draft: true
