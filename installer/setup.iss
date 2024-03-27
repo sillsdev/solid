@@ -28,7 +28,7 @@ LicenseFile=license.rtf
 OutputBaseFilename=SolidInstaller
 Compression=lzma
 SolidCompression=yes
-WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP
+;WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP
 CreateUninstallRegKey=true
 ;JMC: If we do switch over to installing just for the current user, then do the following.
 ; PrivilegesRequired=lowest
@@ -75,7 +75,7 @@ Source: ..\templates\PLB SFM.txt; DestDir: {app}\templates
 Source: ..\Solid Examples\BambaraSolidDemo.db; DestDir: {userdocs}\Solid Examples
 Source: ..\Solid Examples\BambaraTutorial2.db; DestDir: {userdocs}\Solid Examples
 Source: ..\doc\Solid Manual\Solid Documentation.pdf; DestDir: {app}
-Source: ..\license_MIT.txt; DestDir: {app}
+Source: ..\LICENSE.md; DestDir: {app}
 Source: ..\DistFiles\*.*; DestDir: {app}\DistFiles
 Source: ..\ArtWork\solid.png; DestDir: {app}\ArtWork
 

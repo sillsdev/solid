@@ -1,20 +1,23 @@
-name: Build Solid
+name: Solid - Build, Test, Installer
 
 on: 
   push:
 
 jobs:
-  build:
+  build-and-test:
     # note that the older .Net 4.6.1 isn't installed on windows-latest anymore
     # see https://github.com/actions/runner-images/issues/5055
     runs-on: windows-2019
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: microsoft/setup-msbuild@v2
 
-      - uses: actions/cache@v3
+      # the caching mechanism below and the corresponding "if" conditions for nuget and TC dependencies is sort of a hack
+      # These deps never change so we cache them to speed up the GHA build.  As we move to all deps in nuget, we should remove these lines
+      # and allow nuget to manage caching (remove "if" condition statements)
+      - uses: actions/cache@v4
         with:
           path: |
             src\packages
@@ -42,7 +45,8 @@ jobs:
         working-directory: lib
         run: find .
 
-      - name: Build Solid
+        # NUnit tests are only built with debug configuration
+      - name: Build Solid for NUnit tests
         run: msbuild /p:Configuration=Debug /p:Platform=x86 src/solid.sln
       
       - name: Install NUnit.Runner
@@ -68,3 +72,33 @@ jobs:
             lib/
           if-no-files-found: error
           retention-days: 1
+
+  installer:
+    name: Make Solid installer
+    needs: build-and-test
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - uses: actions/cache@v4
+        with:
+          path: |
+            src\packages
+            lib
+          key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
+
+      # nuget and TC dependencies come from the cache
+
+      - name: Build Solid for Release
+        run: msbuild /p:Configuration=Release src/solid.sln
+      
+      - name: Build Installer
+        run: iscc installer/setup.iss
+
+      - name: Save installer as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: solid-installer
+          path: installer\Output\SolidInstaller.exe
+          if-no-files-found: error
