@@ -19,14 +19,13 @@ jobs:
       # These deps never change so we cache them to speed up the GHA build.  As we move to all deps in nuget, we should remove these lines
       # and allow nuget to manage caching (remove "if" condition statements)
       - uses: actions/cache@v4
+        id: cache-nuget
         with:
-          path: |
-            src\packages
-            lib
+          path: src\packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
 
       - name: Restore NuGet Packages
-        if: ${{ hashFiles('src/packages/repositories.config') == '' }}
+        if: ${{ steps.cache-nuget.outputs.cache-hit != 'true' }}
         working-directory: src
         run: nuget restore
 
@@ -35,8 +34,14 @@ jobs:
         working-directory: src/packages
         run: find .
      
+      - uses: actions/cache@v4
+        id: cache-teamcity
+        with:
+          path: lib
+          key: ${{ runner.os }}-teamcity-${{ hashFiles('build/getDependencies-windows.sh') }}
+
       - name: Get Dependencies from TeamCity
-        if: ${{ hashFiles('lib/SIL.Core.dll') == '' }}
+        if: ${{ steps.cache-teamcity.outputs.cache-hit != 'true' }}
         shell: bash
         working-directory: build
         run: ./getDependencies-windows.sh
@@ -74,8 +79,8 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
-  installer:
-    name: Make installer
+  build-installer:
+    name: Make Installer
     needs: build-and-test
     runs-on: windows-2019
 
@@ -84,10 +89,12 @@ jobs:
       - uses: microsoft/setup-msbuild@v2
       - uses: actions/cache@v4
         with:
-          path: |
-            src\packages
-            lib
+          path: src\packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
+      - uses: actions/cache@v4
+        with:
+          path: lib
+          key: ${{ runner.os }}-teamcity-${{ hashFiles('build/getDependencies-windows.sh') }}
 
       # nuget and TC dependencies come from the cache
 
@@ -97,27 +104,35 @@ jobs:
       - name: Build Installer
         run: iscc installer/setup.iss
 
-      - name: Save installer as artifact
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: solid-installer
+          name: SolidInstaller.exe
           path: installer\Output\SolidInstaller.exe
           if-no-files-found: error
 
+  sign-installer:
+    name: Sign SOLID installer
+    needs: build-installer
+    if: startsWith(github.ref, 'refs/tags/v')
+    uses: sillsdev/codesign/.github/workflows/sign.yml@v1
+    with:
+      target: SolidInstaller.exe
+    secrets:
+      certificate: ${{ secrets.CODESIGN_LSDEVSECTIGOEV }}
+
+
   create-release:
-    name: Create release
-    needs: installer
-    runs-on: ubuntu-latest
-    # if: startsWith(github.ref, 'refs/tags/v')
+    name: Create Release
+    needs: sign-installer
+
+    runs-on: windows-latest
+
+    if: startsWith(github.ref, 'refs/tags/v')
 
     steps:
-
       - uses: actions/download-artifact@v4
         with:
-          name: solid-installer
-
-      - name: Display structure of downloaded files
-        run: ls -R
+          name: SolidInstaller.exe
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
