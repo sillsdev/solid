@@ -106,9 +106,9 @@ jobs:
     name: Sign SOLID installer
     needs: build-installer
     if: startsWith(github.ref, 'refs/tags/v')
-    uses: sillsdev/codesign/.github/workflows/sign.yml@v1
+    uses: sillsdev/codesign/.github/workflows/sign.yml@v2
     with:
-      target: SolidInstaller.exe
+      artifact: SolidInstaller.exe
     secrets:
       certificate: ${{ secrets.CODESIGN_LSDEVSECTIGOEV }}
 
