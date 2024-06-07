@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using SolidConsole;
+using SolidGui.Engine;
 using NUnit.Framework;
+using SIL.TestUtilities;
 
 namespace SolidGui.Tests
 {

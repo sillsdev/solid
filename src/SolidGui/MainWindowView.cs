@@ -531,7 +531,7 @@ namespace SolidGui
 
         private void OnAboutBoxButton_Click(object sender, EventArgs e)
         {
-            using (SILAboutBox box = new SILAboutBox(FileLocator.GetFileDistributedWithApplication("aboutBox.htm")))
+            using (SILAboutBox box = new SILAboutBox(FileLocationUtilities.GetFileDistributedWithApplication("aboutBox.htm")))
             {
                 box.ShowDialog();
             }

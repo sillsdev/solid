@@ -10,13 +10,13 @@ namespace SolidGui.Tests.Export
     [TestFixture]
     public class ExportLiftTests
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Sldr.Initialize();
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void TestFixtureTearDown()
         {
             Sldr.Cleanup();

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using SIL.Progress;
-using SIL.Windows.Forms.Progress;
 using SolidGui.Engine;
 using SolidGui.Model;
 

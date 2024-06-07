@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using SolidConsole;
+using SolidGui.Engine;
 
 namespace SolidGui
 {
@@ -36,7 +36,7 @@ namespace SolidGui
                     SolidStructureProperty structureProperty = GetProperty(parent);
 
                     structureProperty.Parent = parent;
-                    structureProperty.MultipleAdjacent = ma;
+                    structureProperty.Multiplicity = ma;
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace SolidGui
                     return mp;
                 }
             }
-            SolidMarkerSetting newProperty = new SolidMarkerSetting(marker);
+            SolidMarkerSetting newProperty = new(marker, false);
             _markerProperties.Add(newProperty);
             return newProperty;
         }

@@ -11,7 +11,7 @@ namespace SolidGui.Tests.Engine
     public class SfmReader_Read_Test
     {
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Init()
         {
         }
