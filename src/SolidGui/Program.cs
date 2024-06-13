@@ -10,6 +10,7 @@ using SolidGui.Engine;
 using SIL.Windows.Forms.Keyboarding;
 using SIL.WritingSystems;
 using SolidGui.Setup;
+using SIL.Windows.Forms.Reporting;
 
 namespace SolidGui
 {
@@ -92,7 +93,7 @@ namespace SolidGui
 
         private static void SetupErrorHandling()
         {
-            ExceptionHandler.Init();
+            ExceptionHandler.Init(new WinFormsExceptionHandler());
             Logger.Init();
             ErrorReport.Init("solid@projects.palaso.org");
         }

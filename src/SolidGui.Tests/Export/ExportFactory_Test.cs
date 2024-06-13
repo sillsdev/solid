@@ -11,7 +11,7 @@ namespace SolidGui.Tests.Export
     {
         ExportFactory _f;
 
-        [TestFixtureSetUp]
+        [SetUp]
         public void Init()
         {
             _f = ExportFactory.Singleton();

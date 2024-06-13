@@ -60,9 +60,14 @@ namespace SolidGui.Export
             }
             outerProgress.WriteMessage("");
             outerProgress.WriteMessage("Checking result to make sure it is valid LIFT XML...");
-            string result = Validator.GetAnyValidationErrors(outputFilePath, new NullValidationProgress(), ValidationOptions.All);
-            if(!string.IsNullOrEmpty(result))
-                outerProgress.WriteError(result);
+            try
+            {
+                Validator.CheckLiftWithPossibleThrow(outputFilePath);
+            }
+            catch (Exception e)
+            {
+                outerProgress.WriteError(e.Message);
+            }
             WriteWritingSystemFolder(outputFilePath, solidSettings.MarkerSettings, outerProgress);
             outerProgress.WriteMessage("Done");
         }

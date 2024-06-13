@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml.Serialization;
-using SolidEngine;
+using SolidGui.Engine;
+using SolidGui.Filter;
+using SolidGui.Model;
 
 namespace SolidGui
 {

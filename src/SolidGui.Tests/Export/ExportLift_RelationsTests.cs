@@ -8,13 +8,13 @@ namespace SolidGui.Tests.Export
     [TestFixture]
     public class ExportLift_RelationTests
     {
-        [TestFixtureSetUp]
+        [SetUp]
         public void TestFixtureSetUp()
         {
             Sldr.Initialize();
         }
 
-        [TestFixtureTearDown]
+        [TearDown]
         public void TestFixtureTearDown()
         {
             Sldr.Cleanup();
