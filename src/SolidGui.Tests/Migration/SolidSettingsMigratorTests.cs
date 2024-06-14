@@ -18,7 +18,7 @@ namespace SolidGui.Tests.Migration
     {
 
         private readonly string _v1Content = @"<?xml version='1.0' encoding='utf-8'?>
-<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+<SolidSettings xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <RecordMarker>lx</RecordMarker>
   <Version>1.0</Version>
   <MarkerSettings>
@@ -43,7 +43,7 @@ namespace SolidGui.Tests.Migration
 
         // Same content, in the latest format
         private readonly string _vNewContent = @"<?xml version='1.0' encoding='utf-8'?>
-<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+<SolidSettings xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <RecordMarker>lx</RecordMarker>
   <Version>3</Version>
   <MarkerSettings>
@@ -117,7 +117,7 @@ namespace SolidGui.Tests.Migration
         // Similar content, in v1 format and missing various bits
         // Omitted: <Version>, <RecordMarker>
         private readonly string _omissionsV1 = @"<?xml version='1.0' encoding='utf-8'?>
-<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+<SolidSettings xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <MarkerSettings>
     <SolidMarkerSetting>
       <WritingSystem>lbw</WritingSystem>
@@ -147,7 +147,7 @@ namespace SolidGui.Tests.Migration
 </SolidSettings>".Replace('\'', '"');
 
         private readonly string _omissionsCorrected = @"<?xml version='1.0' encoding='utf-8'?>
-<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+<SolidSettings xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <RecordMarker>lx</RecordMarker>
   <Version>3</Version>
   <MarkerSettings>
@@ -203,7 +203,7 @@ namespace SolidGui.Tests.Migration
 
 
         private readonly string _currentContent = @"<?xml version='1.0' encoding='utf-8'?>
-<SolidSettings xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+<SolidSettings xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <RecordMarker>lx</RecordMarker>
   <Version>3</Version>
   <MarkerSettings>

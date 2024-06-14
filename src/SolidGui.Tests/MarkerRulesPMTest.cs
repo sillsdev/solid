@@ -52,7 +52,7 @@ namespace SolidGui.Tests
             string[] file = File.ReadAllLines(_xmlPath);
             System.Xml.XmlDocument doc = new XmlDocument();
             doc.Load(_xmlPath);
-            XmlNodeList nodelist = doc.GetElementsByTagName("StructureProperty");
+            XmlNodeList nodelist = doc.GetElementsByTagName("SolidStructureProperty");
 
             Assert.AreEqual(3, nodelist.Count );
         }
