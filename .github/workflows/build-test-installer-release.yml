@@ -32,10 +32,7 @@ jobs:
         run: dotnet build src/solid.sln --no-restore
 
       - name: Run NUnit Tests
-        run: dotnet test output/net461/*Tests.dll --no-build -- NUnit.TestOutputXml=TestResults
-
-        # clear output directory
-        # build for release ?
+        run: dotnet test output/net461/*Tests.dll  --filter "TestCategory != SkipOnCI" --no-build -- NUnit.TestOutputXml=TestResults
 
   build-installer:
     name: Build Release And Make Installer

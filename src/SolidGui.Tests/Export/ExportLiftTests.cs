@@ -432,7 +432,7 @@ namespace SolidGui.Tests.Export
         /// <summary>
         /// this test is half-baked... if there's no english ldml on the machine, it won't work (e.g. on teamcity)
         /// </summary>
-        [Test, Category("SkipOnTeamCity")]
+        [Test, Category("SkipOnCI")]
         public void WritingSystems_WSFolderNotThere_CreatesItAndCopiesWritingSystemsToWritingSystemFolder()
         {
             using (var e = new ExportTestScenario())
@@ -456,7 +456,7 @@ namespace SolidGui.Tests.Export
         /// <summary>
         /// this test is half-baked... if there's no english ldml on the machine, it won't work (e.g. on teamcity)
         /// </summary>
-        [Test, Category("SkipOnTeamCity")]
+        [Test, Category("SkipOnCI")]
         public void WritingSystems_WSFolderAlreadyExists_CopiesWritingSystemsToWritingSystemFolder()
         {
             using (var e = new ExportTestScenario())
