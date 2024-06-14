@@ -9,6 +9,7 @@ src/_ReSharper*
 *.ReSharper
 *Thumbs.db
 *.orig
+.vs/
 
 src/packages/NewtonSoft.Json*
 src/packages/NUnit*
