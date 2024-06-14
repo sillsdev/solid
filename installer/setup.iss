@@ -2,7 +2,7 @@
 EnableISX=true
 
 #define MyAppName "Solid"
-#define MyAppVersion "0.21.0"
+#define MyAppVersion "1.0.0"
 #define MyAppPublisher "SIL International"
 #define MyAppURL "http://software.sil.org/solid"
 #define MyAppExeName "Solid.exe"
