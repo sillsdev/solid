@@ -18,7 +18,7 @@ jobs:
 
       - name: Cache NuGet packages
         id: cache-nuget
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
@@ -41,24 +41,32 @@ jobs:
     runs-on: windows-2019
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: microsoft/setup-msbuild@v2
-
-      # nuget and TC dependencies come from the cache
-      - uses: actions/cache@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          path: src\packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('src/SolidGui/packages.config') }} # hash of one packages.config (there are others)
+          fetch-depth: '0'
 
-      - uses: actions/cache@v4
+      - name: Cache NuGet packages
+        id: cache-nuget
+        uses: actions/cache@v4
         with:
-          path: lib
-          key: ${{ runner.os }}-teamcity-${{ hashFiles('build/getDependencies-windows.sh') }}
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
-
-      - name: Build Solid for Release
-        run: msbuild /p:Configuration=Release src/solid.sln
+      - name: Restore
+        run: dotnet restore src/solid.sln
       
+      - name: Build
+        run: dotnet build -c Release src/solid.sln --no-restore
+      
+      - name: List files and subdirectories
+        run: |
+          $path = "output"  # Change this to your target path
+          Get-ChildItem -Path $path -Recurse
+        shell: powershell
+
       - name: Build Installer
         run: iscc installer/setup.iss
 

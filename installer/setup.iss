@@ -44,24 +44,22 @@ Name: {userdocs}\Solid Examples
 
 [Files]
 Source: ..\installer\isxdl.dll; Flags: dontcopy
-Source: ..\output\release\Solid.exe; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Keyman7Interop.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.Core.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.Windows.Forms.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.Windows.Forms.Keyboarding.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.Windows.Forms.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\SIL.Lift.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\L10NSharp.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\icu.net.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\icudt54.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\icuin54.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\icuuc54.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Newtonsoft.Json.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\release\Enchant.Net.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\Solid.exe; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\KeymanLink.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\Keyman7Interop.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\GlacialList.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.Core.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.Windows.Forms.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.Windows.Forms.Keyboarding.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.Windows.Forms.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.WritingSystems.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.DictionaryServices.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\SIL.Lift.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\L10NSharp.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\icu.net.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\icu.net.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\Newtonsoft.Json.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net461\Enchant.Net.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
