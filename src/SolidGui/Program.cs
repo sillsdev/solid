@@ -95,7 +95,6 @@ namespace SolidGui
         {
             ExceptionHandler.Init(new WinFormsExceptionHandler());
             Logger.Init();
-            ErrorReport.Init("solid@projects.palaso.org");
         }
 
         private static void SetupUsageTracking()
