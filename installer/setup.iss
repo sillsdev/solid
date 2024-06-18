@@ -19,7 +19,7 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={commonpf}\{#MyAppName}
 DisableDirPage=yes
 DisableReadyPage=yes
 DefaultGroupName={#MyAppName}
@@ -30,8 +30,7 @@ Compression=lzma
 SolidCompression=yes
 ;WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP
 CreateUninstallRegKey=true
-;JMC: If we do switch over to installing just for the current user, then do the following.
-; PrivilegesRequired=lowest
+UsedUserAreasWarning=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
