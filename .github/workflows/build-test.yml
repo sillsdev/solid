@@ -1,0 +1,35 @@
+name: Solid - Build and Test
+
+on: 
+  push:
+
+jobs:
+  build-and-test:
+    name: Build Debug and Run Tests
+    # note that the older .Net 4.6.1 isn't installed on windows-latest anymore
+    # see https://github.com/actions/runner-images/issues/5055
+    runs-on: windows-2019
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Cache NuGet packages
+        id: cache-nuget
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore
+        run: dotnet restore src/solid.sln
+      
+      - name: Build
+        run: dotnet build src/solid.sln --no-restore
+
+      - name: Run NUnit Tests
+        run: dotnet test output/net461/*Tests.dll  --filter "TestCategory != SkipOnCI" --no-build -- NUnit.TestOutputXml=TestResults
