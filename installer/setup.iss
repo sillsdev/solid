@@ -2,7 +2,11 @@
 EnableISX=true
 
 #define MyAppName "Solid"
+
+#ifndef MyAppVersion
 #define MyAppVersion "1.0.0"
+#endif
+
 #define MyAppPublisher "SIL International"
 #define MyAppURL "http://software.sil.org/solid"
 #define MyAppExeName "Solid.exe"
@@ -25,7 +29,7 @@ DisableReadyPage=yes
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=license.rtf
-OutputBaseFilename=SolidInstaller
+OutputBaseFilename=SolidInstaller-{AppVersion}
 Compression=lzma
 SolidCompression=yes
 ;WizardImageFile=compiler:WIZMODERNIMAGE-IS.BMP
