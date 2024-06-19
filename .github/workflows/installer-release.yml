@@ -1,0 +1,106 @@
+name: Solid - Build installer and create release
+
+on:
+  push:
+    tags:
+      - 'v*'  # Build an installer for commits that are tagged starting with 'v' e.g. v1.0
+
+jobs:
+  build-installer:
+    name: Build Release And Make Installer
+    runs-on: windows-2019
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
+
+      - name: Set VERSION (e.g. 1.0.0) and FULL_VERSION (e.g. 1.0.0-abcdef4)
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          FULL_VERSION="${VERSION}-${SHORT_SHA}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "FULL_VERSION=${FULL_VERSION}" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Validate version format
+        run: |
+          if [[ ! "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Version format is incorrect. It should match N.N.N where N is an integer."
+            exit 1
+          fi
+        shell: bash
+
+      - name: Cache NuGet packages
+        id: cache-nuget
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore
+        run: dotnet restore src/solid.sln
+      
+      - name: Update AssemblyInfo.cs
+        run: |
+          $filePath = "C:\src\solid\src\SolidGui\Properties\AssemblyInfo.cs"
+          (Get-Content $filePath) -replace 'AssemblyVersion\(".*\)', "AssemblyVersion\(\"${{ env.VERSION }}.0\"\)" |
+          Set-Content $filePath
+          (Get-Content $filePath) -replace 'AssemblyFileVersion\(".*\)', "AssemblyFileVersion\(\"${{ env.VERSION }}.0\"\)" |
+          Set-Content $filePath
+          (Get-Content $filePath) -replace 'AssemblyInformationalVersion\(".*\)', "AssemblyInformationalVersion\(\"${{ env.FULL_VERSION }}\"\)" |
+          Set-Content $filePath
+        shell: powershell
+
+      - name: Verify Update
+        run: Get-Content "C:\src\solid\src\SolidGui\Properties\AssemblyInfo.cs"
+        shell: powershell
+      
+      - name: Build version ${{ env.VERSION }}
+        run: dotnet build -c Release src/solid.sln --no-restore
+      
+      - name: List files and subdirectories
+        run: |
+          $path = "output"  # Change this to your target path
+          Get-ChildItem -Path $path -Recurse
+        shell: powershell
+
+      - name: Build Installer
+        run: iscc /DMyAppVersion=${{ env.VERSION }} installer/setup.iss
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SolidInstaller.exe
+          path: installer\Output\SolidInstaller*.exe
+          if-no-files-found: error
+
+  sign-installer:
+    name: Sign SOLID installer
+    needs: build-installer
+    uses: sillsdev/codesign/.github/workflows/sign.yml@v2
+    with:
+      artifact: SolidInstaller.exe
+    secrets:
+      certificate: ${{ secrets.CODESIGN_LSDEVSECTIGOEV }}
+
+  create-release:
+    name: Create Release
+    needs: sign-installer
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: SolidInstaller.exe
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: SolidInstaller*.exe
+          body: |
+            Release for version ${{ github.ref }}
+          draft: true
