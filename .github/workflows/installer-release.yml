@@ -48,11 +48,11 @@ jobs:
       - name: Update AssemblyInfo.cs
         run: |
           $filePath = "C:\src\solid\src\SolidGui\Properties\AssemblyInfo.cs"
-          (Get-Content $filePath) -replace 'AssemblyVersion\(".*\)', "AssemblyVersion\(\"${{ env.VERSION }}.0\"\)" |
+          (Get-Content $filePath) -replace 'AssemblyVersion\(".*\)', 'AssemblyVersion("${{ env.VERSION }}.0")' |
           Set-Content $filePath
-          (Get-Content $filePath) -replace 'AssemblyFileVersion\(".*\)', "AssemblyFileVersion\(\"${{ env.VERSION }}.0\"\)" |
+          (Get-Content $filePath) -replace 'AssemblyFileVersion\(".*\)', 'AssemblyFileVersion("${{ env.VERSION }}.0")' |
           Set-Content $filePath
-          (Get-Content $filePath) -replace 'AssemblyInformationalVersion\(".*\)', "AssemblyInformationalVersion\(\"${{ env.FULL_VERSION }}\"\)" |
+          (Get-Content $filePath) -replace 'AssemblyInformationalVersion\(".*\)', 'AssemblyInformationalVersion("${{ env.FULL_VERSION }}")' |
           Set-Content $filePath
         shell: powershell
 
