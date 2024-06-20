@@ -244,7 +244,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this._outerTableLayoutPanel);
             this.splitContainer1.Size = new System.Drawing.Size(449, 344);
-            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.SplitterDistance = 75;
             this.splitContainer1.TabIndex = 1;
             // 
             // MarkerSettingsDialog
