@@ -128,7 +128,10 @@ namespace Solid.Engine
                 foreach (SfmFieldModel field in record.Fields)
                 {
                     if(field.Inferred && markers.Contains(field.Marker))
+                    {
                         field.Inferred = false;
+                        ChangesMade++;
+                    }
                     
                 }
             }          
