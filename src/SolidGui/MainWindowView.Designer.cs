@@ -104,7 +104,6 @@ namespace SolidGui
 			this._quickFixesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._moveUpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._deleteFieldsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this._makeMarkersRealMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._addGuidsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._fixLinksMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this._fixPsSnMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -717,7 +716,6 @@ namespace SolidGui
             this._quickFixesMenuItem,
             this._moveUpMenuItem,
             this._deleteFieldsMenuItem,
-            this._makeMarkersRealMenuItem,
             this._addGuidsMenuItem,
             this._fixLinksMenuItem,
             this._fixPsSnMenuItem});
@@ -792,12 +790,6 @@ namespace SolidGui
 			this._deleteFieldsMenuItem.Size = new System.Drawing.Size(229, 22);
 			this._deleteFieldsMenuItem.Text = "&Delete Fields...";
 			this._deleteFieldsMenuItem.Visible = false;
-			// 
-			// _makeMarkersRealMenuItem
-			// 
-			this._makeMarkersRealMenuItem.Name = "_makeMarkersRealMenuItem";
-			this._makeMarkersRealMenuItem.Size = new System.Drawing.Size(229, 22);
-			this._makeMarkersRealMenuItem.Text = "Make Markers &Real...";
 			// 
 			// _addGuidsMenuItem
 			// 
@@ -959,7 +951,6 @@ namespace SolidGui
         private System.Windows.Forms.ToolStripMenuItem _suggestFixesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _moveUpMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _deleteFieldsMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem _makeMarkersRealMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _addGuidsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _fixLinksMenuItem;
         private System.Windows.Forms.ToolStripMenuItem _fixPsSnMenuItem;
