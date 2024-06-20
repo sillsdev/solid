@@ -47,7 +47,7 @@ jobs:
       
       - name: Update AssemblyInfo.cs
         run: |
-          $filePath = "C:\src\solid\src\SolidGui\Properties\AssemblyInfo.cs"
+          $filePath = "src\SolidGui\Properties\AssemblyInfo.cs"
           (Get-Content $filePath) -replace 'AssemblyVersion\(".*\)', 'AssemblyVersion("${{ env.VERSION }}.0")' |
           Set-Content $filePath
           (Get-Content $filePath) -replace 'AssemblyFileVersion\(".*\)', 'AssemblyFileVersion("${{ env.VERSION }}.0")' |
@@ -57,7 +57,7 @@ jobs:
         shell: powershell
 
       - name: Verify Update
-        run: Get-Content "C:\src\solid\src\SolidGui\Properties\AssemblyInfo.cs"
+        run: Get-Content "src\SolidGui\Properties\AssemblyInfo.cs"
         shell: powershell
       
       - name: Build version ${{ env.VERSION }}
