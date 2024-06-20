@@ -305,7 +305,5 @@ namespace SolidGui.MarkerSettings
         {
             _structurePropertiesView.CommentTextBoxMaybeChanged(sender, e);
         }
-
-
     }
 }
