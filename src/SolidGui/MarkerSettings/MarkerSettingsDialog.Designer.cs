@@ -35,30 +35,33 @@
             this._structurePropertiesView = new SolidGui.StructurePropertiesView();
             this.mappingTabPage = new System.Windows.Forms.TabPage();
             this._mappingView = new SolidGui.Mapping.MappingView();
-            this._markersListBox = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this._closeButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this._wsPalasoPicker = new SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox();
             this._setupWsLink = new System.Windows.Forms.LinkLabel();
+            this._markersListBox = new System.Windows.Forms.ListBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this._outerTableLayoutPanel.SuspendLayout();
             this._tabControl.SuspendLayout();
             this.structureTabPage.SuspendLayout();
             this.mappingTabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // _outerTableLayoutPanel
             // 
-            this._outerTableLayoutPanel.ColumnCount = 2;
-            this._outerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this._outerTableLayoutPanel.ColumnCount = 1;
             this._outerTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this._outerTableLayoutPanel.Controls.Add(this._cbUnicode, 0, 1);
-            this._outerTableLayoutPanel.Controls.Add(this._tabControl, 1, 0);
-            this._outerTableLayoutPanel.Controls.Add(this._markersListBox, 0, 0);
-            this._outerTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 1, 2);
+            this._outerTableLayoutPanel.Controls.Add(this._tabControl, 0, 0);
+            this._outerTableLayoutPanel.Controls.Add(this.tableLayoutPanel1, 0, 2);
             this._outerTableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._outerTableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this._outerTableLayoutPanel.Name = "_outerTableLayoutPanel";
@@ -134,17 +137,6 @@
             this._mappingView.Name = "_mappingView";
             this._mappingView.Size = new System.Drawing.Size(374, 252);
             this._mappingView.TabIndex = 0;
-            // 
-            // _markersListBox
-            // 
-            this._markersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._markersListBox.FormattingEnabled = true;
-            this._markersListBox.Location = new System.Drawing.Point(3, 3);
-            this._markersListBox.Name = "_markersListBox";
-            this._outerTableLayoutPanel.SetRowSpan(this._markersListBox, 3);
-            this._markersListBox.Size = new System.Drawing.Size(49, 344);
-            this._markersListBox.TabIndex = 4;
-            this._markersListBox.SelectedIndexChanged += new System.EventHandler(this._markersListBox_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
@@ -225,6 +217,36 @@
             this._setupWsLink.Text = "Set up...";
             this._setupWsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this._setupWsLink_LinkClicked);
             // 
+            // _markersListBox
+            // 
+            this._markersListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._markersListBox.FormattingEnabled = true;
+            this._markersListBox.ItemHeight = 25;
+            this._markersListBox.Location = new System.Drawing.Point(2, 0);
+            this._markersListBox.Margin = new System.Windows.Forms.Padding(6);
+            this._markersListBox.Name = "_markersListBox";
+            this._markersListBox.Size = new System.Drawing.Size(49, 344);
+            this._markersListBox.TabIndex = 4;
+            this._markersListBox.SelectedIndexChanged += new System.EventHandler(this._markersListBox_SelectedIndexChanged);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this._markersListBox);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this._outerTableLayoutPanel);
+            this.splitContainer1.Size = new System.Drawing.Size(449, 344);
+            this.splitContainer1.SplitterDistance = 200;
+            this.splitContainer1.TabIndex = 1;
+            // 
             // MarkerSettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,7 +254,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelButton = this._closeButton;
             this.ClientSize = new System.Drawing.Size(449, 350);
-            this.Controls.Add(this._outerTableLayoutPanel);
+            this.Controls.Add(this.splitContainer1);
             this.MinimumSize = new System.Drawing.Size(433, 355);
             this.Name = "MarkerSettingsDialog";
             this.ShowIcon = false;
@@ -246,6 +268,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -266,5 +292,6 @@
         private SIL.Windows.Forms.WritingSystems.WSPickerUsingComboBox _wsPalasoPicker;
         private System.Windows.Forms.LinkLabel _setupWsLink;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private SplitContainer splitContainer1;
     }
 }
