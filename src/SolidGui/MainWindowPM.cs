@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -70,6 +71,24 @@ namespace SolidGui
             return Path.Combine(Path.GetTempPath(), "TempDictionary.db");
         }
 
+        // Modern C# (since .NET 6) warns about constructors not setting all fields, but isn't smart
+        // enough to know that this method sets those fields. So we have to help its analysis with the
+        // MemberNotNull] attribute, which informs the compiler that this method will set those members.
+        // Unfortunately, MemberNotNull is only available in .NET 5.0, so we also have to use an #if.
+#if NET5_0_OR_GREATER
+        [MemberNotNull(nameof(_recordFilters))]
+        [MemberNotNull(nameof(_workingDictionary))]
+        [MemberNotNull(nameof(_markerSettingsModel))]
+        [MemberNotNull(nameof(_warningFilterChooserModel))]
+        [MemberNotNull(nameof(_navigatorModel))]
+        [MemberNotNull(nameof(_sfmEditorModel))]
+        [MemberNotNull(nameof(_searchModel))]
+        [MemberNotNull(nameof(_cleanUpIndents))]
+        [MemberNotNull(nameof(_cleanUpClosers))]
+        [MemberNotNull(nameof(_cleanUpInferred))]
+        [MemberNotNull(nameof(_cleanUpSeparators))]
+        [MemberNotNull(nameof(_cleanUpNewlines))]
+#endif
         public void Initialize(SfmDictionary dict) // , SolidSettings settings)
         {
             _recordFilters = new RecordFilterSet();
