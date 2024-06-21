@@ -52,29 +52,21 @@ namespace SolidGui
         private static Regex _cleanUpNewlinesNonLinux;
         */
 
-
-        public MainWindowPM() 
+        static MainWindowPM()
         {
-            Initialize(new SfmDictionary()); // , new SolidSettings());
+            RegexOptions options = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline;
+            _cleanUpIndents = new Regex(@"^[ \t]+\\", options);  //any line-initial spaces or tabs
+            _cleanUpClosers = new Regex(@" ?\\\w+\* ?", options);  //any closing tag, and possibly one space buffer around it
+            _cleanUpInferred = new Regex(@"^[ \t]*\\\+.*(\r|\r?\n)", options);  //any inferred marker (\+mrkr) and its value and newline (any leading whitespace)
+            _cleanUpSeparators = new Regex(@"\t", options);  // one tab
+            _cleanUpNewlines = new Regex(@"(\r?\n|\r)", options);  // one newline (\r\n or \n or \r)
         }
 
-        public override string ToString()
-        {
-            return string.Format("{0} {1} {2} {3} {4} {5} {6}",
-                _workingDictionary, _markerSettingsModel, _recordFilters, _warningFilterChooserModel, 
-                _navigatorModel, _sfmEditorModel, GetHashCode());
-        }
-
-        private static String TempDictionaryPath()
-        {
-            return Path.Combine(Path.GetTempPath(), "TempDictionary.db");
-        }
-
-        public void Initialize(SfmDictionary dict) // , SolidSettings settings)
+        public MainWindowPM()
         {
             _recordFilters = new RecordFilterSet();
-            _workingDictionary = dict;
-            // Settings = settings;
+            _workingDictionary = new SfmDictionary();
+            // Settings = new SolidSettings();
             _markerSettingsModel = new MarkerSettingsPM(this);
             _warningFilterChooserModel = new FilterChooserPM();
             _navigatorModel = new RecordNavigatorPM(this);
@@ -95,13 +87,18 @@ namespace SolidGui
             // and the choosers should listen to the nav so they can clear themselves as needed
             NavigatorModel.NavFilterChanged += WarningFilterChooserModel.OnNavFilterChanged;
             NavigatorModel.NavFilterChanged += MarkerSettingsModel.OnNavFilterChanged;
+        }
 
-            RegexOptions options = RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline;
-            _cleanUpIndents = new Regex(@"^[ \t]+\\", options);  //any line-initial spaces or tabs
-            _cleanUpClosers = new Regex(@" ?\\\w+\* ?", options);  //any closing tag, and possibly one space buffer around it
-            _cleanUpInferred = new Regex(@"^[ \t]*\\\+.*(\r|\r?\n)", options);  //any inferred marker (\+mrkr) and its value and newline (any leading whitespace)
-            _cleanUpSeparators = new Regex(@"\t", options);  // one tab
-            _cleanUpNewlines = new Regex(@"(\r?\n|\r)", options);  // one newline (\r\n or \n or \r)
+        public override string ToString()
+        {
+            return string.Format("{0} {1} {2} {3} {4} {5} {6}",
+                _workingDictionary, _markerSettingsModel, _recordFilters, _warningFilterChooserModel,
+                _navigatorModel, _sfmEditorModel, GetHashCode());
+        }
+
+        private static String TempDictionaryPath()
+        {
+            return Path.Combine(Path.GetTempPath(), "TempDictionary.db");
         }
 
         public MarkerSettingsPM MarkerSettingsModel
