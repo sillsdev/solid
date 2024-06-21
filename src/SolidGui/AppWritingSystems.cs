@@ -10,14 +10,8 @@ namespace SolidGui
 {
     public class AppWritingSystems
     {
-        private static IWritingSystemRepository _sWritingSystemsRepository;
+        private static Lazy<IWritingSystemRepository> _sWritingSystemsRepository = new(() => GlobalWritingSystemRepository.Initialize());
 
-        public static IWritingSystemRepository WritingSystems
-        {
-            get
-            {
-                return _sWritingSystemsRepository ?? (_sWritingSystemsRepository = GlobalWritingSystemRepository.Initialize());
-            }
-        }
+        public static IWritingSystemRepository WritingSystems => _sWritingSystemsRepository.Value;
     }
 }
