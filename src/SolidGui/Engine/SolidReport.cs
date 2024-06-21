@@ -43,6 +43,7 @@ namespace SolidGui.Engine
         public SolidReport()
         {
             Entries = new List<ReportEntry>();
+            FilePath = "";
         }
 
         public static SolidReport MakeCopy(SolidReport report)
