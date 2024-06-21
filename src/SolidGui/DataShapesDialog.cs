@@ -18,7 +18,7 @@ namespace SolidGui
 {
     public partial class DataShapesDialog : Form
     {
-        private FindReplaceDialog _searchDialog;
+        private FindReplaceDialog? _searchDialog;
 
         public DataShapesDialog(FindReplaceDialog searchDialog, MainWindowPM mwp)
         {
@@ -34,9 +34,9 @@ namespace SolidGui
             _mainWindowPm = mwp;
         }
 
-        private MainWindowPM _mainWindowPm;
+        private MainWindowPM? _mainWindowPm;
 
-        private IEnumerable<SfmDictionary.DataShape> _shapes;
+        private IEnumerable<SfmDictionary.DataShape>? _shapes;
 
         private void _closeButton_Click(object sender, EventArgs e)
         {
@@ -166,7 +166,7 @@ WARNING: This moves trailing newlines too, and it will not work
 if any of the fields have hard-wrapped data.";
 
             RegexItem r = RegexItem.GetCustomRegex(sbFind.ToString(), sbReplace.ToString(), help, true);
-            _searchDialog.LaunchSearch(r);
+            _searchDialog?.LaunchSearch(r);
 
         }
 
