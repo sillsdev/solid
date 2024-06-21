@@ -40,7 +40,7 @@ namespace SolidGui
             this._commentTextBox = new System.Windows.Forms.TextBox();
             this._summaryTextBox = new System.Windows.Forms.TextBox();
             this._parentLabel = new System.Windows.Forms.TextBox();
-            this._explanationLabel = new System.Windows.Forms.TextBox();
+            this._explanationLabel = new System.Windows.Forms.Label();
             this.flowLayoutPanelOccurs = new System.Windows.Forms.FlowLayoutPanel();
             this._onceRadioButton = new System.Windows.Forms.RadioButton();
             this._multipleTogetherRadioButton = new System.Windows.Forms.RadioButton();
@@ -79,7 +79,7 @@ namespace SolidGui
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this._nestedTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this._nestedTableLayoutPanel.Size = new System.Drawing.Size(355, 266);
+            this._nestedTableLayoutPanel.Size = new System.Drawing.Size(375, 266);
             this._nestedTableLayoutPanel.TabIndex = 1;
             // 
             // _parentListView
@@ -143,7 +143,8 @@ namespace SolidGui
             this._commentTextBox.Location = new System.Drawing.Point(95, 208);
             this._commentTextBox.Multiline = true;
             this._commentTextBox.Name = "_commentTextBox";
-            this._commentTextBox.Size = new System.Drawing.Size(257, 55);
+            this._commentTextBox.Size = new System.Drawing.Size(237, 55);
+            this._commentTextBox.MaximumSize = new System.Drawing.Size(237, 55);
             this._commentTextBox.TabIndex = 3;
             this._commentTextBox.Leave += new System.EventHandler(this.CommentTextBoxMaybeChanged);
             this._commentTextBox.Validated += new System.EventHandler(this.CommentTextBoxMaybeChanged);
@@ -177,11 +178,12 @@ namespace SolidGui
             this._explanationLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this._explanationLabel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._explanationLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._explanationLabel.Location = new System.Drawing.Point(38, 8);
+            this._explanationLabel.Dock = DockStyle.Fill;
             this._explanationLabel.Name = "_explanationLabel";
-            this._explanationLabel.Size = new System.Drawing.Size(211, 13);
             this._explanationLabel.TabIndex = 0;
             this._explanationLabel.TabStop = false;
+            this._explanationLabel.TextAlign = ContentAlignment.MiddleLeft;
+            this._explanationLabel.Width = 231;
             this._explanationLabel.Text = "Under {0}, {1} can occur...";
             // 
             // flowLayoutPanelOccurs
@@ -251,7 +253,8 @@ namespace SolidGui
             "Report Error"});
             this._InferComboBox.Location = new System.Drawing.Point(95, 148);
             this._InferComboBox.Name = "_InferComboBox";
-            this._InferComboBox.Size = new System.Drawing.Size(257, 21);
+            this._InferComboBox.Size = new System.Drawing.Size(237, 21);
+            this._InferComboBox.MaximumSize = new System.Drawing.Size(237, 21);
             this._InferComboBox.TabIndex = 2;
             this._InferComboBox.SelectedIndexChanged += new System.EventHandler(this._InferComboBox_SelectedIndexChanged);
             // 
@@ -273,7 +276,7 @@ namespace SolidGui
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(95, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(257, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(277, 29);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // _deleteButton
@@ -294,9 +297,9 @@ namespace SolidGui
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.Controls.Add(this._nestedTableLayoutPanel);
-            this.MinimumSize = new System.Drawing.Size(355, 266);
+            this.MinimumSize = new System.Drawing.Size(375, 266);
             this.Name = "StructurePropertiesView";
-            this.Size = new System.Drawing.Size(355, 266);
+            this.Size = new System.Drawing.Size(375, 266);
             this.Leave += new System.EventHandler(this.CommentTextBoxMaybeChanged);
             this._nestedTableLayoutPanel.ResumeLayout(false);
             this._nestedTableLayoutPanel.PerformLayout();
@@ -320,7 +323,7 @@ namespace SolidGui
         private System.Windows.Forms.TextBox _commentTextBox;
         private System.Windows.Forms.TextBox _summaryTextBox;
         private System.Windows.Forms.TextBox _parentLabel;
-        private System.Windows.Forms.TextBox _explanationLabel;
+        private System.Windows.Forms.Label _explanationLabel;
         private System.Windows.Forms.TextBox _inferComboLabel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelOccurs;
         private System.Windows.Forms.RadioButton _onceRadioButton;
