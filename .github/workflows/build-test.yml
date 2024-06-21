@@ -5,10 +5,8 @@ on:
 
 jobs:
   build-and-test:
-    name: Build Debug and Run Tests
-    # note that the older .Net 4.6.1 isn't installed on windows-latest anymore
-    # see https://github.com/actions/runner-images/issues/5055
-    runs-on: windows-2019
+    name: Build and run tests
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
