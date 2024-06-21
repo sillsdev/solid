@@ -30,7 +30,7 @@ namespace SolidGui.Engine
         public string Trailing // (for trailing white space); added -JMC 2013-09
         {
             get { return String.IsNullOrEmpty(_trailing) ? DefaultTrailing : _trailing; }
-            set { _trailing = value.Contains("\n") ? value : null; } 
+            set { _trailing = value.Contains("\n") ? value : ""; }
         }
 
         // Set both the value and the trailing-space value using a single string

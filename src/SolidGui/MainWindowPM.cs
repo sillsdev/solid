@@ -333,7 +333,7 @@ namespace SolidGui
             // Check also that the setting file is valid.  If it's not allow true to be returned to pop up
             // the template chooser.
             // See http://projects.palaso.org/issues/show/180
-            SolidSettings solidSettings = null;
+            SolidSettings? solidSettings = null;
             try
             {
                 solidSettings = LoadSettingsFromExistingFile(solidFilePath);  // A dry run. If it succeeds, we'll reload later. -JMC
