@@ -113,10 +113,10 @@
             this._structurePropertiesView.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this._structurePropertiesView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._structurePropertiesView.Location = new System.Drawing.Point(3, 3);
-            this._structurePropertiesView.MinimumSize = new System.Drawing.Size(377, 239);
+            this._structurePropertiesView.MinimumSize = new System.Drawing.Size(397, 239);
             this._structurePropertiesView.Model = null;
             this._structurePropertiesView.Name = "_structurePropertiesView";
-            this._structurePropertiesView.Size = new System.Drawing.Size(377, 252);
+            this._structurePropertiesView.Size = new System.Drawing.Size(397, 252);
             this._structurePropertiesView.TabIndex = 0;
             // 
             // mappingTabPage
@@ -253,9 +253,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.CancelButton = this._closeButton;
-            this.ClientSize = new System.Drawing.Size(449, 350);
+            this.ClientSize = new System.Drawing.Size(469, 350);
             this.Controls.Add(this.splitContainer1);
-            this.MinimumSize = new System.Drawing.Size(433, 355);
+            this.MinimumSize = new System.Drawing.Size(453, 355);
             this.Name = "MarkerSettingsDialog";
             this.ShowIcon = false;
             this.Text = "Marker Settings";
