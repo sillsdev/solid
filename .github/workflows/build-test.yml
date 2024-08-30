@@ -30,7 +30,7 @@ jobs:
         run: dotnet build src/solid.sln --no-restore
 
       - name: Run NUnit Tests
-        run: dotnet test output/net461/*Tests.dll  --filter "TestCategory != SkipOnCI" --no-build --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test output/net481/*Tests.dll  --filter "TestCategory != SkipOnCI" --no-build --logger "trx;LogFileName=test-results.trx"
 
       - name: Test Report
         uses: dorny/test-reporter@v1

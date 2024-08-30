@@ -30,7 +30,7 @@ Alternatively you can use Visual Studio and build / run tests there
 
 ### Running unit tests
 
-`dotnet test output/net461/*Tests.dll`
+`dotnet test output/net481/*Tests.dll`
 
 ### Create an installer locally
 GHA will do this for you, however if you need to test creating the installer locally:
