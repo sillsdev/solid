@@ -47,9 +47,9 @@ Name: {userdocs}\Solid Examples
 
 [Files]
 Source: ..\installer\isxdl.dll; Flags: dontcopy
-Source: ..\output\net461\solid.exe; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\net461\*.dll; DestDir: {app}; Flags: replacesameversion
-Source: ..\output\net461\*.config; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net481\solid.exe; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net481\*.dll; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net481\*.config; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
 Source: ..\mappings\LIFT.mappingSystem; DestDir: {app}\mappings
 Source: ..\mappings\FLEX.mappingSystem; DestDir: {app}\mappings
@@ -88,7 +88,7 @@ external 'isxdl_DownloadFiles@files:isxdl.dll stdcall';
 function isxdl_SetOption(Option, Value: String): Integer;
 external 'isxdl_SetOption@files:isxdl.dll stdcall';
 
-// Detect .NET framework 4.6.1 is missing
+// Detect .NET framework 4.8.1 is missing
 // See https://msdn.microsoft.com/en-us/library/hh925568(v=vs.110).aspx
 function DotNetIsMissing(): Boolean;
 var
@@ -96,7 +96,7 @@ var
   success: Boolean;
 begin
   success := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', readVal);
-  success := success and (readVal >= 394254); // 394254 is the number for 4.6.1
+  success := success and (readVal >= 533320); // 533320 is the number for 4.8.1
   Result := not success;
 end;
 
@@ -108,7 +108,7 @@ begin
 
   // Check for required netfx installation
   if DotNetIsMissing() then begin
-      MsgBox('Solid needs the Microsoft .NET Framework 4.6.1 or greater to be installed by an Administrator', mbInformation, MB_OK);
+      MsgBox('Solid needs the Microsoft .NET Framework 4.8.1 or greater to be installed by an Administrator', mbInformation, MB_OK);
       Result := false;
     end;
 end;
