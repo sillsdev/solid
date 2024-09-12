@@ -20,7 +20,7 @@ namespace SolidGui
             _mainWindowPm = mwp;
         }
 
-        private MainWindowPM _mainWindowPm;
+        private MainWindowPM? _mainWindowPm;
 
         private void _runButton_Click(object sender, EventArgs e)
         {
@@ -30,6 +30,7 @@ namespace SolidGui
         private void Run()
         {
             if (String.IsNullOrEmpty(_markersTextBox.Text.Trim())) return;
+            if (_mainWindowPm == null) return;
 
             int max = (int)maxNumericUpDown.Value;
 
