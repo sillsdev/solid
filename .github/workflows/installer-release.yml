@@ -77,7 +77,7 @@ jobs:
         with:
           credentials: ${{ secrets.TRUSTED_SIGNING_CREDENTIALS }}
           files-folder: installer/Output
-          files-folder-filter: exe
+          files-folder-filter: SolidInstaller*.exe
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
