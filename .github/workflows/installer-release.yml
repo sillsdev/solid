@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - 'v*'  # Build an installer for commits that are tagged starting with 'v' e.g. v1.0
+  pull_request: 
+    branches: 
+      - main
 
 jobs:
   build-installer:
@@ -74,12 +77,14 @@ jobs:
 
       - name: Sign Installer
         uses: sillsdev/codesign/trusted-signing-action@v3
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           credentials: ${{ secrets.TRUSTED_SIGNING_CREDENTIALS }}
           files-folder: installer/Output
           files-folder-filter: SolidInstaller*.exe
 
       - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           files: installer/Output/SolidInstaller*.exe
