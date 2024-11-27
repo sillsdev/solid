@@ -28,7 +28,9 @@ jobs:
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
           echo "FULL_VERSION=${FULL_VERSION}" >> $GITHUB_ENV
         shell: bash
+
       - name: set fake version for PR
+        shell: bash
         if: github.event_name == 'pull_request'
         run: |
           echo "VERSION=0.0.1" >> $GITHUB_ENV
