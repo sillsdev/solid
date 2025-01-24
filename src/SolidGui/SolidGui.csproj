@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net481</TargetFramework>
-    <Nullable>enable</Nullable>
+    <TargetFramework>net8-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
@@ -13,19 +12,21 @@
     <RootNamespace>SolidGui</RootNamespace>
     <AssemblyName>Solid</AssemblyName>
     <ApplicationIcon>Resources\solid.ico</ApplicationIcon>
+    <NoWarn>CA1416</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="L10NSharp" Version="7.0.0" />
+    <PackageReference Include="L10NSharp" Version="8.0.0-beta*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="relaxngDatatype" Version="1.0.0.39" />
-    <PackageReference Include="SIL.Core" Version="13.0.1" />
-    <PackageReference Include="SIL.DictionaryServices" Version="13.0.1" />
-    <PackageReference Include="SIL.Lift" Version="13.0.1" />
-    <PackageReference Include="SIL.Windows.Forms" Version="13.0.1" />
-    <PackageReference Include="SIL.Windows.Forms.Keyboarding" Version="13.0.1" />
-    <PackageReference Include="SIL.Windows.Forms.WritingSystems" Version="13.0.1" />
-    <PackageReference Include="SIL.WritingSystems" Version="13.0.1" />
+    <PackageReference Include="SIL.Core" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.DictionaryServices" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.Lift" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.Windows.Forms" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.Windows.Forms.Keyboarding" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.Windows.Forms.WritingSystems" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.WritingSystems" Version="15.0.1-beta*" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>

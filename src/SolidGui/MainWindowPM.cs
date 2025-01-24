@@ -282,7 +282,7 @@ namespace SolidGui
                 bool unitTesting = Assembly.GetEntryAssembly() == null;
                 if (unitTesting)
                 {
-                    path = new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath;
+                    path = new Uri(Assembly.GetExecutingAssembly().Location).AbsolutePath;
                     path = Uri.UnescapeDataString(path);
                 }
                 else

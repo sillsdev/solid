@@ -18,13 +18,18 @@ namespace SolidGui.Engine
 {
     public class SolidSettings
     {
+        static SolidSettings()
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            LegacyEncoding = Encoding.GetEncoding(1252); //personal preference--handles curly quotes -JMC Feb 2014
+        }
 
         private /*readonly*/ List<SolidMarkerSetting> _markerSettings;
         private List<SolidMarkerSetting> _newlyAdded;
         private string _recordMarker = "lx";
         public static readonly int LatestVersion = 3; // Seems safer to use readonly rather than const here; it will eventually change. -JMC
         //public static readonly Encoding LegacyEncoding = Encoding.GetEncoding("iso-8859-1"); //the original
-        public static readonly Encoding LegacyEncoding = Encoding.GetEncoding(1252); //my preference--handles curly quotes -JMC Feb 2014
+        public static readonly Encoding LegacyEncoding;
 
         public SolidSettings(List<SolidMarkerSetting> ms)
         {
