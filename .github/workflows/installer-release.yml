@@ -72,7 +72,10 @@ jobs:
         shell: powershell
       
       - name: Build version ${{ env.VERSION }}
-        run: dotnet build -c Release src/solid.sln --no-restore
+        run: dotnet build -c Release src/SolidGui/SolidGui.csproj --no-restore --self-contained
+
+      - name: Publish self-contained
+        run: dotnet publish -c Release src/SolidGui/SolidGui.csproj --no-build --self-contained
       
       - name: List files and subdirectories
         run: |
