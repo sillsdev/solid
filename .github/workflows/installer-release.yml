@@ -86,6 +86,11 @@ jobs:
       - name: Build Installer
         run: iscc /DMyAppVersion=${{ env.VERSION }} installer/setup.iss
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Installer
+          path: installer/Output/SolidInstaller*.exe
+
       - name: Sign Installer
         uses: sillsdev/codesign/trusted-signing-action@v3
         if: startsWith(github.ref, 'refs/tags/v') && github.event_name != 'pull_request'

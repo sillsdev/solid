@@ -48,6 +48,7 @@ Name: {userdocs}\Solid Examples
 [Files]
 Source: ..\installer\isxdl.dll; Flags: dontcopy
 Source: ..\output\net8.0-windows\win-x64\solid.exe; DestDir: {app}; Flags: replacesameversion
+Source: ..\output\net8.0-windows\win-x64\*.json; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\net8.0-windows\win-x64\*.dll; DestDir: {app}; Flags: replacesameversion
 Source: ..\output\net8.0-windows\win-x64\*.config; DestDir: {app}; Flags: replacesameversion
 Source: ..\mappings\MappingXmlToHtml.xsl; DestDir: {app}\mappings
