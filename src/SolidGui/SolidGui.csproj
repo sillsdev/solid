@@ -31,6 +31,15 @@
 
   <ItemGroup>
     <Reference Include="../../lib/GlacialList.dll" />
+    <Reference Include="Keyman10Interop">
+      <HintPath>..\lib\Keyman10Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Keyman7Interop">
+      <HintPath>..\lib\Keyman7Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="KeymanLink">
+      <HintPath>..\lib\KeymanLink.dll</HintPath>
+    </Reference>
     <None Include="app.config" Pack="true" PackagePath="contentFiles\any\any\$(AssemblyTitle).dll.config" />
   </ItemGroup>
 
