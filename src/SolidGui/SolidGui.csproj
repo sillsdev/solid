@@ -19,6 +19,7 @@
     <PackageReference Include="L10NSharp" Version="8.0.0-beta*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="relaxngDatatype" Version="1.0.0.39" />
+    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" Condition="$([MSBuild]::IsOsPlatform('Windows'))" />
     <PackageReference Include="SIL.Core" Version="15.0.1-beta*" />
     <PackageReference Include="SIL.DictionaryServices" Version="15.0.1-beta*" />
     <PackageReference Include="SIL.Lift" Version="15.0.1-beta*" />
