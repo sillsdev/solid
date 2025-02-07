@@ -20,13 +20,13 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="relaxngDatatype" Version="1.0.0.39" />
     <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" Condition="$([MSBuild]::IsOsPlatform('Windows'))" />
-    <PackageReference Include="SIL.Core" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.DictionaryServices" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.Lift" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.Windows.Forms" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.Windows.Forms.Keyboarding" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.Windows.Forms.WritingSystems" Version="15.0.1-beta*" />
-    <PackageReference Include="SIL.WritingSystems" Version="15.0.1-beta*" />
+    <PackageReference Include="SIL.Core" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.DictionaryServices" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.Lift" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.Windows.Forms" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.Windows.Forms.Keyboarding" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.Windows.Forms.WritingSystems" Version="16.0.0-beta*" />
+    <PackageReference Include="SIL.WritingSystems" Version="16.0.0-beta*" />
     <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.1" />
   </ItemGroup>
 
