@@ -38,6 +38,8 @@ namespace SolidGui
             SetupErrorHandling(); 
             SetupUsageTracking();
 
+            L10NSharp.LocalizationManager.StrictInitializationMode = false;
+
             Sldr.Initialize();
 
             MainWindowPM model = new MainWindowPM();  

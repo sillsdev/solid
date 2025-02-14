@@ -54,7 +54,7 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Restore
-        run: dotnet restore src/solid.sln
+        run: dotnet restore src/solid.sln -r win-x64
       
       - name: Update AssemblyInfo.cs
         run: |
@@ -72,7 +72,10 @@ jobs:
         shell: powershell
       
       - name: Build version ${{ env.VERSION }}
-        run: dotnet build -c Release src/solid.sln --no-restore
+        run: dotnet build -c Release src/SolidGui/SolidGui.csproj --no-restore --self-contained
+
+      - name: Publish self-contained
+        run: dotnet publish -c Release src/SolidGui/SolidGui.csproj --no-build --self-contained
       
       - name: List files and subdirectories
         run: |
@@ -82,6 +85,11 @@ jobs:
 
       - name: Build Installer
         run: iscc /DMyAppVersion=${{ env.VERSION }} installer/setup.iss
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Installer-unsigned
+          path: installer/Output/SolidInstaller*.exe
 
       - name: Sign Installer
         uses: sillsdev/codesign/trusted-signing-action@v3
