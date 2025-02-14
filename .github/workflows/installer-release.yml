@@ -88,7 +88,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Installer
+          name: Installer-unsigned
           path: installer/Output/SolidInstaller*.exe
 
       - name: Sign Installer
