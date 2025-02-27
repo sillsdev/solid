@@ -187,7 +187,7 @@ namespace Solid.Engine
         {
             foreach (Record record in _dictionary.Records)
             {
-                SfmFieldModel fieldToCopy = null;
+                SfmFieldModel? fieldToCopy = null;
                 for (int i = 0; i < record.Fields.Count; i++)
                 {
                     SfmFieldModel field = record.Fields[i];
@@ -244,13 +244,13 @@ namespace Solid.Engine
             SolidSettings nullSettings = new SolidSettings();  // JMC: why a new bunch?
             foreach (RecordAddition addition in additions)
             {
-                string switchToCitationForm;
-                Record targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
-                if (targetRecord == null)
+                string? switchToCitationForm;
+                Record? targetRecord = FindRecordByCitationFormOrLexemeForm(addition.targetHeadWord, out switchToCitationForm);
+                if (targetRecord is null)
                 {
                     targetRecord = FindRecordContainingVariantOrSubEntry(addition.targetHeadWord);
                 }
-                if (null == targetRecord)
+                if (targetRecord is null)
                 {
                     Record r = new Record();
                     var b = new StringBuilder();
@@ -309,7 +309,7 @@ namespace Solid.Engine
         }
 
 
-        private Record FindRecordByCitationFormOrLexemeForm(string form, out string switchToCitationForm)
+        private Record? FindRecordByCitationFormOrLexemeForm(string form, out string? switchToCitationForm)
         {
             switchToCitationForm = null;
             form = form.Trim();
@@ -348,7 +348,7 @@ namespace Solid.Engine
 
             return null;
         }
-        private Record FindRecordContainingVariantOrSubEntry(string form)
+        private Record? FindRecordContainingVariantOrSubEntry(string form)
         {
 
             foreach (Record record in _dictionary.Records)

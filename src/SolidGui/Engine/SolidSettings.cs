@@ -38,6 +38,7 @@ namespace SolidGui.Engine
             _markerSettings = ms;
             _newlyAdded = new List<SolidMarkerSetting>();
             FileStatusReport = new SettingsFileReport();
+            FilePath = "";
         }
 
         public SolidSettings()
@@ -312,7 +313,7 @@ namespace SolidGui.Engine
             {
                 ErrorReport.NotifyUserOfProblem(
                     "There was a problem opening that settings file.  The error was\r\n" + e.Message);
-                return null;
+                return new SolidSettings(); // Don't want to return null, so return default settings
             }
 
             return OpenSolidFile(outputFilePath);

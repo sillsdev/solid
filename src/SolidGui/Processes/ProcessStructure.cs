@@ -321,7 +321,7 @@ namespace SolidGui.Processes
 */
         
 
-        private static SfmFieldModel _appendTo;
+        private static SfmFieldModel? _appendTo;
 
         // Recursive
         private static void AddClosers(SfmFieldModel node)
