@@ -749,7 +749,7 @@ namespace SolidGui
 
             //Updating (JH) in 2017. I could not figure out where emails go, so to be safe, I'm changing to point to our standard website
             //which we can then keep up to date.
-            Process.Start("http://software.sil.org/solid/support/");
+            Process.Start(new ProcessStartInfo("http://software.sil.org/solid/support/") { UseShellExecute = true} );
         }
 
         private void _goFirstMenuItem_Click(object sender, EventArgs e)
@@ -799,7 +799,7 @@ namespace SolidGui
         {
             try
             {
-                Process.Start("Solid Documentation.pdf");
+                Process.Start(new ProcessStartInfo("Solid Documentation.pdf") { UseShellExecute = true });
             }
             catch (Exception err)
             {

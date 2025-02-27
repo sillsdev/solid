@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="../../lib/GlacialList.dll" />
     <None Include="app.config" Pack="true" PackagePath="contentFiles\any\any\$(AssemblyTitle).dll.config" />
+    <Content Include="../../doc/Solid Manual/Solid Documentation.pdf" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
 </Project>

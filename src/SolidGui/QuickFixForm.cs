@@ -116,7 +116,7 @@ namespace SolidGui
                 File.WriteAllText(path, log, Encoding.UTF8);
                 log = _fixer.MakeEntriesForReferredItemsOfLv();
                 File.AppendAllText(path, log, Encoding.UTF8);
-                Process.Start(path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
                 
             }
 
@@ -126,7 +126,7 @@ namespace SolidGui
                 string log = _fixer.PropagatePartOfSpeech();
                 string path = Path.GetTempFileName() + ".txt";
                 File.WriteAllText(path, log);
-                Process.Start(path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
 
             } 
             DialogResult = System.Windows.Forms.DialogResult.OK;
