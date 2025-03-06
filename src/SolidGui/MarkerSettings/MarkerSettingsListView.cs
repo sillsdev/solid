@@ -348,7 +348,7 @@ namespace SolidGui.MarkerSettings
             if (_markerSettingsDialog == null || _markerSettingsDialog.IsDisposed)
             {
                 _markerSettingsDialog = new MarkerSettingsDialog(_markerSettingsPm, marker, area);
-
+                _markerSettingsDialog.StartPosition = FormStartPosition.CenterScreen;
                 _markerSettingsDialog.Left = _xOfDialog;
                 _markerSettingsDialog.Top = _yOfDialog;
                 var myDelegate = new EventHandler(OnMarkerSettingPossiblyChanged);
