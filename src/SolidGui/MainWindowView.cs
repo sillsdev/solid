@@ -600,7 +600,7 @@ namespace SolidGui
 
         public string RequestTemplatePath(string dictionaryPath, bool wouldBeReplacingExistingSettings)  //Made public for the sake of Program.cs -JMC
         {
-            TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings);
+            TemplateChooser chooser = new TemplateChooser(_mainWindowPM.Settings) { StartPosition = FormStartPosition.CenterScreen };
             chooser.CustomizedSolidDestinationName = Path.GetFileName(SolidSettings.GetSettingsFilePathFromDictionaryPath(dictionaryPath));
 
             string tmp = _mainWindowPM.DictionaryRealFilePath; //quick hack to enforce consistent behavior. -JMC Apr 2014
@@ -712,7 +712,7 @@ namespace SolidGui
         private void OnQuickFix(object sender, EventArgs e)
         {
             QuickFixer fixer = new QuickFixer(_mainWindowPM.WorkingDictionary);
-            var dlg = new QuickFixForm(fixer);
+            var dlg = new QuickFixForm(fixer) { StartPosition = FormStartPosition.CenterScreen };
             if (dlg.ShowDialog() == DialogResult.Cancel)
             {
                 return;
@@ -900,7 +900,10 @@ Notes:
         private void dataShapeInventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseDialog(_dataShapesDialog);
-            _dataShapesDialog = new DataShapesDialog(GetFindReplaceDialog(), _mainWindowPM);
+            _dataShapesDialog = new DataShapesDialog(GetFindReplaceDialog(), _mainWindowPM)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
             _dataShapesDialog.Show();
         }
 
@@ -908,7 +911,10 @@ Notes:
         private void dataValueInventoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CloseDialog(_dataValuesDialog);
-            _dataValuesDialog = new DataValuesDialog(_mainWindowPM);
+            _dataValuesDialog = new DataValuesDialog(_mainWindowPM)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
             _dataValuesDialog.Show();
         }
 

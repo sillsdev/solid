@@ -69,7 +69,7 @@ namespace SolidGui.Setup
             string cp1252text = EncodingChecker.ReadLines(dictionaryPath, Encoding.GetEncoding(1252), 40);
             string utf8text = EncodingChecker.ReadLines(dictionaryPath, Encoding.UTF8, 40);
 
-            var encChooser = new EncodingChooser(dictionaryPath);
+            var encChooser = new EncodingChooser(dictionaryPath) { StartPosition = FormStartPosition.CenterScreen };
             encChooser.setAnalysis(utf8, cp1252);
             encChooser.setPreviews(utf8text, cp1252text);
             encChooser.ShowDialog();

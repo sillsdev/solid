@@ -541,7 +541,7 @@ namespace SolidGui
 
         public void Export(int filterIndex, string destinationFilePath)
         {
-            using (var dlg = new ExportLogDialog())
+            using (var dlg = new ExportLogDialog() { StartPosition = FormStartPosition.CenterScreen })
             {
                 ExportFactory f = ExportFactory.Singleton();
                 IExporter exporter = f.CreateFromSettings(f.ExportSettings[filterIndex]);
